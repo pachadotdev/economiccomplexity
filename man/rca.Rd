@@ -4,22 +4,21 @@
 \alias{rca}
 \title{Computes RCA (Revealed Comparative Advantage)}
 \usage{
-rca(data = data, c = "country", p = "product", value = "export_val")
+rca(d = NULL, c = NULL, p = NULL, v = NULL)
 }
 \arguments{
-\item{data}{a tibble (or data frame) in long format}
+\item{d}{a tibble (or data frame) in long format}
 
-\item{c}{name of column that contains countries (by default is "country")}
+\item{c}{column that contains exporting countries (e.g. "reporter_iso")}
 
-\item{p}{name of column that contains products (by default is "product")}
+\item{p}{column that contains products (e.g. "product_code)}
 
-\item{value}{name of column that contains trade values (by default is "export_val")}
+\item{v}{column that contains traded values (e.g. "trade_value_usd")}
 }
 \description{
 Computes RCA (Revealed Comparative Advantage)
 }
 \examples{
-# Demo dataset 'Fantasy World'
-rca(fantasy_world_long)
+# TBD
 }
 \keyword{functions}

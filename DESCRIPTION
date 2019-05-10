@@ -12,6 +12,5 @@ LazyData: true
 Imports:
   magrittr,
   dplyr,
-  tidyr,
-  stats
-RoxygenNote: 6.0.1
+  rlang
+RoxygenNote: 6.1.1

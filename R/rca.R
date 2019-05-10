@@ -1,49 +1,38 @@
-globalVariables(
-  c(
-    "pairs",
-    "select",
-    "sum_c_p_xcp",
-    "sum_c_xcp",
-    "sum_p_xcp",
-    "xcp"
-  )
-)
-
 #' Computes RCA (Revealed Comparative Advantage)
 #'
 #' @export
-#' @param data a tibble (or data frame) in long format
-#' @param c name of column that contains countries (by default is "country")
-#' @param p name of column that contains products (by default is "product")
-#' @param value name of column that contains trade values (by default is "export_val")
+#' @param d a tibble (or data frame) in long format
+#' @param c column that contains exporting countries (e.g. "reporter_iso")
+#' @param p column that contains products (e.g. "product_code)
+#' @param v column that contains traded values (e.g. "trade_value_usd")
 #' @importFrom magrittr %>%
-#' @importFrom dplyr select_ select mutate group_by ungroup filter distinct
-#' @importFrom tidyr unite
-#' @importFrom stats setNames
+#' @importFrom dplyr select group_by mutate
+#' @importFrom rlang sym syms
 #' @examples
-#' # Demo dataset 'Fantasy World'
-#' rca(fantasy_world_long)
+#' rca(d = fantasy_world_long, c = "country", p = "product")
 #' @keywords functions
 
-rca <- function(data = data, c = "country", p = "product", value = "export_val") {
-  data_rca <- data %>%
-    select_(.dots = c(c, p, value)) %>%
-    setNames(c("c", "p", "value")) %>%
-    unite(pairs, c, p, remove = FALSE) %>%
-    group_by(p) %>% # Sum by categories in P
-    mutate(sum_p_xcp = sum(value, na.rm = TRUE)) %>%
-    ungroup() %>%
-    group_by(c) %>% # Sum by categories in C
-    mutate(sum_c_xcp = sum(value, na.rm = TRUE)) %>%
-    ungroup() %>%
-    group_by(pairs) %>% # Sum by pairs (C,P)
-    mutate(xcp = sum(value, na.rm = TRUE)) %>%
-    ungroup() %>%
-    distinct(pairs, .keep_all = TRUE) %>%
-    select(-pairs) %>%
-    filter(sum_c_xcp > 0) %>%
-    mutate(sum_c_p_xcp = sum(xcp, na.rm = TRUE)) %>%  # Total sum
-    mutate(rca = (xcp / sum_c_xcp) / (sum_p_xcp / sum_c_p_xcp)) %>%  # Compute RCA
-    select(c, p, value, rca)
-  return(data_rca)
+rca <- function(d = NULL, c = NULL, p = NULL, v = NULL) {
+  d %>%
+    # Sum by country and product
+    dplyr::group_by(!!!syms(c(c,p))) %>%
+    dplyr::mutate(xcp = sum(!!sym(v), na.rm = TRUE)) %>%
+
+    # Sum by country
+    dplyr::group_by(!!sym(c)) %>%
+    dplyr::mutate(sum_c_xcp = sum(!!sym("xcp"), na.rm = TRUE)) %>%
+
+    # Sum by product
+    dplyr::group_by(!!sym(p)) %>%
+    dplyr::mutate(sum_p_xcp = sum(!!sym("xcp"), na.rm = TRUE)) %>%
+
+    # Compute RCA
+    dplyr::ungroup() %>%
+    dplyr::mutate(
+      sum_c_p_xcp = sum(!!sym("xcp"), na.rm = TRUE),
+      rca = (!!sym("xcp") / !!sym("sum_c_xcp")) / (!!sym("sum_p_xcp") / !!sym("sum_c_p_xcp"))
+    ) %>%
+
+    # Remove intermediate columns
+    dplyr::select(-dplyr::matches("xcp"))
 }
