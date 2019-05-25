@@ -19,6 +19,6 @@ rca(d = NULL, c = NULL, p = NULL, v = NULL)
 Computes RCA (Revealed Comparative Advantage)
 }
 \examples{
-# TBD
+rca(d = fantasy_world_long, c = "country", p = "product")
 }
 \keyword{functions}

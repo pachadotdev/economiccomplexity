@@ -9,7 +9,7 @@
 #' @importFrom dplyr select group_by mutate
 #' @importFrom rlang sym syms
 #' @examples
-#' rca(d = fantasy_world_long, c = "country", p = "product")
+#' rca(d = fantasy_world_long, c = "country", p = "product", v = "export_val")
 #' @keywords functions
 
 rca <- function(d = NULL, c = NULL, p = NULL, v = NULL) {
