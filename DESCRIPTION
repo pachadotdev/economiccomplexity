@@ -6,11 +6,16 @@ Author: Who wrote it
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
-License: MIT + file LICENSE
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports:
   magrittr,
   dplyr,
+  tidyr,
+  purrr,
+  Matrix,
   rlang
+Depends:
+  R(>= 2.10)
 RoxygenNote: 6.1.1

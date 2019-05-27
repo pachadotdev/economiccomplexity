@@ -1,3 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+.git
+.gitignore
 csv.gz$
+test.R

@@ -2,23 +2,30 @@
 % Please edit documentation in R/rca.R
 \name{rca}
 \alias{rca}
-\title{Computes RCA (Revealed Comparative Advantage)}
+\title{RCA (Revealed Comparative Advantage)}
 \usage{
-rca(d = NULL, c = NULL, p = NULL, v = NULL)
+rca(d = NULL, c = NULL, p = NULL, x = NULL, discrete = T,
+  cutoff = 1, output = "matrix")
 }
 \arguments{
-\item{d}{a tibble (or data frame) in long format}
+\item{d}{"tibble" (or "data frame") in long format}
 
 \item{c}{column that contains exporting countries (e.g. "reporter_iso")}
 
 \item{p}{column that contains products (e.g. "product_code)}
 
-\item{v}{column that contains traded values (e.g. "trade_value_usd")}
+\item{x}{column that contains traded values (e.g. "trade_value_usd")}
+
+\item{discrete}{T or F}
+
+\item{cutoff}{1 by default}
+
+\item{output}{"tibble" or "matrix"}
 }
 \description{
-Computes RCA (Revealed Comparative Advantage)
+RCA (Revealed Comparative Advantage)
 }
 \examples{
-rca(d = fantasy_world_long, c = "country", p = "product")
+rca(d = world_trade_1980, c = "reporter_iso", p = "product_code", x = "export_value_usd")
 }
 \keyword{functions}
