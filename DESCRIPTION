@@ -15,7 +15,11 @@ Imports:
   tidyr,
   purrr,
   Matrix,
-  rlang
+  rlang,
+  Rcpp (>= 1.0.0)
 Depends:
-  R(>= 2.10)
+  R (>= 2.10)
+LinkingTo:
+  Rcpp,
+  RcppArmadillo
 RoxygenNote: 6.1.1

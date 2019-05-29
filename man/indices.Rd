@@ -19,7 +19,8 @@ indices(m, maxiter = 20, method = "reflections", output = "matrix")
 RCA (Revealed Comparative Advantage)
 }
 \examples{
-indices(m = rca(d = world_trade_1980, c = "reporter_iso", p = "product_code", x = "export_value_usd"),
+indices(m = rca(d = world_trade_1980, c = "reporter_iso",
+p = "product_code", x = "export_value_usd"),
 method = "reflections", maxiter = 20, output = "matrix")
 }
 \keyword{functions}

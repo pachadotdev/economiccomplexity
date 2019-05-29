@@ -5,7 +5,7 @@
 world_trade_1980
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of the dataset. ~~
+tbd
 }
 \usage{data("world_trade_1980")}
 \format{
@@ -17,13 +17,13 @@ world_trade_1980
   }
 }
 \details{
-%%  ~~ If necessary, more details than the __description__ above ~~
+tbd
 }
 \source{
-%%  ~~ reference to a publication or URL from which the data were obtained ~~
+tbd
 }
 \references{
-%%  ~~ possibly secondary sources and usages ~~
+tbd
 }
 \examples{
 data(world_trade_1980)

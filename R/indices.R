@@ -10,7 +10,8 @@
 #' @importFrom Matrix Matrix rowSums colSums t
 #' @importFrom rlang sym
 #' @examples
-#' indices(m = rca(d = world_trade_1980, c = "reporter_iso", p = "product_code", x = "export_value_usd"),
+#' indices(m = rca(d = world_trade_1980, c = "reporter_iso",
+#' p = "product_code", x = "export_value_usd"),
 #' method = "reflections", maxiter = 20, output = "matrix")
 #' @keywords functions
 
@@ -39,10 +40,12 @@ indices <- function(m, maxiter = 20, method = "reflections" , output = "matrix")
       kp[, j] <- (Matrix::t(m2) %*% kc[, (j - 1)]) * kpinv
     }
 
-    eci <- (kc[, maxiter - 1] - base::mean(kc[, maxiter - 1])) / stats::sd(kc[, maxiter - 1])
+    eci <- (kc[, maxiter - 1] - base::mean(kc[, maxiter - 1])) /
+      stats::sd(kc[, maxiter - 1])
     names(eci) <- rownames(m2)
 
-    pci <- (kp[, maxiter] - base::mean(kp[, maxiter])) / stats::sd(kp[, maxiter])
+    pci <- (kp[, maxiter] - base::mean(kp[, maxiter])) /
+      stats::sd(kp[, maxiter])
     names(pci) <- colnames(m2)
   }
 

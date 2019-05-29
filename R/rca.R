@@ -11,7 +11,7 @@
 #' @importFrom magrittr %>%
 #' @importFrom dplyr select group_by mutate summarise matches
 #' @importFrom purrr as_vector
-#' @importFrom Matrix rowSums colSums t
+#' @importFrom Matrix Matrix rowSums colSums t
 #' @importFrom rlang sym syms
 #' @examples
 #' rca(d = world_trade_1980, c = "reporter_iso", p = "product_code", x = "export_value_usd")
@@ -62,12 +62,12 @@ rca <- function(d = NULL, c = NULL, p = NULL, x = NULL, discrete = T, cutoff = 1
 
     m <- dplyr::select(m, -!!sym(c)) %>% as.matrix()
     m[is.na(m)] <- 0
-    m <- as(m, "dgCMatrix")
+    m <- Matrix::Matrix(m, sparse = TRUE)
 
     rownames(m) <- row_names
 
     m <- Matrix::t(Matrix::t(m / Matrix::rowSums(m)) / (Matrix::colSums(m) / sum(m)))
-    m <- as(m, "dgCMatrix")
+    m <- Matrix::Matrix(m, sparse = TRUE)
 
     if (discrete == T) {
       m[m <= cutoff] <- 0
