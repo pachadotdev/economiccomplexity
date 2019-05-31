@@ -3,4 +3,3 @@
 .git
 .gitignore
 test.R
-NAMESPACE.backup

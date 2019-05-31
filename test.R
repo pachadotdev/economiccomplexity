@@ -1,13 +1,13 @@
-set.seed(10)
-n <- 100
-D <- runif(n,0,100)
+library(economiccomplexity)
 
-X <- matrix(0, nrow = n, ncol = n)
+rca <- rca(d = world_trade_1980, c = "reporter_iso",
+    p = "product_code", x = "export_value_usd")
 
-for (i in 1:n) {
-  for (j in 1:n) {
-    X[i,j] <- max(D[i], D[j])
-  }
-}
+indices <- indices(rca, method = "reflections", maxiter = 20,
+    output = "matrix")
 
-Y <- pairwise_max(n,D)
+m <- indices$m
+kc0 <- indices$kc0
+kp0 <- indices$kp0
+
+proximity <- proximity(m, kc = kc0, kp = kp0)

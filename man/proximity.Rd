@@ -4,7 +4,7 @@
 \alias{proximity}
 \title{Proximity}
 \usage{
-proximity(m, kc, kp)
+proximity(m, kc, kp, output)
 }
 \arguments{
 \item{m}{matrix}
@@ -12,6 +12,8 @@ proximity(m, kc, kp)
 \item{kc}{vector}
 
 \item{kp}{vector}
+
+\item{output}{matrix or tibble}
 }
 \description{
 Proximity
@@ -27,6 +29,6 @@ m <- indices$m
 kc0 <- indices$kc0
 kp0 <- indices$kp0
 
-proximity <- proximity(m, kc = kc0, kp = kp0)
+proximity <- proximity(m, kc = kc0, kp = kp0, output = "matrix")
 }
 \keyword{functions}
