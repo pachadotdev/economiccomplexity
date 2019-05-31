@@ -25,11 +25,11 @@
 proximity <- function(m, kc, kp, output) {
   nc <- nrow(m)
   xc <- m %*% Matrix::t(m)
-  yc <- economiccomplexity::pairwise_max(nc,kc)
+  yc <- outer(kc, kc)
 
   np <- ncol(m)
   xp <- Matrix::t(m) %*% m
-  yp <- economiccomplexity::pairwise_max(np,kp)
+  yp <- outer(kp, kp)
 
   if (output == "matrix") {
     proximity_countries <- xc / yc

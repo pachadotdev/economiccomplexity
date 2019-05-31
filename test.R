@@ -10,4 +10,10 @@ m <- indices$m
 kc0 <- indices$kc0
 kp0 <- indices$kp0
 
+kc <- Matrix::drop(kc0)
+kc <- outer(kc, kc, pmax)
+
+kp <- Matrix::drop(kp0)
+kp <- outer(kp0, kp0, pmax)
+
 proximity <- proximity(m, kc = kc0, kp = kp0)
