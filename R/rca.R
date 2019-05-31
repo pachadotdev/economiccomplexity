@@ -14,7 +14,8 @@
 #' @importFrom Matrix Matrix rowSums colSums t
 #' @importFrom rlang sym syms
 #' @examples
-#' rca(d = world_trade_1980, c = "reporter_iso", p = "product_code", x = "export_value_usd")
+#' rca <- rca(d = world_trade_1980, c = "reporter_iso",
+#'     p = "product_code", x = "export_value_usd")
 #' @keywords functions
 
 rca <- function(d = NULL, c = NULL, p = NULL, x = NULL, discrete = T, cutoff = 1, output = "matrix") {

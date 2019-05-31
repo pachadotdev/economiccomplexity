@@ -2,7 +2,7 @@
 \alias{world_trade_1980}
 \docType{data}
 \title{
-world_trade_1980
+tbd
 }
 \description{
 tbd

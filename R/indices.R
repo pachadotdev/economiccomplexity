@@ -10,9 +10,11 @@
 #' @importFrom Matrix Matrix rowSums colSums t
 #' @importFrom rlang sym
 #' @examples
-#' indices(m = rca(d = world_trade_1980, c = "reporter_iso",
-#' p = "product_code", x = "export_value_usd"),
-#' method = "reflections", maxiter = 20, output = "matrix")
+#' rca <- rca(d = world_trade_1980, c = "reporter_iso",
+#'     p = "product_code", x = "export_value_usd")
+#'
+#' indices <- indices(rca, method = "reflections", maxiter = 20,
+#'     output = "matrix")
 #' @keywords functions
 
 indices <- function(m, maxiter = 20, method = "reflections" , output = "matrix") {

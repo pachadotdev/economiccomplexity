@@ -2,5 +2,5 @@
 ^\.Rproj\.user$
 .git
 .gitignore
-csv.gz$
 test.R
+NAMESPACE.backup
