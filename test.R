@@ -1,19 +1,15 @@
+set.seed(1810)
 library(economiccomplexity)
 
-rca <- rca(d = world_trade_1980, c = "reporter_iso",
-    p = "product_code", x = "export_value_usd")
+rca <- revealed_comparative_advantage(d = world_trade_1980, c = "reporter_iso", p = "product_code", x = "export_value_usd", output = "matrix")
 
-indices <- indices(rca, method = "reflections", maxiter = 20,
-    output = "matrix")
+indices <- economic_complexity_measures(d = rca, method = "reflections", iterations = 20, output = "tibble")
 
-m <- indices$m
-kc0 <- indices$kc0
-kp0 <- indices$kp0
+proximity <- proximity(indices$m, indices$kc0, indices$kp0, output = "matrix")
 
-kc <- Matrix::drop(kc0)
-kc <- outer(kc, kc, pmax)
+networks <- networks(proximity$proximity_countries, proximity$proximity_products,
+                     c_cutoff = 0.35, p_cutoff = 0.55)
 
-kp <- Matrix::drop(kp0)
-kp <- outer(kp0, kp0, pmax)
-
-proximity <- proximity(m, kc = kc0, kp = kp0)
+library(igraph)
+coords <- layout.fruchterman.reingold(networks$products_network)
+plot(networks$products_network, layout = coords)

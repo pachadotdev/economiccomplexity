@@ -5,6 +5,8 @@
 #' @param kc vector
 #' @param kp vector
 #' @param output matrix or tibble
+#' @importFrom methods as
+#' @importFrom magrittr %>%
 #' @importFrom dplyr as_tibble filter mutate
 #' @importFrom tidyr gather
 #' @importFrom rlang sym
@@ -22,7 +24,11 @@
 #' proximity <- proximity(m, kc = kc0, kp = kp0, output = "matrix")
 #' @keywords functions
 
-proximity <- function(m, kc, kp, output) {
+proximity <- function(m, kc, kp, output = "matrix") {
+  if (!output %in% c("matrix", "tibble")) {
+    stop()
+  }
+
   nc <- nrow(m)
   xc <- m %*% Matrix::t(m)
   yc <- outer(kc, kc)
@@ -32,35 +38,31 @@ proximity <- function(m, kc, kp, output) {
   yp <- outer(kp, kp)
 
   if (output == "matrix") {
-    proximity_countries <- xc / yc
-    proximity_products <- xp / yp
+    pc <- as(xc / yc, "dgCMatrix")
+    pp <- as(xp / yp, "dgCMatrix")
   }
 
   if (output == "tibble") {
-    proximity_countries <- xc / yc
-    proximity_products <- xp / yp
+    pc <- xc / yc
+    pp <- xp / yp
 
-    proximity_countries[upper.tri(proximity_countries, diag = T)] <- NA
-    row_names <- rownames(proximity_countries)
+    pc[upper.tri(pc, diag = T)] <- 0
 
-    proximity_countries <- as.matrix(proximity_countries) %>%
+    pc <- as.matrix(pc) %>%
       dplyr::as_tibble() %>%
-      dplyr::mutate(from = row_names) %>%
+      dplyr::mutate(from = rownames(pc)) %>%
       tidyr::gather(!!sym("to"), !!sym("value"), -!!sym("from")) %>%
-      dplyr::filter(!is.na(!!sym("value")), !!sym("value") > 0)
+      dplyr::filter(!!sym("value") > 0)
 
-    proximity_products[upper.tri(proximity_products, diag = T)] <- NA
-    row_names <- rownames(proximity_products)
+    pp[upper.tri(pp, diag = T)] <- 0
 
-    proximity_products <- as.matrix(proximity_products) %>%
+    pp <- as.matrix(pp) %>%
       dplyr::as_tibble() %>%
-      dplyr::mutate(from = row_names) %>%
+      dplyr::mutate(from = rownames(pp)) %>%
       tidyr::gather(!!sym("to"), !!sym("value"), -!!sym("from")) %>%
-      dplyr::filter(!is.na(!!sym("value")), !!sym("value") > 0)
+      dplyr::filter(!!sym("value") > 0)
   }
 
-  proximity <- list(proximity_countries = proximity_countries,
-                    proximity_products = proximity_products)
-
+  proximity <- list(proximity_countries = pc, proximity_products = pp)
   return(proximity)
 }
