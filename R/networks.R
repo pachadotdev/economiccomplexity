@@ -1,4 +1,4 @@
-#' Networks (WIP)
+#' Networks
 #'
 #' @export
 #' @param proximity_countries matrix or tibble/data.frame, if d is a tibble/data.frame it must contain the columns
@@ -8,9 +8,9 @@
 #' from (character/factor), to (character/factor) and value (numeric), if it is a matrix it must be a
 #' numeric matrix with products in row names and column names
 #' @param c_cutoff all the values lower than the specified c_cutoff will be converted to 0 and excluded
-#' from the countries network
+#' from the countries network (default set to 0.2)
 #' @param p_cutoff all the values lower than the specified p_cutoff will be converted to 0 and excluded
-#' from the products network
+#' from the products network (default set to 0.4)
 #' @param tbl_output when set to TRUE the output will be a tibble instead of a graph (default set to FALSE)
 #' @importFrom methods as
 #' @importFrom magrittr %>%
@@ -19,19 +19,12 @@
 #' @importFrom igraph graph_from_data_frame mst as_data_frame
 #' @importFrom rlang sym
 #' @examples
-#' rca <- revealed_comparative_advantage(d = world_trade_2017, c = "reporter_iso",
-#'     p = "product_code", v = "export_value_usd")
-#'
-#' measures <- economic_complexity_measures(rca)
-#'
-#' proximity <- proximity_matrices(d = rca, diversity = measures$diversity,
-#'     ubiquity = measures$ubiquity)
-#'
-#' networks <- networks(proximity$proximity_countries, proximity$proximity_products)
+#' networks <- networks(proximity_matrices_2017$countries_proximity,
+#'     proximity_matrices_2017$countries_proximity)
 #' @keywords functions
 
-networks <- function(proximity_countries, proximity_products, c_cutoff = 0.35,
-                     p_cutoff = 0.55, tbl_output = FALSE) {
+networks <- function(proximity_countries, proximity_products, c_cutoff = 0.2,
+                     p_cutoff = 0.4, tbl_output = FALSE) {
   # sanity checks ----
   if (all(class(proximity_countries) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix") == FALSE) &
       all(class(proximity_products) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix") == FALSE)) {
@@ -84,6 +77,8 @@ networks <- function(proximity_countries, proximity_products, c_cutoff = 0.35,
     dplyr::anti_join(c_mst, by = c("from", "to"))
 
   c_g <- dplyr::bind_rows(c_mst, c_g_nmst)
+  c_g <- dplyr::mutate(c_g, value = -1 * !!sym("value"))
+
   c_g <- igraph::graph_from_data_frame(c_g, directed = F)
   c_g <- igraph::simplify(c_g, remove.multiple = TRUE, remove.loops = TRUE,
                           edge.attr.comb = "first")
@@ -100,13 +95,15 @@ networks <- function(proximity_countries, proximity_products, c_cutoff = 0.35,
     dplyr::anti_join(p_mst, by = c("from", "to"))
 
   p_g <- dplyr::bind_rows(p_mst, p_g_nmst)
+  p_g <- dplyr::mutate(p_g, value = -1 * !!sym("value"))
+
   p_g <- igraph::graph_from_data_frame(p_g, directed = F)
   p_g <- igraph::simplify(p_g, remove.multiple = TRUE, remove.loops = TRUE,
                           edge.attr.comb = "first")
 
   if (tbl_output == TRUE) {
-    c_g <- igraph::as_data_frame(c_g)
-    p_g <- igraph::as_data_frame(p_g)
+    c_g <- igraph::as_data_frame(c_g) %>% dplyr::as_tibble()
+    p_g <- igraph::as_data_frame(p_g) %>% dplyr::as_tibble()
   }
 
   return(list(countries_network = c_g, products_network = p_g))

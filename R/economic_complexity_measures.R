@@ -21,10 +21,7 @@
 #' @importFrom Matrix Matrix rowSums colSums t
 #' @importFrom rlang sym
 #' @examples
-#' rca <- revealed_comparative_advantage(d = world_trade_2017, c = "reporter_iso",
-#'     p = "product_code", v = "export_value_usd")
-#'
-#' measures <- economic_complexity_measures(rca)
+#' complexity_measures <- economic_complexity_measures(world_rca_2017)
 #' @keywords functions
 
 economic_complexity_measures <- function(d = NULL, c = "country", p = "product", v = "value",

@@ -45,12 +45,8 @@ output of economic_complexity_measures())}
 Proximity Matrices
 }
 \examples{
-rca <- revealed_comparative_advantage(d = world_trade_2017, c = "reporter_iso",
-    p = "product_code", v = "export_value_usd")
-
-measures <- economic_complexity_measures(rca)
-
-proximity <- proximity_matrices(d = rca, diversity = measures$diversity,
-    ubiquity = measures$ubiquity)
+proximity <- proximity_matrices(d = world_rca_2017,
+    diversity = complexity_measures_2017$diversity,
+    ubiquity = complexity_measures_2017$ubiquity)
 }
 \keyword{functions}

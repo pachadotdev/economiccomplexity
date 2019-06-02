@@ -2,10 +2,10 @@
 % Please edit documentation in R/networks.R
 \name{networks}
 \alias{networks}
-\title{Networks (WIP)}
+\title{Networks}
 \usage{
-networks(proximity_countries, proximity_products, c_cutoff = 0.35,
-  p_cutoff = 0.55, tbl_output = FALSE)
+networks(proximity_countries, proximity_products, c_cutoff = 0.2,
+  p_cutoff = 0.4, tbl_output = FALSE)
 }
 \arguments{
 \item{proximity_countries}{matrix or tibble/data.frame, if d is a tibble/data.frame it must contain the columns
@@ -17,25 +17,18 @@ from (character/factor), to (character/factor) and value (numeric), if it is a m
 numeric matrix with products in row names and column names}
 
 \item{c_cutoff}{all the values lower than the specified c_cutoff will be converted to 0 and excluded
-from the countries network}
+from the countries network (default set to 0.2)}
 
 \item{p_cutoff}{all the values lower than the specified p_cutoff will be converted to 0 and excluded
-from the products network}
+from the products network (default set to 0.4)}
 
 \item{tbl_output}{when set to TRUE the output will be a tibble instead of a graph (default set to FALSE)}
 }
 \description{
-Networks (WIP)
+Networks
 }
 \examples{
-rca <- revealed_comparative_advantage(d = world_trade_2017, c = "reporter_iso",
-    p = "product_code", v = "export_value_usd")
-
-measures <- economic_complexity_measures(rca)
-
-proximity <- proximity_matrices(d = rca, diversity = measures$diversity,
-    ubiquity = measures$ubiquity)
-
-networks <- networks(proximity$proximity_countries, proximity$proximity_products)
+networks <- networks(proximity_matrices_2017$countries_proximity,
+    proximity_matrices_2017$countries_proximity)
 }
 \keyword{functions}

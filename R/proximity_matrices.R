@@ -28,13 +28,9 @@
 #' @importFrom tidyr gather
 #' @importFrom rlang sym
 #' @examples
-#' rca <- revealed_comparative_advantage(d = world_trade_2017, c = "reporter_iso",
-#'     p = "product_code", v = "export_value_usd")
-#'
-#' measures <- economic_complexity_measures(rca)
-#'
-#' proximity <- proximity_matrices(d = rca, diversity = measures$diversity,
-#'     ubiquity = measures$ubiquity)
+#' proximity <- proximity_matrices(d = world_rca_2017,
+#'     diversity = complexity_measures_2017$diversity,
+#'     ubiquity = complexity_measures_2017$ubiquity)
 #' @keywords functions
 
 proximity_matrices <- function(d = NULL, c = "country", p = "product", v = "value",
@@ -95,20 +91,20 @@ proximity_matrices <- function(d = NULL, c = "country", p = "product", v = "valu
   yp <- outer(ubiquity, ubiquity)
 
   if (tbl_output == FALSE) {
-    pc <- as(xc / yc, "dgCMatrix")
+    cp <- as(xc / yc, "dgCMatrix")
     pp <- as(xp / yp, "dgCMatrix")
   }
 
   # transform proximity matrices to data.frame ----
   if (tbl_output == TRUE) {
-    pc <- xc / yc
+    cp <- xc / yc
     pp <- xp / yp
 
-    pc[upper.tri(pc, diag = T)] <- 0
+    cp[upper.tri(cp, diag = T)] <- 0
 
-    pc <- as.matrix(pc) %>%
+    cp <- as.matrix(cp) %>%
       dplyr::as_tibble() %>%
-      dplyr::mutate(from = rownames(pc)) %>%
+      dplyr::mutate(from = rownames(cp)) %>%
       tidyr::gather(!!sym("to"), !!sym("value"), -!!sym("from")) %>%
       dplyr::filter(!!sym("value") > 0)
 
@@ -123,8 +119,8 @@ proximity_matrices <- function(d = NULL, c = "country", p = "product", v = "valu
 
   return(
     list(
-      proximity_countries = pc,
-      proximity_products = pp
+      countries_proximity = cp,
+      products_proximity = pp
     )
   )
 }
