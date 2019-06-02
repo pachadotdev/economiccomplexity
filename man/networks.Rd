@@ -2,33 +2,40 @@
 % Please edit documentation in R/networks.R
 \name{networks}
 \alias{networks}
-\title{Networks}
+\title{Networks (WIP)}
 \usage{
-networks(pc, pp, c_cutoff = 0.35, p_cutoff = 0.55)
+networks(proximity_countries, proximity_products, c_cutoff = 0.35,
+  p_cutoff = 0.55, tbl_output = FALSE)
 }
 \arguments{
-\item{pc}{matrix or tibble}
+\item{proximity_countries}{matrix or tibble/data.frame, if d is a tibble/data.frame it must contain the columns
+from (character/factor), to (character/factor) and value (numeric), if it is a matrix it must be a
+numeric matrix with countries in row names and column names}
 
-\item{pp}{matrix or tibble}
+\item{proximity_products}{matrix or tibble/data.frame, if d is a tibble/data.frame it must contain the columns
+from (character/factor), to (character/factor) and value (numeric), if it is a matrix it must be a
+numeric matrix with products in row names and column names}
 
-\item{c_cutoff}{numeric}
+\item{c_cutoff}{all the values lower than the specified c_cutoff will be converted to 0 and excluded
+from the countries network}
 
-\item{p_cutoff}{numeric}
+\item{p_cutoff}{all the values lower than the specified p_cutoff will be converted to 0 and excluded
+from the products network}
+
+\item{tbl_output}{when set to TRUE the output will be a tibble instead of a graph (default set to FALSE)}
 }
 \description{
-Networks
+Networks (WIP)
 }
 \examples{
-rca <- rca(d = world_trade_1980, c = "reporter_iso",
-    p = "product_code", x = "export_value_usd")
+rca <- revealed_comparative_advantage(d = world_trade_2017, c = "reporter_iso",
+    p = "product_code", v = "export_value_usd")
 
-indices <- indices(rca, method = "reflections", maxiter = 20,
-    output = "matrix")
+measures <- economic_complexity_measures(rca)
 
-m <- indices$m
-kc0 <- indices$kc0
-kp0 <- indices$kp0
+proximity <- proximity_matrices(d = rca, diversity = measures$diversity,
+    ubiquity = measures$ubiquity)
 
-proximity <- proximity(m, kc = kc0, kp = kp0, output = "matrix")
+networks <- networks(proximity$proximity_countries, proximity$proximity_products)
 }
 \keyword{functions}

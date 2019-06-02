@@ -12,6 +12,6 @@ Description: Compute RCA and other measures of economic complexity. This descrip
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-Imports: methods, magrittr, dplyr, tidyr, purrr, Matrix, igraph, rlang
+Imports: methods, magrittr, tibble, dplyr, tidyr, purrr, Matrix, igraph, rlang
 Depends: R (>= 2.10)
 RoxygenNote: 6.1.1

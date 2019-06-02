@@ -1,5 +1,5 @@
-\name{world_trade_1980}
-\alias{world_trade_1980}
+\name{world_trade_2017}
+\alias{world_trade_2017}
 \docType{data}
 \title{
 tbd
@@ -7,7 +7,7 @@ tbd
 \description{
 tbd
 }
-\usage{data("world_trade_1980")}
+\usage{data("world_trade_2017")}
 \format{
   A data frame with 165977 observations on the following 3 variables.
   \describe{
@@ -26,7 +26,7 @@ tbd
 tbd
 }
 \examples{
-data(world_trade_1980)
-## maybe str(world_trade_1980) ; plot(world_trade_1980) ...
+data(world_trade_2017)
+## maybe str(world_trade_2017) ; plot(world_trade_2017) ...
 }
 \keyword{datasets}
