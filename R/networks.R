@@ -23,8 +23,8 @@
 #'     proximity_matrices_2017$countries_proximity)
 #' @keywords functions
 
-networks <- function(proximity_countries, proximity_products, c_cutoff = 0.2,
-                     p_cutoff = 0.4, tbl_output = FALSE) {
+networks <- function(proximity_countries, proximity_products, c_cutoff = 0.25,
+                     p_cutoff = 0.55, tbl_output = FALSE) {
   # sanity checks ----
   if (all(class(proximity_countries) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix") == FALSE) &
       all(class(proximity_products) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix") == FALSE)) {

@@ -84,11 +84,11 @@ proximity_matrices <- function(d = NULL, c = "country", p = "product", v = "valu
   # compute proximity matrices ----
   nc <- nrow(m)
   xc <- m %*% Matrix::t(m)
-  yc <- outer(diversity, diversity)
+  yc <- outer(diversity, diversity, pmax)
 
   np <- ncol(m)
   xp <- Matrix::t(m) %*% m
-  yp <- outer(ubiquity, ubiquity)
+  yp <- outer(ubiquity, ubiquity, pmax)
 
   if (tbl_output == FALSE) {
     cp <- as(xc / yc, "dgCMatrix")

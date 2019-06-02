@@ -44,7 +44,7 @@ revealed_comparative_advantage <- function(d = NULL, c = NULL, p = NULL, v = NUL
     stop("tbl_output must be matrix or tibble")
   }
 
-  # aggregate input data by c, p and cp ----
+  # aggregate input data by c and p ----
   d <- d %>%
     # Sum by country and product
     dplyr::group_by(!!!syms(c(c,p))) %>%
@@ -102,7 +102,7 @@ revealed_comparative_advantage <- function(d = NULL, c = NULL, p = NULL, v = NUL
 
     if (discrete == T) {
       d <- d %>%
-        mutate(value = ifelse(!!sym("value") <= cutoff, 0, 1))
+        mutate(value = ifelse(!!sym("value") > cutoff, 1, 0))
     }
 
     return(d)
