@@ -2,7 +2,7 @@
 \alias{complexity_measures_2017}
 \docType{data}
 \title{
-TBD
+Demo dataset to show the output of economic_complexity_measures().
 }
 \description{
 TBD
@@ -24,17 +24,7 @@ List of 4
   ..$ product: chr [1:1222] "0101" "0102" "0103" "0104" ...
   ..$ value  : num [1:1222] 20 42 16 25 34 55 28 23 15 27 ...
 }
-\details{
-TBD
-}
-\source{
-TBD
-}
-\references{
-TBD
-}
 \examples{
 data(complexity_measures_2017)
-## maybe str(complexity_measures_2017) ; plot(complexity_measures_2017) ...
 }
 \keyword{datasets}

@@ -2,7 +2,7 @@
 \alias{world_rca_2017}
 \docType{data}
 \title{
-TBD
+Demo dataset to show the output of revealed_comparative_advantage().
 }
 \description{
 TBD
@@ -27,6 +27,5 @@ TBD
 }
 \examples{
 data(world_rca_2017)
-## maybe str(world_rca_2017) ; plot(world_rca_2017) ...
 }
 \keyword{datasets}

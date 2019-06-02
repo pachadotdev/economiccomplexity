@@ -2,10 +2,10 @@
 \alias{world_trade_2017}
 \docType{data}
 \title{
-tbd
+Dataset with world trade in 2017 obtained by using the tradestatistics package.
 }
 \description{
-tbd
+TBD
 }
 \usage{data("world_trade_2017")}
 \format{
@@ -16,17 +16,7 @@ tbd
     \item{\code{export_value_usd}}{a numeric vector}
   }
 }
-\details{
-tbd
-}
-\source{
-tbd
-}
-\references{
-tbd
-}
 \examples{
 data(world_trade_2017)
-## maybe str(world_trade_2017) ; plot(world_trade_2017) ...
 }
 \keyword{datasets}

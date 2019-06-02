@@ -1,6 +1,6 @@
 Package: economiccomplexity
 Type: Package
-Title: TBD
+Title: Methods used in the Economic Complexity literature
 Version: 0.1.0
 Authors@R: person(given = "Mauricio",
   family = "Vargas",
@@ -8,10 +8,13 @@ Authors@R: person(given = "Mauricio",
   email = "mvargas@dcc.uchile.cl",
   comment = c(ORCID = "0000-0003-1017-7574")
   )
-Description: Compute RCA and other measures of economic complexity. This description is still incomplete.  
+Description: A wrapper of different indices and networks commonly used in Economic Complexity
+  to explore bipartite relations such as countries and their exported products. These methods
+  are also useful for different kind of relations such as countries and their spoken languages.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-Imports: methods, magrittr, tibble, dplyr, tidyr, purrr, Matrix, igraph, rlang
+Imports: methods, magrittr, tibble, dplyr, tidyr, Matrix, igraph, rlang
 Depends: R (>= 2.10)
+BugReports: http://github.com/pachamaltese/economiccomplexity/issues
 RoxygenNote: 6.1.1

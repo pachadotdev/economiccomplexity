@@ -12,8 +12,7 @@
 #' converted to zero and to one in other case, numeric (default set to 1)
 #' @param tbl_output when set to TRUE the output will be a tibble instead of a matrix (default set to FALSE)
 #' @importFrom magrittr %>%
-#' @importFrom dplyr select group_by mutate summarise matches rename
-#' @importFrom purrr as_vector
+#' @importFrom dplyr select group_by mutate summarise matches rename pull
 #' @importFrom Matrix Matrix rowSums colSums t
 #' @importFrom rlang sym syms
 #' @examples
@@ -58,13 +57,13 @@ revealed_comparative_advantage <- function(d = NULL, c = NULL, p = NULL, v = NUL
       tidyr::spread(!!sym(p), !!sym("vcp")) %>%
       dplyr::ungroup()
 
-    row_names <- dplyr::select(m, !!sym(c)) %>% purrr::as_vector()
+    m_rownames <- dplyr::select(m, !!sym(c)) %>% dplyr::pull()
 
     m <- dplyr::select(m, -!!sym(c)) %>% as.matrix()
     m[is.na(m)] <- 0
     m <- Matrix::Matrix(m, sparse = TRUE)
 
-    rownames(m) <- row_names
+    rownames(m) <- m_rownames
 
     m <- Matrix::t(Matrix::t(m / Matrix::rowSums(m)) / (Matrix::colSums(m) / sum(m)))
     m <- Matrix::Matrix(m, sparse = TRUE)
