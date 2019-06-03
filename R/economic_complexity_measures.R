@@ -13,6 +13,7 @@
 #' @param method reflections, eigenvalues or fitness (default set to reflections)
 #' methods (default set to FALSE)
 #' @param iterations number of iterations to use in the reflections method (default set to 20)
+#' @param extremality coefficient to use in the fitness method (default set to 1)
 #' @param tbl_output when set to TRUE the output will be a tibble instead of a matrix (default set to FALSE)
 #' @importFrom magrittr %>%
 #' @importFrom dplyr select mutate arrange pull
@@ -25,7 +26,7 @@
 #' @keywords functions
 
 economic_complexity_measures <- function(d = NULL, c = "country", p = "product", v = "value",
-                                         method = "fitness", iterations = 20, tbl_output = FALSE) {
+                                         method = "fitness", iterations = 20, extremality = 1, tbl_output = FALSE) {
   # sanity checks ----
   if (all(class(d) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix") == FALSE)) {
     stop("d must be a tibble/data.frame or a dense/sparse matrix")
@@ -115,7 +116,7 @@ economic_complexity_measures <- function(d = NULL, c = "country", p = "product",
       kc[, j] <- m %*% kp[, (j - 1)]
       kc[, j] <- kc[, j] / mean(kc[, j])
 
-      kp[, j] <- 1 / (Matrix::t(m) %*% (1 /kc[, (j - 1)]))
+      kp[, j] <- 1 / (Matrix::t(m) %*% (1 /kc[, (j - 1)])^extremality)^(1 / extremality)
       kp[, j] <- kp[, j] / mean(kp[, j])
     }
 
