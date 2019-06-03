@@ -3,7 +3,9 @@ library(economiccomplexity)
 rca <- revealed_comparative_advantage(d = world_trade_2017, c = "reporter_iso",
   p = "product_code", v = "export_value_usd")
 
-complexity_measures <- economic_complexity_measures(world_rca_2017)
+complexity_measures <- economic_complexity_measures(world_rca_2017, use_eigenvalues = F, tbl_output = T)
+
+complexity_measures2 <- economic_complexity_measures(world_rca_2017, use_eigenvalues = T, tbl_output = T)
 
 proximity <- proximity_matrices(d = world_rca_2017,
   diversity = complexity_measures_2017$diversity,
