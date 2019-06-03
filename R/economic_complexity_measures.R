@@ -10,7 +10,7 @@
 #' output of revealed_comparative_advantage())
 #' @param v string to indicate the column that contains RCA values (default set to "value" that is the
 #' output of revealed_comparative_advantage())
-#' @param use_eigenvalues when set to TRUE the function will use eigenvalues as a limit case of the reflections
+#' @param method reflections, eigenvalues or fitness (default set to reflections)
 #' methods (default set to FALSE)
 #' @param iterations number of iterations to use in the reflections method (default set to 20)
 #' @param tbl_output when set to TRUE the output will be a tibble instead of a matrix (default set to FALSE)
@@ -25,14 +25,14 @@
 #' @keywords functions
 
 economic_complexity_measures <- function(d = NULL, c = "country", p = "product", v = "value",
-                                         use_eigenvalues = FALSE, iterations = 20, tbl_output = FALSE) {
+                                         method = "fitness", iterations = 20, tbl_output = FALSE) {
   # sanity checks ----
   if (all(class(d) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix") == FALSE)) {
     stop("d must be a tibble/data.frame or a dense/sparse matrix")
   }
 
-  if (!is.logical(use_eigenvalues)) {
-    stop("use_eigenvalues must be logical")
+  if (!(any(method %in% c("reflections","eigenvalues","fitness")) == TRUE)) {
+    stop("method must be reflections, eigenvalues or fitness")
   }
 
   if (is.integer(iterations) & !iterations >= 2) {
@@ -63,7 +63,7 @@ economic_complexity_measures <- function(d = NULL, c = "country", p = "product",
   kc0 <- Matrix::rowSums(m)
   kp0 <- Matrix::colSums(m)
 
-  if (use_eigenvalues == FALSE) {
+  if (method == "reflections") {
     # create empty matrices
     kc <- Matrix::Matrix(0, nrow = length(kc0), ncol = iterations, sparse = T)
     kp <- Matrix::Matrix(0, nrow = length(kp0), ncol = iterations, sparse = T)
@@ -87,14 +87,45 @@ economic_complexity_measures <- function(d = NULL, c = "country", p = "product",
       stats::sd(kp[, iterations])
   }
 
-  if (use_eigenvalues == TRUE) {
+  if (method == "eigenvalues") {
     eci <- eigen((m %*% (Matrix::t(m) * (1 / kp0))) * (1 / kc0))
     eci <- Re(eci$vectors[, 2])
+
+    # eci normalized as in the Atlas
     eci <- (eci - base::mean(eci)) / stats::sd(eci)
 
     pci <- eigen((Matrix::t(m) %*% (m * (1 / kc0))) * (1 / kp0))
     pci <- Re(pci$vectors[, 2])
+
+    # pci normalized as in the Atlas
     pci <- (pci - base::mean(pci)) /  stats::sd(pci)
+  }
+
+  if (method == "fitness") {
+    # create empty matrices
+    kc <- Matrix::Matrix(0, nrow = length(kc0), ncol = iterations, sparse = T)
+    kp <- Matrix::Matrix(0, nrow = length(kp0), ncol = iterations, sparse = T)
+
+    # fill the first columns with kc0 and kp0 to start iterating
+    kc[, 1] <- 1
+    kp[, 1] <- 1
+
+    # compute cols 2 to "no. of iterations" by iterating from col 1
+    for (j in 2:ncol(kc)) {
+      kc[, j] <- m %*% kp[, (j - 1)]
+      kc[, j] <- kc[, j] / mean(kc[, j])
+
+      kp[, j] <- 1 / (Matrix::t(m) %*% (1 /kc[, (j - 1)]))
+      kp[, j] <- kp[, j] / mean(kp[, j])
+    }
+
+    # eci is of odd order and normalized as in the Atlas
+    eci <- (kc[, iterations - 1] - base::mean(kc[, iterations - 1])) /
+      stats::sd(kc[, iterations - 1])
+
+    # pci is of even order and normalized as in the Atlas
+    pci <- (kp[, iterations] - base::mean(kp[, iterations])) /
+      stats::sd(kp[, iterations])
   }
 
   names(eci) <- rownames(m)

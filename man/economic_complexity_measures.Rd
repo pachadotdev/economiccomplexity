@@ -5,7 +5,7 @@
 \title{Economic Complexity Measures}
 \usage{
 economic_complexity_measures(d = NULL, c = "country", p = "product",
-  v = "value", use_eigenvalues = FALSE, iterations = 20,
+  v = "value", method = "reflections", iterations = 20,
   tbl_output = FALSE)
 }
 \arguments{
@@ -22,7 +22,7 @@ output of revealed_comparative_advantage())}
 \item{v}{string to indicate the column that contains RCA values (default set to "value" that is the
 output of revealed_comparative_advantage())}
 
-\item{use_eigenvalues}{when set to TRUE the function will use eigenvalues as a limit case of the reflections
+\item{method}{reflections, eigenvalues or fitness (default set to reflections)
 methods (default set to FALSE)}
 
 \item{iterations}{number of iterations to use in the reflections method (default set to 20)}
