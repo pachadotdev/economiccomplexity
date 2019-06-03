@@ -88,12 +88,12 @@ economic_complexity_measures <- function(d = NULL, c = "country", p = "product",
   }
 
   if (use_eigenvalues == TRUE) {
-    eci <- eigen((m %*% Matrix::t(m * (1 / kp0))) * (1 / kc0))
-    eci <- eci$vectors[,1]
+    eci <- eigen((m %*% (Matrix::t(m) * (1 / kp0))) * (1 / kc0))
+    eci <- Re(eci$vectors[, 2])
     eci <- (eci - base::mean(eci)) / stats::sd(eci)
 
     pci <- eigen((Matrix::t(m) %*% (m * (1 / kc0))) * (1 / kp0))
-    pci <- pci$vectors[,1]
+    pci <- Re(pci$vectors[, 2])
     pci <- (pci - base::mean(pci)) /  stats::sd(pci)
   }
 
