@@ -5,8 +5,8 @@
 \title{Economic Complexity Measures}
 \usage{
 economic_complexity_measures(d = NULL, c = "country", p = "product",
-  v = "value", method = "reflections", iterations = 20,
-  tbl_output = FALSE)
+  v = "value", method = "fitness", iterations = 20,
+  extremality = 1, keep_atlas = FALSE, tbl_output = FALSE)
 }
 \arguments{
 \item{d}{matrix or tibble/data.frame in long format, if d is a tibble/data.frame it must contain the columns
@@ -26,6 +26,10 @@ output of revealed_comparative_advantage())}
 methods (default set to FALSE)}
 
 \item{iterations}{number of iterations to use in the reflections method (default set to 20)}
+
+\item{extremality}{coefficient to use in the fitness method (default set to 1)}
+
+\item{keep_atlas}{removes the countries not ranked in The Atlas of Economic Complexity (default set to FALSE)}
 
 \item{tbl_output}{when set to TRUE the output will be a tibble instead of a matrix (default set to FALSE)}
 }

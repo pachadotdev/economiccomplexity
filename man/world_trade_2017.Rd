@@ -5,7 +5,7 @@
 Dataset with world trade in 2017 obtained by using the tradestatistics package.
 }
 \description{
-TBD
+This dataset is a simplified version of the country-product dataset from Open Trade Statistics (tradestatistics.io) for the year 2017. The simplification consisted in keeping just three columns to provide a minimal dataset for example purposes.
 }
 \usage{data("world_trade_2017")}
 \format{

@@ -12,6 +12,7 @@
 #' output of revealed_comparative_advantage())
 #' @param method reflections, eigenvalues or fitness (default set to reflections)
 #' methods (default set to FALSE)
+#' @param keep_atlas removes the countries not ranked in The Atlas of Economic Complexity (default set to FALSE)
 #' @param iterations number of iterations to use in the reflections method (default set to 20)
 #' @param extremality coefficient to use in the fitness method (default set to 1)
 #' @param tbl_output when set to TRUE the output will be a tibble instead of a matrix (default set to FALSE)
@@ -26,7 +27,8 @@
 #' @keywords functions
 
 economic_complexity_measures <- function(d = NULL, c = "country", p = "product", v = "value",
-                                         method = "fitness", iterations = 20, extremality = 1, tbl_output = FALSE) {
+                                         method = "fitness", iterations = 20, extremality = 1,
+                                         keep_atlas = FALSE, tbl_output = FALSE) {
   # sanity checks ----
   if (all(class(d) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix") == FALSE)) {
     stop("d must be a tibble/data.frame or a dense/sparse matrix")
@@ -57,6 +59,26 @@ economic_complexity_measures <- function(d = NULL, c = "country", p = "product",
     m <- m[Matrix::rowSums(m) != 0, Matrix::colSums(m) != 0]
   } else {
     m <- d[Matrix::rowSums(d) != 0, Matrix::colSums(d) != 0]
+  }
+
+  # remove countries not ranked in The Atlas of Economic Complexity
+  # this list comes from
+  # https://github.com/tradestatistics/atlas-data/blob/master/2-scraped-tables/ranking-1-economic-complexity-index.csv
+  if (keep_atlas == TRUE) {
+    atlas_countries <- c('jpn', 'deu', 'che', 'swe', 'aut', 'fin', 'sgp', 'cze', 'gbr', 'svn',
+      'fra', 'kor', 'usa', 'hun', 'svk', 'ita', 'dnk', 'irl', 'isr', 'mex', 'blr', 'bel', 'nld',
+      'hkg', 'pol', 'hrv', 'rou', 'esp', 'chn', 'pan', 'tha', 'est', 'nor', 'mys', 'prt', 'ltu',
+      'srb', 'bih', 'lva', 'bgr', 'can', 'ukr', 'tur', 'lbn', 'jor', 'rus', 'tun', 'nzl', 'cri',
+      'mda', 'ind', 'bra', 'grc', 'col', 'zaf', 'ury', 'arg', 'alb', 'phl', 'slv', 'idn', 'mkd',
+      'egy', 'dom', 'gtm', 'are', 'vnm', 'sau', 'kgz', 'geo', 'lka', 'nam', 'ken', 'sen', 'syr',
+      'tto', 'mus', 'chl', 'aus', 'zwe', 'jam', 'pak', 'mar', 'cub', 'qat', 'pry', 'uga', 'hnd',
+      'per', 'mdg', 'omn', 'kaz', 'ecu', 'bwa', 'tza', 'uzb', 'nic', 'khm', 'civ', 'gha', 'bol',
+      'lao', 'bgd', 'eth', 'zmb', 'mwi', 'yem', 'tjk', 'moz', 'mli', 'ven', 'lbr', 'mng', 'dza',
+      'tkm', 'kwt', 'aze', 'irn', 'lby', 'gab', 'cmr', 'nga', 'gin', 'png', 'cog', 'sdn', 'ago',
+      'mrt'
+    )
+
+    m <- m[rownames(m) %in% atlas_countries, ]
   }
 
   # compute complexity measures ----

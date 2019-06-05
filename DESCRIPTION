@@ -14,7 +14,11 @@ Authors@R: c(
       role = c("ctb"),
       email = "carlo.bottai@unito.it",
       comment = "improved the eigenvalues calculation"
-    )
+    ),
+    person(family = "Open Trade Statistics",
+      role = "dtc"),
+    person(family = "Center for International Development at Harvard University",
+      role = "dtc")
   )
 Description: A wrapper of different indices and networks commonly used in Economic Complexity
   to explore bipartite relations such as countries and their exported products. These methods
@@ -26,3 +30,5 @@ Imports: methods, magrittr, tibble, dplyr, tidyr, Matrix, igraph, rlang
 Depends: R (>= 2.10)
 BugReports: http://github.com/pachamaltese/economiccomplexity/issues
 RoxygenNote: 6.1.1
+Suggests: 
+    testthat (>= 2.1.0)
