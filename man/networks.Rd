@@ -29,6 +29,6 @@ Networks
 }
 \examples{
 networks <- networks(proximity_matrices_2017$countries_proximity,
-    proximity_matrices_2017$countries_proximity)
+    proximity_matrices_2017$products_proximity)
 }
 \keyword{functions}
