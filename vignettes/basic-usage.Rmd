@@ -1,0 +1,130 @@
+---
+title: "How to use this package"
+author: "Mauricio Vargas"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+bibliography: ../inst/references.bib
+vignette: >
+  %\VignetteIndexEntry{How to use this package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, cache = FALSE, echo = FALSE, message = FALSE, warning = FALSE, tidy = FALSE}
+knitr::opts_chunk$set(eval = TRUE, message = FALSE, warning = FALSE)
+```
+
+# Basic trade example
+
+## Package data
+
+I'll use this demo dataset to illustrate the essential usage of the functions within this package:
+
+```{r}
+library(economiccomplexity)
+
+world_trade_2017
+```
+
+## Revealed comparative Advantage (RCA)
+
+You can obtain RCA with `revealed_comparative_advantage()`:
+```{r}
+rca <- revealed_comparative_advantage(
+  d = world_trade_2017, 
+  c = "reporter_iso",
+  p = "product_code", 
+  v = "export_value_usd"
+)
+
+rca[1:5,1:5]
+```
+
+And also you can obtain it in tabular version:
+```{r}
+rca_tbl <- revealed_comparative_advantage(
+  d = world_trade_2017, 
+  c = "reporter_iso",
+  p = "product_code",
+  v = "export_value_usd",
+  tbl_output = T
+)
+
+rca_tbl
+```
+
+Another possibility, *not used to build networks from bipartite relations*, is to obtain RCA as a matrix or tibble without discretization:
+
+```{r}
+rca_decimal <- revealed_comparative_advantage(
+  d = world_trade_2017,
+  c = "reporter_iso",
+  p = "product_code",
+  v = "export_value_usd",
+  tbl_output = F,
+  discrete = F
+)
+
+rca_decimal[1:5,1:5]
+```
+
+```{r}
+rca_decimal_tbl <- revealed_comparative_advantage(
+  d = world_trade_2017,
+  c = "reporter_iso",
+  p = "product_code",
+  v = "export_value_usd",
+  tbl_output = T,
+  discrete = T
+)
+
+rca_decimal_tbl
+```
+
+## Complexity Measures
+
+You can compute both Economic Complexity Index (ECI) and Product Complexity Index (PCI) by using `complexity_measures()`. The calculations methods are *reflections*, *eigenvalues* and *fitness* (default). See [@atlas2014] and [@measuringcomplexity2015] for the methodological details.
+
+```{r}
+complexity_measures_reflections <- complexity_measures(
+  world_rca_2017, 
+  method = "reflections", 
+  tbl_output = T
+)
+
+complexity_measures_reflections$economic_complexity_index
+complexity_measures_reflections$product_complexity_index
+```
+
+```{r}
+complexity_measures_eigenvalues <- complexity_measures(
+  world_rca_2017,
+  method = "eigenvalues",
+  tbl_output = T
+)
+
+complexity_measures_eigenvalues$economic_complexity_index
+complexity_measures_eigenvalues$product_complexity_index
+```
+
+```{r}
+complexity_measures_fitness <- complexity_measures(
+  world_rca_2017,
+  method = "fitness", 
+  tbl_output = T
+)
+
+complexity_measures_fitness$economic_complexity_index
+complexity_measures_fitness$product_complexity_index
+```
+
+## Proximity
+
+```{r}
+# proximity <- proximity_matrices(d = world_rca_2017,
+#   diversity = complexity_measures_2017$diversity,
+#   ubiquity = complexity_measures_2017$ubiquity)
+# 
+# networks <- networks(proximity_matrices_2017$countries_proximity,
+#   proximity_matrices_2017$products_proximity, tbl_output = T)
+```

@@ -1,4 +1,4 @@
-#' Economic Complexity Measures
+#' Complexity Measures
 #'
 #' @export
 #' @param d matrix or tibble/data.frame in long format, if d is a tibble/data.frame it must contain the columns
@@ -23,10 +23,10 @@
 #' @importFrom Matrix Matrix rowSums colSums t
 #' @importFrom rlang sym
 #' @examples
-#' complexity_measures <- economic_complexity_measures(world_rca_2017)
+#' complexity_measures <- complexity_measures(world_rca_2017)
 #' @keywords functions
 
-economic_complexity_measures <- function(d = NULL, c = "country", p = "product", v = "value",
+complexity_measures <- function(d = NULL, c = "country", p = "product", v = "value",
                                          method = "fitness", iterations = 20, extremality = 1,
                                          keep_atlas = FALSE, tbl_output = FALSE) {
   # sanity checks ----

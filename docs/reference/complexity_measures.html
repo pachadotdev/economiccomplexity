@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Demo dataset to show the output of economic_complexity_measures(). — complexity_measures_2017 • economiccomplexity</title>
+<title>Complexity Measures — complexity_measures • economiccomplexity</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Demo dataset to show the output of economic_complexity_measures(). — complexity_measures_2017" />
+<meta property="og:title" content="Complexity Measures — complexity_measures" />
 
-<meta property="og:description" content="TBD" />
+<meta property="og:description" content="Complexity Measures" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -106,46 +106,77 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Demo dataset to show the output of economic_complexity_measures().</h1>
+    <h1>Complexity Measures</h1>
     
-    <div class="hidden name"><code>complexity_measures_2017.Rd</code></div>
+    <div class="hidden name"><code>complexity_measures.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>TBD</p>
+    <p>Complexity Measures</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='st'>"complexity_measures_2017"</span>)</pre>
-        
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>The format is:
-List of 4
- $ economic_complexity_index:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	224 obs. of  2 variables:
-  ..$ country: chr [1:224] "jpn" "che" "deu" "bvt" ...
-  ..$ value  : num [1:224] 2.27 2.2 1.97 1.91 1.82 ...
- $ product_complexity_index :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1222 obs. of  2 variables:
-  ..$ product: chr [1:1222] "2812" "8457" "3705" "9012" ...
-  ..$ value  : num [1:1222] 2.68 2.25 2.2 2.19 2.17 ...
- $ diversity                :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	224 obs. of  2 variables:
-  ..$ country: chr [1:224] "afg" "ago" "aia" "alb" ...
-  ..$ value  : num [1:224] 68 10 73 140 85 109 183 92 71 20 ...
- $ ubiquity                 :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	1222 obs. of  2 variables:
-  ..$ product: chr [1:1222] "0101" "0102" "0103" "0104" ...
-  ..$ value  : num [1:1222] 20 42 16 25 34 55 28 23 15 27 ...</p>
+    <pre class="usage"><span class='fu'>complexity_measures</span>(<span class='kw'>d</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>c</span> <span class='kw'>=</span> <span class='st'>"country"</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
+  <span class='kw'>v</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"fitness"</span>, <span class='kw'>iterations</span> <span class='kw'>=</span> <span class='fl'>20</span>,
+  <span class='kw'>extremality</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>keep_atlas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>d</th>
+      <td><p>matrix or tibble/data.frame in long format, if d is a tibble/data.frame it must contain the columns
+country (character/factor), product (character/factor) and discrete RCA (integer), if it is a matrix it must be a
+zero/one matrix with countries in the row names and products in the column names</p></td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td><p>string to indicate the column that contains exporting countries (default set to "country" that is the
+output of revealed_comparative_advantage())</p></td>
+    </tr>
+    <tr>
+      <th>p</th>
+      <td><p>string to indicate the column that contains exported products (default set to "product" that is the
+output of revealed_comparative_advantage())</p></td>
+    </tr>
+    <tr>
+      <th>v</th>
+      <td><p>string to indicate the column that contains RCA values (default set to "value" that is the
+output of revealed_comparative_advantage())</p></td>
+    </tr>
+    <tr>
+      <th>method</th>
+      <td><p>reflections, eigenvalues or fitness (default set to reflections)
+methods (default set to FALSE)</p></td>
+    </tr>
+    <tr>
+      <th>iterations</th>
+      <td><p>number of iterations to use in the reflections method (default set to 20)</p></td>
+    </tr>
+    <tr>
+      <th>extremality</th>
+      <td><p>coefficient to use in the fitness method (default set to 1)</p></td>
+    </tr>
+    <tr>
+      <th>keep_atlas</th>
+      <td><p>removes the countries not ranked in The Atlas of Economic Complexity (default set to FALSE)</p></td>
+    </tr>
+    <tr>
+      <th>tbl_output</th>
+      <td><p>when set to TRUE the output will be a tibble instead of a matrix (default set to FALSE)</p></td>
+    </tr>
+    </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>complexity_measures_2017</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>complexity_measures</span> <span class='kw'>&lt;-</span> <span class='fu'>complexity_measures</span>(<span class='no'>world_rca_2017</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      
-      <li><a href="#format">Format</a></li>
-      
+      <li><a href="#arguments">Arguments</a></li>
+            
       <li><a href="#examples">Examples</a></li>
     </ul>
 

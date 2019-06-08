@@ -24,7 +24,7 @@ soon](https://pachamaltese.github.io/economiccomplexity/data-diagram.svg)
 
 ``` r
 # Install stable version from CRAN (coming soon)
-install.packages("economiccomplexity")
+# install.packages("economiccomplexity")
 
 # Install stable version from GitHub
 devtools::install_github("pachamaltese/economiccomplexity")
