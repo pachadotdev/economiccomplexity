@@ -87,7 +87,7 @@ You can compute both Economic Complexity Index (ECI) and Product Complexity Inde
 
 ```{r}
 complexity_measures_reflections <- complexity_measures(
-  world_rca_2017, 
+  rca, 
   method = "reflections", 
   tbl_output = T
 )
@@ -98,7 +98,7 @@ complexity_measures_reflections$product_complexity_index
 
 ```{r}
 complexity_measures_eigenvalues <- complexity_measures(
-  world_rca_2017,
+  rca,
   method = "eigenvalues",
   tbl_output = T
 )
@@ -109,7 +109,7 @@ complexity_measures_eigenvalues$product_complexity_index
 
 ```{r}
 complexity_measures_fitness <- complexity_measures(
-  world_rca_2017,
+  rca,
   method = "fitness", 
   tbl_output = T
 )
@@ -120,11 +120,53 @@ complexity_measures_fitness$product_complexity_index
 
 ## Proximity
 
+Proximity matrices are used to create both country-country and product-product networks. Using `proximity_matrices()` is straightforward:
 ```{r}
-# proximity <- proximity_matrices(d = world_rca_2017,
-#   diversity = complexity_measures_2017$diversity,
-#   ubiquity = complexity_measures_2017$ubiquity)
-# 
-# networks <- networks(proximity_matrices_2017$countries_proximity,
-#   proximity_matrices_2017$products_proximity, tbl_output = T)
+proximity <- proximity_matrices(
+  rca,
+  diversity = complexity_measures_fitness$diversity,
+  ubiquity = complexity_measures_fitness$ubiquity
+)
+
+proximity$countries_proximity[1:5,1:5]
+proximity$products_proximity[1:5,1:5]
 ```
+
+## Networks
+
+The `networks()` function is designed to use `igraph` for the internal computations and also to pass proximity-based networks to `igraph`, `ggraph` or export to Cytoscape by saving the output as csv/tsv.
+
+To create some reduced networks I'll use a high proximity cutoff:
+
+```{r}
+networks <- networks(
+  proximity$countries_proximity,
+  proximity$products_proximity,
+  c_cutoff = 0.3,
+  p_cutoff = 0.6,
+  tbl_output = T
+)
+
+networks$countries_network
+networks$products_network
+```
+
+Just a basic example with `igraph`:
+```{r}
+library(igraph)
+
+set.seed(1810)
+
+countries_network <- graph_from_data_frame(networks$countries_network, directed = F)
+
+plot(
+  countries_network, 
+  layout = layout_with_kk,
+  vertex.size = 5,
+  vertex.color = "#a8a8a8",
+  vertex.label.dist = 1,
+  vertex.label.color = "black"
+)
+```
+
+# References
