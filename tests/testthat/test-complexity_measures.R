@@ -1,6 +1,6 @@
 test_that("economic complexity measures are aligned with the expected output", {
   # matrix output ----
-  ecm_n <- economic_complexity_measures(world_rca_2017)
+  ecm_n <- complexity_measures(world_rca_2017)
   expect_is(ecm_n, "list")
   expect_is(ecm_n$economic_complexity_index, "numeric")
   expect_is(ecm_n$product_complexity_index, "numeric")
@@ -12,7 +12,7 @@ test_that("economic complexity measures are aligned with the expected output", {
   expect_equal(length(ecm_n$ubiquity), 1222)
 
   # tibble output ----
-  ecm_t <- economic_complexity_measures(world_rca_2017, tbl_output = T)
+  ecm_t <- complexity_measures(world_rca_2017, tbl_output = T)
   expect_is(ecm_t, "list")
   expect_is(ecm_t$economic_complexity_index, "data.frame")
   expect_is(ecm_t$product_complexity_index, "data.frame")

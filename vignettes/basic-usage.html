@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Mauricio Vargas" />
+
+<meta name="date" content="2019-06-08" />
+
+<title>How to use this package</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">How to use this package</h1>
+<h4 class="author">Mauricio Vargas</h4>
+<h4 class="date">2019-06-08</h4>
+
+
+
+<div id="basic-trade-example" class="section level1">
+<h1>Basic trade example</h1>
+<div id="package-data" class="section level2">
+<h2>Package data</h2>
+<p>I’ll use this demo dataset to illustrate the essential usage of the functions within this package:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(economiccomplexity)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">world_trade_<span class="dv">2017</span></a></code></pre></div>
+<pre><code>## # A tibble: 233,432 x 3
+##    reporter_iso product_code export_value_usd
+##    &lt;chr&gt;        &lt;chr&gt;                   &lt;dbl&gt;
+##  1 afg          3912                       NA
+##  2 afg          0101                       NA
+##  3 afg          0102                   387017
+##  4 afg          0103                       NA
+##  5 afg          0104                   213011
+##  6 afg          0105                       NA
+##  7 afg          0106                  1316346
+##  8 afg          0201                       NA
+##  9 afg          0202                       NA
+## 10 afg          0203                       NA
+## # … with 233,422 more rows</code></pre>
+</div>
+<div id="revealed-comparative-advantage-rca" class="section level2">
+<h2>Revealed comparative Advantage (RCA)</h2>
+<p>You can obtain RCA with <code>revealed_comparative_advantage()</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">rca &lt;-<span class="st"> </span><span class="kw">revealed_comparative_advantage</span>(</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="dt">d =</span> world_trade_<span class="dv">2017</span>, </a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="dt">c =</span> <span class="st">&quot;reporter_iso&quot;</span>,</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">  <span class="dt">p =</span> <span class="st">&quot;product_code&quot;</span>, </a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="dt">v =</span> <span class="st">&quot;export_value_usd&quot;</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">)</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">rca[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<pre><code>## 5 x 5 sparse Matrix of class &quot;dgCMatrix&quot;
+##     0101 0102 0103 0104 0105
+## afg    .    .    .    1    .
+## ago    .    .    .    .    .
+## aia    .    .    .    .    .
+## alb    .    .    .    .    .
+## and    1    .    .    .    .</code></pre>
+<p>And also you can obtain it in tabular version:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">rca_tbl &lt;-<span class="st"> </span><span class="kw">revealed_comparative_advantage</span>(</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="dt">d =</span> world_trade_<span class="dv">2017</span>, </a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">  <span class="dt">c =</span> <span class="st">&quot;reporter_iso&quot;</span>,</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">  <span class="dt">p =</span> <span class="st">&quot;product_code&quot;</span>,</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="dt">v =</span> <span class="st">&quot;export_value_usd&quot;</span>,</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">  <span class="dt">tbl_output =</span> T</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">)</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">rca_tbl</a></code></pre></div>
+<pre><code>## # A tibble: 176,971 x 3
+##    country product value
+##    &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;
+##  1 afg     0102        0
+##  2 afg     0104        1
+##  3 afg     0106        1
+##  4 afg     0204        1
+##  5 afg     0207        0
+##  6 afg     0307        0
+##  7 afg     0401        0
+##  8 afg     0402        0
+##  9 afg     0403        0
+## 10 afg     0406        0
+## # … with 176,961 more rows</code></pre>
+<p>Another possibility, <em>not used to build networks from bipartite relations</em>, is to obtain RCA as a matrix or tibble without discretization:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">rca_decimal &lt;-<span class="st"> </span><span class="kw">revealed_comparative_advantage</span>(</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">  <span class="dt">d =</span> world_trade_<span class="dv">2017</span>,</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">  <span class="dt">c =</span> <span class="st">&quot;reporter_iso&quot;</span>,</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">  <span class="dt">p =</span> <span class="st">&quot;product_code&quot;</span>,</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">  <span class="dt">v =</span> <span class="st">&quot;export_value_usd&quot;</span>,</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">  <span class="dt">tbl_output =</span> F,</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">  <span class="dt">discrete =</span> F</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">)</a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10">rca_decimal[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<pre><code>## 5 x 5 sparse Matrix of class &quot;dgCMatrix&quot;
+##         0101         0102 0103    0104 0105
+## afg .        9.771810e-01    . 3.11597    .
+## ago .        5.915342e-05    . .          .
+## aia .        .               . .          .
+## alb .        1.038204e-02    . .          .
+## and 3.126295 .               . .          .</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">rca_decimal_tbl &lt;-<span class="st"> </span><span class="kw">revealed_comparative_advantage</span>(</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">  <span class="dt">d =</span> world_trade_<span class="dv">2017</span>,</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">  <span class="dt">c =</span> <span class="st">&quot;reporter_iso&quot;</span>,</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">  <span class="dt">p =</span> <span class="st">&quot;product_code&quot;</span>,</a>
+<a class="sourceLine" id="cb9-5" data-line-number="5">  <span class="dt">v =</span> <span class="st">&quot;export_value_usd&quot;</span>,</a>
+<a class="sourceLine" id="cb9-6" data-line-number="6">  <span class="dt">tbl_output =</span> T,</a>
+<a class="sourceLine" id="cb9-7" data-line-number="7">  <span class="dt">discrete =</span> T</a>
+<a class="sourceLine" id="cb9-8" data-line-number="8">)</a>
+<a class="sourceLine" id="cb9-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb9-10" data-line-number="10">rca_decimal_tbl</a></code></pre></div>
+<pre><code>## # A tibble: 176,971 x 3
+##    country product value
+##    &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;
+##  1 afg     0102        0
+##  2 afg     0104        1
+##  3 afg     0106        1
+##  4 afg     0204        1
+##  5 afg     0207        0
+##  6 afg     0307        0
+##  7 afg     0401        0
+##  8 afg     0402        0
+##  9 afg     0403        0
+## 10 afg     0406        0
+## # … with 176,961 more rows</code></pre>
+</div>
+<div id="complexity-measures" class="section level2">
+<h2>Complexity Measures</h2>
+<p>You can compute both Economic Complexity Index (ECI) and Product Complexity Index (PCI) by using <code>complexity_measures()</code>. The calculations methods are <em>reflections</em>, <em>eigenvalues</em> and <em>fitness</em> (default). See <span class="citation">(Hausmann et al. 2014)</span> and <span class="citation">(Mariani et al. 2015)</span> for the methodological details.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">complexity_measures_reflections &lt;-<span class="st"> </span><span class="kw">complexity_measures</span>(</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">  rca, </a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">  <span class="dt">method =</span> <span class="st">&quot;reflections&quot;</span>, </a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">  <span class="dt">tbl_output =</span> T</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb11-7" data-line-number="7">complexity_measures_reflections<span class="op">$</span>economic_complexity_index</a></code></pre></div>
+<pre><code>## # A tibble: 224 x 2
+##    country value
+##    &lt;chr&gt;   &lt;dbl&gt;
+##  1 jpn      2.27
+##  2 che      2.20
+##  3 deu      1.97
+##  4 bvt      1.91
+##  5 kor      1.82
+##  6 cze      1.74
+##  7 aut      1.73
+##  8 sgp      1.71
+##  9 swe      1.68
+## 10 svn      1.66
+## # … with 214 more rows</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">complexity_measures_reflections<span class="op">$</span>product_complexity_index</a></code></pre></div>
+<pre><code>## # A tibble: 1,222 x 2
+##    product value
+##    &lt;chr&gt;   &lt;dbl&gt;
+##  1 2812     2.68
+##  2 8457     2.25
+##  3 3705     2.20
+##  4 9012     2.19
+##  5 8420     2.17
+##  6 8113     2.16
+##  7 3818     2.00
+##  8 9017     1.96
+##  9 8475     1.95
+## 10 2920     1.91
+## # … with 1,212 more rows</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">complexity_measures_eigenvalues &lt;-<span class="st"> </span><span class="kw">complexity_measures</span>(</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">  rca,</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">  <span class="dt">method =</span> <span class="st">&quot;eigenvalues&quot;</span>,</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4">  <span class="dt">tbl_output =</span> T</a>
+<a class="sourceLine" id="cb15-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb15-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb15-7" data-line-number="7">complexity_measures_eigenvalues<span class="op">$</span>economic_complexity_index</a></code></pre></div>
+<pre><code>## # A tibble: 224 x 2
+##    country value
+##    &lt;chr&gt;   &lt;dbl&gt;
+##  1 jpn      2.28
+##  2 che      2.20
+##  3 deu      1.97
+##  4 bvt      1.91
+##  5 kor      1.82
+##  6 cze      1.74
+##  7 aut      1.73
+##  8 sgp      1.72
+##  9 swe      1.68
+## 10 svn      1.66
+## # … with 214 more rows</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">complexity_measures_eigenvalues<span class="op">$</span>product_complexity_index</a></code></pre></div>
+<pre><code>## # A tibble: 1,222 x 2
+##    product value
+##    &lt;chr&gt;   &lt;dbl&gt;
+##  1 2812     2.68
+##  2 8457     2.25
+##  3 3705     2.20
+##  4 9012     2.19
+##  5 8420     2.17
+##  6 8113     2.16
+##  7 3818     2.01
+##  8 9017     1.96
+##  9 8475     1.96
+## 10 2920     1.91
+## # … with 1,212 more rows</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">complexity_measures_fitness &lt;-<span class="st"> </span><span class="kw">complexity_measures</span>(</a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">  rca,</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3">  <span class="dt">method =</span> <span class="st">&quot;fitness&quot;</span>, </a>
+<a class="sourceLine" id="cb19-4" data-line-number="4">  <span class="dt">tbl_output =</span> T</a>
+<a class="sourceLine" id="cb19-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb19-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb19-7" data-line-number="7">complexity_measures_fitness<span class="op">$</span>economic_complexity_index</a></code></pre></div>
+<pre><code>## # A tibble: 224 x 2
+##    country value
+##    &lt;chr&gt;   &lt;dbl&gt;
+##  1 deu      4.83
+##  2 chn      4.44
+##  3 jpn      3.87
+##  4 ita      3.77
+##  5 usa      3.18
+##  6 fra      3.17
+##  7 esp      2.99
+##  8 nld      2.63
+##  9 bel      2.51
+## 10 cze      2.44
+## # … with 214 more rows</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">complexity_measures_fitness<span class="op">$</span>product_complexity_index</a></code></pre></div>
+<pre><code>## # A tibble: 1,222 x 2
+##    product value
+##    &lt;chr&gt;   &lt;dbl&gt;
+##  1 2812    13.7 
+##  2 5005    10.4 
+##  3 2913     7.22
+##  4 8444     6.88
+##  5 3702     6.37
+##  6 9016     5.94
+##  7 9012     5.61
+##  8 7221     4.64
+##  9 3818     4.22
+## 10 7014     3.92
+## # … with 1,212 more rows</code></pre>
+</div>
+<div id="proximity" class="section level2">
+<h2>Proximity</h2>
+<p>Proximity matrices are used to create both country-country and product-product networks. Using <code>proximity_matrices()</code> is straightforward:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">proximity &lt;-<span class="st"> </span><span class="kw">proximity_matrices</span>(</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2">  rca,</a>
+<a class="sourceLine" id="cb23-3" data-line-number="3">  <span class="dt">diversity =</span> complexity_measures_fitness<span class="op">$</span>diversity,</a>
+<a class="sourceLine" id="cb23-4" data-line-number="4">  <span class="dt">ubiquity =</span> complexity_measures_fitness<span class="op">$</span>ubiquity</a>
+<a class="sourceLine" id="cb23-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb23-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb23-7" data-line-number="7">proximity<span class="op">$</span>countries_proximity[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<pre><code>## 5 x 5 sparse Matrix of class &quot;dgCMatrix&quot;
+##            afg        ago        aia        alb        and
+## afg 1.00000000 0.01470588 0.01369863 0.13571429 0.07058824
+## ago 0.01470588 1.00000000 0.01369863 0.01428571 0.01176471
+## aia 0.01369863 0.01369863 1.00000000 0.09285714 0.08235294
+## alb 0.13571429 0.01428571 0.09285714 1.00000000 0.10000000
+## and 0.07058824 0.01176471 0.08235294 0.10000000 1.00000000</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">proximity<span class="op">$</span>products_proximity[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<pre><code>## 5 x 5 sparse Matrix of class &quot;dgCMatrix&quot;
+##           0101      0102      0103      0104      0105
+## 0101 1.0000000 0.1904762 0.2500000 0.0400000 0.2352941
+## 0102 0.1904762 1.0000000 0.3095238 0.3571429 0.3571429
+## 0103 0.2500000 0.3095238 1.0000000 0.1200000 0.2647059
+## 0104 0.0400000 0.3571429 0.1200000 1.0000000 0.1470588
+## 0105 0.2352941 0.3571429 0.2647059 0.1470588 1.0000000</code></pre>
+</div>
+<div id="networks" class="section level2">
+<h2>Networks</h2>
+<p>The <code>networks()</code> function is designed to use <code>igraph</code> for the internal computations and also to pass proximity-based networks to <code>igraph</code>, <code>ggraph</code> or export to Cytoscape by saving the output as csv/tsv.</p>
+<p>To create some reduced networks I’ll use a high proximity cutoff:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">networks &lt;-<span class="st"> </span><span class="kw">networks</span>(</a>
+<a class="sourceLine" id="cb27-2" data-line-number="2">  proximity<span class="op">$</span>countries_proximity,</a>
+<a class="sourceLine" id="cb27-3" data-line-number="3">  proximity<span class="op">$</span>products_proximity,</a>
+<a class="sourceLine" id="cb27-4" data-line-number="4">  <span class="dt">c_cutoff =</span> <span class="fl">0.3</span>,</a>
+<a class="sourceLine" id="cb27-5" data-line-number="5">  <span class="dt">p_cutoff =</span> <span class="fl">0.6</span>,</a>
+<a class="sourceLine" id="cb27-6" data-line-number="6">  <span class="dt">tbl_output =</span> T</a>
+<a class="sourceLine" id="cb27-7" data-line-number="7">)</a>
+<a class="sourceLine" id="cb27-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb27-9" data-line-number="9">networks<span class="op">$</span>countries_network</a></code></pre></div>
+<pre><code>## # A tibble: 554 x 3
+##    from  to    value
+##    &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;
+##  1 sdn   cub   0.278
+##  2 sdn   eth   0.267
+##  3 sdn   mwi   0.258
+##  4 sdn   yem   0.352
+##  5 sdn   afg   0.25 
+##  6 tjk   eri   0.105
+##  7 tjk   afg   0.235
+##  8 ago   gnq   0.3  
+##  9 ago   gnb   0.2  
+## 10 ago   hmd   0.182
+## # … with 544 more rows</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">networks<span class="op">$</span>products_network</a></code></pre></div>
+<pre><code>## # A tibble: 1,359 x 3
+##    from  to    value
+##    &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;
+##  1 3502  0206  0.524
+##  2 3502  0101  0.55 
+##  3 8802  0101  0.35 
+##  4 9021  0101  0.5  
+##  5 0102  4410  0.548
+##  6 0103  4003  0.5  
+##  7 0103  8442  0.5  
+##  8 0104  0204  0.407
+##  9 0105  1601  0.55 
+## 10 0106  1101  0.4  
+## # … with 1,349 more rows</code></pre>
+<p>Just a basic example with <code>igraph</code>:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">library</span>(igraph)</a>
+<a class="sourceLine" id="cb31-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb31-3" data-line-number="3"><span class="kw">set.seed</span>(<span class="dv">1810</span>)</a>
+<a class="sourceLine" id="cb31-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb31-5" data-line-number="5">countries_network &lt;-<span class="st"> </span><span class="kw">graph_from_data_frame</span>(networks<span class="op">$</span>countries_network, <span class="dt">directed =</span> F)</a>
+<a class="sourceLine" id="cb31-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb31-7" data-line-number="7"><span class="kw">plot</span>(</a>
+<a class="sourceLine" id="cb31-8" data-line-number="8">  countries_network, </a>
+<a class="sourceLine" id="cb31-9" data-line-number="9">  <span class="dt">layout =</span> layout_with_kk,</a>
+<a class="sourceLine" id="cb31-10" data-line-number="10">  <span class="dt">vertex.size =</span> <span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb31-11" data-line-number="11">  <span class="dt">vertex.color =</span> <span class="st">&quot;#a8a8a8&quot;</span>,</a>
+<a class="sourceLine" id="cb31-12" data-line-number="12">  <span class="dt">vertex.label.dist =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb31-13" data-line-number="13">  <span class="dt">vertex.label.color =</span> <span class="st">&quot;black&quot;</span></a>
+<a class="sourceLine" id="cb31-14" data-line-number="14">)</a></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references">
+<div id="ref-atlas2014">
+<p>Hausmann, Ricardo, César Hidalgo, Sebastián Bustos, Michele Coscia, Alexander Simoes, and Muhammed Yildirim. 2014. <em>The Atlas of Economic Complexity: Mapping Paths to Prosperity</em>. Mit Press.</p>
+</div>
+<div id="ref-measuringcomplexity2015">
+<p>Mariani, Manuel, Alexandre Vidmer, Matsúš Medo, and Yi-Cheng Zhang. 2015. “Measuring Economic Complexity of Countries and Products: Which Metric to Use?” <em>The European Physical Journal B</em> 88 (11). Springer: 293.</p>
+</div>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
