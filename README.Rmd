@@ -14,10 +14,10 @@ knitr::opts_chunk$set(
 
 # Economic Complexity package <img src="https://pachamaltese.github.io/economiccomplexity/hexicon.svg" width=150 align="right" alt="sticker"/>
 
-[![mitlicense](https://img.shields.io/badge/License-GNU-green.svg)](https://opensource.org/licenses/GPL-3.0)
-[![Build Status](https://travis-ci.org/pachamaltese/economiccomplexity.svg?branch=master)](https://travis-ci.org/pachamaltese/economiccomplexity)
+[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![Travis-CI Build Status](https://travis-ci.org/pachamaltese/economiccomplexity.svg?branch=master)](https://travis-ci.org/pachamaltese/economiccomplexity)
 [![Coverage status](https://codecov.io/gh/pachamaltese/economiccomplexity/branch/master/graph/badge.svg)](https://codecov.io/github/pachamaltese/economiccomplexity?branch=master)
-<!--[![](https://badges.ropensci.org/274_status.svg)](https://github.com/pachamaltese/onboarding/issues/xxx)-->
 
 A wrapper of different indices and networks commonly used in Economic Complexity
 to explore bipartite relations such as countries and their exported products. These methods

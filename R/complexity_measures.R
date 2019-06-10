@@ -64,10 +64,11 @@ complexity_measures <- function(d = NULL, c = "country", p = "product", v = "val
   # remove countries not ranked in The Atlas of Economic Complexity
   # this list comes from
   # https://github.com/tradestatistics/atlas-data/blob/master/2-scraped-tables/ranking-1-economic-complexity-index.csv
+  # the country code for Romania in Comtrade is ROM, not ROU
   if (keep_atlas == TRUE) {
     atlas_countries <- c('jpn', 'deu', 'che', 'swe', 'aut', 'fin', 'sgp', 'cze', 'gbr', 'svn',
       'fra', 'kor', 'usa', 'hun', 'svk', 'ita', 'dnk', 'irl', 'isr', 'mex', 'blr', 'bel', 'nld',
-      'hkg', 'pol', 'hrv', 'rou', 'esp', 'chn', 'pan', 'tha', 'est', 'nor', 'mys', 'prt', 'ltu',
+      'hkg', 'pol', 'hrv', 'rom', 'esp', 'chn', 'pan', 'tha', 'est', 'nor', 'mys', 'prt', 'ltu',
       'srb', 'bih', 'lva', 'bgr', 'can', 'ukr', 'tur', 'lbn', 'jor', 'rus', 'tun', 'nzl', 'cri',
       'mda', 'ind', 'bra', 'grc', 'col', 'zaf', 'ury', 'arg', 'alb', 'phl', 'slv', 'idn', 'mkd',
       'egy', 'dom', 'gtm', 'are', 'vnm', 'sau', 'kgz', 'geo', 'lka', 'nam', 'ken', 'sen', 'syr',

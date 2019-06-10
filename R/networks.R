@@ -16,7 +16,7 @@
 #' @importFrom magrittr %>%
 #' @importFrom dplyr as_tibble filter mutate bind_rows
 #' @importFrom tidyr gather
-#' @importFrom igraph graph_from_data_frame mst as_data_frame
+#' @importFrom igraph graph_from_data_frame mst as_data_frame simplify
 #' @importFrom rlang sym
 #' @examples
 #' networks <- networks(proximity_matrices_2017$countries_proximity,

@@ -12,7 +12,7 @@
 #' converted to zero and to one in other case, numeric (default set to 1)
 #' @param tbl_output when set to TRUE the output will be a tibble instead of a matrix (default set to FALSE)
 #' @importFrom magrittr %>%
-#' @importFrom dplyr select group_by mutate summarise matches rename pull
+#' @importFrom dplyr select group_by ungroup mutate summarise matches rename pull
 #' @importFrom Matrix Matrix rowSums colSums t
 #' @importFrom rlang sym syms
 #' @examples
@@ -48,14 +48,14 @@ revealed_comparative_advantage <- function(d = NULL, c = NULL, p = NULL, v = NUL
     # Sum by country and product
     dplyr::group_by(!!!syms(c(c,p))) %>%
     dplyr::summarise(vcp = sum(!!sym(v), na.rm = TRUE)) %>%
+    dplyr::ungroup() %>%
     dplyr::filter(!!sym("vcp") > 0)
 
   # compute RCA in matrix form ----
   if (tbl_output == FALSE) {
     m <- d %>%
       dplyr::select(!!!syms(c(c,p,"vcp"))) %>%
-      tidyr::spread(!!sym(p), !!sym("vcp")) %>%
-      dplyr::ungroup()
+      tidyr::spread(!!sym(p), !!sym("vcp"))
 
     m_rownames <- dplyr::select(m, !!sym(c)) %>% dplyr::pull()
 
