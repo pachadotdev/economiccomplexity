@@ -19,12 +19,12 @@
 #' @importFrom igraph graph_from_data_frame mst as_data_frame simplify
 #' @importFrom rlang sym
 #' @examples
-#' networks <- networks(proximity_matrices_2017$countries_proximity,
+#' networks <- proximity_networks(proximity_matrices_2017$countries_proximity,
 #'     proximity_matrices_2017$products_proximity)
 #' @keywords functions
 
-networks <- function(proximity_countries, proximity_products, c_cutoff = 0.25,
-                     p_cutoff = 0.55, tbl_output = FALSE) {
+proximity_networks <- function(proximity_countries, proximity_products, c_cutoff = 0.25,
+                               p_cutoff = 0.55, tbl_output = FALSE) {
   # sanity checks ----
   if (all(class(proximity_countries) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix") == FALSE) &
       all(class(proximity_products) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix") == FALSE)) {

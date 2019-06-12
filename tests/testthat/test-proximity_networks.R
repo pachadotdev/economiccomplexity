@@ -1,6 +1,6 @@
 test_that("proximity results are aligned with the expected output ", {
   # matrix output ----
-  networks_m <- networks(
+  networks_m <- proximity_networks(
     proximity_matrices_2017$countries_proximity,
     proximity_matrices_2017$countries_proximity
   )
@@ -9,7 +9,7 @@ test_that("proximity results are aligned with the expected output ", {
   expect_equal(length(igraph::E(networks_m$products_network)), 223)
 
   # tibble output ----
-  networks_t <- networks(
+  networks_t <- proximity_networks(
     proximity_matrices_2017$countries_proximity,
     proximity_matrices_2017$products_proximity,
     tbl_output = T

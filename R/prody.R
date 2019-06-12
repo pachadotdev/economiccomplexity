@@ -17,13 +17,15 @@
 #' @importFrom stats setNames
 #' @importFrom rlang sym syms
 #' @examples
-#' rca <- revealed_comparative_advantage(d = world_trade_2017, c = "reporter_iso",
-#'     p = "product_code", v = "export_value_usd")
+#' prody <- prody(
+#'     d1 = world_trade_2017, c1 = "reporter_iso", p1 = "product_code", v1 = "export_value_usd",
+#'     d2 = gdp_and_population_2017, c2 = "reporter_iso", v2 = "gdp_pc_usd"
+#' )
 #' @keywords functions
 
-revealed_comparative_advantage <- function(d1 = NULL, c1 = NULL, p1 = NULL, v1 = NULL,
-                                           d2 = NULL, c2 = NULL, v2 = NULL,
-                                           tbl_output = FALSE) {
+prody <- function(d1 = NULL, c1 = NULL, p1 = NULL, v1 = NULL,
+                  d2 = NULL, c2 = NULL, v2 = NULL,
+                  tbl_output = FALSE) {
   # sanity checks ----
   if (all(class(d1) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix") == FALSE)) {
     stop("d1 must be a tibble/data.frame or a dense/sparse matrix")
@@ -45,20 +47,7 @@ revealed_comparative_advantage <- function(d1 = NULL, c1 = NULL, p1 = NULL, v1 =
     stop("tbl_output must be matrix or tibble")
   }
 
-  library(dplyr)
-  library(tidyr)
-  library(rlang)
-
-  d1 = world_trade_2017
-  d2 = gdp_and_population_2017
-
-  c1 = "reporter_iso"
-  p1 = "product_code"
-  v1 = "export_value_usd"
-
-  c2 = c1
-  v2 = "gdp_pc_usd"
-
+  # TODO: d1 or d2 is a matrix ----
   # tidy input data d1 ----
   d1 <- d1 %>%
     # Sum by country and product
@@ -88,29 +77,21 @@ revealed_comparative_advantage <- function(d1 = NULL, c1 = NULL, p1 = NULL, v1 =
 
   m_rownames <- dplyr::select(m, !!sym(c1)) %>% dplyr::pull()
 
-  m2 <- dplyr::select(m, !!sym(v2)) %>% as.matrix()
-  m2[is.na(m2)] <- 0
-  m2 <- Matrix::Matrix(m2, sparse = TRUE)
+  m2 <- dplyr::select(m, !!sym(v2)) %>% dplyr::pull()
 
   m <- dplyr::select(m, -!!sym(c1), -!!sym(v2)) %>% as.matrix()
   m[is.na(m)] <- 0
   m <- Matrix::Matrix(m, sparse = TRUE)
 
-  rownames(m2) <- m_rownames
   rownames(m) <- m_rownames
 
-  prody <- m / Matrix::rowSums(m)
+  m <- Matrix::t(Matrix::t(m / Matrix::rowSums(m)) / (Matrix::colSums(m) / sum(m)))
+  m <- Matrix::colSums(m * m2) / Matrix::colSums(m)
 
-  for (i in 1:nrow(prody)) {
-     prody[i,] <- prody[i,] / Matrix::colSums(m[-i,] / Matrix::rowSums(m[-i,]))
+  if (tbl_output == TRUE) {
+    m <- tibble::enframe(m) %>%
+      dplyr::filter(!!sym("value") > 0)
   }
 
-  # prody2 <- Matrix::Matrix(0, nrow = 1, ncol = ncol(prody), sparse = T)
-  #
-  # for (i in 1:nrow(prody)) {
-  #   prody2[i,] <- Matrix::colSums(m[-i,]) * m2[i,]
-  # }
-
-  rownames(prody) <- rownames(m)
-  colnames(prody) <- colnames(m)
+  return(m)
 }

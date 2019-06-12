@@ -92,7 +92,7 @@ proximity$countries_proximity[1:5,1:5]
 proximity$products_proximity[1:5,1:5]
 
 ## ------------------------------------------------------------------------
-networks <- networks(
+networks <- proximity_networks(
   proximity$countries_proximity,
   proximity$products_proximity,
   c_cutoff = 0.3,

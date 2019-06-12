@@ -12,7 +12,7 @@
 
 <meta name="author" content="Mauricio Vargas" />
 
-<meta name="date" content="2019-06-08" />
+<meta name="date" content="2019-06-12" />
 
 <title>How to use this package</title>
 
@@ -303,7 +303,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">How to use this package</h1>
 <h4 class="author">Mauricio Vargas</h4>
-<h4 class="date">2019-06-08</h4>
+<h4 class="date">2019-06-12</h4>
 
 
 
@@ -555,9 +555,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </div>
 <div id="networks" class="section level2">
 <h2>Networks</h2>
-<p>The <code>networks()</code> function is designed to use <code>igraph</code> for the internal computations and also to pass proximity-based networks to <code>igraph</code>, <code>ggraph</code> or export to Cytoscape by saving the output as csv/tsv.</p>
+<p>The <code>proximity_networks()</code> function is designed to use <code>igraph</code> for the internal computations and also to pass proximity-based networks to <code>igraph</code>, <code>ggraph</code> or export to Cytoscape by saving the output as csv/tsv.</p>
 <p>To create some reduced networks I’ll use a high proximity cutoff:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">networks &lt;-<span class="st"> </span><span class="kw">networks</span>(</a>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">networks &lt;-<span class="st"> </span><span class="kw">proximity_networks</span>(</a>
 <a class="sourceLine" id="cb27-2" data-line-number="2">  proximity<span class="op">$</span>countries_proximity,</a>
 <a class="sourceLine" id="cb27-3" data-line-number="3">  proximity<span class="op">$</span>products_proximity,</a>
 <a class="sourceLine" id="cb27-4" data-line-number="4">  <span class="dt">c_cutoff =</span> <span class="fl">0.3</span>,</a>

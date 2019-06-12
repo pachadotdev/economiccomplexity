@@ -134,12 +134,12 @@ proximity$products_proximity[1:5,1:5]
 
 ## Networks
 
-The `networks()` function is designed to use `igraph` for the internal computations and also to pass proximity-based networks to `igraph`, `ggraph` or export to Cytoscape by saving the output as csv/tsv.
+The `proximity_networks()` function is designed to use `igraph` for the internal computations and also to pass proximity-based networks to `igraph`, `ggraph` or export to Cytoscape by saving the output as csv/tsv.
 
 To create some reduced networks I'll use a high proximity cutoff:
 
 ```{r}
-networks <- networks(
+networks <- proximity_networks(
   proximity$countries_proximity,
   proximity$products_proximity,
   c_cutoff = 0.3,
