@@ -18,13 +18,16 @@
 #' @examples
 #' rca <- revealed_comparative_advantage(d = world_trade_2017, c = "reporter_iso",
 #'     p = "product_code", v = "export_value_usd")
+#' @references
+#' For more information on revealed comparative advantage and its uses see
+#' \insertRef{atlas2014}{economiccomplexity}
 #' @keywords functions
 
 revealed_comparative_advantage <- function(d = NULL, c = NULL, p = NULL, v = NULL,
                                            cutoff = 1, discrete = TRUE, tbl_output = FALSE) {
   # sanity checks ----
-  if (all(class(d) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix") == FALSE)) {
-    stop("d must be a tibble/data.frame or a dense/sparse matrix")
+  if (all(class(d) %in% c("data.frame") == FALSE)) {
+    stop("d must be a tibble/data.frame")
   }
 
   if (!is.character(c) & !is.character(p) & !is.character(v)) {

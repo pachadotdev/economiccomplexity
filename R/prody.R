@@ -19,20 +19,23 @@
 #' @examples
 #' prody <- prody(
 #'     d1 = world_trade_2017, c1 = "reporter_iso", p1 = "product_code", v1 = "export_value_usd",
-#'     d2 = gdp_and_population_2017, c2 = "reporter_iso", v2 = "gdp_pc_usd"
+#'     d2 = world_gdp_and_population_2017, c2 = "reporter_iso", v2 = "gdp_pc_usd"
 #' )
+#' @references
+#' For more information on prody and its uses see
+#' \insertRef{exportmatters2005}{economiccomplexity}
 #' @keywords functions
 
 prody <- function(d1 = NULL, c1 = NULL, p1 = NULL, v1 = NULL,
                   d2 = NULL, c2 = NULL, v2 = NULL,
                   tbl_output = FALSE) {
   # sanity checks ----
-  if (all(class(d1) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix") == FALSE)) {
-    stop("d1 must be a tibble/data.frame or a dense/sparse matrix")
+  if (all(class(d1) %in% c("data.frame") == FALSE)) {
+    stop("d1 must be a tibble/data.frame")
   }
 
-  if (all(class(d2) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix") == FALSE)) {
-    stop("d1 must be a tibble/data.frame or a dense/sparse matrix")
+  if (all(class(d2) %in% c("data.frame") == FALSE)) {
+    stop("d2 must be a tibble/data.frame")
   }
 
   if (!is.character(c1) & !is.character(p1) & !is.character(v1)) {
@@ -47,7 +50,6 @@ prody <- function(d1 = NULL, c1 = NULL, p1 = NULL, v1 = NULL,
     stop("tbl_output must be matrix or tibble")
   }
 
-  # TODO: d1 or d2 is a matrix ----
   # tidy input data d1 ----
   d1 <- d1 %>%
     # Sum by country and product
@@ -62,19 +64,20 @@ prody <- function(d1 = NULL, c1 = NULL, p1 = NULL, v1 = NULL,
     dplyr::select(!!!syms(c(c2,v2))) %>%
     dplyr::filter(!!sym(v2) > 0)
 
-  # create exports-gdp table
+  # create exports-gdp table ----
   m <- d1 %>%
     tidyr::spread(!!sym(p1), !!sym("vcp")) %>%
     dplyr::inner_join(d2, by = stats::setNames(c2, c1))
 
-  if (nrow(m) > nrow(d1)) {
-    warning("Joining d1 and d2 resulted in a table with more reporting countries than those in d1.")
+  if (nrow(m) < nrow(unique(d1[,c1]))) {
+    warning("Joining d1 and d2 resulted in a table with less reporting countries than those in d1.")
   }
 
-  if (nrow(m) > nrow(d2)) {
-    warning("Joining d1 and d2 resulted in a table with more reporting countries than those in d2.")
+  if (nrow(m) < nrow(d2)) {
+    warning("Joining d1 and d2 resulted in a table with less reporting countries than those in d2.")
   }
 
+  # convert m to matrix ----
   m_rownames <- dplyr::select(m, !!sym(c1)) %>% dplyr::pull()
 
   m2 <- dplyr::select(m, !!sym(v2)) %>% dplyr::pull()

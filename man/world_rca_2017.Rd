@@ -16,16 +16,10 @@ TBD
     \item{\code{value}}{a numeric vector}
   }
 }
-\details{
-TBD
-}
 \source{
-TBD
-}
-\references{
-TBD
+Open Trade Statistics (obtained by using the tradestatistics package)
 }
 \examples{
-data(world_rca_2017)
+world_rca_2017
 }
 \keyword{datasets}

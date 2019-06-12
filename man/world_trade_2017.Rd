@@ -2,7 +2,7 @@
 \alias{world_trade_2017}
 \docType{data}
 \title{
-Dataset with world trade in 2017 obtained by using the tradestatistics package.
+Dataset with world trade in 2017.
 }
 \description{
 This dataset is a simplified version of the country-product dataset from Open Trade Statistics (tradestatistics.io) for the year 2017. The simplification consisted in keeping just three columns to provide a minimal dataset for example purposes.
@@ -16,7 +16,10 @@ This dataset is a simplified version of the country-product dataset from Open Tr
     \item{\code{export_value_usd}}{a numeric vector}
   }
 }
+\source{
+Open Trade Statistics (obtained by using the tradestatistics package)
+}
 \examples{
-data(world_trade_2017)
+world_trade_2017
 }
 \keyword{datasets}

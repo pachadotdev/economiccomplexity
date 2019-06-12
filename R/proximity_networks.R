@@ -21,6 +21,9 @@
 #' @examples
 #' networks <- proximity_networks(proximity_matrices_2017$countries_proximity,
 #'     proximity_matrices_2017$products_proximity)
+#' @references
+#' For more information on proximity and its applications see
+#' \insertRef{atlas2014}{economiccomplexity}
 #' @keywords functions
 
 proximity_networks <- function(proximity_countries, proximity_products, c_cutoff = 0.25,

@@ -1,13 +1,13 @@
-\name{gdp_and_population_2017}
-\alias{gdp_and_population_2017}
+\name{world_gdp_and_population_2017}
+\alias{world_gdp_and_population_2017}
 \docType{data}
 \title{
-gdp_and_population_2017
+Demo dataset with world gdp and population in 2017 (or last reported values).
 }
 \description{
 tbd
 }
-\usage{data("gdp_and_population_2017")}
+\usage{data("world_gdp_and_population_2017")}
 \format{
   A data frame with 262 observations on the following 4 variables.
   \describe{
@@ -17,8 +17,10 @@ tbd
     \item{\code{gdp_pc_usd}}{a numeric vector}
   }
 }
+\source{
+The World Bank (obtained by using wbstats package)
+}
 \examples{
-data(gdp_and_population_2017)
-## maybe str(gdp_and_population_2017) ; plot(gdp_and_population_2017) ...
+world_gdp_and_population_2017
 }
 \keyword{datasets}
