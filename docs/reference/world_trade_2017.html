@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Dataset with world trade in 2017 obtained by using the tradestatistics package. — world_trade_2017 • economiccomplexity</title>
+<title>Dataset with world trade in 2017. — world_trade_2017 • economiccomplexity</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
 
 
 
-<meta property="og:title" content="Dataset with world trade in 2017 obtained by using the tradestatistics package. — world_trade_2017" />
+<meta property="og:title" content="Dataset with world trade in 2017. — world_trade_2017" />
 
 <meta property="og:description" content="This dataset is a simplified version of the country-product dataset from Open Trade Statistics (tradestatistics.io) for the year 2017. The simplification consisted in keeping just three columns to provide a minimal dataset for example purposes." />
 <meta name="twitter:card" content="summary" />
@@ -106,7 +106,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Dataset with world trade in 2017 obtained by using the tradestatistics package.</h1>
+    <h1>Dataset with world trade in 2017.</h1>
     
     <div class="hidden name"><code>world_trade_2017.Rd</code></div>
     </div>
@@ -127,15 +127,34 @@
     <dt><code>export_value_usd</code></dt><dd><p>a numeric vector</p></dd>
   </dl>
     
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p>Open Trade Statistics (obtained by using the tradestatistics package)</p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>world_trade_2017</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>world_trade_2017</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 233,432 x 3</span><span>
+#&gt;    reporter_iso product_code export_value_usd
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> afg          3912                       </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> afg          0101                       </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> afg          0102                   </span><span style='text-decoration: underline;'>387</span><span>017
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> afg          0103                       </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> afg          0104                   </span><span style='text-decoration: underline;'>213</span><span>011
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> afg          0105                       </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> afg          0106                  1</span><span style='text-decoration: underline;'>316</span><span>346
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> afg          0201                       </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> afg          0202                       </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> afg          0203                       </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #949494;'># … with 233,422 more rows</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
       <li><a href="#format">Format</a></li>
+
+      <li><a href="#source">Source</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

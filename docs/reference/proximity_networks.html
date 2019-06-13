@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Complexity Measures — complexity_measures • economiccomplexity</title>
+<title>Networks — proximity_networks • economiccomplexity</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Complexity Measures — complexity_measures" />
+<meta property="og:title" content="Networks — proximity_networks" />
 
-<meta property="og:description" content="Complexity Measures" />
+<meta property="og:description" content="Networks" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -106,81 +106,62 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Complexity Measures</h1>
+    <h1>Networks</h1>
     
-    <div class="hidden name"><code>complexity_measures.Rd</code></div>
+    <div class="hidden name"><code>proximity_networks.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Complexity Measures</p>
+    <p>Networks</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>complexity_measures</span>(<span class='kw'>d</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>c</span> <span class='kw'>=</span> <span class='st'>"country"</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
-  <span class='kw'>v</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"fitness"</span>, <span class='kw'>iterations</span> <span class='kw'>=</span> <span class='fl'>20</span>,
-  <span class='kw'>extremality</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>keep_atlas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>proximity_networks</span>(<span class='no'>proximity_countries</span>, <span class='no'>proximity_products</span>,
+  <span class='kw'>c_cutoff</span> <span class='kw'>=</span> <span class='fl'>0.25</span>, <span class='kw'>p_cutoff</span> <span class='kw'>=</span> <span class='fl'>0.55</span>, <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>d</th>
-      <td><p>matrix or tibble/data.frame in long format, if d is a tibble/data.frame it must contain the columns
-country (character/factor), product (character/factor) and discrete RCA (integer), if it is a matrix it must be a
-zero/one matrix with countries in the row names and products in the column names</p></td>
+      <th>proximity_countries</th>
+      <td><p>matrix or tibble/data.frame, if d is a tibble/data.frame it must contain the columns
+from (character/factor), to (character/factor) and value (numeric), if it is a matrix it must be a
+numeric matrix with countries in row names and column names</p></td>
     </tr>
     <tr>
-      <th>c</th>
-      <td><p>string to indicate the column that contains exporting countries (default set to "country" that is the
-output of revealed_comparative_advantage())</p></td>
+      <th>proximity_products</th>
+      <td><p>matrix or tibble/data.frame, if d is a tibble/data.frame it must contain the columns
+from (character/factor), to (character/factor) and value (numeric), if it is a matrix it must be a
+numeric matrix with products in row names and column names</p></td>
     </tr>
     <tr>
-      <th>p</th>
-      <td><p>string to indicate the column that contains exported products (default set to "product" that is the
-output of revealed_comparative_advantage())</p></td>
+      <th>c_cutoff</th>
+      <td><p>all the values lower than the specified c_cutoff will be converted to 0 and excluded
+from the countries network (default set to 0.2)</p></td>
     </tr>
     <tr>
-      <th>v</th>
-      <td><p>string to indicate the column that contains RCA values (default set to "value" that is the
-output of revealed_comparative_advantage())</p></td>
-    </tr>
-    <tr>
-      <th>method</th>
-      <td><p>reflections, eigenvalues or fitness (default set to reflections)
-methods (default set to FALSE)</p></td>
-    </tr>
-    <tr>
-      <th>iterations</th>
-      <td><p>number of iterations to use in the reflections method (default set to 20)</p></td>
-    </tr>
-    <tr>
-      <th>extremality</th>
-      <td><p>coefficient to use in the fitness method (default set to 1)</p></td>
-    </tr>
-    <tr>
-      <th>keep_atlas</th>
-      <td><p>removes the countries not ranked in The Atlas of Economic Complexity (default set to FALSE)</p></td>
+      <th>p_cutoff</th>
+      <td><p>all the values lower than the specified p_cutoff will be converted to 0 and excluded
+from the products network (default set to 0.4)</p></td>
     </tr>
     <tr>
       <th>tbl_output</th>
-      <td><p>when set to TRUE the output will be a tibble instead of a matrix (default set to FALSE)</p></td>
+      <td><p>when set to TRUE the output will be a tibble instead of a graph (default set to FALSE)</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>For more information on complexity measures, indices and its applications see:</p>
+    <p>For more information on networks such as the product space and its applications see:</p>
 <p>Hausmann R, Hidalgo C, Bustos S, Coscia M, Simoes A, Yildirim M (2014).
 <em>The atlas of economic complexity: Mapping paths to prosperity</em>.
-Mit Press.
-    Mariani M, Vidmer A, Medo M, Zhang Y (2015).
-&#8220;Measuring economic complexity of countries and products: which metric to use?&#8221;
-<em>The European Physical Journal B</em>, <b>88</b>(11), 293.</p>
+Mit Press.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>complexity_measures</span> <span class='kw'>&lt;-</span> <span class='fu'>complexity_measures</span>(<span class='no'>world_rca_2017</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>networks</span> <span class='kw'>&lt;-</span> <span class='fu'>proximity_networks</span>(<span class='no'>proximity_matrices_2017</span>$<span class='no'>countries_proximity</span>,
+    <span class='no'>proximity_matrices_2017</span>$<span class='no'>products_proximity</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

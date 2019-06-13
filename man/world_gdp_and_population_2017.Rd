@@ -2,7 +2,7 @@
 \alias{world_gdp_and_population_2017}
 \docType{data}
 \title{
-Demo dataset with world gdp and population in 2017 (or last reported values).
+Dataset with world gdp and population in 2017 (or last reported values).
 }
 \description{
 tbd

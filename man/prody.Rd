@@ -36,7 +36,8 @@ prody <- prody(
 )
 }
 \references{
-For more information on prody and its uses see
+For more information on prody and its applications see:
+
 \insertRef{exportmatters2005}{economiccomplexity}
 }
 \keyword{functions}

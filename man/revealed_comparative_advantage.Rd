@@ -33,7 +33,8 @@ rca <- revealed_comparative_advantage(d = world_trade_2017, c = "reporter_iso",
     p = "product_code", v = "export_value_usd")
 }
 \references{
-For more information on revealed comparative advantage and its uses see
+For more information on revealed comparative advantage and its uses see:
+
 \insertRef{atlas2014}{economiccomplexity}
 }
 \keyword{functions}

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Complexity Measures — complexity_measures • economiccomplexity</title>
+<title>Revealed Comparative Advantage (RCA) — prody • economiccomplexity</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Complexity Measures — complexity_measures" />
+<meta property="og:title" content="Revealed Comparative Advantage (RCA) — prody" />
 
-<meta property="og:description" content="Complexity Measures" />
+<meta property="og:description" content="Revealed Comparative Advantage (RCA)" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -106,61 +106,52 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Complexity Measures</h1>
+    <h1>Revealed Comparative Advantage (RCA)</h1>
     
-    <div class="hidden name"><code>complexity_measures.Rd</code></div>
+    <div class="hidden name"><code>prody.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Complexity Measures</p>
+    <p>Revealed Comparative Advantage (RCA)</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>complexity_measures</span>(<span class='kw'>d</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>c</span> <span class='kw'>=</span> <span class='st'>"country"</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
-  <span class='kw'>v</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"fitness"</span>, <span class='kw'>iterations</span> <span class='kw'>=</span> <span class='fl'>20</span>,
-  <span class='kw'>extremality</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>keep_atlas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>prody</span>(<span class='kw'>d1</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>c1</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>p1</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>v1</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>d2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>c2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>v2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>d</th>
-      <td><p>matrix or tibble/data.frame in long format, if d is a tibble/data.frame it must contain the columns
-country (character/factor), product (character/factor) and discrete RCA (integer), if it is a matrix it must be a
-zero/one matrix with countries in the row names and products in the column names</p></td>
+      <th>d1</th>
+      <td><p>tibble/data.frame in long format, it must contain the columns country (character/factor),
+product (character/factor) and export value (numeric)</p></td>
     </tr>
     <tr>
-      <th>c</th>
-      <td><p>string to indicate the column that contains exporting countries (default set to "country" that is the
-output of revealed_comparative_advantage())</p></td>
+      <th>c1</th>
+      <td><p>string to indicate the column that contains exporting countries in d1 (e.g. "reporter_iso")</p></td>
     </tr>
     <tr>
-      <th>p</th>
-      <td><p>string to indicate the column that contains exported products (default set to "product" that is the
-output of revealed_comparative_advantage())</p></td>
+      <th>p1</th>
+      <td><p>string to indicate the column that contains exported products in d1 (e.g. "product_code")</p></td>
     </tr>
     <tr>
-      <th>v</th>
-      <td><p>string to indicate the column that contains RCA values (default set to "value" that is the
-output of revealed_comparative_advantage())</p></td>
+      <th>v1</th>
+      <td><p>string to indicate the column that contains traded values in d1(e.g. "trade_value_usd")</p></td>
     </tr>
     <tr>
-      <th>method</th>
-      <td><p>reflections, eigenvalues or fitness (default set to reflections)
-methods (default set to FALSE)</p></td>
+      <th>d2</th>
+      <td><p>tibble/data.frame in long format, it must contain the columns country (character/factor),
+and GDP per capita (numeric)</p></td>
     </tr>
     <tr>
-      <th>iterations</th>
-      <td><p>number of iterations to use in the reflections method (default set to 20)</p></td>
+      <th>c2</th>
+      <td><p>string to indicate the column that contains exporting countries in d2 (e.g. "reporter_iso")</p></td>
     </tr>
     <tr>
-      <th>extremality</th>
-      <td><p>coefficient to use in the fitness method (default set to 1)</p></td>
-    </tr>
-    <tr>
-      <th>keep_atlas</th>
-      <td><p>removes the countries not ranked in The Atlas of Economic Complexity (default set to FALSE)</p></td>
+      <th>v2</th>
+      <td><p>string to indicate the column that contains GDP per capita in d2 (e.g. "gdp_pc")</p></td>
     </tr>
     <tr>
       <th>tbl_output</th>
@@ -170,17 +161,19 @@ methods (default set to FALSE)</p></td>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>For more information on complexity measures, indices and its applications see:</p>
-<p>Hausmann R, Hidalgo C, Bustos S, Coscia M, Simoes A, Yildirim M (2014).
-<em>The atlas of economic complexity: Mapping paths to prosperity</em>.
-Mit Press.
-    Mariani M, Vidmer A, Medo M, Zhang Y (2015).
-&#8220;Measuring economic complexity of countries and products: which metric to use?&#8221;
-<em>The European Physical Journal B</em>, <b>88</b>(11), 293.</p>
+    <p>For more information on prody and its applications see:</p>
+<p>Hausmann R, Hwang J, Rodrik D (2005).
+&#8220;What You Export Matters.&#8221;
+Technical Report 11905, National Bureau of Economic Research.
+doi: <a href='http://doi.org/10.3386/w11905'>10.3386/w11905</a>
+, <a href='http://www.nber.org/papers/w11905'>http://www.nber.org/papers/w11905</a>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>complexity_measures</span> <span class='kw'>&lt;-</span> <span class='fu'>complexity_measures</span>(<span class='no'>world_rca_2017</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>prody</span> <span class='kw'>&lt;-</span> <span class='fu'>prody</span>(
+    <span class='kw'>d1</span> <span class='kw'>=</span> <span class='no'>world_trade_2017</span>, <span class='kw'>c1</span> <span class='kw'>=</span> <span class='st'>"reporter_iso"</span>, <span class='kw'>p1</span> <span class='kw'>=</span> <span class='st'>"product_code"</span>, <span class='kw'>v1</span> <span class='kw'>=</span> <span class='st'>"export_value_usd"</span>,
+    <span class='kw'>d2</span> <span class='kw'>=</span> <span class='no'>world_gdp_and_population_2017</span>, <span class='kw'>c2</span> <span class='kw'>=</span> <span class='st'>"reporter_iso"</span>, <span class='kw'>v2</span> <span class='kw'>=</span> <span class='st'>"gdp_pc_usd"</span>
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: Joining d1 and d2 resulted in a table with less reporting countries than those in d1.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Joining d1 and d2 resulted in a table with less reporting countries than those in d2.</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

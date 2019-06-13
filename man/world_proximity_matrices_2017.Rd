@@ -1,5 +1,5 @@
-\name{proximity_matrices_2017}
-\alias{proximity_matrices_2017}
+\name{world_proximity_matrices_2017}
+\alias{world_proximity_matrices_2017}
 \docType{data}
 \title{
 Demo dataset to show the output of proximity matrices().
@@ -7,7 +7,7 @@ Demo dataset to show the output of proximity matrices().
 \description{
 TBD
 }
-\usage{data("proximity_matrices_2017")}
+\usage{data("world_proximity_matrices_2017")}
 \format{
   The format is:
 List of 2
@@ -31,6 +31,6 @@ List of 2
   .. ..@ factors : list()
 }
 \examples{
-data(proximity_matrices_2017)
+data(world_proximity_matrices_2017)
 }
 \keyword{datasets}

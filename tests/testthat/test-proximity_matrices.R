@@ -2,8 +2,8 @@ test_that("proximity results are aligned with the expected output ", {
   # matrix output ----
   proximity_m <- proximity_matrices(
     d = world_rca_2017,
-    diversity = complexity_measures_2017$diversity,
-    ubiquity = complexity_measures_2017$ubiquity
+    diversity = world_complexity_measures_2017$diversity,
+    ubiquity = world_complexity_measures_2017$ubiquity
   )
   expect_is(proximity_m, "list")
   expect_equal(nrow(proximity_m$countries_proximity), 224)
@@ -18,8 +18,8 @@ test_that("proximity results are aligned with the expected output ", {
   # tibble output ----
   proximity_t <- proximity_matrices(
     d = world_rca_2017,
-    diversity = complexity_measures_2017$diversity,
-    ubiquity = complexity_measures_2017$ubiquity,
+    diversity = world_complexity_measures_2017$diversity,
+    ubiquity = world_complexity_measures_2017$ubiquity,
     tbl_output = T
   )
   expect_is(proximity_t, "list")

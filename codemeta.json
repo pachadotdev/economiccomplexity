@@ -1,5 +1,8 @@
 {
-  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
   "identifier": "economiccomplexity",
   "description": "A wrapper of different indices and networks commonly used in Economic Complexity\n  to explore bipartite relations such as countries and their exported products. These methods\n  are also useful for different kind of relations such as countries and their spoken languages.",
@@ -37,6 +40,10 @@
     {
       "@type": "Organization",
       "name": "Center for International Development at Harvard University"
+    },
+    {
+      "@type": "Organization",
+      "name": "The World Bank"
     }
   ],
   "copyrightHolder": [
@@ -177,6 +184,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "Rdpack",
+      "name": "Rdpack",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=Rdpack"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
       "version": ">= 2.10"
@@ -184,6 +203,10 @@
   ],
   "codeRepository": "https://github.com/pachamaltese/economiccomplexity",
   "readme": "https://github.com/pachamaltese/economiccomplexity/blob/master/README.md",
-  "fileSize": "2155.77KB",
-  "contIntegration": ["https://travis-ci.org/pachamaltese/economiccomplexity", "https://codecov.io/github/pachamaltese/economiccomplexity?branch=master"]
+  "fileSize": "2161.604KB",
+  "contIntegration": [
+    "https://travis-ci.org/pachamaltese/economiccomplexity",
+    "https://codecov.io/github/pachamaltese/economiccomplexity?branch=master"
+  ],
+  "developmentStatus": ["https://www.repostatus.org/#wip", "https://www.tidyverse.org/lifecycle/#experimental"]
 }

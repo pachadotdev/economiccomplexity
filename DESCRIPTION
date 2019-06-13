@@ -18,6 +18,8 @@ Authors@R: c(
     person(family = "Open Trade Statistics",
       role = "dtc"),
     person(family = "Center for International Development at Harvard University",
+      role = "dtc"),
+    person(family = "The World Bank",
       role = "dtc")
   )
 Description: A wrapper of different indices and networks commonly used in Economic Complexity

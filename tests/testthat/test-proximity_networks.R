@@ -1,8 +1,8 @@
 test_that("proximity results are aligned with the expected output ", {
   # matrix output ----
   networks_m <- proximity_networks(
-    proximity_matrices_2017$countries_proximity,
-    proximity_matrices_2017$countries_proximity
+    world_proximity_matrices_2017$countries_proximity,
+    world_proximity_matrices_2017$countries_proximity
   )
   expect_is(networks_m, "list")
   expect_equal(length(igraph::E(networks_m$countries_network)), 962)
@@ -10,8 +10,8 @@ test_that("proximity results are aligned with the expected output ", {
 
   # tibble output ----
   networks_t <- proximity_networks(
-    proximity_matrices_2017$countries_proximity,
-    proximity_matrices_2017$products_proximity,
+    world_proximity_matrices_2017$countries_proximity,
+    world_proximity_matrices_2017$products_proximity,
     tbl_output = T
   )
   expect_is(networks_t, "list")

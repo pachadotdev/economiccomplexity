@@ -25,7 +25,8 @@
 #' @examples
 #' complexity_measures <- complexity_measures(world_rca_2017)
 #' @references
-#' For more information on complexity measures, indices and its applications see
+#' For more information on complexity measures, indices and its applications see:
+#'
 #' \insertRef{atlas2014}{economiccomplexity}
 #' \insertRef{measuringcomplexity2015}{economiccomplexity}
 #' @keywords functions

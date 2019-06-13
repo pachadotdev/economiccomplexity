@@ -50,7 +50,8 @@ proximity <- proximity_matrices(d = world_rca_2017,
     ubiquity = complexity_measures_2017$ubiquity)
 }
 \references{
-For more information on bipartite networks such as the product space and its applications see
+For more information on proximity and its applications see:
+
 \insertRef{atlas2014}{economiccomplexity}
 }
 \keyword{functions}

@@ -22,7 +22,8 @@
 #'     d2 = world_gdp_and_population_2017, c2 = "reporter_iso", v2 = "gdp_pc_usd"
 #' )
 #' @references
-#' For more information on prody and its uses see
+#' For more information on prody and its applications see:
+#'
 #' \insertRef{exportmatters2005}{economiccomplexity}
 #' @keywords functions
 

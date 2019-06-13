@@ -32,7 +32,8 @@ networks <- proximity_networks(proximity_matrices_2017$countries_proximity,
     proximity_matrices_2017$products_proximity)
 }
 \references{
-For more information on proximity and its applications see
+For more information on networks such as the product space and its applications see:
+
 \insertRef{atlas2014}{economiccomplexity}
 }
 \keyword{functions}
