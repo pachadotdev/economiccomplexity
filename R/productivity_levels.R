@@ -105,7 +105,7 @@ productivity_levels <- function(d1 = NULL, c1 = NULL, p1 = NULL, v1 = NULL,
   return(
     list(
       economies_productivity_level = expy,
-      countries_productivity_level = prody
+      products_productivity_level = prody
     )
   )
 }
