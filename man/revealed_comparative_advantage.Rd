@@ -29,8 +29,10 @@ to zero or one based on the cutoff value (default set to TRUE)}
 Revealed Comparative Advantage (RCA)
 }
 \examples{
-rca <- revealed_comparative_advantage(d = world_trade_2017, c = "reporter_iso",
-    p = "product_code", v = "export_value_usd")
+rca <- revealed_comparative_advantage(
+  d = world_trade_2017, c = "reporter_iso",
+  p = "product_code", v = "export_value_usd"
+)
 }
 \references{
 For more information on revealed comparative advantage and its uses see:

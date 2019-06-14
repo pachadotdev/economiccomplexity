@@ -45,9 +45,11 @@ output of economic_complexity_measures())}
 Proximity Matrices
 }
 \examples{
-proximity <- proximity_matrices(d = world_rca_2017,
-    diversity = complexity_measures_2017$diversity,
-    ubiquity = complexity_measures_2017$ubiquity)
+pro <- proximity_matrices(
+  d = world_rca_2017,
+  diversity = world_complexity_measures_2017$diversity,
+  ubiquity = world_complexity_measures_2017$ubiquity
+)
 }
 \references{
 For more information on proximity and its applications see:

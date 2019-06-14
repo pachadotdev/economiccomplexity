@@ -28,8 +28,10 @@ from the products network (default set to 0.4)}
 Networks
 }
 \examples{
-networks <- proximity_networks(proximity_matrices_2017$countries_proximity,
-    proximity_matrices_2017$products_proximity)
+net <- proximity_networks(
+  world_proximity_matrices_2017$countries_proximity,
+  world_proximity_matrices_2017$products_proximity
+)
 }
 \references{
 For more information on networks such as the product space and its applications see:

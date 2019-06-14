@@ -28,9 +28,11 @@
 #' @importFrom tidyr gather
 #' @importFrom rlang sym
 #' @examples
-#' proximity <- proximity_matrices(d = world_rca_2017,
-#'     diversity = complexity_measures_2017$diversity,
-#'     ubiquity = complexity_measures_2017$ubiquity)
+#' pro <- proximity_matrices(
+#'   d = world_rca_2017,
+#'   diversity = world_complexity_measures_2017$diversity,
+#'   ubiquity = world_complexity_measures_2017$ubiquity
+#' )
 #' @references
 #' For more information on proximity and its applications see:
 #'
@@ -48,7 +50,7 @@ proximity_matrices <- function(d = NULL, c = "country", p = "product", v = "valu
   }
 
   if (all(class(diversity) %in% c("numeric", "data.frame") == FALSE) &
-      all(class(ubiquity) %in% c("numeric", "data.frame") == FALSE)) {
+    all(class(ubiquity) %in% c("numeric", "data.frame") == FALSE)) {
     stop("diversity and ubiquity must be numeric or tibble/data.frame")
   }
 

@@ -16,8 +16,10 @@
 #' @importFrom Matrix Matrix rowSums colSums t
 #' @importFrom rlang sym syms
 #' @examples
-#' rca <- revealed_comparative_advantage(d = world_trade_2017, c = "reporter_iso",
-#'     p = "product_code", v = "export_value_usd")
+#' rca <- revealed_comparative_advantage(
+#'   d = world_trade_2017, c = "reporter_iso",
+#'   p = "product_code", v = "export_value_usd"
+#' )
 #' @references
 #' For more information on revealed comparative advantage and its uses see:
 #'
@@ -50,7 +52,7 @@ revealed_comparative_advantage <- function(d = NULL, c = NULL, p = NULL, v = NUL
   # aggregate input data by c and p ----
   d <- d %>%
     # Sum by country and product
-    dplyr::group_by(!!!syms(c(c,p))) %>%
+    dplyr::group_by(!!!syms(c(c, p))) %>%
     dplyr::summarise(vcp = sum(!!sym(v), na.rm = TRUE)) %>%
     dplyr::ungroup() %>%
     dplyr::filter(!!sym("vcp") > 0)
@@ -58,7 +60,7 @@ revealed_comparative_advantage <- function(d = NULL, c = NULL, p = NULL, v = NUL
   # compute RCA in matrix form ----
   if (tbl_output == FALSE) {
     m <- d %>%
-      dplyr::select(!!!syms(c(c,p,"vcp"))) %>%
+      dplyr::select(!!!syms(c(c, p, "vcp"))) %>%
       tidyr::spread(!!sym(p), !!sym("vcp"))
 
     m_rownames <- dplyr::select(m, !!sym(c)) %>% dplyr::pull()
@@ -97,7 +99,6 @@ revealed_comparative_advantage <- function(d = NULL, c = NULL, p = NULL, v = NUL
         sum_c_p_vcp = sum(!!sym("vcp"), na.rm = TRUE),
         value = (!!sym("vcp") / !!sym("sum_c_vcp")) / (!!sym("sum_p_vcp") / !!sym("sum_c_p_vcp"))
       ) %>%
-
       dplyr::select(-dplyr::matches("vcp")) %>%
 
       # Rename columns

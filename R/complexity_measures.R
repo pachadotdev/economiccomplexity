@@ -23,23 +23,24 @@
 #' @importFrom Matrix Matrix rowSums colSums t
 #' @importFrom rlang sym
 #' @examples
-#' complexity_measures <- complexity_measures(world_rca_2017)
+#' cm <- complexity_measures(world_rca_2017)
 #' @references
 #' For more information on complexity measures, indices and its applications see:
 #'
 #' \insertRef{atlas2014}{economiccomplexity}
+#'
 #' \insertRef{measuringcomplexity2015}{economiccomplexity}
 #' @keywords functions
 
 complexity_measures <- function(d = NULL, c = "country", p = "product", v = "value",
-                                         method = "fitness", iterations = 20, extremality = 1,
-                                         keep_atlas = FALSE, tbl_output = FALSE) {
+                                method = "fitness", iterations = 20, extremality = 1,
+                                keep_atlas = FALSE, tbl_output = FALSE) {
   # sanity checks ----
   if (all(class(d) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix") == FALSE)) {
     stop("d must be a tibble/data.frame or a dense/sparse matrix")
   }
 
-  if (!(any(method %in% c("reflections","eigenvalues","fitness")) == TRUE)) {
+  if (!(any(method %in% c("reflections", "eigenvalues", "fitness")) == TRUE)) {
     stop("method must be reflections, eigenvalues or fitness")
   }
 
@@ -71,17 +72,18 @@ complexity_measures <- function(d = NULL, c = "country", p = "product", v = "val
   # https://github.com/tradestatistics/atlas-data/blob/master/2-scraped-tables/ranking-1-economic-complexity-index.csv
   # the country code for Romania in Comtrade is ROM, not ROU
   if (keep_atlas == TRUE) {
-    atlas_countries <- c('jpn', 'deu', 'che', 'swe', 'aut', 'fin', 'sgp', 'cze', 'gbr', 'svn',
-      'fra', 'kor', 'usa', 'hun', 'svk', 'ita', 'dnk', 'irl', 'isr', 'mex', 'blr', 'bel', 'nld',
-      'hkg', 'pol', 'hrv', 'rom', 'esp', 'chn', 'pan', 'tha', 'est', 'nor', 'mys', 'prt', 'ltu',
-      'srb', 'bih', 'lva', 'bgr', 'can', 'ukr', 'tur', 'lbn', 'jor', 'rus', 'tun', 'nzl', 'cri',
-      'mda', 'ind', 'bra', 'grc', 'col', 'zaf', 'ury', 'arg', 'alb', 'phl', 'slv', 'idn', 'mkd',
-      'egy', 'dom', 'gtm', 'are', 'vnm', 'sau', 'kgz', 'geo', 'lka', 'nam', 'ken', 'sen', 'syr',
-      'tto', 'mus', 'chl', 'aus', 'zwe', 'jam', 'pak', 'mar', 'cub', 'qat', 'pry', 'uga', 'hnd',
-      'per', 'mdg', 'omn', 'kaz', 'ecu', 'bwa', 'tza', 'uzb', 'nic', 'khm', 'civ', 'gha', 'bol',
-      'lao', 'bgd', 'eth', 'zmb', 'mwi', 'yem', 'tjk', 'moz', 'mli', 'ven', 'lbr', 'mng', 'dza',
-      'tkm', 'kwt', 'aze', 'irn', 'lby', 'gab', 'cmr', 'nga', 'gin', 'png', 'cog', 'sdn', 'ago',
-      'mrt'
+    atlas_countries <- c(
+      "jpn", "deu", "che", "swe", "aut", "fin", "sgp", "cze", "gbr", "svn",
+      "fra", "kor", "usa", "hun", "svk", "ita", "dnk", "irl", "isr", "mex", "blr", "bel", "nld",
+      "hkg", "pol", "hrv", "rom", "esp", "chn", "pan", "tha", "est", "nor", "mys", "prt", "ltu",
+      "srb", "bih", "lva", "bgr", "can", "ukr", "tur", "lbn", "jor", "rus", "tun", "nzl", "cri",
+      "mda", "ind", "bra", "grc", "col", "zaf", "ury", "arg", "alb", "phl", "slv", "idn", "mkd",
+      "egy", "dom", "gtm", "are", "vnm", "sau", "kgz", "geo", "lka", "nam", "ken", "sen", "syr",
+      "tto", "mus", "chl", "aus", "zwe", "jam", "pak", "mar", "cub", "qat", "pry", "uga", "hnd",
+      "per", "mdg", "omn", "kaz", "ecu", "bwa", "tza", "uzb", "nic", "khm", "civ", "gha", "bol",
+      "lao", "bgd", "eth", "zmb", "mwi", "yem", "tjk", "moz", "mli", "ven", "lbr", "mng", "dza",
+      "tkm", "kwt", "aze", "irn", "lby", "gab", "cmr", "nga", "gin", "png", "cog", "sdn", "ago",
+      "mrt"
     )
 
     m <- m[rownames(m) %in% atlas_countries, ]
@@ -127,7 +129,7 @@ complexity_measures <- function(d = NULL, c = "country", p = "product", v = "val
     pci <- Re(pci$vectors[, 2])
 
     # pci normalized as in the Atlas
-    pci <- (pci - base::mean(pci)) /  stats::sd(pci)
+    pci <- (pci - base::mean(pci)) / stats::sd(pci)
   }
 
   if (method == "fitness") {
@@ -144,7 +146,7 @@ complexity_measures <- function(d = NULL, c = "country", p = "product", v = "val
       kc[, j] <- m %*% kp[, (j - 1)]
       kc[, j] <- kc[, j] / mean(kc[, j])
 
-      kp[, j] <- 1 / (Matrix::t(m) %*% (1 /kc[, (j - 1)])^extremality)^(1 / extremality)
+      kp[, j] <- 1 / (Matrix::t(m) %*% (1 / kc[, (j - 1)])^extremality)^(1 / extremality)
       kp[, j] <- kp[, j] / mean(kp[, j])
     }
 

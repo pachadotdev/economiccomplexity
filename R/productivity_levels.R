@@ -1,4 +1,4 @@
-#' Revealed Comparative Advantage (RCA)
+#' Productivity Levels
 #'
 #' @export
 #' @param d1 tibble/data.frame in long format, it must contain the columns country (character/factor),
@@ -17,9 +17,9 @@
 #' @importFrom stats setNames
 #' @importFrom rlang sym syms
 #' @examples
-#' prody <- prody(
-#'     d1 = world_trade_2017, c1 = "reporter_iso", p1 = "product_code", v1 = "export_value_usd",
-#'     d2 = world_gdp_and_population_2017, c2 = "reporter_iso", v2 = "gdp_pc_usd"
+#' pl <- productivity_levels(
+#'   d1 = world_trade_2017, c1 = "reporter_iso", p1 = "product_code", v1 = "export_value_usd",
+#'   d2 = world_gdp_and_population_2017, c2 = "reporter_iso", v2 = "gdp_pc_usd"
 #' )
 #' @references
 #' For more information on prody and its applications see:
@@ -27,9 +27,9 @@
 #' \insertRef{exportmatters2005}{economiccomplexity}
 #' @keywords functions
 
-prody <- function(d1 = NULL, c1 = NULL, p1 = NULL, v1 = NULL,
-                  d2 = NULL, c2 = NULL, v2 = NULL,
-                  tbl_output = FALSE) {
+productivity_levels <- function(d1 = NULL, c1 = NULL, p1 = NULL, v1 = NULL,
+                                d2 = NULL, c2 = NULL, v2 = NULL,
+                                tbl_output = FALSE) {
   # sanity checks ----
   if (all(class(d1) %in% c("data.frame") == FALSE)) {
     stop("d1 must be a tibble/data.frame")
@@ -54,15 +54,15 @@ prody <- function(d1 = NULL, c1 = NULL, p1 = NULL, v1 = NULL,
   # tidy input data d1 ----
   d1 <- d1 %>%
     # Sum by country and product
-    dplyr::group_by(!!!syms(c(c1,p1))) %>%
+    dplyr::group_by(!!!syms(c(c1, p1))) %>%
     dplyr::summarise(vcp = sum(!!sym(v1), na.rm = TRUE)) %>%
     dplyr::ungroup() %>%
     dplyr::filter(!!sym("vcp") > 0) %>%
-    dplyr::select(!!!syms(c(c1,p1,"vcp")))
+    dplyr::select(!!!syms(c(c1, p1, "vcp")))
 
   # tidy input data d2 ----
   d2 <- d2 %>%
-    dplyr::select(!!!syms(c(c2,v2))) %>%
+    dplyr::select(!!!syms(c(c2, v2))) %>%
     dplyr::filter(!!sym(v2) > 0)
 
   # create exports-gdp table ----
@@ -70,7 +70,7 @@ prody <- function(d1 = NULL, c1 = NULL, p1 = NULL, v1 = NULL,
     tidyr::spread(!!sym(p1), !!sym("vcp")) %>%
     dplyr::inner_join(d2, by = stats::setNames(c2, c1))
 
-  if (nrow(m) < nrow(unique(d1[,c1]))) {
+  if (nrow(m) < nrow(unique(d1[, c1]))) {
     warning("Joining d1 and d2 resulted in a table with less reporting countries than those in d1.")
   }
 
@@ -89,13 +89,23 @@ prody <- function(d1 = NULL, c1 = NULL, p1 = NULL, v1 = NULL,
 
   rownames(m) <- m_rownames
 
-  m <- Matrix::t(Matrix::t(m / Matrix::rowSums(m)) / (Matrix::colSums(m) / sum(m)))
-  m <- Matrix::colSums(m * m2) / Matrix::colSums(m)
+  prody <- Matrix::t(Matrix::t(m / Matrix::rowSums(m)) / (Matrix::colSums(m) / sum(m)))
+  prody <- Matrix::colSums(prody * m2) / Matrix::colSums(prody)
+
+  expy <- Matrix::rowSums((m / Matrix::rowSums(m)) * prody)
 
   if (tbl_output == TRUE) {
-    m <- tibble::enframe(m) %>%
+    prody <- tibble::enframe(prody) %>%
+      dplyr::filter(!!sym("value") > 0)
+
+    expy <- tibble::enframe(expy) %>%
       dplyr::filter(!!sym("value") > 0)
   }
 
-  return(m)
+  return(
+    list(
+      economies_productivity_level = expy,
+      countries_productivity_level = prody
+    )
+  )
 }

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Complexity Measures — complexity_measures • economiccomplexity</title>
+<title>Demo dataset to show the output of proximity matrices(). — world_proximity_matrices_2017 • economiccomplexity</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Complexity Measures — complexity_measures" />
+<meta property="og:title" content="Demo dataset to show the output of proximity matrices(). — world_proximity_matrices_2017" />
 
-<meta property="og:description" content="Complexity Measures" />
+<meta property="og:description" content="TBD" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -106,90 +106,51 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Complexity Measures</h1>
+    <h1>Demo dataset to show the output of proximity matrices().</h1>
     
-    <div class="hidden name"><code>complexity_measures.Rd</code></div>
+    <div class="hidden name"><code>world_proximity_matrices_2017.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Complexity Measures</p>
+    <p>TBD</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>complexity_measures</span>(<span class='kw'>d</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>c</span> <span class='kw'>=</span> <span class='st'>"country"</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
-  <span class='kw'>v</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"fitness"</span>, <span class='kw'>iterations</span> <span class='kw'>=</span> <span class='fl'>20</span>,
-  <span class='kw'>extremality</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>keep_atlas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>d</th>
-      <td><p>matrix or tibble/data.frame in long format, if d is a tibble/data.frame it must contain the columns
-country (character/factor), product (character/factor) and discrete RCA (integer), if it is a matrix it must be a
-zero/one matrix with countries in the row names and products in the column names</p></td>
-    </tr>
-    <tr>
-      <th>c</th>
-      <td><p>string to indicate the column that contains exporting countries (default set to "country" that is the
-output of revealed_comparative_advantage())</p></td>
-    </tr>
-    <tr>
-      <th>p</th>
-      <td><p>string to indicate the column that contains exported products (default set to "product" that is the
-output of revealed_comparative_advantage())</p></td>
-    </tr>
-    <tr>
-      <th>v</th>
-      <td><p>string to indicate the column that contains RCA values (default set to "value" that is the
-output of revealed_comparative_advantage())</p></td>
-    </tr>
-    <tr>
-      <th>method</th>
-      <td><p>reflections, eigenvalues or fitness (default set to reflections)
-methods (default set to FALSE)</p></td>
-    </tr>
-    <tr>
-      <th>iterations</th>
-      <td><p>number of iterations to use in the reflections method (default set to 20)</p></td>
-    </tr>
-    <tr>
-      <th>extremality</th>
-      <td><p>coefficient to use in the fitness method (default set to 1)</p></td>
-    </tr>
-    <tr>
-      <th>keep_atlas</th>
-      <td><p>removes the countries not ranked in The Atlas of Economic Complexity (default set to FALSE)</p></td>
-    </tr>
-    <tr>
-      <th>tbl_output</th>
-      <td><p>when set to TRUE the output will be a tibble instead of a matrix (default set to FALSE)</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+    <pre class="usage"><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='st'>"world_proximity_matrices_2017"</span>)</pre>
+        
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>For more information on complexity measures, indices and its applications see:</p>
-<p>Hausmann R, Hidalgo C, Bustos S, Coscia M, Simoes A, Yildirim M (2014).
-<em>The atlas of economic complexity: Mapping paths to prosperity</em>.
-MIT Press.</p>
-<p>Mariani M, Vidmer A, Medo M, Zhang Y (2015).
-&#8220;Measuring economic complexity of countries and products: which metric to use?&#8221;
-<em>The European Physical Journal B</em>, <b>88</b>(11), 293.
-doi: <a href='http://doi.org/10.1140/epjb/e2015-60298-7'>10.1140/epjb/e2015-60298-7</a>
-.</p>
+    <p>The format is:
+List of 2
+ $ countries_proximity:Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
+  .. ..@ i       : int [1:47186] 0 1 2 3 4 5 6 7 8 9 ...
+  .. ..@ p       : int [1:225] 0 220 394 606 825 1041 1260 1482 1700 1918 ...
+  .. ..@ Dim     : int [1:2] 224 224
+  .. ..@ Dimnames:List of 2
+  .. .. ..$ : chr [1:224] "afg" "ago" "aia" "alb" ...
+  .. .. ..$ : chr [1:224] "afg" "ago" "aia" "alb" ...
+  .. ..@ x       : num [1:47186] 1 0.0147 0.0137 0.1357 0.0706 ...
+  .. ..@ factors : list()
+ $ products_proximity :Formal class 'dgCMatrix' [package "Matrix"] with 6 slots
+  .. ..@ i       : int [1:1407256] 0 1 2 3 4 5 6 7 8 9 ...
+  .. ..@ p       : int [1:1223] 0 1150 2350 3506 4601 5807 7014 8198 9326 10484 ...
+  .. ..@ Dim     : int [1:2] 1222 1222
+  .. ..@ Dimnames:List of 2
+  .. .. ..$ : chr [1:1222] "0101" "0102" "0103" "0104" ...
+  .. .. ..$ : chr [1:1222] "0101" "0102" "0103" "0104" ...
+  .. ..@ x       : num [1:1407256] 1 0.19 0.25 0.04 0.235 ...
+  .. ..@ factors : list()</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>complexity_measures</span> <span class='kw'>&lt;-</span> <span class='fu'>complexity_measures</span>(<span class='no'>world_rca_2017</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>world_proximity_matrices_2017</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#references">References</a></li>
+      <li><a href="#format">Format</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

@@ -19,8 +19,10 @@
 #' @importFrom igraph graph_from_data_frame mst as_data_frame simplify
 #' @importFrom rlang sym
 #' @examples
-#' networks <- proximity_networks(proximity_matrices_2017$countries_proximity,
-#'     proximity_matrices_2017$products_proximity)
+#' net <- proximity_networks(
+#'   world_proximity_matrices_2017$countries_proximity,
+#'   world_proximity_matrices_2017$products_proximity
+#' )
 #' @references
 #' For more information on networks such as the product space and its applications see:
 #'
@@ -31,7 +33,7 @@ proximity_networks <- function(proximity_countries, proximity_products, c_cutoff
                                p_cutoff = 0.55, tbl_output = FALSE) {
   # sanity checks ----
   if (all(class(proximity_countries) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix") == FALSE) &
-      all(class(proximity_products) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix") == FALSE)) {
+    all(class(proximity_products) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix") == FALSE)) {
     stop("proximity_countries and proximity_products must be tibble/data.frame or dense/sparse matrix")
   }
 
@@ -84,8 +86,10 @@ proximity_networks <- function(proximity_countries, proximity_products, c_cutoff
   c_g <- dplyr::mutate(c_g, value = -1 * !!sym("value"))
 
   c_g <- igraph::graph_from_data_frame(c_g, directed = F)
-  c_g <- igraph::simplify(c_g, remove.multiple = TRUE, remove.loops = TRUE,
-                          edge.attr.comb = "first")
+  c_g <- igraph::simplify(c_g,
+    remove.multiple = TRUE, remove.loops = TRUE,
+    edge.attr.comb = "first"
+  )
 
   # products
   proximity_products <- dplyr::mutate(proximity_products, value = -1 * !!sym("value"))
@@ -102,8 +106,10 @@ proximity_networks <- function(proximity_countries, proximity_products, c_cutoff
   p_g <- dplyr::mutate(p_g, value = -1 * !!sym("value"))
 
   p_g <- igraph::graph_from_data_frame(p_g, directed = F)
-  p_g <- igraph::simplify(p_g, remove.multiple = TRUE, remove.loops = TRUE,
-                          edge.attr.comb = "first")
+  p_g <- igraph::simplify(p_g,
+    remove.multiple = TRUE, remove.loops = TRUE,
+    edge.attr.comb = "first"
+  )
 
   if (tbl_output == TRUE) {
     c_g <- igraph::as_data_frame(c_g) %>% dplyr::as_tibble()

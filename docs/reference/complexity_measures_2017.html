@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Demo dataset to show the output of economic_complexity_measures(). — complexity_measures_2017 • economiccomplexity</title>
+<title>Demo dataset to show the output of economic_complexity_measures(). — world_complexity_measures_2017 • economiccomplexity</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
 
 
 
-<meta property="og:title" content="Demo dataset to show the output of economic_complexity_measures(). — complexity_measures_2017" />
+<meta property="og:title" content="Demo dataset to show the output of economic_complexity_measures(). — world_complexity_measures_2017" />
 
 <meta property="og:description" content="TBD" />
 <meta name="twitter:card" content="summary" />
@@ -117,7 +117,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='st'>"complexity_measures_2017"</span>)</pre>
+    <pre class="usage"><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='st'>"world_complexity_measures_2017"</span>)</pre>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
@@ -138,7 +138,70 @@ List of 4
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>complexity_measures_2017</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>world_complexity_measures_2017</span></div><div class='output co'>#&gt; $economic_complexity_index
+#&gt; <span style='color: #949494;'># A tibble: 224 x 2</span><span>
+#&gt;    country value
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> jpn      2.27
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> che      2.20
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> deu      1.97
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> bvt      1.91
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> kor      1.82
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> cze      1.74
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> aut      1.73
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> sgp      1.71
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> swe      1.68
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> svn      1.66
+#&gt; </span><span style='color: #949494;'># … with 214 more rows</span><span>
+#&gt; 
+#&gt; $product_complexity_index
+#&gt; </span><span style='color: #949494;'># A tibble: 1,222 x 2</span><span>
+#&gt;    product value
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 2812     2.68
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 8457     2.25
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 3705     2.20
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 9012     2.19
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 8420     2.17
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 8113     2.16
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 3818     2.00
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 9017     1.96
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 8475     1.95
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 2920     1.91
+#&gt; </span><span style='color: #949494;'># … with 1,212 more rows</span><span>
+#&gt; 
+#&gt; $diversity
+#&gt; </span><span style='color: #949494;'># A tibble: 224 x 2</span><span>
+#&gt;    country value
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> afg        68
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> ago        10
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> aia        73
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> alb       140
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> and        85
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> are       109
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> arg       183
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> arm        92
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> asm        71
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> atf        20
+#&gt; </span><span style='color: #949494;'># … with 214 more rows</span><span>
+#&gt; 
+#&gt; $ubiquity
+#&gt; </span><span style='color: #949494;'># A tibble: 1,222 x 2</span><span>
+#&gt;    product value
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 0101       20
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 0102       42
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 0103       16
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 0104       25
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 0105       34
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 0106       55
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 0201       28
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 0202       23
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 0203       15
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 0204       27
+#&gt; </span><span style='color: #949494;'># … with 1,212 more rows</span><span>
+#&gt; </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
