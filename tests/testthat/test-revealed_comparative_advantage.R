@@ -1,7 +1,7 @@
 test_that("rca matrix/tibble fulfills desired properties", {
   # matrix output ----
   rca_m <- revealed_comparative_advantage(
-    d = world_trade_2017, c = "reporter_iso", p = "product_code", v = "export_value_usd"
+    data = world_trade_2017, c = "reporter_iso", p = "product_code", v = "export_value_usd"
   )
   expect_is(rca_m, "Matrix")
   expect_equal(nrow(rca_m), 224)
@@ -11,7 +11,7 @@ test_that("rca matrix/tibble fulfills desired properties", {
 
   # tibble output ----
   rca_t <- revealed_comparative_advantage(
-    d = world_trade_2017, c = "reporter_iso", p = "product_code", v = "export_value_usd",
+    data = world_trade_2017, c = "reporter_iso", p = "product_code", v = "export_value_usd",
     tbl_output = T
   )
   expect_is(rca_t, "data.frame")

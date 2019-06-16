@@ -4,11 +4,11 @@
 \alias{revealed_comparative_advantage}
 \title{Revealed Comparative Advantage (RCA)}
 \usage{
-revealed_comparative_advantage(d = NULL, c = NULL, p = NULL,
+revealed_comparative_advantage(data = NULL, c = NULL, p = NULL,
   v = NULL, cutoff = 1, discrete = TRUE, tbl_output = FALSE)
 }
 \arguments{
-\item{d}{tibble/data.frame in long format, it must contain the columns country (character/factor),
+\item{data}{tibble/data.frame in long format, it must contain the columns country (character/factor),
 product (character/factor) and export value (numeric)}
 
 \item{c}{string to indicate the column that contains exporting countries (e.g. "reporter_iso")}
@@ -30,7 +30,7 @@ Revealed Comparative Advantage (RCA)
 }
 \examples{
 rca <- revealed_comparative_advantage(
-  d = world_trade_2017, c = "reporter_iso",
+  data = world_trade_2017, c = "reporter_iso",
   p = "product_code", v = "export_value_usd"
 )
 }

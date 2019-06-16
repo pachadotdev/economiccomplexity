@@ -1,6 +1,6 @@
 test_that("complexity measures are aligned with the expected output", {
   # numeric output ----
-  cm_n <- complexity_measures(world_rca_2017)
+  cm_n <- complexity_measures(revealed_comparative_advantage_output)
   expect_is(cm_n, "list")
   expect_is(cm_n$economic_complexity_index, "numeric")
   expect_is(cm_n$product_complexity_index, "numeric")
@@ -12,7 +12,7 @@ test_that("complexity measures are aligned with the expected output", {
   expect_equal(length(cm_n$ubiquity), 1222)
 
   # tibble output ----
-  cm_t <- complexity_measures(world_rca_2017, tbl_output = T)
+  cm_t <- complexity_measures(revealed_comparative_advantage_output, tbl_output = T)
   expect_is(cm_t, "list")
   expect_is(cm_t$economic_complexity_index, "data.frame")
   expect_is(cm_t$product_complexity_index, "data.frame")

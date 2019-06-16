@@ -1,5 +1,5 @@
-\name{world_rca_2017}
-\alias{world_rca_2017}
+\name{revealed_comparative_advantage_output}
+\alias{revealed_comparative_advantage_output}
 \docType{data}
 \title{
 Demo dataset to show the output of revealed_comparative_advantage().
@@ -7,7 +7,7 @@ Demo dataset to show the output of revealed_comparative_advantage().
 \description{
 TBD
 }
-\usage{data("world_rca_2017")}
+\usage{data("revealed_comparative_advantage_output")}
 \format{
   A data frame with 176971 observations on the following 3 variables.
   \describe{
@@ -20,6 +20,6 @@ TBD
 Open Trade Statistics (obtained by using the tradestatistics package)
 }
 \examples{
-world_rca_2017
+revealed_comparative_advantage_output
 }
 \keyword{datasets}

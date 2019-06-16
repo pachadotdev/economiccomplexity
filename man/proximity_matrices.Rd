@@ -4,28 +4,32 @@
 \alias{proximity_matrices}
 \title{Proximity Matrices}
 \usage{
-proximity_matrices(d = NULL, c = "country", p = "product",
+proximity_matrices(rca = NULL, c = "country", p = "product",
   v = "value", diversity = NULL, ubiquity = NULL,
   diversity_c = "country", diversity_v = "value",
   ubiquity_p = "product", ubiquity_v = "value", tbl_output = FALSE)
 }
 \arguments{
-\item{d}{matrix or tibble/data.frame in long format, if d is a tibble/data.frame it must contain the columns
-country (character/factor), product (character/factor) and discrete RCA (integer), if it is a matrix it must be a
-zero/one matrix with countries in the row names and products in the column names}
+\item{rca}{matrix or tibble/data.frame in long format (e.g. the output of
+revealed_comparative_advantage()). If it is a matrix it must be a
+zero/one matrix with countries in the row names and products in the column names.
+If rca is a tibble/data.frame it must contain the columns.
+country (character/factor), product (character/factor) and discrete RCA (integer)}
 
 \item{c}{string to indicate the column that contains exporting countries (default set to "country" that is the
-output of revealed_comparative_advantage())}
+output of revealed_comparative_advantage(), applies only if rca is a data.frame)}
 
 \item{p}{string to indicate the column that contains exported products (default set to "product" that is the
-output of revealed_comparative_advantage())}
+output of revealed_comparative_advantage(), applies only if rca is a data.frame)}
 
 \item{v}{string to indicate the column that contains RCA values (default set to "value" that is the
-output of revealed_comparative_advantage())}
+output of revealed_comparative_advantage(), applies only if rca is a data.frame)}
 
-\item{diversity}{vector or tibble/data.frame containing diversity measures}
+\item{diversity}{numeric vector or tibble/data.frame containing diversity measures (e.g. \code{diversity}
+from \code{complexity_measures()})}
 
-\item{ubiquity}{vector or tibble/data.frame containing ubiquity measures}
+\item{ubiquity}{numeric vector or tibble/data.frame containing ubiquity measures (e.g. \code{ubiquity}
+from \code{complexity_measures()})}
 
 \item{diversity_c}{string to indicate the column that contains diversity countries (default set to "country" that is the
 output of economic_complexity_measures())}
@@ -46,9 +50,9 @@ Proximity Matrices
 }
 \examples{
 pro <- proximity_matrices(
-  d = world_rca_2017,
-  diversity = world_complexity_measures_2017$diversity,
-  ubiquity = world_complexity_measures_2017$ubiquity
+  rca = revealed_comparative_advantage_output,
+  diversity = complexity_measures_output$diversity,
+  ubiquity = complexity_measures_output$ubiquity
 )
 }
 \references{

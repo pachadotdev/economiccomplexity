@@ -29,8 +29,8 @@ Networks
 }
 \examples{
 net <- proximity_networks(
-  world_proximity_matrices_2017$countries_proximity,
-  world_proximity_matrices_2017$products_proximity
+  proximity_matrices_output$countries_proximity,
+  proximity_matrices_output$products_proximity
 )
 }
 \references{

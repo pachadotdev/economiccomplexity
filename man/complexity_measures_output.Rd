@@ -1,5 +1,5 @@
-\name{world_complexity_measures_2017}
-\alias{world_complexity_measures_2017}
+\name{complexity_measures_output}
+\alias{complexity_measures_output}
 \docType{data}
 \title{
 Demo dataset to show the output of economic_complexity_measures().
@@ -7,7 +7,7 @@ Demo dataset to show the output of economic_complexity_measures().
 \description{
 TBD
 }
-\usage{data("world_complexity_measures_2017")}
+\usage{data("complexity_measures_output")}
 \format{
   The format is:
 List of 4
@@ -25,6 +25,6 @@ List of 4
   ..$ value  : num [1:1222] 20 42 16 25 34 55 28 23 15 27 ...
 }
 \examples{
-world_complexity_measures_2017
+complexity_measures_output
 }
 \keyword{datasets}

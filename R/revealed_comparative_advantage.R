@@ -1,7 +1,7 @@
 #' Revealed Comparative Advantage (RCA)
 #'
 #' @export
-#' @param d tibble/data.frame in long format, it must contain the columns country (character/factor),
+#' @param data tibble/data.frame in long format, it must contain the columns country (character/factor),
 #' product (character/factor) and export value (numeric)
 #' @param c string to indicate the column that contains exporting countries (e.g. "reporter_iso")
 #' @param p string to indicate the column that contains exported products (e.g. "product_code")
@@ -17,7 +17,7 @@
 #' @importFrom rlang sym syms
 #' @examples
 #' rca <- revealed_comparative_advantage(
-#'   d = world_trade_2017, c = "reporter_iso",
+#'   data = world_trade_2017, c = "reporter_iso",
 #'   p = "product_code", v = "export_value_usd"
 #' )
 #' @references
@@ -26,10 +26,10 @@
 #' \insertRef{atlas2014}{economiccomplexity}
 #' @keywords functions
 
-revealed_comparative_advantage <- function(d = NULL, c = NULL, p = NULL, v = NULL,
+revealed_comparative_advantage <- function(data = NULL, c = NULL, p = NULL, v = NULL,
                                            cutoff = 1, discrete = TRUE, tbl_output = FALSE) {
   # sanity checks ----
-  if (all(class(d) %in% c("data.frame") == FALSE)) {
+  if (all(class(data) %in% c("data.frame") == FALSE)) {
     stop("d must be a tibble/data.frame")
   }
 
@@ -50,7 +50,7 @@ revealed_comparative_advantage <- function(d = NULL, c = NULL, p = NULL, v = NUL
   }
 
   # aggregate input data by c and p ----
-  d <- d %>%
+  d <- data %>%
     # Sum by country and product
     dplyr::group_by(!!!syms(c(c, p))) %>%
     dplyr::summarise(vcp = sum(!!sym(v), na.rm = TRUE)) %>%
@@ -72,7 +72,6 @@ revealed_comparative_advantage <- function(d = NULL, c = NULL, p = NULL, v = NUL
     rownames(m) <- m_rownames
 
     m <- Matrix::t(Matrix::t(m / Matrix::rowSums(m)) / (Matrix::colSums(m) / sum(m)))
-    m <- Matrix::Matrix(m, sparse = TRUE)
 
     if (discrete == T) {
       m[m <= cutoff] <- 0

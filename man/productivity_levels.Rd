@@ -4,25 +4,26 @@
 \alias{productivity_levels}
 \title{Productivity Levels}
 \usage{
-productivity_levels(d1 = NULL, c1 = NULL, p1 = NULL, v1 = NULL,
-  d2 = NULL, c2 = NULL, v2 = NULL, tbl_output = FALSE)
+productivity_levels(trade_data = NULL, c1 = NULL, p1 = NULL,
+  v1 = NULL, gdp_data = NULL, c2 = NULL, v2 = NULL,
+  tbl_output = FALSE)
 }
 \arguments{
-\item{d1}{tibble/data.frame in long format, it must contain the columns country (character/factor),
+\item{trade_data}{tibble/data.frame in long format, it must contain the columns country (character/factor),
 product (character/factor) and export value (numeric)}
 
-\item{c1}{string to indicate the column that contains exporting countries in d1 (e.g. "reporter_iso")}
+\item{c1}{string to indicate the column that contains exporting countries in trade_data (e.g. "reporter_iso")}
 
-\item{p1}{string to indicate the column that contains exported products in d1 (e.g. "product_code")}
+\item{p1}{string to indicate the column that contains exported products in trade_data (e.g. "product_code")}
 
-\item{v1}{string to indicate the column that contains traded values in d1(e.g. "trade_value_usd")}
+\item{v1}{string to indicate the column that contains traded values in trade_data(e.g. "trade_value_usd")}
 
-\item{d2}{tibble/data.frame in long format, it must contain the columns country (character/factor),
+\item{gdp_data}{tibble/data.frame in long format, it must contain the columns country (character/factor),
 and GDP per capita (numeric)}
 
-\item{c2}{string to indicate the column that contains exporting countries in d2 (e.g. "reporter_iso")}
+\item{c2}{string to indicate the column that contains exporting countries in gdp_data (e.g. "reporter_iso")}
 
-\item{v2}{string to indicate the column that contains GDP per capita in d2 (e.g. "gdp_pc")}
+\item{v2}{string to indicate the column that contains GDP per capita in gdp_data (e.g. "gdp_pc")}
 
 \item{tbl_output}{when set to TRUE the output will be a tibble instead of a matrix (default set to FALSE)}
 }
@@ -31,12 +32,14 @@ Productivity Levels
 }
 \examples{
 pl <- productivity_levels(
-  d1 = world_trade_2017, c1 = "reporter_iso", p1 = "product_code", v1 = "export_value_usd",
-  d2 = world_gdp_and_population_2017, c2 = "reporter_iso", v2 = "gdp_pc_usd"
+  trade_data = world_trade_2017, c1 = "reporter_iso", p1 = "product_code", v1 = "export_value_usd",
+  gdp_data = world_gdp_and_population_2017, c2 = "reporter_iso", v2 = "gdp_pc_usd"
 )
 }
 \references{
 For more information on prody and its applications see:
+
+\insertRef{atlas2014}{economiccomplexity}
 
 \insertRef{exportmatters2005}{economiccomplexity}
 }

@@ -4,12 +4,12 @@
 \alias{complexity_measures}
 \title{Complexity Measures}
 \usage{
-complexity_measures(d = NULL, c = "country", p = "product",
+complexity_measures(rca = NULL, c = "country", p = "product",
   v = "value", method = "fitness", iterations = 20,
   extremality = 1, keep_atlas = FALSE, tbl_output = FALSE)
 }
 \arguments{
-\item{d}{matrix or tibble/data.frame in long format, if d is a tibble/data.frame it must contain the columns
+\item{rca}{matrix or tibble/data.frame in long format, if d is a tibble/data.frame it must contain the columns
 country (character/factor), product (character/factor) and discrete RCA (integer), if it is a matrix it must be a
 zero/one matrix with countries in the row names and products in the column names}
 
@@ -37,7 +37,7 @@ methods (default set to FALSE)}
 Complexity Measures
 }
 \examples{
-cm <- complexity_measures(world_rca_2017)
+cm <- complexity_measures(revealed_comparative_advantage_output)
 }
 \references{
 For more information on complexity measures, indices and its applications see:

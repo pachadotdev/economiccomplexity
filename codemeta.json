@@ -198,15 +198,18 @@
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
-      "version": ">= 2.10"
+      "version": ">= 3.5"
     }
   ],
   "codeRepository": "https://github.com/pachamaltese/economiccomplexity",
   "readme": "https://github.com/pachamaltese/economiccomplexity/blob/master/README.md",
-  "fileSize": "2161.604KB",
+  "fileSize": "1505.337KB",
   "contIntegration": [
     "https://travis-ci.org/pachamaltese/economiccomplexity",
     "https://codecov.io/github/pachamaltese/economiccomplexity?branch=master"
   ],
-  "developmentStatus": ["https://www.repostatus.org/#wip", "https://www.tidyverse.org/lifecycle/#experimental"]
+  "developmentStatus": [
+    "https://www.repostatus.org/#wip",
+    "https://www.tidyverse.org/lifecycle/#experimental"
+  ]
 }

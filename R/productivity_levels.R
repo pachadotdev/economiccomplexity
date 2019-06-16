@@ -1,15 +1,15 @@
 #' Productivity Levels
 #'
 #' @export
-#' @param d1 tibble/data.frame in long format, it must contain the columns country (character/factor),
+#' @param trade_data tibble/data.frame in long format, it must contain the columns country (character/factor),
 #' product (character/factor) and export value (numeric)
-#' @param d2 tibble/data.frame in long format, it must contain the columns country (character/factor),
+#' @param c1 string to indicate the column that contains exporting countries in trade_data (e.g. "reporter_iso")
+#' @param p1 string to indicate the column that contains exported products in trade_data (e.g. "product_code")
+#' @param v1 string to indicate the column that contains traded values in trade_data(e.g. "trade_value_usd")
+#' @param gdp_data tibble/data.frame in long format, it must contain the columns country (character/factor),
 #' and GDP per capita (numeric)
-#' @param c1 string to indicate the column that contains exporting countries in d1 (e.g. "reporter_iso")
-#' @param p1 string to indicate the column that contains exported products in d1 (e.g. "product_code")
-#' @param v1 string to indicate the column that contains traded values in d1(e.g. "trade_value_usd")
-#' @param c2 string to indicate the column that contains exporting countries in d2 (e.g. "reporter_iso")
-#' @param v2 string to indicate the column that contains GDP per capita in d2 (e.g. "gdp_pc")
+#' @param c2 string to indicate the column that contains exporting countries in gdp_data (e.g. "reporter_iso")
+#' @param v2 string to indicate the column that contains GDP per capita in gdp_data (e.g. "gdp_pc")
 #' @param tbl_output when set to TRUE the output will be a tibble instead of a matrix (default set to FALSE)
 #' @importFrom magrittr %>%
 #' @importFrom dplyr select group_by ungroup mutate summarise matches rename pull inner_join
@@ -18,25 +18,27 @@
 #' @importFrom rlang sym syms
 #' @examples
 #' pl <- productivity_levels(
-#'   d1 = world_trade_2017, c1 = "reporter_iso", p1 = "product_code", v1 = "export_value_usd",
-#'   d2 = world_gdp_and_population_2017, c2 = "reporter_iso", v2 = "gdp_pc_usd"
+#'   trade_data = world_trade_2017, c1 = "reporter_iso", p1 = "product_code", v1 = "export_value_usd",
+#'   gdp_data = world_gdp_and_population_2017, c2 = "reporter_iso", v2 = "gdp_pc_usd"
 #' )
 #' @references
 #' For more information on prody and its applications see:
 #'
+#' \insertRef{atlas2014}{economiccomplexity}
+#'
 #' \insertRef{exportmatters2005}{economiccomplexity}
 #' @keywords functions
 
-productivity_levels <- function(d1 = NULL, c1 = NULL, p1 = NULL, v1 = NULL,
-                                d2 = NULL, c2 = NULL, v2 = NULL,
+productivity_levels <- function(trade_data = NULL, c1 = NULL, p1 = NULL, v1 = NULL,
+                                gdp_data = NULL, c2 = NULL, v2 = NULL,
                                 tbl_output = FALSE) {
   # sanity checks ----
-  if (all(class(d1) %in% c("data.frame") == FALSE)) {
-    stop("d1 must be a tibble/data.frame")
+  if (all(class(trade_data) %in% c("data.frame") == FALSE)) {
+    stop("trade_data must be a tibble/data.frame")
   }
 
-  if (all(class(d2) %in% c("data.frame") == FALSE)) {
-    stop("d2 must be a tibble/data.frame")
+  if (all(class(gdp_data) %in% c("data.frame") == FALSE)) {
+    stop("gdp_data must be a tibble/data.frame")
   }
 
   if (!is.character(c1) & !is.character(p1) & !is.character(v1)) {
@@ -51,8 +53,8 @@ productivity_levels <- function(d1 = NULL, c1 = NULL, p1 = NULL, v1 = NULL,
     stop("tbl_output must be matrix or tibble")
   }
 
-  # tidy input data d1 ----
-  d1 <- d1 %>%
+  # tidy input data trade_data ----
+  trade_data <- trade_data %>%
     # Sum by country and product
     dplyr::group_by(!!!syms(c(c1, p1))) %>%
     dplyr::summarise(vcp = sum(!!sym(v1), na.rm = TRUE)) %>%
@@ -60,22 +62,22 @@ productivity_levels <- function(d1 = NULL, c1 = NULL, p1 = NULL, v1 = NULL,
     dplyr::filter(!!sym("vcp") > 0) %>%
     dplyr::select(!!!syms(c(c1, p1, "vcp")))
 
-  # tidy input data d2 ----
-  d2 <- d2 %>%
+  # tidy input data gdp_data ----
+  gdp_data <- gdp_data %>%
     dplyr::select(!!!syms(c(c2, v2))) %>%
     dplyr::filter(!!sym(v2) > 0)
 
   # create exports-gdp table ----
-  m <- d1 %>%
+  m <- trade_data %>%
     tidyr::spread(!!sym(p1), !!sym("vcp")) %>%
-    dplyr::inner_join(d2, by = stats::setNames(c2, c1))
+    dplyr::inner_join(gdp_data, by = stats::setNames(c2, c1))
 
-  if (nrow(m) < nrow(unique(d1[, c1]))) {
-    warning("Joining d1 and d2 resulted in a table with less reporting countries than those in d1.")
+  if (nrow(m) < nrow(unique(trade_data[, c1]))) {
+    warning("Joining trade_data and gdp_data resulted in a table with less reporting countries than those in trade_data.")
   }
 
-  if (nrow(m) < nrow(d2)) {
-    warning("Joining d1 and d2 resulted in a table with less reporting countries than those in d2.")
+  if (nrow(m) < nrow(gdp_data)) {
+    warning("Joining trade_data and gdp_data resulted in a table with less reporting countries than those in gdp_data.")
   }
 
   # convert m to matrix ----

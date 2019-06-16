@@ -12,7 +12,6 @@
 #' @param p_cutoff all the values lower than the specified p_cutoff will be converted to 0 and excluded
 #' from the products network (default set to 0.4)
 #' @param tbl_output when set to TRUE the output will be a tibble instead of a graph (default set to FALSE)
-#' @importFrom methods as
 #' @importFrom magrittr %>%
 #' @importFrom dplyr as_tibble filter mutate bind_rows
 #' @importFrom tidyr gather
@@ -20,8 +19,8 @@
 #' @importFrom rlang sym
 #' @examples
 #' net <- proximity_networks(
-#'   world_proximity_matrices_2017$countries_proximity,
-#'   world_proximity_matrices_2017$products_proximity
+#'   proximity_matrices_output$countries_proximity,
+#'   proximity_matrices_output$products_proximity
 #' )
 #' @references
 #' For more information on networks such as the product space and its applications see:
@@ -46,13 +45,14 @@ proximity_networks <- function(proximity_countries, proximity_products, c_cutoff
   }
 
   # arrange matrices ----
-  if (!is.data.frame(proximity_countries) & !is.data.frame(proximity_products)) {
+  if (any(class(proximity_countries) %in% c("matrix", "dgeMatrix", "dgCMatrix") == TRUE) &
+      any(class(proximity_products) %in% c("matrix", "dgeMatrix", "dgCMatrix") == TRUE)) {
     # countries
     proximity_countries <- as.matrix(proximity_countries)
     proximity_countries[upper.tri(proximity_countries, diag = T)] <- 0
     row_names <- rownames(proximity_countries)
 
-    proximity_countries <- as.matrix(proximity_countries) %>%
+    proximity_countries <- proximity_countries %>%
       dplyr::as_tibble() %>%
       dplyr::mutate(from = row_names) %>%
       tidyr::gather(!!sym("to"), !!sym("value"), -!!sym("from")) %>%
@@ -63,7 +63,7 @@ proximity_networks <- function(proximity_countries, proximity_products, c_cutoff
     proximity_products[upper.tri(proximity_products, diag = T)] <- 0
     row_names <- rownames(proximity_products)
 
-    proximity_products <- as.matrix(proximity_products) %>%
+    proximity_products <- proximity_products %>%
       dplyr::as_tibble() %>%
       dplyr::mutate(from = row_names) %>%
       tidyr::gather(!!sym("to"), !!sym("value"), -!!sym("from")) %>%

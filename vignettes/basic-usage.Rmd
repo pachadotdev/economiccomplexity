@@ -31,7 +31,7 @@ world_trade_2017
 You can obtain RCA with `revealed_comparative_advantage()`:
 ```{r}
 rca <- revealed_comparative_advantage(
-  d = world_trade_2017, 
+  data = world_trade_2017, 
   c = "reporter_iso",
   p = "product_code", 
   v = "export_value_usd"
@@ -43,7 +43,7 @@ rca[1:5,1:5]
 And also you can obtain it in tabular version:
 ```{r}
 rca_tbl <- revealed_comparative_advantage(
-  d = world_trade_2017, 
+  data = world_trade_2017, 
   c = "reporter_iso",
   p = "product_code",
   v = "export_value_usd",
@@ -57,7 +57,7 @@ Another possibility, *not used to build networks from bipartite relations*, is t
 
 ```{r}
 rca_decimal <- revealed_comparative_advantage(
-  d = world_trade_2017,
+  data = world_trade_2017,
   c = "reporter_iso",
   p = "product_code",
   v = "export_value_usd",
@@ -70,7 +70,7 @@ rca_decimal[1:5,1:5]
 
 ```{r}
 rca_decimal_tbl <- revealed_comparative_advantage(
-  d = world_trade_2017,
+  data = world_trade_2017,
   c = "reporter_iso",
   p = "product_code",
   v = "export_value_usd",

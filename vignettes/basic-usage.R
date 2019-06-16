@@ -8,17 +8,17 @@ world_trade_2017
 
 ## ------------------------------------------------------------------------
 rca <- revealed_comparative_advantage(
-  d = world_trade_2017,
+  data = world_trade_2017, 
   c = "reporter_iso",
-  p = "product_code",
+  p = "product_code", 
   v = "export_value_usd"
 )
 
-rca[1:5, 1:5]
+rca[1:5,1:5]
 
 ## ------------------------------------------------------------------------
 rca_tbl <- revealed_comparative_advantage(
-  d = world_trade_2017,
+  data = world_trade_2017, 
   c = "reporter_iso",
   p = "product_code",
   v = "export_value_usd",
@@ -29,7 +29,7 @@ rca_tbl
 
 ## ------------------------------------------------------------------------
 rca_decimal <- revealed_comparative_advantage(
-  d = world_trade_2017,
+  data = world_trade_2017,
   c = "reporter_iso",
   p = "product_code",
   v = "export_value_usd",
@@ -37,11 +37,11 @@ rca_decimal <- revealed_comparative_advantage(
   discrete = F
 )
 
-rca_decimal[1:5, 1:5]
+rca_decimal[1:5,1:5]
 
 ## ------------------------------------------------------------------------
 rca_decimal_tbl <- revealed_comparative_advantage(
-  d = world_trade_2017,
+  data = world_trade_2017,
   c = "reporter_iso",
   p = "product_code",
   v = "export_value_usd",
@@ -53,8 +53,8 @@ rca_decimal_tbl
 
 ## ------------------------------------------------------------------------
 complexity_measures_reflections <- complexity_measures(
-  rca,
-  method = "reflections",
+  rca, 
+  method = "reflections", 
   tbl_output = T
 )
 
@@ -74,7 +74,7 @@ complexity_measures_eigenvalues$product_complexity_index
 ## ------------------------------------------------------------------------
 complexity_measures_fitness <- complexity_measures(
   rca,
-  method = "fitness",
+  method = "fitness", 
   tbl_output = T
 )
 
@@ -88,8 +88,8 @@ proximity <- proximity_matrices(
   ubiquity = complexity_measures_fitness$ubiquity
 )
 
-proximity$countries_proximity[1:5, 1:5]
-proximity$products_proximity[1:5, 1:5]
+proximity$countries_proximity[1:5,1:5]
+proximity$products_proximity[1:5,1:5]
 
 ## ------------------------------------------------------------------------
 networks <- proximity_networks(
@@ -111,10 +111,11 @@ set.seed(1810)
 countries_network <- graph_from_data_frame(networks$countries_network, directed = F)
 
 plot(
-  countries_network,
+  countries_network, 
   layout = layout_with_kk,
   vertex.size = 5,
   vertex.color = "#a8a8a8",
   vertex.label.dist = 1,
   vertex.label.color = "black"
 )
+

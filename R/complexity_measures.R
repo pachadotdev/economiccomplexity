@@ -1,7 +1,7 @@
 #' Complexity Measures
 #'
 #' @export
-#' @param d matrix or tibble/data.frame in long format, if d is a tibble/data.frame it must contain the columns
+#' @param rca matrix or tibble/data.frame in long format, if d is a tibble/data.frame it must contain the columns
 #' country (character/factor), product (character/factor) and discrete RCA (integer), if it is a matrix it must be a
 #' zero/one matrix with countries in the row names and products in the column names
 #' @param c string to indicate the column that contains exporting countries (default set to "country" that is the
@@ -23,7 +23,7 @@
 #' @importFrom Matrix Matrix rowSums colSums t
 #' @importFrom rlang sym
 #' @examples
-#' cm <- complexity_measures(world_rca_2017)
+#' cm <- complexity_measures(revealed_comparative_advantage_output)
 #' @references
 #' For more information on complexity measures, indices and its applications see:
 #'
@@ -32,12 +32,12 @@
 #' \insertRef{measuringcomplexity2015}{economiccomplexity}
 #' @keywords functions
 
-complexity_measures <- function(d = NULL, c = "country", p = "product", v = "value",
+complexity_measures <- function(rca = NULL, c = "country", p = "product", v = "value",
                                 method = "fitness", iterations = 20, extremality = 1,
                                 keep_atlas = FALSE, tbl_output = FALSE) {
   # sanity checks ----
-  if (all(class(d) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix") == FALSE)) {
-    stop("d must be a tibble/data.frame or a dense/sparse matrix")
+  if (all(class(rca) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix") == FALSE)) {
+    stop("rca must be a tibble/data.frame or a dense/sparse matrix")
   }
 
   if (!(any(method %in% c("reflections", "eigenvalues", "fitness")) == TRUE)) {
@@ -53,8 +53,8 @@ complexity_measures <- function(d = NULL, c = "country", p = "product", v = "val
   }
 
   # convert data.frame input to matrix ----
-  if (is.data.frame(d)) {
-    m <- tidyr::spread(d, !!sym(p), !!sym(v))
+  if (is.data.frame(rca)) {
+    m <- tidyr::spread(rca, !!sym(p), !!sym(v))
     m_rownames <- dplyr::select(m, !!sym(c)) %>% dplyr::pull()
 
     m <- dplyr::select(m, -!!sym(c)) %>% as.matrix()
@@ -64,7 +64,7 @@ complexity_measures <- function(d = NULL, c = "country", p = "product", v = "val
     m <- Matrix::Matrix(m, sparse = T)
     m <- m[Matrix::rowSums(m) != 0, Matrix::colSums(m) != 0]
   } else {
-    m <- d[Matrix::rowSums(d) != 0, Matrix::colSums(d) != 0]
+    m <- rca[Matrix::rowSums(rca) != 0, Matrix::colSums(rca) != 0]
   }
 
   # remove countries not ranked in The Atlas of Economic Complexity

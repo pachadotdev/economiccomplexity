@@ -12,7 +12,7 @@
 
 <meta name="author" content="Mauricio Vargas" />
 
-<meta name="date" content="2019-06-12" />
+<meta name="date" content="2019-06-15" />
 
 <title>How to use this package</title>
 
@@ -303,7 +303,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">How to use this package</h1>
 <h4 class="author">Mauricio Vargas</h4>
-<h4 class="date">2019-06-12</h4>
+<h4 class="date">2019-06-15</h4>
 
 
 
@@ -334,7 +334,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2>Revealed comparative Advantage (RCA)</h2>
 <p>You can obtain RCA with <code>revealed_comparative_advantage()</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">rca &lt;-<span class="st"> </span><span class="kw">revealed_comparative_advantage</span>(</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="dt">d =</span> world_trade_<span class="dv">2017</span>, </a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="dt">data =</span> world_trade_<span class="dv">2017</span>, </a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="dt">c =</span> <span class="st">&quot;reporter_iso&quot;</span>,</a>
 <a class="sourceLine" id="cb3-4" data-line-number="4">  <span class="dt">p =</span> <span class="st">&quot;product_code&quot;</span>, </a>
 <a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="dt">v =</span> <span class="st">&quot;export_value_usd&quot;</span></a>
@@ -350,7 +350,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## and    1    .    .    .    .</code></pre>
 <p>And also you can obtain it in tabular version:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">rca_tbl &lt;-<span class="st"> </span><span class="kw">revealed_comparative_advantage</span>(</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="dt">d =</span> world_trade_<span class="dv">2017</span>, </a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="dt">data =</span> world_trade_<span class="dv">2017</span>, </a>
 <a class="sourceLine" id="cb5-3" data-line-number="3">  <span class="dt">c =</span> <span class="st">&quot;reporter_iso&quot;</span>,</a>
 <a class="sourceLine" id="cb5-4" data-line-number="4">  <span class="dt">p =</span> <span class="st">&quot;product_code&quot;</span>,</a>
 <a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="dt">v =</span> <span class="st">&quot;export_value_usd&quot;</span>,</a>
@@ -374,7 +374,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## # … with 176,961 more rows</code></pre>
 <p>Another possibility, <em>not used to build networks from bipartite relations</em>, is to obtain RCA as a matrix or tibble without discretization:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">rca_decimal &lt;-<span class="st"> </span><span class="kw">revealed_comparative_advantage</span>(</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">  <span class="dt">d =</span> world_trade_<span class="dv">2017</span>,</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">  <span class="dt">data =</span> world_trade_<span class="dv">2017</span>,</a>
 <a class="sourceLine" id="cb7-3" data-line-number="3">  <span class="dt">c =</span> <span class="st">&quot;reporter_iso&quot;</span>,</a>
 <a class="sourceLine" id="cb7-4" data-line-number="4">  <span class="dt">p =</span> <span class="st">&quot;product_code&quot;</span>,</a>
 <a class="sourceLine" id="cb7-5" data-line-number="5">  <span class="dt">v =</span> <span class="st">&quot;export_value_usd&quot;</span>,</a>
@@ -391,7 +391,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## alb .        1.038204e-02    . .          .
 ## and 3.126295 .               . .          .</code></pre>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">rca_decimal_tbl &lt;-<span class="st"> </span><span class="kw">revealed_comparative_advantage</span>(</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">  <span class="dt">d =</span> world_trade_<span class="dv">2017</span>,</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">  <span class="dt">data =</span> world_trade_<span class="dv">2017</span>,</a>
 <a class="sourceLine" id="cb9-3" data-line-number="3">  <span class="dt">c =</span> <span class="st">&quot;reporter_iso&quot;</span>,</a>
 <a class="sourceLine" id="cb9-4" data-line-number="4">  <span class="dt">p =</span> <span class="st">&quot;product_code&quot;</span>,</a>
 <a class="sourceLine" id="cb9-5" data-line-number="5">  <span class="dt">v =</span> <span class="st">&quot;export_value_usd&quot;</span>,</a>
@@ -617,10 +617,10 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h1>References</h1>
 <div id="refs" class="references">
 <div id="ref-atlas2014">
-<p>Hausmann, Ricardo, César Hidalgo, Sebastián Bustos, Michele Coscia, Alexander Simoes, and Muhammed Yildirim. 2014. <em>The Atlas of Economic Complexity: Mapping Paths to Prosperity</em>. Mit Press.</p>
+<p>Hausmann, Ricardo, César Hidalgo, Sebastián Bustos, Michele Coscia, Alexander Simoes, and Muhammed Yildirim. 2014. <em>The Atlas of Economic Complexity: Mapping Paths to Prosperity</em>. MIT Press.</p>
 </div>
 <div id="ref-measuringcomplexity2015">
-<p>Mariani, Manuel, Alexandre Vidmer, Matsúš Medo, and Yi-Cheng Zhang. 2015. “Measuring Economic Complexity of Countries and Products: Which Metric to Use?” <em>The European Physical Journal B</em> 88 (11). Springer: 293.</p>
+<p>Mariani, Manuel, Alexandre Vidmer, Matsúš Medo, and Yi-Cheng Zhang. 2015. “Measuring Economic Complexity of Countries and Products: Which Metric to Use?” <em>The European Physical Journal B</em> 88 (11). Springer: 293. <a href="https://doi.org/10.1140/epjb/e2015-60298-7">https://doi.org/10.1140/epjb/e2015-60298-7</a>.</p>
 </div>
 </div>
 </div>

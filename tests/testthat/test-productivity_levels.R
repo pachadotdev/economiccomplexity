@@ -1,8 +1,8 @@
 test_that("productivity levels are aligned with the expected output", {
   # numeric output ----
   pl_n <- productivity_levels(
-    d1 = world_trade_2017, c1 = "reporter_iso", p1 = "product_code", v1 = "export_value_usd",
-    d2 = world_gdp_and_population_2017, c2 = "reporter_iso", v2 = "gdp_pc_usd",
+    trade_data = world_trade_2017, c1 = "reporter_iso", p1 = "product_code", v1 = "export_value_usd",
+    gdp_data = world_gdp_and_population_2017, c2 = "reporter_iso", v2 = "gdp_pc_usd",
     tbl_output = F
   )
   expect_is(pl_n, "list")
@@ -13,8 +13,8 @@ test_that("productivity levels are aligned with the expected output", {
 
   # tibble output ----
   pl_t <- productivity_levels(
-    d1 = world_trade_2017, c1 = "reporter_iso", p1 = "product_code", v1 = "export_value_usd",
-    d2 = world_gdp_and_population_2017, c2 = "reporter_iso", v2 = "gdp_pc_usd",
+    trade_data = world_trade_2017, c1 = "reporter_iso", p1 = "product_code", v1 = "export_value_usd",
+    gdp_data = world_gdp_and_population_2017, c2 = "reporter_iso", v2 = "gdp_pc_usd",
     tbl_output = T
   )
   expect_is(pl_t, "list")
