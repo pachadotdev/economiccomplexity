@@ -1,31 +1,44 @@
 #' Countries position
 #'
 #' @export
-#' @param rca matrix or tibble/data.frame in long format (e.g. the output of
-#' revealed_comparative_advantage()). If it is a matrix it must be a
-#' zero/one matrix with countries in the row names and products in the column names.
-#' If rca is a tibble/data.frame it must contain the columns.
-#' @param c1 string to indicate the column that contains exporting countries in rca (e.g. "country")
-#' @param p1 string to indicate the column that contains exported products in rca (e.g. "product")
-#' @param v1 string to indicate the column that contains traded values in rca(e.g. "value")
-#' @param proximity_products matrix or tibble/data.frame, if d is a tibble/data.frame it must contain the columns
-#' from (character/factor), to (character/factor) and value (numeric), if it is a matrix it must be a
-#' numeric matrix with products in row names and column names
-#' @param p21 string to indicate the column that contains exported products in proximity_products (e.g. "from")
-#' @param p22 string to indicate the column that contains exported products in proximity_products (e.g. "to")
-#' @param v2 string to indicate the column that contains proximity values in proximity_products (e.g. "value")
-#' @param pci numeric vector with products in names (e.g. \code{product_complexity_index}
+#' @param revealed_comparative_advantage matrix or tibble/data.frame (e.g. the output of
+#' \code{revealed_comparative_advantage()}).
+#' If the input is a matrix it must be a zero/one matrix with countries in rows and products in columns.
+#' If the input is a tibble/data.frame it must contain at least three columns with countries, products and
+#' values.
+#' @param c1 string to indicate the column that contains exporting countries in revealed_comparative_advantage
+#' (set to "country" by default)
+#' @param p1 string to indicate the column that contains exported products in revealed_comparative_advantage
+#' (set to "product" by default)
+#' @param v1 string to indicate the column that contains traded values in revealed_comparative_advantage
+#' (set to "value" by default)
+#' @param proximity_products matrix or tibble/data.frame (e.g. the output of
+#' \code{proximity_matrices()}).
+#' If the input is a matrix it must be a numeric matrix with products in both
+#' rows and columns.
+#' If the input is a tibble/data.frame it must contain at least three columns columns with
+#' products (twice) and values.
+#' @param p21 string to indicate the first column that contains exported products in proximity_products
+#' (set to "from" by default)
+#' @param p22 string to indicate the second column that contains exported products in proximity_products
+#' (set to "to" by default)
+#' @param v2 string to indicate the column that contains proximity values in proximity_products
+#' (set to "value" by default)
+#' @param product_complexity_index numeric vector or tibble/data.frame \code{complexity_measures()}).
+#' If the input is a vector it must be numeric with optional names.
+#' If the input is a tibble/data.frame it must contain at least two columns columns with products and values.
 #' @param p3 string to indicate the column that contains exported products in proximity_products (e.g. "product")
 #' @param v3 string to indicate the column that contains proximity values in proximity_products (e.g. "value")
 #' from \code{complexity_measures()})
-#' @param tbl_output when set to TRUE the output will be a tibble instead of a matrix (default set to FALSE)
+#' @param tbl_output logical value to use tibble output instead of a matrix output (set to FALSE by default)
+#' @importFrom magrittr %>%
 #' @importFrom dplyr select pull
 #' @importFrom tidyr spread
-#' @importFrom Matrix Matrix rowSums colSums
+#' @importFrom Matrix Matrix t rowSums colSums
 #' @importFrom rlang sym
 #' @examples
 #' countries_position(
-#'     rca = revealed_comparative_advantage_output,
+#'     revealed_comparative_advantage = revealed_comparative_advantage_output,
 #'     c1 = "country",
 #'     p1 = "product",
 #'     v1 = "value",
@@ -33,7 +46,7 @@
 #'     p21 = "from",
 #'     p22 = "to",
 #'     v2 = "value",
-#'     pci = complexity_measures_output$product_complexity_index,
+#'     product_complexity_index = complexity_measures_output$product_complexity_index,
 #'     p3 = "product",
 #'     v3 = "value"
 #' )
@@ -44,7 +57,7 @@
 #' \insertRef{atlas2014}{economiccomplexity}
 #' @keywords functions
 
-countries_position <- function(rca = NULL,
+countries_position <- function(revealed_comparative_advantage = NULL,
                                c1 = "country",
                                p1 = "product",
                                v1 = "value",
@@ -52,30 +65,34 @@ countries_position <- function(rca = NULL,
                                p21 = "from",
                                p22 = "to",
                                v2 = "value",
-                               pci = NULL,
+                               product_complexity_index = NULL,
                                p3 = "product",
                                v3 = "value",
                                tbl_output = FALSE) {
   # sanity checks ----
-  if (all(class(rca) %in% c("data.frame") == FALSE)) {
-    stop("rca must be a tibble/data.frame")
+  if (all(class(revealed_comparative_advantage) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix") == FALSE)) {
+    stop("revealed_comparative_advantage must be a tibble/data.frame")
   }
 
-  if (all(class(proximity_products) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix") == FALSE)) {
+  if (all(class(proximity_products) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix") == FALSE)) {
     stop("proximity_products must be a tibble/data.frame or matrix")
   }
 
-  if (is.data.frame(rca)) {
-    r <- tidyr::spread(rca, !!sym(p1), !!sym(v1))
+  if (all(class(product_complexity_index) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix") == FALSE)) {
+    stop("proximity_products must be a tibble/data.frame or matrix")
+  }
+
+  if (is.data.frame(revealed_comparative_advantage)) {
+    r <- tidyr::spread(revealed_comparative_advantage, !!sym(p1), !!sym(v1))
     r_names <- dplyr::select(r, !!sym(c1)) %>% dplyr::pull()
 
-    rca <- dplyr::select(r, -!!sym(c1)) %>%
+    revealed_comparative_advantage <- dplyr::select(r, -!!sym(c1)) %>%
       as.matrix()
 
-    rca[is.na(rca)] <- 0
-    rownames(rca) <- r_names
+    revealed_comparative_advantage[is.na(revealed_comparative_advantage)] <- 0
+    rownames(revealed_comparative_advantage) <- r_names
 
-    rca <- Matrix::Matrix(rca, sparse = T)
+    revealed_comparative_advantage <- Matrix::Matrix(revealed_comparative_advantage, sparse = T)
   }
 
   if (is.data.frame(proximity_products)) {
@@ -101,7 +118,7 @@ countries_position <- function(rca = NULL,
     proximity_products_rows <- dplyr::select(proximity_products, !!sym(p21)) %>% dplyr::pull()
 
     proximity_products <- proximity_products %>%
-      select(-!!sym(p21)) %>%
+      dplyr::select(-!!sym(p21)) %>%
       as.matrix()
 
     proximity_products[is.na(proximity_products)] <- 0
@@ -113,23 +130,42 @@ countries_position <- function(rca = NULL,
     proximity_products <- Matrix::Matrix(proximity_products, sparse = T)
   }
 
-  if (is.data.frame(pci)) {
-    p <- dplyr::select(pci, !!sym(v3)) %>% dplyr::pull()
-    p_names <- dplyr::select(pci, !!sym(p3)) %>% dplyr::pull()
+  if (is.data.frame(product_complexity_index)) {
+    p <- dplyr::select(product_complexity_index, !!sym(v3)) %>% dplyr::pull()
+    p_names <- dplyr::select(product_complexity_index, !!sym(p3)) %>% dplyr::pull()
 
-    pci <- p
-    names(pci) <- p_names
+    product_complexity_index <- p
+    names(product_complexity_index) <- p_names
   }
 
-  dcp <- ((1 - rca) %*% proximity_products) / (Matrix::Matrix(1, nrow = nrow(rca), ncol = ncol(rca)) %*% proximity_products)
+  dcp <- ((1 - revealed_comparative_advantage) %*% proximity_products) / (Matrix::Matrix(1, nrow = nrow(revealed_comparative_advantage), ncol = ncol(revealed_comparative_advantage)) %*% proximity_products)
 
-  coc <- Matrix::colSums(Matrix::t((1 - dcp) * (1 - rca)) * pci)
+  coc <- Matrix::colSums(Matrix::t((1 - dcp) * (1 - revealed_comparative_advantage)) * product_complexity_index)
+
+  cogc <- Matrix::t((Matrix::t((1 - dcp) %*% (proximity_products / Matrix::colSums(proximity_products))) * product_complexity_index) - (Matrix::t(1 - dcp) * product_complexity_index))
+
+  if (tbl_output == TRUE) {
+    dcp <- as.matrix(dcp) %>%
+      tibble::as_tibble() %>%
+      dplyr::mutate(country = rownames(dcp)) %>%
+      tidyr::gather(!!sym("product"), !!sym("value"), -!!sym("country"))
+
+    coc <- tibble::tibble(value = coc) %>%
+      dplyr::mutate(product = names(coc)) %>%
+      dplyr::select(!!sym("product"), !!sym("value")) %>%
+      dplyr::arrange(-!!sym("value"))
+
+    cogc <- as.matrix(cogc) %>%
+      tibble::as_tibble() %>%
+      dplyr::mutate(country = rownames(cogc)) %>%
+      tidyr::gather(!!sym("product"), !!sym("value"), -!!sym("country"))
+  }
 
   return(
     list(
       proximity_distance = dcp,
       complexity_outlook = coc,
-      complexity_outlook_gain = Matrix::t((Matrix::t((1 - dcp) %*% (proximity_products / Matrix::colSums(proximity_products))) * pci) - (Matrix::t(1 - dcp) * pci))
+      complexity_outlook_gain = cogc
     )
   )
 }

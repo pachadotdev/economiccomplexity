@@ -117,7 +117,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>proximity_matrices</span>(<span class='kw'>d</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>c</span> <span class='kw'>=</span> <span class='st'>"country"</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
+    <pre class="usage"><span class='fu'>proximity_matrices</span>(<span class='kw'>rca</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>c</span> <span class='kw'>=</span> <span class='st'>"country"</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
   <span class='kw'>v</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>diversity</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ubiquity</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>diversity_c</span> <span class='kw'>=</span> <span class='st'>"country"</span>, <span class='kw'>diversity_v</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
   <span class='kw'>ubiquity_p</span> <span class='kw'>=</span> <span class='st'>"product"</span>, <span class='kw'>ubiquity_v</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
@@ -126,33 +126,37 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>d</th>
-      <td><p>matrix or tibble/data.frame in long format, if d is a tibble/data.frame it must contain the columns
-country (character/factor), product (character/factor) and discrete RCA (integer), if it is a matrix it must be a
-zero/one matrix with countries in the row names and products in the column names</p></td>
+      <th>rca</th>
+      <td><p>matrix or tibble/data.frame in long format (e.g. the output of
+revealed_comparative_advantage()). If it is a matrix it must be a
+zero/one matrix with countries in the row names and products in the column names.
+If rca is a tibble/data.frame it must contain the columns.
+country (character/factor), product (character/factor) and discrete RCA (integer)</p></td>
     </tr>
     <tr>
       <th>c</th>
       <td><p>string to indicate the column that contains exporting countries (default set to "country" that is the
-output of revealed_comparative_advantage())</p></td>
+output of revealed_comparative_advantage(), applies only if rca is a data.frame)</p></td>
     </tr>
     <tr>
       <th>p</th>
       <td><p>string to indicate the column that contains exported products (default set to "product" that is the
-output of revealed_comparative_advantage())</p></td>
+output of revealed_comparative_advantage(), applies only if rca is a data.frame)</p></td>
     </tr>
     <tr>
       <th>v</th>
       <td><p>string to indicate the column that contains RCA values (default set to "value" that is the
-output of revealed_comparative_advantage())</p></td>
+output of revealed_comparative_advantage(), applies only if rca is a data.frame)</p></td>
     </tr>
     <tr>
       <th>diversity</th>
-      <td><p>vector or tibble/data.frame containing diversity measures</p></td>
+      <td><p>numeric vector or tibble/data.frame containing diversity measures (e.g. <code>diversity</code>
+from <code><a href='complexity_measures.html'>complexity_measures()</a></code>)</p></td>
     </tr>
     <tr>
       <th>ubiquity</th>
-      <td><p>vector or tibble/data.frame containing ubiquity measures</p></td>
+      <td><p>numeric vector or tibble/data.frame containing ubiquity measures (e.g. <code>ubiquity</code>
+from <code><a href='complexity_measures.html'>complexity_measures()</a></code>)</p></td>
     </tr>
     <tr>
       <th>diversity_c</th>
@@ -189,9 +193,11 @@ MIT Press.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>proximity</span> <span class='kw'>&lt;-</span> <span class='fu'>proximity_matrices</span>(<span class='kw'>d</span> <span class='kw'>=</span> <span class='no'>world_rca_2017</span>,
-    <span class='kw'>diversity</span> <span class='kw'>=</span> <span class='no'>world_complexity_measures_2017</span>$<span class='no'>diversity</span>,
-    <span class='kw'>ubiquity</span> <span class='kw'>=</span> <span class='no'>world_complexity_measures_2017</span>$<span class='no'>ubiquity</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>pro</span> <span class='kw'>&lt;-</span> <span class='fu'>proximity_matrices</span>(
+  <span class='kw'>rca</span> <span class='kw'>=</span> <span class='no'>revealed_comparative_advantage_output</span>,
+  <span class='kw'>diversity</span> <span class='kw'>=</span> <span class='no'>complexity_measures_output</span>$<span class='no'>diversity</span>,
+  <span class='kw'>ubiquity</span> <span class='kw'>=</span> <span class='no'>complexity_measures_output</span>$<span class='no'>ubiquity</span>
+)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

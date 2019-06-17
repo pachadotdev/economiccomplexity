@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Complexity Measures — complexity_measures • economiccomplexity</title>
+<title>Demo dataset to show the output of proximity matrices(). — proximity_matrices_output • economiccomplexity</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Complexity Measures — complexity_measures" />
+<meta property="og:title" content="Demo dataset to show the output of proximity matrices(). — proximity_matrices_output" />
 
-<meta property="og:description" content="Complexity Measures" />
+<meta property="og:description" content="TBD" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -106,90 +106,72 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Complexity Measures</h1>
+    <h1>Demo dataset to show the output of proximity matrices().</h1>
     
-    <div class="hidden name"><code>complexity_measures.Rd</code></div>
+    <div class="hidden name"><code>proximity_matrices_output.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Complexity Measures</p>
+    <p>TBD</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>complexity_measures</span>(<span class='kw'>rca</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>c</span> <span class='kw'>=</span> <span class='st'>"country"</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
-  <span class='kw'>v</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"fitness"</span>, <span class='kw'>iterations</span> <span class='kw'>=</span> <span class='fl'>20</span>,
-  <span class='kw'>extremality</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>keep_atlas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>rca</th>
-      <td><p>matrix or tibble/data.frame in long format, if d is a tibble/data.frame it must contain the columns
-country (character/factor), product (character/factor) and discrete RCA (integer), if it is a matrix it must be a
-zero/one matrix with countries in the row names and products in the column names</p></td>
-    </tr>
-    <tr>
-      <th>c</th>
-      <td><p>string to indicate the column that contains exporting countries (default set to "country" that is the
-output of revealed_comparative_advantage())</p></td>
-    </tr>
-    <tr>
-      <th>p</th>
-      <td><p>string to indicate the column that contains exported products (default set to "product" that is the
-output of revealed_comparative_advantage())</p></td>
-    </tr>
-    <tr>
-      <th>v</th>
-      <td><p>string to indicate the column that contains RCA values (default set to "value" that is the
-output of revealed_comparative_advantage())</p></td>
-    </tr>
-    <tr>
-      <th>method</th>
-      <td><p>reflections, eigenvalues or fitness (default set to reflections)
-methods (default set to FALSE)</p></td>
-    </tr>
-    <tr>
-      <th>iterations</th>
-      <td><p>number of iterations to use in the reflections method (default set to 20)</p></td>
-    </tr>
-    <tr>
-      <th>extremality</th>
-      <td><p>coefficient to use in the fitness method (default set to 1)</p></td>
-    </tr>
-    <tr>
-      <th>keep_atlas</th>
-      <td><p>removes the countries not ranked in The Atlas of Economic Complexity (default set to FALSE)</p></td>
-    </tr>
-    <tr>
-      <th>tbl_output</th>
-      <td><p>when set to TRUE the output will be a tibble instead of a matrix (default set to FALSE)</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+    <pre class="usage"><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='st'>"proximity_matrices_output"</span>)</pre>
+        
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>For more information on complexity measures, indices and its applications see:</p>
-<p>Hausmann R, Hidalgo C, Bustos S, Coscia M, Simoes A, Yildirim M (2014).
-<em>The atlas of economic complexity: Mapping paths to prosperity</em>.
-MIT Press.</p>
-<p>Mariani M, Vidmer A, Medo M, Zhang Y (2015).
-&#8220;Measuring economic complexity of countries and products: which metric to use?&#8221;
-<em>The European Physical Journal B</em>, <b>88</b>(11), 293.
-doi: <a href='http://doi.org/10.1140/epjb/e2015-60298-7'>10.1140/epjb/e2015-60298-7</a>
-.</p>
+    <p>The format is:
+List of 2
+ $ countries_proximity:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	23481 obs. of  3 variables:
+  ..$ from : chr [1:23481] "ago" "aia" "alb" "and" ...
+  ..$ to   : chr [1:23481] "afg" "afg" "afg" "afg" ...
+  ..$ value: num [1:23481] 0.0147 0.0137 0.1357 0.0706 0.0642 ...
+ $ products_proximity :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	703017 obs. of  3 variables:
+  ..$ from : chr [1:703017] "0102" "0103" "0104" "0105" ...
+  ..$ to   : chr [1:703017] "0101" "0101" "0101" "0101" ...
+  ..$ value: num [1:703017] 0.19 0.25 0.04 0.235 0.109 ...</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>cm</span> <span class='kw'>&lt;-</span> <span class='fu'>complexity_measures</span>(<span class='no'>revealed_comparative_advantage_output</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>proximity_matrices_output</span></div><div class='output co'>#&gt; $countries_proximity
+#&gt; <span style='color: #949494;'># A tibble: 23,481 x 3</span><span>
+#&gt;    from  to     value
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> ago   afg   0.014</span><span style='text-decoration: underline;'>7</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> aia   afg   0.013</span><span style='text-decoration: underline;'>7</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> alb   afg   0.136 
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> and   afg   0.070</span><span style='text-decoration: underline;'>6</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> are   afg   0.064</span><span style='text-decoration: underline;'>2</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> arg   afg   0.115 
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> arm   afg   0.152 
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> asm   afg   0.042</span><span style='text-decoration: underline;'>3</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> atf   afg   0.014</span><span style='text-decoration: underline;'>7</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> atg   afg   0.044</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #949494;'># … with 23,471 more rows</span><span>
+#&gt; 
+#&gt; $products_proximity
+#&gt; </span><span style='color: #949494;'># A tibble: 703,017 x 3</span><span>
+#&gt;    from  to    value
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 0102  0101  0.190
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 0103  0101  0.25 
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 0104  0101  0.04 
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 0105  0101  0.235
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 0106  0101  0.109
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 0201  0101  0.357
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 0202  0101  0.261
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 0203  0101  0.3  
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 0204  0101  0.333
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 0205  0101  0.4  
+#&gt; </span><span style='color: #949494;'># … with 703,007 more rows</span><span>
+#&gt; </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#references">References</a></li>
+      <li><a href="#format">Format</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

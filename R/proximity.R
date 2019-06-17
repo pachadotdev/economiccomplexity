@@ -1,4 +1,4 @@
-#' Proximity Matrices
+#' Proximity
 #'
 #' @export
 #' @param rca matrix or tibble/data.frame in long format (e.g. the output of
@@ -25,14 +25,14 @@
 #' @param ubiquity_v string to indicate the column that contains ubiquity values (default set to "value" that is the
 #' output of economic_complexity_measures())
 #' @param tbl_output when set to TRUE the output will be a tibble instead of a matrix (default set to FALSE)
-#' @importFrom methods as
 #' @importFrom magrittr %>%
 #' @importFrom dplyr select filter mutate pull
 #' @importFrom tibble as_tibble
 #' @importFrom tidyr gather
+#' @importFrom Matrix Matrix t rowSums colSums
 #' @importFrom rlang sym
 #' @examples
-#' pro <- proximity_matrices(
+#' pro <- proximity(
 #'   rca = revealed_comparative_advantage_output,
 #'   diversity = complexity_measures_output$diversity,
 #'   ubiquity = complexity_measures_output$ubiquity
@@ -43,13 +43,13 @@
 #' \insertRef{atlas2014}{economiccomplexity}
 #' @keywords functions
 
-proximity_matrices <- function(rca = NULL, c = "country", p = "product", v = "value",
+proximity <- function(rca = NULL, c = "country", p = "product", v = "value",
                                diversity = NULL, ubiquity = NULL,
                                diversity_c = "country", diversity_v = "value",
                                ubiquity_p = "product", ubiquity_v = "value",
                                tbl_output = FALSE) {
   # sanity checks ----
-  if (all(class(rca) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix") == FALSE)) {
+  if (all(class(rca) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix", "dgCMatrix") == FALSE)) {
     stop("rca must be a tibble/data.frame or a dense/sparse matrix")
   }
 
@@ -103,6 +103,9 @@ proximity_matrices <- function(rca = NULL, c = "country", p = "product", v = "va
   if (tbl_output == FALSE) {
     cp <- xc / yc
     pp <- xp / yp
+
+    cp <- Matrix::Matrix(cp, sparse = T)
+    pp <- Matrix::Matrix(pp, sparse = T)
   }
 
   # transform proximity matrices to data.frame ----

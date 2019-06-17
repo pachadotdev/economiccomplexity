@@ -4,48 +4,61 @@
 \alias{countries_position}
 \title{Countries position}
 \usage{
-countries_position(rca = NULL, c1 = "country", p1 = "product",
-  v1 = "value", proximity_products = NULL, p21 = "from",
-  p22 = "to", v2 = "value", pci = NULL, p3 = "product",
+countries_position(revealed_comparative_advantage = NULL,
+  c1 = "country", p1 = "product", v1 = "value",
+  proximity_products = NULL, p21 = "from", p22 = "to",
+  v2 = "value", product_complexity_index = NULL, p3 = "product",
   v3 = "value", tbl_output = FALSE)
 }
 \arguments{
-\item{rca}{matrix or tibble/data.frame in long format (e.g. the output of
-revealed_comparative_advantage()). If it is a matrix it must be a
-zero/one matrix with countries in the row names and products in the column names.
-If rca is a tibble/data.frame it must contain the columns.}
+\item{revealed_comparative_advantage}{matrix or tibble/data.frame (e.g. the output of
+\code{revealed_comparative_advantage()}).
+If the input is a matrix it must be a zero/one matrix with countries in rows and products in columns.
+If the input is a tibble/data.frame it must contain at least three columns with countries, products and
+values.}
 
-\item{c1}{string to indicate the column that contains exporting countries in rca (e.g. "country")}
+\item{c1}{string to indicate the column that contains exporting countries in revealed_comparative_advantage
+(set to "country" by default)}
 
-\item{p1}{string to indicate the column that contains exported products in rca (e.g. "product")}
+\item{p1}{string to indicate the column that contains exported products in revealed_comparative_advantage
+(set to "product" by default)}
 
-\item{v1}{string to indicate the column that contains traded values in rca(e.g. "value")}
+\item{v1}{string to indicate the column that contains traded values in revealed_comparative_advantage
+(set to "value" by default)}
 
-\item{proximity_products}{matrix or tibble/data.frame, if d is a tibble/data.frame it must contain the columns
-from (character/factor), to (character/factor) and value (numeric), if it is a matrix it must be a
-numeric matrix with products in row names and column names}
+\item{proximity_products}{matrix or tibble/data.frame (e.g. the output of
+\code{proximity_matrices()}).
+If the input is a matrix it must be a numeric matrix with products in both
+rows and columns.
+If the input is a tibble/data.frame it must contain at least three columns columns with
+products (twice) and values.}
 
-\item{p21}{string to indicate the column that contains exported products in proximity_products (e.g. "from")}
+\item{p21}{string to indicate the first column that contains exported products in proximity_products
+(set to "from" by default)}
 
-\item{p22}{string to indicate the column that contains exported products in proximity_products (e.g. "to")}
+\item{p22}{string to indicate the second column that contains exported products in proximity_products
+(set to "to" by default)}
 
-\item{v2}{string to indicate the column that contains proximity values in proximity_products (e.g. "value")}
+\item{v2}{string to indicate the column that contains proximity values in proximity_products
+(set to "value" by default)}
 
-\item{pci}{numeric vector with products in names (e.g. \code{product_complexity_index}}
+\item{product_complexity_index}{numeric vector or tibble/data.frame \code{complexity_measures()}).
+If the input is a vector it must be numeric with optional names.
+If the input is a tibble/data.frame it must contain at least two columns columns with products and values.}
 
 \item{p3}{string to indicate the column that contains exported products in proximity_products (e.g. "product")}
 
 \item{v3}{string to indicate the column that contains proximity values in proximity_products (e.g. "value")
 from \code{complexity_measures()})}
 
-\item{tbl_output}{when set to TRUE the output will be a tibble instead of a matrix (default set to FALSE)}
+\item{tbl_output}{logical value to use tibble output instead of a matrix output (set to FALSE by default)}
 }
 \description{
 Countries position
 }
 \examples{
 countries_position(
-    rca = revealed_comparative_advantage_output,
+    revealed_comparative_advantage = revealed_comparative_advantage_output,
     c1 = "country",
     p1 = "product",
     v1 = "value",
@@ -53,7 +66,7 @@ countries_position(
     p21 = "from",
     p22 = "to",
     v2 = "value",
-    pci = complexity_measures_output$product_complexity_index,
+    product_complexity_index = complexity_measures_output$product_complexity_index,
     p3 = "product",
     v3 = "value"
 )

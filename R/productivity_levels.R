@@ -1,25 +1,38 @@
 #' Productivity Levels
 #'
 #' @export
-#' @param trade_data tibble/data.frame in long format, it must contain the columns country (character/factor),
-#' product (character/factor) and export value (numeric)
-#' @param c1 string to indicate the column that contains exporting countries in trade_data (e.g. "reporter_iso")
-#' @param p1 string to indicate the column that contains exported products in trade_data (e.g. "product_code")
-#' @param v1 string to indicate the column that contains traded values in trade_data(e.g. "trade_value_usd")
-#' @param gdp_data tibble/data.frame in long format, it must contain the columns country (character/factor),
-#' and GDP per capita (numeric)
-#' @param c2 string to indicate the column that contains exporting countries in gdp_data (e.g. "reporter_iso")
-#' @param v2 string to indicate the column that contains GDP per capita in gdp_data (e.g. "gdp_pc")
+#' @param trade_data matrix or tibble/data.frame (e.g. \code{world_trade_2017}). If the input is a matrix it
+#' must be a zero/one matrix with countries in rows and products in columns.
+#' If the input is a tibble/data.frame it must contain at least three columns with countries, products and
+#' values.
+#' @param c1 string to indicate the column that contains exporting countries in revealed_comparative_advantage
+#' (set to "country" by default)
+#' @param p1 string to indicate the column that contains exported products in revealed_comparative_advantage
+#' (set to "product" by default)
+#' @param v1 string to indicate the column that contains traded values in revealed_comparative_advantage
+#' (set to "value" by default)
+#' @param gdp_data vector or tibble/data.frame (e.g. \code{world_gdp_and_population_2017}).
+#' If the input is a vector it must be a numeric vector with optional names.
+#' If the input is a tibble/data.frame it must contain at least two columns with countries and values.
+#' @param c2 string to indicate the column that contains exporting countries in revealed_comparative_advantage
+#' (set to "country" by default)
+#' @param v2 string to indicate the column that contains traded values in revealed_comparative_advantage
+#' (set to "value" by default)
 #' @param tbl_output when set to TRUE the output will be a tibble instead of a matrix (default set to FALSE)
 #' @importFrom magrittr %>%
 #' @importFrom dplyr select group_by ungroup mutate summarise matches rename pull inner_join
-#' @importFrom Matrix Matrix rowSums colSums t
+#' @importFrom Matrix Matrix t rowSums colSums
 #' @importFrom stats setNames
 #' @importFrom rlang sym syms
 #' @examples
 #' pl <- productivity_levels(
-#'   trade_data = world_trade_2017, c1 = "reporter_iso", p1 = "product_code", v1 = "export_value_usd",
-#'   gdp_data = world_gdp_and_population_2017, c2 = "reporter_iso", v2 = "gdp_pc_usd"
+#'   trade_data = world_trade_2017,
+#'   c1 = "country",
+#'   p1 = "product",
+#'   v1 = "value",
+#'   gdp_data = world_gdp_pc_2017,
+#'   c2 = "country",
+#'   v2 = "value"
 #' )
 #' @references
 #' For more information on prody and its applications see:
@@ -29,8 +42,13 @@
 #' \insertRef{exportmatters2005}{economiccomplexity}
 #' @keywords functions
 
-productivity_levels <- function(trade_data = NULL, c1 = NULL, p1 = NULL, v1 = NULL,
-                                gdp_data = NULL, c2 = NULL, v2 = NULL,
+productivity_levels <- function(trade_data = NULL,
+                                c1 = "country",
+                                p1 = "product",
+                                v1 = "value",
+                                gdp_data = NULL,
+                                c2 = "country",
+                                v2 = "value",
                                 tbl_output = FALSE) {
   # sanity checks ----
   if (all(class(trade_data) %in% c("data.frame") == FALSE)) {

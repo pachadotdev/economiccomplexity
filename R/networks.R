@@ -18,7 +18,7 @@
 #' @importFrom igraph graph_from_data_frame mst as_data_frame simplify
 #' @importFrom rlang sym
 #' @examples
-#' net <- proximity_networks(
+#' net <- networks(
 #'   proximity_matrices_output$countries_proximity,
 #'   proximity_matrices_output$products_proximity
 #' )
@@ -28,11 +28,11 @@
 #' \insertRef{atlas2014}{economiccomplexity}
 #' @keywords functions
 
-proximity_networks <- function(proximity_countries, proximity_products, c_cutoff = 0.25,
+networks <- function(proximity_countries, proximity_products, c_cutoff = 0.25,
                                p_cutoff = 0.55, tbl_output = FALSE) {
   # sanity checks ----
-  if (all(class(proximity_countries) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix") == FALSE) &
-    all(class(proximity_products) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix") == FALSE)) {
+  if (all(class(proximity_countries) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix") == FALSE) &
+    all(class(proximity_products) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix") == FALSE)) {
     stop("proximity_countries and proximity_products must be tibble/data.frame or dense/sparse matrix")
   }
 
@@ -45,8 +45,8 @@ proximity_networks <- function(proximity_countries, proximity_products, c_cutoff
   }
 
   # arrange matrices ----
-  if (any(class(proximity_countries) %in% c("matrix", "dgeMatrix", "dgCMatrix") == TRUE) &
-      any(class(proximity_products) %in% c("matrix", "dgeMatrix", "dgCMatrix") == TRUE)) {
+  if (any(class(proximity_countries) %in% c("matrix", "dgeMatrix", "dsCMatrix") == TRUE) &
+      any(class(proximity_products) %in% c("matrix", "dgeMatrix", "dsCMatrix") == TRUE)) {
     # countries
     proximity_countries <- as.matrix(proximity_countries)
     proximity_countries[upper.tri(proximity_countries, diag = T)] <- 0

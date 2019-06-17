@@ -1,21 +1,24 @@
 #' Complexity Measures
 #'
 #' @export
-#' @param rca matrix or tibble/data.frame in long format, if d is a tibble/data.frame it must contain the columns
-#' country (character/factor), product (character/factor) and discrete RCA (integer), if it is a matrix it must be a
-#' zero/one matrix with countries in the row names and products in the column names
-#' @param c string to indicate the column that contains exporting countries (default set to "country" that is the
-#' output of revealed_comparative_advantage())
-#' @param p string to indicate the column that contains exported products (default set to "product" that is the
-#' output of revealed_comparative_advantage())
-#' @param v string to indicate the column that contains RCA values (default set to "value" that is the
-#' output of revealed_comparative_advantage())
-#' @param method reflections, eigenvalues or fitness (default set to reflections)
-#' methods (default set to FALSE)
-#' @param keep_atlas removes the countries not ranked in The Atlas of Economic Complexity (default set to FALSE)
-#' @param iterations number of iterations to use in the reflections method (default set to 20)
-#' @param extremality coefficient to use in the fitness method (default set to 1)
-#' @param tbl_output when set to TRUE the output will be a tibble instead of a matrix (default set to FALSE)
+#' @param revealed_comparative_advantage matrix or tibble/data.frame (e.g. the output of
+#' \code{revealed_comparative_advantage()}).
+#' If the input is a matrix it must be a zero/one matrix with countries in rows and products in columns.
+#' If the input is a tibble/data.frame it must contain at least three columns with countries, products and
+#' values.
+#' @param c string to indicate the column that contains exporting countries in revealed_comparative_advantage
+#' (set to "country" by default)
+#' @param p string to indicate the column that contains exported products in revealed_comparative_advantage
+#' (set to "product" by default)
+#' @param v string to indicate the column that contains traded values in revealed_comparative_advantage
+#' (set to "value" by default)
+#' @param method string to indicate to use one of these methods: reflections, eigenvalues or fitness
+#' (set to "fitness" by default)
+#' @param keep_atlas logical value to remove the countries not ranked in The Atlas of Economic Complexity
+#' (set to FALSE by default)
+#' @param iterations number of iterations to use in the reflections method (set to 20 by default)
+#' @param extremality numeric coefficient to use in the fitness method (set to 1 by default)
+#' @param tbl_output logical value to use tibble output instead of a matrix output (set to FALSE by default)
 #' @importFrom magrittr %>%
 #' @importFrom dplyr select mutate arrange pull
 #' @importFrom tidyr gather spread
@@ -32,12 +35,18 @@
 #' \insertRef{measuringcomplexity2015}{economiccomplexity}
 #' @keywords functions
 
-complexity_measures <- function(rca = NULL, c = "country", p = "product", v = "value",
-                                method = "fitness", iterations = 20, extremality = 1,
-                                keep_atlas = FALSE, tbl_output = FALSE) {
+complexity_measures <- function(revealed_comparative_advantage = NULL,
+                                c = "country",
+                                p = "product",
+                                v = "value",
+                                method = "fitness",
+                                iterations = 20,
+                                extremality = 1,
+                                keep_atlas = FALSE,
+                                tbl_output = FALSE) {
   # sanity checks ----
-  if (all(class(rca) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix") == FALSE)) {
-    stop("rca must be a tibble/data.frame or a dense/sparse matrix")
+  if (all(class(revealed_comparative_advantage) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix", "dgCMatrix") == FALSE)) {
+    stop("revealed_comparative_advantage must be a tibble/data.frame or a dense/sparse matrix")
   }
 
   if (!(any(method %in% c("reflections", "eigenvalues", "fitness")) == TRUE)) {
@@ -53,8 +62,8 @@ complexity_measures <- function(rca = NULL, c = "country", p = "product", v = "v
   }
 
   # convert data.frame input to matrix ----
-  if (is.data.frame(rca)) {
-    m <- tidyr::spread(rca, !!sym(p), !!sym(v))
+  if (is.data.frame(revealed_comparative_advantage)) {
+    m <- tidyr::spread(revealed_comparative_advantage, !!sym(p), !!sym(v))
     m_rownames <- dplyr::select(m, !!sym(c)) %>% dplyr::pull()
 
     m <- dplyr::select(m, -!!sym(c)) %>% as.matrix()
@@ -64,7 +73,10 @@ complexity_measures <- function(rca = NULL, c = "country", p = "product", v = "v
     m <- Matrix::Matrix(m, sparse = T)
     m <- m[Matrix::rowSums(m) != 0, Matrix::colSums(m) != 0]
   } else {
-    m <- rca[Matrix::rowSums(rca) != 0, Matrix::colSums(rca) != 0]
+    m <- revealed_comparative_advantage[
+      Matrix::rowSums(revealed_comparative_advantage) != 0,
+      Matrix::colSums(revealed_comparative_advantage) != 0
+    ]
   }
 
   # remove countries not ranked in The Atlas of Economic Complexity
