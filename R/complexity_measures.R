@@ -26,7 +26,7 @@
 #' @importFrom Matrix Matrix rowSums colSums t
 #' @importFrom rlang sym
 #' @examples
-#' cm <- complexity_measures(revealed_comparative_advantage_output)
+#' cm <- complexity_measures(rca_t)
 #' @references
 #' For more information on complexity measures, indices and its applications see:
 #'

@@ -15,13 +15,10 @@
 #' @importFrom dplyr select group_by ungroup mutate summarise matches rename pull as_tibble
 #' @importFrom tidyr spread gather
 #' @importFrom Matrix Matrix rowSums colSums t
-#' @importFrom rlang sym syms
+#' @importFrom rlang sym syms :=
 #' @examples
 #' rca <- revealed_comparative_advantage(
-#'   data = world_trade_2017,
-#'   c = "country",
-#'   p = "product",
-#'   v = "value"
+#'   data = services_trade_2016_tibble
 #' )
 #' @references
 #' For more information on revealed comparative advantage and its uses see:
@@ -29,8 +26,13 @@
 #' \insertRef{atlas2014}{economiccomplexity}
 #' @keywords functions
 
-revealed_comparative_advantage <- function(data = NULL, country = NULL, product = NULL, value = NULL,
-                                           cutoff = 1, discrete = TRUE, tbl_output = FALSE) {
+revealed_comparative_advantage <- function(data = NULL,
+                                           country = "country",
+                                           product = "product",
+                                           value = "value",
+                                           cutoff = 1,
+                                           discrete = TRUE,
+                                           tbl_output = FALSE) {
   # sanity checks ----
   if (all(class(data) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix", "dgCMatrix") == FALSE)) {
     stop("data must be a tibble/data.frame or a dense/sparse matrix")

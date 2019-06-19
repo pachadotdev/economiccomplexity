@@ -38,15 +38,15 @@
 #' @importFrom rlang sym
 #' @examples
 #' countries_position(
-#'     revealed_comparative_advantage = revealed_comparative_advantage_output,
+#'     revealed_comparative_advantage = rca_t,
 #'     c1 = "country",
 #'     p1 = "product",
 #'     v1 = "value",
-#'     proximity_products = proximity_matrices_output$products_proximity,
+#'     proximity_products = pr_t$products_proximity,
 #'     p21 = "from",
 #'     p22 = "to",
 #'     v2 = "value",
-#'     product_complexity_index = complexity_measures_output$product_complexity_index,
+#'     product_complexity_index = cm_t$product_complexity_index,
 #'     p3 = "product",
 #'     v3 = "value"
 #' )

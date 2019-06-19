@@ -1,22 +1,26 @@
 test_that("network results are aligned with the expected output ", {
   # matrix output ----
-  networks_m <- networks(
-    proximity_output$countries_proximity,
-    proximity_output$products_proximity
+  net_m <- networks(
+    pr_m$countries_proximity,
+    pr_m$products_proximity,
+    c_cutoff = 0.7,
+    p_cutoff = 0.1
   )
-  expect_is(networks_m, "list")
-  expect_equal(length(igraph::E(networks_m$countries_network)), 17)
-  expect_equal(length(igraph::E(networks_m$products_network)), 11)
+  expect_is(net_m, "list")
+  expect_equal(length(igraph::E(net_m$countries_network)), 245)
+  expect_equal(length(igraph::E(net_m$products_network)), 36)
 
   # tibble output ----
-  networks_t <- networks(
-    proximity_output$countries_proximity,
-    proximity_output$products_proximity,
+  net_t <- networks(
+    pr_t$countries_proximity,
+    pr_t$products_proximity,
+    c_cutoff = 0.7,
+    p_cutoff = 0.1,
     tbl_output = T
   )
-  expect_is(networks_t, "list")
-  expect_equal(nrow(networks_t$countries_network), 17)
-  expect_equal(nrow(networks_t$products_network), 11)
-  expect_equal(ncol(networks_t$countries_network), 3)
-  expect_equal(ncol(networks_t$products_network), 3)
+  expect_is(net_t, "list")
+  expect_equal(nrow(net_t$countries_network), 245)
+  expect_equal(nrow(net_t$products_network), 36)
+  expect_equal(ncol(net_t$countries_network), 3)
+  expect_equal(ncol(net_t$products_network), 3)
 })

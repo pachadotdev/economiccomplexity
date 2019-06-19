@@ -19,8 +19,8 @@
 #' @importFrom rlang sym
 #' @examples
 #' net <- networks(
-#'   proximity_matrices_output$countries_proximity,
-#'   proximity_matrices_output$products_proximity
+#'   pr_t$countries_proximity,
+#'   pr_t$products_proximity
 #' )
 #' @references
 #' For more information on networks such as the product space and its applications see:
@@ -28,8 +28,8 @@
 #' \insertRef{atlas2014}{economiccomplexity}
 #' @keywords functions
 
-networks <- function(proximity_countries, proximity_products, c_cutoff = 0.25,
-                               p_cutoff = 0.55, tbl_output = FALSE) {
+networks <- function(proximity_countries, proximity_products, c_cutoff = 0.2,
+                               p_cutoff = 0.4, tbl_output = FALSE) {
   # sanity checks ----
   if (all(class(proximity_countries) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix") == FALSE) &
     all(class(proximity_products) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix") == FALSE)) {

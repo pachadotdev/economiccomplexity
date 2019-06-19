@@ -6,23 +6,23 @@
 #' zero/one matrix with countries in the row names and products in the column names.
 #' If rca is a tibble/data.frame it must contain the columns.
 #' country (character/factor), product (character/factor) and discrete RCA (integer)
-#' @param c string to indicate the column that contains exporting countries (default set to "country" that is the
+#' @param country string to indicate the column that contains exporting countries (default set to "country" that is the
 #' output of revealed_comparative_advantage(), applies only if rca is a data.frame)
-#' @param p string to indicate the column that contains exported products (default set to "product" that is the
+#' @param product string to indicate the column that contains exported products (default set to "product" that is the
 #' output of revealed_comparative_advantage(), applies only if rca is a data.frame)
-#' @param v string to indicate the column that contains RCA values (default set to "value" that is the
+#' @param value string to indicate the column that contains RCA values (default set to "value" that is the
 #' output of revealed_comparative_advantage(), applies only if rca is a data.frame)
 #' @param diversity numeric vector or tibble/data.frame containing diversity measures (e.g. \code{diversity}
 #' from \code{complexity_measures()})
 #' @param ubiquity numeric vector or tibble/data.frame containing ubiquity measures (e.g. \code{ubiquity}
 #' from \code{complexity_measures()})
-#' @param diversity_c string to indicate the column that contains diversity countries (default set to "country" that is the
+#' @param diversity_country string to indicate the column that contains diversity countries (default set to "country" that is the
 #' output of economic_complexity_measures())
-#' @param diversity_v string to indicate the column that contains diversity values (default set to "value" that is the
+#' @param diversity_value string to indicate the column that contains diversity values (default set to "value" that is the
 #' output of economic_complexity_measures())
-#' @param ubiquity_p string to indicate the column that contains diversity products (default set to "product" that is the
+#' @param ubiquity_product string to indicate the column that contains diversity products (default set to "product" that is the
 #' output of economic_complexity_measures())
-#' @param ubiquity_v string to indicate the column that contains ubiquity values (default set to "value" that is the
+#' @param ubiquity_value string to indicate the column that contains ubiquity values (default set to "value" that is the
 #' output of economic_complexity_measures())
 #' @param tbl_output when set to TRUE the output will be a tibble instead of a matrix (default set to FALSE)
 #' @importFrom magrittr %>%
@@ -33,9 +33,9 @@
 #' @importFrom rlang sym
 #' @examples
 #' pro <- proximity(
-#'   rca = revealed_comparative_advantage_output,
-#'   diversity = complexity_measures_output$diversity,
-#'   ubiquity = complexity_measures_output$ubiquity
+#'   rca = rca_t,
+#'   diversity = cm_t$diversity,
+#'   ubiquity = cm_t$ubiquity
 #' )
 #' @references
 #' For more information on proximity and its applications see:
@@ -43,11 +43,17 @@
 #' \insertRef{atlas2014}{economiccomplexity}
 #' @keywords functions
 
-proximity <- function(rca = NULL, c = "country", p = "product", v = "value",
-                               diversity = NULL, ubiquity = NULL,
-                               diversity_c = "country", diversity_v = "value",
-                               ubiquity_p = "product", ubiquity_v = "value",
-                               tbl_output = FALSE) {
+proximity <- function(rca = NULL,
+                      country = "country",
+                      product = "product",
+                      value = "value",
+                      diversity = NULL,
+                      ubiquity = NULL,
+                      diversity_country = "country",
+                      diversity_value = "value",
+                      ubiquity_product = "product",
+                      ubiquity_value = "value",
+                      tbl_output = FALSE) {
   # sanity checks ----
   if (all(class(rca) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix", "dgCMatrix") == FALSE)) {
     stop("rca must be a tibble/data.frame or a dense/sparse matrix")
@@ -64,10 +70,10 @@ proximity <- function(rca = NULL, c = "country", p = "product", v = "value",
 
   # transformations if rca, diversity, ubiquity are data frames ----
   if (is.data.frame(rca)) {
-    m <- tidyr::spread(rca, !!sym(p), !!sym(v))
-    m_rownames <- dplyr::select(m, !!sym(c)) %>% dplyr::pull()
+    m <- tidyr::spread(rca, !!sym(product), !!sym(value))
+    m_rownames <- dplyr::select(m, !!sym(country)) %>% dplyr::pull()
 
-    m <- dplyr::select(m, -!!sym(c)) %>% as.matrix()
+    m <- dplyr::select(m, -!!sym(country)) %>% as.matrix()
     m[is.na(m)] <- 0
     rownames(m) <- m_rownames
 
@@ -78,15 +84,15 @@ proximity <- function(rca = NULL, c = "country", p = "product", v = "value",
   }
 
   if (is.data.frame(diversity)) {
-    diversity0 <- dplyr::select(diversity, !!sym(diversity_v)) %>% dplyr::pull()
-    names(diversity0) <- dplyr::select(diversity, !!sym(diversity_c)) %>% dplyr::pull()
+    diversity0 <- dplyr::select(diversity, !!sym(diversity_value)) %>% dplyr::pull()
+    names(diversity0) <- dplyr::select(diversity, !!sym(diversity_country)) %>% dplyr::pull()
 
     diversity <- diversity0
   }
 
   if (is.data.frame(ubiquity)) {
-    ubiquity0 <- dplyr::select(ubiquity, !!sym(ubiquity_v)) %>% dplyr::pull()
-    names(ubiquity0) <- dplyr::select(ubiquity, !!sym(ubiquity_p)) %>% dplyr::pull()
+    ubiquity0 <- dplyr::select(ubiquity, !!sym(ubiquity_value)) %>% dplyr::pull()
+    names(ubiquity0) <- dplyr::select(ubiquity, !!sym(ubiquity_product)) %>% dplyr::pull()
 
     ubiquity <- ubiquity0
   }
@@ -101,11 +107,8 @@ proximity <- function(rca = NULL, c = "country", p = "product", v = "value",
   yp <- outer(ubiquity, ubiquity, pmax)
 
   if (tbl_output == FALSE) {
-    cp <- xc / yc
-    pp <- xp / yp
-
-    cp <- Matrix::Matrix(cp, sparse = T)
-    pp <- Matrix::Matrix(pp, sparse = T)
+    cp <- Matrix::Matrix(xc / yc, sparse = T)
+    pp <- Matrix::Matrix(xp / yp, sparse = T)
   }
 
   # transform proximity matrices to data.frame ----

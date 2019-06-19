@@ -4,8 +4,8 @@
 \alias{networks}
 \title{Networks}
 \usage{
-networks(proximity_countries, proximity_products, c_cutoff = 0.25,
-  p_cutoff = 0.55, tbl_output = FALSE)
+networks(proximity_countries, proximity_products, c_cutoff = 0.2,
+  p_cutoff = 0.4, tbl_output = FALSE)
 }
 \arguments{
 \item{proximity_countries}{matrix or tibble/data.frame, if d is a tibble/data.frame it must contain the columns
@@ -29,8 +29,8 @@ Networks
 }
 \examples{
 net <- networks(
-  proximity_matrices_output$countries_proximity,
-  proximity_matrices_output$products_proximity
+  pr_t$countries_proximity,
+  pr_t$products_proximity
 )
 }
 \references{

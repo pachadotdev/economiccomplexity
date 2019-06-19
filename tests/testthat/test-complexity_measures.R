@@ -1,29 +1,33 @@
 test_that("complexity measures are aligned with the expected output", {
   # numeric output ----
-  cm_n <- complexity_measures(revealed_comparative_advantage_output)
+  cm_n <- complexity_measures(
+    rca_m
+  )
   expect_is(cm_n, "list")
   expect_is(cm_n$economic_complexity_index, "numeric")
   expect_is(cm_n$product_complexity_index, "numeric")
   expect_is(cm_n$diversity, "numeric")
   expect_is(cm_n$ubiquity, "numeric")
-  expect_equal(length(cm_n$economic_complexity_index), 9)
-  expect_equal(length(cm_n$product_complexity_index), 12)
-  expect_equal(length(cm_n$diversity), 9)
-  expect_equal(length(cm_n$ubiquity), 12)
+  expect_equal(length(cm_n$economic_complexity_index), 80)
+  expect_equal(length(cm_n$product_complexity_index), 11)
+  expect_equal(length(cm_n$diversity), 80)
+  expect_equal(length(cm_n$ubiquity), 11)
 
   # tibble output ----
-  cm_t <- complexity_measures(revealed_comparative_advantage_output, tbl_output = T)
+  cm_t <- complexity_measures(
+    rca_t, tbl_output = T
+  )
   expect_is(cm_t, "list")
   expect_is(cm_t$economic_complexity_index, "data.frame")
   expect_is(cm_t$product_complexity_index, "data.frame")
   expect_is(cm_t$diversity, "data.frame")
   expect_is(cm_t$ubiquity, "data.frame")
-  expect_equal(nrow(cm_t$economic_complexity_index), 9)
+  expect_equal(nrow(cm_t$economic_complexity_index), 80)
   expect_equal(ncol(cm_t$economic_complexity_index), 2)
-  expect_equal(nrow(cm_t$product_complexity_index), 12)
+  expect_equal(nrow(cm_t$product_complexity_index), 11)
   expect_equal(ncol(cm_t$product_complexity_index), 2)
-  expect_equal(nrow(cm_t$diversity), 9)
+  expect_equal(nrow(cm_t$diversity), 80)
   expect_equal(ncol(cm_t$diversity), 2)
-  expect_equal(nrow(cm_t$ubiquity), 12)
+  expect_equal(nrow(cm_t$ubiquity), 11)
   expect_equal(ncol(cm_t$ubiquity), 2)
 })

@@ -26,11 +26,11 @@
 #' @importFrom rlang sym syms
 #' @examples
 #' pl <- productivity_levels(
-#'   trade_data = world_trade_2017,
+#'   trade_data = services_trade_2016_tibble,
 #'   c1 = "country",
 #'   p1 = "product",
 #'   v1 = "value",
-#'   gdp_data = world_gdp_pc_2017,
+#'   gdp_data = gdp_pc_2016_tibble,
 #'   c2 = "country",
 #'   v2 = "value"
 #' )
