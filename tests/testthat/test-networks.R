@@ -1,8 +1,8 @@
 test_that("network results are aligned with the expected output ", {
   # matrix output ----
   net_m <- networks(
-    pr_m$countries_proximity,
-    pr_m$products_proximity,
+    countries_proximity = package_output_demo$proximity_matrix$countries_proximity,
+    products_proximity = package_output_demo$proximity_matrix$products_proximity,
     c_cutoff = 0.7,
     p_cutoff = 0.1
   )
@@ -12,8 +12,8 @@ test_that("network results are aligned with the expected output ", {
 
   # tibble output ----
   net_t <- networks(
-    pr_t$countries_proximity,
-    pr_t$products_proximity,
+    countries_proximity = package_output_demo$proximity_matrix$countries_proximity,
+    products_proximity = package_output_demo$proximity_matrix$products_proximity,
     c_cutoff = 0.7,
     p_cutoff = 0.1,
     tbl_output = T

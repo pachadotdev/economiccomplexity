@@ -38,15 +38,15 @@
 #' @importFrom rlang sym
 #' @examples
 #' countries_position(
-#'     revealed_comparative_advantage = rca_t,
+#'     revealed_comparative_advantage = package_output_demo$revealed_comparative_advantage_matrix,
 #'     c1 = "country",
 #'     p1 = "product",
 #'     v1 = "value",
-#'     proximity_products = pr_t$products_proximity,
+#'     proximity_products = package_output_demo$proximity_matrix$products_proximity,
 #'     p21 = "from",
 #'     p22 = "to",
 #'     v2 = "value",
-#'     product_complexity_index = cm_t$product_complexity_index,
+#'     product_complexity_index = package_output_demo$complexity_measures_numeric$product_complexity_index,
 #'     p3 = "product",
 #'     v3 = "value"
 #' )
@@ -70,48 +70,52 @@ countries_position <- function(revealed_comparative_advantage = NULL,
                                v3 = "value",
                                tbl_output = FALSE) {
   # sanity checks ----
-  if (all(class(revealed_comparative_advantage) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix") == FALSE)) {
-    stop("revealed_comparative_advantage must be a tibble/data.frame")
+  if (all(class(revealed_comparative_advantage) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix", "dgCMatrix") == FALSE)) {
+    stop("revealed_comparative_advantage must be a tibble/data.frame or a dense/sparse matrix")
   }
 
-  if (all(class(proximity_products) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix") == FALSE)) {
-    stop("proximity_products must be a tibble/data.frame or matrix")
+  if (all(class(proximity_products) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix", "dgCMatrix") == FALSE)) {
+    stop("proximity_products must be a tibble/data.frame or a dense/sparse matrix")
   }
 
-  if (all(class(product_complexity_index) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix") == FALSE)) {
-    stop("proximity_products must be a tibble/data.frame or matrix")
+  if (all(class(product_complexity_index) %in% c("data.frame", "numeric") == FALSE)) {
+    stop("product_complexity_index must be a tibble/data.frame or numeric")
   }
 
   if (is.data.frame(revealed_comparative_advantage)) {
-    r <- tidyr::spread(revealed_comparative_advantage, !!sym(p1), !!sym(v1))
-    r_names <- dplyr::select(r, !!sym(c1)) %>% dplyr::pull()
+    revealed_comparative_advantage <- tidyr::spread(revealed_comparative_advantage, !!sym(p1), !!sym(v1))
 
-    revealed_comparative_advantage <- dplyr::select(r, -!!sym(c1)) %>%
+    revealed_comparative_advantage_names <- dplyr::select(revealed_comparative_advantage, !!sym(c1)) %>%
+      dplyr::pull()
+
+    revealed_comparative_advantage <- dplyr::select(revealed_comparative_advantage, -!!sym(c1)) %>%
       as.matrix()
 
-    revealed_comparative_advantage[is.na(revealed_comparative_advantage)] <- 0
-    rownames(revealed_comparative_advantage) <- r_names
+    rownames(revealed_comparative_advantage) <- revealed_comparative_advantage_names
+  }
 
+  if (is.matrix(revealed_comparative_advantage)) {
+    revealed_comparative_advantage[is.na(revealed_comparative_advantage)] <- 0
     revealed_comparative_advantage <- Matrix::Matrix(revealed_comparative_advantage, sparse = T)
   }
 
   if (is.data.frame(proximity_products)) {
-    p_rows <- dplyr::select(proximity_products, !!sym(p21)) %>% dplyr::pull()
-    p_cols <- dplyr::select(proximity_products, !!sym(p22)) %>% dplyr::pull()
+    proximity_products_rows <- dplyr::select(proximity_products, !!sym(p21)) %>% dplyr::pull()
+    proximity_products_cols <- dplyr::select(proximity_products, !!sym(p22)) %>% dplyr::pull()
 
-    p_cols_rows <- sort(
-      unique(c(p_rows, p_cols))
+    proximity_products_cols_rows <- sort(
+      unique(c(proximity_products_rows, proximity_products_cols))
     )
 
-    pp <- expand.grid(
-      from = p_cols_rows,
-      to = p_cols_rows,
+    proximity_products_expand <- expand.grid(
+      from = proximity_products_cols_rows,
+      to = proximity_products_cols_rows,
       stringsAsFactors = F
     )
 
-    colnames(pp)  <- c(p21,p22)
+    colnames(proximity_products_expand) <- c(p21,p22)
 
-    proximity_products <- pp %>%
+    proximity_products <- proximity_products_expand %>%
       dplyr::left_join(proximity_products)
 
     proximity_products <- tidyr::spread(proximity_products, !!sym(p22), !!sym(v2))
@@ -126,16 +130,20 @@ countries_position <- function(revealed_comparative_advantage = NULL,
 
     diag(proximity_products) <- 1
     proximity_products[upper.tri(proximity_products, diag = F)] <- t(proximity_products)[upper.tri(proximity_products, diag = F)]
+  }
 
+  if (is.matrix(proximity_products)) {
     proximity_products <- Matrix::Matrix(proximity_products, sparse = T)
   }
 
   if (is.data.frame(product_complexity_index)) {
-    p <- dplyr::select(product_complexity_index, !!sym(v3)) %>% dplyr::pull()
-    p_names <- dplyr::select(product_complexity_index, !!sym(p3)) %>% dplyr::pull()
+    product_complexity_index_values <- dplyr::select(product_complexity_index, !!sym(v3)) %>% dplyr::pull()
+    product_complexity_index_names <- dplyr::select(product_complexity_index, !!sym(p3)) %>% dplyr::pull()
 
-    product_complexity_index <- p
-    names(product_complexity_index) <- p_names
+    product_complexity_index <- product_complexity_index_values
+    names(product_complexity_index) <- product_complexity_index_names
+
+    product_complexity_index <- product_complexity_index[sort(names(product_complexity_index))]
   }
 
   dcp <- ((1 - revealed_comparative_advantage) %*% proximity_products) / (Matrix::Matrix(1, nrow = nrow(revealed_comparative_advantage), ncol = ncol(revealed_comparative_advantage)) %*% proximity_products)

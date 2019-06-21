@@ -1,7 +1,7 @@
 #' Revealed Comparative Advantage (RCA)
 #'
 #' @export
-#' @param data tibble/data.frame in long format, it must contain the columns country (character/factor),
+#' @param trade_data tibble/data.frame in long format, it must contain the columns country (character/factor),
 #' product (character/factor) and export value (numeric)
 #' @param country string to indicate the column that contains exporting countries (e.g. "reporter_iso")
 #' @param product string to indicate the column that contains exported products (e.g. "product_code")
@@ -18,7 +18,7 @@
 #' @importFrom rlang sym syms :=
 #' @examples
 #' rca <- revealed_comparative_advantage(
-#'   data = services_trade_2016_tibble
+#'   trade_data = services_trade_2016$services_trade_2016_matrix
 #' )
 #' @references
 #' For more information on revealed comparative advantage and its uses see:
@@ -26,7 +26,7 @@
 #' \insertRef{atlas2014}{economiccomplexity}
 #' @keywords functions
 
-revealed_comparative_advantage <- function(data = NULL,
+revealed_comparative_advantage <- function(trade_data = NULL,
                                            country = "country",
                                            product = "product",
                                            value = "value",
@@ -34,8 +34,8 @@ revealed_comparative_advantage <- function(data = NULL,
                                            discrete = TRUE,
                                            tbl_output = FALSE) {
   # sanity checks ----
-  if (all(class(data) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix", "dgCMatrix") == FALSE)) {
-    stop("data must be a tibble/data.frame or a dense/sparse matrix")
+  if (all(class(trade_data) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix", "dgCMatrix") == FALSE)) {
+    stop("trade_data must be a tibble/data.frame or a dense/sparse matrix")
   }
 
   if (!is.character(country) & !is.character(product) & !is.character(value)) {
@@ -54,55 +54,30 @@ revealed_comparative_advantage <- function(data = NULL,
     stop("tbl_output must be matrix or tibble")
   }
 
-  # convert d from matrix to tibble ----
-  if (any(class(data) %in% c("dgeMatrix", "dsCMatrix", "dgCMatrix"))) {
-     data <- as.matrix(data)
+  # convert trade_data from matrix to tibble ----
+  if (any(class(trade_data) %in% c("dgeMatrix", "dsCMatrix", "dgCMatrix"))) {
+     trade_data <- as.matrix(trade_data)
   }
 
-  if (!is.data.frame(data)) {
-    data_rownames <- rownames(data)
+  if (!is.data.frame(trade_data)) {
+    trade_data_rownames <- rownames(trade_data)
 
-    data <- as.data.frame(data) %>%
+    trade_data <- as.data.frame(trade_data) %>%
       dplyr::as_tibble() %>%
-      dplyr::mutate(!!sym("country") := data_rownames) %>%
+      dplyr::mutate(!!sym("country") := trade_data_rownames) %>%
       tidyr::gather(!!sym("product"), !!sym("value"), -!!sym("country"))
   }
 
-  # aggregate input data by c and p ----
-  data <- data %>%
+  # aggregate input trade_data by c and p ----
+  trade_data <- trade_data %>%
     # Sum by country and product
     dplyr::group_by(!!!syms(c(country, product))) %>%
     dplyr::summarise(vcp = sum(!!sym(value), na.rm = TRUE)) %>%
     dplyr::ungroup() %>%
     dplyr::filter(!!sym("vcp") > 0)
 
-  # compute RCA in matrix form ----
-  if (tbl_output == FALSE) {
-    m <- data %>%
-      dplyr::select(!!!syms(c(country, product, "vcp"))) %>%
-      tidyr::spread(!!sym(product), !!sym("vcp"))
-
-    m_rownames <- dplyr::select(m, !!sym(country)) %>% dplyr::pull()
-
-    m <- dplyr::select(m, -!!sym(country)) %>% as.matrix()
-    m[is.na(m)] <- 0
-    m <- Matrix::Matrix(m, sparse = TRUE)
-
-    rownames(m) <- m_rownames
-
-    m <- Matrix::t(Matrix::t(m / Matrix::rowSums(m)) / (Matrix::colSums(m) / sum(m)))
-
-    if (discrete == T) {
-      m[m <= cutoff] <- 0
-      m[m > cutoff] <- 1
-    }
-
-    return(m)
-  }
-
   # compute RCA in tibble form ----
-  if (tbl_output == TRUE) {
-    data <- data %>%
+    trade_data <- trade_data %>%
       # Sum by country
       dplyr::group_by(!!sym(country)) %>%
       dplyr::mutate(sum_c_vcp = sum(!!sym("vcp"), na.rm = TRUE)) %>%
@@ -123,10 +98,20 @@ revealed_comparative_advantage <- function(data = NULL,
       dplyr::rename(country = !!sym(country), product = !!sym(product))
 
     if (discrete == T) {
-      data <- data %>%
+      trade_data <- trade_data %>%
         mutate(value = ifelse(!!sym("value") > cutoff, 1, 0))
     }
 
-    return(data)
-  }
+    if (tbl_output == FALSE) {
+      trade_data <- trade_data %>%
+        tidyr::spread(!!sym(product), !!sym("value"))
+
+      trade_data_rownames <- dplyr::select(trade_data, !!sym(country)) %>% dplyr::pull()
+
+      trade_data <- dplyr::select(trade_data, -!!sym(country)) %>% as.matrix()
+      trade_data[is.na(trade_data)] <- 0
+      trade_data <- Matrix::Matrix(trade_data, sparse = TRUE)
+    }
+
+    return(trade_data)
 }

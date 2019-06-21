@@ -58,15 +58,15 @@ Countries position
 }
 \examples{
 countries_position(
-    revealed_comparative_advantage = rca_t,
+    revealed_comparative_advantage = package_output_demo$revealed_comparative_advantage_matrix,
     c1 = "country",
     p1 = "product",
     v1 = "value",
-    proximity_products = pr_t$products_proximity,
+    proximity_products = package_output_demo$proximity_matrix$products_proximity,
     p21 = "from",
     p22 = "to",
     v2 = "value",
-    product_complexity_index = cm_t$product_complexity_index,
+    product_complexity_index = package_output_demo$complexity_measures_numeric$product_complexity_index,
     p3 = "product",
     v3 = "value"
 )

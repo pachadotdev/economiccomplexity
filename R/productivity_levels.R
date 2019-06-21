@@ -51,12 +51,12 @@ productivity_levels <- function(trade_data = NULL,
                                 v2 = "value",
                                 tbl_output = FALSE) {
   # sanity checks ----
-  if (all(class(trade_data) %in% c("data.frame") == FALSE)) {
-    stop("trade_data must be a tibble/data.frame")
+  if (all(class(trade_data) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix", "dgCMatrix") == FALSE)) {
+    stop("trade_data must be a tibble/data.frame or a dense/sparse matrix")
   }
 
-  if (all(class(gdp_data) %in% c("data.frame") == FALSE)) {
-    stop("gdp_data must be a tibble/data.frame")
+  if (all(class(gdp_data) %in% c("data.frame", "numeric") == FALSE)) {
+    stop("gdp_data must be a tibble/data.frame or numeric")
   }
 
   if (!is.character(c1) & !is.character(p1) & !is.character(v1)) {
@@ -69,6 +69,26 @@ productivity_levels <- function(trade_data = NULL,
 
   if (!is.logical(tbl_output)) {
     stop("tbl_output must be matrix or tibble")
+  }
+
+  # convert trade_data from matrix to tibble ----
+  if (any(class(trade_data) %in% c("dgeMatrix", "dsCMatrix", "dgCMatrix"))) {
+    trade_data <- as.matrix(trade_data)
+  }
+
+  if (!is.data.frame(trade_data)) {
+    trade_data_rownames <- rownames(trade_data)
+
+    trade_data <- as.data.frame(trade_data) %>%
+      dplyr::as_tibble() %>%
+      dplyr::mutate(!!sym("country") := trade_data_rownames) %>%
+      tidyr::gather(!!sym("product"), !!sym("value"), -!!sym("country"))
+  }
+
+  # convert gdp_data from tibble to numeric ----
+  if (!is.data.frame(gdp_data)) {
+    gdp_data <- tibble::enframe(gdp_data)
+    colnames(gdp_data) <- c(c2,v2)
   }
 
   # tidy input data trade_data ----
@@ -85,34 +105,34 @@ productivity_levels <- function(trade_data = NULL,
     dplyr::select(!!!syms(c(c2, v2))) %>%
     dplyr::filter(!!sym(v2) > 0)
 
-  # create exports-gdp table ----
-  m <- trade_data %>%
+  # create trade-gdp table ----
+  trade_gdp <- trade_data %>%
     tidyr::spread(!!sym(p1), !!sym("vcp")) %>%
     dplyr::inner_join(gdp_data, by = stats::setNames(c2, c1))
 
-  if (nrow(m) < nrow(unique(trade_data[, c1]))) {
+  if (nrow(trade_gdp) < nrow(unique(trade_data[, c1]))) {
     warning("Joining trade_data and gdp_data resulted in a table with less reporting countries than those in trade_data.")
   }
 
-  if (nrow(m) < nrow(gdp_data)) {
+  if (nrow(trade_gdp) < nrow(gdp_data)) {
     warning("Joining trade_data and gdp_data resulted in a table with less reporting countries than those in gdp_data.")
   }
 
-  # convert m to matrix ----
-  m_rownames <- dplyr::select(m, !!sym(c1)) %>% dplyr::pull()
+  # convert trade_gdp to matrix ----
+  trade_gdp_rownames <- dplyr::select(trade_gdp, !!sym(c1)) %>% dplyr::pull()
 
-  m2 <- dplyr::select(m, !!sym(v2)) %>% dplyr::pull()
+  gdp <- dplyr::select(trade_gdp, !!sym(v2)) %>% dplyr::pull()
 
-  m <- dplyr::select(m, -!!sym(c1), -!!sym(v2)) %>% as.matrix()
-  m[is.na(m)] <- 0
-  m <- Matrix::Matrix(m, sparse = TRUE)
+  trade <- dplyr::select(trade_gdp, -!!sym(c1), -!!sym(v2)) %>% as.matrix()
+  trade[is.na(trade)] <- 0
+  trade <- Matrix::Matrix(trade, sparse = TRUE)
 
-  rownames(m) <- m_rownames
+  rownames(trade) <- trade_gdp_rownames
 
-  prody <- Matrix::t(Matrix::t(m / Matrix::rowSums(m)) / (Matrix::colSums(m) / sum(m)))
-  prody <- Matrix::colSums(prody * m2) / Matrix::colSums(prody)
+  prody <- Matrix::t(Matrix::t(trade / Matrix::rowSums(trade)) / (Matrix::colSums(trade) / sum(trade)))
+  prody <- Matrix::colSums(prody * gdp) / Matrix::colSums(prody)
 
-  expy <- Matrix::rowSums((m / Matrix::rowSums(m)) * prody)
+  expy <- Matrix::rowSums((trade / Matrix::rowSums(trade)) * prody)
 
   if (tbl_output == TRUE) {
     prody <- tibble::enframe(prody) %>%

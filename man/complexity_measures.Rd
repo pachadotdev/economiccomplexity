@@ -41,7 +41,7 @@ values.}
 Complexity Measures
 }
 \examples{
-cm <- complexity_measures(rca_t)
+cm <- complexity_measures(package_output_demo$revealed_comparative_advantage_matrix)
 }
 \references{
 For more information on complexity measures, indices and its applications see:

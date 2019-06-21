@@ -1,17 +1,17 @@
 #' Proximity
 #'
 #' @export
-#' @param rca matrix or tibble/data.frame in long format (e.g. the output of
+#' @param revealed_comparative_advantage matrix or tibble/data.frame in long format (e.g. the output of
 #' revealed_comparative_advantage()). If it is a matrix it must be a
 #' zero/one matrix with countries in the row names and products in the column names.
-#' If rca is a tibble/data.frame it must contain the columns.
+#' If revealed_comparative_advantage is a tibble/data.frame it must contain the columns.
 #' country (character/factor), product (character/factor) and discrete RCA (integer)
 #' @param country string to indicate the column that contains exporting countries (default set to "country" that is the
-#' output of revealed_comparative_advantage(), applies only if rca is a data.frame)
+#' output of revealed_comparative_advantage(), applies only if revealed_comparative_advantage is a data.frame)
 #' @param product string to indicate the column that contains exported products (default set to "product" that is the
-#' output of revealed_comparative_advantage(), applies only if rca is a data.frame)
+#' output of revealed_comparative_advantage(), applies only if revealed_comparative_advantage is a data.frame)
 #' @param value string to indicate the column that contains RCA values (default set to "value" that is the
-#' output of revealed_comparative_advantage(), applies only if rca is a data.frame)
+#' output of revealed_comparative_advantage(), applies only if revealed_comparative_advantage is a data.frame)
 #' @param diversity numeric vector or tibble/data.frame containing diversity measures (e.g. \code{diversity}
 #' from \code{complexity_measures()})
 #' @param ubiquity numeric vector or tibble/data.frame containing ubiquity measures (e.g. \code{ubiquity}
@@ -33,9 +33,9 @@
 #' @importFrom rlang sym
 #' @examples
 #' pro <- proximity(
-#'   rca = rca_t,
-#'   diversity = cm_t$diversity,
-#'   ubiquity = cm_t$ubiquity
+#'   revealed_comparative_advantage = package_output_demo$revealed_comparative_advantage_matrix,
+#'   diversity = package_output_demo$complexity_measures_numeric$diversity,
+#'   ubiquity = package_output_demo$complexity_measures_numeric$ubiquity
 #' )
 #' @references
 #' For more information on proximity and its applications see:
@@ -43,20 +43,20 @@
 #' \insertRef{atlas2014}{economiccomplexity}
 #' @keywords functions
 
-proximity <- function(rca = NULL,
+proximity <- function(revealed_comparative_advantage = NULL,
                       country = "country",
                       product = "product",
                       value = "value",
                       diversity = NULL,
-                      ubiquity = NULL,
                       diversity_country = "country",
                       diversity_value = "value",
+                      ubiquity = NULL,
                       ubiquity_product = "product",
                       ubiquity_value = "value",
                       tbl_output = FALSE) {
   # sanity checks ----
-  if (all(class(rca) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix", "dgCMatrix") == FALSE)) {
-    stop("rca must be a tibble/data.frame or a dense/sparse matrix")
+  if (all(class(revealed_comparative_advantage) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix", "dgCMatrix") == FALSE)) {
+    stop("revealed_comparative_advantage must be a tibble/data.frame or a dense/sparse matrix")
   }
 
   if (all(class(diversity) %in% c("numeric", "data.frame") == FALSE) &
@@ -68,42 +68,51 @@ proximity <- function(rca = NULL,
     stop("tbl_output must be logical")
   }
 
-  # transformations if rca, diversity, ubiquity are data frames ----
-  if (is.data.frame(rca)) {
-    m <- tidyr::spread(rca, !!sym(product), !!sym(value))
-    m_rownames <- dplyr::select(m, !!sym(country)) %>% dplyr::pull()
+  # transformations if revealed_comparative_advantage, diversity, ubiquity are data frames ----
+  if (is.data.frame(revealed_comparative_advantage)) {
+    revealed_comparative_advantage <- tidyr::spread(revealed_comparative_advantage, !!sym(product), !!sym(value))
 
-    m <- dplyr::select(m, -!!sym(country)) %>% as.matrix()
-    m[is.na(m)] <- 0
-    rownames(m) <- m_rownames
+    revealed_comparative_advantage_rownames <- dplyr::select(revealed_comparative_advantage, !!sym(country)) %>%
+      dplyr::pull()
 
-    m <- Matrix::Matrix(m, sparse = T)
-    m <- m[Matrix::rowSums(m) != 0, Matrix::colSums(m) != 0]
+    revealed_comparative_advantage <- dplyr::select(revealed_comparative_advantage, -!!sym(country)) %>%
+      as.matrix()
+
+    revealed_comparative_advantage[is.na(revealed_comparative_advantage)] <- 0
+
+    rownames(revealed_comparative_advantage) <- revealed_comparative_advantage_rownames
+
+    revealed_comparative_advantage <- Matrix::Matrix(revealed_comparative_advantage, sparse = T)
+    revealed_comparative_advantage <- revealed_comparative_advantage[
+      Matrix::rowSums(revealed_comparative_advantage) != 0,
+      Matrix::colSums(revealed_comparative_advantage) != 0
+    ]
   } else {
-    m <- rca[Matrix::rowSums(rca) != 0, Matrix::colSums(rca) != 0]
+    revealed_comparative_advantage <- revealed_comparative_advantage[
+      Matrix::rowSums(revealed_comparative_advantage) != 0,
+      Matrix::colSums(revealed_comparative_advantage) != 0
+    ]
   }
 
   if (is.data.frame(diversity)) {
-    diversity0 <- dplyr::select(diversity, !!sym(diversity_value)) %>% dplyr::pull()
-    names(diversity0) <- dplyr::select(diversity, !!sym(diversity_country)) %>% dplyr::pull()
-
-    diversity <- diversity0
+    diversity_value <- dplyr::select(diversity, !!sym(diversity_value)) %>% dplyr::pull()
+    names(diversity_value) <- dplyr::select(diversity, !!sym(diversity_country)) %>% dplyr::pull()
+    diversity <- diversity_value
   }
 
   if (is.data.frame(ubiquity)) {
-    ubiquity0 <- dplyr::select(ubiquity, !!sym(ubiquity_value)) %>% dplyr::pull()
-    names(ubiquity0) <- dplyr::select(ubiquity, !!sym(ubiquity_product)) %>% dplyr::pull()
-
-    ubiquity <- ubiquity0
+    ubiquity_value <- dplyr::select(ubiquity, !!sym(ubiquity_value)) %>% dplyr::pull()
+    names(ubiquity_value) <- dplyr::select(ubiquity, !!sym(ubiquity_product)) %>% dplyr::pull()
+    ubiquity <- ubiquity_value
   }
 
   # compute proximity matrices ----
-  nc <- nrow(m)
-  xc <- m %*% Matrix::t(m)
+  nc <- nrow(revealed_comparative_advantage)
+  xc <- revealed_comparative_advantage %*% Matrix::t(revealed_comparative_advantage)
   yc <- outer(diversity, diversity, pmax)
 
-  np <- ncol(m)
-  xp <- Matrix::t(m) %*% m
+  np <- ncol(revealed_comparative_advantage)
+  xp <- Matrix::t(revealed_comparative_advantage) %*% revealed_comparative_advantage
   yp <- outer(ubiquity, ubiquity, pmax)
 
   if (tbl_output == FALSE) {
