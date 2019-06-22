@@ -3,11 +3,11 @@
 
 # Economic Complexity package <img src="https://pachamaltese.github.io/economiccomplexity/hexicon.svg" width=150 align="right" alt="sticker"/>
 
-[![Project Status: WIP – Initial development is in progress, but there
-has not yet been a stable, usable release suitable for the
-public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![Travis-CI Build
 Status](https://travis-ci.org/pachamaltese/economiccomplexity.svg?branch=master)](https://travis-ci.org/pachamaltese/economiccomplexity)
 [![Coverage
