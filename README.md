@@ -18,10 +18,9 @@ Complexity to explore bipartite relations such as countries and their
 exported products. These methods are also useful for different kind of
 relations such as countries and their spoken languages.
 
-This is what the package does:
-
-![Data diagram
-soon](https://pachamaltese.github.io/economiccomplexity/data-diagram.svg)
+The functions within this package provide an implementation of the
+equations that are a part of The Atlas of Economic Complexity and
+related literature.
 
 ## Installation
 
@@ -37,7 +36,6 @@ devtools::install_github("pachamaltese/economiccomplexity")
 
 Please note that this project is released with a [Contributor Code of
 Conduct](https://pachamaltese.github.io/economiccomplexity/CODE_OF_CONDUCT.html).
-By participating in this project you agree to abide by its
-terms.
+By participating in this project you agree to abide by its terms.
 
 <!--[![ropensci_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)-->

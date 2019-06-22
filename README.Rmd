@@ -22,10 +22,9 @@ knitr::opts_chunk$set(
 A wrapper of different indices and networks commonly used in Economic Complexity
 to explore bipartite relations such as countries and their exported products. These methods
 are also useful for different kind of relations such as countries and their spoken languages.
-  
-This is what the package does:
 
-![Data diagram soon](https://pachamaltese.github.io/economiccomplexity/data-diagram.svg)
+The functions within this package provide an implementation of the equations that are a part
+of The Atlas of Economic Complexity and related literature.
 
 ## Installation
 

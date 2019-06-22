@@ -5,9 +5,9 @@
 \title{Complexity Measures}
 \usage{
 complexity_measures(revealed_comparative_advantage = NULL,
-  c = "country", p = "product", v = "value", method = "fitness",
-  iterations = 20, extremality = 1, keep_atlas = FALSE,
-  tbl_output = FALSE)
+  country = "country", product = "product", value = "value",
+  method = "fitness", iterations = 20, extremality = 1,
+  keep_atlas = FALSE, tbl_output = FALSE)
 }
 \arguments{
 \item{revealed_comparative_advantage}{matrix or tibble/data.frame (e.g. the output of
@@ -16,13 +16,13 @@ If the input is a matrix it must be a zero/one matrix with countries in rows and
 If the input is a tibble/data.frame it must contain at least three columns with countries, products and
 values.}
 
-\item{c}{string to indicate the column that contains exporting countries in revealed_comparative_advantage
+\item{country}{string to indicate the column that contains exporting countries in revealed_comparative_advantage
 (set to "country" by default)}
 
-\item{p}{string to indicate the column that contains exported products in revealed_comparative_advantage
+\item{product}{string to indicate the column that contains exported products in revealed_comparative_advantage
 (set to "product" by default)}
 
-\item{v}{string to indicate the column that contains traded values in revealed_comparative_advantage
+\item{value}{string to indicate the column that contains traded values in revealed_comparative_advantage
 (set to "value" by default)}
 
 \item{method}{string to indicate to use one of these methods: reflections, eigenvalues or fitness

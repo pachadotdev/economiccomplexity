@@ -56,7 +56,7 @@ revealed_comparative_advantage <- function(trade_data = NULL,
 
   # convert trade_data from matrix to tibble ----
   if (any(class(trade_data) %in% c("dgeMatrix", "dsCMatrix", "dgCMatrix"))) {
-     trade_data <- as.matrix(trade_data)
+    trade_data <- as.matrix(trade_data)
   }
 
   if (!is.data.frame(trade_data)) {
@@ -77,41 +77,42 @@ revealed_comparative_advantage <- function(trade_data = NULL,
     dplyr::filter(!!sym("vcp") > 0)
 
   # compute RCA in tibble form ----
+  trade_data <- trade_data %>%
+    # Sum by country
+    dplyr::group_by(!!sym(country)) %>%
+    dplyr::mutate(sum_c_vcp = sum(!!sym("vcp"), na.rm = TRUE)) %>%
+
+    # Sum by product
+    dplyr::group_by(!!sym(product)) %>%
+    dplyr::mutate(sum_p_vcp = sum(!!sym("vcp"), na.rm = TRUE)) %>%
+
+    # Compute RCA
+    dplyr::ungroup() %>%
+    dplyr::mutate(
+      sum_c_p_vcp = sum(!!sym("vcp"), na.rm = TRUE),
+      value = (!!sym("vcp") / !!sym("sum_c_vcp")) / (!!sym("sum_p_vcp") / !!sym("sum_c_p_vcp"))
+    ) %>%
+    dplyr::select(-dplyr::matches("vcp")) %>%
+
+    # Rename columns
+    dplyr::rename(country = !!sym(country), product = !!sym(product))
+
+  if (discrete == T) {
     trade_data <- trade_data %>%
-      # Sum by country
-      dplyr::group_by(!!sym(country)) %>%
-      dplyr::mutate(sum_c_vcp = sum(!!sym("vcp"), na.rm = TRUE)) %>%
+      mutate(value = ifelse(!!sym("value") > cutoff, 1, 0))
+  }
 
-      # Sum by product
-      dplyr::group_by(!!sym(product)) %>%
-      dplyr::mutate(sum_p_vcp = sum(!!sym("vcp"), na.rm = TRUE)) %>%
+  if (tbl_output == FALSE) {
+    trade_data <- trade_data %>%
+      tidyr::spread(!!sym(product), !!sym("value"))
 
-      # Compute RCA
-      dplyr::ungroup() %>%
-      dplyr::mutate(
-        sum_c_p_vcp = sum(!!sym("vcp"), na.rm = TRUE),
-        value = (!!sym("vcp") / !!sym("sum_c_vcp")) / (!!sym("sum_p_vcp") / !!sym("sum_c_p_vcp"))
-      ) %>%
-      dplyr::select(-dplyr::matches("vcp")) %>%
+    trade_data_rownames <- dplyr::select(trade_data, !!sym(country)) %>% dplyr::pull()
 
-      # Rename columns
-      dplyr::rename(country = !!sym(country), product = !!sym(product))
+    trade_data <- dplyr::select(trade_data, -!!sym(country)) %>% as.matrix()
+    trade_data[is.na(trade_data)] <- 0
+    rownames(trade_data) <- trade_data_rownames
+    trade_data <- Matrix::Matrix(trade_data, sparse = TRUE)
+  }
 
-    if (discrete == T) {
-      trade_data <- trade_data %>%
-        mutate(value = ifelse(!!sym("value") > cutoff, 1, 0))
-    }
-
-    if (tbl_output == FALSE) {
-      trade_data <- trade_data %>%
-        tidyr::spread(!!sym(product), !!sym("value"))
-
-      trade_data_rownames <- dplyr::select(trade_data, !!sym(country)) %>% dplyr::pull()
-
-      trade_data <- dplyr::select(trade_data, -!!sym(country)) %>% as.matrix()
-      trade_data[is.na(trade_data)] <- 0
-      trade_data <- Matrix::Matrix(trade_data, sparse = TRUE)
-    }
-
-    return(trade_data)
+  return(trade_data)
 }

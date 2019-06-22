@@ -23,7 +23,7 @@ I'll use this demo dataset to illustrate the essential usage of the functions wi
 ```{r}
 library(economiccomplexity)
 
-world_trade_2017
+services_trade_2016$services_trade_2016_tibble
 ```
 
 ## Revealed comparative Advantage (RCA)
@@ -31,22 +31,23 @@ world_trade_2017
 You can obtain RCA with `revealed_comparative_advantage()`:
 ```{r}
 rca <- revealed_comparative_advantage(
-  data = world_trade_2017, 
-  c = "country",
-  p = "product", 
-  v = "value"
+  trade_data = services_trade_2016$services_trade_2016_tibble, 
+  country = "country",
+  product = "product", 
+  value = "value"
 )
 
-rca[1:5,1:5]
+# 5x5 preview
+rca[1:5,1:3]
 ```
 
 And also you can obtain it in tabular version:
 ```{r}
 rca_tbl <- revealed_comparative_advantage(
-  data = world_trade_2017, 
-  c = "country",
-  p = "product", 
-  v = "value",
+  trade_data = services_trade_2016$services_trade_2016_tibble, 
+  country = "country",
+  product = "product", 
+  value = "value",
   tbl_output = T
 )
 
@@ -57,25 +58,25 @@ Another possibility, *not used to build networks from bipartite relations*, is t
 
 ```{r}
 rca_decimal <- revealed_comparative_advantage(
-  data = world_trade_2017,
-  c = "country",
-  p = "product", 
-  v = "value",
-  tbl_output = F,
+  trade_data = services_trade_2016$services_trade_2016_tibble, 
+  country = "country",
+  product = "product", 
+  value = "value",
   discrete = F
 )
 
-rca_decimal[1:5,1:5]
+# 5x3 preview
+rca_decimal[1:5,1:3]
 ```
 
 ```{r}
 rca_decimal_tbl <- revealed_comparative_advantage(
-  data = world_trade_2017,
-  c = "country",
-  p = "product", 
-  v = "value",
+  trade_data = services_trade_2016$services_trade_2016_tibble, 
+  country = "country",
+  product = "product", 
+  value = "value",
   tbl_output = T,
-  discrete = T
+  discrete = F
 )
 
 rca_decimal_tbl
@@ -125,11 +126,12 @@ Proximity matrices are used to create both country-country and product-product n
 pro <- proximity(
   rca,
   diversity = cm_fitness$diversity,
-  ubiquity = cm_fitness$ubiquity
+  ubiquity = cm_fitness$ubiquity,
+  tbl_output = T
 )
 
-pro$countries_proximity[1:5,1:5]
-pro$products_proximity[1:5,1:5]
+pro$proximity_countries
+pro$proximity_products
 ```
 
 ## Networks
@@ -139,34 +141,56 @@ The `proximity_networks()` function is designed to use `igraph` for the internal
 To create some reduced networks I'll use a high proximity cutoff:
 
 ```{r}
-# net <- networks(
-#   pro$countries_proximity,
-#   pro$products_proximity,
-#   c_cutoff = 0.3,
-#   p_cutoff = 0.6,
-#   tbl_output = T
-# )
-# 
-# net$countries_network
-# net$products_network
+net <- networks(
+  pro$proximity_countries,
+  pro$proximity_products,
+  c_cutoff = 0.7,
+  p_cutoff = 0.1,
+  tbl_output = T
+)
+
+net$network_countries
+net$network_products
 ```
 
-Just a basic example with `igraph`:
-```{r}
-# library(igraph)
-# 
-# set.seed(1810)
-# 
-# countries_network <- graph_from_data_frame(net$countries_network, directed = F)
-# 
-# plot(
-#   countries_network, 
-#   layout = layout_with_kk,
-#   vertex.size = 5,
-#   vertex.color = "#a8a8a8",
-#   vertex.label.dist = 1,
-#   vertex.label.color = "black"
-# )
+Just a two examples with `ggraph`:
+
+```{r, fig.width=20, fig.height=12}
+library(igraph)
+library(ggraph)
+library(magrittr)
+
+set.seed(200100)
+
+net$network_countries %>% 
+  graph_from_data_frame(directed = F) %>% 
+  ggraph(layout = "kk") +
+  geom_edge_link(aes(edge_alpha = value, edge_width = value), edge_colour = "#a8a8a8") +
+  geom_node_point(color = "darkslategray4", size = 8) +
+  geom_node_text(aes(label = name), vjust = 2.2) +
+  ggtitle(
+    expression(paste("Connections between",
+                     italic(" countries "),
+                     "based on the",
+                     italic(" services "),
+                     "they export"))) +
+  theme_void()
+```
+
+```{r, fig.width=20, fig.height=12}
+net$network_products %>% 
+  graph_from_data_frame(directed = F) %>% 
+  ggraph(layout = "kk") +
+  geom_edge_link(aes(edge_alpha = value, edge_width = value), edge_colour = "#a8a8a8") +
+  geom_node_point(color = "darkslategray4", size = 8) +
+  geom_node_text(aes(label = name), vjust = 2.2) +
+  ggtitle(
+    expression(paste("Connections between",
+                     italic(" services "),
+                     "based on the",
+                     italic(" countries "),
+                     "that export them"))) +
+  theme_void()
 ```
 
 # References

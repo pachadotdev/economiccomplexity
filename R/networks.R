@@ -29,7 +29,7 @@
 #' @keywords functions
 
 networks <- function(proximity_countries, proximity_products, c_cutoff = 0.2,
-                               p_cutoff = 0.4, tbl_output = FALSE) {
+                     p_cutoff = 0.4, tbl_output = FALSE) {
   # sanity checks ----
   if (all(class(proximity_countries) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix") == FALSE) &
     all(class(proximity_products) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix") == FALSE)) {

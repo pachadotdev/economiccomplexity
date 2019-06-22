@@ -88,7 +88,7 @@ productivity_levels <- function(trade_data = NULL,
   # convert gdp_data from tibble to numeric ----
   if (!is.data.frame(gdp_data)) {
     gdp_data <- tibble::enframe(gdp_data)
-    colnames(gdp_data) <- c(c2,v2)
+    colnames(gdp_data) <- c(c2, v2)
   }
 
   # tidy input data trade_data ----
@@ -111,11 +111,13 @@ productivity_levels <- function(trade_data = NULL,
     dplyr::inner_join(gdp_data, by = stats::setNames(c2, c1))
 
   if (nrow(trade_gdp) < nrow(unique(trade_data[, c1]))) {
-    warning("Joining trade_data and gdp_data resulted in a table with less reporting countries than those in trade_data.")
+    warning("Joining trade_data and gdp_data resulted in a table with less reporting countries
+            than those in trade_data.")
   }
 
   if (nrow(trade_gdp) < nrow(gdp_data)) {
-    warning("Joining trade_data and gdp_data resulted in a table with less reporting countries than those in gdp_data.")
+    warning("Joining trade_data and gdp_data resulted in a table with less reporting countries
+            than those in gdp_data.")
   }
 
   # convert trade_gdp to matrix ----

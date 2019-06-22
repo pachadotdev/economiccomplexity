@@ -2,4 +2,9 @@
 .Rhistory
 .RData
 .Ruserdata
+.Rapp.history
+.build.timestamp
 .DS_Store
+*.tex
+*.tar.gz
+svg/

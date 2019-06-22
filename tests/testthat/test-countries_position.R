@@ -1,6 +1,6 @@
 test_that("countries position is aligned with the expected output", {
   # matrix output ----
-  cp_m <-  countries_position(
+  cp_m <- countries_position(
     revealed_comparative_advantage = package_output_demo$revealed_comparative_advantage_matrix,
     c1 = "country",
     p1 = "product",
@@ -24,7 +24,7 @@ test_that("countries position is aligned with the expected output", {
   expect_equal(nrow(cp_m$complexity_outlook_gain), 80)
   expect_equal(ncol(cp_m$complexity_outlook_gain), 11)
 
-  cp_m_2 <-  countries_position(
+  cp_m_2 <- countries_position(
     revealed_comparative_advantage = package_output_demo$revealed_comparative_advantage_tibble,
     c1 = "country",
     p1 = "product",
@@ -53,7 +53,7 @@ test_that("countries position is aligned with the expected output", {
   # expect_equivalent(cp_m$complexity_outlook_gain, cp_m_2$complexity_outlook_gain)
 
   # tibble output ----
-  cp_t <-  countries_position(
+  cp_t <- countries_position(
     revealed_comparative_advantage = package_output_demo$revealed_comparative_advantage_matrix,
     c1 = "country",
     p1 = "product",
@@ -79,7 +79,7 @@ test_that("countries position is aligned with the expected output", {
   expect_equal(nrow(cp_t$complexity_outlook_gain), 880)
   expect_equal(ncol(cp_t$complexity_outlook_gain), 3)
 
-  cp_t_2 <-  countries_position(
+  cp_t_2 <- countries_position(
     revealed_comparative_advantage = package_output_demo$revealed_comparative_advantage_tibble,
     c1 = "country",
     p1 = "product",

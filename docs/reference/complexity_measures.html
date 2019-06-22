@@ -78,15 +78,22 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/basic-usage.html">How to use this package</a>
+    </li>
+  </ul>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="https://github.com/pachamaltese/economiccomplexity">
-    <span class="fa fa-github fa-lg"></span>
-     
-  </a>
-</li>
+        
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -100,7 +107,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Complexity Measures</h1>
-    <small class="dont-index">Source: <a href='https://github.com/pachamaltese/economiccomplexity/blob/master/R/complexity_measures.R'><code>R/complexity_measures.R</code></a></small>
+    
     <div class="hidden name"><code>complexity_measures.Rd</code></div>
     </div>
 
@@ -111,9 +118,9 @@
     </div>
 
     <pre class="usage"><span class='fu'>complexity_measures</span>(<span class='kw'>revealed_comparative_advantage</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>c</span> <span class='kw'>=</span> <span class='st'>"country"</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='st'>"product"</span>, <span class='kw'>v</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"fitness"</span>,
-  <span class='kw'>iterations</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>extremality</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>keep_atlas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>country</span> <span class='kw'>=</span> <span class='st'>"country"</span>, <span class='kw'>product</span> <span class='kw'>=</span> <span class='st'>"product"</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"fitness"</span>, <span class='kw'>iterations</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>extremality</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>keep_atlas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -127,17 +134,17 @@ If the input is a tibble/data.frame it must contain at least three columns with 
 values.</p></td>
     </tr>
     <tr>
-      <th>c</th>
+      <th>country</th>
       <td><p>string to indicate the column that contains exporting countries in revealed_comparative_advantage
 (set to "country" by default)</p></td>
     </tr>
     <tr>
-      <th>p</th>
+      <th>product</th>
       <td><p>string to indicate the column that contains exported products in revealed_comparative_advantage
 (set to "product" by default)</p></td>
     </tr>
     <tr>
-      <th>v</th>
+      <th>value</th>
       <td><p>string to indicate the column that contains traded values in revealed_comparative_advantage
 (set to "value" by default)</p></td>
     </tr>
@@ -174,7 +181,7 @@ MIT Press.</p>
 <p>Mariani M, Vidmer A, Medo M, Zhang Y (2015).
 &#8220;Measuring economic complexity of countries and products: which metric to use?&#8221;
 <em>The European Physical Journal B</em>, <b>88</b>(11), 293.
-doi: <a href='http://doi.org/10.1140/epjb/e2015-60298-7'>10.1140/epjb/e2015-60298-7</a>
+doi: <a href='https://doi.org/10.1140/epjb/e2015-60298-7'>10.1140/epjb/e2015-60298-7</a>
 .</p>
     
 

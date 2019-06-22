@@ -58,19 +58,19 @@ Countries position
 }
 \examples{
 countries_position(
-    revealed_comparative_advantage =
-     package_output_demo$revealed_comparative_advantage_matrix,
-    c1 = "country",
-    p1 = "product",
-    v1 = "value",
-    proximity_products = package_output_demo$proximity_matrix$proximity_products,
-    p21 = "from",
-    p22 = "to",
-    v2 = "value",
-    product_complexity_index =
-     package_output_demo$complexity_measures_numeric$product_complexity_index,
-    p3 = "product",
-    v3 = "value"
+  revealed_comparative_advantage =
+    package_output_demo$revealed_comparative_advantage_matrix,
+  c1 = "country",
+  p1 = "product",
+  v1 = "value",
+  proximity_products = package_output_demo$proximity_matrix$proximity_products,
+  p21 = "from",
+  p22 = "to",
+  v2 = "value",
+  product_complexity_index =
+    package_output_demo$complexity_measures_numeric$product_complexity_index,
+  p3 = "product",
+  v3 = "value"
 )
 }
 \references{

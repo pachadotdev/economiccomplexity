@@ -6,11 +6,11 @@
 #' If the input is a matrix it must be a zero/one matrix with countries in rows and products in columns.
 #' If the input is a tibble/data.frame it must contain at least three columns with countries, products and
 #' values.
-#' @param c string to indicate the column that contains exporting countries in revealed_comparative_advantage
+#' @param country string to indicate the column that contains exporting countries in revealed_comparative_advantage
 #' (set to "country" by default)
-#' @param p string to indicate the column that contains exported products in revealed_comparative_advantage
+#' @param product string to indicate the column that contains exported products in revealed_comparative_advantage
 #' (set to "product" by default)
-#' @param v string to indicate the column that contains traded values in revealed_comparative_advantage
+#' @param value string to indicate the column that contains traded values in revealed_comparative_advantage
 #' (set to "value" by default)
 #' @param method string to indicate to use one of these methods: reflections, eigenvalues or fitness
 #' (set to "fitness" by default)
@@ -36,9 +36,9 @@
 #' @keywords functions
 
 complexity_measures <- function(revealed_comparative_advantage = NULL,
-                                c = "country",
-                                p = "product",
-                                v = "value",
+                                country = "country",
+                                product = "product",
+                                value = "value",
                                 method = "fitness",
                                 iterations = 20,
                                 extremality = 1,
@@ -63,10 +63,10 @@ complexity_measures <- function(revealed_comparative_advantage = NULL,
 
   # convert data.frame input to matrix ----
   if (is.data.frame(revealed_comparative_advantage)) {
-    m <- tidyr::spread(revealed_comparative_advantage, !!sym(p), !!sym(v))
-    m_rownames <- dplyr::select(m, !!sym(c)) %>% dplyr::pull()
+    m <- tidyr::spread(revealed_comparative_advantage, !!sym(product), !!sym(value))
+    m_rownames <- dplyr::select(m, !!sym(country)) %>% dplyr::pull()
 
-    m <- dplyr::select(m, -!!sym(c)) %>% as.matrix()
+    m <- dplyr::select(m, -!!sym(country)) %>% as.matrix()
     m[is.na(m)] <- 0
     rownames(m) <- m_rownames
 
