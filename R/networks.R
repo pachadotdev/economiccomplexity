@@ -19,8 +19,8 @@
 #' @importFrom rlang sym
 #' @examples
 #' net <- networks(
-#'   pr_t$countries_proximity,
-#'   pr_t$products_proximity
+#'   package_output_demo$proximity_matrix$proximity_countries,
+#'   package_output_demo$proximity_matrix$proximity_products
 #' )
 #' @references
 #' For more information on networks such as the product space and its applications see:
@@ -44,11 +44,12 @@ networks <- function(proximity_countries, proximity_products, c_cutoff = 0.2,
     stop("tbl_output must be matrix or tibble")
   }
 
-  # arrange matrices ----
-  if (any(class(proximity_countries) %in% c("matrix", "dgeMatrix", "dsCMatrix") == TRUE) &
-      any(class(proximity_products) %in% c("matrix", "dgeMatrix", "dsCMatrix") == TRUE)) {
-    # countries
+  # arrange country matrix ----
+  if (any(class(proximity_countries) %in% c("dgeMatrix", "dsCMatrix") == TRUE)) {
     proximity_countries <- as.matrix(proximity_countries)
+  }
+
+  if (is.matrix(proximity_countries)) {
     proximity_countries[upper.tri(proximity_countries, diag = T)] <- 0
     row_names <- rownames(proximity_countries)
 
@@ -57,9 +58,14 @@ networks <- function(proximity_countries, proximity_products, c_cutoff = 0.2,
       dplyr::mutate(from = row_names) %>%
       tidyr::gather(!!sym("to"), !!sym("value"), -!!sym("from")) %>%
       dplyr::filter(!!sym("value") > 0)
+  }
 
-    # products
+  # arrange products matrix ----
+  if (any(class(proximity_products) %in% c("dgeMatrix", "dsCMatrix") == TRUE)) {
     proximity_products <- as.matrix(proximity_products)
+  }
+
+  if (is.matrix(proximity_products)) {
     proximity_products[upper.tri(proximity_products, diag = T)] <- 0
     row_names <- rownames(proximity_products)
 
@@ -70,8 +76,7 @@ networks <- function(proximity_countries, proximity_products, c_cutoff = 0.2,
       dplyr::filter(!!sym("value") > 0)
   }
 
-  # compute networks ----
-  # countries
+  # compute countries network ----
   proximity_countries <- dplyr::mutate(proximity_countries, value = -1 * !!sym("value"))
 
   c_g <- igraph::graph_from_data_frame(proximity_countries, directed = F)
@@ -91,7 +96,7 @@ networks <- function(proximity_countries, proximity_products, c_cutoff = 0.2,
     edge.attr.comb = "first"
   )
 
-  # products
+  # compute products network ----
   proximity_products <- dplyr::mutate(proximity_products, value = -1 * !!sym("value"))
 
   p_g <- igraph::graph_from_data_frame(proximity_products, directed = F)
@@ -116,5 +121,5 @@ networks <- function(proximity_countries, proximity_products, c_cutoff = 0.2,
     p_g <- igraph::as_data_frame(p_g) %>% dplyr::as_tibble()
   }
 
-  return(list(countries_network = c_g, products_network = p_g))
+  return(list(network_countries = c_g, network_products = p_g))
 }

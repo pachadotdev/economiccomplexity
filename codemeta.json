@@ -203,7 +203,7 @@
   ],
   "codeRepository": "https://github.com/pachamaltese/economiccomplexity",
   "readme": "https://github.com/pachamaltese/economiccomplexity/blob/master/README.md",
-  "fileSize": "1505.337KB",
+  "fileSize": "51.026KB",
   "contIntegration": [
     "https://travis-ci.org/pachamaltese/economiccomplexity",
     "https://codecov.io/github/pachamaltese/economiccomplexity?branch=master"

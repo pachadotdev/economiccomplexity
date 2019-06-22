@@ -144,8 +144,8 @@ proximity <- function(revealed_comparative_advantage = NULL,
 
   return(
     list(
-      countries_proximity = cp,
-      products_proximity = pp
+      proximity_countries = cp,
+      proximity_products = pp
     )
   )
 }

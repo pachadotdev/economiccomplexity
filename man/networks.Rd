@@ -29,8 +29,8 @@ Networks
 }
 \examples{
 net <- networks(
-  pr_t$countries_proximity,
-  pr_t$products_proximity
+  package_output_demo$proximity_matrix$proximity_countries,
+  package_output_demo$proximity_matrix$proximity_products
 )
 }
 \references{

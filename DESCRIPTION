@@ -25,6 +25,7 @@ Authors@R: c(
 Description: A wrapper of different indices and networks commonly used in Economic Complexity
   to explore bipartite relations such as countries and their exported products. These methods
   are also useful for different kind of relations such as countries and their spoken languages.
+URL: https://github.com/pachamaltese/economiccomplexity
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
