@@ -12,12 +12,21 @@ Authors@R: c(
     person(given = "Carlo",
       family = "Bottai",
       role = c("ctb"),
-      email = "carlo.bottai@unito.it",
       comment = "improved the eigenvalues calculation"
     ),
-    person(family = "Open Trade Statistics",
-      role = "dtc"),
+    person(given = "Diego",
+      family = "Kozlowski",
+      role = c("ctb"),
+      comment = "provided initial RCA and proximity functions he used for his thesis"
+    ),
+    person(given = "Mark",
+      family = "Padgham",
+      role = c("ctb"),
+      comment = "compared PRODY equations from different sources"
+    ),
     person(family = "Center for International Development at Harvard University",
+      role = "dtc"),
+    person(family = "UN COMTRADE",
       role = "dtc"),
     person(family = "The World Bank",
       role = "dtc")

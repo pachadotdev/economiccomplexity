@@ -30,16 +30,25 @@
     {
       "@type": "Person",
       "givenName": "Carlo",
-      "familyName": "Bottai",
-      "email": "carlo.bottai@unito.it"
+      "familyName": "Bottai"
     },
     {
-      "@type": "Organization",
-      "name": "Open Trade Statistics"
+      "@type": "Person",
+      "givenName": "Diego",
+      "familyName": "Kozlowski"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Mark",
+      "familyName": "Padgham"
     },
     {
       "@type": "Organization",
       "name": "Center for International Development at Harvard University"
+    },
+    {
+      "@type": "Organization",
+      "name": "UN COMTRADE"
     },
     {
       "@type": "Organization",
@@ -215,7 +224,7 @@
   ],
   "codeRepository": "https://pachamaltese.github.io/economiccomplexity",
   "readme": "https://github.com/pachamaltese/economiccomplexity/blob/master/README.md",
-  "fileSize": "524.744KB",
+  "fileSize": "524.879KB",
   "contIntegration": [
     "https://travis-ci.org/pachamaltese/economiccomplexity",
     "https://codecov.io/github/pachamaltese/economiccomplexity?branch=master"
