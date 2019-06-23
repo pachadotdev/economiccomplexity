@@ -5,10 +5,10 @@
 \title{Countries position}
 \usage{
 countries_position(revealed_comparative_advantage = NULL,
-  c1 = "country", p1 = "product", v1 = "value",
-  proximity_products = NULL, p21 = "from", p22 = "to",
-  v2 = "value", product_complexity_index = NULL, p3 = "product",
-  v3 = "value", tbl_output = FALSE)
+  country1 = "country", product1 = "product", value1 = "value",
+  proximity_products = NULL, product21 = "from", product22 = "to",
+  value2 = "value", product_complexity_index = NULL,
+  product3 = "product", value3 = "value", tbl_output = FALSE)
 }
 \arguments{
 \item{revealed_comparative_advantage}{matrix or tibble/data.frame (e.g. the output of
@@ -17,13 +17,13 @@ If the input is a matrix it must be a zero/one matrix with countries in rows and
 If the input is a tibble/data.frame it must contain at least three columns with countries, products and
 values.}
 
-\item{c1}{string to indicate the column that contains exporting countries in revealed_comparative_advantage
+\item{country1}{string to indicate the column that contains exporting countries in revealed_comparative_advantage
 (set to "country" by default)}
 
-\item{p1}{string to indicate the column that contains exported products in revealed_comparative_advantage
+\item{product1}{string to indicate the column that contains exported products in revealed_comparative_advantage
 (set to "product" by default)}
 
-\item{v1}{string to indicate the column that contains traded values in revealed_comparative_advantage
+\item{value1}{string to indicate the column that contains traded values in revealed_comparative_advantage
 (set to "value" by default)}
 
 \item{proximity_products}{matrix or tibble/data.frame (e.g. the output of
@@ -33,22 +33,22 @@ rows and columns.
 If the input is a tibble/data.frame it must contain at least three columns columns with
 products (twice) and values.}
 
-\item{p21}{string to indicate the first column that contains exported products in proximity_products
+\item{product21}{string to indicate the first column that contains exported products in proximity_products
 (set to "from" by default)}
 
-\item{p22}{string to indicate the second column that contains exported products in proximity_products
+\item{product22}{string to indicate the second column that contains exported products in proximity_products
 (set to "to" by default)}
 
-\item{v2}{string to indicate the column that contains proximity values in proximity_products
+\item{value2}{string to indicate the column that contains proximity values in proximity_products
 (set to "value" by default)}
 
 \item{product_complexity_index}{numeric vector or tibble/data.frame \code{complexity_measures()}).
 If the input is a vector it must be numeric with optional names.
 If the input is a tibble/data.frame it must contain at least two columns columns with products and values.}
 
-\item{p3}{string to indicate the column that contains exported products in proximity_products (e.g. "product")}
+\item{product3}{string to indicate the column that contains exported products in proximity_products (e.g. "product")}
 
-\item{v3}{string to indicate the column that contains proximity values in proximity_products (e.g. "value")
+\item{value3}{string to indicate the column that contains proximity values in proximity_products (e.g. "value")
 from \code{complexity_measures()})}
 
 \item{tbl_output}{logical value to use tibble output instead of a matrix output (set to FALSE by default)}
@@ -59,18 +59,19 @@ Countries position
 \examples{
 countries_position(
   revealed_comparative_advantage =
-    package_output_demo$revealed_comparative_advantage_matrix,
-  c1 = "country",
-  p1 = "product",
-  v1 = "value",
+   package_output_demo$revealed_comparative_advantage_matrix,
+  country1 = "country",
+  product1 = "product",
+  value1 = "value",
   proximity_products = package_output_demo$proximity_matrix$proximity_products,
-  p21 = "from",
-  p22 = "to",
-  v2 = "value",
+  product21 = "from",
+  product22 = "to",
+  value2 = "value",
   product_complexity_index =
-    package_output_demo$complexity_measures_numeric$product_complexity_index,
-  p3 = "product",
-  v3 = "value"
+   package_output_demo$complexity_measures_numeric$product_complexity_index,
+  product3 = "product",
+  value3 = "value",
+  tbl_output = TRUE
 )
 }
 \references{

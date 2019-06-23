@@ -118,10 +118,10 @@
     </div>
 
     <pre class="usage"><span class='fu'>countries_position</span>(<span class='kw'>revealed_comparative_advantage</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>c1</span> <span class='kw'>=</span> <span class='st'>"country"</span>, <span class='kw'>p1</span> <span class='kw'>=</span> <span class='st'>"product"</span>, <span class='kw'>v1</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
-  <span class='kw'>proximity_products</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>p21</span> <span class='kw'>=</span> <span class='st'>"from"</span>, <span class='kw'>p22</span> <span class='kw'>=</span> <span class='st'>"to"</span>,
-  <span class='kw'>v2</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>product_complexity_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>p3</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
-  <span class='kw'>v3</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>country1</span> <span class='kw'>=</span> <span class='st'>"country"</span>, <span class='kw'>product1</span> <span class='kw'>=</span> <span class='st'>"product"</span>, <span class='kw'>value1</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
+  <span class='kw'>proximity_products</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>product21</span> <span class='kw'>=</span> <span class='st'>"from"</span>, <span class='kw'>product22</span> <span class='kw'>=</span> <span class='st'>"to"</span>,
+  <span class='kw'>value2</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>product_complexity_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>product3</span> <span class='kw'>=</span> <span class='st'>"product"</span>, <span class='kw'>value3</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -135,17 +135,17 @@ If the input is a tibble/data.frame it must contain at least three columns with 
 values.</p></td>
     </tr>
     <tr>
-      <th>c1</th>
+      <th>country1</th>
       <td><p>string to indicate the column that contains exporting countries in revealed_comparative_advantage
 (set to "country" by default)</p></td>
     </tr>
     <tr>
-      <th>p1</th>
+      <th>product1</th>
       <td><p>string to indicate the column that contains exported products in revealed_comparative_advantage
 (set to "product" by default)</p></td>
     </tr>
     <tr>
-      <th>v1</th>
+      <th>value1</th>
       <td><p>string to indicate the column that contains traded values in revealed_comparative_advantage
 (set to "value" by default)</p></td>
     </tr>
@@ -159,17 +159,17 @@ If the input is a tibble/data.frame it must contain at least three columns colum
 products (twice) and values.</p></td>
     </tr>
     <tr>
-      <th>p21</th>
+      <th>product21</th>
       <td><p>string to indicate the first column that contains exported products in proximity_products
 (set to "from" by default)</p></td>
     </tr>
     <tr>
-      <th>p22</th>
+      <th>product22</th>
       <td><p>string to indicate the second column that contains exported products in proximity_products
 (set to "to" by default)</p></td>
     </tr>
     <tr>
-      <th>v2</th>
+      <th>value2</th>
       <td><p>string to indicate the column that contains proximity values in proximity_products
 (set to "value" by default)</p></td>
     </tr>
@@ -180,11 +180,11 @@ If the input is a vector it must be numeric with optional names.
 If the input is a tibble/data.frame it must contain at least two columns columns with products and values.</p></td>
     </tr>
     <tr>
-      <th>p3</th>
+      <th>product3</th>
       <td><p>string to indicate the column that contains exported products in proximity_products (e.g. "product")</p></td>
     </tr>
     <tr>
-      <th>v3</th>
+      <th>value3</th>
       <td><p>string to indicate the column that contains proximity values in proximity_products (e.g. "value")
 from <code><a href='complexity_measures.html'>complexity_measures()</a></code>)</p></td>
     </tr>
@@ -200,1220 +200,75 @@ from <code><a href='complexity_measures.html'>complexity_measures()</a></code>)<
 applications see:</p>
 <p>Hausmann R, Hidalgo C, Bustos S, Coscia M, Simoes A, Yildirim M (2014).
 <em>The atlas of economic complexity: Mapping paths to prosperity</em>.
-MIT Press.</p>
+MIT Press.
+doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9647.001.0001</a>
+.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>countries_position</span>(
   <span class='kw'>revealed_comparative_advantage</span> <span class='kw'>=</span>
-    <span class='no'>package_output_demo</span>$<span class='no'>revealed_comparative_advantage_matrix</span>,
-  <span class='kw'>c1</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
-  <span class='kw'>p1</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
-  <span class='kw'>v1</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
+   <span class='no'>package_output_demo</span>$<span class='no'>revealed_comparative_advantage_matrix</span>,
+  <span class='kw'>country1</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
+  <span class='kw'>product1</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
+  <span class='kw'>value1</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
   <span class='kw'>proximity_products</span> <span class='kw'>=</span> <span class='no'>package_output_demo</span>$<span class='no'>proximity_matrix</span>$<span class='no'>proximity_products</span>,
-  <span class='kw'>p21</span> <span class='kw'>=</span> <span class='st'>"from"</span>,
-  <span class='kw'>p22</span> <span class='kw'>=</span> <span class='st'>"to"</span>,
-  <span class='kw'>v2</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
+  <span class='kw'>product21</span> <span class='kw'>=</span> <span class='st'>"from"</span>,
+  <span class='kw'>product22</span> <span class='kw'>=</span> <span class='st'>"to"</span>,
+  <span class='kw'>value2</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
   <span class='kw'>product_complexity_index</span> <span class='kw'>=</span>
-    <span class='no'>package_output_demo</span>$<span class='no'>complexity_measures_numeric</span>$<span class='no'>product_complexity_index</span>,
-  <span class='kw'>p3</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
-  <span class='kw'>v3</span> <span class='kw'>=</span> <span class='st'>"value"</span>
+   <span class='no'>package_output_demo</span>$<span class='no'>complexity_measures_numeric</span>$<span class='no'>product_complexity_index</span>,
+  <span class='kw'>product3</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
+  <span class='kw'>value3</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
+  <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</div><div class='output co'>#&gt; $proximity_distance
-#&gt; 80 x 11 Matrix of class "dgeMatrix"
-#&gt;                         1 Transportation
-#&gt; Albania                        0.6739454
-#&gt; Algeria                        0.3952286
-#&gt; Angola                         0.8929964
-#&gt; Argentina                      0.4491298
-#&gt; Armenia                        0.3919861
-#&gt; Aruba                          0.8929964
-#&gt; Australia                      0.6739454
-#&gt; Azerbaijan                     0.6393584
-#&gt; Bahamas                        0.8929964
-#&gt; Bangladesh                     0.5796927
-#&gt; Belarus                        0.4639014
-#&gt; Belize                         0.7546484
-#&gt; Bhutan                         0.5759489
-#&gt; Bolivia                        0.3631636
-#&gt; Bosnia Herzegovina             0.4087783
-#&gt; Botswana                       0.6629177
-#&gt; Brazil                         0.6603957
-#&gt; Brunei Darussalam              0.6085152
-#&gt; Burundi                        0.7238052
-#&gt; Cambodia                       0.7551497
-#&gt; Cameroon                       0.4125221
-#&gt; Chile                          0.4874606
-#&gt; China                          0.4811949
-#&gt; China, Macao SAR               0.8929964
-#&gt; Colombia                       0.4203073
-#&gt; Congo                          0.4701671
-#&gt; Costa Rica                     0.7834709
-#&gt; Dem. Rep. of the Congo         0.6085152
-#&gt; Djibouti                       0.6085152
-#&gt; Dominica                       0.8929964
-#&gt; Dominican Rep.                 0.7551497
-#&gt; Ecuador                        0.2824606
-#&gt; El Salvador                    0.2997541
-#&gt; Georgia                        0.5015116
-#&gt; Greece                         0.4203073
-#&gt; Grenada                        0.8929964
-#&gt; Indonesia                      0.5591566
-#&gt; Israel                         0.8097715
-#&gt; Japan                          0.4528736
-#&gt; Jordan                         0.4208086
-#&gt; Kuwait                         0.4067576
-#&gt; Kyrgyzstan                     0.4087783
-#&gt; Lebanon                        0.6624164
-#&gt; Lesotho                        0.6168016
-#&gt; Madagascar                     0.3631636
-#&gt; Mauritius                      0.6739454
-#&gt; Mexico                         0.8295869
-#&gt; Mongolia                       0.4087783
-#&gt; Morocco                        0.2709316
-#&gt; Mozambique                     0.5446044
-#&gt; Myanmar                        0.6225661
-#&gt; Namibia                        0.6168016
-#&gt; New Zealand                    0.8122934
-#&gt; Philippines                    0.8904745
-#&gt; Poland                         0.3255533
-#&gt; Qatar                          0.2190511
-#&gt; Rep. of Korea                  0.5157819
-#&gt; Rep. of Moldova                0.4182866
-#&gt; Russian Federation             0.3255533
-#&gt; Samoa                          0.5817134
-#&gt; Sao Tome and Principe          0.6168016
-#&gt; Saudi Arabia                   0.5015116
-#&gt; Serbia                         0.3255533
-#&gt; Seychelles                     0.9423550
-#&gt; Singapore                      0.5618979
-#&gt; Slovenia                       0.3280753
-#&gt; Solomon Isds                   0.2824606
-#&gt; South Africa                   0.6629177
-#&gt; Sri Lanka                      0.5874779
-#&gt; Suriname                       0.2421091
-#&gt; Tajikistan                     0.6080139
-#&gt; TFYR of Macedonia              0.3255533
-#&gt; Thailand                       0.8929964
-#&gt; Trinidad and Tobago            0.5759489
-#&gt; Tunisia                        0.2709316
-#&gt; Uganda                         0.5188051
-#&gt; United Rep. of Tanzania        0.5188051
-#&gt; Uruguay                        0.6163004
-#&gt; USA                            0.6431022
-#&gt; Zambia                         0.6105359
-#&gt;                         10 Personal, cultural, and recreational services
-#&gt; Albania                                                        0.5060497
-#&gt; Algeria                                                        0.5930720
-#&gt; Angola                                                         0.9056795
-#&gt; Argentina                                                      0.3681694
-#&gt; Armenia                                                        0.2401449
-#&gt; Aruba                                                          0.9056795
-#&gt; Australia                                                      0.5060497
-#&gt; Azerbaijan                                                     0.8142172
-#&gt; Bahamas                                                        0.9056795
-#&gt; Bangladesh                                                     0.6219184
-#&gt; Belarus                                                        0.6179418
-#&gt; Belize                                                         0.7935027
-#&gt; Bhutan                                                         0.7646563
-#&gt; Bolivia                                                        0.6145547
-#&gt; Bosnia Herzegovina                                             0.6029187
-#&gt; Botswana                                                       0.7190721
-#&gt; Brazil                                                         0.4962031
-#&gt; Brunei Darussalam                                              0.8210520
-#&gt; Burundi                                                        0.8003375
-#&gt; Cambodia                                                       0.8181938
-#&gt; Cameroon                                                       0.4047407
-#&gt; Chile                                                          0.6921937
-#&gt; China                                                          0.6012603
-#&gt; China, Macao SAR                                               0.9056795
-#&gt; Colombia                                                       0.4145874
-#&gt; Congo                                                          0.7088752
-#&gt; Costa Rica                                                     0.7470847
-#&gt; Dem. Rep. of the Congo                                         0.8210520
-#&gt; Djibouti                                                       0.8210520
-#&gt; Dominica                                                       0.9056795
-#&gt; Dominican Rep.                                                 0.8181938
-#&gt; Ecuador                                                        0.3271017
-#&gt; El Salvador                                                    0.5649938
-#&gt; Georgia                                                        0.7267315
-#&gt; Greece                                                         0.4145874
-#&gt; Grenada                                                        0.9056795
-#&gt; Indonesia                                                      0.6267196
-#&gt; Israel                                                         0.5539522
-#&gt; Japan                                                          0.6426329
-#&gt; Jordan                                                         0.4392785
-#&gt; Kuwait                                                         0.6593143
-#&gt; Kyrgyzstan                                                     0.6029187
-#&gt; Lebanon                                                        0.4862254
-#&gt; Lesotho                                                        0.7060170
-#&gt; Madagascar                                                     0.6145547
-#&gt; Mauritius                                                      0.5060497
-#&gt; Mexico                                                         0.8561186
-#&gt; Mongolia                                                       0.6029187
-#&gt; Morocco                                                        0.5154330
-#&gt; Mozambique                                                     0.7468000
-#&gt; Myanmar                                                        0.4514434
-#&gt; Namibia                                                        0.7060170
-#&gt; New Zealand                                                    0.6182265
-#&gt; Philippines                                                    0.8414052
-#&gt; Poland                                                         0.2511914
-#&gt; Qatar                                                          0.2775408
-#&gt; Rep. of Korea                                                  0.4426656
-#&gt; Rep. of Moldova                                                0.6295778
-#&gt; Russian Federation                                             0.2511914
-#&gt; Samoa                                                          0.4069280
-#&gt; Sao Tome and Principe                                          0.7060170
-#&gt; Saudi Arabia                                                   0.7267315
-#&gt; Serbia                                                         0.2511914
-#&gt; Seychelles                                                     0.9207026
-#&gt; Singapore                                                      0.6805577
-#&gt; Slovenia                                                       0.3154657
-#&gt; Solomon Isds                                                   0.3271017
-#&gt; South Africa                                                   0.5109164
-#&gt; Sri Lanka                                                      0.7349198
-#&gt; Suriname                                                       0.4856964
-#&gt; Tajikistan                                                     0.7963609
-#&gt; TFYR of Macedonia                                              0.2511914
-#&gt; Thailand                                                       0.9056795
-#&gt; Trinidad and Tobago                                            0.7646563
-#&gt; Tunisia                                                        0.5154330
-#&gt; Uganda                                                         0.3820582
-#&gt; United Rep. of Tanzania                                        0.3820582
-#&gt; Uruguay                                                        0.4267523
-#&gt; USA                                                            0.7309523
-#&gt; Zambia                                                         0.4564888
-#&gt;                         11 Government services, n.i.e.  2 Travel
-#&gt; Albania                                      0.6225455 0.4700461
-#&gt; Algeria                                      0.4240000 0.5760369
-#&gt; Angola                                       0.8494545 0.7050691
-#&gt; Argentina                                    0.5643636 0.4239631
-#&gt; Armenia                                      0.2676364 0.2165899
-#&gt; Aruba                                        0.8494545 0.7050691
-#&gt; Australia                                    0.6225455 0.4700461
-#&gt; Azerbaijan                                   0.7040000 0.5806452
-#&gt; Bahamas                                      0.8494545 0.7050691
-#&gt; Bangladesh                                   0.4996364 0.6082949
-#&gt; Belarus                                      0.6218182 0.6497696
-#&gt; Belize                                       0.7040000 0.5668203
-#&gt; Bhutan                                       0.6516364 0.5391705
-#&gt; Bolivia                                      0.2909091 0.2764977
-#&gt; Bosnia Herzegovina                           0.4887273 0.3824885
-#&gt; Botswana                                     0.5120000 0.4792627
-#&gt; Brazil                                       0.5578182 0.6635945
-#&gt; Brunei Darussalam                            0.5869091 0.7096774
-#&gt; Burundi                                      0.5869091 0.6958525
-#&gt; Cambodia                                     0.5818182 0.5391705
-#&gt; Cameroon                                     0.4356364 0.5437788
-#&gt; Chile                                        0.4938182 0.6359447
-#&gt; China                                        0.6741818 0.7142857
-#&gt; China, Macao SAR                             0.8494545 0.7050691
-#&gt; Colombia                                     0.4770909 0.3456221
-#&gt; Congo                                        0.4414545 0.5714286
-#&gt; Costa Rica                                   0.7912727 0.6451613
-#&gt; Dem. Rep. of the Congo                       0.5869091 0.7096774
-#&gt; Djibouti                                     0.5869091 0.7096774
-#&gt; Dominica                                     0.8494545 0.7050691
-#&gt; Dominican Rep.                               0.5818182 0.5391705
-#&gt; Ecuador                                      0.2094545 0.1797235
-#&gt; El Salvador                                  0.2385455 0.2350230
-#&gt; Georgia                                      0.4363636 0.4147465
-#&gt; Greece                                       0.4770909 0.3456221
-#&gt; Grenada                                      0.8494545 0.7050691
-#&gt; Indonesia                                    0.3956364 0.3686636
-#&gt; Israel                                       0.8603636 0.8433180
-#&gt; Japan                                        0.4647273 0.6129032
-#&gt; Jordan                                       0.3549091 0.3179724
-#&gt; Kuwait                                       0.3890909 0.5299539
-#&gt; Kyrgyzstan                                   0.4887273 0.3824885
-#&gt; Lebanon                                      0.6050909 0.4562212
-#&gt; Lesotho                                      0.4363636 0.4009217
-#&gt; Madagascar                                   0.2909091 0.2764977
-#&gt; Mauritius                                    0.6225455 0.4700461
-#&gt; Mexico                                       0.7970909 0.6635945
-#&gt; Mongolia                                     0.4887273 0.3824885
-#&gt; Morocco                                      0.2210909 0.2165899
-#&gt; Mozambique                                   0.6567273 0.6958525
-#&gt; Myanmar                                      0.4829091 0.4147465
-#&gt; Namibia                                      0.4363636 0.4009217
-#&gt; New Zealand                                  0.7680000 0.6082949
-#&gt; Philippines                                  0.9418182 0.9400922
-#&gt; Poland                                       0.4996364 0.5207373
-#&gt; Qatar                                        0.1570909 0.1382488
-#&gt; Rep. of Korea                                0.6625455 0.6866359
-#&gt; Rep. of Moldova                              0.4240000 0.5437788
-#&gt; Russian Federation                           0.4996364 0.5207373
-#&gt; Samoa                                        0.5527273 0.4101382
-#&gt; Sao Tome and Principe                        0.4363636 0.4009217
-#&gt; Saudi Arabia                                 0.4363636 0.4147465
-#&gt; Serbia                                       0.4996364 0.5207373
-#&gt; Seychelles                                   0.9592727 0.9677419
-#&gt; Singapore                                    0.7265455 0.7603687
-#&gt; Slovenia                                     0.4072727 0.2857143
-#&gt; Solomon Isds                                 0.2094545 0.1797235
-#&gt; South Africa                                 0.4829091 0.4285714
-#&gt; Sri Lanka                                    0.6865455 0.5529954
-#&gt; Suriname                                     0.1978182 0.2027650
-#&gt; Tajikistan                                   0.7090909 0.7373272
-#&gt; TFYR of Macedonia                            0.4996364 0.5207373
-#&gt; Thailand                                     0.8494545 0.7050691
-#&gt; Trinidad and Tobago                          0.6516364 0.5391705
-#&gt; Tunisia                                      0.2210909 0.2165899
-#&gt; Uganda                                       0.3781818 0.3410138
-#&gt; United Rep. of Tanzania                      0.3781818 0.3410138
-#&gt; Uruguay                                      0.5818182 0.4377880
-#&gt; USA                                          0.5054545 0.6359447
-#&gt; Zambia                                       0.5701818 0.4285714
-#&gt;                         3 Communications services 4 Construction services
-#&gt; Albania                                 0.5171903               0.7151697
-#&gt; Algeria                                 0.5398204               0.3822959
-#&gt; Angola                                  0.8782583               0.9349504
-#&gt; Argentina                               0.5592285               0.5409851
-#&gt; Armenia                                 0.2493500               0.2278417
-#&gt; Aruba                                   0.8782583               0.9349504
-#&gt; Australia                               0.5171903               0.7151697
-#&gt; Azerbaijan                              0.7365953               0.8184980
-#&gt; Bahamas                                 0.8782583               0.9349504
-#&gt; Bangladesh                              0.4724441               0.4033203
-#&gt; Belarus                                 0.4719308               0.3704098
-#&gt; Belize                                  0.6185427               0.8255987
-#&gt; Bhutan                                  0.6859191               0.8045743
-#&gt; Bolivia                                 0.3357299               0.6256044
-#&gt; Bosnia Herzegovina                      0.3881963               0.3889022
-#&gt; Botswana                                0.6484252               0.5311643
-#&gt; Brazil                                  0.6688144               0.7085634
-#&gt; Brunei Darussalam                       0.7171872               0.8000056
-#&gt; Burundi                                 0.5991346               0.8071064
-#&gt; Cambodia                                0.7371085               0.8514085
-#&gt; Cameroon                                0.5271514               0.5921110
-#&gt; Chile                                   0.6285038               0.7025400
-#&gt; China                                   0.6429630               0.3822959
-#&gt; China, Macao SAR                        0.8782583               0.9349504
-#&gt; Colombia                                0.3755273               0.5987173
-#&gt; Congo                                   0.4574716               0.6906540
-#&gt; Costa Rica                              0.8022440               0.7678665
-#&gt; Dem. Rep. of the Congo                  0.7171872               0.8000056
-#&gt; Djibouti                                0.7171872               0.8000056
-#&gt; Dominica                                0.8782583               0.9349504
-#&gt; Dominican Rep.                          0.7371085               0.8514085
-#&gt; Ecuador                                 0.2343775               0.5151754
-#&gt; El Salvador                             0.2850537               0.6116807
-#&gt; Georgia                                 0.5954455               0.7349560
-#&gt; Greece                                  0.3755273               0.5987173
-#&gt; Grenada                                 0.8782583               0.9349504
-#&gt; Indonesia                               0.4393858               0.6585148
-#&gt; Israel                                  0.8226333               0.7224871
-#&gt; Japan                                   0.5904966               0.3822959
-#&gt; Jordan                                  0.4940931               0.6245270
-#&gt; Kuwait                                  0.4067954               0.6767303
-#&gt; Kyrgyzstan                              0.3881963               0.3889022
-#&gt; Lebanon                                 0.4981867               0.7151697
-#&gt; Lesotho                                 0.4773930               0.7420568
-#&gt; Madagascar                              0.3357299               0.6256044
-#&gt; Mauritius                               0.5171903               0.7151697
-#&gt; Mexico                                  0.8275821               0.9210267
-#&gt; Mongolia                                0.3881963               0.3889022
-#&gt; Morocco                                 0.2470465               0.3053602
-#&gt; Mozambique                              0.5479452               0.7602723
-#&gt; Myanmar                                 0.5977490               0.6574375
-#&gt; Namibia                                 0.4773930               0.7420568
-#&gt; New Zealand                             0.7769059               0.8245214
-#&gt; Philippines                             0.9239857               0.8329161
-#&gt; Poland                                  0.3325712               0.1764389
-#&gt; Qatar                                   0.1837013               0.5012517
-#&gt; Rep. of Korea                           0.6302940               0.3693325
-#&gt; Rep. of Moldova                         0.4194644               0.6071120
-#&gt; Russian Federation                      0.3325712               0.1764389
-#&gt; Samoa                                   0.4285069               0.3949256
-#&gt; Sao Tome and Principe                   0.4773930               0.7420568
-#&gt; Saudi Arabia                            0.5954455               0.7349560
-#&gt; Serbia                                  0.3325712               0.1764389
-#&gt; Seychelles                              0.9619928               0.9164580
-#&gt; Singapore                               0.7126428               0.7025400
-#&gt; Slovenia                                0.2868439               0.2784732
-#&gt; Solomon Isds                            0.2343775               0.5151754
-#&gt; South Africa                            0.6167525               0.7409794
-#&gt; Sri Lanka                               0.6985881               0.7349560
-#&gt; Suriname                                0.2470465               0.5281388
-#&gt; Tajikistan                              0.5986214               0.7741959
-#&gt; TFYR of Macedonia                       0.3325712               0.1764389
-#&gt; Thailand                                0.8782583               0.9349504
-#&gt; Trinidad and Tobago                     0.6859191               0.8045743
-#&gt; Tunisia                                 0.2470465               0.3053602
-#&gt; Uganda                                  0.4963965               0.4068116
-#&gt; United Rep. of Tanzania                 0.4963965               0.4068116
-#&gt; Uruguay                                 0.4791831               0.6316278
-#&gt; USA                                     0.5294548               0.7792591
-#&gt; Zambia                                  0.4665141               0.7012461
-#&gt;                         5 Insurance services 6 Financial services
-#&gt; Albania                            0.8131428            0.9024598
-#&gt; Algeria                            0.3094282            0.7536671
-#&gt; Angola                             0.9482904            0.9758099
-#&gt; Argentina                          0.6009356            0.7938927
-#&gt; Armenia                            0.6761831            0.8319430
-#&gt; Aruba                              0.9482904            0.9758099
-#&gt; Australia                          0.8131428            0.9024598
-#&gt; Azerbaijan                         0.8563622            0.9523529
-#&gt; Bahamas                            0.9482904            0.9758099
-#&gt; Bangladesh                         0.7912914            0.8917231
-#&gt; Belarus                            0.7713070            0.9019218
-#&gt; Belize                             0.8765415            0.9380498
-#&gt; Bhutan                             0.4886493            0.8491419
-#&gt; Bolivia                            0.7126695            0.8809370
-#&gt; Bosnia Herzegovina                 0.7686258            0.9145928
-#&gt; Botswana                           0.8603591            0.9421542
-#&gt; Brazil                             0.3539451            0.7415341
-#&gt; Brunei Darussalam                  0.8361280            0.9428872
-#&gt; Burundi                            0.8563073            0.9285841
-#&gt; Cambodia                           0.8763466            0.9421542
-#&gt; Cameroon                           0.3559880            0.7672252
-#&gt; Chile                              0.3254157            0.7536671
-#&gt; China                              0.3323436            0.7504618
-#&gt; China, Macao SAR                   0.9482904            0.9758099
-#&gt; Colombia                           0.7212146            0.8790028
-#&gt; Congo                              0.7643791            0.9051271
-#&gt; Costa Rica                         0.7562626            0.8529397
-#&gt; Dem. Rep. of the Congo             0.8361280            0.9428872
-#&gt; Djibouti                           0.8361280            0.9428872
-#&gt; Dominica                           0.9482904            0.9758099
-#&gt; Dominican Rep.                     0.8763466            0.9421542
-#&gt; Ecuador                            0.6492707            0.8453470
-#&gt; El Salvador                        0.3449567            0.7777260
-#&gt; Georgia                            0.7844184            0.9186971
-#&gt; Greece                             0.7212146            0.8790028
-#&gt; Grenada                            0.9482904            0.9758099
-#&gt; Indonesia                          0.6615983            0.8183849
-#&gt; Israel                             0.7445734            0.8415398
-#&gt; Japan                              0.6771410            0.7536671
-#&gt; Jordan                             0.7210196            0.8831071
-#&gt; Kuwait                             0.3966663            0.8019161
-#&gt; Kyrgyzstan                         0.7686258            0.9145928
-#&gt; Lebanon                            0.7396002            0.3864049
-#&gt; Lesotho                            0.8045977            0.9043941
-#&gt; Madagascar                         0.7126695            0.8809370
-#&gt; Mauritius                          0.8131428            0.9024598
-#&gt; Mexico                             0.5805775            0.8725990
-#&gt; Mongolia                           0.7686258            0.9145928
-#&gt; Morocco                            0.6966820            0.8809370
-#&gt; Mozambique                         0.4686101            0.8355719
-#&gt; Myanmar                            0.7639194            0.8697031
-#&gt; Namibia                            0.8045977            0.9043941
-#&gt; New Zealand                        0.8848916            0.9402199
-#&gt; Philippines                        0.8079722            0.8771298
-#&gt; Poland                             0.5649088            0.7803226
-#&gt; Qatar                              0.2815579            0.7421361
-#&gt; Rep. of Korea                      0.6856861            0.8549438
-#&gt; Rep. of Moldova                    0.7153507            0.8682660
-#&gt; Russian Federation                 0.5649088            0.7803226
-#&gt; Samoa                              0.7971553            0.9024598
-#&gt; Sao Tome and Principe              0.8045977            0.9043941
-#&gt; Saudi Arabia                       0.7844184            0.9186971
-#&gt; Serbia                             0.5649088            0.7803226
-#&gt; Seychelles                         0.8570006            0.9139909
-#&gt; Singapore                          0.2747886            0.2344069
-#&gt; Slovenia                           0.7052270            0.8790028
-#&gt; Solomon Isds                       0.6492707            0.8453470
-#&gt; South Africa                       0.7394052            0.3905093
-#&gt; Sri Lanka                          0.8073338            0.9154918
-#&gt; Suriname                           0.2019572            0.6917169
-#&gt; Tajikistan                         0.8363229            0.9387828
-#&gt; TFYR of Macedonia                  0.5649088            0.7803226
-#&gt; Thailand                           0.9482904            0.9758099
-#&gt; Trinidad and Tobago                0.4886493            0.8491419
-#&gt; Tunisia                            0.6966820            0.8809370
-#&gt; Uganda                             0.4292474            0.8033532
-#&gt; United Rep. of Tanzania            0.4292474            0.8033532
-#&gt; Uruguay                            0.6701433            0.8164507
-#&gt; USA                                0.4150519            0.2061073
-#&gt; Zambia                             0.4454299            0.7992488
-#&gt;                         7 Computer and information services
-#&gt; Albania                                           0.8086078
-#&gt; Algeria                                           0.5888369
-#&gt; Angola                                            0.9652236
-#&gt; Argentina                                         0.2512027
-#&gt; Armenia                                           0.3166979
-#&gt; Aruba                                             0.9652236
-#&gt; Australia                                         0.8086078
-#&gt; Azerbaijan                                        0.8893478
-#&gt; Bahamas                                           0.9652236
-#&gt; Bangladesh                                        0.4538049
-#&gt; Belarus                                           0.4021214
-#&gt; Belize                                            0.9109384
-#&gt; Bhutan                                            0.8398880
-#&gt; Bolivia                                           0.8108703
-#&gt; Bosnia Herzegovina                                0.7382935
-#&gt; Botswana                                          0.8442621
-#&gt; Brazil                                            0.6591513
-#&gt; Brunei Darussalam                                 0.8999319
-#&gt; Burundi                                           0.9215226
-#&gt; Cambodia                                          0.9410313
-#&gt; Cameroon                                          0.3771930
-#&gt; Chile                                             0.6856061
-#&gt; China                                             0.2420808
-#&gt; China, Macao SAR                                  0.9652236
-#&gt; Colombia                                          0.7327320
-#&gt; Congo                                             0.8456467
-#&gt; Costa Rica                                        0.4294091
-#&gt; Dem. Rep. of the Congo                            0.8999319
-#&gt; Djibouti                                          0.8999319
-#&gt; Dominica                                          0.9652236
-#&gt; Dominican Rep.                                    0.9410313
-#&gt; Ecuador                                           0.7085397
-#&gt; El Salvador                                       0.7614105
-#&gt; Georgia                                           0.8651555
-#&gt; Greece                                            0.7327320
-#&gt; Grenada                                           0.9652236
-#&gt; Indonesia                                         0.7218802
-#&gt; Israel                                            0.3618549
-#&gt; Japan                                             0.6382967
-#&gt; Jordan                                            0.7628249
-#&gt; Kuwait                                            0.7961870
-#&gt; Kyrgyzstan                                        0.7382935
-#&gt; Lebanon                                           0.7821115
-#&gt; Lesotho                                           0.8867462
-#&gt; Madagascar                                        0.8108703
-#&gt; Mauritius                                         0.8086078
-#&gt; Mexico                                            0.9157638
-#&gt; Mongolia                                          0.7382935
-#&gt; Morocco                                           0.7141012
-#&gt; Mozambique                                        0.8203792
-#&gt; Myanmar                                           0.4677522
-#&gt; Namibia                                           0.8867462
-#&gt; New Zealand                                       0.8628930
-#&gt; Philippines                                       0.4641856
-#&gt; Poland                                            0.1349248
-#&gt; Qatar                                             0.6590799
-#&gt; Rep. of Korea                                     0.5601584
-#&gt; Rep. of Moldova                                   0.4746983
-#&gt; Russian Federation                                0.1349248
-#&gt; Samoa                                             0.7118387
-#&gt; Sao Tome and Principe                             0.8867462
-#&gt; Saudi Arabia                                      0.8651555
-#&gt; Serbia                                            0.1349248
-#&gt; Seychelles                                        0.8351340
-#&gt; Singapore                                         0.3123536
-#&gt; Slovenia                                          0.6359628
-#&gt; Solomon Isds                                      0.7085397
-#&gt; South Africa                                      0.8122044
-#&gt; Sri Lanka                                         0.5183993
-#&gt; Suriname                                          0.5965446
-#&gt; Tajikistan                                        0.8698390
-#&gt; TFYR of Macedonia                                 0.1349248
-#&gt; Thailand                                          0.9652236
-#&gt; Trinidad and Tobago                               0.8398880
-#&gt; Tunisia                                           0.7141012
-#&gt; Uganda                                            0.6924717
-#&gt; United Rep. of Tanzania                           0.6924717
-#&gt; Uruguay                                           0.6437418
-#&gt; USA                                               0.8455665
-#&gt; Zambia                                            0.7591480
-#&gt;                         8 Royalties and license fees 9 Other business services
-#&gt; Albania                                   0.98868462                 0.8352946
-#&gt; Algeria                                   0.88033629                 0.3712668
-#&gt; Angola                                    0.98868462                 0.9661110
-#&gt; Argentina                                 0.93199344                 0.3626690
-#&gt; Armenia                                   0.92571209                 0.5696087
-#&gt; Aruba                                     0.98868462                 0.9661110
-#&gt; Australia                                 0.98868462                 0.8352946
-#&gt; Azerbaijan                                0.97222589                 0.8956924
-#&gt; Bahamas                                   0.98868462                 0.9661110
-#&gt; Bangladesh                                0.93702747                 0.6889714
-#&gt; Belarus                                   0.95205501                 0.6657026
-#&gt; Belize                                    0.98868462                 0.9207683
-#&gt; Bhutan                                    0.97222589                 0.7751982
-#&gt; Bolivia                                   0.94073963                 0.8031997
-#&gt; Bosnia Herzegovina                        0.94073963                 0.7695212
-#&gt; Botswana                                  0.92571209                 0.8381328
-#&gt; Brazil                                    0.92828129                 0.4370402
-#&gt; Brunei Darussalam                         0.95205501                 0.8824315
-#&gt; Burundi                                   0.96851373                 0.9075074
-#&gt; Cambodia                                  0.95719836                 0.9189611
-#&gt; Cameroon                                  0.95205501                 0.5387560
-#&gt; Chile                                     0.91182256                 0.4520952
-#&gt; China                                     0.91182256                 0.2807091
-#&gt; China, Macao SAR                          0.98868462                 0.9661110
-#&gt; Colombia                                  0.97222589                 0.7648759
-#&gt; Congo                                     0.95205501                 0.8370887
-#&gt; Costa Rica                                0.94845217                 0.5185613
-#&gt; Dem. Rep. of the Congo                    0.95205501                 0.8824315
-#&gt; Djibouti                                  0.95205501                 0.8824315
-#&gt; Dominica                                  0.98868462                 0.9661110
-#&gt; Dominican Rep.                            0.95719836                 0.9189611
-#&gt; Ecuador                                   0.94073963                 0.7177260
-#&gt; El Salvador                               0.94073963                 0.6827056
-#&gt; Georgia                                   0.94073963                 0.8485425
-#&gt; Greece                                    0.97222589                 0.7648759
-#&gt; Grenada                                   0.98868462                 0.9661110
-#&gt; Indonesia                                 0.91696591                 0.5637763
-#&gt; Israel                                    0.95976755                 0.4669766
-#&gt; Japan                                     0.15615220                 0.4745475
-#&gt; Jordan                                    0.94073963                 0.7630688
-#&gt; Kuwait                                    0.95205501                 0.7165946
-#&gt; Kyrgyzstan                                0.94073963                 0.7695212
-#&gt; Lebanon                                   0.84384780                 0.7836542
-#&gt; Lesotho                                   0.95719836                 0.8736184
-#&gt; Madagascar                                0.94073963                 0.8031997
-#&gt; Mauritius                                 0.98868462                 0.8352946
-#&gt; Mexico                                    0.98868462                 0.8456169
-#&gt; Mongolia                                  0.94073963                 0.7695212
-#&gt; Morocco                                   0.90925336                 0.7223713
-#&gt; Mozambique                                0.98354127                 0.7637444
-#&gt; Myanmar                                   0.95719836                 0.6957798
-#&gt; Namibia                                   0.95719836                 0.8736184
-#&gt; New Zealand                               0.98868462                 0.8806373
-#&gt; Philippines                               0.95976755                 0.5524503
-#&gt; Poland                                    0.91182256                 0.2703868
-#&gt; Qatar                                     0.94073963                 0.5972319
-#&gt; Rep. of Korea                             0.91182256                 0.4534372
-#&gt; Rep. of Moldova                           0.95205501                 0.6993811
-#&gt; Russian Federation                        0.91182256                 0.2703868
-#&gt; Samoa                                     0.95719836                 0.7544662
-#&gt; Sao Tome and Principe                     0.95719836                 0.8736184
-#&gt; Saudi Arabia                              0.94073963                 0.8485425
-#&gt; Serbia                                    0.91182256                 0.2703868
-#&gt; Seychelles                                0.95976755                 0.6901579
-#&gt; Singapore                                 0.79847200                 0.3098971
-#&gt; Slovenia                                  0.94073963                 0.6840476
-#&gt; Solomon Isds                              0.94073963                 0.7177260
-#&gt; South Africa                              0.81236154                 0.7818471
-#&gt; Sri Lanka                                 0.97222589                 0.7579848
-#&gt; Suriname                                  0.90050718                 0.3728635
-#&gt; Tajikistan                                0.98354127                 0.8842386
-#&gt; TFYR of Macedonia                         0.91182256                 0.2703868
-#&gt; Thailand                                  0.98868462                 0.9661110
-#&gt; Trinidad and Tobago                       0.97222589                 0.7751982
-#&gt; Tunisia                                   0.90925336                 0.7223713
-#&gt; Uganda                                    0.92571209                 0.6321649
-#&gt; United Rep. of Tanzania                   0.92571209                 0.6321649
-#&gt; Uruguay                                   0.94845217                 0.5254525
-#&gt; USA                                       0.09949282                 0.7181594
-#&gt; Zambia                                    0.98868462                 0.7148004
+#&gt; <span style='color: #949494;'># A tibble: 880 x 3</span><span>
+#&gt;    country    product          value
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Albania    1 Transportation 0.674
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Algeria    1 Transportation 0.395
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Angola     1 Transportation 0.893
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Argentina  1 Transportation 0.449
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Armenia    1 Transportation 0.392
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Aruba      1 Transportation 0.893
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Australia  1 Transportation 0.674
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Azerbaijan 1 Transportation 0.639
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Bahamas    1 Transportation 0.893
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Bangladesh 1 Transportation 0.580
+#&gt; </span><span style='color: #949494;'># … with 870 more rows</span><span>
 #&gt; 
 #&gt; $complexity_outlook
-#&gt;                 Albania                 Algeria                  Angola 
-#&gt;             -0.45864123             -0.22540140             -0.17299925 
-#&gt;               Argentina                 Armenia                   Aruba 
-#&gt;             -0.37974691             -0.23702130             -0.17299925 
-#&gt;               Australia              Azerbaijan                 Bahamas 
-#&gt;             -0.45864123             -0.32031891             -0.17299925 
-#&gt;              Bangladesh                 Belarus                  Belize 
-#&gt;             -0.36016838             -0.39157679             -0.35225411 
-#&gt;                  Bhutan                 Bolivia      Bosnia Herzegovina 
-#&gt;             -0.40770962             -0.29022794             -0.34129756 
-#&gt;                Botswana                  Brazil       Brunei Darussalam 
-#&gt;             -0.22595578             -0.35425793             -0.27682574 
-#&gt;                 Burundi                Cambodia                Cameroon 
-#&gt;             -0.31644107             -0.22206458             -0.46703588 
-#&gt;                   Chile                   China        China, Macao SAR 
-#&gt;             -0.30603652             -0.21939546             -0.17299925 
-#&gt;                Colombia                   Congo              Costa Rica 
-#&gt;             -0.46847988             -0.36285349             -0.29656376 
-#&gt;  Dem. Rep. of the Congo                Djibouti                Dominica 
-#&gt;             -0.27682574             -0.27682574             -0.17299925 
-#&gt;          Dominican Rep.                 Ecuador             El Salvador 
-#&gt;             -0.22206458             -0.29290436             -0.30260147 
-#&gt;                 Georgia                  Greece                 Grenada 
-#&gt;             -0.28324848             -0.46847988             -0.17299925 
-#&gt;               Indonesia                  Israel                   Japan 
-#&gt;             -0.33905876             -0.28674641             -0.62763019 
-#&gt;                  Jordan                  Kuwait              Kyrgyzstan 
-#&gt;             -0.35084692             -0.40355902             -0.34129756 
-#&gt;                 Lebanon                 Lesotho              Madagascar 
-#&gt;             -0.04970466             -0.31417942             -0.29022794 
-#&gt;               Mauritius                  Mexico                Mongolia 
-#&gt;             -0.45864123             -0.30761924             -0.34129756 
-#&gt;                 Morocco              Mozambique                 Myanmar 
-#&gt;             -0.17045910             -0.46935162             -0.41274359 
-#&gt;                 Namibia             New Zealand             Philippines 
-#&gt;             -0.31417942             -0.34430839             -0.16265622 
-#&gt;                  Poland                   Qatar           Rep. of Korea 
-#&gt;             -0.22548894             -0.27093337             -0.31413986 
-#&gt;         Rep. of Moldova      Russian Federation                   Samoa 
-#&gt;             -0.44088713             -0.22548894             -0.38523703 
-#&gt;   Sao Tome and Principe            Saudi Arabia                  Serbia 
-#&gt;             -0.31417942             -0.28324848             -0.22548894 
-#&gt;              Seychelles               Singapore                Slovenia 
-#&gt;             -0.09705112              0.17667854             -0.33162672 
-#&gt;            Solomon Isds            South Africa               Sri Lanka 
-#&gt;             -0.29290436              0.06531330             -0.42009549 
-#&gt;                Suriname              Tajikistan       TFYR of Macedonia 
-#&gt;             -0.20843089             -0.39085134             -0.22548894 
-#&gt;                Thailand     Trinidad and Tobago                 Tunisia 
-#&gt;             -0.17299925             -0.40770962             -0.17045910 
-#&gt;                  Uganda United Rep. of Tanzania                 Uruguay 
-#&gt;             -0.33557397             -0.33557397             -0.46014158 
-#&gt;                     USA                  Zambia 
-#&gt;             -0.50076287             -0.52169427 
+#&gt; </span><span style='color: #949494;'># A tibble: 80 x 2</span><span>
+#&gt;    product        value
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Singapore     0.177 
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> South Africa  0.065</span><span style='text-decoration: underline;'>3</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Lebanon      -</span><span style='color: #BB0000;'>0.049</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Seychelles   -</span><span style='color: #BB0000;'>0.097</span><span style='color: #BB0000;text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Philippines  -</span><span style='color: #BB0000;'>0.163</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Morocco      -</span><span style='color: #BB0000;'>0.170</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Tunisia      -</span><span style='color: #BB0000;'>0.170</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Angola       -</span><span style='color: #BB0000;'>0.173</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Aruba        -</span><span style='color: #BB0000;'>0.173</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Bahamas      -</span><span style='color: #BB0000;'>0.173</span><span> 
+#&gt; </span><span style='color: #949494;'># … with 70 more rows</span><span>
 #&gt; 
 #&gt; $complexity_outlook_gain
-#&gt; 80 x 11 Matrix of class "dgeMatrix"
-#&gt;                         1 Transportation
-#&gt; Albania                    -0.0212836320
-#&gt; Algeria                    -0.0018849061
-#&gt; Angola                     -0.0069051803
-#&gt; Argentina                  -0.0127416877
-#&gt; Armenia                    -0.0404516171
-#&gt; Aruba                      -0.0069051803
-#&gt; Australia                  -0.0212836320
-#&gt; Azerbaijan                  0.0206668477
-#&gt; Bahamas                    -0.0069051803
-#&gt; Bangladesh                 -0.0221112702
-#&gt; Belarus                     0.0077381353
-#&gt; Belize                     -0.0098484655
-#&gt; Bhutan                      0.0123829219
-#&gt; Bolivia                     0.0154461851
-#&gt; Bosnia Herzegovina          0.0108171278
-#&gt; Botswana                   -0.0160889926
-#&gt; Brazil                     -0.0339856660
-#&gt; Brunei Darussalam           0.0252946506
-#&gt; Burundi                    -0.0052206627
-#&gt; Cambodia                   -0.0091825578
-#&gt; Cameroon                   -0.0044086145
-#&gt; Chile                       0.0050215286
-#&gt; China                      -0.0095917014
-#&gt; China, Macao SAR           -0.0069051803
-#&gt; Colombia                    0.0062883960
-#&gt; Congo                       0.0223513654
-#&gt; Costa Rica                 -0.0288785492
-#&gt; Dem. Rep. of the Congo      0.0252946506
-#&gt; Djibouti                    0.0252946506
-#&gt; Dominica                   -0.0069051803
-#&gt; Dominican Rep.             -0.0091825578
-#&gt; Ecuador                     0.0040110185
-#&gt; El Salvador                 0.0071622593
-#&gt; Georgia                     0.0183894702
-#&gt; Greece                      0.0062883960
-#&gt; Grenada                    -0.0069051803
-#&gt; Indonesia                  -0.0241150392
-#&gt; Israel                     -0.0334085354
-#&gt; Japan                       0.0017966291
-#&gt; Jordan                      0.0069543037
-#&gt; Kuwait                      0.0140674396
-#&gt; Kyrgyzstan                  0.0108171278
-#&gt; Lebanon                    -0.0295097950
-#&gt; Lesotho                    -0.0121258430
-#&gt; Madagascar                  0.0154461851
-#&gt; Mauritius                  -0.0212836320
-#&gt; Mexico                     -0.0151891061
-#&gt; Mongolia                    0.0108171278
-#&gt; Morocco                     0.0085397503
-#&gt; Mozambique                  0.0163448171
-#&gt; Myanmar                    -0.0306018971
-#&gt; Namibia                    -0.0121258430
-#&gt; New Zealand                -0.0183403469
-#&gt; Philippines                -0.0219733689
-#&gt; Poland                     -0.0156862273
-#&gt; Qatar                      -0.0042729073
-#&gt; Rep. of Korea              -0.0027587694
-#&gt; Rep. of Moldova             0.0123671926
-#&gt; Russian Federation         -0.0156862273
-#&gt; Samoa                      -0.0281900668
-#&gt; Sao Tome and Principe      -0.0121258430
-#&gt; Saudi Arabia                0.0183894702
-#&gt; Serbia                     -0.0156862273
-#&gt; Seychelles                 -0.0119891961
-#&gt; Singapore                  -0.0109114296
-#&gt; Slovenia                   -0.0006180387
-#&gt; Solomon Isds                0.0040110185
-#&gt; South Africa               -0.0288438873
-#&gt; Sri Lanka                   0.0106826750
-#&gt; Suriname                   -0.0048269369
-#&gt; Tajikistan                  0.0246287429
-#&gt; TFYR of Macedonia          -0.0156862273
-#&gt; Thailand                   -0.0069051803
-#&gt; Trinidad and Tobago         0.0123829219
-#&gt; Tunisia                     0.0085397503
-#&gt; Uganda                     -0.0358080849
-#&gt; United Rep. of Tanzania    -0.0358080849
-#&gt; Uruguay                    -0.0332728282
-#&gt; USA                        -0.0263331420
-#&gt; Zambia                     -0.0295675578
-#&gt;                         10 Personal, cultural, and recreational services
-#&gt; Albania                                                      0.034736658
-#&gt; Algeria                                                     -0.033448937
-#&gt; Angola                                                      -0.003754549
-#&gt; Argentina                                                    0.016851493
-#&gt; Armenia                                                      0.018949830
-#&gt; Aruba                                                       -0.003754549
-#&gt; Australia                                                    0.034736658
-#&gt; Azerbaijan                                                  -0.011918421
-#&gt; Bahamas                                                     -0.003754549
-#&gt; Bangladesh                                                  -0.018882726
-#&gt; Belarus                                                     -0.020224532
-#&gt; Belize                                                      -0.006850447
-#&gt; Bhutan                                                      -0.020158498
-#&gt; Bolivia                                                     -0.021836385
-#&gt; Bosnia Herzegovina                                          -0.018199565
-#&gt; Botswana                                                    -0.013761861
-#&gt; Brazil                                                       0.019487287
-#&gt; Brunei Darussalam                                           -0.014985938
-#&gt; Burundi                                                     -0.009917964
-#&gt; Cambodia                                                    -0.010576615
-#&gt; Cameroon                                                     0.012581573
-#&gt; Chile                                                       -0.030263691
-#&gt; China                                                       -0.032406387
-#&gt; China, Macao SAR                                            -0.003754549
-#&gt; Colombia                                                     0.026572786
-#&gt; Congo                                                       -0.018081836
-#&gt; Costa Rica                                                  -0.016571740
-#&gt; Dem. Rep. of the Congo                                      -0.014985938
-#&gt; Djibouti                                                    -0.014985938
-#&gt; Dominica                                                    -0.003754549
-#&gt; Dominican Rep.                                              -0.010576615
-#&gt; Ecuador                                                      0.019750720
-#&gt; El Salvador                                                 -0.030076462
-#&gt; Georgia                                                     -0.018740487
-#&gt; Greece                                                       0.026572786
-#&gt; Grenada                                                     -0.003754549
-#&gt; Indonesia                                                   -0.020710188
-#&gt; Israel                                                       0.028769914
-#&gt; Japan                                                       -0.027805738
-#&gt; Jordan                                                       0.022846618
-#&gt; Kuwait                                                      -0.026321913
-#&gt; Kyrgyzstan                                                  -0.018199565
-#&gt; Lebanon                                                      0.028155799
-#&gt; Lesotho                                                     -0.013672513
-#&gt; Madagascar                                                  -0.021836385
-#&gt; Mauritius                                                    0.034736658
-#&gt; Mexico                                                      -0.011994626
-#&gt; Mongolia                                                    -0.018199565
-#&gt; Morocco                                                     -0.025021631
-#&gt; Mozambique                                                  -0.019499847
-#&gt; Myanmar                                                      0.025230974
-#&gt; Namibia                                                     -0.013672513
-#&gt; New Zealand                                                  0.037832556
-#&gt; Philippines                                                 -0.012817191
-#&gt; Poland                                                       0.014324897
-#&gt; Qatar                                                        0.011510643
-#&gt; Rep. of Korea                                                0.023200311
-#&gt; Rep. of Moldova                                             -0.023861352
-#&gt; Russian Federation                                           0.014324897
-#&gt; Samoa                                                        0.031551412
-#&gt; Sao Tome and Principe                                       -0.013672513
-#&gt; Saudi Arabia                                                -0.018740487
-#&gt; Serbia                                                       0.014324897
-#&gt; Seychelles                                                  -0.007037675
-#&gt; Singapore                                                   -0.035802000
-#&gt; Slovenia                                                     0.023387540
-#&gt; Solomon Isds                                                 0.019750720
-#&gt; South Africa                                                 0.024429631
-#&gt; Sri Lanka                                                   -0.017697937
-#&gt; Suriname                                                    -0.037114137
-#&gt; Tajikistan                                                  -0.011259770
-#&gt; TFYR of Macedonia                                            0.014324897
-#&gt; Thailand                                                    -0.003754549
-#&gt; Trinidad and Tobago                                         -0.020158498
-#&gt; Tunisia                                                     -0.025021631
-#&gt; Uganda                                                       0.019585167
-#&gt; United Rep. of Tanzania                                      0.019585167
-#&gt; Uruguay                                                      0.027698983
-#&gt; USA                                                         -0.027335779
-#&gt; Zambia                                                       0.026496581
-#&gt;                         11 Government services, n.i.e.      2 Travel
-#&gt; Albania                                  -0.0064049383  0.0406377183
-#&gt; Algeria                                   0.0044541128 -0.0199809812
-#&gt; Angola                                    0.0025465531  0.0426083388
-#&gt; Argentina                                -0.0286549795  0.0196029809
-#&gt; Armenia                                   0.0053279381  0.0315481304
-#&gt; Aruba                                     0.0025465531  0.0426083388
-#&gt; Australia                                -0.0064049383  0.0406377183
-#&gt; Azerbaijan                                0.0025822655  0.0409997092
-#&gt; Bahamas                                   0.0025465531  0.0426083388
-#&gt; Bangladesh                                0.0114371848 -0.0080516793
-#&gt; Belarus                                  -0.0203963988 -0.0168748852
-#&gt; Belize                                    0.0022508615  0.0436462474
-#&gt; Bhutan                                   -0.0055448973  0.0335537485
-#&gt; Bolivia                                   0.0341558700  0.0492521940
-#&gt; Bosnia Herzegovina                       -0.0061527797  0.0340091517
-#&gt; Botswana                                  0.0259764955  0.0417944491
-#&gt; Brazil                                    0.0042019542 -0.0133524146
-#&gt; Brunei Darussalam                         0.0319050085  0.0056059466
-#&gt; Burundi                                   0.0315736045  0.0082524848
-#&gt; Cambodia                                  0.0344158491  0.0498229151
-#&gt; Cameroon                                  0.0034249798 -0.0131242412
-#&gt; Chile                                     0.0128934665 -0.0119525152
-#&gt; China                                    -0.0391122493 -0.0354712556
-#&gt; China, Macao SAR                          0.0025465531  0.0426083388
-#&gt; Colombia                                 -0.0063692258  0.0390290886
-#&gt; Congo                                     0.0316093170  0.0066438552
-#&gt; Costa Rica                               -0.0200348922  0.0242201396
-#&gt; Dem. Rep. of the Congo                    0.0319050085  0.0056059466
-#&gt; Djibouti                                  0.0319050085  0.0056059466
-#&gt; Dominica                                  0.0025465531  0.0426083388
-#&gt; Dominican Rep.                            0.0344158491  0.0498229151
-#&gt; Ecuador                                   0.0255000702  0.0462436649
-#&gt; El Salvador                               0.0260287072  0.0418062333
-#&gt; Georgia                                   0.0344515616  0.0482142855
-#&gt; Greece                                   -0.0063692258  0.0390290886
-#&gt; Grenada                                   0.0025465531  0.0426083388
-#&gt; Indonesia                                 0.0232357784  0.0407483225
-#&gt; Israel                                   -0.0312372450 -0.0213967283
-#&gt; Japan                                     0.0061089936 -0.0159705939
-#&gt; Jordan                                    0.0257957618  0.0452057564
-#&gt; Kuwait                                    0.0234821541 -0.0008021055
-#&gt; Kyrgyzstan                               -0.0061527797  0.0340091517
-#&gt; Lebanon                                  -0.0142528186  0.0348931749
-#&gt; Lesotho                                   0.0341201576  0.0508608236
-#&gt; Madagascar                                0.0341558700  0.0492521940
-#&gt; Mauritius                                -0.0064049383  0.0406377183
-#&gt; Mexico                                   -0.0055806098  0.0351623782
-#&gt; Mongolia                                 -0.0061527797  0.0340091517
-#&gt; Morocco                                   0.0257165164  0.0412237280
-#&gt; Mozambique                               -0.0083871420 -0.0080166818
-#&gt; Myanmar                                   0.0140629833  0.0385386879
-#&gt; Namibia                                   0.0341201576  0.0508608236
-#&gt; New Zealand                              -0.0061092467  0.0395998097
-#&gt; Philippines                              -0.0225814452 -0.0183881992
-#&gt; Poland                                   -0.0399365777 -0.0299959155
-#&gt; Qatar                                     0.0173729074  0.0387977042
-#&gt; Rep. of Korea                            -0.0279438201 -0.0227581259
-#&gt; Rep. of Moldova                           0.0199122509 -0.0016318429
-#&gt; Russian Federation                       -0.0399365777 -0.0299959155
-#&gt; Samoa                                    -0.0148442919  0.0326092522
-#&gt; Sao Tome and Principe                     0.0341201576  0.0508608236
-#&gt; Saudi Arabia                              0.0344515616  0.0482142855
-#&gt; Serbia                                   -0.0399365777 -0.0299959155
-#&gt; Seychelles                               -0.0108843792 -0.0101125011
-#&gt; Singapore                                -0.0385207759 -0.0331873329
-#&gt; Slovenia                                 -0.0148085795  0.0310006226
-#&gt; Solomon Isds                              0.0255000702  0.0462436649
-#&gt; South Africa                              0.0179121690  0.0410698426
-#&gt; Sri Lanka                                -0.0091148005  0.0327240111
-#&gt; Suriname                                  0.0151443280  0.0316937322
-#&gt; Tajikistan                               -0.0002599791 -0.0005707211
-#&gt; TFYR of Macedonia                        -0.0399365777 -0.0299959155
-#&gt; Thailand                                  0.0025465531  0.0426083388
-#&gt; Trinidad and Tobago                      -0.0055448973  0.0335537485
-#&gt; Tunisia                                   0.0257165164  0.0412237280
-#&gt; Uganda                                    0.0091935328  0.0313399593
-#&gt; United Rep. of Tanzania                   0.0091935328  0.0313399593
-#&gt; Uruguay                                  -0.0172893175  0.0305252171
-#&gt; USA                                       0.0091262792 -0.0083735927
-#&gt; Zambia                                   -0.0145321012  0.0331917576
-#&gt;                         3 Communications services 4 Construction services
-#&gt; Albania                              0.0190437878           -0.0065414722
-#&gt; Algeria                             -0.0329193548            0.0340324821
-#&gt; Angola                              -0.0039809787           -0.0064651354
-#&gt; Argentina                           -0.0364699448           -0.0115316336
-#&gt; Armenia                              0.0002685583            0.0366131690
-#&gt; Aruba                               -0.0039809787           -0.0064651354
-#&gt; Australia                            0.0190437878           -0.0065414722
-#&gt; Azerbaijan                          -0.0059163567           -0.0060075315
-#&gt; Bahamas                             -0.0039809787           -0.0064651354
-#&gt; Bangladesh                           0.0106365057            0.0428256514
-#&gt; Belarus                              0.0103056539            0.0475499855
-#&gt; Belize                               0.0254307565           -0.0067941252
-#&gt; Bhutan                              -0.0150738175           -0.0158388406
-#&gt; Bolivia                              0.0218908523           -0.0106032515
-#&gt; Bosnia Herzegovina                   0.0168823416            0.0440990008
-#&gt; Botswana                            -0.0121985418            0.0397036565
-#&gt; Brazil                              -0.0307579086           -0.0166079908
-#&gt; Brunei Darussalam                   -0.0035399042           -0.0038091263
-#&gt; Burundi                              0.0278072090           -0.0045957200
-#&gt; Cambodia                            -0.0055855049           -0.0107318656
-#&gt; Cameroon                            -0.0296420001           -0.0164019330
-#&gt; Chile                               -0.0263063179           -0.0164030399
-#&gt; China                               -0.0418724951            0.0352850617
-#&gt; China, Macao SAR                    -0.0039809787           -0.0064651354
-#&gt; Colombia                             0.0171084098           -0.0060838682
-#&gt; Congo                                0.0258718310           -0.0041381161
-#&gt; Costa Rica                          -0.0281475981           -0.0122418905
-#&gt; Dem. Rep. of the Congo              -0.0035399042           -0.0038091263
-#&gt; Djibouti                            -0.0035399042           -0.0038091263
-#&gt; Dominica                            -0.0039809787           -0.0064651354
-#&gt; Dominican Rep.                      -0.0055855049           -0.0107318656
-#&gt; Ecuador                              0.0155038836           -0.0103505984
-#&gt; El Salvador                          0.0127333915           -0.0204345606
-#&gt; Georgia                             -0.0075208829           -0.0102742617
-#&gt; Greece                               0.0171084098           -0.0060838682
-#&gt; Grenada                             -0.0039809787           -0.0064651354
-#&gt; Indonesia                            0.0102172773           -0.0138234599
-#&gt; Israel                              -0.0305535881           -0.0055241021
-#&gt; Japan                               -0.0265978540            0.0388931024
-#&gt; Jordan                              -0.0139078516           -0.0100216086
-#&gt; Kuwait                               0.0167143702           -0.0139694252
-#&gt; Kyrgyzstan                           0.0168823416            0.0440990008
-#&gt; Lebanon                              0.0121287374           -0.0123896345
-#&gt; Lesotho                              0.0238262303           -0.0110608554
-#&gt; Madagascar                           0.0218908523           -0.0106032515
-#&gt; Mauritius                            0.0190437878           -0.0065414722
-#&gt; Mexico                              -0.0131384395           -0.0162964445
-#&gt; Mongolia                             0.0168823416            0.0440990008
-#&gt; Morocco                              0.0152778154            0.0398322706
-#&gt; Mozambique                           0.0183188964           -0.0097026950
-#&gt; Myanmar                             -0.0225301400           -0.0134933632
-#&gt; Namibia                              0.0238262303           -0.0110608554
-#&gt; New Zealand                         -0.0103679474           -0.0062124823
-#&gt; Philippines                         -0.0241666194           -0.0057767551
-#&gt; Poland                              -0.0096902678            0.0450400340
-#&gt; Qatar                                0.0063464228           -0.0201819076
-#&gt; Rep. of Korea                       -0.0285443365            0.0483831745
-#&gt; Rep. of Moldova                      0.0153141646           -0.0071522667
-#&gt; Russian Federation                  -0.0096902678            0.0450400340
-#&gt; Samoa                                0.0124307509            0.0438940499
-#&gt; Sao Tome and Principe                0.0238262303           -0.0110608554
-#&gt; Saudi Arabia                        -0.0075208829           -0.0102742617
-#&gt; Serbia                              -0.0096902678            0.0450400340
-#&gt; Seychelles                          -0.0136089530           -0.0027626045
-#&gt; Singapore                           -0.0421745086           -0.0209986226
-#&gt; Slovenia                             0.0104953729            0.0443516538
-#&gt; Solomon Isds                         0.0155038836           -0.0103505984
-#&gt; South Africa                        -0.0188875240           -0.0163273748
-#&gt; Sri Lanka                           -0.0164740231           -0.0090216821
-#&gt; Suriname                            -0.0008755615           -0.0231971651
-#&gt; Tajikistan                           0.0274763572            0.0001286141
-#&gt; TFYR of Macedonia                   -0.0096902678            0.0450400340
-#&gt; Thailand                            -0.0039809787           -0.0064651354
-#&gt; Trinidad and Tobago                 -0.0150738175           -0.0158388406
-#&gt; Tunisia                              0.0152778154            0.0398322706
-#&gt; Uganda                              -0.0277429713            0.0301250004
-#&gt; United Rep. of Tanzania             -0.0277429713            0.0301250004
-#&gt; Uruguay                              0.0054348348           -0.0093040767
-#&gt; USA                                  0.0088987378           -0.0252458804
-#&gt; Zambia                               0.0098863270           -0.0163727813
-#&gt;                         5 Insurance services 6 Financial services
-#&gt; Albania                        -0.0111173072        -0.0051255515
-#&gt; Algeria                         0.0537968499        -0.0089077918
-#&gt; Angola                         -0.0043340801        -0.0023764543
-#&gt; Argentina                      -0.0074350389        -0.0097597987
-#&gt; Armenia                        -0.0286106325        -0.0149147235
-#&gt; Aruba                          -0.0043340801        -0.0023764543
-#&gt; Australia                      -0.0111173072        -0.0051255515
-#&gt; Azerbaijan                     -0.0039470993        -0.0065917392
-#&gt; Bahamas                        -0.0043340801        -0.0023764543
-#&gt; Bangladesh                     -0.0202437951        -0.0109001598
-#&gt; Belarus                        -0.0176828718        -0.0124375315
-#&gt; Belize                         -0.0070845498        -0.0034874421
-#&gt; Bhutan                          0.0541801261        -0.0034684035
-#&gt; Bolivia                        -0.0088715116        -0.0103806402
-#&gt; Bosnia Herzegovina             -0.0159013763        -0.0130623460
-#&gt; Botswana                       -0.0157118298        -0.0104139865
-#&gt; Brazil                          0.0585809189        -0.0009709973
-#&gt; Brunei Darussalam              -0.0017869618        -0.0068931981
-#&gt; Burundi                        -0.0049244123        -0.0037889010
-#&gt; Cambodia                       -0.0065080226        -0.0050543675
-#&gt; Cameroon                        0.0461919306        -0.0071596116
-#&gt; Chile                           0.0630006570        -0.0035481728
-#&gt; China                           0.0498552169        -0.0079815183
-#&gt; China, Macao SAR               -0.0043340801        -0.0023764543
-#&gt; Colombia                       -0.0107303265        -0.0093408364
-#&gt; Congo                          -0.0045374316        -0.0080041859
-#&gt; Costa Rica                     -0.0037892622        -0.0039064044
-#&gt; Dem. Rep. of the Congo         -0.0017869618        -0.0068931981
-#&gt; Djibouti                       -0.0017869618        -0.0068931981
-#&gt; Dominica                       -0.0043340801        -0.0023764543
-#&gt; Dominican Rep.                 -0.0065080226        -0.0050543675
-#&gt; Ecuador                        -0.0129042691        -0.0120187496
-#&gt; El Salvador                     0.0492557138        -0.0072573045
-#&gt; Georgia                        -0.0061210419        -0.0092696524
-#&gt; Greece                         -0.0107303265        -0.0093408364
-#&gt; Grenada                        -0.0043340801        -0.0023764543
-#&gt; Indonesia                      -0.0025980989        -0.0059436657
-#&gt; Israel                         -0.0034879396        -0.0031680595
-#&gt; Japan                          -0.0086132571        -0.0276803627
-#&gt; Jordan                         -0.0101537993        -0.0109077618
-#&gt; Kuwait                          0.0535897939        -0.0048808502
-#&gt; Kyrgyzstan                     -0.0159013763        -0.0130623460
-#&gt; Lebanon                        -0.0167297216         0.0557870944
-#&gt; Lesotho                        -0.0092584924        -0.0061653553
-#&gt; Madagascar                     -0.0088715116        -0.0103806402
-#&gt; Mauritius                      -0.0111173072        -0.0051255515
-#&gt; Mexico                          0.0537931454         0.0007468814
-#&gt; Mongolia                       -0.0159013763        -0.0130623460
-#&gt; Morocco                        -0.0180753188        -0.0157402592
-#&gt; Mozambique                      0.0557637364        -0.0022029370
-#&gt; Myanmar                        -0.0166563556        -0.0084441167
-#&gt; Namibia                        -0.0092584924        -0.0061653553
-#&gt; New Zealand                    -0.0083668375        -0.0040145637
-#&gt; Philippines                     0.0005448178        -0.0015299501
-#&gt; Poland                         -0.0150552358        -0.0138539512
-#&gt; Qatar                           0.0452229564        -0.0088954139
-#&gt; Rep. of Korea                  -0.0061891905        -0.0109913237
-#&gt; Rep. of Moldova                -0.0106530072        -0.0097558257
-#&gt; Russian Federation             -0.0150552358        -0.0138539512
-#&gt; Samoa                          -0.0203211144        -0.0104851705
-#&gt; Sao Tome and Principe          -0.0092584924        -0.0061653553
-#&gt; Saudi Arabia                   -0.0061210419        -0.0092696524
-#&gt; Serbia                         -0.0150552358        -0.0138539512
-#&gt; Seychelles                      0.0066603934         0.0002216896
-#&gt; Singapore                       0.0534466097         0.0582907466
-#&gt; Slovenia                       -0.0199341337        -0.0147004554
-#&gt; Solomon Isds                   -0.0129042691        -0.0120187496
-#&gt; South Africa                   -0.0161531944         0.0542201690
-#&gt; Sri Lanka                      -0.0100626749        -0.0083433789
-#&gt; Suriname                        0.0559161072        -0.0070356149
-#&gt; Tajikistan                     -0.0023634890        -0.0053262727
-#&gt; TFYR of Macedonia              -0.0150552358        -0.0138539512
-#&gt; Thailand                       -0.0043340801        -0.0023764543
-#&gt; Trinidad and Tobago             0.0541801261        -0.0034684035
-#&gt; Tunisia                        -0.0180753188        -0.0157402592
-#&gt; Uganda                          0.0383826383        -0.0089287602
-#&gt; United Rep. of Tanzania         0.0383826383        -0.0089287602
-#&gt; Uruguay                        -0.0044569138        -0.0049038618
-#&gt; USA                             0.0433075173         0.0445978454
-#&gt; Zambia                          0.0470099183        -0.0020022158
-#&gt;                         7 Computer and information services
-#&gt; Albania                                       -0.0104937367
-#&gt; Algeria                                       -0.0077199517
-#&gt; Angola                                        -0.0061088631
-#&gt; Argentina                                      0.0604408777
-#&gt; Armenia                                        0.0392860286
-#&gt; Aruba                                         -0.0061088631
-#&gt; Australia                                     -0.0104937367
-#&gt; Azerbaijan                                    -0.0087974213
-#&gt; Bahamas                                       -0.0061088631
-#&gt; Bangladesh                                     0.0441713262
-#&gt; Belarus                                        0.0511312308
-#&gt; Belize                                        -0.0117173023
-#&gt; Bhutan                                        -0.0147818171
-#&gt; Bolivia                                       -0.0240543233
-#&gt; Bosnia Herzegovina                            -0.0133983807
-#&gt; Botswana                                      -0.0147498461
-#&gt; Brazil                                        -0.0048153078
-#&gt; Brunei Darussalam                             -0.0123370210
-#&gt; Burundi                                       -0.0152569020
-#&gt; Cambodia                                      -0.0157573259
-#&gt; Cameroon                                       0.0413228972
-#&gt; Chile                                         -0.0087274315
-#&gt; China                                          0.0603492594
-#&gt; China, Macao SAR                              -0.0061088631
-#&gt; Colombia                                      -0.0131822949
-#&gt; Congo                                         -0.0179454602
-#&gt; Costa Rica                                     0.0619058704
-#&gt; Dem. Rep. of the Congo                        -0.0123370210
-#&gt; Djibouti                                      -0.0123370210
-#&gt; Dominica                                      -0.0061088631
-#&gt; Dominican Rep.                                -0.0157573259
-#&gt; Ecuador                                       -0.0228307577
-#&gt; El Salvador                                   -0.0300387190
-#&gt; Georgia                                       -0.0184458841
-#&gt; Greece                                        -0.0131822949
-#&gt; Grenada                                       -0.0061088631
-#&gt; Indonesia                                     -0.0117717800
-#&gt; Israel                                         0.0692382991
-#&gt; Japan                                         -0.0041580659
-#&gt; Jordan                                        -0.0172223185
-#&gt; Kuwait                                        -0.0239298559
-#&gt; Kyrgyzstan                                    -0.0133983807
-#&gt; Lebanon                                       -0.0155563532
-#&gt; Lesotho                                       -0.0213657651
-#&gt; Madagascar                                    -0.0240543233
-#&gt; Mauritius                                     -0.0104937367
-#&gt; Mexico                                        -0.0120932589
-#&gt; Mongolia                                      -0.0133983807
-#&gt; Morocco                                       -0.0230468435
-#&gt; Mozambique                                    -0.0142813931
-#&gt; Myanmar                                        0.0438869880
-#&gt; Namibia                                       -0.0213657651
-#&gt; New Zealand                                   -0.0048852976
-#&gt; Philippines                                    0.0680147335
-#&gt; Poland                                         0.0619487815
-#&gt; Qatar                                         -0.0288151534
-#&gt; Rep. of Korea                                  0.0091364723
-#&gt; Rep. of Moldova                                0.0404752882
-#&gt; Russian Federation                             0.0619487815
-#&gt; Samoa                                         -0.0094862569
-#&gt; Sao Tome and Principe                         -0.0213657651
-#&gt; Saudi Arabia                                  -0.0184458841
-#&gt; Serbia                                         0.0619487815
-#&gt; Seychelles                                     0.0095939851
-#&gt; Singapore                                      0.0542791631
-#&gt; Slovenia                                      -0.0121748151
-#&gt; Solomon Isds                                  -0.0228307577
-#&gt; South Africa                                  -0.0195963768
-#&gt; Sri Lanka                                      0.0496233270
-#&gt; Suriname                                      -0.0204447339
-#&gt; Tajikistan                                    -0.0082969974
-#&gt; TFYR of Macedonia                              0.0619487815
-#&gt; Thailand                                      -0.0061088631
-#&gt; Trinidad and Tobago                           -0.0147818171
-#&gt; Tunisia                                       -0.0230468435
-#&gt; Uganda                                        -0.0195106762
-#&gt; United Rep. of Tanzania                       -0.0195106762
-#&gt; Uruguay                                       -0.0008997516
-#&gt; USA                                           -0.0287264241
-#&gt; Zambia                                        -0.0164781325
-#&gt;                         8 Royalties and license fees 9 Other business services
-#&gt; Albania                                   0.06772112              -0.026154974
-#&gt; Algeria                                   0.07231531               0.020682719
-#&gt; Angola                                    0.01384665              -0.009616595
-#&gt; Argentina                                 0.09279147               0.019944432
-#&gt; Armenia                                   0.09241796              -0.037337505
-#&gt; Aruba                                     0.01384665              -0.009616595
-#&gt; Australia                                 0.06772112              -0.026154974
-#&gt; Azerbaijan                                0.02724264              -0.017722025
-#&gt; Bahamas                                   0.01384665              -0.009616595
-#&gt; Bangladesh                                0.05281948              -0.022561111
-#&gt; Belarus                                   0.06188140              -0.021734944
-#&gt; Belize                                    0.04196930              -0.020995174
-#&gt; Bhutan                                    0.06971371              -0.017904189
-#&gt; Bolivia                                   0.05969938              -0.038032202
-#&gt; Bosnia Herzegovina                        0.05170525              -0.032688245
-#&gt; Botswana                                  0.01452069              -0.022135832
-#&gt; Brazil                                    0.08833118               0.027215990
-#&gt; Brunei Darussalam                         0.01773008              -0.017037028
-#&gt; Burundi                                   0.03245673              -0.020310176
-#&gt; Cambodia                                  0.01818073              -0.018548192
-#&gt; Cameroon                                  0.10997576              -0.021042285
-#&gt; Chile                                     0.07597535               0.024270359
-#&gt; China                                     0.09200402               0.030951022
-#&gt; China, Macao SAR                          0.01384665              -0.009616595
-#&gt; Colombia                                  0.08111712              -0.034260405
-#&gt; Congo                                     0.04585273              -0.028415607
-#&gt; Costa Rica                                0.05364365               0.033209663
-#&gt; Dem. Rep. of the Congo                    0.01773008              -0.017037028
-#&gt; Djibouti                                  0.01773008              -0.017037028
-#&gt; Dominica                                  0.01384665              -0.009616595
-#&gt; Dominican Rep.                            0.01818073              -0.018548192
-#&gt; Ecuador                                   0.08545120              -0.043192001
-#&gt; El Salvador                               0.10217044              -0.038214366
-#&gt; Georgia                                   0.03157672              -0.026653622
-#&gt; Greece                                    0.08111712              -0.034260405
-#&gt; Grenada                                   0.01384665              -0.009616595
-#&gt; Indonesia                                 0.06207759               0.011562780
-#&gt; Israel                                    0.06554883               0.037666457
-#&gt; Japan                                    -0.53821360               0.012275438
-#&gt; Jordan                                    0.05732855              -0.031813422
-#&gt; Kuwait                                    0.08832379              -0.028597771
-#&gt; Kyrgyzstan                                0.05170525              -0.032688245
-#&gt; Lebanon                                   0.11154878              -0.036362629
-#&gt; Lesotho                                   0.04630338              -0.029926771
-#&gt; Madagascar                                0.05969938              -0.038032202
-#&gt; Mauritius                                 0.06772112              -0.026154974
-#&gt; Mexico                                    0.05631771              -0.009798759
-#&gt; Mongolia                                  0.05170525              -0.032688245
-#&gt; Morocco                                   0.05603934              -0.041619842
-#&gt; Mozambique                                0.08398971              -0.019666174
-#&gt; Myanmar                                   0.06795535              -0.022371285
-#&gt; Namibia                                   0.04630338              -0.029926771
-#&gt; New Zealand                               0.03959847              -0.014776394
-#&gt; Philippines                               0.03979700               0.042826257
-#&gt; Poland                                    0.10340744               0.014594807
-#&gt; Qatar                                     0.12792227              -0.043374166
-#&gt; Rep. of Korea                             0.05126199               0.024636680
-#&gt; Rep. of Moldova                           0.06987552              -0.027078901
-#&gt; Russian Federation                        0.10340744               0.014594807
-#&gt; Samoa                                     0.06406109              -0.029742614
-#&gt; Sao Tome and Principe                     0.04630338              -0.029926771
-#&gt; Saudi Arabia                              0.03157672              -0.026653622
-#&gt; Serbia                                    0.10340744               0.014594807
-#&gt; Seychelles                                0.01577421               0.041489551
-#&gt; Singapore                                 0.13949172               0.024331008
-#&gt; Slovenia                                  0.07745708              -0.037848045
-#&gt; Solomon Isds                              0.08545120              -0.043192001
-#&gt; South Africa                              0.08776021              -0.033915646
-#&gt; Sri Lanka                                 0.05126543              -0.016385319
-#&gt; Suriname                                  0.11794465               0.003275185
-#&gt; Tajikistan                                0.04151865              -0.019484010
-#&gt; TFYR of Macedonia                         0.10340744               0.014594807
-#&gt; Thailand                                  0.01384665              -0.009616595
-#&gt; Trinidad and Tobago                       0.06971371              -0.017904189
-#&gt; Tunisia                                   0.05603934              -0.041619842
-#&gt; Uganda                                    0.08274358              -0.027477796
-#&gt; United Rep. of Tanzania                   0.08274358              -0.027477796
-#&gt; Uruguay                                   0.08349534               0.015334577
-#&gt; USA                                      -0.44930239              -0.039289441
-#&gt; Zambia                                    0.11019219              -0.026337138
-#&gt; </div></pre>
+#&gt; </span><span style='color: #949494;'># A tibble: 880 x 3</span><span>
+#&gt;    country    product             value
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Albania    1 Transportation -</span><span style='color: #BB0000;'>0.021</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Algeria    1 Transportation -</span><span style='color: #BB0000;'>0.001</span><span style='color: #BB0000;text-decoration: underline;'>88</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Angola     1 Transportation -</span><span style='color: #BB0000;'>0.006</span><span style='color: #BB0000;text-decoration: underline;'>91</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Argentina  1 Transportation -</span><span style='color: #BB0000;'>0.012</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Armenia    1 Transportation -</span><span style='color: #BB0000;'>0.040</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Aruba      1 Transportation -</span><span style='color: #BB0000;'>0.006</span><span style='color: #BB0000;text-decoration: underline;'>91</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Australia  1 Transportation -</span><span style='color: #BB0000;'>0.021</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Azerbaijan 1 Transportation  0.020</span><span style='text-decoration: underline;'>7</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Bahamas    1 Transportation -</span><span style='color: #BB0000;'>0.006</span><span style='color: #BB0000;text-decoration: underline;'>91</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Bangladesh 1 Transportation -</span><span style='color: #BB0000;'>0.022</span><span style='color: #BB0000;text-decoration: underline;'>1</span><span> 
+#&gt; </span><span style='color: #949494;'># … with 870 more rows</span><span>
+#&gt; </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -2,16 +2,16 @@ test_that("countries position is aligned with the expected output", {
   # matrix output ----
   cp_m <- countries_position(
     revealed_comparative_advantage = package_output_demo$revealed_comparative_advantage_matrix,
-    c1 = "country",
-    p1 = "product",
-    v1 = "value",
+    country1 = "country",
+    product1 = "product",
+    value1 = "value",
     proximity_products = package_output_demo$proximity_matrix$proximity_products,
-    p21 = "from",
-    p22 = "to",
-    v2 = "value",
+    product21 = "from",
+    product22 = "to",
+    value2 = "value",
     product_complexity_index = package_output_demo$complexity_measures_numeric$product_complexity_index,
-    p3 = "product",
-    v3 = "value"
+    product3 = "product",
+    value3 = "value"
   )
 
   expect_is(cp_m, "list")
@@ -26,16 +26,16 @@ test_that("countries position is aligned with the expected output", {
 
   cp_m_2 <- countries_position(
     revealed_comparative_advantage = package_output_demo$revealed_comparative_advantage_tibble,
-    c1 = "country",
-    p1 = "product",
-    v1 = "value",
+    country1 = "country",
+    product1 = "product",
+    value1 = "value",
     proximity_products = package_output_demo$proximity_tibble$proximity_products,
-    p21 = "from",
-    p22 = "to",
-    v2 = "value",
+    product21 = "from",
+    product22 = "to",
+    value2 = "value",
     product_complexity_index = package_output_demo$complexity_measures_tibble$product_complexity_index,
-    p3 = "product",
-    v3 = "value"
+    product3 = "product",
+    value3 = "value"
   )
 
   expect_is(cp_m_2, "list")
@@ -55,16 +55,16 @@ test_that("countries position is aligned with the expected output", {
   # tibble output ----
   cp_t <- countries_position(
     revealed_comparative_advantage = package_output_demo$revealed_comparative_advantage_matrix,
-    c1 = "country",
-    p1 = "product",
-    v1 = "value",
+    country1 = "country",
+    product1 = "product",
+    value1 = "value",
     proximity_products = package_output_demo$proximity_matrix$proximity_products,
-    p21 = "from",
-    p22 = "to",
-    v2 = "value",
+    product21 = "from",
+    product22 = "to",
+    value2 = "value",
     product_complexity_index = package_output_demo$complexity_measures_numeric$product_complexity_index,
-    p3 = "product",
-    v3 = "value",
+    product3 = "product",
+    value3 = "value",
     tbl_output = TRUE
   )
 
@@ -81,16 +81,16 @@ test_that("countries position is aligned with the expected output", {
 
   cp_t_2 <- countries_position(
     revealed_comparative_advantage = package_output_demo$revealed_comparative_advantage_tibble,
-    c1 = "country",
-    p1 = "product",
-    v1 = "value",
+    country1 = "country",
+    product1 = "product",
+    value1 = "value",
     proximity_products = package_output_demo$proximity_tibble$proximity_products,
-    p21 = "from",
-    p22 = "to",
-    v2 = "value",
+    product21 = "from",
+    product22 = "to",
+    value2 = "value",
     product_complexity_index = package_output_demo$complexity_measures_tibble$product_complexity_index,
-    p3 = "product",
-    v3 = "value",
+    product3 = "product",
+    value3 = "value",
     tbl_output = TRUE
   )
 

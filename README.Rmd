@@ -29,8 +29,8 @@ of The Atlas of Economic Complexity and related literature.
 ## Installation
 
 ```{r, eval = FALSE}
-# Install stable version from CRAN (coming soon)
-# install.packages("economiccomplexity")
+# Install stable version from CRAN
+install.packages("economiccomplexity")
 
 # Install stable version from GitHub
 devtools::install_github("pachamaltese/economiccomplexity")

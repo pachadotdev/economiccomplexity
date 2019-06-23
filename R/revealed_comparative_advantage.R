@@ -17,8 +17,9 @@
 #' @importFrom Matrix Matrix rowSums colSums t
 #' @importFrom rlang sym syms :=
 #' @examples
-#' rca <- revealed_comparative_advantage(
-#'   trade_data = services_trade_2016$services_trade_2016_matrix
+#' revealed_comparative_advantage(
+#'  trade_data = services_trade_2016$services_trade_2016_matrix,
+#'  tbl_output = TRUE
 #' )
 #' @references
 #' For more information on revealed comparative advantage and its uses see:

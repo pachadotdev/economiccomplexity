@@ -30,8 +30,9 @@ to zero or one based on the cutoff value (default set to TRUE)}
 Revealed Comparative Advantage (RCA)
 }
 \examples{
-rca <- revealed_comparative_advantage(
-  trade_data = services_trade_2016$services_trade_2016_matrix
+revealed_comparative_advantage(
+ trade_data = services_trade_2016$services_trade_2016_matrix,
+ tbl_output = TRUE
 )
 }
 \references{

@@ -3,8 +3,8 @@ test_that("network results are aligned with the expected output ", {
   net_i <- networks(
     proximity_countries = package_output_demo$proximity_matrix$proximity_countries,
     proximity_products = package_output_demo$proximity_matrix$proximity_products,
-    c_cutoff = 0.7,
-    p_cutoff = 0.1
+    countries_cutoff = 0.7,
+    products_cutoff = 0.1
   )
 
   expect_is(net_i, "list")
@@ -14,8 +14,8 @@ test_that("network results are aligned with the expected output ", {
   net_i_2 <- networks(
     proximity_countries = package_output_demo$proximity_tibble$proximity_countries,
     proximity_products = package_output_demo$proximity_tibble$proximity_products,
-    c_cutoff = 0.7,
-    p_cutoff = 0.1
+    countries_cutoff = 0.7,
+    products_cutoff = 0.1
   )
 
   expect_is(net_i_2, "list")
@@ -35,8 +35,8 @@ test_that("network results are aligned with the expected output ", {
   net_t <- networks(
     proximity_countries = package_output_demo$proximity_matrix$proximity_countries,
     proximity_products = package_output_demo$proximity_matrix$proximity_products,
-    c_cutoff = 0.7,
-    p_cutoff = 0.1,
+    countries_cutoff = 0.7,
+    products_cutoff = 0.1,
     tbl_output = T
   )
 
@@ -49,8 +49,8 @@ test_that("network results are aligned with the expected output ", {
   net_t_2 <- networks(
     proximity_countries = package_output_demo$proximity_tibble$proximity_countries,
     proximity_products = package_output_demo$proximity_tibble$proximity_products,
-    c_cutoff = 0.7,
-    p_cutoff = 0.1,
+    countries_cutoff = 0.7,
+    products_cutoff = 0.1,
     tbl_output = T
   )
 

@@ -117,9 +117,9 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>productivity_levels</span>(<span class='kw'>trade_data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>c1</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
-  <span class='kw'>p1</span> <span class='kw'>=</span> <span class='st'>"product"</span>, <span class='kw'>v1</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>gdp_data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>c2</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
-  <span class='kw'>v2</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>productivity_levels</span>(<span class='kw'>trade_data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>country1</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
+  <span class='kw'>product1</span> <span class='kw'>=</span> <span class='st'>"product"</span>, <span class='kw'>value1</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>gdp_data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>country2</span> <span class='kw'>=</span> <span class='st'>"country"</span>, <span class='kw'>value2</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -132,17 +132,17 @@ If the input is a tibble/data.frame it must contain at least three columns with 
 values.</p></td>
     </tr>
     <tr>
-      <th>c1</th>
+      <th>country1</th>
       <td><p>string to indicate the column that contains exporting countries in revealed_comparative_advantage
 (set to "country" by default)</p></td>
     </tr>
     <tr>
-      <th>p1</th>
+      <th>product1</th>
       <td><p>string to indicate the column that contains exported products in revealed_comparative_advantage
 (set to "product" by default)</p></td>
     </tr>
     <tr>
-      <th>v1</th>
+      <th>value1</th>
       <td><p>string to indicate the column that contains traded values in revealed_comparative_advantage
 (set to "value" by default)</p></td>
     </tr>
@@ -153,12 +153,12 @@ If the input is a vector it must be a numeric vector with optional names.
 If the input is a tibble/data.frame it must contain at least two columns with countries and values.</p></td>
     </tr>
     <tr>
-      <th>c2</th>
+      <th>country2</th>
       <td><p>string to indicate the column that contains exporting countries in revealed_comparative_advantage
 (set to "country" by default)</p></td>
     </tr>
     <tr>
-      <th>v2</th>
+      <th>value2</th>
       <td><p>string to indicate the column that contains traded values in revealed_comparative_advantage
 (set to "value" by default)</p></td>
     </tr>
@@ -173,7 +173,9 @@ If the input is a tibble/data.frame it must contain at least two columns with co
     <p>For more information on prody and its applications see:</p>
 <p>Hausmann R, Hidalgo C, Bustos S, Coscia M, Simoes A, Yildirim M (2014).
 <em>The atlas of economic complexity: Mapping paths to prosperity</em>.
-MIT Press.</p>
+MIT Press.
+doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9647.001.0001</a>
+.</p>
 <p>Hausmann R, Hwang J, Rodrik D (2005).
 &#8220;What You Export Matters.&#8221;
 Working Paper 11905, National Bureau of Economic Research.
@@ -182,15 +184,47 @@ doi: <a href='https://doi.org/10.3386/w11905'>10.3386/w11905</a>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>pl</span> <span class='kw'>&lt;-</span> <span class='fu'>productivity_levels</span>(
-  <span class='kw'>trade_data</span> <span class='kw'>=</span> <span class='no'>services_trade_2016</span>$<span class='no'>services_trade_2016_matrix</span>,
-  <span class='kw'>c1</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
-  <span class='kw'>p1</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
-  <span class='kw'>v1</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
-  <span class='kw'>gdp_data</span> <span class='kw'>=</span> <span class='no'>gdp_pc_2016</span>$<span class='no'>gdp_pc_2016_numeric</span>,
-  <span class='kw'>c2</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
-  <span class='kw'>v2</span> <span class='kw'>=</span> <span class='st'>"value"</span>
-)</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>productivity_levels</span>(
+ <span class='kw'>trade_data</span> <span class='kw'>=</span> <span class='no'>services_trade_2016</span>$<span class='no'>services_trade_2016_matrix</span>,
+ <span class='kw'>country1</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
+ <span class='kw'>product1</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
+ <span class='kw'>value1</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
+ <span class='kw'>gdp_data</span> <span class='kw'>=</span> <span class='no'>gdp_pc_2016</span>$<span class='no'>gdp_pc_2016_numeric</span>,
+ <span class='kw'>country2</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
+ <span class='kw'>value2</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
+ <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</div><div class='output co'>#&gt; $economies_productivity_level
+#&gt; <span style='color: #949494;'># A tibble: 80 x 2</span><span>
+#&gt;    name        value
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Albania    </span><span style='text-decoration: underline;'>27</span><span>854.
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Algeria    </span><span style='text-decoration: underline;'>23</span><span>580.
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Angola     </span><span style='text-decoration: underline;'>11</span><span>020.
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Argentina  </span><span style='text-decoration: underline;'>11</span><span>714.
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Armenia     </span><span style='text-decoration: underline;'>7</span><span>948.
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Aruba      </span><span style='text-decoration: underline;'>10</span><span>359.
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Australia  </span><span style='text-decoration: underline;'>11</span><span>903.
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Azerbaijan </span><span style='text-decoration: underline;'>12</span><span>047.
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Bahamas    </span><span style='text-decoration: underline;'>13</span><span>998.
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Bangladesh </span><span style='text-decoration: underline;'>15</span><span>313.
+#&gt; </span><span style='color: #949494;'># … with 70 more rows</span><span>
+#&gt; 
+#&gt; $products_productivity_level
+#&gt; </span><span style='color: #949494;'># A tibble: 11 x 2</span><span>
+#&gt;    name                                              value
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                             </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 1 Transportation                                 </span><span style='text-decoration: underline;'>11</span><span>104.
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 10 Personal, cultural, and recreational services </span><span style='text-decoration: underline;'>12</span><span>311.
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 11 Government services, n.i.e.                    </span><span style='text-decoration: underline;'>4</span><span>902.
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 2 Travel                                         </span><span style='text-decoration: underline;'>11</span><span>058.
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 3 Communications services                        </span><span style='text-decoration: underline;'>11</span><span>285.
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 4 Construction services                           </span><span style='text-decoration: underline;'>8</span><span>861.
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 5 Insurance services                             </span><span style='text-decoration: underline;'>14</span><span>503.
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 6 Financial services                             </span><span style='text-decoration: underline;'>20</span><span>371.
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 7 Computer and information services              </span><span style='text-decoration: underline;'>12</span><span>564.
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 8 Royalties and license fees                     </span><span style='text-decoration: underline;'>33</span><span>531.
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> 9 Other business services                        </span><span style='text-decoration: underline;'>12</span><span>736.
+#&gt; </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

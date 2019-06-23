@@ -4,9 +4,9 @@
 \alias{productivity_levels}
 \title{Productivity Levels}
 \usage{
-productivity_levels(trade_data = NULL, c1 = "country",
-  p1 = "product", v1 = "value", gdp_data = NULL, c2 = "country",
-  v2 = "value", tbl_output = FALSE)
+productivity_levels(trade_data = NULL, country1 = "country",
+  product1 = "product", value1 = "value", gdp_data = NULL,
+  country2 = "country", value2 = "value", tbl_output = FALSE)
 }
 \arguments{
 \item{trade_data}{matrix or tibble/data.frame (e.g. \code{world_trade_2017}). If the input is a matrix it
@@ -14,23 +14,23 @@ must be a zero/one matrix with countries in rows and products in columns.
 If the input is a tibble/data.frame it must contain at least three columns with countries, products and
 values.}
 
-\item{c1}{string to indicate the column that contains exporting countries in revealed_comparative_advantage
+\item{country1}{string to indicate the column that contains exporting countries in revealed_comparative_advantage
 (set to "country" by default)}
 
-\item{p1}{string to indicate the column that contains exported products in revealed_comparative_advantage
+\item{product1}{string to indicate the column that contains exported products in revealed_comparative_advantage
 (set to "product" by default)}
 
-\item{v1}{string to indicate the column that contains traded values in revealed_comparative_advantage
+\item{value1}{string to indicate the column that contains traded values in revealed_comparative_advantage
 (set to "value" by default)}
 
 \item{gdp_data}{vector or tibble/data.frame (e.g. \code{world_gdp_and_population_2017}).
 If the input is a vector it must be a numeric vector with optional names.
 If the input is a tibble/data.frame it must contain at least two columns with countries and values.}
 
-\item{c2}{string to indicate the column that contains exporting countries in revealed_comparative_advantage
+\item{country2}{string to indicate the column that contains exporting countries in revealed_comparative_advantage
 (set to "country" by default)}
 
-\item{v2}{string to indicate the column that contains traded values in revealed_comparative_advantage
+\item{value2}{string to indicate the column that contains traded values in revealed_comparative_advantage
 (set to "value" by default)}
 
 \item{tbl_output}{when set to TRUE the output will be a tibble instead of a matrix (default set to FALSE)}
@@ -39,14 +39,15 @@ If the input is a tibble/data.frame it must contain at least two columns with co
 Productivity Levels
 }
 \examples{
-pl <- productivity_levels(
-  trade_data = services_trade_2016$services_trade_2016_matrix,
-  c1 = "country",
-  p1 = "product",
-  v1 = "value",
-  gdp_data = gdp_pc_2016$gdp_pc_2016_numeric,
-  c2 = "country",
-  v2 = "value"
+productivity_levels(
+ trade_data = services_trade_2016$services_trade_2016_matrix,
+ country1 = "country",
+ product1 = "product",
+ value1 = "value",
+ gdp_data = gdp_pc_2016$gdp_pc_2016_numeric,
+ country2 = "country",
+ value2 = "value",
+ tbl_output = TRUE
 )
 }
 \references{

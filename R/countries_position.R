@@ -6,11 +6,11 @@
 #' If the input is a matrix it must be a zero/one matrix with countries in rows and products in columns.
 #' If the input is a tibble/data.frame it must contain at least three columns with countries, products and
 #' values.
-#' @param c1 string to indicate the column that contains exporting countries in revealed_comparative_advantage
+#' @param country1 string to indicate the column that contains exporting countries in revealed_comparative_advantage
 #' (set to "country" by default)
-#' @param p1 string to indicate the column that contains exported products in revealed_comparative_advantage
+#' @param product1 string to indicate the column that contains exported products in revealed_comparative_advantage
 #' (set to "product" by default)
-#' @param v1 string to indicate the column that contains traded values in revealed_comparative_advantage
+#' @param value1 string to indicate the column that contains traded values in revealed_comparative_advantage
 #' (set to "value" by default)
 #' @param proximity_products matrix or tibble/data.frame (e.g. the output of
 #' \code{proximity_matrices()}).
@@ -18,17 +18,17 @@
 #' rows and columns.
 #' If the input is a tibble/data.frame it must contain at least three columns columns with
 #' products (twice) and values.
-#' @param p21 string to indicate the first column that contains exported products in proximity_products
+#' @param product21 string to indicate the first column that contains exported products in proximity_products
 #' (set to "from" by default)
-#' @param p22 string to indicate the second column that contains exported products in proximity_products
+#' @param product22 string to indicate the second column that contains exported products in proximity_products
 #' (set to "to" by default)
-#' @param v2 string to indicate the column that contains proximity values in proximity_products
+#' @param value2 string to indicate the column that contains proximity values in proximity_products
 #' (set to "value" by default)
 #' @param product_complexity_index numeric vector or tibble/data.frame \code{complexity_measures()}).
 #' If the input is a vector it must be numeric with optional names.
 #' If the input is a tibble/data.frame it must contain at least two columns columns with products and values.
-#' @param p3 string to indicate the column that contains exported products in proximity_products (e.g. "product")
-#' @param v3 string to indicate the column that contains proximity values in proximity_products (e.g. "value")
+#' @param product3 string to indicate the column that contains exported products in proximity_products (e.g. "product")
+#' @param value3 string to indicate the column that contains proximity values in proximity_products (e.g. "value")
 #' from \code{complexity_measures()})
 #' @param tbl_output logical value to use tibble output instead of a matrix output (set to FALSE by default)
 #' @importFrom magrittr %>%
@@ -39,18 +39,19 @@
 #' @examples
 #' countries_position(
 #'   revealed_comparative_advantage =
-#'     package_output_demo$revealed_comparative_advantage_matrix,
-#'   c1 = "country",
-#'   p1 = "product",
-#'   v1 = "value",
+#'    package_output_demo$revealed_comparative_advantage_matrix,
+#'   country1 = "country",
+#'   product1 = "product",
+#'   value1 = "value",
 #'   proximity_products = package_output_demo$proximity_matrix$proximity_products,
-#'   p21 = "from",
-#'   p22 = "to",
-#'   v2 = "value",
+#'   product21 = "from",
+#'   product22 = "to",
+#'   value2 = "value",
 #'   product_complexity_index =
-#'     package_output_demo$complexity_measures_numeric$product_complexity_index,
-#'   p3 = "product",
-#'   v3 = "value"
+#'    package_output_demo$complexity_measures_numeric$product_complexity_index,
+#'   product3 = "product",
+#'   value3 = "value",
+#'   tbl_output = TRUE
 #' )
 #' @references
 #' For more information on proximity distance, complexity outlook, complexity outlook gain and its
@@ -60,16 +61,16 @@
 #' @keywords functions
 
 countries_position <- function(revealed_comparative_advantage = NULL,
-                               c1 = "country",
-                               p1 = "product",
-                               v1 = "value",
+                               country1 = "country",
+                               product1 = "product",
+                               value1 = "value",
                                proximity_products = NULL,
-                               p21 = "from",
-                               p22 = "to",
-                               v2 = "value",
+                               product21 = "from",
+                               product22 = "to",
+                               value2 = "value",
                                product_complexity_index = NULL,
-                               p3 = "product",
-                               v3 = "value",
+                               product3 = "product",
+                               value3 = "value",
                                tbl_output = FALSE) {
   # sanity checks ----
   if (all(class(revealed_comparative_advantage) %in%
@@ -87,12 +88,12 @@ countries_position <- function(revealed_comparative_advantage = NULL,
   }
 
   if (is.data.frame(revealed_comparative_advantage)) {
-    revealed_comparative_advantage <- tidyr::spread(revealed_comparative_advantage, !!sym(p1), !!sym(v1))
+    revealed_comparative_advantage <- tidyr::spread(revealed_comparative_advantage, !!sym(product1), !!sym(value1))
 
-    revealed_comparative_advantage_names <- dplyr::select(revealed_comparative_advantage, !!sym(c1)) %>%
+    revealed_comparative_advantage_names <- dplyr::select(revealed_comparative_advantage, !!sym(country1)) %>%
       dplyr::pull()
 
-    revealed_comparative_advantage <- dplyr::select(revealed_comparative_advantage, -!!sym(c1)) %>%
+    revealed_comparative_advantage <- dplyr::select(revealed_comparative_advantage, -!!sym(country1)) %>%
       as.matrix()
 
     rownames(revealed_comparative_advantage) <- revealed_comparative_advantage_names
@@ -104,8 +105,8 @@ countries_position <- function(revealed_comparative_advantage = NULL,
   }
 
   if (is.data.frame(proximity_products)) {
-    proximity_products_rows <- dplyr::select(proximity_products, !!sym(p21)) %>% dplyr::pull()
-    proximity_products_cols <- dplyr::select(proximity_products, !!sym(p22)) %>% dplyr::pull()
+    proximity_products_rows <- dplyr::select(proximity_products, !!sym(product21)) %>% dplyr::pull()
+    proximity_products_cols <- dplyr::select(proximity_products, !!sym(product22)) %>% dplyr::pull()
 
     proximity_products_cols_rows <- sort(
       unique(c(proximity_products_rows, proximity_products_cols))
@@ -117,16 +118,16 @@ countries_position <- function(revealed_comparative_advantage = NULL,
       stringsAsFactors = F
     )
 
-    colnames(proximity_products_expand) <- c(p21, p22)
+    colnames(proximity_products_expand) <- c(product21, product22)
 
     proximity_products <- proximity_products_expand %>%
       dplyr::left_join(proximity_products)
 
-    proximity_products <- tidyr::spread(proximity_products, !!sym(p22), !!sym(v2))
-    proximity_products_rows <- dplyr::select(proximity_products, !!sym(p21)) %>% dplyr::pull()
+    proximity_products <- tidyr::spread(proximity_products, !!sym(product22), !!sym(value2))
+    proximity_products_rows <- dplyr::select(proximity_products, !!sym(product21)) %>% dplyr::pull()
 
     proximity_products <- proximity_products %>%
-      dplyr::select(-!!sym(p21)) %>%
+      dplyr::select(-!!sym(product21)) %>%
       as.matrix()
 
     proximity_products[is.na(proximity_products)] <- 0
@@ -143,9 +144,9 @@ countries_position <- function(revealed_comparative_advantage = NULL,
   }
 
   if (is.data.frame(product_complexity_index)) {
-    product_complexity_index_values <- dplyr::select(product_complexity_index, !!sym(v3)) %>%
+    product_complexity_index_values <- dplyr::select(product_complexity_index, !!sym(value3)) %>%
       dplyr::pull()
-    product_complexity_index_names <- dplyr::select(product_complexity_index, !!sym(p3)) %>%
+    product_complexity_index_names <- dplyr::select(product_complexity_index, !!sym(product3)) %>%
       dplyr::pull()
 
     product_complexity_index <- product_complexity_index_values

@@ -26,7 +26,11 @@
 #' @importFrom Matrix Matrix rowSums colSums t
 #' @importFrom rlang sym
 #' @examples
-#' cm <- complexity_measures(package_output_demo$revealed_comparative_advantage_matrix)
+#' complexity_measures(
+#'  revealed_comparative_advantage =
+#'   package_output_demo$revealed_comparative_advantage_matrix,
+#'  tbl_output = TRUE
+#' )
 #' @references
 #' For more information on complexity measures, indices and its applications see:
 #'

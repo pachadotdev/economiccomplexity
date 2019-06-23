@@ -32,10 +32,12 @@
 #' @importFrom Matrix Matrix t rowSums colSums
 #' @importFrom rlang sym
 #' @examples
-#' pro <- proximity(
-#'   revealed_comparative_advantage = package_output_demo$revealed_comparative_advantage_matrix,
-#'   diversity = package_output_demo$complexity_measures_numeric$diversity,
-#'   ubiquity = package_output_demo$complexity_measures_numeric$ubiquity
+#' proximity(
+#'  revealed_comparative_advantage =
+#'   package_output_demo$revealed_comparative_advantage_matrix,
+#'  diversity = package_output_demo$complexity_measures_numeric$diversity,
+#'  ubiquity = package_output_demo$complexity_measures_numeric$ubiquity,
+#'  tbl_output = TRUE
 #' )
 #' @references
 #' For more information on proximity and its applications see:

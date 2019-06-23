@@ -25,8 +25,8 @@ related literature.
 ## Installation
 
 ``` r
-# Install stable version from CRAN (coming soon)
-# install.packages("economiccomplexity")
+# Install stable version from CRAN
+install.packages("economiccomplexity")
 
 # Install stable version from GitHub
 devtools::install_github("pachamaltese/economiccomplexity")

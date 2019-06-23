@@ -2,12 +2,12 @@ test_that("productivity levels are aligned with the expected output", {
   # numeric output ----
   pl_n <- productivity_levels(
     trade_data = services_trade_2016$services_trade_2016_matrix,
-    c1 = "country",
-    p1 = "product",
-    v1 = "value",
+    country1 = "country",
+    product1 = "product",
+    value1 = "value",
     gdp_data = gdp_pc_2016$gdp_pc_2016_numeric,
-    c2 = "country",
-    v2 = "value"
+    country2 = "country",
+    value2 = "value"
   )
 
   expect_is(pl_n, "list")
@@ -18,12 +18,12 @@ test_that("productivity levels are aligned with the expected output", {
 
   pl_n_2 <- productivity_levels(
     trade_data = services_trade_2016$services_trade_2016_tibble,
-    c1 = "country",
-    p1 = "product",
-    v1 = "value",
+    country1 = "country",
+    product1 = "product",
+    value1 = "value",
     gdp_data = gdp_pc_2016$gdp_pc_2016_tibble,
-    c2 = "country",
-    v2 = "value"
+    country2 = "country",
+    value2 = "value"
   )
 
   expect_is(pl_n_2, "list")
@@ -37,12 +37,12 @@ test_that("productivity levels are aligned with the expected output", {
   # tibble output ----
   pl_t <- productivity_levels(
     trade_data = services_trade_2016$services_trade_2016_matrix,
-    c1 = "country",
-    p1 = "product",
-    v1 = "value",
+    country1 = "country",
+    product1 = "product",
+    value1 = "value",
     gdp_data = gdp_pc_2016$gdp_pc_2016_numeric,
-    c2 = "country",
-    v2 = "value",
+    country2 = "country",
+    value2 = "value",
     tbl_output = T
   )
 
@@ -56,12 +56,12 @@ test_that("productivity levels are aligned with the expected output", {
 
   pl_t_2 <- productivity_levels(
     trade_data = services_trade_2016$services_trade_2016_matrix,
-    c1 = "country",
-    p1 = "product",
-    v1 = "value",
+    country1 = "country",
+    product1 = "product",
+    value1 = "value",
     gdp_data = gdp_pc_2016$gdp_pc_2016_numeric,
-    c2 = "country",
-    v2 = "value",
+    country2 = "country",
+    value2 = "value",
     tbl_output = T
   )
 

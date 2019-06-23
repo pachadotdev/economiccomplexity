@@ -12,7 +12,7 @@
 
 <meta name="author" content="Mauricio Vargas" />
 
-<meta name="date" content="2019-06-22" />
+<meta name="date" content="2019-06-23" />
 
 <title>How to use this package</title>
 
@@ -305,7 +305,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">How to use this package</h1>
 <h4 class="author">Mauricio Vargas</h4>
-<h4 class="date">2019-06-22</h4>
+<h4 class="date">2019-06-23</h4>
 
 
 
@@ -446,7 +446,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2>Complexity Measures</h2>
 <p>You can compute both Economic Complexity Index (ECI) and Product Complexity Index (PCI) by using <code>complexity_measures()</code>. The calculations methods are <em>reflections</em>, <em>eigenvalues</em> and <em>fitness</em> (default). See <span class="citation">(Hausmann et al. 2014)</span> and <span class="citation">(Mariani et al. 2015)</span> for the methodological details.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>cm_reflections &lt;-<span class="st"> </span><span class="kw">complexity_measures</span>(</span>
-<span id="cb11-2"><a href="#cb11-2"></a>  rca, </span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="dt">revealed_comparative_advantage =</span> rca, </span>
 <span id="cb11-3"><a href="#cb11-3"></a>  <span class="dt">method =</span> <span class="st">&quot;reflections&quot;</span>, </span>
 <span id="cb11-4"><a href="#cb11-4"></a>  <span class="dt">tbl_output =</span> T</span>
 <span id="cb11-5"><a href="#cb11-5"></a>)</span>
@@ -482,7 +482,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 10 11 Government services, n.i.e.                   -0.937 
 ## 11 2 Travel                                         -1.52</code></pre>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>cm_eigenvalues &lt;-<span class="st"> </span><span class="kw">complexity_measures</span>(</span>
-<span id="cb15-2"><a href="#cb15-2"></a>  rca,</span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="dt">revealed_comparative_advantage =</span> rca,</span>
 <span id="cb15-3"><a href="#cb15-3"></a>  <span class="dt">method =</span> <span class="st">&quot;eigenvalues&quot;</span>,</span>
 <span id="cb15-4"><a href="#cb15-4"></a>  <span class="dt">tbl_output =</span> T</span>
 <span id="cb15-5"><a href="#cb15-5"></a>)</span>
@@ -518,7 +518,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 10 7 Computer and information services              -1.51  
 ## 11 9 Other business services                        -1.80</code></pre>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>cm_fitness &lt;-<span class="st"> </span><span class="kw">complexity_measures</span>(</span>
-<span id="cb19-2"><a href="#cb19-2"></a>  rca,</span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="dt">revealed_comparative_advantage =</span> rca,</span>
 <span id="cb19-3"><a href="#cb19-3"></a>  <span class="dt">method =</span> <span class="st">&quot;fitness&quot;</span>, </span>
 <span id="cb19-4"><a href="#cb19-4"></a>  <span class="dt">tbl_output =</span> T</span>
 <span id="cb19-5"><a href="#cb19-5"></a>)</span>
@@ -558,7 +558,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2>Proximity</h2>
 <p>Proximity matrices are used to create both country-country and product-product networks. Using <code>proximity_matrices()</code> is straightforward:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>pro &lt;-<span class="st"> </span><span class="kw">proximity</span>(</span>
-<span id="cb23-2"><a href="#cb23-2"></a>  rca,</span>
+<span id="cb23-2"><a href="#cb23-2"></a>  <span class="dt">revealed_comparative_advantage =</span> rca,</span>
 <span id="cb23-3"><a href="#cb23-3"></a>  <span class="dt">diversity =</span> cm_fitness<span class="op">$</span>diversity,</span>
 <span id="cb23-4"><a href="#cb23-4"></a>  <span class="dt">ubiquity =</span> cm_fitness<span class="op">$</span>ubiquity,</span>
 <span id="cb23-5"><a href="#cb23-5"></a>  <span class="dt">tbl_output =</span> T</span>
@@ -600,10 +600,10 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>The <code>proximity_networks()</code> function is designed to use <code>igraph</code> for the internal computations and also to pass proximity-based networks to <code>igraph</code>, <code>ggraph</code> or export to Cytoscape by saving the output as csv/tsv.</p>
 <p>To create some reduced networks I’ll use a high proximity cutoff:</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>net &lt;-<span class="st"> </span><span class="kw">networks</span>(</span>
-<span id="cb27-2"><a href="#cb27-2"></a>  pro<span class="op">$</span>proximity_countries,</span>
-<span id="cb27-3"><a href="#cb27-3"></a>  pro<span class="op">$</span>proximity_products,</span>
-<span id="cb27-4"><a href="#cb27-4"></a>  <span class="dt">c_cutoff =</span> <span class="fl">0.7</span>,</span>
-<span id="cb27-5"><a href="#cb27-5"></a>  <span class="dt">p_cutoff =</span> <span class="fl">0.1</span>,</span>
+<span id="cb27-2"><a href="#cb27-2"></a>  <span class="dt">proximity_countries =</span> pro<span class="op">$</span>proximity_countries,</span>
+<span id="cb27-3"><a href="#cb27-3"></a>  <span class="dt">proximity_products =</span> pro<span class="op">$</span>proximity_products,</span>
+<span id="cb27-4"><a href="#cb27-4"></a>  <span class="dt">countries_cutoff =</span> <span class="fl">0.7</span>,</span>
+<span id="cb27-5"><a href="#cb27-5"></a>  <span class="dt">products_cutoff =</span> <span class="fl">0.1</span>,</span>
 <span id="cb27-6"><a href="#cb27-6"></a>  <span class="dt">tbl_output =</span> T</span>
 <span id="cb27-7"><a href="#cb27-7"></a>)</span>
 <span id="cb27-8"><a href="#cb27-8"></a></span>
@@ -678,7 +678,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h1>References</h1>
 <div id="refs" class="references">
 <div id="ref-atlas2014">
-<p>Hausmann, Ricardo, César Hidalgo, Sebastián Bustos, Michele Coscia, Alexander Simoes, and Muhammed Yildirim. 2014. <em>The Atlas of Economic Complexity: Mapping Paths to Prosperity</em>. MIT Press.</p>
+<p>Hausmann, Ricardo, César Hidalgo, Sebastián Bustos, Michele Coscia, Alexander Simoes, and Muhammed Yildirim. 2014. <em>The Atlas of Economic Complexity: Mapping Paths to Prosperity</em>. MIT Press. <a href="https://doi.org/10.7551/mitpress/9647.001.0001">https://doi.org/10.7551/mitpress/9647.001.0001</a>.</p>
 </div>
 <div id="ref-measuringcomplexity2015">
 <p>Mariani, Manuel, Alexandre Vidmer, Matsúš Medo, and Yi-Cheng Zhang. 2015. “Measuring Economic Complexity of Countries and Products: Which Metric to Use?” <em>The European Physical Journal B</em> 88 (11): 293. <a href="https://doi.org/10.1140/epjb/e2015-60298-7">https://doi.org/10.1140/epjb/e2015-60298-7</a>.</p>

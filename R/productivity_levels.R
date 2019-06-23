@@ -5,18 +5,18 @@
 #' must be a zero/one matrix with countries in rows and products in columns.
 #' If the input is a tibble/data.frame it must contain at least three columns with countries, products and
 #' values.
-#' @param c1 string to indicate the column that contains exporting countries in revealed_comparative_advantage
+#' @param country1 string to indicate the column that contains exporting countries in revealed_comparative_advantage
 #' (set to "country" by default)
-#' @param p1 string to indicate the column that contains exported products in revealed_comparative_advantage
+#' @param product1 string to indicate the column that contains exported products in revealed_comparative_advantage
 #' (set to "product" by default)
-#' @param v1 string to indicate the column that contains traded values in revealed_comparative_advantage
+#' @param value1 string to indicate the column that contains traded values in revealed_comparative_advantage
 #' (set to "value" by default)
 #' @param gdp_data vector or tibble/data.frame (e.g. \code{world_gdp_and_population_2017}).
 #' If the input is a vector it must be a numeric vector with optional names.
 #' If the input is a tibble/data.frame it must contain at least two columns with countries and values.
-#' @param c2 string to indicate the column that contains exporting countries in revealed_comparative_advantage
+#' @param country2 string to indicate the column that contains exporting countries in revealed_comparative_advantage
 #' (set to "country" by default)
-#' @param v2 string to indicate the column that contains traded values in revealed_comparative_advantage
+#' @param value2 string to indicate the column that contains traded values in revealed_comparative_advantage
 #' (set to "value" by default)
 #' @param tbl_output when set to TRUE the output will be a tibble instead of a matrix (default set to FALSE)
 #' @importFrom magrittr %>%
@@ -25,14 +25,15 @@
 #' @importFrom stats setNames
 #' @importFrom rlang sym syms
 #' @examples
-#' pl <- productivity_levels(
-#'   trade_data = services_trade_2016$services_trade_2016_matrix,
-#'   c1 = "country",
-#'   p1 = "product",
-#'   v1 = "value",
-#'   gdp_data = gdp_pc_2016$gdp_pc_2016_numeric,
-#'   c2 = "country",
-#'   v2 = "value"
+#' productivity_levels(
+#'  trade_data = services_trade_2016$services_trade_2016_matrix,
+#'  country1 = "country",
+#'  product1 = "product",
+#'  value1 = "value",
+#'  gdp_data = gdp_pc_2016$gdp_pc_2016_numeric,
+#'  country2 = "country",
+#'  value2 = "value",
+#'  tbl_output = TRUE
 #' )
 #' @references
 #' For more information on prody and its applications see:
@@ -43,12 +44,12 @@
 #' @keywords functions
 
 productivity_levels <- function(trade_data = NULL,
-                                c1 = "country",
-                                p1 = "product",
-                                v1 = "value",
+                                country1 = "country",
+                                product1 = "product",
+                                value1 = "value",
                                 gdp_data = NULL,
-                                c2 = "country",
-                                v2 = "value",
+                                country2 = "country",
+                                value2 = "value",
                                 tbl_output = FALSE) {
   # sanity checks ----
   if (all(class(trade_data) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix", "dgCMatrix") == FALSE)) {
@@ -59,12 +60,12 @@ productivity_levels <- function(trade_data = NULL,
     stop("gdp_data must be a tibble/data.frame or numeric")
   }
 
-  if (!is.character(c1) & !is.character(p1) & !is.character(v1)) {
-    stop("c1, p1 and v1 must be character")
+  if (!is.character(country1) & !is.character(product1) & !is.character(value1)) {
+    stop("country1, product1 and value1 must be character")
   }
 
-  if (!is.character(c2) & !is.character(v2)) {
-    stop("c2 and v2 must be character")
+  if (!is.character(country2) & !is.character(value2)) {
+    stop("country2 and value2 must be character")
   }
 
   if (!is.logical(tbl_output)) {
@@ -88,29 +89,29 @@ productivity_levels <- function(trade_data = NULL,
   # convert gdp_data from tibble to numeric ----
   if (!is.data.frame(gdp_data)) {
     gdp_data <- tibble::enframe(gdp_data)
-    colnames(gdp_data) <- c(c2, v2)
+    colnames(gdp_data) <- c(country2, value2)
   }
 
   # tidy input data trade_data ----
   trade_data <- trade_data %>%
     # Sum by country and product
-    dplyr::group_by(!!!syms(c(c1, p1))) %>%
-    dplyr::summarise(vcp = sum(!!sym(v1), na.rm = TRUE)) %>%
+    dplyr::group_by(!!!syms(c(country1, product1))) %>%
+    dplyr::summarise(vcp = sum(!!sym(value1), na.rm = TRUE)) %>%
     dplyr::ungroup() %>%
     dplyr::filter(!!sym("vcp") > 0) %>%
-    dplyr::select(!!!syms(c(c1, p1, "vcp")))
+    dplyr::select(!!!syms(c(country1, product1, "vcp")))
 
   # tidy input data gdp_data ----
   gdp_data <- gdp_data %>%
-    dplyr::select(!!!syms(c(c2, v2))) %>%
-    dplyr::filter(!!sym(v2) > 0)
+    dplyr::select(!!!syms(c(country2, value2))) %>%
+    dplyr::filter(!!sym(value2) > 0)
 
   # create trade-gdp table ----
   trade_gdp <- trade_data %>%
-    tidyr::spread(!!sym(p1), !!sym("vcp")) %>%
-    dplyr::inner_join(gdp_data, by = stats::setNames(c2, c1))
+    tidyr::spread(!!sym(product1), !!sym("vcp")) %>%
+    dplyr::inner_join(gdp_data, by = stats::setNames(country2, country1))
 
-  if (nrow(trade_gdp) < nrow(unique(trade_data[, c1]))) {
+  if (nrow(trade_gdp) < nrow(unique(trade_data[, country1]))) {
     warning("Joining trade_data and gdp_data resulted in a table with less reporting countries
             than those in trade_data.")
   }
@@ -121,11 +122,11 @@ productivity_levels <- function(trade_data = NULL,
   }
 
   # convert trade_gdp to matrix ----
-  trade_gdp_rownames <- dplyr::select(trade_gdp, !!sym(c1)) %>% dplyr::pull()
+  trade_gdp_rownames <- dplyr::select(trade_gdp, !!sym(country1)) %>% dplyr::pull()
 
-  gdp <- dplyr::select(trade_gdp, !!sym(v2)) %>% dplyr::pull()
+  gdp <- dplyr::select(trade_gdp, !!sym(value2)) %>% dplyr::pull()
 
-  trade <- dplyr::select(trade_gdp, -!!sym(c1), -!!sym(v2)) %>% as.matrix()
+  trade <- dplyr::select(trade_gdp, -!!sym(country1), -!!sym(value2)) %>% as.matrix()
   trade[is.na(trade)] <- 0
   trade <- Matrix::Matrix(trade, sparse = TRUE)
 

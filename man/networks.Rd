@@ -4,8 +4,8 @@
 \alias{networks}
 \title{Networks}
 \usage{
-networks(proximity_countries, proximity_products, c_cutoff = 0.2,
-  p_cutoff = 0.4, tbl_output = FALSE)
+networks(proximity_countries, proximity_products, countries_cutoff = 0.2,
+  products_cutoff = 0.4, tbl_output = FALSE)
 }
 \arguments{
 \item{proximity_countries}{matrix or tibble/data.frame, if d is a tibble/data.frame it must contain the columns
@@ -16,10 +16,10 @@ numeric matrix with countries in row names and column names}
 from (character/factor), to (character/factor) and value (numeric), if it is a matrix it must be a
 numeric matrix with products in row names and column names}
 
-\item{c_cutoff}{all the values lower than the specified c_cutoff will be converted to 0 and excluded
+\item{countries_cutoff}{all the values lower than the specified countries_cutoff will be converted to 0 and excluded
 from the countries network (default set to 0.2)}
 
-\item{p_cutoff}{all the values lower than the specified p_cutoff will be converted to 0 and excluded
+\item{products_cutoff}{all the values lower than the specified products_cutoff will be converted to 0 and excluded
 from the products network (default set to 0.4)}
 
 \item{tbl_output}{when set to TRUE the output will be a tibble instead of a graph (default set to FALSE)}
@@ -28,9 +28,12 @@ from the products network (default set to 0.4)}
 Networks
 }
 \examples{
-net <- networks(
+networks(
+ proximity_countries =
   package_output_demo$proximity_matrix$proximity_countries,
-  package_output_demo$proximity_matrix$proximity_products
+ proximity_products =
+  package_output_demo$proximity_matrix$proximity_products,
+ tbl_output = TRUE
 )
 }
 \references{

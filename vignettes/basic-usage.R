@@ -54,7 +54,7 @@ rca_decimal_tbl
 
 ## ------------------------------------------------------------------------
 cm_reflections <- complexity_measures(
-  rca, 
+  revealed_comparative_advantage = rca, 
   method = "reflections", 
   tbl_output = T
 )
@@ -64,7 +64,7 @@ cm_reflections$product_complexity_index
 
 ## ------------------------------------------------------------------------
 cm_eigenvalues <- complexity_measures(
-  rca,
+  revealed_comparative_advantage = rca,
   method = "eigenvalues",
   tbl_output = T
 )
@@ -74,7 +74,7 @@ cm_eigenvalues$product_complexity_index
 
 ## ------------------------------------------------------------------------
 cm_fitness <- complexity_measures(
-  rca,
+  revealed_comparative_advantage = rca,
   method = "fitness", 
   tbl_output = T
 )
@@ -84,7 +84,7 @@ cm_fitness$product_complexity_index
 
 ## ------------------------------------------------------------------------
 pro <- proximity(
-  rca,
+  revealed_comparative_advantage = rca,
   diversity = cm_fitness$diversity,
   ubiquity = cm_fitness$ubiquity,
   tbl_output = T
@@ -95,10 +95,10 @@ pro$proximity_products
 
 ## ------------------------------------------------------------------------
 net <- networks(
-  pro$proximity_countries,
-  pro$proximity_products,
-  c_cutoff = 0.7,
-  p_cutoff = 0.1,
+  proximity_countries = pro$proximity_countries,
+  proximity_products = pro$proximity_products,
+  countries_cutoff = 0.7,
+  products_cutoff = 0.1,
   tbl_output = T
 )
 
