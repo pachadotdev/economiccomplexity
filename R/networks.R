@@ -53,7 +53,7 @@ networks <- function(proximity_countries, proximity_products, countries_cutoff =
   }
 
   if (is.matrix(proximity_countries)) {
-    proximity_countries[upper.tri(proximity_countries, diag = T)] <- 0
+    proximity_countries[upper.tri(proximity_countries, diag = TRUE)] <- 0
     row_names <- rownames(proximity_countries)
 
     proximity_countries <- proximity_countries %>%
@@ -69,7 +69,7 @@ networks <- function(proximity_countries, proximity_products, countries_cutoff =
   }
 
   if (is.matrix(proximity_products)) {
-    proximity_products[upper.tri(proximity_products, diag = T)] <- 0
+    proximity_products[upper.tri(proximity_products, diag = TRUE)] <- 0
     row_names <- rownames(proximity_products)
 
     proximity_products <- proximity_products %>%
@@ -82,7 +82,7 @@ networks <- function(proximity_countries, proximity_products, countries_cutoff =
   # compute countries network ----
   proximity_countries <- dplyr::mutate(proximity_countries, value = -1 * !!sym("value"))
 
-  c_g <- igraph::graph_from_data_frame(proximity_countries, directed = F)
+  c_g <- igraph::graph_from_data_frame(proximity_countries, directed = FALSE)
   c_mst <- igraph::mst(c_g, weights = proximity_countries$value, algorithm = "prim")
   c_mst <- igraph::as_data_frame(c_mst)
 
@@ -93,7 +93,7 @@ networks <- function(proximity_countries, proximity_products, countries_cutoff =
   c_g <- dplyr::bind_rows(c_mst, c_g_nmst)
   c_g <- dplyr::mutate(c_g, value = -1 * !!sym("value"))
 
-  c_g <- igraph::graph_from_data_frame(c_g, directed = F)
+  c_g <- igraph::graph_from_data_frame(c_g, directed = FALSE)
   c_g <- igraph::simplify(c_g,
     remove.multiple = TRUE, remove.loops = TRUE,
     edge.attr.comb = "first"
@@ -102,7 +102,7 @@ networks <- function(proximity_countries, proximity_products, countries_cutoff =
   # compute products network ----
   proximity_products <- dplyr::mutate(proximity_products, value = -1 * !!sym("value"))
 
-  p_g <- igraph::graph_from_data_frame(proximity_products, directed = F)
+  p_g <- igraph::graph_from_data_frame(proximity_products, directed = FALSE)
   p_mst <- igraph::mst(p_g, weights = proximity_products$value, algorithm = "prim")
   p_mst <- igraph::as_data_frame(p_mst)
 
@@ -113,7 +113,7 @@ networks <- function(proximity_countries, proximity_products, countries_cutoff =
   p_g <- dplyr::bind_rows(p_mst, p_g_nmst)
   p_g <- dplyr::mutate(p_g, value = -1 * !!sym("value"))
 
-  p_g <- igraph::graph_from_data_frame(p_g, directed = F)
+  p_g <- igraph::graph_from_data_frame(p_g, directed = FALSE)
   p_g <- igraph::simplify(p_g,
     remove.multiple = TRUE, remove.loops = TRUE,
     edge.attr.comb = "first"

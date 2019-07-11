@@ -101,7 +101,7 @@ countries_position <- function(revealed_comparative_advantage = NULL,
 
   if (is.matrix(revealed_comparative_advantage)) {
     revealed_comparative_advantage[is.na(revealed_comparative_advantage)] <- 0
-    revealed_comparative_advantage <- Matrix::Matrix(revealed_comparative_advantage, sparse = T)
+    revealed_comparative_advantage <- Matrix::Matrix(revealed_comparative_advantage, sparse = TRUE)
   }
 
   if (is.data.frame(proximity_products)) {
@@ -115,7 +115,7 @@ countries_position <- function(revealed_comparative_advantage = NULL,
     proximity_products_expand <- expand.grid(
       from = proximity_products_cols_rows,
       to = proximity_products_cols_rows,
-      stringsAsFactors = F
+      stringsAsFactors = FALSE
     )
 
     colnames(proximity_products_expand) <- c(product21, product22)
@@ -134,13 +134,13 @@ countries_position <- function(revealed_comparative_advantage = NULL,
     rownames(proximity_products) <- proximity_products_rows
 
     diag(proximity_products) <- 1
-    proximity_products[upper.tri(proximity_products, diag = F)] <- t(proximity_products)[
-      upper.tri(proximity_products, diag = F)
+    proximity_products[upper.tri(proximity_products, diag = FALSE)] <- t(proximity_products)[
+      upper.tri(proximity_products, diag = FALSE)
     ]
   }
 
   if (is.matrix(proximity_products)) {
-    proximity_products <- Matrix::Matrix(proximity_products, sparse = T)
+    proximity_products <- Matrix::Matrix(proximity_products, sparse = TRUE)
   }
 
   if (is.data.frame(product_complexity_index)) {

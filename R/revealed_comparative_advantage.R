@@ -98,7 +98,7 @@ revealed_comparative_advantage <- function(trade_data = NULL,
     # Rename columns
     dplyr::rename(country = !!sym(country), product = !!sym(product))
 
-  if (discrete == T) {
+  if (discrete == TRUE) {
     trade_data <- trade_data %>%
       mutate(value = ifelse(!!sym("value") > cutoff, 1, 0))
   }

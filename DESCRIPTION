@@ -38,7 +38,7 @@ Description: A wrapper of different indices and networks commonly used in Econom
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-Imports: methods, magrittr, tibble, dplyr, tidyr, Matrix, igraph, rlang, Rdpack
+Imports: magrittr, tibble, dplyr, tidyr, Matrix, igraph, rlang
 Depends: R (>= 3.5)
 URL: https://pachamaltese.github.io/economiccomplexity
 BugReports: http://github.com/pachamaltese/economiccomplexity/issues
@@ -47,5 +47,6 @@ RoxygenNote: 6.1.1
 Suggests: 
     testthat (>= 2.1.0),
     knitr,
+    Rdpack,
     ggraph
 VignetteBuilder: knitr

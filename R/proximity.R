@@ -84,7 +84,7 @@ proximity <- function(revealed_comparative_advantage = NULL,
 
     rownames(revealed_comparative_advantage) <- revealed_comparative_advantage_rownames
 
-    revealed_comparative_advantage <- Matrix::Matrix(revealed_comparative_advantage, sparse = T)
+    revealed_comparative_advantage <- Matrix::Matrix(revealed_comparative_advantage, sparse = TRUE)
     revealed_comparative_advantage <- revealed_comparative_advantage[
       Matrix::rowSums(revealed_comparative_advantage) != 0,
       Matrix::colSums(revealed_comparative_advantage) != 0
@@ -118,8 +118,8 @@ proximity <- function(revealed_comparative_advantage = NULL,
   yp <- outer(ubiquity, ubiquity, pmax)
 
   if (tbl_output == FALSE) {
-    cp <- Matrix::Matrix(xc / yc, sparse = T)
-    pp <- Matrix::Matrix(xp / yp, sparse = T)
+    cp <- Matrix::Matrix(xc / yc, sparse = TRUE)
+    pp <- Matrix::Matrix(xp / yp, sparse = TRUE)
   }
 
   # transform proximity matrices to data.frame ----
@@ -127,7 +127,7 @@ proximity <- function(revealed_comparative_advantage = NULL,
     cp <- xc / yc
     pp <- xp / yp
 
-    cp[upper.tri(cp, diag = T)] <- 0
+    cp[upper.tri(cp, diag = TRUE)] <- 0
 
     cp <- as.matrix(cp) %>%
       dplyr::as_tibble() %>%
@@ -135,7 +135,7 @@ proximity <- function(revealed_comparative_advantage = NULL,
       tidyr::gather(!!sym("to"), !!sym("value"), -!!sym("from")) %>%
       dplyr::filter(!!sym("value") > 0)
 
-    pp[upper.tri(pp, diag = T)] <- 0
+    pp[upper.tri(pp, diag = TRUE)] <- 0
 
     pp <- as.matrix(pp) %>%
       dplyr::as_tibble() %>%
