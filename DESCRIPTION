@@ -1,7 +1,7 @@
 Package: economiccomplexity
 Type: Package
 Title: Methods Used in the Economic Complexity Literature
-Version: 0.1.0
+Version: 0.1.2
 Authors@R: c(
     person(given = "Mauricio",
       family = "Vargas",
@@ -11,18 +11,23 @@ Authors@R: c(
     ),
     person(given = "Carlo",
       family = "Bottai",
-      role = c("ctb"),
+      role = "ctb",
       comment = "improved the eigenvalues calculation"
     ),
     person(given = "Diego",
       family = "Kozlowski",
-      role = c("ctb"),
+      role = "ctb",
       comment = "provided initial RCA and proximity functions he used for his thesis"
     ),
     person(given = "Mark",
       family = "Padgham",
-      role = c("ctb"),
-      comment = "compared PRODY equations from different sources"
+      role = "rev",
+      comment = "compared PRODY equations from different articles"
+    ),
+    person(given = "Nico",
+      family = "Pintar",
+      role = "rev",
+      comment = "suggested improvements to special cases in eigenvalues calculation"
     ),
     person(family = "UN COMTRADE",
       role = "dtc"),

@@ -12,6 +12,8 @@ maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www
 Status](https://travis-ci.org/pachamaltese/economiccomplexity.svg?branch=master)](https://travis-ci.org/pachamaltese/economiccomplexity)
 [![Coverage
 status](https://codecov.io/gh/pachamaltese/economiccomplexity/branch/master/graph/badge.svg)](https://codecov.io/github/pachamaltese/economiccomplexity?branch=master)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/economiccomplexity)](https://cran.r-project.org/package=economiccomplexity)
 
 A wrapper of different indices and networks commonly used in Economic
 Complexity to explore bipartite relations such as countries and their
@@ -36,6 +38,7 @@ devtools::install_github("pachamaltese/economiccomplexity")
 
 Please note that this project is released with a [Contributor Code of
 Conduct](https://pachamaltese.github.io/economiccomplexity/CODE_OF_CONDUCT.html).
-By participating in this project you agree to abide by its terms.
+By participating in this project you agree to abide by its
+terms.
 
 <!--[![ropensci_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)-->

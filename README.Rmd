@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 [![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![Travis-CI Build Status](https://travis-ci.org/pachamaltese/economiccomplexity.svg?branch=master)](https://travis-ci.org/pachamaltese/economiccomplexity)
 [![Coverage status](https://codecov.io/gh/pachamaltese/economiccomplexity/branch/master/graph/badge.svg)](https://codecov.io/github/pachamaltese/economiccomplexity?branch=master)
+[![CRAN status](https://www.r-pkg.org/badges/version/economiccomplexity)](https://cran.r-project.org/package=economiccomplexity)
 
 A wrapper of different indices and networks commonly used in Economic Complexity
 to explore bipartite relations such as countries and their exported products. These methods
