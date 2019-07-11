@@ -110,6 +110,7 @@ complexity_measures <- function(revealed_comparative_advantage = NULL,
   kc0 <- Matrix::rowSums(m)
   kp0 <- Matrix::colSums(m)
 
+  # reflections is defined as a function as these steps are also used for eigenvalues method
   reflections <- function() {
     # create empty matrices
     kc <- Matrix::Matrix(0, nrow = length(kc0), ncol = iterations, sparse = TRUE)
@@ -133,6 +134,9 @@ complexity_measures <- function(revealed_comparative_advantage = NULL,
     pci <- (kp[, iterations] - base::mean(kp[, iterations])) /
       stats::sd(kp[, iterations])
 
+    names(eci) <- rownames(m)
+    names(pci) <- colnames(m)
+
     return(list(eci = eci, pci = pci))
   }
 
@@ -154,6 +158,7 @@ complexity_measures <- function(revealed_comparative_advantage = NULL,
 
     # eci normalized as in the Atlas
     eci <- (eci - base::mean(eci)) / stats::sd(eci)
+    names(eci) <- rownames(m)
 
     # correct eci sign when required
     if (isTRUE(stats::cor(eci, eci_r, use = "pairwise.complete.obs") < 0)) {
@@ -166,6 +171,7 @@ complexity_measures <- function(revealed_comparative_advantage = NULL,
 
     # pci normalized as in the Atlas
     pci <- (pci - base::mean(pci)) / stats::sd(pci)
+    names(pci) <- colnames(m)
 
     # correct pci sign when required
     if (isTRUE(stats::cor(pci, pci_r, use = "pairwise.complete.obs") < 0)) {
@@ -191,17 +197,12 @@ complexity_measures <- function(revealed_comparative_advantage = NULL,
       kp[, j] <- kp[, j] / mean(kp[, j])
     }
 
-    # eci is of odd order and normalized as in the Atlas
-    eci <- (kc[, iterations - 1] - base::mean(kc[, iterations - 1])) /
-      stats::sd(kc[, iterations - 1])
+    eci <- kc[, iterations]
+    pci <- kp[, iterations]
 
-    # pci is of even order and normalized as in the Atlas
-    pci <- (kp[, iterations] - base::mean(kp[, iterations])) /
-      stats::sd(kp[, iterations])
+    names(eci) <- rownames(m)
+    names(pci) <- colnames(m)
   }
-
-  names(eci) <- rownames(m)
-  names(pci) <- colnames(m)
 
   if (tbl_output == TRUE) {
     eci <- tibble::tibble(value = eci) %>%

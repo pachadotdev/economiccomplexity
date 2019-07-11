@@ -13,10 +13,10 @@
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.0",
+    "version": "3.5.3",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.0 (2019-04-26)",
+  "runtimePlatform": "R version 3.5.3 (2019-03-11)",
   "author": [
     {
       "@type": "Person",
@@ -98,6 +98,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "Rdpack",
+      "name": "Rdpack",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=Rdpack"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "ggraph",
       "name": "ggraph",
       "provider": {
@@ -110,11 +122,6 @@
     }
   ],
   "softwareRequirements": [
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "methods",
-      "name": "methods"
-    },
     {
       "@type": "SoftwareApplication",
       "identifier": "magrittr",
@@ -201,18 +208,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "Rdpack",
-      "name": "Rdpack",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=Rdpack"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
       "version": ">= 3.5"
@@ -220,7 +215,7 @@
   ],
   "codeRepository": "https://pachamaltese.github.io/economiccomplexity",
   "readme": "https://github.com/pachamaltese/economiccomplexity/blob/master/README.md",
-  "fileSize": "526.39KB",
+  "fileSize": "527.718KB",
   "contIntegration": [
     "https://travis-ci.org/pachamaltese/economiccomplexity",
     "https://codecov.io/github/pachamaltese/economiccomplexity?branch=master"
@@ -228,5 +223,11 @@
   "developmentStatus": [
     "https://www.repostatus.org/#wip",
     "https://www.tidyverse.org/lifecycle/#experimental"
-  ]
+  ],
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  }
 }
