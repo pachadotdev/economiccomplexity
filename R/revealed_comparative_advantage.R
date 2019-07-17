@@ -12,7 +12,7 @@
 #' converted to zero and to one in other case, numeric (default set to 1)
 #' @param tbl_output when set to TRUE the output will be a tibble instead of a matrix (default set to FALSE)
 #' @importFrom magrittr %>%
-#' @importFrom dplyr select group_by ungroup mutate summarise matches rename pull as_tibble
+#' @importFrom dplyr select group_by ungroup mutate summarise matches rename pull as_tibble if_else
 #' @importFrom tidyr spread gather
 #' @importFrom Matrix Matrix rowSums colSums t
 #' @importFrom rlang sym syms :=
@@ -65,8 +65,8 @@ revealed_comparative_advantage <- function(trade_data = NULL,
 
     trade_data <- as.data.frame(trade_data) %>%
       dplyr::as_tibble() %>%
-      dplyr::mutate(!!sym("country") := trade_data_rownames) %>%
-      tidyr::gather(!!sym("product"), !!sym("value"), -!!sym("country"))
+      dplyr::mutate(!!sym(country) := trade_data_rownames) %>%
+      tidyr::gather(!!sym(product), !!sym(value), -!!sym(country))
   }
 
   # aggregate input trade_data by c and p ----
@@ -100,16 +100,16 @@ revealed_comparative_advantage <- function(trade_data = NULL,
 
   if (discrete == TRUE) {
     trade_data <- trade_data %>%
-      mutate(value = ifelse(!!sym("value") > cutoff, 1, 0))
+      dplyr::mutate(!!sym("value") := dplyr::if_else(!!sym("value") > cutoff, 1, 0))
   }
 
   if (tbl_output == FALSE) {
     trade_data <- trade_data %>%
-      tidyr::spread(!!sym(product), !!sym("value"))
+      tidyr::spread(!!sym("product"), !!sym("value"))
 
-    trade_data_rownames <- dplyr::select(trade_data, !!sym(country)) %>% dplyr::pull()
+    trade_data_rownames <- dplyr::select(trade_data, !!sym("country")) %>% dplyr::pull()
 
-    trade_data <- dplyr::select(trade_data, -!!sym(country)) %>% as.matrix()
+    trade_data <- dplyr::select(trade_data, -!!sym("country")) %>% as.matrix()
     trade_data[is.na(trade_data)] <- 0
     rownames(trade_data) <- trade_data_rownames
     trade_data <- Matrix::Matrix(trade_data, sparse = TRUE)

@@ -72,7 +72,10 @@ test_that("complexity measures are aligned with the expected output", {
   expect_equal(nrow(cm_t$ubiquity), 11)
   expect_equal(ncol(cm_t$ubiquity), 2)
 
-  expect_equal(cm_t$economic_complexity_index, cm_t_2$economic_complexity_index)
+  expect_equal(
+    cm_t$economic_complexity_index %>% mutate(value = round(value, 4)),
+    cm_t_2$economic_complexity_index %>% mutate(value = round(value, 4))
+  )
   expect_equal(
     cm_t$product_complexity_index %>% mutate(value = round(value, 4)),
     cm_t_2$product_complexity_index %>% mutate(value = round(value, 4))

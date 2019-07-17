@@ -34,8 +34,8 @@
 networks <- function(proximity_countries, proximity_products, countries_cutoff = 0.2,
                      products_cutoff = 0.4, tbl_output = FALSE) {
   # sanity checks ----
-  if (all(class(proximity_countries) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix") == FALSE) &
-    all(class(proximity_products) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix") == FALSE)) {
+  if (all(class(proximity_countries) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix", "dsCMatrix") == FALSE) &
+      all(class(proximity_products) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix", "dsCMatrix") == FALSE)) {
     stop("proximity_countries and proximity_products must be tibble/data.frame or dense/sparse matrix")
   }
 
@@ -48,7 +48,7 @@ networks <- function(proximity_countries, proximity_products, countries_cutoff =
   }
 
   # arrange country matrix ----
-  if (any(class(proximity_countries) %in% c("dgeMatrix", "dsCMatrix") == TRUE)) {
+  if (any(class(proximity_countries) %in% c("dgeMatrix", "dgCMatrix", "dsCMatrix") == TRUE)) {
     proximity_countries <- as.matrix(proximity_countries)
   }
 
@@ -64,7 +64,7 @@ networks <- function(proximity_countries, proximity_products, countries_cutoff =
   }
 
   # arrange products matrix ----
-  if (any(class(proximity_products) %in% c("dgeMatrix", "dsCMatrix") == TRUE)) {
+  if (any(class(proximity_products) %in% c("dgeMatrix", "dgCMatrix", "dsCMatrix") == TRUE)) {
     proximity_products <- as.matrix(proximity_products)
   }
 
@@ -95,8 +95,8 @@ networks <- function(proximity_countries, proximity_products, countries_cutoff =
 
   c_g <- igraph::graph_from_data_frame(c_g, directed = FALSE)
   c_g <- igraph::simplify(c_g,
-    remove.multiple = TRUE, remove.loops = TRUE,
-    edge.attr.comb = "first"
+                          remove.multiple = TRUE, remove.loops = TRUE,
+                          edge.attr.comb = "first"
   )
 
   # compute products network ----
@@ -115,8 +115,8 @@ networks <- function(proximity_countries, proximity_products, countries_cutoff =
 
   p_g <- igraph::graph_from_data_frame(p_g, directed = FALSE)
   p_g <- igraph::simplify(p_g,
-    remove.multiple = TRUE, remove.loops = TRUE,
-    edge.attr.comb = "first"
+                          remove.multiple = TRUE, remove.loops = TRUE,
+                          edge.attr.comb = "first"
   )
 
   if (tbl_output == TRUE) {

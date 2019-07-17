@@ -80,7 +80,7 @@ complexity_measures <- function(revealed_comparative_advantage = NULL,
     m <- revealed_comparative_advantage[
       Matrix::rowSums(revealed_comparative_advantage) != 0,
       Matrix::colSums(revealed_comparative_advantage) != 0
-    ]
+      ]
   }
 
   # remove countries not ranked in The Atlas of Economic Complexity
