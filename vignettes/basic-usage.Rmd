@@ -137,8 +137,8 @@ pro <- proximity(
   tbl_output = T
 )
 
-pro$proximity_countries
-pro$proximity_products
+pro$country_proximity
+pro$product_proximity
 ```
 
 ## Networks
@@ -151,15 +151,15 @@ To create some reduced networks I'll use a high proximity cutoff:
 
 ```{r}
 net <- networks(
-  proximity_countries = pro$proximity_countries,
-  proximity_products = pro$proximity_products,
+  country_proximity = pro$country_proximity,
+  product_proximity = pro$product_proximity,
   countries_cutoff = 0.7,
   products_cutoff = 0.1,
   tbl_output = T
 )
 
-net$network_countries
-net$network_products
+net$country_network
+net$product_network
 ```
 
 Just a two examples with `ggraph`:
@@ -171,7 +171,7 @@ library(magrittr)
 
 set.seed(200100)
 
-net$network_countries %>% 
+net$country_network %>% 
   graph_from_data_frame(directed = F) %>% 
   ggraph(layout = "kk") +
   geom_edge_link(aes(edge_alpha = value, edge_width = value), 
@@ -188,7 +188,7 @@ net$network_countries %>%
 ```
 
 ```{r, fig.width=20, fig.height=12}
-net$network_products %>% 
+net$product_network %>% 
   graph_from_data_frame(directed = F) %>% 
   ggraph(layout = "kk") +
   geom_edge_link(aes(edge_alpha = value, edge_width = value), 

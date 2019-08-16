@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">economiccomplexity</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.5</span>
       </span>
     </div>
 
@@ -126,34 +126,41 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>trade_data</th>
-      <td><p>tibble/data.frame in long format, it must contain the columns country (character/factor),
-product (character/factor) and export value (numeric)</p></td>
+      <td><p>tibble/data.frame in long format, it must contain the
+columns country (character/factor), product (character/factor) and export
+value (numeric)</p></td>
     </tr>
     <tr>
       <th>country</th>
-      <td><p>string to indicate the column that contains exporting countries (e.g. "reporter_iso")</p></td>
+      <td><p>string to indicate the column that contains exporting
+countries (e.g. "reporter_iso")</p></td>
     </tr>
     <tr>
       <th>product</th>
-      <td><p>string to indicate the column that contains exported products (e.g. "product_code")</p></td>
+      <td><p>string to indicate the column that contains exported products
+(e.g. "product_code")</p></td>
     </tr>
     <tr>
       <th>value</th>
-      <td><p>string to indicate the column that contains traded values (e.g. "trade_value_usd")</p></td>
+      <td><p>string to indicate the column that contains traded values
+(e.g. "trade_value_usd")</p></td>
     </tr>
     <tr>
       <th>cutoff</th>
-      <td><p>when set to TRUE all the values lower than the specified cutoff will be
-converted to zero and to one in other case, numeric (default set to 1)</p></td>
+      <td><p>when set to TRUE all the values lower than the specified cutoff
+will be converted to zero and to one in other case, numeric (default set
+to 1)</p></td>
     </tr>
     <tr>
       <th>discrete</th>
-      <td><p>when set to TRUE it will convert all the Revealed Comparative Advantage values
+      <td><p>when set to TRUE it will convert all the Revealed Comparative
+Advantage values
 to zero or one based on the cutoff value (default set to TRUE)</p></td>
     </tr>
     <tr>
       <th>tbl_output</th>
-      <td><p>when set to TRUE the output will be a tibble instead of a matrix (default set to FALSE)</p></td>
+      <td><p>when set to TRUE the output will be a tibble instead of a
+matrix (default set to FALSE)</p></td>
     </tr>
     </table>
     

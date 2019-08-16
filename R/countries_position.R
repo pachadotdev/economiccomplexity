@@ -13,27 +13,27 @@
 #' in rca (set to "product" by default)
 #' @param value1 string to indicate the column that contains traded values in
 #' rca (set to "value" by default)
-#' @param proximity_products matrix or tibble/data.frame (e.g. the output of
+#' @param product_proximity matrix or tibble/data.frame (e.g. the output of
 #' \code{proximity_matrices()}).
 #' If the input is a matrix it must be a numeric matrix with products in both
 #' rows and columns.
 #' If the input is a tibble/data.frame it must contain at least three columns
 #' columns with products (twice) and values.
 #' @param product21 string to indicate the first column that contains exported
-#' products in proximity_products (set to "from" by default)
+#' products in product_proximity (set to "from" by default)
 #' @param product22 string to indicate the second column that contains exported
-#' products in proximity_products (set to "to" by default)
+#' products in product_proximity (set to "to" by default)
 #' @param value2 string to indicate the column that contains proximity values in
-#' proximity_products (set to "value" by default)
+#' product_proximity (set to "value" by default)
 #' @param product_complexity_index numeric vector or tibble/data.frame
 #' \code{complexity_measures()}).
 #' If the input is a vector it must be numeric with optional names.
 #' If the input is a tibble/data.frame it must contain at least two columns
 #' with products and values.
 #' @param product3 string to indicate the column that contains exported products
-#' in proximity_products (e.g. "product")
+#' in product_proximity (e.g. "product")
 #' @param value3 string to indicate the column that contains proximity values in
-#' proximity_products (e.g. "value") from \code{complexity_measures()})
+#' product_proximity (e.g. "value") from \code{complexity_measures()})
 #' @param tbl_output logical value to use tibble output instead of a matrix
 #' output (set to FALSE by default)
 #' @importFrom magrittr %>%
@@ -47,8 +47,8 @@
 #'   country1 = "country",
 #'   product1 = "product",
 #'   value1 = "value",
-#'   proximity_products =
-#'    package_output_demo$proximity_matrix$proximity_products,
+#'   product_proximity =
+#'    package_output_demo$proximity_matrix$product_proximity,
 #'   product21 = "from",
 #'   product22 = "to",
 #'   value2 = "value",
@@ -70,7 +70,7 @@ countries_position <- function(rca = NULL,
                                country1 = "country",
                                product1 = "product",
                                value1 = "value",
-                               proximity_products = NULL,
+                               product_proximity = NULL,
                                product21 = "from",
                                product22 = "to",
                                value2 = "value",
@@ -85,10 +85,10 @@ countries_position <- function(rca = NULL,
     stop("rca must be a tibble/data.frame or a dense/sparse matrix")
   }
 
-  if (all(class(proximity_products) %in%
+  if (all(class(product_proximity) %in%
           c("data.frame", "matrix", "dgeMatrix", "dsCMatrix",
             "dgCMatrix") == FALSE)) {
-    stop("proximity_products must be a tibble/data.frame or a dense/sparse
+    stop("product_proximity must be a tibble/data.frame or a dense/sparse
          matrix")
   }
 
@@ -114,48 +114,48 @@ countries_position <- function(rca = NULL,
     rca <- Matrix::Matrix(rca, sparse = TRUE)
   }
 
-  if (is.data.frame(proximity_products)) {
-    proximity_products_rows <- dplyr::select(proximity_products,
+  if (is.data.frame(product_proximity)) {
+    product_proximity_rows <- dplyr::select(product_proximity,
                                              !!sym(product21)) %>% dplyr::pull()
 
-    proximity_products_cols <- dplyr::select(proximity_products,
+    product_proximity_cols <- dplyr::select(product_proximity,
                                              !!sym(product22)) %>% dplyr::pull()
 
-    proximity_products_cols_rows <- sort(
-      unique(c(proximity_products_rows, proximity_products_cols))
+    product_proximity_cols_rows <- sort(
+      unique(c(product_proximity_rows, product_proximity_cols))
     )
 
-    proximity_products_expand <- expand.grid(
-      from = proximity_products_cols_rows,
-      to = proximity_products_cols_rows,
+    product_proximity_expand <- expand.grid(
+      from = product_proximity_cols_rows,
+      to = product_proximity_cols_rows,
       stringsAsFactors = FALSE
     )
 
-    colnames(proximity_products_expand) <- c(product21, product22)
+    colnames(product_proximity_expand) <- c(product21, product22)
 
-    proximity_products <- proximity_products_expand %>%
-      dplyr::left_join(proximity_products)
+    product_proximity <- product_proximity_expand %>%
+      dplyr::left_join(product_proximity)
 
-    proximity_products <- tidyr::spread(proximity_products,
+    product_proximity <- tidyr::spread(product_proximity,
                                         !!sym(product22), !!sym(value2))
 
-    proximity_products_rows <- dplyr::select(proximity_products,
+    product_proximity_rows <- dplyr::select(product_proximity,
                                              !!sym(product21)) %>% dplyr::pull()
 
-    proximity_products <- proximity_products %>%
+    product_proximity <- product_proximity %>%
       dplyr::select(-!!sym(product21)) %>%
       as.matrix()
 
-    proximity_products[is.na(proximity_products)] <- 0
-    rownames(proximity_products) <- proximity_products_rows
+    product_proximity[is.na(product_proximity)] <- 0
+    rownames(product_proximity) <- product_proximity_rows
 
-    diag(proximity_products) <- 1
-    proximity_products[upper.tri(proximity_products, diag = FALSE)] <-
-      t(proximity_products)[upper.tri(proximity_products, diag = FALSE)]
+    diag(product_proximity) <- 1
+    product_proximity[upper.tri(product_proximity, diag = FALSE)] <-
+      t(product_proximity)[upper.tri(product_proximity, diag = FALSE)]
   }
 
-  if (is.matrix(proximity_products)) {
-    proximity_products <- Matrix::Matrix(proximity_products, sparse = TRUE)
+  if (is.matrix(product_proximity)) {
+    product_proximity <- Matrix::Matrix(product_proximity, sparse = TRUE)
   }
 
   if (is.data.frame(product_complexity_index)) {
@@ -174,15 +174,15 @@ countries_position <- function(rca = NULL,
       sort(names(product_complexity_index))]
   }
 
-  dcp <- ((1 - rca) %*% proximity_products) /
+  dcp <- ((1 - rca) %*% product_proximity) /
     (Matrix::Matrix(1, nrow = nrow(rca), ncol = ncol(rca)) %*%
-       proximity_products)
+       product_proximity)
 
   coc <- Matrix::colSums(Matrix::t((1 - dcp) * (1 - rca)) *
             product_complexity_index)
 
-  cogc <- Matrix::t((Matrix::t((1 - dcp) %*% (proximity_products /
-            Matrix::colSums(proximity_products))) * product_complexity_index) -
+  cogc <- Matrix::t((Matrix::t((1 - dcp) %*% (product_proximity /
+            Matrix::colSums(product_proximity))) * product_complexity_index) -
             (Matrix::t(1 - dcp) * product_complexity_index))
 
   if (tbl_output == TRUE) {

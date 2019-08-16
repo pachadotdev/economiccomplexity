@@ -5,7 +5,7 @@
 \title{Countries position}
 \usage{
 countries_position(rca = NULL, country1 = "country",
-  product1 = "product", value1 = "value", proximity_products = NULL,
+  product1 = "product", value1 = "value", product_proximity = NULL,
   product21 = "from", product22 = "to", value2 = "value",
   product_complexity_index = NULL, product3 = "product",
   value3 = "value", tbl_output = FALSE)
@@ -27,7 +27,7 @@ in rca (set to "product" by default)}
 \item{value1}{string to indicate the column that contains traded values in
 rca (set to "value" by default)}
 
-\item{proximity_products}{matrix or tibble/data.frame (e.g. the output of
+\item{product_proximity}{matrix or tibble/data.frame (e.g. the output of
 \code{proximity_matrices()}).
 If the input is a matrix it must be a numeric matrix with products in both
 rows and columns.
@@ -35,13 +35,13 @@ If the input is a tibble/data.frame it must contain at least three columns
 columns with products (twice) and values.}
 
 \item{product21}{string to indicate the first column that contains exported
-products in proximity_products (set to "from" by default)}
+products in product_proximity (set to "from" by default)}
 
 \item{product22}{string to indicate the second column that contains exported
-products in proximity_products (set to "to" by default)}
+products in product_proximity (set to "to" by default)}
 
 \item{value2}{string to indicate the column that contains proximity values in
-proximity_products (set to "value" by default)}
+product_proximity (set to "value" by default)}
 
 \item{product_complexity_index}{numeric vector or tibble/data.frame
 \code{complexity_measures()}).
@@ -50,10 +50,10 @@ If the input is a tibble/data.frame it must contain at least two columns
 with products and values.}
 
 \item{product3}{string to indicate the column that contains exported products
-in proximity_products (e.g. "product")}
+in product_proximity (e.g. "product")}
 
 \item{value3}{string to indicate the column that contains proximity values in
-proximity_products (e.g. "value") from \code{complexity_measures()})}
+product_proximity (e.g. "value") from \code{complexity_measures()})}
 
 \item{tbl_output}{logical value to use tibble output instead of a matrix
 output (set to FALSE by default)}
@@ -67,8 +67,8 @@ countries_position(
   country1 = "country",
   product1 = "product",
   value1 = "value",
-  proximity_products =
-   package_output_demo$proximity_matrix$proximity_products,
+  product_proximity =
+   package_output_demo$proximity_matrix$product_proximity,
   product21 = "from",
   product22 = "to",
   value2 = "value",

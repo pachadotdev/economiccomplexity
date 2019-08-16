@@ -1,7 +1,7 @@
 Package: economiccomplexity
 Type: Package
 Title: Methods Used in the Economic Complexity Literature
-Version: 0.1.4
+Version: 0.1.5
 Authors@R: c(
     person(given = "Mauricio",
       family = "Vargas",

@@ -4,16 +4,16 @@
 \alias{networks}
 \title{Networks}
 \usage{
-networks(proximity_countries, proximity_products, countries_cutoff = 0.2,
+networks(country_proximity, product_proximity, countries_cutoff = 0.2,
   products_cutoff = 0.4, tbl_output = FALSE, compute = "both")
 }
 \arguments{
-\item{proximity_countries}{matrix or tibble/data.frame, if d is a tibble/
+\item{country_proximity}{matrix or tibble/data.frame, if d is a tibble/
 data.frame it must contain the columns from (character/factor), to
 (character/factor) and value (numeric), if it is a matrix it must be a
 numeric matrix with countries in row names and column names}
 
-\item{proximity_products}{matrix or tibble/data.frame, if d is a
+\item{product_proximity}{matrix or tibble/data.frame, if d is a
 tibble/data.frame it must contain the columns from (character/factor), to
 (character/factor) and value (numeric), if it is a matrix it must be a
 numeric matrix with products in row names and column names}
@@ -37,10 +37,10 @@ Networks
 }
 \examples{
 networks(
- proximity_countries =
-  package_output_demo$proximity_matrix$proximity_countries,
- proximity_products =
-  package_output_demo$proximity_matrix$proximity_products,
+ country_proximity =
+  package_output_demo$proximity_matrix$country_proximity,
+ product_proximity =
+  package_output_demo$proximity_matrix$product_proximity,
  tbl_output = TRUE
 )
 }

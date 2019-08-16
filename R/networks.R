@@ -1,11 +1,11 @@
 #' Networks
 #'
 #' @export
-#' @param proximity_countries matrix or tibble/data.frame, if d is a tibble/
+#' @param country_proximity matrix or tibble/data.frame, if d is a tibble/
 #' data.frame it must contain the columns from (character/factor), to
 #' (character/factor) and value (numeric), if it is a matrix it must be a
 #' numeric matrix with countries in row names and column names
-#' @param proximity_products matrix or tibble/data.frame, if d is a
+#' @param product_proximity matrix or tibble/data.frame, if d is a
 #' tibble/data.frame it must contain the columns from (character/factor), to
 #' (character/factor) and value (numeric), if it is a matrix it must be a
 #' numeric matrix with products in row names and column names
@@ -26,10 +26,10 @@
 #' @importFrom rlang sym
 #' @examples
 #' networks(
-#'  proximity_countries =
-#'   package_output_demo$proximity_matrix$proximity_countries,
-#'  proximity_products =
-#'   package_output_demo$proximity_matrix$proximity_products,
+#'  country_proximity =
+#'   package_output_demo$proximity_matrix$country_proximity,
+#'  product_proximity =
+#'   package_output_demo$proximity_matrix$product_proximity,
 #'  tbl_output = TRUE
 #' )
 #' @references
@@ -40,18 +40,18 @@
 #'
 #' @keywords functions
 
-networks <- function(proximity_countries,
-                     proximity_products,
+networks <- function(country_proximity,
+                     product_proximity,
                      countries_cutoff = 0.2,
                      products_cutoff = 0.4,
                      tbl_output = FALSE,
                      compute = "both") {
   # sanity checks ----
-  if (all(class(proximity_countries) %in% c("data.frame", "matrix",
+  if (all(class(country_proximity) %in% c("data.frame", "matrix",
         "dgeMatrix", "dgCMatrix", "dsCMatrix") == FALSE) &
-      all(class(proximity_products) %in% c("data.frame", "matrix",
+      all(class(product_proximity) %in% c("data.frame", "matrix",
         "dgeMatrix", "dgCMatrix", "dsCMatrix") == FALSE)) {
-    stop("proximity_countries and proximity_products must be tibble/data.frame
+    stop("country_proximity and product_proximity must be tibble/data.frame
           or dense/sparse matrix")
   }
 
@@ -75,16 +75,16 @@ networks <- function(proximity_countries,
 
   if (any("country" %in% compute2) == TRUE) {
     # arrange country matrix ----
-    if (any(class(proximity_countries) %in% c("dgeMatrix", "dgCMatrix",
+    if (any(class(country_proximity) %in% c("dgeMatrix", "dgCMatrix",
                                               "dsCMatrix") == TRUE)) {
-      proximity_countries <- as.matrix(proximity_countries)
+      country_proximity <- as.matrix(country_proximity)
     }
 
-    if (is.matrix(proximity_countries)) {
-      proximity_countries[upper.tri(proximity_countries, diag = TRUE)] <- 0
-      row_names <- rownames(proximity_countries)
+    if (is.matrix(country_proximity)) {
+      country_proximity[upper.tri(country_proximity, diag = TRUE)] <- 0
+      row_names <- rownames(country_proximity)
 
-      proximity_countries <- proximity_countries %>%
+      country_proximity <- country_proximity %>%
         dplyr::as_tibble() %>%
         dplyr::mutate(from = row_names) %>%
         tidyr::gather(!!sym("to"), !!sym("value"), -!!sym("from")) %>%
@@ -92,16 +92,16 @@ networks <- function(proximity_countries,
     }
 
     # compute countries network ----
-    proximity_countries <- dplyr::mutate(proximity_countries,
+    country_proximity <- dplyr::mutate(country_proximity,
                                          value = -1 * !!sym("value"))
 
-    c_g <- igraph::graph_from_data_frame(proximity_countries, directed = FALSE)
+    c_g <- igraph::graph_from_data_frame(country_proximity, directed = FALSE)
 
-    c_mst <- igraph::mst(c_g, weights = proximity_countries$value,
+    c_mst <- igraph::mst(c_g, weights = country_proximity$value,
                          algorithm = "prim")
     c_mst <- igraph::as_data_frame(c_mst)
 
-    c_g_nmst <- proximity_countries %>%
+    c_g_nmst <- country_proximity %>%
       dplyr::filter(!!sym("value") <= -1 * countries_cutoff) %>%
       dplyr::anti_join(c_mst, by = c("from", "to"))
 
@@ -123,16 +123,16 @@ networks <- function(proximity_countries,
 
   if (any("product" %in% compute2) == TRUE) {
     # arrange products matrix ----
-    if (any(class(proximity_products) %in% c("dgeMatrix", "dgCMatrix",
+    if (any(class(product_proximity) %in% c("dgeMatrix", "dgCMatrix",
                                              "dsCMatrix") == TRUE)) {
-      proximity_products <- as.matrix(proximity_products)
+      product_proximity <- as.matrix(product_proximity)
     }
 
-    if (is.matrix(proximity_products)) {
-      proximity_products[upper.tri(proximity_products, diag = TRUE)] <- 0
-      row_names <- rownames(proximity_products)
+    if (is.matrix(product_proximity)) {
+      product_proximity[upper.tri(product_proximity, diag = TRUE)] <- 0
+      row_names <- rownames(product_proximity)
 
-      proximity_products <- proximity_products %>%
+      product_proximity <- product_proximity %>%
         dplyr::as_tibble() %>%
         dplyr::mutate(from = row_names) %>%
         tidyr::gather(!!sym("to"), !!sym("value"), -!!sym("from")) %>%
@@ -140,16 +140,16 @@ networks <- function(proximity_countries,
     }
 
     # compute products network ----
-    proximity_products <- dplyr::mutate(proximity_products,
-                                        value = -1 * !!sym("value"))
+    product_proximity <- dplyr::mutate(product_proximity,
+                                       value = -1 * !!sym("value"))
 
-    p_g <- igraph::graph_from_data_frame(proximity_products, directed = FALSE)
+    p_g <- igraph::graph_from_data_frame(product_proximity, directed = FALSE)
 
-    p_mst <- igraph::mst(p_g, weights = proximity_products$value,
+    p_mst <- igraph::mst(p_g, weights = product_proximity$value,
                          algorithm = "prim")
     p_mst <- igraph::as_data_frame(p_mst)
 
-    p_g_nmst <- proximity_products %>%
+    p_g_nmst <- product_proximity %>%
       dplyr::filter(!!sym("value") <= -1 * products_cutoff) %>%
       dplyr::anti_join(p_mst, by = c("from", "to"))
 
@@ -169,5 +169,5 @@ networks <- function(proximity_countries,
     p_g = NULL
   }
 
-  return(list(network_countries = c_g, network_products = p_g))
+  return(list(country_network = c_g, product_network = p_g))
 }

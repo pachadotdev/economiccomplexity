@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">economiccomplexity</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.5</span>
       </span>
     </div>
 
@@ -118,7 +118,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>countries_position</span>(<span class='kw'>rca</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>country1</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
-  <span class='kw'>product1</span> <span class='kw'>=</span> <span class='st'>"product"</span>, <span class='kw'>value1</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>proximity_products</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>product1</span> <span class='kw'>=</span> <span class='st'>"product"</span>, <span class='kw'>value1</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>product_proximity</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>product21</span> <span class='kw'>=</span> <span class='st'>"from"</span>, <span class='kw'>product22</span> <span class='kw'>=</span> <span class='st'>"to"</span>, <span class='kw'>value2</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
   <span class='kw'>product_complexity_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>product3</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
   <span class='kw'>value3</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
@@ -151,7 +151,7 @@ in rca (set to "product" by default)</p></td>
 rca (set to "value" by default)</p></td>
     </tr>
     <tr>
-      <th>proximity_products</th>
+      <th>product_proximity</th>
       <td><p>matrix or tibble/data.frame (e.g. the output of
 <code>proximity_matrices()</code>).
 If the input is a matrix it must be a numeric matrix with products in both
@@ -162,17 +162,17 @@ columns with products (twice) and values.</p></td>
     <tr>
       <th>product21</th>
       <td><p>string to indicate the first column that contains exported
-products in proximity_products (set to "from" by default)</p></td>
+products in product_proximity (set to "from" by default)</p></td>
     </tr>
     <tr>
       <th>product22</th>
       <td><p>string to indicate the second column that contains exported
-products in proximity_products (set to "to" by default)</p></td>
+products in product_proximity (set to "to" by default)</p></td>
     </tr>
     <tr>
       <th>value2</th>
       <td><p>string to indicate the column that contains proximity values in
-proximity_products (set to "value" by default)</p></td>
+product_proximity (set to "value" by default)</p></td>
     </tr>
     <tr>
       <th>product_complexity_index</th>
@@ -185,12 +185,12 @@ with products and values.</p></td>
     <tr>
       <th>product3</th>
       <td><p>string to indicate the column that contains exported products
-in proximity_products (e.g. "product")</p></td>
+in product_proximity (e.g. "product")</p></td>
     </tr>
     <tr>
       <th>value3</th>
       <td><p>string to indicate the column that contains proximity values in
-proximity_products (e.g. "value") from <code><a href='complexity_measures.html'>complexity_measures()</a></code>)</p></td>
+product_proximity (e.g. "value") from <code><a href='complexity_measures.html'>complexity_measures()</a></code>)</p></td>
     </tr>
     <tr>
       <th>tbl_output</th>
@@ -216,8 +216,8 @@ doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9
   <span class='kw'>country1</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
   <span class='kw'>product1</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
   <span class='kw'>value1</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
-  <span class='kw'>proximity_products</span> <span class='kw'>=</span>
-   <span class='no'>package_output_demo</span>$<span class='no'>proximity_matrix</span>$<span class='no'>proximity_products</span>,
+  <span class='kw'>product_proximity</span> <span class='kw'>=</span>
+   <span class='no'>package_output_demo</span>$<span class='no'>proximity_matrix</span>$<span class='no'>product_proximity</span>,
   <span class='kw'>product21</span> <span class='kw'>=</span> <span class='st'>"from"</span>,
   <span class='kw'>product22</span> <span class='kw'>=</span> <span class='st'>"to"</span>,
   <span class='kw'>value2</span> <span class='kw'>=</span> <span class='st'>"value"</span>,

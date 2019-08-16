@@ -5,8 +5,8 @@ test_that("countries position is aligned with the expected output", {
     country1 = "country",
     product1 = "product",
     value1 = "value",
-    proximity_products =
-      package_output_demo$proximity_matrix$proximity_products,
+    product_proximity =
+      package_output_demo$proximity_matrix$product_proximity,
     product21 = "from",
     product22 = "to",
     value2 = "value",
@@ -31,8 +31,8 @@ test_that("countries position is aligned with the expected output", {
     country1 = "country",
     product1 = "product",
     value1 = "value",
-    proximity_products =
-      package_output_demo$proximity_tibble$proximity_products,
+    product_proximity =
+      package_output_demo$proximity_tibble$product_proximity,
     product21 = "from",
     product22 = "to",
     value2 = "value",
@@ -58,8 +58,8 @@ test_that("countries position is aligned with the expected output", {
     country1 = "country",
     product1 = "product",
     value1 = "value",
-    proximity_products =
-      package_output_demo$proximity_matrix$proximity_products,
+    product_proximity =
+      package_output_demo$proximity_matrix$product_proximity,
     product21 = "from",
     product22 = "to",
     value2 = "value",
@@ -86,8 +86,8 @@ test_that("countries position is aligned with the expected output", {
     country1 = "country",
     product1 = "product",
     value1 = "value",
-    proximity_products =
-      package_output_demo$proximity_tibble$proximity_products,
+    product_proximity =
+      package_output_demo$proximity_tibble$product_proximity,
     product21 = "from",
     product22 = "to",
     value2 = "value",

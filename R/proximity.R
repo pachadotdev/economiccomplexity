@@ -184,8 +184,8 @@ proximity <- function(rca = NULL,
 
   return(
     list(
-      proximity_countries = cp,
-      proximity_products = pp
+      country_proximity = cp,
+      product_proximity = pp
     )
   )
 }

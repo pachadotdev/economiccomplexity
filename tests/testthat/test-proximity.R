@@ -7,14 +7,14 @@ test_that("proximity results are aligned with the expected output ", {
   )
 
   expect_is(pr_m, "list")
-  expect_equal(nrow(pr_m$proximity_countries), 80)
-  expect_equal(ncol(pr_m$proximity_countries), 80)
-  expect_equal(nrow(pr_m$proximity_products), 11)
-  expect_equal(ncol(pr_m$proximity_products), 11)
-  expect_gte(min(pr_m$proximity_countries), 0)
-  expect_lte(max(pr_m$proximity_countries), 1)
-  expect_gte(min(pr_m$proximity_products), 0)
-  expect_lte(max(pr_m$proximity_products), 1)
+  expect_equal(nrow(pr_m$country_proximity), 80)
+  expect_equal(ncol(pr_m$country_proximity), 80)
+  expect_equal(nrow(pr_m$product_proximity), 11)
+  expect_equal(ncol(pr_m$product_proximity), 11)
+  expect_gte(min(pr_m$country_proximity), 0)
+  expect_lte(max(pr_m$country_proximity), 1)
+  expect_gte(min(pr_m$product_proximity), 0)
+  expect_lte(max(pr_m$product_proximity), 1)
 
   pr_m_2 <- proximity(
     rca = package_output_demo$revealed_comparative_advantage_tibble,
@@ -23,17 +23,14 @@ test_that("proximity results are aligned with the expected output ", {
   )
 
   expect_is(pr_m, "list")
-  expect_equal(nrow(pr_m$proximity_countries), 80)
-  expect_equal(ncol(pr_m$proximity_countries), 80)
-  expect_equal(nrow(pr_m$proximity_products), 11)
-  expect_equal(ncol(pr_m$proximity_products), 11)
-  expect_gte(min(pr_m$proximity_countries), 0)
-  expect_lte(max(pr_m$proximity_countries), 1)
-  expect_gte(min(pr_m$proximity_products), 0)
-  expect_lte(max(pr_m$proximity_products), 1)
-
-  # expect_equivalent(pr_m$proximity_countries, pr_m_2$proximity_countries)
-  # expect_equivalent(pr_m$proximity_products, pr_m_2$proximity_products)
+  expect_equal(nrow(pr_m$country_proximity), 80)
+  expect_equal(ncol(pr_m$country_proximity), 80)
+  expect_equal(nrow(pr_m$product_proximity), 11)
+  expect_equal(ncol(pr_m$product_proximity), 11)
+  expect_gte(min(pr_m$country_proximity), 0)
+  expect_lte(max(pr_m$country_proximity), 1)
+  expect_gte(min(pr_m$product_proximity), 0)
+  expect_lte(max(pr_m$product_proximity), 1)
 
   # tibble output ----
   pr_t <- proximity(
@@ -44,14 +41,14 @@ test_that("proximity results are aligned with the expected output ", {
   )
 
   expect_is(pr_t, "list")
-  expect_equal(nrow(pr_t$proximity_countries), 2683)
-  expect_equal(ncol(pr_t$proximity_countries), 3)
-  expect_equal(nrow(pr_t$proximity_products), 51)
-  expect_equal(ncol(pr_t$proximity_products), 3)
-  expect_gte(min(pr_t$proximity_countries$value), 0)
-  expect_lte(max(pr_t$proximity_countries$value), 1)
-  expect_gte(min(pr_t$proximity_products$value), 0)
-  expect_lte(max(pr_t$proximity_products$value), 1)
+  expect_equal(nrow(pr_t$country_proximity), 2683)
+  expect_equal(ncol(pr_t$country_proximity), 3)
+  expect_equal(nrow(pr_t$product_proximity), 51)
+  expect_equal(ncol(pr_t$product_proximity), 3)
+  expect_gte(min(pr_t$country_proximity$value), 0)
+  expect_lte(max(pr_t$country_proximity$value), 1)
+  expect_gte(min(pr_t$product_proximity$value), 0)
+  expect_lte(max(pr_t$product_proximity$value), 1)
 
   pr_t_2 <- proximity(
     rca = package_output_demo$revealed_comparative_advantage_tibble,
@@ -61,15 +58,12 @@ test_that("proximity results are aligned with the expected output ", {
   )
 
   expect_is(pr_t, "list")
-  expect_equal(nrow(pr_t$proximity_countries), 2683)
-  expect_equal(ncol(pr_t$proximity_countries), 3)
-  expect_equal(nrow(pr_t$proximity_products), 51)
-  expect_equal(ncol(pr_t$proximity_products), 3)
-  expect_gte(min(pr_t$proximity_countries$value), 0)
-  expect_lte(max(pr_t$proximity_countries$value), 1)
-  expect_gte(min(pr_t$proximity_products$value), 0)
-  expect_lte(max(pr_t$proximity_products$value), 1)
-
-  # expect_equivalent(pr_t$proximity_countries, pr_t_2$proximity_countries)
-  # expect_equivalent(pr_t$proximity_products, pr_t_2$proximity_products)
+  expect_equal(nrow(pr_t$country_proximity), 2683)
+  expect_equal(ncol(pr_t$country_proximity), 3)
+  expect_equal(nrow(pr_t$product_proximity), 51)
+  expect_equal(ncol(pr_t$product_proximity), 3)
+  expect_gte(min(pr_t$country_proximity$value), 0)
+  expect_lte(max(pr_t$country_proximity$value), 1)
+  expect_gte(min(pr_t$product_proximity$value), 0)
+  expect_lte(max(pr_t$product_proximity$value), 1)
 })

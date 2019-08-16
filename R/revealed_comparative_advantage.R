@@ -1,18 +1,26 @@
 #' Revealed Comparative Advantage (RCA)
 #'
 #' @export
-#' @param trade_data tibble/data.frame in long format, it must contain the columns country (character/factor),
-#' product (character/factor) and export value (numeric)
-#' @param country string to indicate the column that contains exporting countries (e.g. "reporter_iso")
-#' @param product string to indicate the column that contains exported products (e.g. "product_code")
-#' @param value string to indicate the column that contains traded values (e.g. "trade_value_usd")
-#' @param discrete when set to TRUE it will convert all the Revealed Comparative Advantage values
+#' @param trade_data tibble/data.frame in long format, it must contain the
+#' columns country (character/factor), product (character/factor) and export
+#' value (numeric)
+#' @param country string to indicate the column that contains exporting
+#' countries (e.g. "reporter_iso")
+#' @param product string to indicate the column that contains exported products
+#' (e.g. "product_code")
+#' @param value string to indicate the column that contains traded values
+#' (e.g. "trade_value_usd")
+#' @param discrete when set to TRUE it will convert all the Revealed Comparative
+#' Advantage values
 #' to zero or one based on the cutoff value (default set to TRUE)
-#' @param cutoff when set to TRUE all the values lower than the specified cutoff will be
-#' converted to zero and to one in other case, numeric (default set to 1)
-#' @param tbl_output when set to TRUE the output will be a tibble instead of a matrix (default set to FALSE)
+#' @param cutoff when set to TRUE all the values lower than the specified cutoff
+#' will be converted to zero and to one in other case, numeric (default set
+#' to 1)
+#' @param tbl_output when set to TRUE the output will be a tibble instead of a
+#' matrix (default set to FALSE)
 #' @importFrom magrittr %>%
-#' @importFrom dplyr select group_by ungroup mutate summarise matches rename pull as_tibble if_else
+#' @importFrom dplyr select group_by ungroup mutate summarise matches rename
+#' pull as_tibble if_else
 #' @importFrom tidyr spread gather
 #' @importFrom Matrix Matrix rowSums colSums t
 #' @importFrom rlang sym syms :=
@@ -25,6 +33,7 @@
 #' For more information on revealed comparative advantage and its uses see:
 #'
 #' \insertRef{atlas2014}{economiccomplexity}
+#'
 #' @keywords functions
 
 revealed_comparative_advantage <- function(trade_data = NULL,
@@ -35,7 +44,8 @@ revealed_comparative_advantage <- function(trade_data = NULL,
                                            discrete = TRUE,
                                            tbl_output = FALSE) {
   # sanity checks ----
-  if (all(class(trade_data) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix", "dgCMatrix") == FALSE)) {
+  if (all(class(trade_data) %in% c("data.frame", "matrix", "dgeMatrix",
+                                   "dsCMatrix", "dgCMatrix") == FALSE)) {
     stop("trade_data must be a tibble/data.frame or a dense/sparse matrix")
   }
 
@@ -91,7 +101,8 @@ revealed_comparative_advantage <- function(trade_data = NULL,
     dplyr::ungroup() %>%
     dplyr::mutate(
       sum_c_p_vcp = sum(!!sym("vcp"), na.rm = TRUE),
-      value = (!!sym("vcp") / !!sym("sum_c_vcp")) / (!!sym("sum_p_vcp") / !!sym("sum_c_p_vcp"))
+      value = (!!sym("vcp") / !!sym("sum_c_vcp")) / (!!sym("sum_p_vcp") /
+                                                       !!sym("sum_c_p_vcp"))
     ) %>%
     dplyr::select(-dplyr::matches("vcp")) %>%
 
@@ -100,14 +111,16 @@ revealed_comparative_advantage <- function(trade_data = NULL,
 
   if (discrete == TRUE) {
     trade_data <- trade_data %>%
-      dplyr::mutate(!!sym("value") := dplyr::if_else(!!sym("value") > cutoff, 1, 0))
+      dplyr::mutate(!!sym("value") := dplyr::if_else(!!sym("value") >
+                                                       cutoff, 1, 0))
   }
 
   if (tbl_output == FALSE) {
     trade_data <- trade_data %>%
       tidyr::spread(!!sym("product"), !!sym("value"))
 
-    trade_data_rownames <- dplyr::select(trade_data, !!sym("country")) %>% dplyr::pull()
+    trade_data_rownames <- dplyr::select(trade_data, !!sym("country")) %>%
+      dplyr::pull()
 
     trade_data <- dplyr::select(trade_data, -!!sym("country")) %>% as.matrix()
     trade_data[is.na(trade_data)] <- 0

@@ -9,22 +9,29 @@ revealed_comparative_advantage(trade_data = NULL, country = "country",
   discrete = TRUE, tbl_output = FALSE)
 }
 \arguments{
-\item{trade_data}{tibble/data.frame in long format, it must contain the columns country (character/factor),
-product (character/factor) and export value (numeric)}
+\item{trade_data}{tibble/data.frame in long format, it must contain the
+columns country (character/factor), product (character/factor) and export
+value (numeric)}
 
-\item{country}{string to indicate the column that contains exporting countries (e.g. "reporter_iso")}
+\item{country}{string to indicate the column that contains exporting
+countries (e.g. "reporter_iso")}
 
-\item{product}{string to indicate the column that contains exported products (e.g. "product_code")}
+\item{product}{string to indicate the column that contains exported products
+(e.g. "product_code")}
 
-\item{value}{string to indicate the column that contains traded values (e.g. "trade_value_usd")}
+\item{value}{string to indicate the column that contains traded values
+(e.g. "trade_value_usd")}
 
-\item{cutoff}{when set to TRUE all the values lower than the specified cutoff will be
-converted to zero and to one in other case, numeric (default set to 1)}
+\item{cutoff}{when set to TRUE all the values lower than the specified cutoff
+will be converted to zero and to one in other case, numeric (default set
+to 1)}
 
-\item{discrete}{when set to TRUE it will convert all the Revealed Comparative Advantage values
+\item{discrete}{when set to TRUE it will convert all the Revealed Comparative
+Advantage values
 to zero or one based on the cutoff value (default set to TRUE)}
 
-\item{tbl_output}{when set to TRUE the output will be a tibble instead of a matrix (default set to FALSE)}
+\item{tbl_output}{when set to TRUE the output will be a tibble instead of a
+matrix (default set to FALSE)}
 }
 \description{
 Revealed Comparative Advantage (RCA)
