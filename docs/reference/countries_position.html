@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">economiccomplexity</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4</span>
       </span>
     </div>
 
@@ -117,37 +117,38 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>countries_position</span>(<span class='kw'>revealed_comparative_advantage</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>country1</span> <span class='kw'>=</span> <span class='st'>"country"</span>, <span class='kw'>product1</span> <span class='kw'>=</span> <span class='st'>"product"</span>, <span class='kw'>value1</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
-  <span class='kw'>proximity_products</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>product21</span> <span class='kw'>=</span> <span class='st'>"from"</span>, <span class='kw'>product22</span> <span class='kw'>=</span> <span class='st'>"to"</span>,
-  <span class='kw'>value2</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>product_complexity_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>product3</span> <span class='kw'>=</span> <span class='st'>"product"</span>, <span class='kw'>value3</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>countries_position</span>(<span class='kw'>rca</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>country1</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
+  <span class='kw'>product1</span> <span class='kw'>=</span> <span class='st'>"product"</span>, <span class='kw'>value1</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>proximity_products</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>product21</span> <span class='kw'>=</span> <span class='st'>"from"</span>, <span class='kw'>product22</span> <span class='kw'>=</span> <span class='st'>"to"</span>, <span class='kw'>value2</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
+  <span class='kw'>product_complexity_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>product3</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
+  <span class='kw'>value3</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>revealed_comparative_advantage</th>
-      <td><p>matrix or tibble/data.frame (e.g. the output of
-<code><a href='revealed_comparative_advantage.html'>revealed_comparative_advantage()</a></code>).
-If the input is a matrix it must be a zero/one matrix with countries in rows and products in columns.
-If the input is a tibble/data.frame it must contain at least three columns with countries, products and
-values.</p></td>
+      <th>rca</th>
+      <td><p>matrix or tibble/data.frame (e.g. the
+output of <code><a href='revealed_comparative_advantage.html'>revealed_comparative_advantage()</a></code>).
+If the input is a matrix it must be a zero/one matrix with countries in rows
+and products in columns.
+If the input is a tibble/data.frame it must contain at least three columns
+with countries, products and values.</p></td>
     </tr>
     <tr>
       <th>country1</th>
-      <td><p>string to indicate the column that contains exporting countries in revealed_comparative_advantage
-(set to "country" by default)</p></td>
+      <td><p>string to indicate the column that contains exporting
+countries in rca (set to "country" by default)</p></td>
     </tr>
     <tr>
       <th>product1</th>
-      <td><p>string to indicate the column that contains exported products in revealed_comparative_advantage
-(set to "product" by default)</p></td>
+      <td><p>string to indicate the column that contains exported products
+in rca (set to "product" by default)</p></td>
     </tr>
     <tr>
       <th>value1</th>
-      <td><p>string to indicate the column that contains traded values in revealed_comparative_advantage
-(set to "value" by default)</p></td>
+      <td><p>string to indicate the column that contains traded values in
+rca (set to "value" by default)</p></td>
     </tr>
     <tr>
       <th>proximity_products</th>
@@ -155,64 +156,68 @@ values.</p></td>
 <code>proximity_matrices()</code>).
 If the input is a matrix it must be a numeric matrix with products in both
 rows and columns.
-If the input is a tibble/data.frame it must contain at least three columns columns with
-products (twice) and values.</p></td>
+If the input is a tibble/data.frame it must contain at least three columns
+columns with products (twice) and values.</p></td>
     </tr>
     <tr>
       <th>product21</th>
-      <td><p>string to indicate the first column that contains exported products in proximity_products
-(set to "from" by default)</p></td>
+      <td><p>string to indicate the first column that contains exported
+products in proximity_products (set to "from" by default)</p></td>
     </tr>
     <tr>
       <th>product22</th>
-      <td><p>string to indicate the second column that contains exported products in proximity_products
-(set to "to" by default)</p></td>
+      <td><p>string to indicate the second column that contains exported
+products in proximity_products (set to "to" by default)</p></td>
     </tr>
     <tr>
       <th>value2</th>
-      <td><p>string to indicate the column that contains proximity values in proximity_products
-(set to "value" by default)</p></td>
+      <td><p>string to indicate the column that contains proximity values in
+proximity_products (set to "value" by default)</p></td>
     </tr>
     <tr>
       <th>product_complexity_index</th>
-      <td><p>numeric vector or tibble/data.frame <code><a href='complexity_measures.html'>complexity_measures()</a></code>).
+      <td><p>numeric vector or tibble/data.frame
+<code><a href='complexity_measures.html'>complexity_measures()</a></code>).
 If the input is a vector it must be numeric with optional names.
-If the input is a tibble/data.frame it must contain at least two columns columns with products and values.</p></td>
+If the input is a tibble/data.frame it must contain at least two columns
+with products and values.</p></td>
     </tr>
     <tr>
       <th>product3</th>
-      <td><p>string to indicate the column that contains exported products in proximity_products (e.g. "product")</p></td>
+      <td><p>string to indicate the column that contains exported products
+in proximity_products (e.g. "product")</p></td>
     </tr>
     <tr>
       <th>value3</th>
-      <td><p>string to indicate the column that contains proximity values in proximity_products (e.g. "value")
-from <code><a href='complexity_measures.html'>complexity_measures()</a></code>)</p></td>
+      <td><p>string to indicate the column that contains proximity values in
+proximity_products (e.g. "value") from <code><a href='complexity_measures.html'>complexity_measures()</a></code>)</p></td>
     </tr>
     <tr>
       <th>tbl_output</th>
-      <td><p>logical value to use tibble output instead of a matrix output (set to FALSE by default)</p></td>
+      <td><p>logical value to use tibble output instead of a matrix
+output (set to FALSE by default)</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>For more information on proximity distance, complexity outlook, complexity outlook gain and its
-applications see:</p>
+    <p>For more information on proximity distance, complexity outlook, complexity
+outlook gain and its applications see:</p>
 <p>Hausmann R, Hidalgo C, Bustos S, Coscia M, Simoes A, Yildirim M (2014).
 <em>The atlas of economic complexity: Mapping paths to prosperity</em>.
 MIT Press.
-doi: <a href='http://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9647.001.0001</a>
+doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9647.001.0001</a>
 .</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>countries_position</span>(
-  <span class='kw'>revealed_comparative_advantage</span> <span class='kw'>=</span>
-   <span class='no'>package_output_demo</span>$<span class='no'>revealed_comparative_advantage_matrix</span>,
+  <span class='kw'>rca</span> <span class='kw'>=</span> <span class='no'>package_output_demo</span>$<span class='no'>revealed_comparative_advantage_matrix</span>,
   <span class='kw'>country1</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
   <span class='kw'>product1</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
   <span class='kw'>value1</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
-  <span class='kw'>proximity_products</span> <span class='kw'>=</span> <span class='no'>package_output_demo</span>$<span class='no'>proximity_matrix</span>$<span class='no'>proximity_products</span>,
+  <span class='kw'>proximity_products</span> <span class='kw'>=</span>
+   <span class='no'>package_output_demo</span>$<span class='no'>proximity_matrix</span>$<span class='no'>proximity_products</span>,
   <span class='kw'>product21</span> <span class='kw'>=</span> <span class='st'>"from"</span>,
   <span class='kw'>product22</span> <span class='kw'>=</span> <span class='st'>"to"</span>,
   <span class='kw'>value2</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
@@ -222,52 +227,52 @@ doi: <a href='http://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/96
   <span class='kw'>value3</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
   <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</div><div class='output co'>#&gt; $proximity_distance
-#&gt; <span style='color: #949494;'># A tibble: 880 x 3</span><span>
+#&gt; <span style='color: #555555;'># A tibble: 880 x 3</span><span>
 #&gt;    country    product          value
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Albania    1 Transportation 0.674
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Algeria    1 Transportation 0.395
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Angola     1 Transportation 0.893
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Argentina  1 Transportation 0.449
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Armenia    1 Transportation 0.392
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Aruba      1 Transportation 0.893
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Australia  1 Transportation 0.674
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Azerbaijan 1 Transportation 0.639
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Bahamas    1 Transportation 0.893
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Bangladesh 1 Transportation 0.580
-#&gt; </span><span style='color: #949494;'># … with 870 more rows</span><span>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> Albania    1 Transportation 0.674
+#&gt; </span><span style='color: #555555;'> 2</span><span> Algeria    1 Transportation 0.395
+#&gt; </span><span style='color: #555555;'> 3</span><span> Angola     1 Transportation 0.893
+#&gt; </span><span style='color: #555555;'> 4</span><span> Argentina  1 Transportation 0.449
+#&gt; </span><span style='color: #555555;'> 5</span><span> Armenia    1 Transportation 0.392
+#&gt; </span><span style='color: #555555;'> 6</span><span> Aruba      1 Transportation 0.893
+#&gt; </span><span style='color: #555555;'> 7</span><span> Australia  1 Transportation 0.674
+#&gt; </span><span style='color: #555555;'> 8</span><span> Azerbaijan 1 Transportation 0.639
+#&gt; </span><span style='color: #555555;'> 9</span><span> Bahamas    1 Transportation 0.893
+#&gt; </span><span style='color: #555555;'>10</span><span> Bangladesh 1 Transportation 0.580
+#&gt; </span><span style='color: #555555;'># … with 870 more rows</span><span>
 #&gt; 
 #&gt; $complexity_outlook
-#&gt; </span><span style='color: #949494;'># A tibble: 80 x 2</span><span>
+#&gt; </span><span style='color: #555555;'># A tibble: 80 x 2</span><span>
 #&gt;    product        value
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Singapore     0.177 
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> South Africa  0.065</span><span style='text-decoration: underline;'>3</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Lebanon      -</span><span style='color: #BB0000;'>0.049</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Seychelles   -</span><span style='color: #BB0000;'>0.097</span><span style='color: #BB0000;text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Philippines  -</span><span style='color: #BB0000;'>0.163</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Morocco      -</span><span style='color: #BB0000;'>0.170</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Tunisia      -</span><span style='color: #BB0000;'>0.170</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Angola       -</span><span style='color: #BB0000;'>0.173</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Aruba        -</span><span style='color: #BB0000;'>0.173</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Bahamas      -</span><span style='color: #BB0000;'>0.173</span><span> 
-#&gt; </span><span style='color: #949494;'># … with 70 more rows</span><span>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> Singapore     0.177 
+#&gt; </span><span style='color: #555555;'> 2</span><span> South Africa  0.065</span><span style='text-decoration: underline;'>3</span><span>
+#&gt; </span><span style='color: #555555;'> 3</span><span> Lebanon      -</span><span style='color: #BB0000;'>0.049</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span>
+#&gt; </span><span style='color: #555555;'> 4</span><span> Seychelles   -</span><span style='color: #BB0000;'>0.097</span><span style='color: #BB0000;text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #555555;'> 5</span><span> Philippines  -</span><span style='color: #BB0000;'>0.163</span><span> 
+#&gt; </span><span style='color: #555555;'> 6</span><span> Morocco      -</span><span style='color: #BB0000;'>0.170</span><span> 
+#&gt; </span><span style='color: #555555;'> 7</span><span> Tunisia      -</span><span style='color: #BB0000;'>0.170</span><span> 
+#&gt; </span><span style='color: #555555;'> 8</span><span> Angola       -</span><span style='color: #BB0000;'>0.173</span><span> 
+#&gt; </span><span style='color: #555555;'> 9</span><span> Aruba        -</span><span style='color: #BB0000;'>0.173</span><span> 
+#&gt; </span><span style='color: #555555;'>10</span><span> Bahamas      -</span><span style='color: #BB0000;'>0.173</span><span> 
+#&gt; </span><span style='color: #555555;'># … with 70 more rows</span><span>
 #&gt; 
 #&gt; $complexity_outlook_gain
-#&gt; </span><span style='color: #949494;'># A tibble: 880 x 3</span><span>
+#&gt; </span><span style='color: #555555;'># A tibble: 880 x 3</span><span>
 #&gt;    country    product             value
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Albania    1 Transportation -</span><span style='color: #BB0000;'>0.021</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Algeria    1 Transportation -</span><span style='color: #BB0000;'>0.001</span><span style='color: #BB0000;text-decoration: underline;'>88</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Angola     1 Transportation -</span><span style='color: #BB0000;'>0.006</span><span style='color: #BB0000;text-decoration: underline;'>91</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Argentina  1 Transportation -</span><span style='color: #BB0000;'>0.012</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Armenia    1 Transportation -</span><span style='color: #BB0000;'>0.040</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Aruba      1 Transportation -</span><span style='color: #BB0000;'>0.006</span><span style='color: #BB0000;text-decoration: underline;'>91</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Australia  1 Transportation -</span><span style='color: #BB0000;'>0.021</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Azerbaijan 1 Transportation  0.020</span><span style='text-decoration: underline;'>7</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Bahamas    1 Transportation -</span><span style='color: #BB0000;'>0.006</span><span style='color: #BB0000;text-decoration: underline;'>91</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Bangladesh 1 Transportation -</span><span style='color: #BB0000;'>0.022</span><span style='color: #BB0000;text-decoration: underline;'>1</span><span> 
-#&gt; </span><span style='color: #949494;'># … with 870 more rows</span><span>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> Albania    1 Transportation -</span><span style='color: #BB0000;'>0.021</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span> 
+#&gt; </span><span style='color: #555555;'> 2</span><span> Algeria    1 Transportation -</span><span style='color: #BB0000;'>0.001</span><span style='color: #BB0000;text-decoration: underline;'>88</span><span>
+#&gt; </span><span style='color: #555555;'> 3</span><span> Angola     1 Transportation -</span><span style='color: #BB0000;'>0.006</span><span style='color: #BB0000;text-decoration: underline;'>91</span><span>
+#&gt; </span><span style='color: #555555;'> 4</span><span> Argentina  1 Transportation -</span><span style='color: #BB0000;'>0.012</span><span style='color: #BB0000;text-decoration: underline;'>7</span><span> 
+#&gt; </span><span style='color: #555555;'> 5</span><span> Armenia    1 Transportation -</span><span style='color: #BB0000;'>0.040</span><span style='color: #BB0000;text-decoration: underline;'>5</span><span> 
+#&gt; </span><span style='color: #555555;'> 6</span><span> Aruba      1 Transportation -</span><span style='color: #BB0000;'>0.006</span><span style='color: #BB0000;text-decoration: underline;'>91</span><span>
+#&gt; </span><span style='color: #555555;'> 7</span><span> Australia  1 Transportation -</span><span style='color: #BB0000;'>0.021</span><span style='color: #BB0000;text-decoration: underline;'>3</span><span> 
+#&gt; </span><span style='color: #555555;'> 8</span><span> Azerbaijan 1 Transportation  0.020</span><span style='text-decoration: underline;'>7</span><span> 
+#&gt; </span><span style='color: #555555;'> 9</span><span> Bahamas    1 Transportation -</span><span style='color: #BB0000;'>0.006</span><span style='color: #BB0000;text-decoration: underline;'>91</span><span>
+#&gt; </span><span style='color: #555555;'>10</span><span> Bangladesh 1 Transportation -</span><span style='color: #BB0000;'>0.022</span><span style='color: #BB0000;text-decoration: underline;'>1</span><span> 
+#&gt; </span><span style='color: #555555;'># … with 870 more rows</span><span>
 #&gt; </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

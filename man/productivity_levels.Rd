@@ -9,31 +9,35 @@ productivity_levels(trade_data = NULL, country1 = "country",
   country2 = "country", value2 = "value", tbl_output = FALSE)
 }
 \arguments{
-\item{trade_data}{matrix or tibble/data.frame (e.g. \code{world_trade_2017}). If the input is a matrix it
-must be a zero/one matrix with countries in rows and products in columns.
-If the input is a tibble/data.frame it must contain at least three columns with countries, products and
-values.}
+\item{trade_data}{matrix or tibble/data.frame (e.g. \code{world_trade_2017}).
+If the input is a matrix it must be a zero/one matrix with countries in rows
+and products in columns.
+If the input is a tibble/data.frame it must contain at least three columns
+with countries, products and values.}
 
-\item{country1}{string to indicate the column that contains exporting countries in revealed_comparative_advantage
-(set to "country" by default)}
+\item{country1}{string to indicate the column that contains exporting
+countries in revealed_comparative_advantage (set to "country" by default)}
 
-\item{product1}{string to indicate the column that contains exported products in revealed_comparative_advantage
-(set to "product" by default)}
+\item{product1}{string to indicate the column that contains exported products
+in revealed_comparative_advantage (set to "product" by default)}
 
-\item{value1}{string to indicate the column that contains traded values in revealed_comparative_advantage
-(set to "value" by default)}
+\item{value1}{string to indicate the column that contains traded values in
+revealed_comparative_advantage (set to "value" by default)}
 
-\item{gdp_data}{vector or tibble/data.frame (e.g. \code{world_gdp_and_population_2017}).
+\item{gdp_data}{vector or tibble/data.frame
+(e.g. \code{world_gdp_and_population_2017}).
 If the input is a vector it must be a numeric vector with optional names.
-If the input is a tibble/data.frame it must contain at least two columns with countries and values.}
+If the input is a tibble/data.frame it must contain at least two columns with
+countries and values.}
 
-\item{country2}{string to indicate the column that contains exporting countries in revealed_comparative_advantage
-(set to "country" by default)}
+\item{country2}{string to indicate the column that contains exporting
+countries in revealed_comparative_advantage (set to "country" by default)}
 
-\item{value2}{string to indicate the column that contains traded values in revealed_comparative_advantage
-(set to "value" by default)}
+\item{value2}{string to indicate the column that contains traded values in
+revealed_comparative_advantage (set to "value" by default)}
 
-\item{tbl_output}{when set to TRUE the output will be a tibble instead of a matrix (default set to FALSE)}
+\item{tbl_output}{when set to TRUE the output will be a tibble instead of a
+matrix (default set to FALSE)}
 }
 \description{
 Productivity Levels

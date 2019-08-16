@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">economiccomplexity</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4</span>
       </span>
     </div>
 
@@ -117,58 +117,62 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>complexity_measures</span>(<span class='kw'>revealed_comparative_advantage</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>country</span> <span class='kw'>=</span> <span class='st'>"country"</span>, <span class='kw'>product</span> <span class='kw'>=</span> <span class='st'>"product"</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"fitness"</span>, <span class='kw'>iterations</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>extremality</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>keep_atlas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>complexity_measures</span>(<span class='kw'>rca</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>country</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
+  <span class='kw'>product</span> <span class='kw'>=</span> <span class='st'>"product"</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"fitness"</span>,
+  <span class='kw'>iterations</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>extremality</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>keep_atlas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>revealed_comparative_advantage</th>
-      <td><p>matrix or tibble/data.frame (e.g. the output of
-<code><a href='revealed_comparative_advantage.html'>revealed_comparative_advantage()</a></code>).
-If the input is a matrix it must be a zero/one matrix with countries in rows and products in columns.
-If the input is a tibble/data.frame it must contain at least three columns with countries, products and
-values.</p></td>
+      <th>rca</th>
+      <td><p>matrix or tibble/data.frame (e.g. the
+output of <code><a href='revealed_comparative_advantage.html'>revealed_comparative_advantage()</a></code>).
+If the input is a matrix it must be a zero/one matrix with countries in rows
+and products in columns.
+If the input is a tibble/data.frame it must contain at least three columns
+with countries, products and values.</p></td>
     </tr>
     <tr>
       <th>country</th>
-      <td><p>string to indicate the column that contains exporting countries in revealed_comparative_advantage
-(set to "country" by default)</p></td>
+      <td><p>string to indicate the column that contains exporting
+countries in rca (set to "country" by default)</p></td>
     </tr>
     <tr>
       <th>product</th>
-      <td><p>string to indicate the column that contains exported products in revealed_comparative_advantage
-(set to "product" by default)</p></td>
+      <td><p>string to indicate the column that contains exported products
+in rca (set to "product" by default)</p></td>
     </tr>
     <tr>
       <th>value</th>
-      <td><p>string to indicate the column that contains traded values in revealed_comparative_advantage
-(set to "value" by default)</p></td>
+      <td><p>string to indicate the column that contains traded values in
+rca (set to "value" by default)</p></td>
     </tr>
     <tr>
       <th>method</th>
-      <td><p>string to indicate to use one of these methods: reflections, eigenvalues or fitness
-(set to "fitness" by default)</p></td>
+      <td><p>string to indicate to use one of these methods: reflections,
+eigenvalues or fitness (set to "fitness" by default)</p></td>
     </tr>
     <tr>
       <th>iterations</th>
-      <td><p>number of iterations to use in the reflections method (set to 20 by default)</p></td>
+      <td><p>number of iterations to use in the reflections method
+(set to 20 by default)</p></td>
     </tr>
     <tr>
       <th>extremality</th>
-      <td><p>numeric coefficient to use in the fitness method (set to 1 by default)</p></td>
+      <td><p>numeric coefficient to use in the fitness method
+(set to 1 by default)</p></td>
     </tr>
     <tr>
       <th>keep_atlas</th>
-      <td><p>logical value to remove the countries not ranked in The Atlas of Economic Complexity
-(set to FALSE by default)</p></td>
+      <td><p>logical value to remove the countries not ranked in The
+Atlas of Economic Complexity (set to FALSE by default)</p></td>
     </tr>
     <tr>
       <th>tbl_output</th>
-      <td><p>logical value to use tibble output instead of a matrix output (set to FALSE by default)</p></td>
+      <td><p>logical value to use tibble output instead of a matrix
+output (set to FALSE by default)</p></td>
     </tr>
     </table>
     
@@ -178,83 +182,82 @@ values.</p></td>
 <p>Hausmann R, Hidalgo C, Bustos S, Coscia M, Simoes A, Yildirim M (2014).
 <em>The atlas of economic complexity: Mapping paths to prosperity</em>.
 MIT Press.
-doi: <a href='http://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9647.001.0001</a>
+doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9647.001.0001</a>
 .</p>
 <p>Mariani M, Vidmer A, Medo M, Zhang Y (2015).
 &#8220;Measuring economic complexity of countries and products: which metric to use?&#8221;
 <em>The European Physical Journal B</em>, <b>88</b>(11), 293.
-doi: <a href='http://doi.org/10.1140/epjb/e2015-60298-7'>10.1140/epjb/e2015-60298-7</a>
+doi: <a href='https://doi.org/10.1140/epjb/e2015-60298-7'>10.1140/epjb/e2015-60298-7</a>
 .</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>complexity_measures</span>(
- <span class='kw'>revealed_comparative_advantage</span> <span class='kw'>=</span>
-  <span class='no'>package_output_demo</span>$<span class='no'>revealed_comparative_advantage_matrix</span>,
+ <span class='kw'>rca</span> <span class='kw'>=</span> <span class='no'>package_output_demo</span>$<span class='no'>revealed_comparative_advantage_matrix</span>,
  <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</div><div class='output co'>#&gt; $economic_complexity_index
-#&gt; <span style='color: #949494;'># A tibble: 80 x 2</span><span>
-#&gt;    country              value
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> USA                 6.24  
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Japan               6.17  
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Singapore          -</span><span style='color: #BB0000;'>0.088</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Lebanon            -</span><span style='color: #BB0000;'>0.088</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> South Africa       -</span><span style='color: #BB0000;'>0.088</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> China              -</span><span style='color: #BB0000;'>0.162</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Poland             -</span><span style='color: #BB0000;'>0.162</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Russian Federation -</span><span style='color: #BB0000;'>0.162</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Serbia             -</span><span style='color: #BB0000;'>0.162</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> TFYR of Macedonia  -</span><span style='color: #BB0000;'>0.162</span><span> 
-#&gt; </span><span style='color: #949494;'># … with 70 more rows</span><span>
+#&gt; <span style='color: #555555;'># A tibble: 80 x 2</span><span>
+#&gt;    country                value
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> USA                39.6     
+#&gt; </span><span style='color: #555555;'> 2</span><span> Japan              39.2     
+#&gt; </span><span style='color: #555555;'> 3</span><span> Singapore           0.422   
+#&gt; </span><span style='color: #555555;'> 4</span><span> Lebanon             0.422   
+#&gt; </span><span style='color: #555555;'> 5</span><span> South Africa        0.422   
+#&gt; </span><span style='color: #555555;'> 6</span><span> China               0.000</span><span style='text-decoration: underline;'>167</span><span>
+#&gt; </span><span style='color: #555555;'> 7</span><span> Poland              0.000</span><span style='text-decoration: underline;'>156</span><span>
+#&gt; </span><span style='color: #555555;'> 8</span><span> Russian Federation  0.000</span><span style='text-decoration: underline;'>156</span><span>
+#&gt; </span><span style='color: #555555;'> 9</span><span> Serbia              0.000</span><span style='text-decoration: underline;'>156</span><span>
+#&gt; </span><span style='color: #555555;'>10</span><span> TFYR of Macedonia   0.000</span><span style='text-decoration: underline;'>156</span><span>
+#&gt; </span><span style='color: #555555;'># … with 70 more rows</span><span>
 #&gt; 
 #&gt; $product_complexity_index
-#&gt; </span><span style='color: #949494;'># A tibble: 11 x 2</span><span>
-#&gt;    product                                           value
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                             </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 8 Royalties and license fees                      3.02 
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 6 Financial services                             -</span><span style='color: #BB0000;'>0.279</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 7 Computer and information services              -</span><span style='color: #BB0000;'>0.304</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 9 Other business services                        -</span><span style='color: #BB0000;'>0.304</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 5 Insurance services                             -</span><span style='color: #BB0000;'>0.304</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 4 Construction services                          -</span><span style='color: #BB0000;'>0.304</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 10 Personal, cultural, and recreational services -</span><span style='color: #BB0000;'>0.304</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 3 Communications services                        -</span><span style='color: #BB0000;'>0.304</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 1 Transportation                                 -</span><span style='color: #BB0000;'>0.304</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 11 Government services, n.i.e.                   -</span><span style='color: #BB0000;'>0.304</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> 2 Travel                                         -</span><span style='color: #BB0000;'>0.304</span><span>
+#&gt; </span><span style='color: #555555;'># A tibble: 11 x 2</span><span>
+#&gt;    product                                                  value
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                                    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> 8 Royalties and license fees                     10.9         
+#&gt; </span><span style='color: #555555;'> 2</span><span> 6 Financial services                              0.083</span><span style='text-decoration: underline;'>5</span><span>      
+#&gt; </span><span style='color: #555555;'> 3</span><span> 7 Computer and information services               0.000</span><span style='text-decoration: underline;'>004</span><span>50  
+#&gt; </span><span style='color: #555555;'> 4</span><span> 9 Other business services                         0.000</span><span style='text-decoration: underline;'>004</span><span>01  
+#&gt; </span><span style='color: #555555;'> 5</span><span> 5 Insurance services                              0.000</span><span style='text-decoration: underline;'>002</span><span>63  
+#&gt; </span><span style='color: #555555;'> 6</span><span> 4 Construction services                           0.000</span><span style='text-decoration: underline;'>002</span><span>38  
+#&gt; </span><span style='color: #555555;'> 7</span><span> 10 Personal, cultural, and recreational services  0.000</span><span style='text-decoration: underline;'>001</span><span>16  
+#&gt; </span><span style='color: #555555;'> 8</span><span> 3 Communications services                         0.000</span><span style='text-decoration: underline;'>000</span><span>499 
+#&gt; </span><span style='color: #555555;'> 9</span><span> 1 Transportation                                  0.000</span><span style='text-decoration: underline;'>000</span><span>488 
+#&gt; </span><span style='color: #555555;'>10</span><span> 11 Government services, n.i.e.                    0.000</span><span style='text-decoration: underline;'>000</span><span>417 
+#&gt; </span><span style='color: #555555;'>11</span><span> 2 Travel                                          0.000</span><span style='text-decoration: underline;'>000</span><span>071</span><span style='text-decoration: underline;'>6</span><span>
 #&gt; 
 #&gt; $diversity
-#&gt; </span><span style='color: #949494;'># A tibble: 80 x 2</span><span>
+#&gt; </span><span style='color: #555555;'># A tibble: 80 x 2</span><span>
 #&gt;    country    value
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Albania        3
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Algeria        5
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Angola         1
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Argentina      5
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Armenia        6
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Aruba          1
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Australia      3
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Azerbaijan     2
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Bahamas        1
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Bangladesh     4
-#&gt; </span><span style='color: #949494;'># … with 70 more rows</span><span>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> Albania        3
+#&gt; </span><span style='color: #555555;'> 2</span><span> Algeria        5
+#&gt; </span><span style='color: #555555;'> 3</span><span> Angola         1
+#&gt; </span><span style='color: #555555;'> 4</span><span> Argentina      5
+#&gt; </span><span style='color: #555555;'> 5</span><span> Armenia        6
+#&gt; </span><span style='color: #555555;'> 6</span><span> Aruba          1
+#&gt; </span><span style='color: #555555;'> 7</span><span> Australia      3
+#&gt; </span><span style='color: #555555;'> 8</span><span> Azerbaijan     2
+#&gt; </span><span style='color: #555555;'> 9</span><span> Bahamas        1
+#&gt; </span><span style='color: #555555;'>10</span><span> Bangladesh     4
+#&gt; </span><span style='color: #555555;'># … with 70 more rows</span><span>
 #&gt; 
 #&gt; $ubiquity
-#&gt; </span><span style='color: #949494;'># A tibble: 11 x 2</span><span>
+#&gt; </span><span style='color: #555555;'># A tibble: 11 x 2</span><span>
 #&gt;    product                                          value
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                            </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 1 Transportation                                    43
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 10 Personal, cultural, and recreational services    29
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 11 Government services, n.i.e.                      38
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 2 Travel                                            53
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 3 Communications services                           41
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 4 Construction services                             21
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 5 Insurance services                                18
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 6 Financial services                                 4
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 7 Computer and information services                 17
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 8 Royalties and license fees                         2
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> 9 Other business services                           19
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> 1 Transportation                                    43
+#&gt; </span><span style='color: #555555;'> 2</span><span> 10 Personal, cultural, and recreational services    29
+#&gt; </span><span style='color: #555555;'> 3</span><span> 11 Government services, n.i.e.                      38
+#&gt; </span><span style='color: #555555;'> 4</span><span> 2 Travel                                            53
+#&gt; </span><span style='color: #555555;'> 5</span><span> 3 Communications services                           41
+#&gt; </span><span style='color: #555555;'> 6</span><span> 4 Construction services                             21
+#&gt; </span><span style='color: #555555;'> 7</span><span> 5 Insurance services                                18
+#&gt; </span><span style='color: #555555;'> 8</span><span> 6 Financial services                                 4
+#&gt; </span><span style='color: #555555;'> 9</span><span> 7 Computer and information services                 17
+#&gt; </span><span style='color: #555555;'>10</span><span> 8 Royalties and license fees                         2
+#&gt; </span><span style='color: #555555;'>11</span><span> 9 Other business services                           19
 #&gt; </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

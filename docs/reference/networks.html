@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">economiccomplexity</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4</span>
       </span>
     </div>
 
@@ -118,46 +118,57 @@
     </div>
 
     <pre class="usage"><span class='fu'>networks</span>(<span class='no'>proximity_countries</span>, <span class='no'>proximity_products</span>, <span class='kw'>countries_cutoff</span> <span class='kw'>=</span> <span class='fl'>0.2</span>,
-  <span class='kw'>products_cutoff</span> <span class='kw'>=</span> <span class='fl'>0.4</span>, <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>products_cutoff</span> <span class='kw'>=</span> <span class='fl'>0.4</span>, <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>compute</span> <span class='kw'>=</span> <span class='st'>"both"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>proximity_countries</th>
-      <td><p>matrix or tibble/data.frame, if d is a tibble/data.frame it must contain the columns
-from (character/factor), to (character/factor) and value (numeric), if it is a matrix it must be a
+      <td><p>matrix or tibble/data.frame, if d is a tibble/
+data.frame it must contain the columns from (character/factor), to
+(character/factor) and value (numeric), if it is a matrix it must be a
 numeric matrix with countries in row names and column names</p></td>
     </tr>
     <tr>
       <th>proximity_products</th>
-      <td><p>matrix or tibble/data.frame, if d is a tibble/data.frame it must contain the columns
-from (character/factor), to (character/factor) and value (numeric), if it is a matrix it must be a
+      <td><p>matrix or tibble/data.frame, if d is a
+tibble/data.frame it must contain the columns from (character/factor), to
+(character/factor) and value (numeric), if it is a matrix it must be a
 numeric matrix with products in row names and column names</p></td>
     </tr>
     <tr>
       <th>countries_cutoff</th>
-      <td><p>all the values lower than the specified countries_cutoff will be converted to 0 and excluded
-from the countries network (default set to 0.2)</p></td>
+      <td><p>all the values lower than the specified
+countries_cutoff will be converted to 0 and excluded from the countries
+network (default set to 0.2)</p></td>
     </tr>
     <tr>
       <th>products_cutoff</th>
-      <td><p>all the values lower than the specified products_cutoff will be converted to 0 and excluded
-from the products network (default set to 0.4)</p></td>
+      <td><p>all the values lower than the specified
+products_cutoff will be converted to 0 and excluded from the products network
+(default set to 0.4)</p></td>
     </tr>
     <tr>
       <th>tbl_output</th>
-      <td><p>when set to TRUE the output will be a tibble instead of a graph (default set to FALSE)</p></td>
+      <td><p>when set to TRUE the output will be a tibble instead of a
+graph (default set to FALSE)</p></td>
+    </tr>
+    <tr>
+      <th>compute</th>
+      <td><p>by default set to "both", it can also be "country" or
+"product"</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>For more information on networks such as the product space and its applications see:</p>
+    <p>For more information on networks such as the product space and its
+applications see:</p>
 <p>Hausmann R, Hidalgo C, Bustos S, Coscia M, Simoes A, Yildirim M (2014).
 <em>The atlas of economic complexity: Mapping paths to prosperity</em>.
 MIT Press.
-doi: <a href='http://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9647.001.0001</a>
+doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9647.001.0001</a>
 .</p>
     
 
@@ -169,38 +180,23 @@ doi: <a href='http://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/96
   <span class='no'>package_output_demo</span>$<span class='no'>proximity_matrix</span>$<span class='no'>proximity_products</span>,
  <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</div><div class='output co'>#&gt; $network_countries
-#&gt; <span style='color: #949494;'># A tibble: 3,063 x 3</span><span>
+#&gt; <span style='color: #555555;'># A tibble: 3,063 x 3</span><span>
 #&gt;    from       to         value
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Cabo Verde Namibia    1    
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Cabo Verde Algeria    0.2  
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Cabo Verde Angola     0.333
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Cabo Verde Anguilla   0.333
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Cabo Verde Argentina  0.25 
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Cabo Verde Armenia    0.5  
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Cabo Verde Aruba      0.333
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Cabo Verde Australia  0.667
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Cabo Verde Azerbaijan 0.333
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Cabo Verde Bahamas    0.333
-#&gt; </span><span style='color: #949494;'># … with 3,053 more rows</span><span>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> Cabo Verde Namibia    1    
+#&gt; </span><span style='color: #555555;'> 2</span><span> Cabo Verde Algeria    0.2  
+#&gt; </span><span style='color: #555555;'> 3</span><span> Cabo Verde Angola     0.333
+#&gt; </span><span style='color: #555555;'> 4</span><span> Cabo Verde Anguilla   0.333
+#&gt; </span><span style='color: #555555;'> 5</span><span> Cabo Verde Argentina  0.25 
+#&gt; </span><span style='color: #555555;'> 6</span><span> Cabo Verde Armenia    0.5  
+#&gt; </span><span style='color: #555555;'> 7</span><span> Cabo Verde Aruba      0.333
+#&gt; </span><span style='color: #555555;'> 8</span><span> Cabo Verde Australia  0.667
+#&gt; </span><span style='color: #555555;'> 9</span><span> Cabo Verde Azerbaijan 0.333
+#&gt; </span><span style='color: #555555;'>10</span><span> Cabo Verde Bahamas    0.333
+#&gt; </span><span style='color: #555555;'># … with 3,053 more rows</span><span>
 #&gt; 
 #&gt; $network_products
-#&gt; </span><span style='color: #949494;'># A tibble: 13 x 3</span><span>
-#&gt;    from                                to                                  value
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                               </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                               </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 11 Government services, n.i.e.      3 Communications services           0.543
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 11 Government services, n.i.e.      2 Travel                            0.562
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 11 Government services, n.i.e.      1 Transportation                    0.543
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 3 Communications services           10 Personal, cultural, and recreat… 0.390
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 3 Communications services           2 Travel                            0.469
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 3 Communications services           1 Transportation                    0.545
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 4 Construction services             1 Transportation                    0.364
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 10 Personal, cultural, and recreat… 9 Other business services           0.276
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 5 Insurance services                6 Financial services                0.2  
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 5 Insurance services                9 Other business services           0.389
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> 6 Financial services                8 Royalties and license fees        0.2  
-#&gt; </span><span style='color: #BCBCBC;'>12</span><span> 7 Computer and information services 9 Other business services           0.444
-#&gt; </span><span style='color: #BCBCBC;'>13</span><span> 2 Travel                            1 Transportation                    0.422
+#&gt; NULL
 #&gt; </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

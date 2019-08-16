@@ -1,8 +1,10 @@
 test_that("network results are aligned with the expected output ", {
   # igraph output ----
   net_i <- networks(
-    proximity_countries = package_output_demo$proximity_matrix$proximity_countries,
-    proximity_products = package_output_demo$proximity_matrix$proximity_products,
+    proximity_countries =
+      package_output_demo$proximity_matrix$proximity_countries,
+    proximity_products =
+      package_output_demo$proximity_matrix$proximity_products,
     countries_cutoff = 0.7,
     products_cutoff = 0.1
   )
@@ -12,8 +14,10 @@ test_that("network results are aligned with the expected output ", {
   expect_equal(length(igraph::E(net_i$network_products)), 36)
 
   net_i_2 <- networks(
-    proximity_countries = package_output_demo$proximity_tibble$proximity_countries,
-    proximity_products = package_output_demo$proximity_tibble$proximity_products,
+    proximity_countries =
+      package_output_demo$proximity_tibble$proximity_countries,
+    proximity_products =
+      package_output_demo$proximity_tibble$proximity_products,
     countries_cutoff = 0.7,
     products_cutoff = 0.1
   )
@@ -33,8 +37,10 @@ test_that("network results are aligned with the expected output ", {
 
   # tibble output ----
   net_t <- networks(
-    proximity_countries = package_output_demo$proximity_matrix$proximity_countries,
-    proximity_products = package_output_demo$proximity_matrix$proximity_products,
+    proximity_countries =
+      package_output_demo$proximity_matrix$proximity_countries,
+    proximity_products =
+      package_output_demo$proximity_matrix$proximity_products,
     countries_cutoff = 0.7,
     products_cutoff = 0.1,
     tbl_output = T
@@ -47,8 +53,10 @@ test_that("network results are aligned with the expected output ", {
   expect_equal(ncol(net_t$network_products), 3)
 
   net_t_2 <- networks(
-    proximity_countries = package_output_demo$proximity_tibble$proximity_countries,
-    proximity_products = package_output_demo$proximity_tibble$proximity_products,
+    proximity_countries =
+      package_output_demo$proximity_tibble$proximity_countries,
+    proximity_products =
+      package_output_demo$proximity_tibble$proximity_products,
     countries_cutoff = 0.7,
     products_cutoff = 0.1,
     tbl_output = T

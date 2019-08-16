@@ -1,7 +1,7 @@
 Package: economiccomplexity
 Type: Package
 Title: Methods Used in the Economic Complexity Literature
-Version: 0.1.3
+Version: 0.1.4
 Authors@R: c(
     person(given = "Mauricio",
       family = "Vargas",
@@ -17,7 +17,8 @@ Authors@R: c(
     person(given = "Diego",
       family = "Kozlowski",
       role = "ctb",
-      comment = "provided initial RCA and proximity functions he used for his thesis"
+      comment = "provided initial RCA and proximity functions he used for his 
+      thesis"
     ),
     person(given = "Mark",
       family = "Padgham",
@@ -27,19 +28,22 @@ Authors@R: c(
     person(given = "Nico",
       family = "Pintar",
       role = "rev",
-      comment = "suggested improvements to special cases in eigenvalues calculation"
+      comment = "suggested improvements to special cases in eigenvalues 
+      calculation"
     ),
     person(family = "UN COMTRADE",
       role = "dtc"),
     person(family = "The World Bank",
       role = "dtc")
   )
-Description: A wrapper of different indices and networks commonly used in Economic Complexity
-  to explore bipartite relations such as countries and their exported products. These methods
-  are also useful for different kind of relations such as countries and their spoken languages.
-  The functions within this package correspond to code implementations of the equations 
-  described in Hausmann, et al. (2005) <doi:10.3386/w11905>, Hausmann, et al. (2014) 
-  <doi:10.7551/mitpress/9647.001.0001>, and Mariani, et al. (2015) <doi:10.1140/epjb/e2015-60298-7>.
+Description: A wrapper of different indices and networks commonly used in 
+  Economic Complexity to explore bipartite relations such as countries and their
+  exported products. These methods are also useful for different kind of 
+  relations such as countries and their spoken languages.
+  The functions within this package correspond to code implementations of the 
+  equations described in Hausmann, et al. (2005) <doi:10.3386/w11905>, 
+  Hausmann, et al. (2014) <doi:10.7551/mitpress/9647.001.0001>, and 
+  Mariani, et al. (2015) <doi:10.1140/epjb/e2015-60298-7>.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

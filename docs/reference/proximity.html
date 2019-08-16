@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">economiccomplexity</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4</span>
       </span>
     </div>
 
@@ -117,71 +117,84 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>proximity</span>(<span class='kw'>revealed_comparative_advantage</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>country</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
-  <span class='kw'>product</span> <span class='kw'>=</span> <span class='st'>"product"</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>diversity</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>diversity_country</span> <span class='kw'>=</span> <span class='st'>"country"</span>, <span class='kw'>diversity_value</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
-  <span class='kw'>ubiquity</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ubiquity_product</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
-  <span class='kw'>ubiquity_value</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>proximity</span>(<span class='kw'>rca</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>country</span> <span class='kw'>=</span> <span class='st'>"country"</span>, <span class='kw'>product</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
+  <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>diversity</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>diversity_country</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
+  <span class='kw'>diversity_value</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>ubiquity</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>ubiquity_product</span> <span class='kw'>=</span> <span class='st'>"product"</span>, <span class='kw'>ubiquity_value</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
+  <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>compute</span> <span class='kw'>=</span> <span class='st'>"both"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>revealed_comparative_advantage</th>
+      <th>rca</th>
       <td><p>matrix or tibble/data.frame in long format (e.g. the output of
-revealed_comparative_advantage()). If it is a matrix it must be a
-zero/one matrix with countries in the row names and products in the column names.
-If revealed_comparative_advantage is a tibble/data.frame it must contain the columns.
-country (character/factor), product (character/factor) and discrete RCA (integer)</p></td>
+revealed_comparative_advantage()). If it is a matrix it must be a zero/one
+matrix with countries in the row names and products in the column names.
+If rca is a tibble/data.frame it must contain the columns country (character/
+factor), product (character/factor) and discrete RCA (integer)</p></td>
     </tr>
     <tr>
       <th>country</th>
-      <td><p>string to indicate the column that contains exporting countries (default set to "country" that is the
-output of revealed_comparative_advantage(), applies only if revealed_comparative_advantage is a data.frame)</p></td>
+      <td><p>string to indicate the column that contains exporting
+countries (default set to "country" that is the output of
+revealed_comparative_advantage(), applies only if rca is a data.frame)</p></td>
     </tr>
     <tr>
       <th>product</th>
-      <td><p>string to indicate the column that contains exported products (default set to "product" that is the
-output of revealed_comparative_advantage(), applies only if revealed_comparative_advantage is a data.frame)</p></td>
+      <td><p>string to indicate the column that contains exported products
+(default set to "product" that is the output of
+revealed_comparative_advantage(), applies only if rca is a data.frame)</p></td>
     </tr>
     <tr>
       <th>value</th>
-      <td><p>string to indicate the column that contains RCA values (default set to "value" that is the
-output of revealed_comparative_advantage(), applies only if revealed_comparative_advantage is a data.frame)</p></td>
+      <td><p>string to indicate the column that contains RCA values (default
+set to "value" that is the output of revealed_comparative_advantage(),
+applies only if rca is a data.frame)</p></td>
     </tr>
     <tr>
       <th>diversity</th>
-      <td><p>numeric vector or tibble/data.frame containing diversity measures (e.g. <code>diversity</code>
-from <code><a href='complexity_measures.html'>complexity_measures()</a></code>)</p></td>
+      <td><p>numeric vector or tibble/data.frame containing diversity
+measures (e.g. <code>diversity</code> from <code><a href='complexity_measures.html'>complexity_measures()</a></code>)</p></td>
     </tr>
     <tr>
       <th>diversity_country</th>
-      <td><p>string to indicate the column that contains diversity countries (default set to "country" that is the
-output of economic_complexity_measures())</p></td>
+      <td><p>string to indicate the column that contains
+diversity countries (default set to "country" that is the output of
+economic_complexity_measures())</p></td>
     </tr>
     <tr>
       <th>diversity_value</th>
-      <td><p>string to indicate the column that contains diversity values (default set to "value" that is the
-output of economic_complexity_measures())</p></td>
+      <td><p>string to indicate the column that contains diversity
+values (default set to "value" that is the output of
+economic_complexity_measures())</p></td>
     </tr>
     <tr>
       <th>ubiquity</th>
-      <td><p>numeric vector or tibble/data.frame containing ubiquity measures (e.g. <code>ubiquity</code>
-from <code><a href='complexity_measures.html'>complexity_measures()</a></code>)</p></td>
+      <td><p>numeric vector or tibble/data.frame containing ubiquity
+measures (e.g. <code>ubiquity</code> from <code><a href='complexity_measures.html'>complexity_measures()</a></code>)</p></td>
     </tr>
     <tr>
       <th>ubiquity_product</th>
-      <td><p>string to indicate the column that contains diversity products (default set to "product" that is the
-output of economic_complexity_measures())</p></td>
+      <td><p>string to indicate the column that contains diversity
+products (default set to "product" that is the output of
+economic_complexity_measures())</p></td>
     </tr>
     <tr>
       <th>ubiquity_value</th>
-      <td><p>string to indicate the column that contains ubiquity values (default set to "value" that is the
-output of economic_complexity_measures())</p></td>
+      <td><p>string to indicate the column that contains ubiquity
+values (default set to "value" that is the output of
+economic_complexity_measures())</p></td>
     </tr>
     <tr>
       <th>tbl_output</th>
-      <td><p>when set to TRUE the output will be a tibble instead of a matrix (default set to FALSE)</p></td>
+      <td><p>when set to TRUE the output will be a tibble instead of a
+matrix (default set to FALSE)</p></td>
+    </tr>
+    <tr>
+      <th>compute</th>
+      <td><p>by default set to "both", it can also be "country" or
+"product"</p></td>
     </tr>
     </table>
     
@@ -191,49 +204,36 @@ output of economic_complexity_measures())</p></td>
 <p>Hausmann R, Hidalgo C, Bustos S, Coscia M, Simoes A, Yildirim M (2014).
 <em>The atlas of economic complexity: Mapping paths to prosperity</em>.
 MIT Press.
-doi: <a href='http://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9647.001.0001</a>
+doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9647.001.0001</a>
 .</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>proximity</span>(
- <span class='kw'>revealed_comparative_advantage</span> <span class='kw'>=</span>
-  <span class='no'>package_output_demo</span>$<span class='no'>revealed_comparative_advantage_matrix</span>,
+ <span class='kw'>rca</span> <span class='kw'>=</span> <span class='no'>package_output_demo</span>$<span class='no'>revealed_comparative_advantage_matrix</span>,
  <span class='kw'>diversity</span> <span class='kw'>=</span> <span class='no'>package_output_demo</span>$<span class='no'>complexity_measures_numeric</span>$<span class='no'>diversity</span>,
  <span class='kw'>ubiquity</span> <span class='kw'>=</span> <span class='no'>package_output_demo</span>$<span class='no'>complexity_measures_numeric</span>$<span class='no'>ubiquity</span>,
  <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</div><div class='output co'>#&gt; $proximity_countries
-#&gt; <span style='color: #949494;'># A tibble: 2,683 x 3</span><span>
+#&gt; <span style='color: #555555;'># A tibble: 2,683 x 3</span><span>
 #&gt;    from       to      value
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Angola     Albania 0.333
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Argentina  Albania 0.4  
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Armenia    Albania 0.5  
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Aruba      Albania 0.333
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Australia  Albania 1    
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Azerbaijan Albania 0.333
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Bahamas    Albania 0.333
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Bangladesh Albania 0.25 
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Belarus    Albania 0.25 
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Belize     Albania 0.667
-#&gt; </span><span style='color: #949494;'># … with 2,673 more rows</span><span>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> Angola     Albania 0.333
+#&gt; </span><span style='color: #555555;'> 2</span><span> Argentina  Albania 0.4  
+#&gt; </span><span style='color: #555555;'> 3</span><span> Armenia    Albania 0.5  
+#&gt; </span><span style='color: #555555;'> 4</span><span> Aruba      Albania 0.333
+#&gt; </span><span style='color: #555555;'> 5</span><span> Australia  Albania 1    
+#&gt; </span><span style='color: #555555;'> 6</span><span> Azerbaijan Albania 0.333
+#&gt; </span><span style='color: #555555;'> 7</span><span> Bahamas    Albania 0.333
+#&gt; </span><span style='color: #555555;'> 8</span><span> Bangladesh Albania 0.25 
+#&gt; </span><span style='color: #555555;'> 9</span><span> Belarus    Albania 0.25 
+#&gt; </span><span style='color: #555555;'>10</span><span> Belize     Albania 0.667
+#&gt; </span><span style='color: #555555;'># … with 2,673 more rows</span><span>
 #&gt; 
 #&gt; $proximity_products
-#&gt; </span><span style='color: #949494;'># A tibble: 51 x 3</span><span>
-#&gt;    from                                             to                value
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                            </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 10 Personal, cultural, and recreational services 1 Transportation 0.326 
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 11 Government services, n.i.e.                   1 Transportation 0.512 
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 2 Travel                                         1 Transportation 0.434 
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 3 Communications services                        1 Transportation 0.581 
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 4 Construction services                          1 Transportation 0.349 
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 5 Insurance services                             1 Transportation 0.279 
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 6 Financial services                             1 Transportation 0.023</span><span style='text-decoration: underline;'>3</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 7 Computer and information services              1 Transportation 0.256 
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 8 Royalties and license fees                     1 Transportation 0.023</span><span style='text-decoration: underline;'>3</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 9 Other business services                        1 Transportation 0.279 
-#&gt; </span><span style='color: #949494;'># … with 41 more rows</span><span>
-#&gt; </div></span></pre>
+#&gt; NULL
+#&gt; </div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

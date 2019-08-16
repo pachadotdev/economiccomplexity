@@ -1,24 +1,28 @@
 #' Complexity Measures
 #'
 #' @export
-#' @param revealed_comparative_advantage matrix or tibble/data.frame (e.g. the output of
-#' \code{revealed_comparative_advantage()}).
-#' If the input is a matrix it must be a zero/one matrix with countries in rows and products in columns.
-#' If the input is a tibble/data.frame it must contain at least three columns with countries, products and
-#' values.
-#' @param country string to indicate the column that contains exporting countries in revealed_comparative_advantage
-#' (set to "country" by default)
-#' @param product string to indicate the column that contains exported products in revealed_comparative_advantage
-#' (set to "product" by default)
-#' @param value string to indicate the column that contains traded values in revealed_comparative_advantage
-#' (set to "value" by default)
-#' @param method string to indicate to use one of these methods: reflections, eigenvalues or fitness
-#' (set to "fitness" by default)
-#' @param keep_atlas logical value to remove the countries not ranked in The Atlas of Economic Complexity
-#' (set to FALSE by default)
-#' @param iterations number of iterations to use in the reflections method (set to 20 by default)
-#' @param extremality numeric coefficient to use in the fitness method (set to 1 by default)
-#' @param tbl_output logical value to use tibble output instead of a matrix output (set to FALSE by default)
+#' @param rca matrix or tibble/data.frame (e.g. the
+#' output of \code{revealed_comparative_advantage()}).
+#' If the input is a matrix it must be a zero/one matrix with countries in rows
+#' and products in columns.
+#' If the input is a tibble/data.frame it must contain at least three columns
+#' with countries, products and values.
+#' @param country string to indicate the column that contains exporting
+#' countries in rca (set to "country" by default)
+#' @param product string to indicate the column that contains exported products
+#' in rca (set to "product" by default)
+#' @param value string to indicate the column that contains traded values in
+#' rca (set to "value" by default)
+#' @param method string to indicate to use one of these methods: reflections,
+#' eigenvalues or fitness (set to "fitness" by default)
+#' @param keep_atlas logical value to remove the countries not ranked in The
+#' Atlas of Economic Complexity (set to FALSE by default)
+#' @param iterations number of iterations to use in the reflections method
+#' (set to 20 by default)
+#' @param extremality numeric coefficient to use in the fitness method
+#' (set to 1 by default)
+#' @param tbl_output logical value to use tibble output instead of a matrix
+#' output (set to FALSE by default)
 #' @importFrom magrittr %>%
 #' @importFrom dplyr select mutate arrange pull
 #' @importFrom tidyr gather spread
@@ -27,8 +31,7 @@
 #' @importFrom rlang sym
 #' @examples
 #' complexity_measures(
-#'  revealed_comparative_advantage =
-#'   package_output_demo$revealed_comparative_advantage_matrix,
+#'  rca = package_output_demo$revealed_comparative_advantage_matrix,
 #'  tbl_output = TRUE
 #' )
 #' @references
@@ -37,9 +40,10 @@
 #' \insertRef{atlas2014}{economiccomplexity}
 #'
 #' \insertRef{measuringcomplexity2015}{economiccomplexity}
+#'
 #' @keywords functions
 
-complexity_measures <- function(revealed_comparative_advantage = NULL,
+complexity_measures <- function(rca = NULL,
                                 country = "country",
                                 product = "product",
                                 value = "value",
@@ -49,8 +53,8 @@ complexity_measures <- function(revealed_comparative_advantage = NULL,
                                 keep_atlas = FALSE,
                                 tbl_output = FALSE) {
   # sanity checks ----
-  if (all(class(revealed_comparative_advantage) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix", "dgCMatrix") == FALSE)) {
-    stop("revealed_comparative_advantage must be a tibble/data.frame or a dense/sparse matrix")
+  if (all(class(rca) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix", "dgCMatrix") == FALSE)) {
+    stop("rca must be a tibble/data.frame or a dense/sparse matrix")
   }
 
   if (!(any(method %in% c("reflections", "eigenvalues", "fitness")) == TRUE)) {
@@ -66,8 +70,8 @@ complexity_measures <- function(revealed_comparative_advantage = NULL,
   }
 
   # convert data.frame input to matrix ----
-  if (is.data.frame(revealed_comparative_advantage)) {
-    m <- tidyr::spread(revealed_comparative_advantage, !!sym(product), !!sym(value))
+  if (is.data.frame(rca)) {
+    m <- tidyr::spread(rca, !!sym(product), !!sym(value))
     m_rownames <- dplyr::select(m, !!sym(country)) %>% dplyr::pull()
 
     m <- dplyr::select(m, -!!sym(country)) %>% as.matrix()
@@ -77,10 +81,7 @@ complexity_measures <- function(revealed_comparative_advantage = NULL,
     m <- Matrix::Matrix(m, sparse = TRUE)
     m <- m[Matrix::rowSums(m) != 0, Matrix::colSums(m) != 0]
   } else {
-    m <- revealed_comparative_advantage[
-      Matrix::rowSums(revealed_comparative_advantage) != 0,
-      Matrix::colSums(revealed_comparative_advantage) != 0
-      ]
+    m <- rca[Matrix::rowSums(rca) != 0, Matrix::colSums(rca) != 0]
   }
 
   # remove countries not ranked in The Atlas of Economic Complexity
@@ -90,16 +91,18 @@ complexity_measures <- function(revealed_comparative_advantage = NULL,
   if (keep_atlas == TRUE) {
     atlas_countries <- c(
       "jpn", "deu", "che", "swe", "aut", "fin", "sgp", "cze", "gbr", "svn",
-      "fra", "kor", "usa", "hun", "svk", "ita", "dnk", "irl", "isr", "mex", "blr", "bel", "nld",
-      "hkg", "pol", "hrv", "rom", "esp", "chn", "pan", "tha", "est", "nor", "mys", "prt", "ltu",
-      "srb", "bih", "lva", "bgr", "can", "ukr", "tur", "lbn", "jor", "rus", "tun", "nzl", "cri",
-      "mda", "ind", "bra", "grc", "col", "zaf", "ury", "arg", "alb", "phl", "slv", "idn", "mkd",
-      "egy", "dom", "gtm", "are", "vnm", "sau", "kgz", "geo", "lka", "nam", "ken", "sen", "syr",
-      "tto", "mus", "chl", "aus", "zwe", "jam", "pak", "mar", "cub", "qat", "pry", "uga", "hnd",
-      "per", "mdg", "omn", "kaz", "ecu", "bwa", "tza", "uzb", "nic", "khm", "civ", "gha", "bol",
-      "lao", "bgd", "eth", "zmb", "mwi", "yem", "tjk", "moz", "mli", "ven", "lbr", "mng", "dza",
-      "tkm", "kwt", "aze", "irn", "lby", "gab", "cmr", "nga", "gin", "png", "cog", "sdn", "ago",
-      "mrt"
+      "fra", "kor", "usa", "hun", "svk", "ita", "dnk", "irl", "isr", "mex",
+      "blr", "bel", "nld", "hkg", "pol", "hrv", "rom", "esp", "chn", "pan",
+      "tha", "est", "nor", "mys", "prt", "ltu", "srb", "bih", "lva", "bgr",
+      "can", "ukr", "tur", "lbn", "jor", "rus", "tun", "nzl", "cri", "mda",
+      "ind", "bra", "grc", "col", "zaf", "ury", "arg", "alb", "phl", "slv",
+      "idn", "mkd", "egy", "dom", "gtm", "are", "vnm", "sau", "kgz", "geo",
+      "lka", "nam", "ken", "sen", "syr", "tto", "mus", "chl", "aus", "zwe",
+      "jam", "pak", "mar", "cub", "qat", "pry", "uga", "hnd", "per", "mdg",
+      "omn", "kaz", "ecu", "bwa", "tza", "uzb", "nic", "khm", "civ", "gha",
+      "bol", "lao", "bgd", "eth", "zmb", "mwi", "yem", "tjk", "moz", "mli",
+      "ven", "lbr", "mng", "dza", "tkm", "kwt", "aze", "irn", "lby", "gab",
+      "cmr", "nga", "gin", "png", "cog", "sdn", "ago", "mrt"
     )
 
     m <- m[rownames(m) %in% atlas_countries, ]
@@ -113,8 +116,11 @@ complexity_measures <- function(revealed_comparative_advantage = NULL,
   # reflections is defined as a function as these steps are also used for eigenvalues method
   reflections <- function() {
     # create empty matrices
-    kc <- Matrix::Matrix(0, nrow = length(kc0), ncol = iterations, sparse = TRUE)
-    kp <- Matrix::Matrix(0, nrow = length(kp0), ncol = iterations, sparse = TRUE)
+    kc <- Matrix::Matrix(0, nrow = length(kc0), ncol = iterations,
+                         sparse = TRUE)
+
+    kp <- Matrix::Matrix(0, nrow = length(kp0), ncol = iterations,
+                         sparse = TRUE)
 
     # fill the first columns with kc0 and kp0 to start iterating
     kc[, 1] <- kc0
@@ -181,8 +187,11 @@ complexity_measures <- function(revealed_comparative_advantage = NULL,
 
   if (method == "fitness") {
     # create empty matrices
-    kc <- Matrix::Matrix(0, nrow = length(kc0), ncol = iterations, sparse = TRUE)
-    kp <- Matrix::Matrix(0, nrow = length(kp0), ncol = iterations, sparse = TRUE)
+    kc <- Matrix::Matrix(0, nrow = length(kc0), ncol = iterations,
+                         sparse = TRUE)
+
+    kp <- Matrix::Matrix(0, nrow = length(kp0), ncol = iterations,
+                         sparse = TRUE)
 
     # fill the first columns with kc0 and kp0 to start iterating
     kc[, 1] <- 1
@@ -191,16 +200,21 @@ complexity_measures <- function(revealed_comparative_advantage = NULL,
     # compute cols 2 to "no. of iterations" by iterating from col 1
     for (j in 2:ncol(kc)) {
       kc[, j] <- m %*% kp[, (j - 1)]
+
       kc[, j] <- kc[, j] / mean(kc[, j])
 
-      kp[, j] <- 1 / (Matrix::t(m) %*% (1 / kc[, (j - 1)])^extremality)^(1 / extremality)
+      kp[, j] <- 1 / (Matrix::t(m) %*%
+                        (1 / kc[, (j - 1)])^extremality)^(1 / extremality)
+
       kp[, j] <- kp[, j] / mean(kp[, j])
     }
 
     eci <- kc[, iterations]
+
     pci <- kp[, iterations]
 
     names(eci) <- rownames(m)
+
     names(pci) <- colnames(m)
   }
 

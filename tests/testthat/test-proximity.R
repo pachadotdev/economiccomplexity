@@ -1,7 +1,7 @@
 test_that("proximity results are aligned with the expected output ", {
   # matrix output ----
   pr_m <- proximity(
-    revealed_comparative_advantage = package_output_demo$revealed_comparative_advantage_matrix,
+    rca = package_output_demo$revealed_comparative_advantage_matrix,
     diversity = package_output_demo$complexity_measures_numeric$diversity,
     ubiquity = package_output_demo$complexity_measures_numeric$ubiquity
   )
@@ -17,7 +17,7 @@ test_that("proximity results are aligned with the expected output ", {
   expect_lte(max(pr_m$proximity_products), 1)
 
   pr_m_2 <- proximity(
-    revealed_comparative_advantage = package_output_demo$revealed_comparative_advantage_tibble,
+    rca = package_output_demo$revealed_comparative_advantage_tibble,
     diversity = package_output_demo$complexity_measures_tibble$diversity,
     ubiquity = package_output_demo$complexity_measures_tibble$ubiquity
   )
@@ -37,7 +37,7 @@ test_that("proximity results are aligned with the expected output ", {
 
   # tibble output ----
   pr_t <- proximity(
-    revealed_comparative_advantage = package_output_demo$revealed_comparative_advantage_matrix,
+    rca = package_output_demo$revealed_comparative_advantage_matrix,
     diversity = package_output_demo$complexity_measures_numeric$diversity,
     ubiquity = package_output_demo$complexity_measures_numeric$ubiquity,
     tbl_output = T
@@ -54,7 +54,7 @@ test_that("proximity results are aligned with the expected output ", {
   expect_lte(max(pr_t$proximity_products$value), 1)
 
   pr_t_2 <- proximity(
-    revealed_comparative_advantage = package_output_demo$revealed_comparative_advantage_tibble,
+    rca = package_output_demo$revealed_comparative_advantage_tibble,
     diversity = package_output_demo$complexity_measures_tibble$diversity,
     ubiquity = package_output_demo$complexity_measures_tibble$ubiquity,
     tbl_output = T

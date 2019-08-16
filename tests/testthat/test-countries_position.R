@@ -1,15 +1,17 @@
 test_that("countries position is aligned with the expected output", {
   # matrix output ----
   cp_m <- countries_position(
-    revealed_comparative_advantage = package_output_demo$revealed_comparative_advantage_matrix,
+    rca = package_output_demo$revealed_comparative_advantage_matrix,
     country1 = "country",
     product1 = "product",
     value1 = "value",
-    proximity_products = package_output_demo$proximity_matrix$proximity_products,
+    proximity_products =
+      package_output_demo$proximity_matrix$proximity_products,
     product21 = "from",
     product22 = "to",
     value2 = "value",
-    product_complexity_index = package_output_demo$complexity_measures_numeric$product_complexity_index,
+    product_complexity_index =
+      package_output_demo$complexity_measures_numeric$product_complexity_index,
     product3 = "product",
     value3 = "value"
   )
@@ -25,15 +27,17 @@ test_that("countries position is aligned with the expected output", {
   expect_equal(ncol(cp_m$complexity_outlook_gain), 11)
 
   cp_m_2 <- countries_position(
-    revealed_comparative_advantage = package_output_demo$revealed_comparative_advantage_tibble,
+    rca = package_output_demo$revealed_comparative_advantage_tibble,
     country1 = "country",
     product1 = "product",
     value1 = "value",
-    proximity_products = package_output_demo$proximity_tibble$proximity_products,
+    proximity_products =
+      package_output_demo$proximity_tibble$proximity_products,
     product21 = "from",
     product22 = "to",
     value2 = "value",
-    product_complexity_index = package_output_demo$complexity_measures_tibble$product_complexity_index,
+    product_complexity_index =
+      package_output_demo$complexity_measures_tibble$product_complexity_index,
     product3 = "product",
     value3 = "value"
   )
@@ -48,21 +52,19 @@ test_that("countries position is aligned with the expected output", {
   expect_equal(nrow(cp_m_2$complexity_outlook_gain), 80)
   expect_equal(ncol(cp_m_2$complexity_outlook_gain), 11)
 
-  # expect_equivalent(cp_m$proximity_distance, cp_m_2$proximity_distance)
-  # expect_equivalent(cp_m$complexity_outlook, cp_m_2$complexity_outlook)
-  # expect_equivalent(cp_m$complexity_outlook_gain, cp_m_2$complexity_outlook_gain)
-
   # tibble output ----
   cp_t <- countries_position(
-    revealed_comparative_advantage = package_output_demo$revealed_comparative_advantage_matrix,
+    rca = package_output_demo$revealed_comparative_advantage_matrix,
     country1 = "country",
     product1 = "product",
     value1 = "value",
-    proximity_products = package_output_demo$proximity_matrix$proximity_products,
+    proximity_products =
+      package_output_demo$proximity_matrix$proximity_products,
     product21 = "from",
     product22 = "to",
     value2 = "value",
-    product_complexity_index = package_output_demo$complexity_measures_numeric$product_complexity_index,
+    product_complexity_index =
+      package_output_demo$complexity_measures_numeric$product_complexity_index,
     product3 = "product",
     value3 = "value",
     tbl_output = TRUE
@@ -80,15 +82,17 @@ test_that("countries position is aligned with the expected output", {
   expect_equal(ncol(cp_t$complexity_outlook_gain), 3)
 
   cp_t_2 <- countries_position(
-    revealed_comparative_advantage = package_output_demo$revealed_comparative_advantage_tibble,
+    rca = package_output_demo$revealed_comparative_advantage_tibble,
     country1 = "country",
     product1 = "product",
     value1 = "value",
-    proximity_products = package_output_demo$proximity_tibble$proximity_products,
+    proximity_products =
+      package_output_demo$proximity_tibble$proximity_products,
     product21 = "from",
     product22 = "to",
     value2 = "value",
-    product_complexity_index = package_output_demo$complexity_measures_tibble$product_complexity_index,
+    product_complexity_index =
+      package_output_demo$complexity_measures_tibble$product_complexity_index,
     product3 = "product",
     value3 = "value",
     tbl_output = TRUE
@@ -104,8 +108,4 @@ test_that("countries position is aligned with the expected output", {
   expect_equal(ncol(cp_t_2$complexity_outlook), 2)
   expect_equal(nrow(cp_t_2$complexity_outlook_gain), 880)
   expect_equal(ncol(cp_t_2$complexity_outlook_gain), 3)
-
-  # expect_equivalent(cp_t$proximity_distance, cp_t_2$proximity_distance)
-  # expect_equivalent(cp_t$complexity_outlook, cp_t_2$complexity_outlook)
-  # expect_equivalent(cp_t$complexity_outlook_gain, cp_t_2$complexity_outlook_gain)
 })

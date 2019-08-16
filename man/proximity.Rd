@@ -4,59 +4,70 @@
 \alias{proximity}
 \title{Proximity}
 \usage{
-proximity(revealed_comparative_advantage = NULL, country = "country",
-  product = "product", value = "value", diversity = NULL,
-  diversity_country = "country", diversity_value = "value",
-  ubiquity = NULL, ubiquity_product = "product",
-  ubiquity_value = "value", tbl_output = FALSE)
+proximity(rca = NULL, country = "country", product = "product",
+  value = "value", diversity = NULL, diversity_country = "country",
+  diversity_value = "value", ubiquity = NULL,
+  ubiquity_product = "product", ubiquity_value = "value",
+  tbl_output = FALSE, compute = "both")
 }
 \arguments{
-\item{revealed_comparative_advantage}{matrix or tibble/data.frame in long format (e.g. the output of
-revealed_comparative_advantage()). If it is a matrix it must be a
-zero/one matrix with countries in the row names and products in the column names.
-If revealed_comparative_advantage is a tibble/data.frame it must contain the columns.
-country (character/factor), product (character/factor) and discrete RCA (integer)}
+\item{rca}{matrix or tibble/data.frame in long format (e.g. the output of
+revealed_comparative_advantage()). If it is a matrix it must be a zero/one
+matrix with countries in the row names and products in the column names.
+If rca is a tibble/data.frame it must contain the columns country (character/
+factor), product (character/factor) and discrete RCA (integer)}
 
-\item{country}{string to indicate the column that contains exporting countries (default set to "country" that is the
-output of revealed_comparative_advantage(), applies only if revealed_comparative_advantage is a data.frame)}
+\item{country}{string to indicate the column that contains exporting
+countries (default set to "country" that is the output of
+revealed_comparative_advantage(), applies only if rca is a data.frame)}
 
-\item{product}{string to indicate the column that contains exported products (default set to "product" that is the
-output of revealed_comparative_advantage(), applies only if revealed_comparative_advantage is a data.frame)}
+\item{product}{string to indicate the column that contains exported products
+(default set to "product" that is the output of
+revealed_comparative_advantage(), applies only if rca is a data.frame)}
 
-\item{value}{string to indicate the column that contains RCA values (default set to "value" that is the
-output of revealed_comparative_advantage(), applies only if revealed_comparative_advantage is a data.frame)}
+\item{value}{string to indicate the column that contains RCA values (default
+set to "value" that is the output of revealed_comparative_advantage(),
+applies only if rca is a data.frame)}
 
-\item{diversity}{numeric vector or tibble/data.frame containing diversity measures (e.g. \code{diversity}
-from \code{complexity_measures()})}
+\item{diversity}{numeric vector or tibble/data.frame containing diversity
+measures (e.g. \code{diversity} from \code{complexity_measures()})}
 
-\item{diversity_country}{string to indicate the column that contains diversity countries (default set to "country" that is the
-output of economic_complexity_measures())}
+\item{diversity_country}{string to indicate the column that contains
+diversity countries (default set to "country" that is the output of
+economic_complexity_measures())}
 
-\item{diversity_value}{string to indicate the column that contains diversity values (default set to "value" that is the
-output of economic_complexity_measures())}
+\item{diversity_value}{string to indicate the column that contains diversity
+values (default set to "value" that is the output of
+economic_complexity_measures())}
 
-\item{ubiquity}{numeric vector or tibble/data.frame containing ubiquity measures (e.g. \code{ubiquity}
-from \code{complexity_measures()})}
+\item{ubiquity}{numeric vector or tibble/data.frame containing ubiquity
+measures (e.g. \code{ubiquity} from \code{complexity_measures()})}
 
-\item{ubiquity_product}{string to indicate the column that contains diversity products (default set to "product" that is the
-output of economic_complexity_measures())}
+\item{ubiquity_product}{string to indicate the column that contains diversity
+products (default set to "product" that is the output of
+economic_complexity_measures())}
 
-\item{ubiquity_value}{string to indicate the column that contains ubiquity values (default set to "value" that is the
-output of economic_complexity_measures())}
+\item{ubiquity_value}{string to indicate the column that contains ubiquity
+values (default set to "value" that is the output of
+economic_complexity_measures())}
 
-\item{tbl_output}{when set to TRUE the output will be a tibble instead of a matrix (default set to FALSE)}
+\item{tbl_output}{when set to TRUE the output will be a tibble instead of a
+matrix (default set to FALSE)}
+
+\item{compute}{by default set to "both", it can also be "country" or
+"product"}
 }
 \description{
 Proximity
 }
 \examples{
 proximity(
- revealed_comparative_advantage =
-  package_output_demo$revealed_comparative_advantage_matrix,
+ rca = package_output_demo$revealed_comparative_advantage_matrix,
  diversity = package_output_demo$complexity_measures_numeric$diversity,
  ubiquity = package_output_demo$complexity_measures_numeric$ubiquity,
  tbl_output = TRUE
 )
+
 }
 \references{
 For more information on proximity and its applications see:

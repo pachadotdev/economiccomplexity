@@ -10,7 +10,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, cache = FALSE, echo = FALSE, message = FALSE, warning = FALSE, tidy = FALSE}
+```{r setup, cache = FALSE, echo = FALSE, message = FALSE, warning = FALSE}
 knitr::opts_chunk$set(eval = TRUE, message = FALSE, warning = FALSE)
 ```
 
@@ -18,7 +18,8 @@ knitr::opts_chunk$set(eval = TRUE, message = FALSE, warning = FALSE)
 
 ## Package data
 
-I'll use this demo dataset to illustrate the essential usage of the functions within this package:
+I'll use this demo dataset to illustrate the essential usage of the functions 
+within this package:
 
 ```{r}
 library(economiccomplexity)
@@ -54,7 +55,8 @@ rca_tbl <- revealed_comparative_advantage(
 rca_tbl
 ```
 
-Another possibility, *not used to build networks from bipartite relations*, is to obtain RCA as a matrix or tibble without discretization:
+Another possibility, *not used to build networks from bipartite relations*, is 
+to obtain RCA as a matrix or tibble without discretization:
 
 ```{r}
 rca_decimal <- revealed_comparative_advantage(
@@ -84,11 +86,14 @@ rca_decimal_tbl
 
 ## Complexity Measures
 
-You can compute both Economic Complexity Index (ECI) and Product Complexity Index (PCI) by using `complexity_measures()`. The calculations methods are *reflections*, *eigenvalues* and *fitness* (default). See [@atlas2014] and [@measuringcomplexity2015] for the methodological details.
+You can compute both Economic Complexity Index (ECI) and Product Complexity 
+Index (PCI) by using `complexity_measures()`. The calculations methods are 
+*reflections*, *eigenvalues* and *fitness* (default). See [@atlas2014] and 
+[@measuringcomplexity2015] for the methodological details.
 
 ```{r}
 cm_reflections <- complexity_measures(
-  revealed_comparative_advantage = rca, 
+  rca = rca, 
   method = "reflections", 
   tbl_output = T
 )
@@ -99,7 +104,7 @@ cm_reflections$product_complexity_index
 
 ```{r}
 cm_eigenvalues <- complexity_measures(
-  revealed_comparative_advantage = rca,
+  rca = rca,
   method = "eigenvalues",
   tbl_output = T
 )
@@ -110,7 +115,7 @@ cm_eigenvalues$product_complexity_index
 
 ```{r}
 cm_fitness <- complexity_measures(
-  revealed_comparative_advantage = rca,
+  rca = rca,
   method = "fitness", 
   tbl_output = T
 )
@@ -121,10 +126,12 @@ cm_fitness$product_complexity_index
 
 ## Proximity
 
-Proximity matrices are used to create both country-country and product-product networks. Using `proximity_matrices()` is straightforward:
+Proximity matrices are used to create both country-country and product-product 
+networks. Using `proximity_matrices()` is straightforward:
+
 ```{r}
 pro <- proximity(
-  revealed_comparative_advantage = rca,
+  rca = rca,
   diversity = cm_fitness$diversity,
   ubiquity = cm_fitness$ubiquity,
   tbl_output = T
@@ -136,7 +143,9 @@ pro$proximity_products
 
 ## Networks
 
-The `proximity_networks()` function is designed to use `igraph` for the internal computations and also to pass proximity-based networks to `igraph`, `ggraph` or export to Cytoscape by saving the output as csv/tsv.
+The `proximity_networks()` function is designed to use `igraph` for the internal
+computations and also to pass proximity-based networks to `igraph`, `ggraph` 
+or export to Cytoscape by saving the output as csv/tsv.
 
 To create some reduced networks I'll use a high proximity cutoff:
 
@@ -165,7 +174,8 @@ set.seed(200100)
 net$network_countries %>% 
   graph_from_data_frame(directed = F) %>% 
   ggraph(layout = "kk") +
-  geom_edge_link(aes(edge_alpha = value, edge_width = value), edge_colour = "#a8a8a8") +
+  geom_edge_link(aes(edge_alpha = value, edge_width = value), 
+                 edge_colour = "#a8a8a8") +
   geom_node_point(color = "darkslategray4", size = 8) +
   geom_node_text(aes(label = name), vjust = 2.2) +
   ggtitle(
@@ -181,7 +191,8 @@ net$network_countries %>%
 net$network_products %>% 
   graph_from_data_frame(directed = F) %>% 
   ggraph(layout = "kk") +
-  geom_edge_link(aes(edge_alpha = value, edge_width = value), edge_colour = "#a8a8a8") +
+  geom_edge_link(aes(edge_alpha = value, edge_width = value), 
+                 edge_colour = "#a8a8a8") +
   geom_node_point(color = "darkslategray4", size = 8) +
   geom_node_text(aes(label = name), vjust = 2.2) +
   ggtitle(
