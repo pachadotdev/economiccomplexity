@@ -5,18 +5,18 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "economiccomplexity",
-  "description": "A wrapper of different indices and networks commonly used in Economic Complexity\n  to explore bipartite relations such as countries and their exported products. These methods\n  are also useful for different kind of relations such as countries and their spoken languages.\n  The functions within this package correspond to code implementations of the equations \n  described in Hausmann, et al. (2005) <doi:10.3386/w11905>, Hausmann, et al. (2014) \n  <doi:10.7551/mitpress/9647.001.0001>, and Mariani, et al. (2015) <doi:10.1140/epjb/e2015-60298-7>.",
+  "description": "A wrapper of different indices and networks commonly used in \n  Economic Complexity to explore bipartite relations such as countries and their\n  exported products. These methods are also useful for different kind of \n  relations such as countries and their spoken languages.\n  The functions within this package correspond to code implementations of the \n  equations described in Hausmann, et al. (2005) <doi:10.3386/w11905>, \n  Hausmann, et al. (2014) <doi:10.7551/mitpress/9647.001.0001>, and \n  Mariani, et al. (2015) <doi:10.1140/epjb/e2015-60298-7>.",
   "name": "economiccomplexity: Methods Used in the Economic Complexity Literature",
   "issueTracker": "http://github.com/pachamaltese/economiccomplexity/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.5.3",
+    "version": "3.6.1",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.5.3 (2019-03-11)",
+  "runtimePlatform": "R version 3.6.1 (2019-07-05)",
   "author": [
     {
       "@type": "Person",
@@ -210,7 +210,7 @@
   ],
   "codeRepository": "https://pachamaltese.github.io/economiccomplexity",
   "readme": "https://github.com/pachamaltese/economiccomplexity/blob/master/README.md",
-  "fileSize": "1060.76KB",
+  "fileSize": "527.804KB",
   "contIntegration": [
     "https://travis-ci.org/pachamaltese/economiccomplexity",
     "https://codecov.io/github/pachamaltese/economiccomplexity?branch=master"

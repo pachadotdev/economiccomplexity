@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">economiccomplexity</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4</span>
       </span>
     </div>
 
@@ -73,7 +73,7 @@
       <h1>How to use this package</h1>
                         <h4 class="author">Mauricio Vargas</h4>
             
-            <h4 class="date">2019-06-29</h4>
+            <h4 class="date">2019-08-16</h4>
       
       
       <div class="hidden name"><code>basic-usage.Rmd</code></div>
@@ -223,7 +223,7 @@
 <a href="#complexity-measures" class="anchor"></a>Complexity Measures</h2>
 <p>You can compute both Economic Complexity Index (ECI) and Product Complexity Index (PCI) by using <code><a href="../reference/complexity_measures.html">complexity_measures()</a></code>. The calculations methods are <em>reflections</em>, <em>eigenvalues</em> and <em>fitness</em> (default). See <span class="citation">(Hausmann et al. 2014)</span> and <span class="citation">(Mariani et al. 2015)</span> for the methodological details.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">cm_reflections &lt;-<span class="st"> </span><span class="kw"><a href="../reference/complexity_measures.html">complexity_measures</a></span>(</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2">  <span class="dt">revealed_comparative_advantage =</span> rca, </a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">  <span class="dt">rca =</span> rca, </a>
 <a class="sourceLine" id="cb11-3" data-line-number="3">  <span class="dt">method =</span> <span class="st">"reflections"</span>, </a>
 <a class="sourceLine" id="cb11-4" data-line-number="4">  <span class="dt">tbl_output =</span> T</a>
 <a class="sourceLine" id="cb11-5" data-line-number="5">)</a>
@@ -259,7 +259,7 @@
 ## 10 11 Government services, n.i.e.                   -0.937 
 ## 11 2 Travel                                         -1.52</code></pre>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">cm_eigenvalues &lt;-<span class="st"> </span><span class="kw"><a href="../reference/complexity_measures.html">complexity_measures</a></span>(</a>
-<a class="sourceLine" id="cb15-2" data-line-number="2">  <span class="dt">revealed_comparative_advantage =</span> rca,</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">  <span class="dt">rca =</span> rca,</a>
 <a class="sourceLine" id="cb15-3" data-line-number="3">  <span class="dt">method =</span> <span class="st">"eigenvalues"</span>,</a>
 <a class="sourceLine" id="cb15-4" data-line-number="4">  <span class="dt">tbl_output =</span> T</a>
 <a class="sourceLine" id="cb15-5" data-line-number="5">)</a>
@@ -283,60 +283,60 @@
 <pre><code>## # A tibble: 11 x 2
 ##    product                                            value
 ##    &lt;chr&gt;                                              &lt;dbl&gt;
-##  1 2 Travel                                          1.48  
-##  2 11 Government services, n.i.e.                    0.940 
-##  3 3 Communications services                         0.821 
-##  4 1 Transportation                                  0.365 
-##  5 10 Personal, cultural, and recreational services  0.272 
-##  6 5 Insurance services                              0.202 
-##  7 6 Financial services                              0.0766
-##  8 4 Construction services                          -0.184 
-##  9 8 Royalties and license fees                     -0.668 
-## 10 7 Computer and information services              -1.51  
-## 11 9 Other business services                        -1.80</code></pre>
+##  1 9 Other business services                         1.80  
+##  2 7 Computer and information services               1.51  
+##  3 8 Royalties and license fees                      0.668 
+##  4 4 Construction services                           0.184 
+##  5 6 Financial services                             -0.0766
+##  6 5 Insurance services                             -0.202 
+##  7 10 Personal, cultural, and recreational services -0.272 
+##  8 1 Transportation                                 -0.365 
+##  9 3 Communications services                        -0.821 
+## 10 11 Government services, n.i.e.                   -0.940 
+## 11 2 Travel                                         -1.48</code></pre>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">cm_fitness &lt;-<span class="st"> </span><span class="kw"><a href="../reference/complexity_measures.html">complexity_measures</a></span>(</a>
-<a class="sourceLine" id="cb19-2" data-line-number="2">  <span class="dt">revealed_comparative_advantage =</span> rca,</a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">  <span class="dt">rca =</span> rca,</a>
 <a class="sourceLine" id="cb19-3" data-line-number="3">  <span class="dt">method =</span> <span class="st">"fitness"</span>, </a>
 <a class="sourceLine" id="cb19-4" data-line-number="4">  <span class="dt">tbl_output =</span> T</a>
 <a class="sourceLine" id="cb19-5" data-line-number="5">)</a>
 <a class="sourceLine" id="cb19-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb19-7" data-line-number="7">cm_fitness<span class="op">$</span>economic_complexity_index</a></code></pre></div>
 <pre><code>## # A tibble: 80 x 2
-##    country              value
-##    &lt;chr&gt;                &lt;dbl&gt;
-##  1 USA                 6.24  
-##  2 Japan               6.17  
-##  3 Singapore          -0.0886
-##  4 Lebanon            -0.0886
-##  5 South Africa       -0.0886
-##  6 China              -0.162 
-##  7 Poland             -0.162 
-##  8 Russian Federation -0.162 
-##  9 Serbia             -0.162 
-## 10 TFYR of Macedonia  -0.162 
+##    country                value
+##    &lt;chr&gt;                  &lt;dbl&gt;
+##  1 USA                39.6     
+##  2 Japan              39.2     
+##  3 Singapore           0.422   
+##  4 Lebanon             0.422   
+##  5 South Africa        0.422   
+##  6 China               0.000167
+##  7 Poland              0.000156
+##  8 Russian Federation  0.000156
+##  9 Serbia              0.000156
+## 10 TFYR of Macedonia   0.000156
 ## # … with 70 more rows</code></pre>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">cm_fitness<span class="op">$</span>product_complexity_index</a></code></pre></div>
 <pre><code>## # A tibble: 11 x 2
-##    product                                           value
-##    &lt;chr&gt;                                             &lt;dbl&gt;
-##  1 8 Royalties and license fees                      3.02 
-##  2 6 Financial services                             -0.279
-##  3 7 Computer and information services              -0.304
-##  4 9 Other business services                        -0.304
-##  5 5 Insurance services                             -0.304
-##  6 4 Construction services                          -0.304
-##  7 10 Personal, cultural, and recreational services -0.304
-##  8 3 Communications services                        -0.304
-##  9 1 Transportation                                 -0.304
-## 10 11 Government services, n.i.e.                   -0.304
-## 11 2 Travel                                         -0.304</code></pre>
+##    product                                                  value
+##    &lt;chr&gt;                                                    &lt;dbl&gt;
+##  1 8 Royalties and license fees                     10.9         
+##  2 6 Financial services                              0.0835      
+##  3 7 Computer and information services               0.00000450  
+##  4 9 Other business services                         0.00000401  
+##  5 5 Insurance services                              0.00000263  
+##  6 4 Construction services                           0.00000238  
+##  7 10 Personal, cultural, and recreational services  0.00000116  
+##  8 3 Communications services                         0.000000499 
+##  9 1 Transportation                                  0.000000488 
+## 10 11 Government services, n.i.e.                    0.000000417 
+## 11 2 Travel                                          0.0000000716</code></pre>
 </div>
 <div id="proximity" class="section level2">
 <h2 class="hasAnchor">
 <a href="#proximity" class="anchor"></a>Proximity</h2>
 <p>Proximity matrices are used to create both country-country and product-product networks. Using <code>proximity_matrices()</code> is straightforward:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">pro &lt;-<span class="st"> </span><span class="kw"><a href="../reference/proximity.html">proximity</a></span>(</a>
-<a class="sourceLine" id="cb23-2" data-line-number="2">  <span class="dt">revealed_comparative_advantage =</span> rca,</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2">  <span class="dt">rca =</span> rca,</a>
 <a class="sourceLine" id="cb23-3" data-line-number="3">  <span class="dt">diversity =</span> cm_fitness<span class="op">$</span>diversity,</a>
 <a class="sourceLine" id="cb23-4" data-line-number="4">  <span class="dt">ubiquity =</span> cm_fitness<span class="op">$</span>ubiquity,</a>
 <a class="sourceLine" id="cb23-5" data-line-number="5">  <span class="dt">tbl_output =</span> T</a>
@@ -426,30 +426,32 @@
 <a class="sourceLine" id="cb31-7" data-line-number="7">net<span class="op">$</span>network_countries <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb31-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/igraph/topics/graph_from_data_frame">graph_from_data_frame</a></span>(<span class="dt">directed =</span> F) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb31-9" data-line-number="9"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/ggraph">ggraph</a></span>(<span class="dt">layout =</span> <span class="st">"kk"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb31-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_edge_link">geom_edge_link</a></span>(<span class="kw">aes</span>(<span class="dt">edge_alpha =</span> value, <span class="dt">edge_width =</span> value), <span class="dt">edge_colour =</span> <span class="st">"#a8a8a8"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb31-11" data-line-number="11"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_node_point">geom_node_point</a></span>(<span class="dt">color =</span> <span class="st">"darkslategray4"</span>, <span class="dt">size =</span> <span class="dv">8</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb31-12" data-line-number="12"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_node_text">geom_node_text</a></span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">vjust =</span> <span class="fl">2.2</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb31-13" data-line-number="13"><span class="st">  </span><span class="kw">ggtitle</span>(</a>
-<a class="sourceLine" id="cb31-14" data-line-number="14">    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/expression">expression</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">"Connections between"</span>,</a>
-<a class="sourceLine" id="cb31-15" data-line-number="15">                     <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/plotmath">italic</a></span>(<span class="st">" countries "</span>),</a>
-<a class="sourceLine" id="cb31-16" data-line-number="16">                     <span class="st">"based on the"</span>,</a>
-<a class="sourceLine" id="cb31-17" data-line-number="17">                     <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/plotmath">italic</a></span>(<span class="st">" services "</span>),</a>
-<a class="sourceLine" id="cb31-18" data-line-number="18">                     <span class="st">"they export"</span>))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb31-19" data-line-number="19"><span class="st">  </span><span class="kw">theme_void</span>()</a></code></pre></div>
+<a class="sourceLine" id="cb31-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_edge_link">geom_edge_link</a></span>(<span class="kw">aes</span>(<span class="dt">edge_alpha =</span> value, <span class="dt">edge_width =</span> value), </a>
+<a class="sourceLine" id="cb31-11" data-line-number="11">                 <span class="dt">edge_colour =</span> <span class="st">"#a8a8a8"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb31-12" data-line-number="12"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_node_point">geom_node_point</a></span>(<span class="dt">color =</span> <span class="st">"darkslategray4"</span>, <span class="dt">size =</span> <span class="dv">8</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb31-13" data-line-number="13"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_node_text">geom_node_text</a></span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">vjust =</span> <span class="fl">2.2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb31-14" data-line-number="14"><span class="st">  </span><span class="kw">ggtitle</span>(</a>
+<a class="sourceLine" id="cb31-15" data-line-number="15">    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/expression">expression</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">"Connections between"</span>,</a>
+<a class="sourceLine" id="cb31-16" data-line-number="16">                     <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/plotmath">italic</a></span>(<span class="st">" countries "</span>),</a>
+<a class="sourceLine" id="cb31-17" data-line-number="17">                     <span class="st">"based on the"</span>,</a>
+<a class="sourceLine" id="cb31-18" data-line-number="18">                     <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/plotmath">italic</a></span>(<span class="st">" services "</span>),</a>
+<a class="sourceLine" id="cb31-19" data-line-number="19">                     <span class="st">"they export"</span>))) <span class="op">+</span></a>
+<a class="sourceLine" id="cb31-20" data-line-number="20"><span class="st">  </span><span class="kw">theme_void</span>()</a></code></pre></div>
 <p><img src="basic-usage_files/figure-html/unnamed-chunk-11-1.png" width="1920"></p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">net<span class="op">$</span>network_products <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb32-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/igraph/topics/graph_from_data_frame">graph_from_data_frame</a></span>(<span class="dt">directed =</span> F) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb32-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/ggraph">ggraph</a></span>(<span class="dt">layout =</span> <span class="st">"kk"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb32-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_edge_link">geom_edge_link</a></span>(<span class="kw">aes</span>(<span class="dt">edge_alpha =</span> value, <span class="dt">edge_width =</span> value), <span class="dt">edge_colour =</span> <span class="st">"#a8a8a8"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb32-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_node_point">geom_node_point</a></span>(<span class="dt">color =</span> <span class="st">"darkslategray4"</span>, <span class="dt">size =</span> <span class="dv">8</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb32-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_node_text">geom_node_text</a></span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">vjust =</span> <span class="fl">2.2</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb32-7" data-line-number="7"><span class="st">  </span><span class="kw">ggtitle</span>(</a>
-<a class="sourceLine" id="cb32-8" data-line-number="8">    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/expression">expression</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">"Connections between"</span>,</a>
-<a class="sourceLine" id="cb32-9" data-line-number="9">                     <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/plotmath">italic</a></span>(<span class="st">" services "</span>),</a>
-<a class="sourceLine" id="cb32-10" data-line-number="10">                     <span class="st">"based on the"</span>,</a>
-<a class="sourceLine" id="cb32-11" data-line-number="11">                     <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/plotmath">italic</a></span>(<span class="st">" countries "</span>),</a>
-<a class="sourceLine" id="cb32-12" data-line-number="12">                     <span class="st">"that export them"</span>))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb32-13" data-line-number="13"><span class="st">  </span><span class="kw">theme_void</span>()</a></code></pre></div>
+<a class="sourceLine" id="cb32-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_edge_link">geom_edge_link</a></span>(<span class="kw">aes</span>(<span class="dt">edge_alpha =</span> value, <span class="dt">edge_width =</span> value), </a>
+<a class="sourceLine" id="cb32-5" data-line-number="5">                 <span class="dt">edge_colour =</span> <span class="st">"#a8a8a8"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb32-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_node_point">geom_node_point</a></span>(<span class="dt">color =</span> <span class="st">"darkslategray4"</span>, <span class="dt">size =</span> <span class="dv">8</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb32-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_node_text">geom_node_text</a></span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">vjust =</span> <span class="fl">2.2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb32-8" data-line-number="8"><span class="st">  </span><span class="kw">ggtitle</span>(</a>
+<a class="sourceLine" id="cb32-9" data-line-number="9">    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/expression">expression</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">"Connections between"</span>,</a>
+<a class="sourceLine" id="cb32-10" data-line-number="10">                     <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/plotmath">italic</a></span>(<span class="st">" services "</span>),</a>
+<a class="sourceLine" id="cb32-11" data-line-number="11">                     <span class="st">"based on the"</span>,</a>
+<a class="sourceLine" id="cb32-12" data-line-number="12">                     <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/plotmath">italic</a></span>(<span class="st">" countries "</span>),</a>
+<a class="sourceLine" id="cb32-13" data-line-number="13">                     <span class="st">"that export them"</span>))) <span class="op">+</span></a>
+<a class="sourceLine" id="cb32-14" data-line-number="14"><span class="st">  </span><span class="kw">theme_void</span>()</a></code></pre></div>
 <p><img src="basic-usage_files/figure-html/unnamed-chunk-12-1.png" width="1920"></p>
 </div>
 </div>
