@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Productivity Levels — productivity_levels • economiccomplexity</title>
+<title>Productivity Levels — ec_productivity_levels • economiccomplexity</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
 
 
 
-<meta property="og:title" content="Productivity Levels — productivity_levels" />
+<meta property="og:title" content="Productivity Levels — ec_productivity_levels" />
 
 <meta property="og:description" content="Productivity Levels" />
 <meta name="twitter:card" content="summary" />
@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">economiccomplexity</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2</span>
       </span>
     </div>
 
@@ -108,7 +108,7 @@
     <div class="page-header">
     <h1>Productivity Levels</h1>
     
-    <div class="hidden name"><code>productivity_levels.Rd</code></div>
+    <div class="hidden name"><code>ec_productivity_levels.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -117,15 +117,15 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>productivity_levels</span>(<span class='kw'>trade_data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>country1</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
-  <span class='kw'>product1</span> <span class='kw'>=</span> <span class='st'>"product"</span>, <span class='kw'>value1</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>gdp_data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>country2</span> <span class='kw'>=</span> <span class='st'>"country"</span>, <span class='kw'>value2</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>ec_productivity_levels</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>c1</span> <span class='kw'>=</span> <span class='st'>"country"</span>, <span class='kw'>p1</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
+  <span class='kw'>v1</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>gdp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>c2</span> <span class='kw'>=</span> <span class='st'>"country"</span>, <span class='kw'>v2</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
+  <span class='kw'>tbl</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>trade_data</th>
+      <th>data</th>
       <td><p>matrix or tibble/data.frame (e.g. <code>world_trade_2017</code>).
 If the input is a matrix it must be a zero/one matrix with countries in rows
 and products in columns.
@@ -133,22 +133,22 @@ If the input is a tibble/data.frame it must contain at least three columns
 with countries, products and values.</p></td>
     </tr>
     <tr>
-      <th>country1</th>
+      <th>c1</th>
       <td><p>string to indicate the column that contains exporting
 countries in revealed_comparative_advantage (set to "country" by default)</p></td>
     </tr>
     <tr>
-      <th>product1</th>
+      <th>p1</th>
       <td><p>string to indicate the column that contains exported products
 in revealed_comparative_advantage (set to "product" by default)</p></td>
     </tr>
     <tr>
-      <th>value1</th>
+      <th>v1</th>
       <td><p>string to indicate the column that contains traded values in
 revealed_comparative_advantage (set to "value" by default)</p></td>
     </tr>
     <tr>
-      <th>gdp_data</th>
+      <th>gdp</th>
       <td><p>vector or tibble/data.frame
 (e.g. <code>world_gdp_and_population_2017</code>).
 If the input is a vector it must be a numeric vector with optional names.
@@ -156,17 +156,17 @@ If the input is a tibble/data.frame it must contain at least two columns with
 countries and values.</p></td>
     </tr>
     <tr>
-      <th>country2</th>
+      <th>c2</th>
       <td><p>string to indicate the column that contains exporting
 countries in revealed_comparative_advantage (set to "country" by default)</p></td>
     </tr>
     <tr>
-      <th>value2</th>
+      <th>v2</th>
       <td><p>string to indicate the column that contains traded values in
 revealed_comparative_advantage (set to "value" by default)</p></td>
     </tr>
     <tr>
-      <th>tbl_output</th>
+      <th>tbl</th>
       <td><p>when set to TRUE the output will be a tibble instead of a
 matrix (default set to FALSE)</p></td>
     </tr>
@@ -188,47 +188,50 @@ doi: <a href='https://doi.org/10.3386/w11905'>10.3386/w11905</a>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>productivity_levels</span>(
- <span class='kw'>trade_data</span> <span class='kw'>=</span> <span class='no'>services_trade_2016</span>$<span class='no'>services_trade_2016_matrix</span>,
- <span class='kw'>country1</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
- <span class='kw'>product1</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
- <span class='kw'>value1</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
- <span class='kw'>gdp_data</span> <span class='kw'>=</span> <span class='no'>gdp_pc_2016</span>$<span class='no'>gdp_pc_2016_numeric</span>,
- <span class='kw'>country2</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
- <span class='kw'>value2</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
- <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; $economies_productivity_level
-#&gt; <span style='color: #555555;'># A tibble: 80 x 2</span><span>
-#&gt;    name        value
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> Albania    </span><span style='text-decoration: underline;'>27</span><span>854.
-#&gt; </span><span style='color: #555555;'> 2</span><span> Algeria    </span><span style='text-decoration: underline;'>23</span><span>580.
-#&gt; </span><span style='color: #555555;'> 3</span><span> Angola     </span><span style='text-decoration: underline;'>11</span><span>020.
-#&gt; </span><span style='color: #555555;'> 4</span><span> Argentina  </span><span style='text-decoration: underline;'>11</span><span>714.
-#&gt; </span><span style='color: #555555;'> 5</span><span> Armenia     </span><span style='text-decoration: underline;'>7</span><span>948.
-#&gt; </span><span style='color: #555555;'> 6</span><span> Aruba      </span><span style='text-decoration: underline;'>10</span><span>359.
-#&gt; </span><span style='color: #555555;'> 7</span><span> Australia  </span><span style='text-decoration: underline;'>11</span><span>903.
-#&gt; </span><span style='color: #555555;'> 8</span><span> Azerbaijan </span><span style='text-decoration: underline;'>12</span><span>047.
-#&gt; </span><span style='color: #555555;'> 9</span><span> Bahamas    </span><span style='text-decoration: underline;'>13</span><span>998.
-#&gt; </span><span style='color: #555555;'>10</span><span> Bangladesh </span><span style='text-decoration: underline;'>15</span><span>313.
-#&gt; </span><span style='color: #555555;'># … with 70 more rows</span><span>
+    <pre class="examples"><div class='input'><span class='fu'>ec_productivity_levels</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>ec_trade_1962</span>,
+  <span class='kw'>c1</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
+  <span class='kw'>p1</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
+  <span class='kw'>v1</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
+  <span class='kw'>gdp</span> <span class='kw'>=</span> <span class='no'>ec_gdp_pc_1962</span>,
+  <span class='kw'>c2</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
+  <span class='kw'>v2</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
+  <span class='kw'>tbl</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: Joining data and gdp resulted in a table with less</span>
+#&gt; <span class='warning'>    reporting countries than those in data.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Joining data and gdp resulted in a table with less</span>
+#&gt; <span class='warning'>    reporting countries than those in gdp.</span></div><div class='output co'>#&gt; $productivity_level_country
+#&gt; <span style='color: #555555;'># A tibble: 89 x 2</span><span>
+#&gt;    name  value
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> afg   </span><span style='text-decoration: underline;'>1</span><span>044.
+#&gt; </span><span style='color: #555555;'> 2</span><span> arg   </span><span style='text-decoration: underline;'>1</span><span>097.
+#&gt; </span><span style='color: #555555;'> 3</span><span> aus   </span><span style='text-decoration: underline;'>1</span><span>556.
+#&gt; </span><span style='color: #555555;'> 4</span><span> aut   </span><span style='text-decoration: underline;'>1</span><span>035.
+#&gt; </span><span style='color: #555555;'> 5</span><span> bdi   </span><span style='text-decoration: underline;'>1</span><span>010.
+#&gt; </span><span style='color: #555555;'> 6</span><span> bel    981.
+#&gt; </span><span style='color: #555555;'> 7</span><span> ben   </span><span style='text-decoration: underline;'>1</span><span>036.
+#&gt; </span><span style='color: #555555;'> 8</span><span> bfa    939.
+#&gt; </span><span style='color: #555555;'> 9</span><span> bhs   </span><span style='text-decoration: underline;'>1</span><span>037.
+#&gt; </span><span style='color: #555555;'>10</span><span> blz   </span><span style='text-decoration: underline;'>1</span><span>747.
+#&gt; </span><span style='color: #555555;'># … with 79 more rows</span><span>
 #&gt; 
-#&gt; $products_productivity_level
-#&gt; </span><span style='color: #555555;'># A tibble: 11 x 2</span><span>
-#&gt;    name                                              value
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                             </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> 1 Transportation                                 </span><span style='text-decoration: underline;'>11</span><span>104.
-#&gt; </span><span style='color: #555555;'> 2</span><span> 10 Personal, cultural, and recreational services </span><span style='text-decoration: underline;'>12</span><span>311.
-#&gt; </span><span style='color: #555555;'> 3</span><span> 11 Government services, n.i.e.                    </span><span style='text-decoration: underline;'>4</span><span>902.
-#&gt; </span><span style='color: #555555;'> 4</span><span> 2 Travel                                         </span><span style='text-decoration: underline;'>11</span><span>058.
-#&gt; </span><span style='color: #555555;'> 5</span><span> 3 Communications services                        </span><span style='text-decoration: underline;'>11</span><span>285.
-#&gt; </span><span style='color: #555555;'> 6</span><span> 4 Construction services                           </span><span style='text-decoration: underline;'>8</span><span>861.
-#&gt; </span><span style='color: #555555;'> 7</span><span> 5 Insurance services                             </span><span style='text-decoration: underline;'>14</span><span>503.
-#&gt; </span><span style='color: #555555;'> 8</span><span> 6 Financial services                             </span><span style='text-decoration: underline;'>20</span><span>371.
-#&gt; </span><span style='color: #555555;'> 9</span><span> 7 Computer and information services              </span><span style='text-decoration: underline;'>12</span><span>564.
-#&gt; </span><span style='color: #555555;'>10</span><span> 8 Royalties and license fees                     </span><span style='text-decoration: underline;'>33</span><span>531.
-#&gt; </span><span style='color: #555555;'>11</span><span> 9 Other business services                        </span><span style='text-decoration: underline;'>12</span><span>736.
-#&gt; </div></span></pre>
+#&gt; $productivity_level_product
+#&gt; </span><span style='color: #555555;'># A tibble: 991 x 2</span><span>
+#&gt;    name  value
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> 0101   816.
+#&gt; </span><span style='color: #555555;'> 2</span><span> 0102   359.
+#&gt; </span><span style='color: #555555;'> 3</span><span> 0103   217.
+#&gt; </span><span style='color: #555555;'> 4</span><span> 0104   184.
+#&gt; </span><span style='color: #555555;'> 5</span><span> 0105   223.
+#&gt; </span><span style='color: #555555;'> 6</span><span> 0106   441.
+#&gt; </span><span style='color: #555555;'> 7</span><span> 0201   909.
+#&gt; </span><span style='color: #555555;'> 8</span><span> 0203  </span><span style='text-decoration: underline;'>1</span><span>313.
+#&gt; </span><span style='color: #555555;'> 9</span><span> 0204  </span><span style='text-decoration: underline;'>2</span><span>141.
+#&gt; </span><span style='color: #555555;'>10</span><span> 0205   993.
+#&gt; </span><span style='color: #555555;'># … with 981 more rows</span><span>
+#&gt; </div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

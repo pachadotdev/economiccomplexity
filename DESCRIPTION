@@ -1,7 +1,7 @@
 Package: economiccomplexity
 Type: Package
 Title: Methods Used in the Economic Complexity Literature
-Version: 0.1.5
+Version: 0.2
 Authors@R: c(
     person(given = "Mauricio",
       family = "Vargas",
@@ -31,9 +31,9 @@ Authors@R: c(
       comment = "suggested improvements to special cases in eigenvalues 
       calculation"
     ),
-    person(family = "UN COMTRADE",
-      role = "dtc"),
     person(family = "The World Bank",
+      role = "dtc"),
+    person(family = "Open Trade Statistics",
       role = "dtc")
   )
 Description: A wrapper of different indices and networks commonly used in 

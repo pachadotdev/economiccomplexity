@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Networks — networks • economiccomplexity</title>
+<title>Networks — ec_networks • economiccomplexity</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
 
 
 
-<meta property="og:title" content="Networks — networks" />
+<meta property="og:title" content="Networks — ec_networks" />
 
 <meta property="og:description" content="Networks" />
 <meta name="twitter:card" content="summary" />
@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">economiccomplexity</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2</span>
       </span>
     </div>
 
@@ -108,7 +108,7 @@
     <div class="page-header">
     <h1>Networks</h1>
     
-    <div class="hidden name"><code>networks.Rd</code></div>
+    <div class="hidden name"><code>ec_networks.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -117,40 +117,40 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>networks</span>(<span class='no'>country_proximity</span>, <span class='no'>product_proximity</span>, <span class='kw'>countries_cutoff</span> <span class='kw'>=</span> <span class='fl'>0.2</span>,
-  <span class='kw'>products_cutoff</span> <span class='kw'>=</span> <span class='fl'>0.4</span>, <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>compute</span> <span class='kw'>=</span> <span class='st'>"both"</span>)</pre>
+    <pre class="usage"><span class='fu'>ec_networks</span>(<span class='no'>pc</span>, <span class='no'>pp</span>, <span class='kw'>cutoff_c</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>cutoff_p</span> <span class='kw'>=</span> <span class='fl'>0.4</span>, <span class='kw'>tbl</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>compute</span> <span class='kw'>=</span> <span class='st'>"both"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>country_proximity</th>
+      <th>pc</th>
       <td><p>matrix or tibble/data.frame, if d is a tibble/
 data.frame it must contain the columns from (character/factor), to
 (character/factor) and value (numeric), if it is a matrix it must be a
 numeric matrix with countries in row names and column names</p></td>
     </tr>
     <tr>
-      <th>product_proximity</th>
+      <th>pp</th>
       <td><p>matrix or tibble/data.frame, if d is a
 tibble/data.frame it must contain the columns from (character/factor), to
 (character/factor) and value (numeric), if it is a matrix it must be a
 numeric matrix with products in row names and column names</p></td>
     </tr>
     <tr>
-      <th>countries_cutoff</th>
-      <td><p>all the values lower than the specified
-countries_cutoff will be converted to 0 and excluded from the countries
+      <th>cutoff_c</th>
+      <td><p>all the values below the specified
+cutoff_c will be converted to 0 and excluded from the countries
 network (default set to 0.2)</p></td>
     </tr>
     <tr>
-      <th>products_cutoff</th>
-      <td><p>all the values lower than the specified
-products_cutoff will be converted to 0 and excluded from the products network
+      <th>cutoff_p</th>
+      <td><p>all the values below the specified
+cutoff_p will be converted to 0 and excluded from the products network
 (default set to 0.4)</p></td>
     </tr>
     <tr>
-      <th>tbl_output</th>
+      <th>tbl</th>
       <td><p>when set to TRUE the output will be a tibble instead of a
 graph (default set to FALSE)</p></td>
     </tr>
@@ -173,46 +173,43 @@ doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>networks</span>(
- <span class='kw'>country_proximity</span> <span class='kw'>=</span>
-  <span class='no'>package_output_demo</span>$<span class='no'>proximity_matrix</span>$<span class='no'>country_proximity</span>,
- <span class='kw'>product_proximity</span> <span class='kw'>=</span>
-  <span class='no'>package_output_demo</span>$<span class='no'>proximity_matrix</span>$<span class='no'>product_proximity</span>,
- <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; $country_network
-#&gt; <span style='color: #555555;'># A tibble: 3,063 x 3</span><span>
-#&gt;    from       to         value
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> Cabo Verde Namibia    1    
-#&gt; </span><span style='color: #555555;'> 2</span><span> Cabo Verde Algeria    0.2  
-#&gt; </span><span style='color: #555555;'> 3</span><span> Cabo Verde Angola     0.333
-#&gt; </span><span style='color: #555555;'> 4</span><span> Cabo Verde Anguilla   0.333
-#&gt; </span><span style='color: #555555;'> 5</span><span> Cabo Verde Argentina  0.25 
-#&gt; </span><span style='color: #555555;'> 6</span><span> Cabo Verde Armenia    0.5  
-#&gt; </span><span style='color: #555555;'> 7</span><span> Cabo Verde Aruba      0.333
-#&gt; </span><span style='color: #555555;'> 8</span><span> Cabo Verde Australia  0.667
-#&gt; </span><span style='color: #555555;'> 9</span><span> Cabo Verde Azerbaijan 0.333
-#&gt; </span><span style='color: #555555;'>10</span><span> Cabo Verde Bahamas    0.333
-#&gt; </span><span style='color: #555555;'># … with 3,053 more rows</span><span>
+    <pre class="examples"><div class='input'><span class='fu'>ec_networks</span>(
+  <span class='kw'>pc</span> <span class='kw'>=</span> <span class='no'>ec_output_demo</span>$<span class='no'>proximity_tbl</span>$<span class='no'>proximity_c</span>,
+  <span class='kw'>pp</span> <span class='kw'>=</span> <span class='no'>ec_output_demo</span>$<span class='no'>proximity_tbl</span>$<span class='no'>proximity_p</span>,
+  <span class='kw'>tbl</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</div><div class='output co'>#&gt; $network_country
+#&gt; <span style='color: #555555;'># A tibble: 497 x 3</span><span>
+#&gt;    from  to    value
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> khm   cmr   0.2  
+#&gt; </span><span style='color: #555555;'> 2</span><span> khm   ecu   0.2  
+#&gt; </span><span style='color: #555555;'> 3</span><span> khm   gtm   0.225
+#&gt; </span><span style='color: #555555;'> 4</span><span> khm   idn   0.214
+#&gt; </span><span style='color: #555555;'> 5</span><span> khm   mdg   0.204
+#&gt; </span><span style='color: #555555;'> 6</span><span> khm   mli   0.325
+#&gt; </span><span style='color: #555555;'> 7</span><span> khm   nic   0.2  
+#&gt; </span><span style='color: #555555;'> 8</span><span> khm   pak   0.241
+#&gt; </span><span style='color: #555555;'> 9</span><span> khm   sdn   0.2  
+#&gt; </span><span style='color: #555555;'>10</span><span> khm   nga   0.267
+#&gt; </span><span style='color: #555555;'># … with 487 more rows</span><span>
 #&gt; 
-#&gt; $product_network
-#&gt; </span><span style='color: #555555;'># A tibble: 13 x 3</span><span>
-#&gt;    from                                to                                  value
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                               </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                               </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> 11 Government services, n.i.e.      3 Communications services           0.543
-#&gt; </span><span style='color: #555555;'> 2</span><span> 11 Government services, n.i.e.      2 Travel                            0.562
-#&gt; </span><span style='color: #555555;'> 3</span><span> 11 Government services, n.i.e.      1 Transportation                    0.543
-#&gt; </span><span style='color: #555555;'> 4</span><span> 3 Communications services           10 Personal, cultural, and recreat… 0.390
-#&gt; </span><span style='color: #555555;'> 5</span><span> 3 Communications services           2 Travel                            0.469
-#&gt; </span><span style='color: #555555;'> 6</span><span> 3 Communications services           1 Transportation                    0.545
-#&gt; </span><span style='color: #555555;'> 7</span><span> 4 Construction services             1 Transportation                    0.364
-#&gt; </span><span style='color: #555555;'> 8</span><span> 10 Personal, cultural, and recreat… 9 Other business services           0.276
-#&gt; </span><span style='color: #555555;'> 9</span><span> 5 Insurance services                6 Financial services                0.2  
-#&gt; </span><span style='color: #555555;'>10</span><span> 5 Insurance services                9 Other business services           0.389
-#&gt; </span><span style='color: #555555;'>11</span><span> 6 Financial services                8 Royalties and license fees        0.2  
-#&gt; </span><span style='color: #555555;'>12</span><span> 7 Computer and information services 9 Other business services           0.444
-#&gt; </span><span style='color: #555555;'>13</span><span> 2 Travel                            1 Transportation                    0.422
-#&gt; </div></span></pre>
+#&gt; $network_product
+#&gt; </span><span style='color: #555555;'># A tibble: 56,160 x 3</span><span>
+#&gt;    from  to    value
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> 0711  9614  0.467
+#&gt; </span><span style='color: #555555;'> 2</span><span> 0711  0103  0.4  
+#&gt; </span><span style='color: #555555;'> 3</span><span> 0711  0203  0.467
+#&gt; </span><span style='color: #555555;'> 4</span><span> 0711  0207  0.4  
+#&gt; </span><span style='color: #555555;'> 5</span><span> 0711  0210  0.4  
+#&gt; </span><span style='color: #555555;'> 6</span><span> 0711  0405  0.4  
+#&gt; </span><span style='color: #555555;'> 7</span><span> 0711  0407  0.5  
+#&gt; </span><span style='color: #555555;'> 8</span><span> 0711  0505  0.467
+#&gt; </span><span style='color: #555555;'> 9</span><span> 0711  0701  0.529
+#&gt; </span><span style='color: #555555;'>10</span><span> 0711  0702  0.467
+#&gt; </span><span style='color: #555555;'># … with 56,150 more rows</span><span>
+#&gt; </div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

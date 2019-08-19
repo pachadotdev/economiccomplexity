@@ -1,52 +1,55 @@
 #' Proximity
 #'
 #' @export
+#'
 #' @param rca matrix or tibble/data.frame in long format (e.g. the output of
 #' revealed_comparative_advantage()). If it is a matrix it must be a zero/one
-#' matrix with countries in the row names and products in the column names.
-#' If rca is a tibble/data.frame it must contain the columns country (character/
-#' factor), product (character/factor) and discrete RCA (integer)
-#' @param country string to indicate the column that contains exporting
+#' matrix with countries in the row names and ps in the column names.
+#' If rca is a tibble/data.frame it must contain the columns c (character/
+#' factor), p (character/factor) and discrete RCA (integer)
+#' @param c string to indicate the column that contains exporting
 #' countries (default set to "country" that is the output of
 #' revealed_comparative_advantage(), applies only if rca is a data.frame)
-#' @param product string to indicate the column that contains exported products
+#' @param p string to indicate the column that contains exported ps
 #' (default set to "product" that is the output of
 #' revealed_comparative_advantage(), applies only if rca is a data.frame)
-#' @param value string to indicate the column that contains RCA values (default
+#' @param v string to indicate the column that contains RCA vs (default
 #' set to "value" that is the output of revealed_comparative_advantage(),
 #' applies only if rca is a data.frame)
-#' @param diversity numeric vector or tibble/data.frame containing diversity
-#' measures (e.g. \code{diversity} from \code{complexity_measures()})
-#' @param ubiquity numeric vector or tibble/data.frame containing ubiquity
-#' measures (e.g. \code{ubiquity} from \code{complexity_measures()})
-#' @param diversity_country string to indicate the column that contains
-#' diversity countries (default set to "country" that is the output of
+#' @param d numeric vector or tibble/data.frame containing diversity
+#' measures (e.g. \code{d} from \code{complexity_measures()})
+#' @param u numeric vector or tibble/data.frame containing ubiquity
+#' measures (e.g. \code{u} from \code{complexity_measures()})
+#' @param d_c string to indicate the column that contains
+#' countries in "diversity" (default set to "country" that is the output of
 #' economic_complexity_measures())
-#' @param diversity_value string to indicate the column that contains diversity
-#' values (default set to "value" that is the output of
+#' @param d_v string to indicate the column that contains
+#' values in "diversity" (default set to "value" that is the output of
 #' economic_complexity_measures())
-#' @param ubiquity_product string to indicate the column that contains diversity
-#' products (default set to "product" that is the output of
+#' @param u_p string to indicate the column that contains
+#' products in "ubiquity" (default set to "product" that is the output of
 #' economic_complexity_measures())
-#' @param ubiquity_value string to indicate the column that contains ubiquity
-#' values (default set to "value" that is the output of
+#' @param u_v string to indicate the column that contains
+#' values in "ubiquity" (default set to "value" that is the output of
 #' economic_complexity_measures())
-#' @param tbl_output when set to TRUE the output will be a tibble instead of a
+#' @param tbl when set to TRUE the output will be a tibble instead of a
 #' matrix (default set to FALSE)
 #' @param compute by default set to "both", it can also be "country" or
 #' "product"
+#'
 #' @importFrom magrittr %>%
 #' @importFrom dplyr select filter mutate pull
 #' @importFrom tibble as_tibble
 #' @importFrom tidyr gather
 #' @importFrom Matrix Matrix t rowSums colSums
 #' @importFrom rlang sym
+#'
 #' @examples
-#' proximity(
-#'  rca = package_output_demo$revealed_comparative_advantage_matrix,
-#'  diversity = package_output_demo$complexity_measures_numeric$diversity,
-#'  ubiquity = package_output_demo$complexity_measures_numeric$ubiquity,
-#'  tbl_output = TRUE
+#' ec_proximity(
+#'   rca = ec_output_demo$rca_tbl,
+#'   d = ec_output_demo$complexity_measures_tbl$diversity,
+#'   u = ec_output_demo$complexity_measures_tbl$ubiquity,
+#'   tbl = TRUE
 #' )
 #'
 #' @references
@@ -56,49 +59,47 @@
 #'
 #' @keywords functions
 
-proximity <- function(rca = NULL,
-                      country = "country",
-                      product = "product",
-                      value = "value",
-                      diversity = NULL,
-                      diversity_country = "country",
-                      diversity_value = "value",
-                      ubiquity = NULL,
-                      ubiquity_product = "product",
-                      ubiquity_value = "value",
-                      tbl_output = FALSE,
-                      compute = "both") {
+ec_proximity <- function(rca = NULL,
+                         c = "country",
+                         p = "product",
+                         v = "value",
+                         d = NULL,
+                         d_c = "country",
+                         d_v = "value",
+                         u = NULL,
+                         u_p = "product",
+                         u_v = "value",
+                         tbl = FALSE,
+                         compute = "both") {
   # sanity checks ----
-  if (all(class(rca) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix",
-                            "dgCMatrix") == FALSE)) {
+  if (all(class(rca) %in% c(
+    "data.frame", "matrix", "dgeMatrix", "dsCMatrix",
+    "dgCMatrix"
+  ) == FALSE)) {
     stop("rca must be a tibble/data.frame or a dense/sparse matrix")
   }
 
-  if (all(class(diversity) %in% c("numeric", "data.frame") == FALSE) &
-    all(class(ubiquity) %in% c("numeric", "data.frame") == FALSE)) {
-    stop("diversity and ubiquity must be numeric or tibble/data.frame")
+  if (all(class(d) %in% c("numeric", "data.frame") == FALSE) &
+    all(class(u) %in% c("numeric", "data.frame") == FALSE)) {
+    stop("d and u must be numeric or tibble/data.frame")
   }
 
-  if (!is.logical(tbl_output)) {
-    stop("tbl_output must be logical")
-  }
-
-  if (!is.logical(tbl_output)) {
-    stop("tbl_output must be logical")
+  if (!is.logical(tbl)) {
+    stop("tbl must be logical")
   }
 
   if (!any(compute %in% c("both", "country", "product"))) {
-    stop("compute must be both, country or product")
+    stop("compute must be both, c or p")
   }
 
-  # transformations if rca, diversity or ubiquity are data frames ----
+  # transformations if rca, d or u are data frames ----
   if (is.data.frame(rca)) {
-    rca <- tidyr::spread(rca, !!sym(product), !!sym(value))
+    rca <- tidyr::spread(rca, !!sym(p), !!sym(v))
 
-    rca_rownames <- dplyr::select(rca, !!sym(country)) %>%
+    rca_rownames <- dplyr::select(rca, !!sym(c)) %>%
       dplyr::pull()
 
-    rca <- dplyr::select(rca, -!!sym(country)) %>%
+    rca <- dplyr::select(rca, -!!sym(c)) %>%
       as.matrix()
 
     rca[is.na(rca)] <- 0
@@ -111,40 +112,50 @@ proximity <- function(rca = NULL,
     rca <- rca[Matrix::rowSums(rca) != 0, Matrix::colSums(rca) != 0]
   }
 
-  if (is.data.frame(diversity)) {
-    diversity_value <- dplyr::select(diversity, !!sym(diversity_value)) %>%
+  if (is.data.frame(d)) {
+    d_v <- dplyr::select(d, !!sym(d_v)) %>%
       dplyr::pull()
 
-    names(diversity_value) <- dplyr::select(diversity,
-      !!sym(diversity_country)) %>%
+    names(d_v) <- dplyr::select(
+      d,
+      !!sym(d_c)
+    ) %>%
       dplyr::pull()
 
-    diversity <- diversity_value
+    d <- d_v
   }
 
-  if (is.data.frame(ubiquity)) {
-    ubiquity_value <- dplyr::select(ubiquity, !!sym(ubiquity_value)) %>%
+  if (is.data.frame(u)) {
+    u_v <- dplyr::select(u, !!sym(u_v)) %>%
       dplyr::pull()
 
-    names(ubiquity_value) <- dplyr::select(ubiquity,
-      !!sym(ubiquity_product)) %>%
+    names(u_v) <- dplyr::select(
+      u,
+      !!sym(u_p)
+    ) %>%
       dplyr::pull()
 
-    ubiquity <- ubiquity_value
+    u <- u_v
   }
 
   # compute proximity matrices ----
+
   if (compute == "both") {
-    compute2 <- c("country","product")
+    compute2 <- c("country", "product")
   } else {
     compute2 <- compute
   }
 
+  # remove countries not included in complexity measures
+  # (i.e allows to compute after setting atlas= TRUE)
+  rca <- rca[rownames(rca) %in% names(d), ]
+
   if (any("country" %in% compute2) == TRUE) {
     xc <- rca %*% Matrix::t(rca)
-    yc <- outer(diversity, diversity, pmax)
 
-    if (tbl_output == FALSE) {
+    yc <- outer(d, d, pmax)
+
+    if (tbl == FALSE) {
       cp <- Matrix::Matrix(xc / yc, sparse = TRUE)
     } else {
       cp <- xc / yc
@@ -163,9 +174,10 @@ proximity <- function(rca = NULL,
 
   if (any("product" %in% compute2) == TRUE) {
     xp <- Matrix::t(rca) %*% rca
-    yp <- outer(ubiquity, ubiquity, pmax)
 
-    if (tbl_output == FALSE) {
+    yp <- outer(u, u, pmax)
+
+    if (tbl == FALSE) {
       pp <- Matrix::Matrix(xp / yp, sparse = TRUE)
     } else {
       pp <- xp / yp
@@ -184,8 +196,8 @@ proximity <- function(rca = NULL,
 
   return(
     list(
-      country_proximity = cp,
-      product_proximity = pp
+      proximity_c = cp,
+      proximity_p = pp
     )
   )
 }

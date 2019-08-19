@@ -1,41 +1,46 @@
 #' Complexity Measures
 #'
 #' @export
+#'
 #' @param rca matrix or tibble/data.frame (e.g. the
 #' output of \code{revealed_comparative_advantage()}).
 #' If the input is a matrix it must be a zero/one matrix with countries in rows
-#' and products in columns.
+#' and ps in columns.
 #' If the input is a tibble/data.frame it must contain at least three columns
-#' with countries, products and values.
-#' @param country string to indicate the column that contains exporting
+#' with countries, ps and vs.
+#' @param c string to indicate the column that contains exporting
 #' countries in rca (set to "country" by default)
-#' @param product string to indicate the column that contains exported products
+#' @param p string to indicate the column that contains exported ps
 #' in rca (set to "product" by default)
-#' @param value string to indicate the column that contains traded values in
+#' @param v string to indicate the column that contains traded vs in
 #' rca (set to "value" by default)
 #' @param method string to indicate to use one of these methods: reflections,
 #' eigenvalues or fitness (set to "fitness" by default)
-#' @param keep_atlas logical value to remove the countries not ranked in The
+#' @param atlas logical v to remove the countries not ranked in The
 #' Atlas of Economic Complexity (set to FALSE by default)
 #' @param iterations number of iterations to use in the reflections method
 #' (set to 20 by default)
 #' @param extremality numeric coefficient to use in the fitness method
 #' (set to 1 by default)
-#' @param tbl_output logical value to use tibble output instead of a matrix
+#' @param tbl logical v to use tibble output instead of a matrix
 #' output (set to FALSE by default)
+#'
 #' @importFrom magrittr %>%
-#' @importFrom dplyr select mutate arrange pull
+#' @importFrom dplyr select mutate arrange pull rename
 #' @importFrom tidyr gather spread
 #' @importFrom tibble tibble as_tibble enframe
 #' @importFrom Matrix Matrix rowSums colSums t
 #' @importFrom rlang sym
+#'
 #' @examples
-#' complexity_measures(
-#'  rca = package_output_demo$revealed_comparative_advantage_matrix,
-#'  tbl_output = TRUE
+#' ec_complexity_measures(
+#'   rca = ec_output_demo$rca_tbl,
+#'   tbl = TRUE
 #' )
+#'
 #' @references
-#' For more information on complexity measures, indices and its applications see:
+#' For more information on complexity measures, indices and its applications
+#' see:
 #'
 #' \insertRef{atlas2014}{economiccomplexity}
 #'
@@ -43,17 +48,20 @@
 #'
 #' @keywords functions
 
-complexity_measures <- function(rca = NULL,
-                                country = "country",
-                                product = "product",
-                                value = "value",
-                                method = "fitness",
-                                iterations = 20,
-                                extremality = 1,
-                                keep_atlas = FALSE,
-                                tbl_output = FALSE) {
+ec_complexity_measures <- function(rca = NULL,
+                                   c = "country",
+                                   p = "product",
+                                   v = "value",
+                                   method = "fitness",
+                                   iterations = 20,
+                                   extremality = 1,
+                                   atlas = FALSE,
+                                   tbl = FALSE) {
   # sanity checks ----
-  if (all(class(rca) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix", "dgCMatrix") == FALSE)) {
+  if (all(class(rca) %in% c(
+    "data.frame", "matrix", "dgeMatrix", "dsCMatrix",
+    "dgCMatrix"
+  ) == FALSE)) {
     stop("rca must be a tibble/data.frame or a dense/sparse matrix")
   }
 
@@ -65,16 +73,16 @@ complexity_measures <- function(rca = NULL,
     stop("iterations must be integer and greater or equal to 2")
   }
 
-  if (!is.logical(tbl_output)) {
-    stop("tbl_output must be logical")
+  if (!is.logical(tbl)) {
+    stop("tbl must be logical")
   }
 
   # convert data.frame input to matrix ----
   if (is.data.frame(rca)) {
-    m <- tidyr::spread(rca, !!sym(product), !!sym(value))
-    m_rownames <- dplyr::select(m, !!sym(country)) %>% dplyr::pull()
+    m <- tidyr::spread(rca, !!sym(p), !!sym(v))
+    m_rownames <- dplyr::select(m, !!sym(c)) %>% dplyr::pull()
 
-    m <- dplyr::select(m, -!!sym(country)) %>% as.matrix()
+    m <- dplyr::select(m, -!!sym(c)) %>% as.matrix()
     m[is.na(m)] <- 0
     rownames(m) <- m_rownames
 
@@ -86,9 +94,10 @@ complexity_measures <- function(rca = NULL,
 
   # remove countries not ranked in The Atlas of Economic Complexity
   # this list comes from
-  # https://github.com/tradestatistics/atlas-data/blob/master/2-scraped-tables/ranking-1-economic-complexity-index.csv
-  # the country code for Romania in Comtrade is ROM, not ROU
-  if (keep_atlas == TRUE) {
+  # https://github.com/tradestatistics/atlas-data/blob/master/2-scraped-tables/
+  # ranking-1-economic-complexity-index.csv
+  # the c code for Romania in Comtrade is ROM, not ROU
+  if (atlas == TRUE) {
     atlas_countries <- c(
       "jpn", "deu", "che", "swe", "aut", "fin", "sgp", "cze", "gbr", "svn",
       "fra", "kor", "usa", "hun", "svk", "ita", "dnk", "irl", "isr", "mex",
@@ -113,14 +122,19 @@ complexity_measures <- function(rca = NULL,
   kc0 <- Matrix::rowSums(m)
   kp0 <- Matrix::colSums(m)
 
-  # reflections is defined as a function as these steps are also used for eigenvalues method
+  # reflections is defined as a function as these steps are also used for
+  # eigenvalues method
   reflections <- function() {
     # create empty matrices
-    kc <- Matrix::Matrix(0, nrow = length(kc0), ncol = iterations,
-                         sparse = TRUE)
+    kc <- Matrix::Matrix(0,
+      nrow = length(kc0), ncol = iterations,
+      sparse = TRUE
+    )
 
-    kp <- Matrix::Matrix(0, nrow = length(kp0), ncol = iterations,
-                         sparse = TRUE)
+    kp <- Matrix::Matrix(0,
+      nrow = length(kp0), ncol = iterations,
+      sparse = TRUE
+    )
 
     # fill the first columns with kc0 and kp0 to start iterating
     kc[, 1] <- kc0
@@ -187,11 +201,15 @@ complexity_measures <- function(rca = NULL,
 
   if (method == "fitness") {
     # create empty matrices
-    kc <- Matrix::Matrix(0, nrow = length(kc0), ncol = iterations,
-                         sparse = TRUE)
+    kc <- Matrix::Matrix(0,
+      nrow = length(kc0), ncol = iterations,
+      sparse = TRUE
+    )
 
-    kp <- Matrix::Matrix(0, nrow = length(kp0), ncol = iterations,
-                         sparse = TRUE)
+    kp <- Matrix::Matrix(0,
+      nrow = length(kp0), ncol = iterations,
+      sparse = TRUE
+    )
 
     # fill the first columns with kc0 and kp0 to start iterating
     kc[, 1] <- 1
@@ -204,7 +222,7 @@ complexity_measures <- function(rca = NULL,
       kc[, j] <- kc[, j] / mean(kc[, j])
 
       kp[, j] <- 1 / (Matrix::t(m) %*%
-                        (1 / kc[, (j - 1)])^extremality)^(1 / extremality)
+        (1 / kc[, (j - 1)])^extremality)^(1 / extremality)
 
       kp[, j] <- kp[, j] / mean(kp[, j])
     }
@@ -218,33 +236,44 @@ complexity_measures <- function(rca = NULL,
     names(pci) <- colnames(m)
   }
 
-  if (tbl_output == TRUE) {
-    eci <- tibble::tibble(value = eci) %>%
-      dplyr::mutate(country = names(eci)) %>%
-      dplyr::select(!!sym("country"), !!sym("value")) %>%
-      dplyr::arrange(-!!sym("value"))
+  if (tbl == TRUE) {
+    eci <- tibble::tibble(v = eci) %>%
+      dplyr::mutate(c = names(eci)) %>%
+      dplyr::select(!!sym("c"), !!sym("v")) %>%
+      dplyr::arrange(-!!sym("v")) %>%
+      dplyr::rename(
+        "country" = !!sym("c"),
+        "value" = !!sym("v")
+      )
 
-    pci <- tibble::tibble(value = pci) %>%
-      dplyr::mutate(product = names(pci)) %>%
-      dplyr::select(!!sym("product"), !!sym("value")) %>%
-      dplyr::arrange(-!!sym("value"))
+    pci <- tibble::tibble(v = pci) %>%
+      dplyr::mutate(p = names(pci)) %>%
+      dplyr::select(!!sym("p"), !!sym("v")) %>%
+      dplyr::arrange(-!!sym("v")) %>%
+      dplyr::rename(
+        "product" = !!sym("p"),
+        "value" = !!sym("v")
+      )
 
     kc0 <- tibble::enframe(kc0) %>%
-      dplyr::rename(country = !!sym("name"))
+      dplyr::rename(c = !!sym("name")) %>%
+      dplyr::rename(
+        "country" = !!sym("c"),
+        "value" = !!sym("v")
+      )
 
     kp0 <- tibble::enframe(kp0) %>%
-      dplyr::rename(product = !!sym("name"))
-
-    m <- as.matrix(m) %>%
-      tibble::as_tibble() %>%
-      dplyr::mutate(country = rownames(m)) %>%
-      tidyr::gather(!!sym("product"), !!sym("value"), -!!sym("country"))
+      dplyr::rename(p = !!sym("name")) %>%
+      dplyr::rename(
+        "product" = !!sym("p"),
+        "value" = !!sym("v")
+      )
   }
 
   return(
     list(
-      economic_complexity_index = eci,
-      product_complexity_index = pci,
+      complexity_index_c = eci,
+      complexity_index_p = pci,
       diversity = kc0,
       ubiquity = kp0
     )

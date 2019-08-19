@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">economiccomplexity</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2</span>
       </span>
     </div>
 
@@ -73,7 +73,7 @@
       <h1>How to use this package</h1>
                         <h4 class="author">Mauricio Vargas</h4>
             
-            <h4 class="date">2019-08-16</h4>
+            <h4 class="date">2019-08-19</h4>
       
       
       <div class="hidden name"><code>basic-usage.Rmd</code></div>
@@ -88,370 +88,337 @@
 <div id="package-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#package-data" class="anchor"></a>Package data</h2>
-<p>I’ll use this demo dataset to illustrate the essential usage of the functions within this package:</p>
+<p>I’ll use this demo dataset to illustrate the essential usage of the functions within this package.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(economiccomplexity)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">services_trade_<span class="dv">2016</span><span class="op">$</span>services_trade_<span class="dv">2016</span>_tibble</a></code></pre></div>
-<pre><code>## # A tibble: 736 x 3
-##    country    product               value
-##    &lt;chr&gt;      &lt;chr&gt;                 &lt;dbl&gt;
-##  1 Albania    1 Transportation  200490000
-##  2 Algeria    1 Transportation  672372922
-##  3 Angola     1 Transportation   32634214
-##  4 Azerbaijan 1 Transportation 1095425000
-##  5 Argentina  1 Transportation 2175160000
-##  6 Australia  1 Transportation 4340600000
-##  7 Bahamas    1 Transportation   95553064
-##  8 Bangladesh 1 Transportation  412300000
-##  9 Armenia    1 Transportation  188458900
-## 10 Bhutan     1 Transportation 2962863685
-## # … with 726 more rows</code></pre>
+<a class="sourceLine" id="cb1-3" data-line-number="3">ec_trade_<span class="dv">1962</span></a></code></pre></div>
+<pre><code>## # A tibble: 44,435 x 3
+## # Groups:   reporter_iso [158]
+##    country product   value
+##    &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;
+##  1 afg     0106        621
+##  2 afg     0405       3380
+##  3 afg     0407      60807
+##  4 afg     0501    1466840
+##  5 afg     0504    1466840
+##  6 afg     0703      85258
+##  7 afg     0712       9057
+##  8 afg     0714     164694
+##  9 afg     0801    8482381
+## 10 afg     0802    8437060
+## # … with 44,425 more rows</code></pre>
 </div>
 <div id="revealed-comparative-advantage-rca" class="section level2">
 <h2 class="hasAnchor">
 <a href="#revealed-comparative-advantage-rca" class="anchor"></a>Revealed comparative Advantage (RCA)</h2>
-<p>You can obtain RCA with <code><a href="../reference/revealed_comparative_advantage.html">revealed_comparative_advantage()</a></code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">rca &lt;-<span class="st"> </span><span class="kw"><a href="../reference/revealed_comparative_advantage.html">revealed_comparative_advantage</a></span>(</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="dt">trade_data =</span> services_trade_<span class="dv">2016</span><span class="op">$</span>services_trade_<span class="dv">2016</span>_tibble, </a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="dt">country =</span> <span class="st">"country"</span>,</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">  <span class="dt">product =</span> <span class="st">"product"</span>, </a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="dt">value =</span> <span class="st">"value"</span></a>
+<p>You can obtain RCA with <code><a href="../reference/ec_rca.html">ec_rca()</a></code>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">rca &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ec_rca.html">ec_rca</a></span>(</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="dt">data =</span> ec_trade_<span class="dv">1962</span>,</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="dt">c =</span> <span class="st">"country"</span>,</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">  <span class="dt">p =</span> <span class="st">"product"</span>,</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="dt">v =</span> <span class="st">"value"</span></a>
 <a class="sourceLine" id="cb3-6" data-line-number="6">)</a>
 <a class="sourceLine" id="cb3-7" data-line-number="7"></a>
 <a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co"># 5x5 preview</span></a>
 <a class="sourceLine" id="cb3-9" data-line-number="9">rca[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
 <pre><code>## 5 x 3 sparse Matrix of class "dgCMatrix"
-##           1 Transportation
-## Albania                  .
-## Algeria                  1
-## Angola                   .
-## Argentina                1
-## Armenia                  .
-##           10 Personal, cultural, and recreational services
-## Albania                                                  1
-## Algeria                                                  .
-## Angola                                                   .
-## Argentina                                                1
-## Armenia                                                  1
-##           11 Government services, n.i.e.
-## Albania                                .
-## Algeria                                1
-## Angola                                 .
-## Argentina                              .
-## Armenia                                1</code></pre>
-<p>And also you can obtain it in tabular version:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">rca_tbl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/revealed_comparative_advantage.html">revealed_comparative_advantage</a></span>(</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="dt">trade_data =</span> services_trade_<span class="dv">2016</span><span class="op">$</span>services_trade_<span class="dv">2016</span>_tibble, </a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">  <span class="dt">country =</span> <span class="st">"country"</span>,</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">  <span class="dt">product =</span> <span class="st">"product"</span>, </a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="dt">value =</span> <span class="st">"value"</span>,</a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">  <span class="dt">tbl_output =</span> T</a>
+##     0101 0102 0103
+## afg    .    .    .
+## ago    .    .    .
+## alb    .    .    .
+## and    .    .    .
+## ant    .    .    .</code></pre>
+<p>And also you can obtain it in tabular version.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">rca_tbl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ec_rca.html">ec_rca</a></span>(</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="dt">data =</span> ec_trade_<span class="dv">1962</span>,</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">  <span class="dt">c =</span> <span class="st">"country"</span>,</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">  <span class="dt">p =</span> <span class="st">"product"</span>,</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="dt">v =</span> <span class="st">"value"</span>,</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">  <span class="dt">tbl =</span> T</a>
 <a class="sourceLine" id="cb5-7" data-line-number="7">)</a>
 <a class="sourceLine" id="cb5-8" data-line-number="8"></a>
 <a class="sourceLine" id="cb5-9" data-line-number="9">rca_tbl</a></code></pre></div>
-<pre><code>## # A tibble: 735 x 3
-##    country product                                          value
-##    &lt;chr&gt;   &lt;chr&gt;                                            &lt;dbl&gt;
-##  1 Albania 1 Transportation                                     0
-##  2 Albania 10 Personal, cultural, and recreational services     1
-##  3 Albania 11 Government services, n.i.e.                       0
-##  4 Albania 2 Travel                                             1
-##  5 Albania 3 Communications services                            1
-##  6 Albania 4 Construction services                              0
-##  7 Albania 5 Insurance services                                 0
-##  8 Albania 6 Financial services                                 0
-##  9 Albania 7 Computer and information services                  0
-## 10 Albania 8 Royalties and license fees                         0
-## # … with 725 more rows</code></pre>
-<p>Another possibility, <em>not used to build networks from bipartite relations</em>, is to obtain RCA as a matrix or tibble without discretization:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">rca_decimal &lt;-<span class="st"> </span><span class="kw"><a href="../reference/revealed_comparative_advantage.html">revealed_comparative_advantage</a></span>(</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">  <span class="dt">trade_data =</span> services_trade_<span class="dv">2016</span><span class="op">$</span>services_trade_<span class="dv">2016</span>_tibble, </a>
-<a class="sourceLine" id="cb7-3" data-line-number="3">  <span class="dt">country =</span> <span class="st">"country"</span>,</a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">  <span class="dt">product =</span> <span class="st">"product"</span>, </a>
-<a class="sourceLine" id="cb7-5" data-line-number="5">  <span class="dt">value =</span> <span class="st">"value"</span>,</a>
+<pre><code>## # A tibble: 44,435 x 3
+##    country product value
+##    &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;
+##  1 afg     0106        0
+##  2 afg     0405        0
+##  3 afg     0407        0
+##  4 afg     0501        1
+##  5 afg     0504        1
+##  6 afg     0703        0
+##  7 afg     0712        0
+##  8 afg     0714        1
+##  9 afg     0801        1
+## 10 afg     0802        1
+## # … with 44,425 more rows</code></pre>
+<p>Another possibility, <em>not used to build networks from bipartite relations</em>, is to obtain RCA as a matrix or tibble without discretization.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">rca_decimal &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ec_rca.html">ec_rca</a></span>(</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">  <span class="dt">data =</span> ec_trade_<span class="dv">1962</span>,</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">  <span class="dt">c =</span> <span class="st">"country"</span>,</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">  <span class="dt">p =</span> <span class="st">"product"</span>,</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">  <span class="dt">v =</span> <span class="st">"value"</span>,</a>
 <a class="sourceLine" id="cb7-6" data-line-number="6">  <span class="dt">discrete =</span> F</a>
 <a class="sourceLine" id="cb7-7" data-line-number="7">)</a>
 <a class="sourceLine" id="cb7-8" data-line-number="8"></a>
 <a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co"># 5x3 preview</span></a>
 <a class="sourceLine" id="cb7-10" data-line-number="10">rca_decimal[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
 <pre><code>## 5 x 3 sparse Matrix of class "dgCMatrix"
-##           1 Transportation
-## Albania          0.5102272
-## Algeria          1.3335177
-## Angola           0.2690996
-## Argentina        1.0111489
-## Armenia          0.6893952
-##           10 Personal, cultural, and recreational services
-## Albania                                          1.2249349
-## Algeria                                          0.2708899
-## Angola                                           .        
-## Argentina                                        2.8673255
-## Armenia                                          1.8189723
-##           11 Government services, n.i.e.
-## Albania                        0.8920782
-## Algeria                        5.0052899
-## Angola                         .        
-## Argentina                      0.7883701
-## Armenia                        1.0213973</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">rca_decimal_tbl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/revealed_comparative_advantage.html">revealed_comparative_advantage</a></span>(</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">  <span class="dt">trade_data =</span> services_trade_<span class="dv">2016</span><span class="op">$</span>services_trade_<span class="dv">2016</span>_tibble, </a>
-<a class="sourceLine" id="cb9-3" data-line-number="3">  <span class="dt">country =</span> <span class="st">"country"</span>,</a>
-<a class="sourceLine" id="cb9-4" data-line-number="4">  <span class="dt">product =</span> <span class="st">"product"</span>, </a>
-<a class="sourceLine" id="cb9-5" data-line-number="5">  <span class="dt">value =</span> <span class="st">"value"</span>,</a>
-<a class="sourceLine" id="cb9-6" data-line-number="6">  <span class="dt">tbl_output =</span> T,</a>
+##     0101       0102 0103
+## afg    . .             .
+## ago    . 0.01826164    .
+## alb    . .             .
+## and    . .             .
+## ant    . .             .</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">rca_decimal_tbl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ec_rca.html">ec_rca</a></span>(</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">  <span class="dt">data =</span> ec_trade_<span class="dv">1962</span>,</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">  <span class="dt">c =</span> <span class="st">"country"</span>,</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">  <span class="dt">p =</span> <span class="st">"product"</span>,</a>
+<a class="sourceLine" id="cb9-5" data-line-number="5">  <span class="dt">v =</span> <span class="st">"value"</span>,</a>
+<a class="sourceLine" id="cb9-6" data-line-number="6">  <span class="dt">tbl =</span> T,</a>
 <a class="sourceLine" id="cb9-7" data-line-number="7">  <span class="dt">discrete =</span> F</a>
 <a class="sourceLine" id="cb9-8" data-line-number="8">)</a>
 <a class="sourceLine" id="cb9-9" data-line-number="9"></a>
 <a class="sourceLine" id="cb9-10" data-line-number="10">rca_decimal_tbl</a></code></pre></div>
-<pre><code>## # A tibble: 735 x 3
-##    country product                                           value
-##    &lt;chr&gt;   &lt;chr&gt;                                             &lt;dbl&gt;
-##  1 Albania 1 Transportation                                 0.510 
-##  2 Albania 10 Personal, cultural, and recreational services 1.22  
-##  3 Albania 11 Government services, n.i.e.                   0.892 
-##  4 Albania 2 Travel                                         2.28  
-##  5 Albania 3 Communications services                        3.71  
-##  6 Albania 4 Construction services                          0.150 
-##  7 Albania 5 Insurance services                             0.173 
-##  8 Albania 6 Financial services                             0.0138
-##  9 Albania 7 Computer and information services              0.0589
-## 10 Albania 8 Royalties and license fees                     0.0126
-## # … with 725 more rows</code></pre>
+<pre><code>## # A tibble: 44,435 x 3
+##    country product    value
+##    &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt;
+##  1 afg     0106     0.0412 
+##  2 afg     0405     0.00944
+##  3 afg     0407     0.275  
+##  4 afg     0501    14.4    
+##  5 afg     0504    20.7    
+##  6 afg     0703     0.271  
+##  7 afg     0712     0.220  
+##  8 afg     0714     3.18   
+##  9 afg     0801    34.4    
+## 10 afg     0802    48.0    
+## # … with 44,425 more rows</code></pre>
 </div>
 <div id="complexity-measures" class="section level2">
 <h2 class="hasAnchor">
 <a href="#complexity-measures" class="anchor"></a>Complexity Measures</h2>
-<p>You can compute both Economic Complexity Index (ECI) and Product Complexity Index (PCI) by using <code><a href="../reference/complexity_measures.html">complexity_measures()</a></code>. The calculations methods are <em>reflections</em>, <em>eigenvalues</em> and <em>fitness</em> (default). See <span class="citation">(Hausmann et al. 2014)</span> and <span class="citation">(Mariani et al. 2015)</span> for the methodological details.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">cm_reflections &lt;-<span class="st"> </span><span class="kw"><a href="../reference/complexity_measures.html">complexity_measures</a></span>(</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2">  <span class="dt">rca =</span> rca, </a>
-<a class="sourceLine" id="cb11-3" data-line-number="3">  <span class="dt">method =</span> <span class="st">"reflections"</span>, </a>
-<a class="sourceLine" id="cb11-4" data-line-number="4">  <span class="dt">tbl_output =</span> T</a>
+<p>You can compute both Economic Complexity Index (ECI) and Product Complexity Index (PCI) by using <code><a href="../reference/ec_complexity_measures.html">ec_complexity_measures()</a></code>. The calculations methods are <em>reflections</em>, <em>eigenvalues</em> and <em>fitness</em> (default). See <span class="citation">(Hausmann et al. 2014)</span> and <span class="citation">(Mariani et al. 2015)</span> for the methodological details.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">cm_reflections &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ec_complexity_measures.html">ec_complexity_measures</a></span>(</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">  <span class="dt">rca =</span> rca,</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">  <span class="dt">method =</span> <span class="st">"reflections"</span>,</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">  <span class="dt">tbl =</span> T</a>
 <a class="sourceLine" id="cb11-5" data-line-number="5">)</a>
 <a class="sourceLine" id="cb11-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb11-7" data-line-number="7">cm_reflections<span class="op">$</span>economic_complexity_index</a></code></pre></div>
-<pre><code>## # A tibble: 80 x 2
-##    country            value
-##    &lt;chr&gt;              &lt;dbl&gt;
-##  1 Seychelles          3.44
-##  2 Philippines         3.21
-##  3 Israel              2.24
-##  4 China               1.63
-##  5 Costa Rica          1.63
-##  6 Singapore           1.60
-##  7 Japan               1.24
-##  8 Poland              1.24
-##  9 Russian Federation  1.24
-## 10 Serbia              1.24
-## # … with 70 more rows</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">cm_reflections<span class="op">$</span>product_complexity_index</a></code></pre></div>
-<pre><code>## # A tibble: 11 x 2
-##    product                                            value
-##    &lt;chr&gt;                                              &lt;dbl&gt;
-##  1 9 Other business services                         1.74  
-##  2 7 Computer and information services               1.44  
-##  3 8 Royalties and license fees                      0.849 
-##  4 4 Construction services                           0.140 
-##  5 6 Financial services                              0.0313
-##  6 5 Insurance services                             -0.187 
-##  7 10 Personal, cultural, and recreational services -0.320 
-##  8 1 Transportation                                 -0.387 
-##  9 3 Communications services                        -0.846 
-## 10 11 Government services, n.i.e.                   -0.937 
-## 11 2 Travel                                         -1.52</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">cm_eigenvalues &lt;-<span class="st"> </span><span class="kw"><a href="../reference/complexity_measures.html">complexity_measures</a></span>(</a>
+<a class="sourceLine" id="cb11-7" data-line-number="7">cm_reflections<span class="op">$</span>complexity_index_c</a></code></pre></div>
+<pre><code>## # A tibble: 158 x 2
+##    country value
+##    &lt;chr&gt;   &lt;dbl&gt;
+##  1 deu      2.23
+##  2 spm      2.20
+##  3 fro      2.04
+##  4 che      2.03
+##  5 swe      1.99
+##  6 jpn      1.91
+##  7 aut      1.86
+##  8 fra      1.86
+##  9 ddr      1.84
+## 10 gbr      1.83
+## # … with 148 more rows</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">cm_reflections<span class="op">$</span>complexity_index_p</a></code></pre></div>
+<pre><code>## # A tibble: 991 x 2
+##    product value
+##    &lt;chr&gt;   &lt;dbl&gt;
+##  1 7111     1.73
+##  2 9112     1.57
+##  3 8804     1.43
+##  4 8208     1.40
+##  5 9108     1.37
+##  6 7107     1.34
+##  7 4906     1.33
+##  8 8468     1.32
+##  9 3813     1.32
+## 10 7221     1.31
+## # … with 981 more rows</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">cm_eigenvalues &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ec_complexity_measures.html">ec_complexity_measures</a></span>(</a>
 <a class="sourceLine" id="cb15-2" data-line-number="2">  <span class="dt">rca =</span> rca,</a>
 <a class="sourceLine" id="cb15-3" data-line-number="3">  <span class="dt">method =</span> <span class="st">"eigenvalues"</span>,</a>
-<a class="sourceLine" id="cb15-4" data-line-number="4">  <span class="dt">tbl_output =</span> T</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4">  <span class="dt">tbl =</span> T</a>
 <a class="sourceLine" id="cb15-5" data-line-number="5">)</a>
 <a class="sourceLine" id="cb15-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb15-7" data-line-number="7">cm_eigenvalues<span class="op">$</span>economic_complexity_index</a></code></pre></div>
-<pre><code>## # A tibble: 80 x 2
-##    country            value
-##    &lt;chr&gt;              &lt;dbl&gt;
-##  1 Seychelles          3.46
-##  2 Philippines         3.25
-##  3 Israel              2.28
-##  4 Costa Rica          1.67
-##  5 China               1.63
-##  6 Singapore           1.55
-##  7 Poland              1.26
-##  8 Russian Federation  1.26
-##  9 Serbia              1.26
-## 10 TFYR of Macedonia   1.26
-## # … with 70 more rows</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">cm_eigenvalues<span class="op">$</span>product_complexity_index</a></code></pre></div>
-<pre><code>## # A tibble: 11 x 2
-##    product                                            value
-##    &lt;chr&gt;                                              &lt;dbl&gt;
-##  1 9 Other business services                         1.80  
-##  2 7 Computer and information services               1.51  
-##  3 8 Royalties and license fees                      0.668 
-##  4 4 Construction services                           0.184 
-##  5 6 Financial services                             -0.0766
-##  6 5 Insurance services                             -0.202 
-##  7 10 Personal, cultural, and recreational services -0.272 
-##  8 1 Transportation                                 -0.365 
-##  9 3 Communications services                        -0.821 
-## 10 11 Government services, n.i.e.                   -0.940 
-## 11 2 Travel                                         -1.48</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">cm_fitness &lt;-<span class="st"> </span><span class="kw"><a href="../reference/complexity_measures.html">complexity_measures</a></span>(</a>
+<a class="sourceLine" id="cb15-7" data-line-number="7">cm_eigenvalues<span class="op">$</span>complexity_index_c</a></code></pre></div>
+<pre><code>## # A tibble: 158 x 2
+##    country value
+##    &lt;chr&gt;   &lt;dbl&gt;
+##  1 deu      2.23
+##  2 spm      2.20
+##  3 fro      2.04
+##  4 che      2.03
+##  5 swe      1.99
+##  6 jpn      1.91
+##  7 aut      1.86
+##  8 fra      1.86
+##  9 ddr      1.84
+## 10 gbr      1.83
+## # … with 148 more rows</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">cm_eigenvalues<span class="op">$</span>complexity_index_p</a></code></pre></div>
+<pre><code>## # A tibble: 991 x 2
+##    product value
+##    &lt;chr&gt;   &lt;dbl&gt;
+##  1 7111     1.73
+##  2 9112     1.57
+##  3 8804     1.43
+##  4 8208     1.40
+##  5 9108     1.37
+##  6 7107     1.34
+##  7 4906     1.33
+##  8 8468     1.32
+##  9 3813     1.32
+## 10 7221     1.31
+## # … with 981 more rows</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">cm_fitness &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ec_complexity_measures.html">ec_complexity_measures</a></span>(</a>
 <a class="sourceLine" id="cb19-2" data-line-number="2">  <span class="dt">rca =</span> rca,</a>
-<a class="sourceLine" id="cb19-3" data-line-number="3">  <span class="dt">method =</span> <span class="st">"fitness"</span>, </a>
-<a class="sourceLine" id="cb19-4" data-line-number="4">  <span class="dt">tbl_output =</span> T</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3">  <span class="dt">method =</span> <span class="st">"fitness"</span>,</a>
+<a class="sourceLine" id="cb19-4" data-line-number="4">  <span class="dt">tbl =</span> T</a>
 <a class="sourceLine" id="cb19-5" data-line-number="5">)</a>
 <a class="sourceLine" id="cb19-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb19-7" data-line-number="7">cm_fitness<span class="op">$</span>economic_complexity_index</a></code></pre></div>
-<pre><code>## # A tibble: 80 x 2
-##    country                value
-##    &lt;chr&gt;                  &lt;dbl&gt;
-##  1 USA                39.6     
-##  2 Japan              39.2     
-##  3 Singapore           0.422   
-##  4 Lebanon             0.422   
-##  5 South Africa        0.422   
-##  6 China               0.000167
-##  7 Poland              0.000156
-##  8 Russian Federation  0.000156
-##  9 Serbia              0.000156
-## 10 TFYR of Macedonia   0.000156
-## # … with 70 more rows</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">cm_fitness<span class="op">$</span>product_complexity_index</a></code></pre></div>
-<pre><code>## # A tibble: 11 x 2
-##    product                                                  value
-##    &lt;chr&gt;                                                    &lt;dbl&gt;
-##  1 8 Royalties and license fees                     10.9         
-##  2 6 Financial services                              0.0835      
-##  3 7 Computer and information services               0.00000450  
-##  4 9 Other business services                         0.00000401  
-##  5 5 Insurance services                              0.00000263  
-##  6 4 Construction services                           0.00000238  
-##  7 10 Personal, cultural, and recreational services  0.00000116  
-##  8 3 Communications services                         0.000000499 
-##  9 1 Transportation                                  0.000000488 
-## 10 11 Government services, n.i.e.                    0.000000417 
-## 11 2 Travel                                          0.0000000716</code></pre>
+<a class="sourceLine" id="cb19-7" data-line-number="7">cm_fitness<span class="op">$</span>complexity_index_c</a></code></pre></div>
+<pre><code>## # A tibble: 158 x 2
+##    country value
+##    &lt;chr&gt;   &lt;dbl&gt;
+##  1 deu     28.8 
+##  2 fra     21.4 
+##  3 usa     14.1 
+##  4 nld     11.5 
+##  5 che     10.5 
+##  6 gbr      9.81
+##  7 ita      9.61
+##  8 swe      7.35
+##  9 aut      7.34
+## 10 jpn      7.27
+## # … with 148 more rows</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">cm_fitness<span class="op">$</span>complexity_index_p</a></code></pre></div>
+<pre><code>## # A tibble: 991 x 2
+##    product value
+##    &lt;chr&gt;   &lt;dbl&gt;
+##  1 7111     75.1
+##  2 2850     55.9
+##  3 8804     32.1
+##  4 9307     24.7
+##  5 9112     20.2
+##  6 3505     19.6
+##  7 3813     14.3
+##  8 7507     12.6
+##  9 2927     12.1
+## 10 2810     11.8
+## # … with 981 more rows</code></pre>
 </div>
 <div id="proximity" class="section level2">
 <h2 class="hasAnchor">
 <a href="#proximity" class="anchor"></a>Proximity</h2>
-<p>Proximity matrices are used to create both country-country and product-product networks. Using <code>proximity_matrices()</code> is straightforward:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">pro &lt;-<span class="st"> </span><span class="kw"><a href="../reference/proximity.html">proximity</a></span>(</a>
+<p>Proximity matrices are used to create both country-country and product-product networks. Using <code>proximity_matrices()</code> is straightforward.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">pro &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ec_proximity.html">ec_proximity</a></span>(</a>
 <a class="sourceLine" id="cb23-2" data-line-number="2">  <span class="dt">rca =</span> rca,</a>
-<a class="sourceLine" id="cb23-3" data-line-number="3">  <span class="dt">diversity =</span> cm_fitness<span class="op">$</span>diversity,</a>
-<a class="sourceLine" id="cb23-4" data-line-number="4">  <span class="dt">ubiquity =</span> cm_fitness<span class="op">$</span>ubiquity,</a>
-<a class="sourceLine" id="cb23-5" data-line-number="5">  <span class="dt">tbl_output =</span> T</a>
+<a class="sourceLine" id="cb23-3" data-line-number="3">  <span class="dt">d =</span> cm_fitness<span class="op">$</span>diversity,</a>
+<a class="sourceLine" id="cb23-4" data-line-number="4">  <span class="dt">u =</span> cm_fitness<span class="op">$</span>ubiquity,</a>
+<a class="sourceLine" id="cb23-5" data-line-number="5">  <span class="dt">tbl =</span> T</a>
 <a class="sourceLine" id="cb23-6" data-line-number="6">)</a>
 <a class="sourceLine" id="cb23-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb23-8" data-line-number="8">pro<span class="op">$</span>country_proximity</a></code></pre></div>
-<pre><code>## # A tibble: 2,683 x 3
-##    from       to      value
-##    &lt;chr&gt;      &lt;chr&gt;   &lt;dbl&gt;
-##  1 Angola     Albania 0.333
-##  2 Argentina  Albania 0.4  
-##  3 Armenia    Albania 0.5  
-##  4 Aruba      Albania 0.333
-##  5 Australia  Albania 1    
-##  6 Azerbaijan Albania 0.333
-##  7 Bahamas    Albania 0.333
-##  8 Bangladesh Albania 0.25 
-##  9 Belarus    Albania 0.25 
-## 10 Belize     Albania 0.667
-## # … with 2,673 more rows</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">pro<span class="op">$</span>product_proximity</a></code></pre></div>
-<pre><code>## # A tibble: 51 x 3
-##    from                                             to                value
-##    &lt;chr&gt;                                            &lt;chr&gt;             &lt;dbl&gt;
-##  1 10 Personal, cultural, and recreational services 1 Transportation 0.326 
-##  2 11 Government services, n.i.e.                   1 Transportation 0.512 
-##  3 2 Travel                                         1 Transportation 0.434 
-##  4 3 Communications services                        1 Transportation 0.581 
-##  5 4 Construction services                          1 Transportation 0.349 
-##  6 5 Insurance services                             1 Transportation 0.279 
-##  7 6 Financial services                             1 Transportation 0.0233
-##  8 7 Computer and information services              1 Transportation 0.256 
-##  9 8 Royalties and license fees                     1 Transportation 0.0233
-## 10 9 Other business services                        1 Transportation 0.279 
-## # … with 41 more rows</code></pre>
+<a class="sourceLine" id="cb23-8" data-line-number="8">pro<span class="op">$</span>proximity_c</a></code></pre></div>
+<pre><code>## # A tibble: 10,432 x 3
+##    from  to      value
+##    &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;
+##  1 ago   afg   0.0962 
+##  2 alb   afg   0.219  
+##  3 arg   afg   0.120  
+##  4 aus   afg   0.111  
+##  5 aut   afg   0.00690
+##  6 bdi   afg   0.0714 
+##  7 bel   afg   0.00938
+##  8 ben   afg   0.107  
+##  9 bfa   afg   0.0816 
+## 10 bgr   afg   0.0945 
+## # … with 10,422 more rows</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">pro<span class="op">$</span>proximity_p</a></code></pre></div>
+<pre><code>## # A tibble: 417,822 x 3
+##    from  to    value
+##    &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;
+##  1 0102  0101  0.346
+##  2 0103  0101  0.263
+##  3 0104  0101  0.421
+##  4 0106  0101  0.2  
+##  5 0201  0101  0.381
+##  6 0203  0101  0.474
+##  7 0204  0101  0.158
+##  8 0205  0101  0.368
+##  9 0206  0101  0.316
+## 10 0207  0101  0.368
+## # … with 417,812 more rows</code></pre>
 </div>
 <div id="networks" class="section level2">
 <h2 class="hasAnchor">
 <a href="#networks" class="anchor"></a>Networks</h2>
 <p>The <code>proximity_networks()</code> function is designed to use <code>igraph</code> for the internal computations and also to pass proximity-based networks to <code>igraph</code>, <code>ggraph</code> or export to Cytoscape by saving the output as csv/tsv.</p>
-<p>To create some reduced networks I’ll use a high proximity cutoff:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">net &lt;-<span class="st"> </span><span class="kw"><a href="../reference/networks.html">networks</a></span>(</a>
-<a class="sourceLine" id="cb27-2" data-line-number="2">  <span class="dt">country_proximity =</span> pro<span class="op">$</span>country_proximity,</a>
-<a class="sourceLine" id="cb27-3" data-line-number="3">  <span class="dt">product_proximity =</span> pro<span class="op">$</span>product_proximity,</a>
-<a class="sourceLine" id="cb27-4" data-line-number="4">  <span class="dt">countries_cutoff =</span> <span class="fl">0.7</span>,</a>
-<a class="sourceLine" id="cb27-5" data-line-number="5">  <span class="dt">products_cutoff =</span> <span class="fl">0.1</span>,</a>
-<a class="sourceLine" id="cb27-6" data-line-number="6">  <span class="dt">tbl_output =</span> T</a>
+<p>To create some reduced networks I’ll use a high proximity cutoff, so that the networks are limited to the spanning trees for clarity and fast rendering.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">net &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ec_networks.html">ec_networks</a></span>(</a>
+<a class="sourceLine" id="cb27-2" data-line-number="2">  <span class="dt">pc =</span> pro<span class="op">$</span>proximity_c,</a>
+<a class="sourceLine" id="cb27-3" data-line-number="3">  <span class="dt">pp =</span> pro<span class="op">$</span>proximity_p,</a>
+<a class="sourceLine" id="cb27-4" data-line-number="4">  <span class="dt">cutoff_c =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb27-5" data-line-number="5">  <span class="dt">cutoff_p =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb27-6" data-line-number="6">  <span class="dt">tbl =</span> T</a>
 <a class="sourceLine" id="cb27-7" data-line-number="7">)</a>
 <a class="sourceLine" id="cb27-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb27-9" data-line-number="9">net<span class="op">$</span>country_network</a></code></pre></div>
-<pre><code>## # A tibble: 215 x 3
-##    from      to          value
-##    &lt;chr&gt;     &lt;chr&gt;       &lt;dbl&gt;
-##  1 Australia Mauritius   1    
-##  2 Australia Colombia    0.75 
-##  3 Australia Lebanon     0.75 
-##  4 Australia Samoa       0.75 
-##  5 Australia Uruguay     0.75 
-##  6 Australia Greece      0.75 
-##  7 Australia Zambia      0.75 
-##  8 Australia Albania     1    
-##  9 Australia New Zealand 0.667
-## 10 Mauritius Colombia    0.75 
-## # … with 205 more rows</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">net<span class="op">$</span>product_network</a></code></pre></div>
-<pre><code>## # A tibble: 36 x 3
-##    from                       to                                      value
-##    &lt;chr&gt;                      &lt;chr&gt;                                   &lt;dbl&gt;
-##  1 11 Government services, n… 3 Communications services               0.488
-##  2 11 Government services, n… 4 Construction services                 0.237
-##  3 11 Government services, n… 10 Personal, cultural, and recreationa… 0.289
-##  4 11 Government services, n… 2 Travel                                0.453
-##  5 11 Government services, n… 5 Insurance services                    0.289
-##  6 11 Government services, n… 7 Computer and information services     0.132
-##  7 11 Government services, n… 9 Other business services               0.158
-##  8 11 Government services, n… 1 Transportation                        0.512
-##  9 3 Communications services  4 Construction services                 0.341
-## 10 3 Communications services  10 Personal, cultural, and recreationa… 0.439
-## # … with 26 more rows</code></pre>
-<p>Just a two examples with <code>ggraph</code>:</p>
+<a class="sourceLine" id="cb27-9" data-line-number="9">net<span class="op">$</span>network_c</a></code></pre></div>
+<pre><code>## # A tibble: 157 x 3
+##    from  to    value
+##    &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;
+##  1 irn   alb   0.375
+##  2 irn   afg   0.5  
+##  3 irn   tur   0.348
+##  4 npl   afg   0.214
+##  5 syr   afg   0.357
+##  6 ago   ben   0.339
+##  7 ago   per   0.358
+##  8 ago   sen   0.308
+##  9 sur   ant   0.304
+## 10 sur   and   0.130
+## # … with 147 more rows</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">net<span class="op">$</span>network_p</a></code></pre></div>
+<pre><code>## # A tibble: 990 x 3
+##    from  to    value
+##    &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;
+##  1 9614  4202  0.529
+##  2 9614  0101  0.579
+##  3 0102  0201  0.5  
+##  4 0102  0104  0.423
+##  5 0103  0505  0.647
+##  6 1102  1005  0.5  
+##  7 1102  0105  0.417
+##  8 4803  4707  0.615
+##  9 4803  0105  0.417
+## 10 0106  1302  0.514
+## # … with 980 more rows</code></pre>
+<p>Just two basic examples with <code>ggraph</code>.</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(igraph)</a>
 <a class="sourceLine" id="cb31-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggraph)</a>
 <a class="sourceLine" id="cb31-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(magrittr)</a>
 <a class="sourceLine" id="cb31-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb31-5" data-line-number="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">200100</span>)</a>
 <a class="sourceLine" id="cb31-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb31-7" data-line-number="7">net<span class="op">$</span>country_network <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb31-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/igraph/topics/graph_from_data_frame">graph_from_data_frame</a></span>(<span class="dt">directed =</span> F) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb31-7" data-line-number="7">net<span class="op">$</span>network_c <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb31-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/igraph/topics/graph_from_data_frame">graph_from_data_frame</a></span>(<span class="dt">directed =</span> F) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb31-9" data-line-number="9"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/ggraph">ggraph</a></span>(<span class="dt">layout =</span> <span class="st">"kk"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb31-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_edge_link">geom_edge_link</a></span>(<span class="kw">aes</span>(<span class="dt">edge_alpha =</span> value, <span class="dt">edge_width =</span> value), </a>
+<a class="sourceLine" id="cb31-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_edge_link">geom_edge_link</a></span>(<span class="kw">aes</span>(<span class="dt">edge_alpha =</span> value, <span class="dt">edge_width =</span> value),</a>
 <a class="sourceLine" id="cb31-11" data-line-number="11">                 <span class="dt">edge_colour =</span> <span class="st">"#a8a8a8"</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb31-12" data-line-number="12"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_node_point">geom_node_point</a></span>(<span class="dt">color =</span> <span class="st">"darkslategray4"</span>, <span class="dt">size =</span> <span class="dv">8</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb31-13" data-line-number="13"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_node_text">geom_node_text</a></span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">vjust =</span> <span class="fl">2.2</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb31-14" data-line-number="14"><span class="st">  </span><span class="kw">ggtitle</span>(</a>
-<a class="sourceLine" id="cb31-15" data-line-number="15">    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/expression">expression</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">"Connections between"</span>,</a>
-<a class="sourceLine" id="cb31-16" data-line-number="16">                     <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/plotmath">italic</a></span>(<span class="st">" countries "</span>),</a>
-<a class="sourceLine" id="cb31-17" data-line-number="17">                     <span class="st">"based on the"</span>,</a>
-<a class="sourceLine" id="cb31-18" data-line-number="18">                     <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/plotmath">italic</a></span>(<span class="st">" services "</span>),</a>
-<a class="sourceLine" id="cb31-19" data-line-number="19">                     <span class="st">"they export"</span>))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb31-20" data-line-number="20"><span class="st">  </span><span class="kw">theme_void</span>()</a></code></pre></div>
+<a class="sourceLine" id="cb31-14" data-line-number="14"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">"The Country Space"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb31-15" data-line-number="15"><span class="st">  </span><span class="kw">theme_void</span>()</a></code></pre></div>
 <p><img src="basic-usage_files/figure-html/unnamed-chunk-11-1.png" width="1920"></p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">net<span class="op">$</span>product_network <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/igraph/topics/graph_from_data_frame">graph_from_data_frame</a></span>(<span class="dt">directed =</span> F) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">net<span class="op">$</span>network_p <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/igraph/topics/graph_from_data_frame">graph_from_data_frame</a></span>(<span class="dt">directed =</span> F) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb32-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/ggraph">ggraph</a></span>(<span class="dt">layout =</span> <span class="st">"kk"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb32-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_edge_link">geom_edge_link</a></span>(<span class="kw">aes</span>(<span class="dt">edge_alpha =</span> value, <span class="dt">edge_width =</span> value), </a>
+<a class="sourceLine" id="cb32-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_edge_link">geom_edge_link</a></span>(<span class="kw">aes</span>(<span class="dt">edge_alpha =</span> value, <span class="dt">edge_width =</span> value),</a>
 <a class="sourceLine" id="cb32-5" data-line-number="5">                 <span class="dt">edge_colour =</span> <span class="st">"#a8a8a8"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb32-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_node_point">geom_node_point</a></span>(<span class="dt">color =</span> <span class="st">"darkslategray4"</span>, <span class="dt">size =</span> <span class="dv">8</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb32-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_node_point">geom_node_point</a></span>(<span class="dt">color =</span> <span class="st">"darkslategray4"</span>, <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb32-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggraph/topics/geom_node_text">geom_node_text</a></span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">vjust =</span> <span class="fl">2.2</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb32-8" data-line-number="8"><span class="st">  </span><span class="kw">ggtitle</span>(</a>
-<a class="sourceLine" id="cb32-9" data-line-number="9">    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/expression">expression</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">"Connections between"</span>,</a>
-<a class="sourceLine" id="cb32-10" data-line-number="10">                     <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/plotmath">italic</a></span>(<span class="st">" services "</span>),</a>
-<a class="sourceLine" id="cb32-11" data-line-number="11">                     <span class="st">"based on the"</span>,</a>
-<a class="sourceLine" id="cb32-12" data-line-number="12">                     <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/plotmath">italic</a></span>(<span class="st">" countries "</span>),</a>
-<a class="sourceLine" id="cb32-13" data-line-number="13">                     <span class="st">"that export them"</span>))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb32-14" data-line-number="14"><span class="st">  </span><span class="kw">theme_void</span>()</a></code></pre></div>
+<a class="sourceLine" id="cb32-8" data-line-number="8"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">"The Product Space"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb32-9" data-line-number="9"><span class="st">  </span><span class="kw">theme_void</span>()</a></code></pre></div>
 <p><img src="basic-usage_files/figure-html/unnamed-chunk-12-1.png" width="1920"></p>
 </div>
 </div>

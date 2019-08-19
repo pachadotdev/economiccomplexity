@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Revealed Comparative Advantage (RCA) — revealed_comparative_advantage • economiccomplexity</title>
+<title>Revealed Comparative Advantage (RCA) — ec_rca • economiccomplexity</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
 
 
 
-<meta property="og:title" content="Revealed Comparative Advantage (RCA) — revealed_comparative_advantage" />
+<meta property="og:title" content="Revealed Comparative Advantage (RCA) — ec_rca" />
 
 <meta property="og:description" content="Revealed Comparative Advantage (RCA)" />
 <meta name="twitter:card" content="summary" />
@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">economiccomplexity</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2</span>
       </span>
     </div>
 
@@ -108,7 +108,7 @@
     <div class="page-header">
     <h1>Revealed Comparative Advantage (RCA)</h1>
     
-    <div class="hidden name"><code>revealed_comparative_advantage.Rd</code></div>
+    <div class="hidden name"><code>ec_rca.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -117,48 +117,47 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>revealed_comparative_advantage</span>(<span class='kw'>trade_data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>country</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
-  <span class='kw'>product</span> <span class='kw'>=</span> <span class='st'>"product"</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>cutoff</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>discrete</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>ec_rca</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>c</span> <span class='kw'>=</span> <span class='st'>"country"</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='st'>"product"</span>, <span class='kw'>v</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
+  <span class='kw'>cutoff</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>discrete</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>tbl</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>trade_data</th>
+      <th>data</th>
       <td><p>tibble/data.frame in long format, it must contain the
-columns country (character/factor), product (character/factor) and export
-value (numeric)</p></td>
+columns c (character/factor), p (character/factor) and export
+v (numeric)</p></td>
     </tr>
     <tr>
-      <th>country</th>
+      <th>c</th>
       <td><p>string to indicate the column that contains exporting
 countries (e.g. "reporter_iso")</p></td>
     </tr>
     <tr>
-      <th>product</th>
-      <td><p>string to indicate the column that contains exported products
-(e.g. "product_code")</p></td>
+      <th>p</th>
+      <td><p>string to indicate the column that contains exported ps
+(e.g. "p_code")</p></td>
     </tr>
     <tr>
-      <th>value</th>
-      <td><p>string to indicate the column that contains traded values
-(e.g. "trade_value_usd")</p></td>
+      <th>v</th>
+      <td><p>string to indicate the column that contains traded vs
+(e.g. "trade_v_usd")</p></td>
     </tr>
     <tr>
       <th>cutoff</th>
-      <td><p>when set to TRUE all the values lower than the specified cutoff
+      <td><p>when set to TRUE all the vs lower than the specified cutoff
 will be converted to zero and to one in other case, numeric (default set
 to 1)</p></td>
     </tr>
     <tr>
       <th>discrete</th>
       <td><p>when set to TRUE it will convert all the Revealed Comparative
-Advantage values
-to zero or one based on the cutoff value (default set to TRUE)</p></td>
+Advantage vs
+to zero or one based on the cutoff v (default set to TRUE)</p></td>
     </tr>
     <tr>
-      <th>tbl_output</th>
+      <th>tbl</th>
       <td><p>when set to TRUE the output will be a tibble instead of a
 matrix (default set to FALSE)</p></td>
     </tr>
@@ -175,23 +174,24 @@ doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>revealed_comparative_advantage</span>(
- <span class='kw'>trade_data</span> <span class='kw'>=</span> <span class='no'>services_trade_2016</span>$<span class='no'>services_trade_2016_matrix</span>,
- <span class='kw'>tbl_output</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 735 x 3</span><span>
-#&gt;    country product                                          value
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> Albania 1 Transportation                                     0
-#&gt; </span><span style='color: #555555;'> 2</span><span> Albania 10 Personal, cultural, and recreational services     1
-#&gt; </span><span style='color: #555555;'> 3</span><span> Albania 11 Government services, n.i.e.                       0
-#&gt; </span><span style='color: #555555;'> 4</span><span> Albania 2 Travel                                             1
-#&gt; </span><span style='color: #555555;'> 5</span><span> Albania 3 Communications services                            1
-#&gt; </span><span style='color: #555555;'> 6</span><span> Albania 4 Construction services                              0
-#&gt; </span><span style='color: #555555;'> 7</span><span> Albania 5 Insurance services                                 0
-#&gt; </span><span style='color: #555555;'> 8</span><span> Albania 6 Financial services                                 0
-#&gt; </span><span style='color: #555555;'> 9</span><span> Albania 7 Computer and information services                  0
-#&gt; </span><span style='color: #555555;'>10</span><span> Albania 8 Royalties and license fees                         0
-#&gt; </span><span style='color: #555555;'># … with 725 more rows</span><span></div></span></pre>
+    <pre class="examples"><div class='input'><span class='fu'>ec_rca</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>ec_trade_1962</span>,
+  <span class='kw'>tbl</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 44,435 x 3</span><span>
+#&gt;    country product value
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> afg     0106        0
+#&gt; </span><span style='color: #555555;'> 2</span><span> afg     0405        0
+#&gt; </span><span style='color: #555555;'> 3</span><span> afg     0407        0
+#&gt; </span><span style='color: #555555;'> 4</span><span> afg     0501        1
+#&gt; </span><span style='color: #555555;'> 5</span><span> afg     0504        1
+#&gt; </span><span style='color: #555555;'> 6</span><span> afg     0703        0
+#&gt; </span><span style='color: #555555;'> 7</span><span> afg     0712        0
+#&gt; </span><span style='color: #555555;'> 8</span><span> afg     0714        1
+#&gt; </span><span style='color: #555555;'> 9</span><span> afg     0801        1
+#&gt; </span><span style='color: #555555;'>10</span><span> afg     0802        1
+#&gt; </span><span style='color: #555555;'># … with 44,425 more rows</span><span></div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
