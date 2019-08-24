@@ -8,8 +8,8 @@ test_that("network results are aligned with the expected output ", {
   )
 
   expect_is(net, "list")
-  expect_equal(nrow(net$network_country), 98)
-  expect_equal(nrow(net$network_product), 995)
-  expect_equal(ncol(net$network_country), 3)
-  expect_equal(ncol(net$network_product), 3)
+  expect_equal(nrow(net$network_c), 98)
+  expect_equal(nrow(net$network_p), 995)
+  expect_equal(ncol(net$network_c), 3)
+  expect_equal(ncol(net$network_p), 3)
 })

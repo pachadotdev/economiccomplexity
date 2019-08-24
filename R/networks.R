@@ -185,5 +185,10 @@ ec_networks <- function(pc,
     p_g <- NULL
   }
 
-  return(list(network_country = c_g, network_product = p_g))
+  return(
+    list(
+      network_c = c_g,
+      network_p = p_g
+    )
+  )
 }
