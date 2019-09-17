@@ -256,18 +256,10 @@ ec_complexity_measures <- function(rca = NULL,
       )
 
     kc0 <- tibble::enframe(kc0) %>%
-      dplyr::rename(c = !!sym("name")) %>%
-      dplyr::rename(
-        "country" = !!sym("c"),
-        "value" = !!sym("v")
-      )
+      dplyr::rename("country" = !!sym("name"))
 
     kp0 <- tibble::enframe(kp0) %>%
-      dplyr::rename(p = !!sym("name")) %>%
-      dplyr::rename(
-        "product" = !!sym("p"),
-        "value" = !!sym("v")
-      )
+      dplyr::rename("product" = !!sym("name"))
   }
 
   return(

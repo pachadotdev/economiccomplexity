@@ -9,7 +9,7 @@
   "name": "economiccomplexity: Methods Used in the Economic Complexity Literature",
   "issueTracker": "http://github.com/pachamaltese/economiccomplexity/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.1.5",
+  "version": "0.2.2",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -39,11 +39,11 @@
     },
     {
       "@type": "Organization",
-      "name": "UN COMTRADE"
+      "name": "The World Bank"
     },
     {
       "@type": "Organization",
-      "name": "The World Bank"
+      "name": "Open Trade Statistics"
     }
   ],
   "copyrightHolder": [
@@ -210,7 +210,7 @@
   ],
   "codeRepository": "https://pachamaltese.github.io/economiccomplexity",
   "readme": "https://github.com/pachamaltese/economiccomplexity/blob/master/README.md",
-  "fileSize": "525.12KB",
+  "fileSize": "1436.478KB",
   "contIntegration": [
     "https://travis-ci.org/pachamaltese/economiccomplexity",
     "https://codecov.io/github/pachamaltese/economiccomplexity?branch=master"
