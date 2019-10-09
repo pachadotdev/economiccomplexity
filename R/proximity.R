@@ -148,8 +148,14 @@ ec_proximity <- function(rca = NULL,
 
   # remove countries not included in complexity measures
   # (i.e allows to compute after setting atlas= TRUE)
-  rca <- rca[rownames(rca) %in% names(d), ]
-
+  if (!is.null(d)) {
+    rca <- rca[rownames(rca) %in% names(d), ]
+  }
+  
+  if (!is.null(u)) {
+    rca <- rca[, colnames(rca) %in% names(u)]
+  }
+  
   if (any("country" %in% compute2) == TRUE) {
     xc <- rca %*% Matrix::t(rca)
 
