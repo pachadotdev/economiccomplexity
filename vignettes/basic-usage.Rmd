@@ -32,98 +32,49 @@ ec_trade_1962
 You can obtain RCA with `ec_rca()`.
 
 ```{r}
-rca <- ec_rca(
-  data = ec_trade_1962,
-  c = "country",
-  p = "product",
-  v = "value"
-)
-
-# 5x5 preview
-rca[1:5,1:3]
+r <- rca(ec_trade_1962)
+r
 ```
 
-And also you can obtain it in tabular version.
+And also you can obtain it in matrix version.
 
 ```{r}
-rca_tbl <- ec_rca(
-  data = ec_trade_1962,
-  c = "country",
-  p = "product",
-  v = "value",
-  tbl = T
-)
-
-rca_tbl
+r2 <- rca(ec_trade_1962, tbl = F)
+r2[1:5,1:5] # 5x5 preview
 ```
 
-Another possibility, *not used to build networks from bipartite relations*, is
-to obtain RCA as a matrix or tibble without discretization.
+Another possibility is to obtain RCA as a matrix or tibble without discretization.
 
 ```{r}
-rca_decimal <- ec_rca(
-  data = ec_trade_1962,
-  c = "country",
-  p = "product",
-  v = "value",
-  discrete = F
-)
-
-# 5x3 preview
-rca_decimal[1:5,1:3]
+r3 <- rca(ec_trade_1962, discrete = F)
+r3
 ```
 
 ```{r}
-rca_decimal_tbl <- ec_rca(
-  data = ec_trade_1962,
-  c = "country",
-  p = "product",
-  v = "value",
-  tbl = T,
-  discrete = F
-)
-
-rca_decimal_tbl
+r4 <- rca(ec_trade_1962, discrete = F, tbl = F)
+r4[1:5,1:5] # 5x3 preview
 ```
 
 ## Complexity Measures
 
 You can compute both Economic Complexity Index (ECI) and Product Complexity
 Index (PCI) by using `ec_complexity_measures()`. The calculations methods are
-*reflections*, *eigenvalues* and *fitness* (default). See [@atlas2014] and
+*fitness* (default), *reflections* and *eigenvalues*. See [@atlas2014] and
 [@measuringcomplexity2015] for the methodological details.
 
 ```{r}
-cm_reflections <- ec_complexity_measures(
-  rca = rca,
-  method = "reflections",
-  tbl = T
-)
-
-cm_reflections$complexity_index_c
-cm_reflections$complexity_index_p
+cf <- complexity(r, method = "fitness")
+cf
 ```
 
 ```{r}
-cm_eigenvalues <- ec_complexity_measures(
-  rca = rca,
-  method = "eigenvalues",
-  tbl = T
-)
-
-cm_eigenvalues$complexity_index_c
-cm_eigenvalues$complexity_index_p
+cr <- complexity(r, method = "reflections")
+cr
 ```
 
 ```{r}
-cm_fitness <- ec_complexity_measures(
-  rca = rca,
-  method = "fitness",
-  tbl = T
-)
-
-cm_fitness$complexity_index_c
-cm_fitness$complexity_index_p
+ce <- complexity(r, method = "eigenvalues")
+ce
 ```
 
 ## Proximity
@@ -132,15 +83,8 @@ Proximity matrices are used to create both country-country and product-product
 networks. Using `proximity_matrices()` is straightforward.
 
 ```{r}
-pro <- ec_proximity(
-  rca = rca,
-  d = cm_fitness$diversity,
-  u = cm_fitness$ubiquity,
-  tbl = T
-)
-
-pro$proximity_c
-pro$proximity_p
+p <- proximity(r, cf$country_diversity, cf$product_ubiquity)
+p
 ```
 
 ## Networks
@@ -152,48 +96,48 @@ or export to Cytoscape by saving the output as csv/tsv.
 To create some reduced networks I'll use a high proximity cutoff, so that the networks are limited to the spanning trees for clarity and fast rendering.
 
 ```{r}
-net <- ec_networks(
-  pc = pro$proximity_c,
-  pp = pro$proximity_p,
-  cutoff_c = 1,
-  cutoff_p = 1,
-  tbl = T
-)
-
-net$network_c
-net$network_p
+# net <- ec_networks(
+#   pc = pro$proximity_c,
+#   pp = pro$proximity_p,
+#   cutoff_c = 1,
+#   cutoff_p = 1,
+#   tbl = T
+# )
+# 
+# net$network_c
+# net$network_p
 ```
 
 Just two basic examples with `ggraph`.
 
 ```{r, fig.width=20, fig.height=12}
-library(igraph)
-library(ggraph)
-library(magrittr)
-
-set.seed(200100)
-
-net$network_c %>%
-  graph_from_data_frame(directed = F) %>%
-  ggraph(layout = "kk") +
-  geom_edge_link(aes(edge_alpha = value, edge_width = value),
-                 edge_colour = "#a8a8a8") +
-  geom_node_point(color = "darkslategray4", size = 8) +
-  geom_node_text(aes(label = name), vjust = 2.2) +
-  ggtitle("The Country Space") +
-  theme_void()
-```
-
-```{r, fig.width=20, fig.height=12}
-net$network_p %>%
-  graph_from_data_frame(directed = F) %>%
-  ggraph(layout = "kk") +
-  geom_edge_link(aes(edge_alpha = value, edge_width = value),
-                 edge_colour = "#a8a8a8") +
-  geom_node_point(color = "darkslategray4", size = 4) +
-  geom_node_text(aes(label = name), vjust = 2.2) +
-  ggtitle("The Product Space") +
-  theme_void()
+# library(igraph)
+# library(ggraph)
+# library(magrittr)
+# 
+# set.seed(200100)
+# 
+# net$network_c %>%
+#   graph_from_data_frame(directed = F) %>%
+#   ggraph(layout = "kk") +
+#   geom_edge_link(aes(edge_alpha = value, edge_width = value),
+#                  edge_colour = "#a8a8a8") +
+#   geom_node_point(color = "darkslategray4", size = 8) +
+#   geom_node_text(aes(label = name), vjust = 2.2) +
+#   ggtitle("The Country Space") +
+#   theme_void()
+# ```
+# 
+# ```{r, fig.width=20, fig.height=12}
+# net$network_p %>%
+#   graph_from_data_frame(directed = F) %>%
+#   ggraph(layout = "kk") +
+#   geom_edge_link(aes(edge_alpha = value, edge_width = value),
+#                  edge_colour = "#a8a8a8") +
+#   geom_node_point(color = "darkslategray4", size = 4) +
+#   geom_node_text(aes(label = name), vjust = 2.2) +
+#   ggtitle("The Product Space") +
+#   theme_void()
 ```
 
 # References

@@ -1,11 +1,10 @@
-#' Revealed Comparative Advantage (RCA)
+#' @title Revealed Comparative Advantage (RCA)
 #'
-#' @export
+#' @description \code{rca} computes Revealed Comparative Advantage
 #'
-#' @description Given a \eqn{C\times P} matrix (C for "countries"
-#' and P for "products") or an equivalent 3-columns data.frame with exported
-#' values (X) as input, this function computes RCA metric.
-#' The equation used in this function is:
+#' @details Given a \eqn{C\times P} matrix (C for "countries"
+#' and P for "products") or an equivalent 3-columns data frame with exported
+#' values (X) as input, this function implements the equation:
 #' \deqn{RCA_{cp} = \frac{X_{cp}}{\sum_c X_{cp}} /
 #' \frac{\sum_p X_{cp}}{\sum_{c}\sum_{p} X_{cp}}}
 #'
@@ -29,22 +28,27 @@
 #' @importFrom Matrix Matrix rowSums colSums t
 #' @importFrom rlang sym syms :=
 #'
+#' @return A list with two data frames or two matrices.
+#'
 #' @examples
-#' ec_rca(ec_trade_1962)
+#' rca(ec_trade_1962)
+#'
 #' @references
 #' For more information on revealed comparative advantage and its uses see:
 #'
 #' \insertRef{atlas2014}{economiccomplexity}
 #'
 #' @keywords functions
+#'
+#' @export
 
-ec_rca <- function(data,
-                   country = "country",
-                   product = "product",
-                   value = "value",
-                   discrete = TRUE,
-                   cutoff = 1,
-                   tbl = TRUE) {
+rca <- function(data,
+                country = "country",
+                product = "product",
+                value = "value",
+                discrete = TRUE,
+                cutoff = 1,
+                tbl = TRUE) {
   # sanity checks ----
   if (all(class(data) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix",
     "dgCMatrix") == FALSE)) {

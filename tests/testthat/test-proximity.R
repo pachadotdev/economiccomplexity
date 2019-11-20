@@ -1,9 +1,6 @@
-test_that("proximity results are aligned with the expected output ", {
-  pr <- ec_proximity(
-    rca = ec_output_demo$rca_tbl,
-    d = ec_output_demo$complexity_measures_tbl$diversity,
-    u = ec_output_demo$complexity_measures_tbl$ubiquity,
-    tbl = T
+test_that("proximity output is aligned with the expected output ", {
+  pr <- proximity(ec_output_demo$rca_tbl, ec_output_demo$complexity_measures_tbl$diversity,
+                  ec_output_demo$complexity_measures_tbl$ubiquity,
   )
 
   expect_is(pr, "list")

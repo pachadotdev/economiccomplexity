@@ -1,17 +1,20 @@
-#' Complexity Measures
+#' @title Complexity Measures
 #'
-#' @export
+#' @description \code{complexity} computes Diversity/Ubiquity and
+#' Country/Product Complexity Indices
 #'
-#' @description Given a \eqn{C\times P} matrix (C for "countries"
-#' and P for "products") or an equivalent 3-columns data.frame with RCA
-#' values as input, this function computes Country/Product Complexity Indices
-#' and Diversity/Ubiquity metrics.
-#' The equations used in this function are the generalized fitness
-#' \eqn{F(\gamma)} and complexity \eqn{Q(\gamma)} defined by:
-#' \deqn{\tilde{F}^{(n)}(\gamma) = \sum_{p} R_{cp}Q_{p}^{n-1}}
-#' \deqn{\tilde{Q}^{(n)}(\gamma) =
-#' \left[\sum_{c} R_{cp}(F_{c}^{n-1})^{-\gamma}\right]^{-1/\gamma}}
-#' Altogether with equivalent formulations from other methods.
+#' @details Given a \eqn{C\times P} matrix (C for "countries"
+#' and P for "products") or an equivalent 3-columns data frame with RCA
+#' values as input, this function implements the equations:
+#' \deqn{\text{(Diversity)}\: k_{c}^{(0)} = \sum_p R_{cp}}
+#' \deqn{\text{(Ubiquity)}\: k_{p}^{(0)} = \sum_c R_{cp}}
+#' \deqn{\text{(Fitness)}\: \tilde{F}^{(n)}(\gamma) = \sum_{p} R_{cp}Q_{p}^{n-1}}
+#' \deqn{\text{(Complexity)}\: \tilde{Q}^{(n)}(\gamma) =
+#' \left[\sum_{c} R_{cp}(F_{c}^{n-1})^{-\gamma}\right]^{-1/\gamma}.}
+#'
+#' Besides this implementation, the function offers the reflections method
+#' and eigenvalues computation as alternatives to the Fitness-Complexity
+#' formulation.
 #'
 #' @param rca matrix or data.frame with RCA values
 #' @param country column containing countries (applies only if d is a
@@ -30,16 +33,6 @@
 #' @param atlas remove the countries not ranked in The Atlas of Economic
 #' Complexity (by default is FALSE)
 #'
-#' @importFrom magrittr %>%
-#' @importFrom dplyr select mutate arrange pull rename
-#' @importFrom tidyr gather spread
-#' @importFrom tibble tibble as_tibble enframe
-#' @importFrom Matrix Matrix rowSums colSums t
-#' @importFrom rlang sym
-#'
-#' @examples
-#' ec_complexity_measures(ec_output_demo$rca_tbl)
-#'
 #' @references
 #' For more information on complexity measures see:
 #'
@@ -49,17 +42,33 @@
 #'
 #' and the references therein.
 #'
+#' @examples
+#' complexity(ec_output_demo$rca_tbl)
+#'
+#' @return A list with four data frames or matrices.
+#'
+#' @seealso \code{\link[economiccomplexity]{rca}},
+#'
 #' @keywords functions
+#'
+#' @importFrom magrittr %>%
+#' @importFrom dplyr select mutate arrange pull rename
+#' @importFrom tidyr gather spread
+#' @importFrom tibble tibble as_tibble enframe
+#' @importFrom Matrix Matrix rowSums colSums t
+#' @importFrom rlang sym
+#'
+#' @export
 
-ec_complexity_measures <- function(rca,
-                                   country = "country",
-                                   product = "product",
-                                   value = "value",
-                                   method = "fitness",
-                                   iterations = 20,
-                                   extremality = 1,
-                                   tbl = TRUE,
-                                   atlas = FALSE) {
+complexity <- function(rca,
+                       country = "country",
+                       product = "product",
+                       value = "value",
+                       method = "fitness",
+                       iterations = 20,
+                       extremality = 1,
+                       tbl = TRUE,
+                       atlas = FALSE) {
   # sanity checks ----
   if (all(class(rca) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix",
     "dgCMatrix") == FALSE)) {
@@ -261,10 +270,10 @@ ec_complexity_measures <- function(rca,
 
   return(
     list(
-      complexity_index_c = eci,
-      complexity_index_p = pci,
-      diversity = kc0,
-      ubiquity = kp0
+      country_complexity = eci,
+      country_diversity = kc0,
+      product_complexity = pci,
+      product_ubiquity = kp0
     )
   )
 }

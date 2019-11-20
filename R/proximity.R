@@ -1,6 +1,15 @@
-#' Proximity
+#' @title Proximity
 #'
-#' @export
+#' @description \code{proximity} computes proximity
+#'
+#' @description Given a \eqn{C\times P} matrix (C for "countries"
+#' and P for "products") with RCA values, a C lenght vector with diversity
+#' values and a P length vector with ubiquity values or equivalent data frames,
+#' this function implements the equations:
+#' \deqn{\text{(Product proximity)}\: \phi_{pp'} = \frac{\sum_c R_{cp}
+#' R_{cp'}}{\max(k_{p}^{(0)}, k_{p'}^{(0)})}}
+#' \deqn{\text{(Country proximity}\:\lambda_{cc'} = \frac{\sum_p R_{c,p}
+#' R_{c,p'}}{\max(k_{c}^{(0)}, k_{c'}^{(0)})}}
 #'
 #' @param rca matrix or data.frame with RCA values
 #' @param diversity matrix or data.frame with diversity values
@@ -22,6 +31,27 @@
 #' @param tbl TRUE (default) returns a data.frame and FALSE returns a matrix
 #' @param compute "country", "product" or "both" (default) matrices
 #'
+#' @references
+#' For more information on proximity and its applications see:
+#'
+#' \insertRef{atlas2014}{economiccomplexity}
+#'
+#' and the references therein.
+#'
+#' @examples
+#' proximity(
+#'   rca = ec_output_demo$rca_tbl,
+#'   d = ec_output_demo$complexity_measures_tbl$diversity,
+#'   u = ec_output_demo$complexity_measures_tbl$ubiquity
+#' )
+#'
+#' @return A list with two data frames or matrices.
+#'
+#' @seealso \code{\link[economiccomplexity]{rca}},
+#' \code{\link[economiccomplexity]{complexity}}
+#'
+#' @keywords functions
+#'
 #' @importFrom magrittr %>%
 #' @importFrom dplyr select filter mutate pull
 #' @importFrom tibble as_tibble
@@ -29,31 +59,20 @@
 #' @importFrom Matrix Matrix t rowSums colSums
 #' @importFrom rlang sym
 #'
-#' @examples
-#' ec_proximity(
-#'   rca = ec_output_demo$rca_tbl,
-#'   d = ec_output_demo$complexity_measures_tbl$diversity,
-#'   u = ec_output_demo$complexity_measures_tbl$ubiquity
-#' )
-#' @references
-#' For more information on proximity and its applications see:
-#'
-#' \insertRef{atlas2014}{economiccomplexity}
-#'
-#' @keywords functions
+#' @export
 
-ec_proximity <- function(rca,
-                         diversity,
-                         ubiquity,
-                         country_r = "country",
-                         product_r = "product",
-                         value_r = "value",
-                         country_d = "country",
-                         value_d = "value",
-                         product_u = "product",
-                         value_u = "value",
-                         tbl = TRUE,
-                         compute = "both") {
+proximity <- function(rca,
+                      diversity,
+                      ubiquity,
+                      country_r = "country",
+                      product_r = "product",
+                      value_r = "value",
+                      country_d = "country",
+                      value_d = "value",
+                      product_u = "product",
+                      value_u = "value",
+                      tbl = TRUE,
+                      compute = "both") {
   # sanity checks ----
   if (all(class(rca) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix",
     "dgCMatrix") == FALSE)) {
@@ -177,8 +196,8 @@ ec_proximity <- function(rca,
 
   return(
     list(
-      proximity_c = cp,
-      proximity_p = pp
+      product_proximity = cp,
+      country_proximity = pp
     )
   )
 }

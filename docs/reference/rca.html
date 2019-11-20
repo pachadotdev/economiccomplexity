@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Example outputs of the functions within the package — ec_output_demo • economiccomplexity</title>
+<title>Revealed Comparative Advantage (RCA) — rca • economiccomplexity</title>
 
 
 <!-- jquery -->
@@ -35,9 +35,8 @@
 
 
 
-<meta property="og:title" content="Example outputs of the functions within the package — ec_output_demo" />
-<meta property="og:description" content="List of different economic complexity computations obtained by using the functions within the
-package. The output is provided as a list of tibbles." />
+<meta property="og:title" content="Revealed Comparative Advantage (RCA) — rca" />
+<meta property="og:description" content="rca computes Revealed Comparative Advantage" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -113,52 +112,77 @@ package. The output is provided as a list of tibbles." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Example outputs of the functions within the package</h1>
+    <h1>Revealed Comparative Advantage (RCA)</h1>
     
-    <div class="hidden name"><code>ec_output_demo.Rd</code></div>
+    <div class="hidden name"><code>rca.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>List of different economic complexity computations obtained by using the functions within the
-package. The output is provided as a list of tibbles.</p>
+    <p><code>rca</code> computes Revealed Comparative Advantage</p>
     </div>
 
-    <pre class="usage"><span class='no'>ec_output_demo</span></pre>
+    <pre class="usage"><span class='fu'>rca</span>(<span class='no'>data</span>, <span class='kw'>country</span> <span class='kw'>=</span> <span class='st'>"country"</span>, <span class='kw'>product</span> <span class='kw'>=</span> <span class='st'>"product"</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
+  <span class='kw'>discrete</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cutoff</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>tbl</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>data</th>
+      <td><p>matrix or data.frame with traded values</p></td>
+    </tr>
+    <tr>
+      <th>country</th>
+      <td><p>column containing countries (applies only if d is a
+data.frame)</p></td>
+    </tr>
+    <tr>
+      <th>product</th>
+      <td><p>column containing products (applies only if d is a
+data.frame)</p></td>
+    </tr>
+    <tr>
+      <th>value</th>
+      <td><p>column containing traded values (applies only if d is a
+data.frame)</p></td>
+    </tr>
+    <tr>
+      <th>discrete</th>
+      <td><p>convert to one all the values above a cutoff and zero
+otherwise (by default is TRUE)</p></td>
+    </tr>
+    <tr>
+      <th>cutoff</th>
+      <td><p>all the values below the specified will be converted to zero
+(by default is 1)</p></td>
+    </tr>
+    <tr>
+      <th>tbl</th>
+      <td><p>TRUE (default) returns a data.frame and FALSE returns a matrix</p></td>
+    </tr>
+    </table>
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The format is:
-List of 3
- $ rca_tbl                :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	44435 obs. of  3 variables:
-  ..$ country: chr [1:44435] "afg" "afg" "afg" "afg" ...
-  ..$ product: chr [1:44435] "0106" "0405" "0407" "0501" ...
-  ..$ value  : num [1:44435] 0 0 0 1 1 0 0 1 1 1 ...
- $ complexity_measures_tbl:List of 4
-  ..$ complexity_index_c:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	99 obs. of  2 variables:
-  .. ..$ country: chr [1:99] "deu" "fra" "usa" "gbr" ...
-  .. ..$ value  : num [1:99] 19.47 11.99 11.55 8.43 6.92 ...
-  ..$ complexity_index_p:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	991 obs. of  2 variables:
-  .. ..$ product: chr [1:991] "2702" "7111" "2850" "8804" ...
-  .. ..$ value  : num [1:991] 48.1 48.1 29.7 18.4 17.9 ...
-  ..$ diversity         :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	99 obs. of  2 variables:
-  .. ..$ country: chr [1:99] "ago" "alb" "are" "arg" ...
-  .. ..$ value  : num [1:99] 52 32 1 83 81 290 320 127 27 70 ...
-  ..$ ubiquity          :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	991 obs. of  2 variables:
-  .. ..$ product: chr [1:991] "0101" "0102" "0103" "0104" ...
-  .. ..$ value  : num [1:991] 13 19 13 12 9 27 17 12 4 10 ...
- $ proximity_tbl          :List of 2
-  ..$ proximity_c:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	4484 obs. of  3 variables:
-  .. ..$ from : chr [1:4484] "alb" "are" "arg" "aus" ...
-  .. ..$ to   : chr [1:4484] "ago" "ago" "ago" "ago" ...
-  .. ..$ value: num [1:4484] 0.0769 0.0192 0.1325 0.0741 0.0241 ...
-  ..$ proximity_p:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	408869 obs. of  3 variables:
-  .. ..$ from : chr [1:408869] "0102" "0103" "0104" "0106" ...
-  .. ..$ to   : chr [1:408869] "0101" "0101" "0101" "0101" ...
-  .. ..$ value: num [1:408869] 0.316 0.308 0.385 0.148 0.353 ...</p>
+    <p>A list with two data frames or two matrices.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Given a \(C\times P\) matrix (C for "countries"
+and P for "products") or an equivalent 3-columns data frame with exported
+values (X) as input, this function implements the equation:
+$$RCA_{cp} = \frac{X_{cp}}{\sum_c X_{cp}} /
+\frac{\sum_p X_{cp}}{\sum_{c}\sum_{p} X_{cp}}$$</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>For more information on revealed comparative advantage and its uses see:</p>
+<p>Hausmann R, Hidalgo C, Bustos S, Coscia M, Simoes A, Yildirim M (2014).
+<em>The atlas of economic complexity: Mapping paths to prosperity</em>.
+MIT Press.
+doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9647.001.0001</a>
+.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>ec_output_demo</span>$<span class='no'>rca_tbl</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 44,435 x 3</span><span>
+    <pre class="examples"><div class='input'><span class='fu'>rca</span>(<span class='no'>ec_trade_1962</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 44,435 x 3</span><span>
 #&gt;    country product value
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> afg     0106        0
@@ -171,25 +195,16 @@ List of 3
 #&gt; </span><span style='color: #555555;'> 8</span><span> afg     0714        1
 #&gt; </span><span style='color: #555555;'> 9</span><span> afg     0801        1
 #&gt; </span><span style='color: #555555;'>10</span><span> afg     0802        1
-#&gt; </span><span style='color: #555555;'># ... with 44,425 more rows</span><span></div><div class='input'><span class='no'>ec_output_demo</span>$<span class='no'>complexity_measures_tbl</span>$<span class='no'>complexity_index_c</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 99 x 2</span><span>
-#&gt;    country value
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> deu     19.5 
-#&gt; </span><span style='color: #555555;'> 2</span><span> fra     12.0 
-#&gt; </span><span style='color: #555555;'> 3</span><span> usa     11.6 
-#&gt; </span><span style='color: #555555;'> 4</span><span> gbr      8.43
-#&gt; </span><span style='color: #555555;'> 5</span><span> che      6.92
-#&gt; </span><span style='color: #555555;'> 6</span><span> nld      6.63
-#&gt; </span><span style='color: #555555;'> 7</span><span> ita      6.55
-#&gt; </span><span style='color: #555555;'> 8</span><span> swe      4.85
-#&gt; </span><span style='color: #555555;'> 9</span><span> bel      4.32
-#&gt; </span><span style='color: #555555;'>10</span><span> aut      4.29
-#&gt; </span><span style='color: #555555;'># ... with 89 more rows</span><span></div></span></pre>
+#&gt; </span><span style='color: #555555;'># ... with 44,425 more rows</span><span></div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#format">Format</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#details">Details</a></li>
+      <li><a href="#references">References</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

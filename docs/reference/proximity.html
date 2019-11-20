@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Proximity — ec_proximity • economiccomplexity</title>
+<title>Proximity — proximity • economiccomplexity</title>
 
 
 <!-- jquery -->
@@ -35,14 +35,8 @@
 
 
 
-<meta property="og:title" content="Proximity — ec_proximity" />
-<meta property="og:description" content="Given a \(C\times P\) matrix (C for &quot;countries&quot;
-and P for &quot;products&quot;) with RCA values, a C lenght vector with diversity
-values and a P length vector with ubiquity values or equivalent data frames,
-this function computes Country/Product Proximity.
-The equations used for the proximities are defined by:
-$$\phi_{pp'} = \frac{\sum_c R_{cp} R_{cp'}}{\max(k_{p}^{(0)}, k_{p'}^{(0)})}$$
-$$\lambda_{cc'} = \frac{\sum_p R_{c,p} R_{c,p'}}{\max(k_{c}^{(0)}, k_{c'}^{(0)})}$$" />
+<meta property="og:title" content="Proximity — proximity" />
+<meta property="og:description" content="proximity computes proximity" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -120,20 +114,14 @@ $$\lambda_{cc'} = \frac{\sum_p R_{c,p} R_{c,p'}}{\max(k_{c}^{(0)}, k_{c'}^{(0)})
     <div class="page-header">
     <h1>Proximity</h1>
     
-    <div class="hidden name"><code>ec_proximity.Rd</code></div>
+    <div class="hidden name"><code>proximity.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Given a \(C\times P\) matrix (C for "countries"
-and P for "products") with RCA values, a C lenght vector with diversity
-values and a P length vector with ubiquity values or equivalent data frames,
-this function computes Country/Product Proximity.
-The equations used for the proximities are defined by:
-$$\phi_{pp'} = \frac{\sum_c R_{cp} R_{cp'}}{\max(k_{p}^{(0)}, k_{p'}^{(0)})}$$
-$$\lambda_{cc'} = \frac{\sum_p R_{c,p} R_{c,p'}}{\max(k_{c}^{(0)}, k_{c'}^{(0)})}$$</p>
+    <p><code>proximity</code> computes proximity</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ec_proximity</span>(<span class='no'>rca</span>, <span class='no'>diversity</span>, <span class='no'>ubiquity</span>, <span class='kw'>country_r</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
+    <pre class="usage"><span class='fu'>proximity</span>(<span class='no'>rca</span>, <span class='no'>diversity</span>, <span class='no'>ubiquity</span>, <span class='kw'>country_r</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
   <span class='kw'>product_r</span> <span class='kw'>=</span> <span class='st'>"product"</span>, <span class='kw'>value_r</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>country_d</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
   <span class='kw'>value_d</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>product_u</span> <span class='kw'>=</span> <span class='st'>"product"</span>, <span class='kw'>value_u</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
   <span class='kw'>tbl</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>compute</span> <span class='kw'>=</span> <span class='st'>"both"</span>)</pre>
@@ -200,7 +188,7 @@ data.frame)</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list with two data frames or matrices</p>
+    <p>A list with two data frames or matrices.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>For more information on proximity and its applications see:</p>
@@ -209,47 +197,48 @@ data.frame)</p></td>
 MIT Press.
 doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9647.001.0001</a>
 .</p>
+<p>and the references therein.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>ec_rca</code>,
-<code>ec_complexity_measures</code></p></div>
+    <div class='dont-index'><p><code><a href='rca.html'>rca</a></code>,
+<code><a href='complexity.html'>complexity</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>ec_proximity</span>(
+    <pre class="examples"><div class='input'><span class='fu'>proximity</span>(
   <span class='kw'>rca</span> <span class='kw'>=</span> <span class='no'>ec_output_demo</span>$<span class='no'>rca_tbl</span>,
   <span class='kw'>d</span> <span class='kw'>=</span> <span class='no'>ec_output_demo</span>$<span class='no'>complexity_measures_tbl</span>$<span class='no'>diversity</span>,
   <span class='kw'>u</span> <span class='kw'>=</span> <span class='no'>ec_output_demo</span>$<span class='no'>complexity_measures_tbl</span>$<span class='no'>ubiquity</span>
-)</div><div class='output co'>#&gt; $proximity_c
-#&gt; <span style='color: #949494;'># A tibble: 4,484 x 3</span><span>
+)</div><div class='output co'>#&gt; $product_proximity
+#&gt; <span style='color: #555555;'># A tibble: 4,484 x 3</span><span>
 #&gt;    from  to     value
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> alb   ago   0.076</span><span style='text-decoration: underline;'>9</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> are   ago   0.019</span><span style='text-decoration: underline;'>2</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> arg   ago   0.133 
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> aus   ago   0.074</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> aut   ago   0.024</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> bel   ago   0.028</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> bgr   ago   0.110 
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> bol   ago   0.038</span><span style='text-decoration: underline;'>5</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> bra   ago   0.2   
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> can   ago   0.084</span><span style='text-decoration: underline;'>5</span><span>
-#&gt; </span><span style='color: #949494;'># ... with 4,474 more rows</span><span>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> alb   ago   0.076</span><span style='text-decoration: underline;'>9</span><span>
+#&gt; </span><span style='color: #555555;'> 2</span><span> are   ago   0.019</span><span style='text-decoration: underline;'>2</span><span>
+#&gt; </span><span style='color: #555555;'> 3</span><span> arg   ago   0.133 
+#&gt; </span><span style='color: #555555;'> 4</span><span> aus   ago   0.074</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #555555;'> 5</span><span> aut   ago   0.024</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #555555;'> 6</span><span> bel   ago   0.028</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #555555;'> 7</span><span> bgr   ago   0.110 
+#&gt; </span><span style='color: #555555;'> 8</span><span> bol   ago   0.038</span><span style='text-decoration: underline;'>5</span><span>
+#&gt; </span><span style='color: #555555;'> 9</span><span> bra   ago   0.2   
+#&gt; </span><span style='color: #555555;'>10</span><span> can   ago   0.084</span><span style='text-decoration: underline;'>5</span><span>
+#&gt; </span><span style='color: #555555;'># ... with 4,474 more rows</span><span>
 #&gt; 
-#&gt; $proximity_p
-#&gt; </span><span style='color: #949494;'># A tibble: 408,869 x 3</span><span>
+#&gt; $country_proximity
+#&gt; </span><span style='color: #555555;'># A tibble: 408,869 x 3</span><span>
 #&gt;    from  to    value
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 0102  0101  0.316
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 0103  0101  0.308
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 0104  0101  0.385
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 0106  0101  0.148
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 0201  0101  0.353
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 0203  0101  0.462
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 0204  0101  0.154
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 0205  0101  0.385
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 0206  0101  0.385
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 0207  0101  0.429
-#&gt; </span><span style='color: #949494;'># ... with 408,859 more rows</span><span>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> 0102  0101  0.316
+#&gt; </span><span style='color: #555555;'> 2</span><span> 0103  0101  0.308
+#&gt; </span><span style='color: #555555;'> 3</span><span> 0104  0101  0.385
+#&gt; </span><span style='color: #555555;'> 4</span><span> 0106  0101  0.148
+#&gt; </span><span style='color: #555555;'> 5</span><span> 0201  0101  0.353
+#&gt; </span><span style='color: #555555;'> 6</span><span> 0203  0101  0.462
+#&gt; </span><span style='color: #555555;'> 7</span><span> 0204  0101  0.154
+#&gt; </span><span style='color: #555555;'> 8</span><span> 0205  0101  0.385
+#&gt; </span><span style='color: #555555;'> 9</span><span> 0206  0101  0.385
+#&gt; </span><span style='color: #555555;'>10</span><span> 0207  0101  0.429
+#&gt; </span><span style='color: #555555;'># ... with 408,859 more rows</span><span>
 #&gt; </div><div class='input'>
 </div></span></pre>
   </div>
