@@ -75,7 +75,6 @@ ec_countries_position(
   v3 = "value",
   tbl = TRUE
 )
-
 }
 \references{
 For more information on proximity distance, complexity outlook, complexity

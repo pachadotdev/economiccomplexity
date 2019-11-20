@@ -59,7 +59,6 @@
 #'   v3 = "value",
 #'   tbl = TRUE
 #' )
-#'
 #' @references
 #' For more information on proximity distance, complexity outlook, complexity
 #' outlook gain and its applications see:

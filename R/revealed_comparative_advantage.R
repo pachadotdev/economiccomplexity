@@ -1,23 +1,28 @@
 #' Revealed Comparative Advantage (RCA)
 #'
 #' @export
-#' @param data tibble/data.frame in long format, it must contain the
-#' columns c (character/factor), p (character/factor) and export
-#' v (numeric)
-#' @param c string to indicate the column that contains exporting
-#' countries (e.g. "reporter_iso")
-#' @param p string to indicate the column that contains exported ps
-#' (e.g. "p_code")
-#' @param v string to indicate the column that contains traded vs
-#' (e.g. "trade_v_usd")
-#' @param discrete when set to TRUE it will convert all the Revealed Comparative
-#' Advantage vs
-#' to zero or one based on the cutoff v (default set to TRUE)
-#' @param cutoff when set to TRUE all the vs lower than the specified cutoff
-#' will be converted to zero and to one in other case, numeric (default set
-#' to 1)
-#' @param tbl when set to TRUE the output will be a tibble instead of a
-#' matrix (default set to FALSE)
+#'
+#' @description Given a \eqn{C\times P} matrix (C for "countries"
+#' and P for "products") or an equivalent 3-columns data.frame with exported
+#' values (X) as input, this function computes RCA metric.
+#' The equation used in this function is:
+#' \deqn{RCA_{cp} = \frac{X_{cp}}{\sum_c X_{cp}} /
+#' \frac{\sum_p X_{cp}}{\sum_{c}\sum_{p} X_{cp}}}
+#'
+#' @param data matrix or data.frame with traded values
+#' @param country column containing countries (applies only if d is a
+#' data.frame)
+#' @param product column containing products (applies only if d is a
+#' data.frame)
+#' @param value column containing traded values (applies only if d is a
+#' data.frame)
+#' @param discrete convert to one all the values above a cutoff and zero
+#' otherwise (by default is TRUE)
+#' @param cutoff all the values below the specified will be converted to zero
+#' (by default is 1)
+#' @param tbl by default the output is a data.frame unless this is changed to
+#' FALSE, in which case the output is a matrix
+#'
 #' @importFrom magrittr %>%
 #' @importFrom dplyr select group_by ungroup mutate summarise matches rename
 #' pull as_tibble if_else
@@ -26,11 +31,7 @@
 #' @importFrom rlang sym syms :=
 #'
 #' @examples
-#' ec_rca(
-#'   data = ec_trade_1962,
-#'   tbl = TRUE
-#' )
-#'
+#' ec_rca(ec_trade_1962)
 #' @references
 #' For more information on revealed comparative advantage and its uses see:
 #'
@@ -38,23 +39,21 @@
 #'
 #' @keywords functions
 
-ec_rca <- function(data = NULL,
-                   c = "country",
-                   p = "product",
-                   v = "value",
-                   cutoff = 1,
+ec_rca <- function(data,
+                   country = "country",
+                   product = "product",
+                   value = "value",
                    discrete = TRUE,
-                   tbl = FALSE) {
+                   cutoff = 1,
+                   tbl = TRUE) {
   # sanity checks ----
-  if (all(class(data) %in% c(
-    "data.frame", "matrix", "dgeMatrix",
-    "dsCMatrix", "dgCMatrix"
-  ) == FALSE)) {
+  if (all(class(data) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix",
+    "dgCMatrix") == FALSE)) {
     stop("data must be a tibble/data.frame or a dense/sparse matrix")
   }
 
-  if (!is.character(c) & !is.character(p) & !is.character(v)) {
-    stop("c, p and v must be character")
+  if (!is.character(country) & !is.character(product) & !is.character(value)) {
+    stop("country, product and value must be character")
   }
 
   if (!is.logical(discrete)) {
@@ -79,64 +78,57 @@ ec_rca <- function(data = NULL,
 
     data <- as.data.frame(data) %>%
       dplyr::as_tibble() %>%
-      dplyr::mutate(!!sym(c) := data_rownames) %>%
-      tidyr::gather(!!sym(p), !!sym(v), -!!sym(c))
+      dplyr::mutate(!!sym(country) := data_rownames) %>%
+      tidyr::gather(!!sym(product), !!sym(value), -!!sym(country))
   }
 
   # aggregate input data by c and p ----
   data <- data %>%
     # Sum by c and p
-    dplyr::group_by(!!!syms(c(c, p))) %>%
-    dplyr::summarise(vcp = sum(!!sym(v), na.rm = TRUE)) %>%
+    dplyr::group_by(!!!syms(c(country, product))) %>%
+    dplyr::summarise(vcp = sum(!!sym(value), na.rm = TRUE)) %>%
     dplyr::ungroup() %>%
     dplyr::filter(!!sym("vcp") > 0)
 
   # compute RCA in tibble form ----
   data <- data %>%
     # Sum by c
-    dplyr::group_by(!!sym(c)) %>%
+    dplyr::group_by(!!sym(country)) %>%
     dplyr::mutate(sum_c_vcp = sum(!!sym("vcp"), na.rm = TRUE)) %>%
 
     # Sum by p
-    dplyr::group_by(!!sym(p)) %>%
+    dplyr::group_by(!!sym(product)) %>%
     dplyr::mutate(sum_p_vcp = sum(!!sym("vcp"), na.rm = TRUE)) %>%
 
     # Compute RCA
     dplyr::ungroup() %>%
     dplyr::mutate(
       sum_c_p_vcp = sum(!!sym("vcp"), na.rm = TRUE),
-      v = (!!sym("vcp") / !!sym("sum_c_vcp")) / (!!sym("sum_p_vcp") /
+      value = (!!sym("vcp") / !!sym("sum_c_vcp")) / (!!sym("sum_p_vcp") /
         !!sym("sum_c_p_vcp"))
     ) %>%
     dplyr::select(-dplyr::matches("vcp")) %>%
 
     # Rename columns
-    dplyr::rename(c = !!sym(c), p = !!sym(p))
+    dplyr::rename(country = !!sym(country), product = !!sym(product))
 
   if (discrete == TRUE) {
     data <- data %>%
-      dplyr::mutate(!!sym("v") := dplyr::if_else(!!sym("v") >
+      dplyr::mutate(!!sym("value") := dplyr::if_else(!!sym("value") >
         cutoff, 1, 0))
   }
 
   if (tbl == FALSE) {
     data <- data %>%
-      tidyr::spread(!!sym("p"), !!sym("v"))
+      tidyr::spread(!!sym("product"), !!sym("value"))
 
-    data_rownames <- dplyr::select(data, !!sym("c")) %>%
+    data_rownames <- dplyr::select(data, !!sym("country")) %>%
       dplyr::pull()
 
-    data <- dplyr::select(data, -!!sym("c")) %>% as.matrix()
+    data <- dplyr::select(data, -!!sym("country")) %>% as.matrix()
     data[is.na(data)] <- 0
     rownames(data) <- data_rownames
     data <- Matrix::Matrix(data, sparse = TRUE)
-  } else {
-    data <- data %>%
-      dplyr::rename(
-        "country" = !!sym("c"),
-        "product" = !!sym("p"),
-        "value" = !!sym("v")
-      )
   }
 
   return(data)

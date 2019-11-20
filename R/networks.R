@@ -33,7 +33,6 @@
 #'   pp = ec_output_demo$proximity_tbl$proximity_p,
 #'   tbl = TRUE
 #' )
-#'
 #' @references
 #' For more information on networks such as the product space and its
 #' applications see:

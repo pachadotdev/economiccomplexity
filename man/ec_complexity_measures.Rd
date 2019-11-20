@@ -4,58 +4,60 @@
 \alias{ec_complexity_measures}
 \title{Complexity Measures}
 \usage{
-ec_complexity_measures(rca = NULL, c = "country", p = "product",
-  v = "value", method = "fitness", iterations = 20,
-  extremality = 1, atlas = FALSE, tbl = FALSE)
+ec_complexity_measures(rca, country = "country", product = "product",
+  value = "value", method = "fitness", iterations = 20,
+  extremality = 1, atlas = FALSE, tbl = TRUE)
 }
 \arguments{
-\item{rca}{matrix or tibble/data.frame (e.g. the
-output of \code{revealed_comparative_advantage()}).
-If the input is a matrix it must be a zero/one matrix with countries in rows
-and ps in columns.
-If the input is a tibble/data.frame it must contain at least three columns
-with countries, ps and vs.}
+\item{rca}{matrix or data.frame with RCA values}
 
-\item{c}{string to indicate the column that contains exporting
-countries in rca (set to "country" by default)}
+\item{country}{column containing countries (applies only if d is a
+data.frame)}
 
-\item{p}{string to indicate the column that contains exported ps
-in rca (set to "product" by default)}
+\item{product}{column containing products (applies only if d is a
+data.frame)}
 
-\item{v}{string to indicate the column that contains traded vs in
-rca (set to "value" by default)}
+\item{value}{column containing traded values (applies only if d is a
+data.frame)}
 
-\item{method}{string to indicate to use one of these methods: reflections,
-eigenvalues or fitness (set to "fitness" by default)}
+\item{method}{which method to use (by default is "fitness", it can also
+be "reflections" or "eigenvalues")}
 
-\item{iterations}{number of iterations to use in the reflections method
-(set to 20 by default)}
+\item{iterations}{number of iterations to use in the fitness, reflections
+and indirectly in eigenvalues method (by default is 20)}
 
 \item{extremality}{numeric coefficient to use in the fitness method
-(set to 1 by default)}
+(by default is 1)}
 
-\item{atlas}{logical v to remove the countries not ranked in The
-Atlas of Economic Complexity (set to FALSE by default)}
+\item{atlas}{remove the countries not ranked in The Atlas of Economic
+Complexity (by default is FALSE)}
 
-\item{tbl}{logical v to use tibble output instead of a matrix
-output (set to FALSE by default)}
+\item{tbl}{by default the output is a data.frame unless this is changed to
+FALSE, in which case the output is a matrix}
 }
 \description{
-Complexity Measures
+Given a \eqn{C\times P} matrix (C for "countries"
+and P for "products") or an equivalent 3-columns data.frame with RCA
+values as input, this function computes Country/Product Complexity Indices
+and Diversity/Ubiquity metrics.
+The equations used in this function are the generalized fitness
+\eqn{F(\gamma)} and complexity \eqn{Q(\gamma)} defined by:
+\deqn{\tilde{F}^{(n)}(\gamma) = \sum_{p} R_{cp}Q_{p}^{n-1}}
+\deqn{\tilde{Q}^{(n)}(\gamma) =
+\left[\sum_{c} R_{cp}(F_{c}^{n-1})^{-\gamma}\right]^{-1/\gamma}}
+Altogether with equivalent formulations from other methods.
 }
 \examples{
-ec_complexity_measures(
-  rca = ec_output_demo$rca_tbl,
-  tbl = TRUE
-)
+ec_complexity_measures(ec_output_demo$rca_tbl)
 
 }
 \references{
-For more information on complexity measures, indices and its applications
-see:
+For more information on complexity measures see:
+
+\insertRef{measuringcomplexity2015}{economiccomplexity}
 
 \insertRef{atlas2014}{economiccomplexity}
 
-\insertRef{measuringcomplexity2015}{economiccomplexity}
+and the references therein.
 }
 \keyword{functions}

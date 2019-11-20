@@ -65,7 +65,6 @@ ec_proximity(
   u = ec_output_demo$complexity_measures_tbl$ubiquity,
   tbl = TRUE
 )
-
 }
 \references{
 For more information on proximity and its applications see:

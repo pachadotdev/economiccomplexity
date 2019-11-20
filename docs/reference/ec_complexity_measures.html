@@ -36,7 +36,16 @@
 
 
 <meta property="og:title" content="Complexity Measures — ec_complexity_measures" />
-<meta property="og:description" content="Complexity Measures" />
+<meta property="og:description" content="Given a \(C\times P\) matrix (C for &quot;countries&quot;
+and P for &quot;products&quot;) or an equivalent 3-columns data.frame with RCA
+values as input, this function computes Country/Product Complexity Indices
+and Diversity/Ubiquity metrics.
+The equations used in this function are the generalized fitness
+\(F(\gamma)\) and complexity \(Q(\gamma)\) defined by:
+$$\tilde{F}^{(n)}(\gamma) = \sum_{p} R_{cp}Q_{p}^{n-1}$$
+$$\tilde{Q}^{(n)}(\gamma) =
+\left[\sum_{c} R_{cp}(F_{c}^{n-1})^{-\gamma}\right]^{-1/\gamma}$$
+Altogether with equivalent formulations from other methods." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -118,149 +127,150 @@
     </div>
 
     <div class="ref-description">
-    <p>Complexity Measures</p>
+    <p>Given a \(C\times P\) matrix (C for "countries"
+and P for "products") or an equivalent 3-columns data.frame with RCA
+values as input, this function computes Country/Product Complexity Indices
+and Diversity/Ubiquity metrics.
+The equations used in this function are the generalized fitness
+\(F(\gamma)\) and complexity \(Q(\gamma)\) defined by:
+$$\tilde{F}^{(n)}(\gamma) = \sum_{p} R_{cp}Q_{p}^{n-1}$$
+$$\tilde{Q}^{(n)}(\gamma) =
+\left[\sum_{c} R_{cp}(F_{c}^{n-1})^{-\gamma}\right]^{-1/\gamma}$$
+Altogether with equivalent formulations from other methods.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ec_complexity_measures</span>(<span class='kw'>rca</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>c</span> <span class='kw'>=</span> <span class='st'>"country"</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
-  <span class='kw'>v</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"fitness"</span>, <span class='kw'>iterations</span> <span class='kw'>=</span> <span class='fl'>20</span>,
-  <span class='kw'>extremality</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>atlas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>tbl</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>ec_complexity_measures</span>(<span class='no'>rca</span>, <span class='kw'>country</span> <span class='kw'>=</span> <span class='st'>"country"</span>, <span class='kw'>product</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
+  <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"fitness"</span>, <span class='kw'>iterations</span> <span class='kw'>=</span> <span class='fl'>20</span>,
+  <span class='kw'>extremality</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>atlas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>tbl</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>rca</th>
-      <td><p>matrix or tibble/data.frame (e.g. the
-output of <code>revealed_comparative_advantage()</code>).
-If the input is a matrix it must be a zero/one matrix with countries in rows
-and ps in columns.
-If the input is a tibble/data.frame it must contain at least three columns
-with countries, ps and vs.</p></td>
+      <td><p>matrix or data.frame with RCA values</p></td>
     </tr>
     <tr>
-      <th>c</th>
-      <td><p>string to indicate the column that contains exporting
-countries in rca (set to "country" by default)</p></td>
+      <th>country</th>
+      <td><p>column containing countries (applies only if d is a
+data.frame)</p></td>
     </tr>
     <tr>
-      <th>p</th>
-      <td><p>string to indicate the column that contains exported ps
-in rca (set to "product" by default)</p></td>
+      <th>product</th>
+      <td><p>column containing products (applies only if d is a
+data.frame)</p></td>
     </tr>
     <tr>
-      <th>v</th>
-      <td><p>string to indicate the column that contains traded vs in
-rca (set to "value" by default)</p></td>
+      <th>value</th>
+      <td><p>column containing traded values (applies only if d is a
+data.frame)</p></td>
     </tr>
     <tr>
       <th>method</th>
-      <td><p>string to indicate to use one of these methods: reflections,
-eigenvalues or fitness (set to "fitness" by default)</p></td>
+      <td><p>which method to use (by default is "fitness", it can also
+be "reflections" or "eigenvalues")</p></td>
     </tr>
     <tr>
       <th>iterations</th>
-      <td><p>number of iterations to use in the reflections method
-(set to 20 by default)</p></td>
+      <td><p>number of iterations to use in the fitness, reflections
+and indirectly in eigenvalues method (by default is 20)</p></td>
     </tr>
     <tr>
       <th>extremality</th>
       <td><p>numeric coefficient to use in the fitness method
-(set to 1 by default)</p></td>
+(by default is 1)</p></td>
     </tr>
     <tr>
       <th>atlas</th>
-      <td><p>logical v to remove the countries not ranked in The
-Atlas of Economic Complexity (set to FALSE by default)</p></td>
+      <td><p>remove the countries not ranked in The Atlas of Economic
+Complexity (by default is FALSE)</p></td>
     </tr>
     <tr>
       <th>tbl</th>
-      <td><p>logical v to use tibble output instead of a matrix
-output (set to FALSE by default)</p></td>
+      <td><p>by default the output is a data.frame unless this is changed to
+FALSE, in which case the output is a matrix</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>For more information on complexity measures, indices and its applications
-see:</p>
-<p>Hausmann R, Hidalgo C, Bustos S, Coscia M, Simoes A, Yildirim M (2014).
-<em>The atlas of economic complexity: Mapping paths to prosperity</em>.
-MIT Press.
-doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9647.001.0001</a>
-.</p>
+    <p>For more information on complexity measures see:</p>
 <p>Mariani M, Vidmer A, Medo M, Zhang Y (2015).
 &#8220;Measuring economic complexity of countries and products: which metric to use?&#8221;
 <em>The European Physical Journal B</em>, <b>88</b>(11), 293.
 doi: <a href='https://doi.org/10.1140/epjb/e2015-60298-7'>10.1140/epjb/e2015-60298-7</a>
 .</p>
+<p>Hausmann R, Hidalgo C, Bustos S, Coscia M, Simoes A, Yildirim M (2014).
+<em>The atlas of economic complexity: Mapping paths to prosperity</em>.
+MIT Press.
+doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9647.001.0001</a>
+.</p>
+<p>and the references therein.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>ec_complexity_measures</span>(
-  <span class='kw'>rca</span> <span class='kw'>=</span> <span class='no'>ec_output_demo</span>$<span class='no'>rca_tbl</span>,
-  <span class='kw'>tbl</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; $complexity_index_c
-#&gt; <span style='color: #555555;'># A tibble: 158 x 2</span><span>
+    <pre class="examples"><div class='input'><span class='fu'>ec_complexity_measures</span>(<span class='no'>ec_output_demo</span>$<span class='no'>rca_tbl</span>)</div><div class='output co'>#&gt; $complexity_index_c
+#&gt; <span style='color: #949494;'># A tibble: 158 x 2</span><span>
 #&gt;    country value
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> deu     28.8 
-#&gt; </span><span style='color: #555555;'> 2</span><span> fra     21.4 
-#&gt; </span><span style='color: #555555;'> 3</span><span> usa     14.1 
-#&gt; </span><span style='color: #555555;'> 4</span><span> nld     11.5 
-#&gt; </span><span style='color: #555555;'> 5</span><span> che     10.5 
-#&gt; </span><span style='color: #555555;'> 6</span><span> gbr      9.81
-#&gt; </span><span style='color: #555555;'> 7</span><span> ita      9.61
-#&gt; </span><span style='color: #555555;'> 8</span><span> swe      7.35
-#&gt; </span><span style='color: #555555;'> 9</span><span> aut      7.34
-#&gt; </span><span style='color: #555555;'>10</span><span> jpn      7.27
-#&gt; </span><span style='color: #555555;'># … with 148 more rows</span><span>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> deu     28.8 
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> fra     21.4 
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> usa     14.1 
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> nld     11.5 
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> che     10.5 
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> gbr      9.81
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> ita      9.61
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> swe      7.35
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> aut      7.34
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> jpn      7.27
+#&gt; </span><span style='color: #949494;'># … with 148 more rows</span><span>
 #&gt; 
 #&gt; $complexity_index_p
-#&gt; </span><span style='color: #555555;'># A tibble: 991 x 2</span><span>
+#&gt; </span><span style='color: #949494;'># A tibble: 991 x 2</span><span>
 #&gt;    product value
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> 7111     75.1
-#&gt; </span><span style='color: #555555;'> 2</span><span> 2850     55.9
-#&gt; </span><span style='color: #555555;'> 3</span><span> 8804     32.1
-#&gt; </span><span style='color: #555555;'> 4</span><span> 9307     24.7
-#&gt; </span><span style='color: #555555;'> 5</span><span> 9112     20.2
-#&gt; </span><span style='color: #555555;'> 6</span><span> 3505     19.6
-#&gt; </span><span style='color: #555555;'> 7</span><span> 3813     14.3
-#&gt; </span><span style='color: #555555;'> 8</span><span> 7507     12.6
-#&gt; </span><span style='color: #555555;'> 9</span><span> 2927     12.1
-#&gt; </span><span style='color: #555555;'>10</span><span> 2810     11.8
-#&gt; </span><span style='color: #555555;'># … with 981 more rows</span><span>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 7111     75.1
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 2850     55.9
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 8804     32.1
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 9307     24.7
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 9112     20.2
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 3505     19.6
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 3813     14.3
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 7507     12.6
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 2927     12.1
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 2810     11.8
+#&gt; </span><span style='color: #949494;'># … with 981 more rows</span><span>
 #&gt; 
 #&gt; $diversity
-#&gt; </span><span style='color: #555555;'># A tibble: 158 x 2</span><span>
+#&gt; </span><span style='color: #949494;'># A tibble: 158 x 2</span><span>
 #&gt;    country value
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> afg        28
-#&gt; </span><span style='color: #555555;'> 2</span><span> ago        52
-#&gt; </span><span style='color: #555555;'> 3</span><span> alb        32
-#&gt; </span><span style='color: #555555;'> 4</span><span> and        23
-#&gt; </span><span style='color: #555555;'> 5</span><span> ant        23
-#&gt; </span><span style='color: #555555;'> 6</span><span> are         1
-#&gt; </span><span style='color: #555555;'> 7</span><span> arg        83
-#&gt; </span><span style='color: #555555;'> 8</span><span> aus        81
-#&gt; </span><span style='color: #555555;'> 9</span><span> aut       290
-#&gt; </span><span style='color: #555555;'>10</span><span> bdi        16
-#&gt; </span><span style='color: #555555;'># … with 148 more rows</span><span>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> afg        28
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> ago        52
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> alb        32
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> and        23
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> ant        23
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> are         1
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> arg        83
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> aus        81
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> aut       290
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> bdi        16
+#&gt; </span><span style='color: #949494;'># … with 148 more rows</span><span>
 #&gt; 
 #&gt; $ubiquity
-#&gt; </span><span style='color: #555555;'># A tibble: 991 x 2</span><span>
+#&gt; </span><span style='color: #949494;'># A tibble: 991 x 2</span><span>
 #&gt;    product value
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> 0101       19
-#&gt; </span><span style='color: #555555;'> 2</span><span> 0102       26
-#&gt; </span><span style='color: #555555;'> 3</span><span> 0103       16
-#&gt; </span><span style='color: #555555;'> 4</span><span> 0104       19
-#&gt; </span><span style='color: #555555;'> 5</span><span> 0105       11
-#&gt; </span><span style='color: #555555;'> 6</span><span> 0106       35
-#&gt; </span><span style='color: #555555;'> 7</span><span> 0201       21
-#&gt; </span><span style='color: #555555;'> 8</span><span> 0203       15
-#&gt; </span><span style='color: #555555;'> 9</span><span> 0204        6
-#&gt; </span><span style='color: #555555;'>10</span><span> 0205       12
-#&gt; </span><span style='color: #555555;'># … with 981 more rows</span><span>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 0101       19
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 0102       26
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 0103       16
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 0104       19
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 0105       11
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 0106       35
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 0201       21
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 0203       15
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 0204        6
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 0205       12
+#&gt; </span><span style='color: #949494;'># … with 981 more rows</span><span>
 #&gt; </div><div class='input'>
 </div></span></pre>
   </div>

@@ -36,7 +36,12 @@
 
 
 <meta property="og:title" content="Revealed Comparative Advantage (RCA) — ec_rca" />
-<meta property="og:description" content="Revealed Comparative Advantage (RCA)" />
+<meta property="og:description" content="Given a \(C\times P\) matrix (C for &quot;countries&quot;
+and P for &quot;products&quot;) or an equivalent 3-columns data.frame with exported
+values (X) as input, this function computes RCA metric.
+The equation used in this function is:
+$$RCA_{cp} = \frac{X_{cp}}{\sum_c X_{cp}} /
+\frac{\sum_p X_{cp}}{\sum_{c}\sum_{p} X_{cp}}$$" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -118,52 +123,53 @@
     </div>
 
     <div class="ref-description">
-    <p>Revealed Comparative Advantage (RCA)</p>
+    <p>Given a \(C\times P\) matrix (C for "countries"
+and P for "products") or an equivalent 3-columns data.frame with exported
+values (X) as input, this function computes RCA metric.
+The equation used in this function is:
+$$RCA_{cp} = \frac{X_{cp}}{\sum_c X_{cp}} /
+\frac{\sum_p X_{cp}}{\sum_{c}\sum_{p} X_{cp}}$$</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ec_rca</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>c</span> <span class='kw'>=</span> <span class='st'>"country"</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='st'>"product"</span>, <span class='kw'>v</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
-  <span class='kw'>cutoff</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>discrete</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>tbl</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>ec_rca</span>(<span class='no'>data</span>, <span class='kw'>country</span> <span class='kw'>=</span> <span class='st'>"country"</span>, <span class='kw'>product</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
+  <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>discrete</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cutoff</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>tbl</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>tibble/data.frame in long format, it must contain the
-columns c (character/factor), p (character/factor) and export
-v (numeric)</p></td>
+      <td><p>matrix or data.frame with traded values</p></td>
     </tr>
     <tr>
-      <th>c</th>
-      <td><p>string to indicate the column that contains exporting
-countries (e.g. "reporter_iso")</p></td>
+      <th>country</th>
+      <td><p>column containing countries (applies only if d is a
+data.frame)</p></td>
     </tr>
     <tr>
-      <th>p</th>
-      <td><p>string to indicate the column that contains exported ps
-(e.g. "p_code")</p></td>
+      <th>product</th>
+      <td><p>column containing products (applies only if d is a
+data.frame)</p></td>
     </tr>
     <tr>
-      <th>v</th>
-      <td><p>string to indicate the column that contains traded vs
-(e.g. "trade_v_usd")</p></td>
-    </tr>
-    <tr>
-      <th>cutoff</th>
-      <td><p>when set to TRUE all the vs lower than the specified cutoff
-will be converted to zero and to one in other case, numeric (default set
-to 1)</p></td>
+      <th>value</th>
+      <td><p>column containing traded values (applies only if d is a
+data.frame)</p></td>
     </tr>
     <tr>
       <th>discrete</th>
-      <td><p>when set to TRUE it will convert all the Revealed Comparative
-Advantage vs
-to zero or one based on the cutoff v (default set to TRUE)</p></td>
+      <td><p>convert to one all the values above a cutoff and zero
+otherwise (by default is TRUE)</p></td>
+    </tr>
+    <tr>
+      <th>cutoff</th>
+      <td><p>all the values below the specified will be converted to zero
+(by default is 1)</p></td>
     </tr>
     <tr>
       <th>tbl</th>
-      <td><p>when set to TRUE the output will be a tibble instead of a
-matrix (default set to FALSE)</p></td>
+      <td><p>by default the output is a data.frame unless this is changed to
+FALSE, in which case the output is a matrix</p></td>
     </tr>
     </table>
 
@@ -177,24 +183,20 @@ doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9
 .</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>ec_rca</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>ec_trade_1962</span>,
-  <span class='kw'>tbl</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 44,435 x 3</span><span>
+    <pre class="examples"><div class='input'><span class='fu'>ec_rca</span>(<span class='no'>ec_trade_1962</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 44,435 x 3</span><span>
 #&gt;    country product value
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> afg     0106        0
-#&gt; </span><span style='color: #555555;'> 2</span><span> afg     0405        0
-#&gt; </span><span style='color: #555555;'> 3</span><span> afg     0407        0
-#&gt; </span><span style='color: #555555;'> 4</span><span> afg     0501        1
-#&gt; </span><span style='color: #555555;'> 5</span><span> afg     0504        1
-#&gt; </span><span style='color: #555555;'> 6</span><span> afg     0703        0
-#&gt; </span><span style='color: #555555;'> 7</span><span> afg     0712        0
-#&gt; </span><span style='color: #555555;'> 8</span><span> afg     0714        1
-#&gt; </span><span style='color: #555555;'> 9</span><span> afg     0801        1
-#&gt; </span><span style='color: #555555;'>10</span><span> afg     0802        1
-#&gt; </span><span style='color: #555555;'># … with 44,425 more rows</span><span></div><div class='input'>
-</div></span></pre>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> afg     0106        0
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> afg     0405        0
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> afg     0407        0
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> afg     0501        1
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> afg     0504        1
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> afg     0703        0
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> afg     0712        0
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> afg     0714        1
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> afg     0801        1
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> afg     0802        1
+#&gt; </span><span style='color: #949494;'># … with 44,425 more rows</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

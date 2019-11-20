@@ -53,7 +53,6 @@ ec_productivity_levels(
   v2 = "value",
   tbl = TRUE
 )
-
 }
 \references{
 For more information on prody and its applications see:

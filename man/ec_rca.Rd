@@ -4,43 +4,40 @@
 \alias{ec_rca}
 \title{Revealed Comparative Advantage (RCA)}
 \usage{
-ec_rca(data = NULL, c = "country", p = "product", v = "value",
-  cutoff = 1, discrete = TRUE, tbl = FALSE)
+ec_rca(data, country = "country", product = "product",
+  value = "value", discrete = TRUE, cutoff = 1, tbl = TRUE)
 }
 \arguments{
-\item{data}{tibble/data.frame in long format, it must contain the
-columns c (character/factor), p (character/factor) and export
-v (numeric)}
+\item{data}{matrix or data.frame with traded values}
 
-\item{c}{string to indicate the column that contains exporting
-countries (e.g. "reporter_iso")}
+\item{country}{column containing countries (applies only if d is a
+data.frame)}
 
-\item{p}{string to indicate the column that contains exported ps
-(e.g. "p_code")}
+\item{product}{column containing products (applies only if d is a
+data.frame)}
 
-\item{v}{string to indicate the column that contains traded vs
-(e.g. "trade_v_usd")}
+\item{value}{column containing traded values (applies only if d is a
+data.frame)}
 
-\item{cutoff}{when set to TRUE all the vs lower than the specified cutoff
-will be converted to zero and to one in other case, numeric (default set
-to 1)}
+\item{discrete}{convert to one all the values above a cutoff and zero
+otherwise (by default is TRUE)}
 
-\item{discrete}{when set to TRUE it will convert all the Revealed Comparative
-Advantage vs
-to zero or one based on the cutoff v (default set to TRUE)}
+\item{cutoff}{all the values below the specified will be converted to zero
+(by default is 1)}
 
-\item{tbl}{when set to TRUE the output will be a tibble instead of a
-matrix (default set to FALSE)}
+\item{tbl}{by default the output is a data.frame unless this is changed to
+FALSE, in which case the output is a matrix}
 }
 \description{
-Revealed Comparative Advantage (RCA)
+Given a \eqn{C\times P} matrix (C for "countries"
+and P for "products") or an equivalent 3-columns data.frame with exported
+values (X) as input, this function computes RCA metric.
+The equation used in this function is:
+\deqn{RCA_{cp} = \frac{X_{cp}}{\sum_c X_{cp}} /
+\frac{\sum_p X_{cp}}{\sum_{c}\sum_{p} X_{cp}}}
 }
 \examples{
-ec_rca(
-  data = ec_trade_1962,
-  tbl = TRUE
-)
-
+ec_rca(ec_trade_1962)
 }
 \references{
 For more information on revealed comparative advantage and its uses see:

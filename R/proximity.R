@@ -51,7 +51,6 @@
 #'   u = ec_output_demo$complexity_measures_tbl$ubiquity,
 #'   tbl = TRUE
 #' )
-#'
 #' @references
 #' For more information on proximity and its applications see:
 #'
@@ -151,11 +150,11 @@ ec_proximity <- function(rca = NULL,
   if (!is.null(d)) {
     rca <- rca[rownames(rca) %in% names(d), ]
   }
-  
+
   if (!is.null(u)) {
     rca <- rca[, colnames(rca) %in% names(u)]
   }
-  
+
   if (any("country" %in% compute2) == TRUE) {
     xc <- rca %*% Matrix::t(rca)
 
