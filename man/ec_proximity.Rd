@@ -4,56 +4,42 @@
 \alias{ec_proximity}
 \title{Proximity}
 \usage{
-ec_proximity(rca = NULL, c = "country", p = "product", v = "value",
-  d = NULL, d_c = "country", d_v = "value", u = NULL,
-  u_p = "product", u_v = "value", tbl = FALSE, compute = "both")
+ec_proximity(rca, diversity, ubiquity, country_r = "country",
+  product_r = "product", value_r = "value", country_d = "country",
+  value_d = "value", product_u = "product", value_u = "value",
+  tbl = TRUE, compute = "both")
 }
 \arguments{
-\item{rca}{matrix or tibble/data.frame in long format (e.g. the output of
-revealed_comparative_advantage()). If it is a matrix it must be a zero/one
-matrix with countries in the row names and ps in the column names.
-If rca is a tibble/data.frame it must contain the columns c (character/
-factor), p (character/factor) and discrete RCA (integer)}
+\item{rca}{matrix or data.frame with RCA values}
 
-\item{c}{string to indicate the column that contains exporting
-countries (default set to "country" that is the output of
-revealed_comparative_advantage(), applies only if rca is a data.frame)}
+\item{diversity}{matrix or data.frame with diversity values}
 
-\item{p}{string to indicate the column that contains exported ps
-(default set to "product" that is the output of
-revealed_comparative_advantage(), applies only if rca is a data.frame)}
+\item{ubiquity}{matrix or data.frame with ubiquity values}
 
-\item{v}{string to indicate the column that contains RCA vs (default
-set to "value" that is the output of revealed_comparative_advantage(),
-applies only if rca is a data.frame)}
+\item{country_r}{column containing countries (applies only if d is a
+data.frame)}
 
-\item{d}{numeric vector or tibble/data.frame containing diversity
-measures (e.g. \code{d} from \code{complexity_measures()})}
+\item{product_r}{column containing products (applies only if d is a
+data.frame)}
 
-\item{d_c}{string to indicate the column that contains
-countries in "diversity" (default set to "country" that is the output of
-economic_complexity_measures())}
+\item{value_r}{column containing traded values (applies only if d is a
+data.frame)}
 
-\item{d_v}{string to indicate the column that contains
-values in "diversity" (default set to "value" that is the output of
-economic_complexity_measures())}
+\item{country_d}{column containing countries (applies only if d is a
+data.frame)}
 
-\item{u}{numeric vector or tibble/data.frame containing ubiquity
-measures (e.g. \code{u} from \code{complexity_measures()})}
+\item{value_d}{column containing values (applies only if d is a
+data.frame)}
 
-\item{u_p}{string to indicate the column that contains
-products in "ubiquity" (default set to "product" that is the output of
-economic_complexity_measures())}
+\item{product_u}{column containing products (applies only if d is a
+data.frame)}
 
-\item{u_v}{string to indicate the column that contains
-values in "ubiquity" (default set to "value" that is the output of
-economic_complexity_measures())}
+\item{value_u}{column containing values (applies only if d is a
+data.frame)}
 
-\item{tbl}{when set to TRUE the output will be a tibble instead of a
-matrix (default set to FALSE)}
+\item{tbl}{TRUE (default) returns a data.frame and FALSE returns a matrix}
 
-\item{compute}{by default set to "both", it can also be "country" or
-"product"}
+\item{compute}{"country", "product" or "both" (default) matrices}
 }
 \description{
 Proximity
@@ -62,8 +48,7 @@ Proximity
 ec_proximity(
   rca = ec_output_demo$rca_tbl,
   d = ec_output_demo$complexity_measures_tbl$diversity,
-  u = ec_output_demo$complexity_measures_tbl$ubiquity,
-  tbl = TRUE
+  u = ec_output_demo$complexity_measures_tbl$ubiquity
 )
 }
 \references{

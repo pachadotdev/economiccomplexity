@@ -20,8 +20,7 @@
 #' otherwise (by default is TRUE)
 #' @param cutoff all the values below the specified will be converted to zero
 #' (by default is 1)
-#' @param tbl by default the output is a data.frame unless this is changed to
-#' FALSE, in which case the output is a matrix
+#' @param tbl TRUE (default) returns a data.frame and FALSE returns a matrix
 #'
 #' @importFrom magrittr %>%
 #' @importFrom dplyr select group_by ungroup mutate summarise matches rename

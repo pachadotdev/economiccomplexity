@@ -25,8 +25,7 @@ otherwise (by default is TRUE)}
 \item{cutoff}{all the values below the specified will be converted to zero
 (by default is 1)}
 
-\item{tbl}{by default the output is a data.frame unless this is changed to
-FALSE, in which case the output is a matrix}
+\item{tbl}{TRUE (default) returns a data.frame and FALSE returns a matrix}
 }
 \description{
 Given a \eqn{C\times P} matrix (C for "countries"

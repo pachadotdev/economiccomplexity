@@ -26,10 +26,9 @@
 #' and indirectly in eigenvalues method (by default is 20)
 #' @param extremality numeric coefficient to use in the fitness method
 #' (by default is 1)
+#' @param tbl TRUE (default) returns a data.frame and FALSE returns a matrix
 #' @param atlas remove the countries not ranked in The Atlas of Economic
 #' Complexity (by default is FALSE)
-#' @param tbl by default the output is a data.frame unless this is changed to
-#' FALSE, in which case the output is a matrix
 #'
 #' @importFrom magrittr %>%
 #' @importFrom dplyr select mutate arrange pull rename
@@ -59,8 +58,8 @@ ec_complexity_measures <- function(rca,
                                    method = "fitness",
                                    iterations = 20,
                                    extremality = 1,
-                                   atlas = FALSE,
-                                   tbl = TRUE) {
+                                   tbl = TRUE,
+                                   atlas = FALSE) {
   # sanity checks ----
   if (all(class(rca) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix",
     "dgCMatrix") == FALSE)) {

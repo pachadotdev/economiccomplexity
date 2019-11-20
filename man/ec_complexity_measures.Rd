@@ -6,7 +6,7 @@
 \usage{
 ec_complexity_measures(rca, country = "country", product = "product",
   value = "value", method = "fitness", iterations = 20,
-  extremality = 1, atlas = FALSE, tbl = TRUE)
+  extremality = 1, tbl = TRUE, atlas = FALSE)
 }
 \arguments{
 \item{rca}{matrix or data.frame with RCA values}
@@ -29,11 +29,10 @@ and indirectly in eigenvalues method (by default is 20)}
 \item{extremality}{numeric coefficient to use in the fitness method
 (by default is 1)}
 
+\item{tbl}{TRUE (default) returns a data.frame and FALSE returns a matrix}
+
 \item{atlas}{remove the countries not ranked in The Atlas of Economic
 Complexity (by default is FALSE)}
-
-\item{tbl}{by default the output is a data.frame unless this is changed to
-FALSE, in which case the output is a matrix}
 }
 \description{
 Given a \eqn{C\times P} matrix (C for "countries"
