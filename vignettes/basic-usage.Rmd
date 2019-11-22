@@ -23,7 +23,6 @@ within this package.
 
 ```{r}
 library(economiccomplexity)
-
 ec_trade_1962
 ```
 
@@ -36,23 +35,11 @@ r <- rca(ec_trade_1962)
 r
 ```
 
-And also you can obtain it in matrix version.
-
-```{r}
-r2 <- rca(ec_trade_1962, tbl = F)
-r2[1:5,1:5] # 5x5 preview
-```
-
 Another possibility is to obtain RCA as a matrix or tibble without discretization.
 
 ```{r}
-r3 <- rca(ec_trade_1962, discrete = F)
-r3
-```
-
-```{r}
-r4 <- rca(ec_trade_1962, discrete = F, tbl = F)
-r4[1:5,1:5] # 5x3 preview
+r2 <- rca(ec_trade_1962, discrete = F)
+r2
 ```
 
 ## Complexity Measures
@@ -65,16 +52,6 @@ Index (PCI) by using `ec_complexity_measures()`. The calculations methods are
 ```{r}
 cf <- complexity(r, method = "fitness")
 cf
-```
-
-```{r}
-cr <- complexity(r, method = "reflections")
-cr
-```
-
-```{r}
-ce <- complexity(r, method = "eigenvalues")
-ce
 ```
 
 ## Proximity

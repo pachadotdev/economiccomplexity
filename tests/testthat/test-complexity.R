@@ -1,5 +1,5 @@
 test_that("complexity output is aligned with the expected output ", {
-  cf <- complexity(ec_output_demo$rca_tbl)
+  cf <- complexity(ec_output_demo$rca)
 
   expect_is(cf, "list")
   expect_is(cf$country_complexity, "data.frame")

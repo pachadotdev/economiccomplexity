@@ -34,11 +34,9 @@
 #' Complexity (by default is FALSE)
 #'
 #' @references
-#' For more information on complexity measures see:
+#' For more information about complexity measures see:
 #'
 #' \insertRef{measuringcomplexity2015}{economiccomplexity}
-#'
-#' \insertRef{atlas2014}{economiccomplexity}
 #'
 #' and the references therein.
 #'

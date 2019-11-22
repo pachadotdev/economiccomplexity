@@ -34,9 +34,9 @@
 #' rca(ec_trade_1962)
 #'
 #' @references
-#' For more information on revealed comparative advantage and its uses see:
+#' For more information about RCA see:
 #'
-#' \insertRef{atlas2014}{economiccomplexity}
+#' \insertRef{measuringcomplexity2015}{economiccomplexity}
 #'
 #' @keywords functions
 #'

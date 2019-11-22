@@ -2,7 +2,6 @@
 
 export(complexity)
 export(ec_countries_position)
-export(ec_networks)
 export(ec_productivity_levels)
 export(proximity)
 export(rca)
