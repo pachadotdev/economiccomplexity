@@ -36,8 +36,8 @@ Country-Product bipartite network projections
 }
 \examples{
 ec_networks(
-  ec_output_demo$proximity_tbl$proximity_c
-  ec_output_demo$proximity_tbl$proximity_p
+  ec_output_demo$proximity$proximity_c
+  ec_output_demo$proximity$proximity_p
 )
 
 }

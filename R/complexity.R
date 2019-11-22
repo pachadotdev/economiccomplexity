@@ -70,7 +70,7 @@ complexity <- function(rca,
   # sanity checks ----
   if (all(class(rca) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix",
     "dgCMatrix") == FALSE)) {
-    stop("rca must be a tibble/data.frame or a dense/sparse matrix")
+    stop("rca must be a data frame or matrix")
   }
 
   if (!is.character(country) & !is.character(product) & !is.character(value)) {
@@ -78,7 +78,7 @@ complexity <- function(rca,
   }
 
   if (!(any(method %in% c("reflections", "eigenvalues", "fitness")) == TRUE)) {
-    stop("method must be reflections, eigenvalues or fitness")
+    stop("method must be 'fitness', 'reflections' or 'eigenvalues'")
   }
 
   if (is.integer(iterations) & !iterations >= 2) {
@@ -86,7 +86,7 @@ complexity <- function(rca,
   }
 
   if (!is.logical(tbl)) {
-    stop("tbl must be logical")
+    stop("tbl must be TRUE or FALSE")
   }
 
   # convert data.frame input to matrix ----

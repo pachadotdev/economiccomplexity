@@ -52,7 +52,7 @@ rca <- function(data,
   # sanity checks ----
   if (all(class(data) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix",
     "dgCMatrix") == FALSE)) {
-    stop("data must be a tibble/data.frame or a dense/sparse matrix")
+    stop("data must be a data frame or matrix")
   }
 
   if (!is.character(country) & !is.character(product) & !is.character(value)) {
@@ -68,7 +68,7 @@ rca <- function(data,
   }
 
   if (!is.logical(tbl)) {
-    stop("tbl must be matrix or tibble")
+    stop("tbl must be TRUE or FALSE")
   }
 
   # convert data from matrix to tibble ----

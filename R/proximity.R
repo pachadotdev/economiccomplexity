@@ -76,20 +76,20 @@ proximity <- function(rca,
   # sanity checks ----
   if (all(class(rca) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix",
     "dgCMatrix") == FALSE)) {
-    stop("rca must be a tibble/data.frame or a dense/sparse matrix")
+    stop("rca must be a data frame or matrix")
   }
 
   if (all(class(diversity) %in% c("numeric", "data.frame") == FALSE) &
     all(class(ubiquity) %in% c("numeric", "data.frame") == FALSE)) {
-    stop("diversity and ubiquity must be numeric or tibble/data.frame")
+    stop("diversity and ubiquity must be data frames or numeric")
   }
 
   if (!is.logical(tbl)) {
-    stop("tbl must be logical")
+    stop("tbl must be TRUE or FALSE")
   }
 
   if (!any(compute %in% c("both", "country", "product"))) {
-    stop("compute must be both, country or product")
+    stop("compute must be 'both', 'country' or 'product'")
   }
 
   # transformations if rca, d or u are data frames ----

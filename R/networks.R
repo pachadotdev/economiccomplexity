@@ -25,8 +25,8 @@
 #'
 #' @examples
 #' ec_networks(
-#'   ec_output_demo$proximity_tbl$proximity_c
-#'   ec_output_demo$proximity_tbl$proximity_p
+#'   ec_output_demo$proximity$proximity_c
+#'   ec_output_demo$proximity$proximity_p
 #' )
 #'
 #' @references
@@ -44,23 +44,23 @@ projections <- function(proximity_c,
                         tbl = TRUE,
                         compute = "both") {
   # sanity checks ----
-  if (all(class(proximity_c) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix",
-    "dsCMatrix") == FALSE) &
-    all(class(proximity_p) %in% c("data.frame", "matrix", "dgeMatrix", "dgCMatrix",
-      "dsCMatrix") == FALSE)) {
-    stop("proximity_c and proximity_p must be tibble/data.frame or dense/sparse matrix")
+  if (all(class(proximity_c) %in% c("data.frame", "matrix", "dgeMatrix",
+    "dgCMatrix", "dsCMatrix") == FALSE) &
+    all(class(proximity_p) %in% c("data.frame", "matrix", "dgeMatrix",
+      "dgCMatrix", "dsCMatrix") == FALSE)) {
+    stop("proximity_c and proximity_p must be data frames or matrices")
   }
 
   if (!is.numeric(cutoff_c) & !is.numeric(cutoff_p)) {
-    stop("cutoff_c & cutoff_p must be numeric")
+    stop("cutoff_c and cutoff_p must be numeric")
   }
 
   if (!is.logical(tbl)) {
-    stop("tbl must be matrix or tibble")
+    stop("tbl must be TRUE or FALSE")
   }
 
   if (!any(compute %in% c("both", "country", "product"))) {
-    stop("compute must be both, country or product")
+    stop("compute must be 'both', 'country' or 'product'")
   }
 
   if (compute == "both") {
@@ -71,7 +71,8 @@ projections <- function(proximity_c,
 
   if (any("country" %in% compute2) == TRUE) {
     # arrange country matrix ----
-    if (any(class(proximity_c) %in% c("dgeMatrix", "dgCMatrix", "dsCMatrix") == TRUE)) {
+    if (any(class(proximity_c) %in% c("dgeMatrix",
+      "dgCMatrix", "dsCMatrix") == TRUE)) {
       proximity_c <- as.matrix(proximity_c)
     }
 
@@ -86,10 +87,8 @@ projections <- function(proximity_c,
         dplyr::filter(!!sym("value") > 0)
     }
 
-    # compute countries network ----
-    proximity_c <- dplyr::mutate(proximity_c,
-      value = -1 * !!sym("value")
-    )
+    # compute country network ----
+    proximity_c <- dplyr::mutate(proximity_c, value = -1 * !!sym("value"))
 
     c_g <- igraph::graph_from_data_frame(proximity_c, directed = FALSE)
 
@@ -121,7 +120,8 @@ projections <- function(proximity_c,
 
   if (any("product" %in% compute2) == TRUE) {
     # arrange products matrix ----
-    if (any(class(proximity_p) %in% c("dgeMatrix", "dgCMatrix", "dsCMatrix") == TRUE)) {
+    if (any(class(proximity_p) %in% c("dgeMatrix",
+      "dgCMatrix", "dsCMatrix") == TRUE)) {
       proximity_p <- as.matrix(proximity_p)
     }
 
@@ -137,9 +137,7 @@ projections <- function(proximity_c,
     }
 
     # compute products network ----
-    proximity_p <- dplyr::mutate(proximity_p,
-      value = -1 * !!sym("value")
-    )
+    proximity_p <- dplyr::mutate(proximity_p, value = -1 * !!sym("value"))
 
     p_g <- igraph::graph_from_data_frame(proximity_p, directed = FALSE)
 
