@@ -32,6 +32,12 @@ jobs:
       - uses: r-lib/actions/setup-tinytex@master
         if: contains(matrix.config.args, 'no-manual') == false
 
+       - name: Install system dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y libglpk-dev
+
       - name: Cache R packages
         uses: actions/cache@v1
         with:
