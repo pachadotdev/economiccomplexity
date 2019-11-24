@@ -17,8 +17,14 @@ status](https://www.r-pkg.org/badges/version/economiccomplexity)](https://cran.r
 
 ## Description
 
-`economiccomplexity` is a package to build bipartite networks such as
-countries and their exported products.
+`economiccomplexity` is a package that implements different computation
+methods to create bipartite networks such as countries and their
+exported products, and it can be used to explore different kind of
+relations such as countries and their spoken languages.
+
+This package implements the equations described in Mariani, et al.
+(2015) <doi:10.1140/epjb/e2015-60298-7> and Hausmann, et al. (2014)
+<doi:10.7551/mitpress/9647.001.0001>.
 
 ## Installation
 
