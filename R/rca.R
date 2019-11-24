@@ -3,11 +3,12 @@
 #' @description \code{rca} computes RCA following the definition from
 #' \insertCite{measuringcomplexity2015;textual}{economiccomplexity}
 #'
-#' @details Given a \eqn{C\times P} matrix (C for "countries"
-#' and P for "products") or an equivalent 3-columns data frame with exported
-#' values (X) as input, this function implements the equation:
-#' \deqn{RCA_{cp} = \frac{X_{cp}}{\sum_c X_{cp}} /
-#' \frac{\sum_p X_{cp}}{\sum_{c}\sum_{p} X_{cp}}}
+#' @details Given a data frame or matrix with exported values as input, this
+#' function uses the tidyverse to obtain grouped sums and compute RCA.
+#'
+#' Previous versions of this function used R base, but dplyr package
+#' proved to be consistently faster for this output across different platforms
+#' and specially in Windows.
 #'
 #' @param data matrix or data.frame with traded values
 #' @param discrete convert to one all the values above a cutoff and zero

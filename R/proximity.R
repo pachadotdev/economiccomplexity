@@ -2,14 +2,10 @@
 #'
 #' @description \code{proximity} computes proximity
 #'
-#' @description Given a \eqn{C\times P} matrix (C for "countries"
-#' and P for "products") with RCA values, a C lenght vector with diversity
-#' values and a P length vector with ubiquity values or equivalent data frames,
-#' this function implements the equations:
-#' \deqn{\text{(Product proximity)}\: \phi_{pp'} = \frac{\sum_c R_{cp}
-#' R_{cp'}}{\max(k_{p}^{(0)}, k_{p'}^{(0)})}}
-#' \deqn{\text{(Country proximity)}\:\lambda_{cc'} = \frac{\sum_p R_{c,p}
-#' R_{c,p'}}{\max(k_{c}^{(0)}, k_{c'}^{(0)})}}
+#' @details Given a data frame or matrix with RCA values and two data frames or
+#' vectors with diversity and ubiquity values or equivalent data frames, this
+#' function computes proximity by combining tidyverse tools and R base matrix
+#' functions.
 #'
 #' @param rca matrix or data.frame with RCA values
 #' @param diversity matrix or data.frame with diversity values

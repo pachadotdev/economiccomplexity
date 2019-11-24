@@ -169,11 +169,11 @@ data.frame)</p></td>
     <p>A data frame.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Given a \(C\times P\) matrix (C for "countries"
-and P for "products") or an equivalent 3-columns data frame with exported
-values (X) as input, this function implements the equation:
-$$RCA_{cp} = \frac{X_{cp}}{\sum_c X_{cp}} /
-\frac{\sum_p X_{cp}}{\sum_{c}\sum_{p} X_{cp}}$$</p>
+    <p>Given a data frame or matrix with exported values as input, this
+function uses the tidyverse to obtain grouped sums and compute RCA.</p>
+<p>Previous versions of this function used R base, but dplyr package
+proved to be consistently faster for this output across different platforms
+and specially in Windows.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>For more information about RCA see:</p>

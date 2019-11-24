@@ -3,14 +3,15 @@
 #' @description \code{rca} computes complexity indices following the definitions
 #' from \insertCite{measuringcomplexity2015;textual}{economiccomplexity}
 #'
-#' @details Given a matrix of \eqn{C\times C} with country proximity values and
-#' a matrix of \eqn{P\times P} with product proximity values, this function
-#' obtains a simplified network in two steps:
-#' 1) creates a network skeleton by appliying the minimum spanning tree
+#' @details Given a two data frames or matrices with proximity values, this
+#' function obtains a simplified network in two steps:
+#'
+#' 1) Creates a network skeleton by appliying the minimum spanning tree
 #' algorithm from the igraph package, but multiplying proximities by minus one,
-#' so that the strongest links are considered for the network skeleton
-#' 2) append additional links to the skeleton by aading the links with proximity
-#' values above a user-defined cutoff
+#' so that the strongest links are considered for the network skeleton.
+#'
+#' 2) Appends additional links to the skeleton by aading the links with
+#' proximity values above a user-defined cutoff.
 #'
 #' @param proximity_c matrix or data frame with product proximity values
 #' @param proximity_p matrix or data frame with country proximity values

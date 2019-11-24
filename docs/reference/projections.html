@@ -194,14 +194,13 @@ proximity_p is a data.frame)</p></td>
     <p>A list with two data frames or matrices.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Given a matrix of \(C\times C\) with country proximity values and
-a matrix of \(P\times P\) with product proximity values, this function
-obtains a simplified network in two steps:
-1) creates a network skeleton by appliying the minimum spanning tree
+    <p>Given a two data frames or matrices with proximity values, this
+function obtains a simplified network in two steps:</p>
+<p>1) Creates a network skeleton by appliying the minimum spanning tree
 algorithm from the igraph package, but multiplying proximities by minus one,
-so that the strongest links are considered for the network skeleton
-2) append additional links to the skeleton by aading the links with proximity
-values above a user-defined cutoff</p>
+so that the strongest links are considered for the network skeleton.</p>
+<p>2) Appends additional links to the skeleton by aading the links with
+proximity values above a user-defined cutoff.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>For more information about visualizing bipartite networks projections see:</p>

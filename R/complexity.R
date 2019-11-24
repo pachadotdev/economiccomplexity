@@ -1,20 +1,18 @@
-#' @title Complexity measures
+#' @title Complexity indices
 #'
 #' @description \code{rca} computes complexity indices following the definitions
 #' from \insertCite{measuringcomplexity2015;textual}{economiccomplexity}
 #'
-#' @details Given a \eqn{C\times P} matrix (C for "countries"
-#' and P for "products") or an equivalent 3-columns data frame with RCA
-#' values as input, this function implements the equations:
-#' \deqn{\text{(Diversity)}\: k_{c}^{(0)} = \sum_p R_{cp}}
-#' \deqn{\text{(Ubiquity)}\: k_{p}^{(0)} = \sum_c R_{cp}}
-#' \deqn{\text{(Fitness)}\: \tilde{F}^{(n)}(\gamma) = \sum_{p} R_{cp}Q_{p}^{n-1}}
-#' \deqn{\text{(Complexity)}\: \tilde{Q}^{(n)}(\gamma) =
-#' \left[\sum_{c} R_{cp}(F_{c}^{n-1})^{-\gamma}\right]^{-1/\gamma}.}
+#' @details Given a data frame or matrix with RCA
+#' values as input, this function implements the fitness-complexity method,
+#' and the reflections method and eigenvalues computation as alternatives.
 #'
-#' Besides this implementation, the function offers the reflections method
-#' and eigenvalues computation as alternatives to the Fitness-Complexity
-#' formulation.
+#' The implementation of a recursive algorithm for both fitness-complexity and
+#' reflections result in a fast computation.
+#'
+#' Eigenvalues can be slow to compute as this method also calls reflections
+#' method in order to check the correlation sign between the two metrics
+#' to determine if there is a sign reversion in the numeric result.
 #'
 #' @param rca matrix or data frame with RCA values
 #' @param method which method to use (by default is "fitness", it can also

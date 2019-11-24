@@ -36,15 +36,7 @@
 
 
 <meta property="og:title" content="Proximity — proximity" />
-<meta property="og:description" content="proximity computes proximity
-Given a \(C\times P\) matrix (C for &quot;countries&quot;
-and P for &quot;products&quot;) with RCA values, a C lenght vector with diversity
-values and a P length vector with ubiquity values or equivalent data frames,
-this function implements the equations:
-$$\text{(Product proximity)}\: \phi_{pp'} = \frac{\sum_c R_{cp}
-R_{cp'}}{\max(k_{p}^{(0)}, k_{p'}^{(0)})}$$
-$$\text{(Country proximity)}\:\lambda_{cc'} = \frac{\sum_p R_{c,p}
-R_{c,p'}}{\max(k_{c}^{(0)}, k_{c'}^{(0)})}$$" />
+<meta property="og:description" content="proximity computes proximity" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -127,14 +119,6 @@ R_{c,p'}}{\max(k_{c}^{(0)}, k_{c'}^{(0)})}$$" />
 
     <div class="ref-description">
     <p><code>proximity</code> computes proximity</p>
-<p>Given a \(C\times P\) matrix (C for "countries"
-and P for "products") with RCA values, a C lenght vector with diversity
-values and a P length vector with ubiquity values or equivalent data frames,
-this function implements the equations:
-$$\text{(Product proximity)}\: \phi_{pp'} = \frac{\sum_c R_{cp}
-R_{cp'}}{\max(k_{p}^{(0)}, k_{p'}^{(0)})}$$
-$$\text{(Country proximity)}\:\lambda_{cc'} = \frac{\sum_p R_{c,p}
-R_{c,p'}}{\max(k_{c}^{(0)}, k_{c'}^{(0)})}$$</p>
     </div>
 
     <pre class="usage"><span class='fu'>proximity</span>(<span class='no'>rca</span>, <span class='no'>diversity</span>, <span class='no'>ubiquity</span>, <span class='kw'>compute</span> <span class='kw'>=</span> <span class='st'>"both"</span>, <span class='kw'>tbl</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
@@ -205,6 +189,12 @@ data.frame)</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A list with two data frames or matrices.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Given a data frame or matrix with RCA values and two data frames or
+vectors with diversity and ubiquity values or equivalent data frames, this
+function computes proximity by combining tidyverse tools and R base matrix
+functions.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>For more information on proximity and its applications see:</p>
@@ -263,6 +253,7 @@ doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
+      <li><a href="#details">Details</a></li>
       <li><a href="#references">References</a></li>
       <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>

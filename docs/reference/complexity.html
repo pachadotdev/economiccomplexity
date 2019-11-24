@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Complexity measures — complexity • economiccomplexity</title>
+<title>Complexity indices — complexity • economiccomplexity</title>
 
 
 <!-- jquery -->
@@ -35,7 +35,7 @@
 
 
 
-<meta property="og:title" content="Complexity measures — complexity" />
+<meta property="og:title" content="Complexity indices — complexity" />
 <meta property="og:description" content="rca computes complexity indices following the definitions
 from Mariani et al. (2015)" />
 <meta name="twitter:card" content="summary" />
@@ -113,7 +113,7 @@ from Mariani et al. (2015)" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Complexity measures</h1>
+    <h1>Complexity indices</h1>
     
     <div class="hidden name"><code>complexity.Rd</code></div>
     </div>
@@ -180,17 +180,14 @@ data.frame)</p></td>
     <p>A list with four data frames or matrices.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Given a \(C\times P\) matrix (C for "countries"
-and P for "products") or an equivalent 3-columns data frame with RCA
-values as input, this function implements the equations:
-$$\text{(Diversity)}\: k_{c}^{(0)} = \sum_p R_{cp}$$
-$$\text{(Ubiquity)}\: k_{p}^{(0)} = \sum_c R_{cp}$$
-$$\text{(Fitness)}\: \tilde{F}^{(n)}(\gamma) = \sum_{p} R_{cp}Q_{p}^{n-1}$$
-$$\text{(Complexity)}\: \tilde{Q}^{(n)}(\gamma) =
-\left[\sum_{c} R_{cp}(F_{c}^{n-1})^{-\gamma}\right]^{-1/\gamma}.$$</p>
-<p>Besides this implementation, the function offers the reflections method
-and eigenvalues computation as alternatives to the Fitness-Complexity
-formulation.</p>
+    <p>Given a data frame or matrix with RCA
+values as input, this function implements the fitness-complexity method,
+and the reflections method and eigenvalues computation as alternatives.</p>
+<p>The implementation of a recursive algorithm for both fitness-complexity and
+reflections result in a fast computation.</p>
+<p>Eigenvalues can be slow to compute as this method also calls reflections
+method in order to check the correlation sign between the two metrics
+to determine if there is a sign reversion in the numeric result.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>For more information about complexity measures see:</p>
