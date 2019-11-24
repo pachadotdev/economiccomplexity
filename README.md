@@ -8,8 +8,8 @@ state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Lifecycle:
 maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![Travis-CI Build
-Status](https://travis-ci.org/pachamaltese/economiccomplexity.svg?branch=master)](https://travis-ci.org/pachamaltese/economiccomplexity)
+[![R build
+status](https://github.com/pachamaltese/economiccomplexity/workflows/R-CMD-check/badge.svg)](https://github.com/pachamaltese/economiccomplexity/actions?workflow=R-CMD-check)
 [![Coverage
 status](https://codecov.io/gh/pachamaltese/economiccomplexity/branch/master/graph/badge.svg)](https://codecov.io/github/pachamaltese/economiccomplexity?branch=master)
 [![CRAN
