@@ -1,6 +1,6 @@
 Package: economiccomplexity
 Type: Package
-Title: Create bipartite networks such as countries and their exported products
+Title: Create Bipartite Networks Such as Countries and their Exported Products
 Version: 0.3
 Authors@R: c(
     person(given = "Mauricio",
@@ -29,9 +29,9 @@ Authors@R: c(
       role = "dtc")
   )
 Description: A wrapper of different computation methods to create bipartite 
-  networks such as countries and their exported products, and it can be used to
-  explore different kind of relations such as countries and their spoken 
-  languages. This package is implements the equations described in 
+  networks such as countries and their exported products, and different kind of
+  relations such as countries and their spoken languages. This package 
+  implements the equations described in 
   Mariani, et al. (2015) <doi:10.1140/epjb/e2015-60298-7> and 
   Hausmann, et al. (2014) <doi:10.7551/mitpress/9647.001.0001>.
 License: GPL-3
