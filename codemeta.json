@@ -5,8 +5,8 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "economiccomplexity",
-  "description": "A wrapper of different indices and networks commonly used in \n  Economic Complexity to explore bipartite relations such as countries and their\n  exported products. These methods are also useful for different kind of \n  relations such as countries and their spoken languages.\n  The functions within this package correspond to code implementations of the \n  equations described in Hausmann, et al. (2005) <doi:10.3386/w11905>, \n  Hausmann, et al. (2014) <doi:10.7551/mitpress/9647.001.0001>, and \n  Mariani, et al. (2015) <doi:10.1140/epjb/e2015-60298-7>.",
-  "name": "economiccomplexity: Build bipartite networks such as countries and their exported products",
+  "description": "A wrapper of different computation methods to create bipartite \n  networks such as countries and their exported products, and it can be used to\n  explore different kind of relations such as countries and their spoken \n  languages. This package is implements the equations described in \n  Mariani, et al. (2015) <doi:10.1140/epjb/e2015-60298-7> and \n  Hausmann, et al. (2014) <doi:10.7551/mitpress/9647.001.0001>.",
+  "name": "economiccomplexity: Create bipartite networks such as countries and their exported products",
   "issueTracker": "http://github.com/pachamaltese/economiccomplexity/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
   "version": "0.3",
@@ -206,7 +206,7 @@
   ],
   "codeRepository": "https://pachamaltese.github.io/economiccomplexity",
   "readme": "https://github.com/pachamaltese/economiccomplexity/blob/master/README.md",
-  "fileSize": "1433.508KB",
+  "fileSize": "1433.373KB",
   "contIntegration": [
     "https://travis-ci.org/pachamaltese/economiccomplexity",
     "https://codecov.io/github/pachamaltese/economiccomplexity?branch=master"
