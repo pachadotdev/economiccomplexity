@@ -36,8 +36,8 @@
 
 
 <meta property="og:title" content="Example outputs of the functions within the package — ec_output_demo" />
-<meta property="og:description" content="List of different economic complexity computations obtained by using the functions within the
-package. The output is provided as a list of tibbles." />
+<meta property="og:description" content="List of different economic complexity computations obtained by using the
+functions within the package. The output is provided as a list of data frames." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -70,7 +70,7 @@ package. The output is provided as a list of tibbles." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">economiccomplexity</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3</span>
       </span>
     </div>
 
@@ -119,8 +119,8 @@ package. The output is provided as a list of tibbles." />
     </div>
 
     <div class="ref-description">
-    <p>List of different economic complexity computations obtained by using the functions within the
-package. The output is provided as a list of tibbles.</p>
+    <p>List of different economic complexity computations obtained by using the
+functions within the package. The output is provided as a list of data frames.</p>
     </div>
 
     <pre class="usage"><span class='no'>ec_output_demo</span></pre>
@@ -128,37 +128,17 @@ package. The output is provided as a list of tibbles.</p>
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>The format is:
-List of 3
- $ rca_tbl                :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	44435 obs. of  3 variables:
-  ..$ country: chr [1:44435] "afg" "afg" "afg" "afg" ...
-  ..$ product: chr [1:44435] "0106" "0405" "0407" "0501" ...
-  ..$ value  : num [1:44435] 0 0 0 1 1 0 0 1 1 1 ...
- $ complexity_measures_tbl:List of 4
-  ..$ complexity_index_c:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	99 obs. of  2 variables:
-  .. ..$ country: chr [1:99] "deu" "fra" "usa" "gbr" ...
-  .. ..$ value  : num [1:99] 19.47 11.99 11.55 8.43 6.92 ...
-  ..$ complexity_index_p:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	991 obs. of  2 variables:
-  .. ..$ product: chr [1:991] "2702" "7111" "2850" "8804" ...
-  .. ..$ value  : num [1:991] 48.1 48.1 29.7 18.4 17.9 ...
-  ..$ diversity         :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	99 obs. of  2 variables:
-  .. ..$ country: chr [1:99] "ago" "alb" "are" "arg" ...
-  .. ..$ value  : num [1:99] 52 32 1 83 81 290 320 127 27 70 ...
-  ..$ ubiquity          :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	991 obs. of  2 variables:
-  .. ..$ product: chr [1:991] "0101" "0102" "0103" "0104" ...
-  .. ..$ value  : num [1:991] 13 19 13 12 9 27 17 12 4 10 ...
- $ proximity_tbl          :List of 2
-  ..$ proximity_c:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	4484 obs. of  3 variables:
-  .. ..$ from : chr [1:4484] "alb" "are" "arg" "aus" ...
-  .. ..$ to   : chr [1:4484] "ago" "ago" "ago" "ago" ...
-  .. ..$ value: num [1:4484] 0.0769 0.0192 0.1325 0.0741 0.0241 ...
-  ..$ proximity_p:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	408869 obs. of  3 variables:
-  .. ..$ from : chr [1:408869] "0102" "0103" "0104" "0106" ...
-  .. ..$ to   : chr [1:408869] "0101" "0101" "0101" "0101" ...
-  .. ..$ value: num [1:408869] 0.316 0.308 0.385 0.148 0.353 ...</p>
+    <p>A list of data frames with 3 elements.</p><dl class='dl-horizontal'>
+    <dt><code>rca</code></dt><dd><p>`rca()` output (single data frame)</p></dd>
+    <dt><code>complexity</code></dt><dd><p>`complexity()` output (list of four data frames)</p></dd>
+    <dt><code>value</code></dt><dd><p>`proximity()` output (list of two data frames)</p></dd>
+  
+</dl>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>ec_output_demo</span>$<span class='no'>rca_tbl</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 44,435 x 3</span><span>
+    <pre class="examples"><div class='input'><span class='no'>ec_output_demo</span></div><div class='output co'>#&gt; $rca
+#&gt; <span style='color: #555555;'># A tibble: 44,435 x 3</span><span>
 #&gt;    country product value
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> afg     0106        0
@@ -171,7 +151,11 @@ List of 3
 #&gt; </span><span style='color: #555555;'> 8</span><span> afg     0714        1
 #&gt; </span><span style='color: #555555;'> 9</span><span> afg     0801        1
 #&gt; </span><span style='color: #555555;'>10</span><span> afg     0802        1
-#&gt; </span><span style='color: #555555;'># ... with 44,425 more rows</span><span></div><div class='input'><span class='no'>ec_output_demo</span>$<span class='no'>complexity_measures_tbl</span>$<span class='no'>complexity_index_c</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 99 x 2</span><span>
+#&gt; </span><span style='color: #555555;'># … with 44,425 more rows</span><span>
+#&gt; 
+#&gt; $complexity
+#&gt; $complexity$complexity_c
+#&gt; </span><span style='color: #555555;'># A tibble: 99 x 2</span><span>
 #&gt;    country value
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> deu     19.5 
@@ -184,7 +168,91 @@ List of 3
 #&gt; </span><span style='color: #555555;'> 8</span><span> swe      4.85
 #&gt; </span><span style='color: #555555;'> 9</span><span> bel      4.32
 #&gt; </span><span style='color: #555555;'>10</span><span> aut      4.29
-#&gt; </span><span style='color: #555555;'># ... with 89 more rows</span><span></div></span></pre>
+#&gt; </span><span style='color: #555555;'># … with 89 more rows</span><span>
+#&gt; 
+#&gt; $complexity$complexity_p
+#&gt; </span><span style='color: #555555;'># A tibble: 991 x 2</span><span>
+#&gt;    product value
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> 2702     48.1
+#&gt; </span><span style='color: #555555;'> 2</span><span> 7111     48.1
+#&gt; </span><span style='color: #555555;'> 3</span><span> 2850     29.7
+#&gt; </span><span style='color: #555555;'> 4</span><span> 8804     18.4
+#&gt; </span><span style='color: #555555;'> 5</span><span> 2811     17.9
+#&gt; </span><span style='color: #555555;'> 6</span><span> 9307     17.9
+#&gt; </span><span style='color: #555555;'> 7</span><span> 9016     12.7
+#&gt; </span><span style='color: #555555;'> 8</span><span> 9112     12.7
+#&gt; </span><span style='color: #555555;'> 9</span><span> 8701     12.1
+#&gt; </span><span style='color: #555555;'>10</span><span> 8707     12.1
+#&gt; </span><span style='color: #555555;'># … with 981 more rows</span><span>
+#&gt; 
+#&gt; $complexity$diversity
+#&gt; </span><span style='color: #555555;'># A tibble: 99 x 2</span><span>
+#&gt;    country value
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> ago        52
+#&gt; </span><span style='color: #555555;'> 2</span><span> alb        32
+#&gt; </span><span style='color: #555555;'> 3</span><span> are         1
+#&gt; </span><span style='color: #555555;'> 4</span><span> arg        83
+#&gt; </span><span style='color: #555555;'> 5</span><span> aus        81
+#&gt; </span><span style='color: #555555;'> 6</span><span> aut       290
+#&gt; </span><span style='color: #555555;'> 7</span><span> bel       320
+#&gt; </span><span style='color: #555555;'> 8</span><span> bgr       127
+#&gt; </span><span style='color: #555555;'> 9</span><span> bol        27
+#&gt; </span><span style='color: #555555;'>10</span><span> bra        70
+#&gt; </span><span style='color: #555555;'># … with 89 more rows</span><span>
+#&gt; 
+#&gt; $complexity$ubiquity
+#&gt; </span><span style='color: #555555;'># A tibble: 991 x 2</span><span>
+#&gt;    product value
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> 0101       13
+#&gt; </span><span style='color: #555555;'> 2</span><span> 0102       19
+#&gt; </span><span style='color: #555555;'> 3</span><span> 0103       13
+#&gt; </span><span style='color: #555555;'> 4</span><span> 0104       12
+#&gt; </span><span style='color: #555555;'> 5</span><span> 0105        9
+#&gt; </span><span style='color: #555555;'> 6</span><span> 0106       27
+#&gt; </span><span style='color: #555555;'> 7</span><span> 0201       17
+#&gt; </span><span style='color: #555555;'> 8</span><span> 0203       12
+#&gt; </span><span style='color: #555555;'> 9</span><span> 0204        4
+#&gt; </span><span style='color: #555555;'>10</span><span> 0205       10
+#&gt; </span><span style='color: #555555;'># … with 981 more rows</span><span>
+#&gt; 
+#&gt; 
+#&gt; $proximity
+#&gt; $proximity$proximity_c
+#&gt; </span><span style='color: #555555;'># A tibble: 4,484 x 3</span><span>
+#&gt;    from  to     value
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> alb   ago   0.076</span><span style='text-decoration: underline;'>9</span><span>
+#&gt; </span><span style='color: #555555;'> 2</span><span> are   ago   0.019</span><span style='text-decoration: underline;'>2</span><span>
+#&gt; </span><span style='color: #555555;'> 3</span><span> arg   ago   0.133 
+#&gt; </span><span style='color: #555555;'> 4</span><span> aus   ago   0.074</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #555555;'> 5</span><span> aut   ago   0.024</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #555555;'> 6</span><span> bel   ago   0.028</span><span style='text-decoration: underline;'>1</span><span>
+#&gt; </span><span style='color: #555555;'> 7</span><span> bgr   ago   0.110 
+#&gt; </span><span style='color: #555555;'> 8</span><span> bol   ago   0.038</span><span style='text-decoration: underline;'>5</span><span>
+#&gt; </span><span style='color: #555555;'> 9</span><span> bra   ago   0.2   
+#&gt; </span><span style='color: #555555;'>10</span><span> can   ago   0.084</span><span style='text-decoration: underline;'>5</span><span>
+#&gt; </span><span style='color: #555555;'># … with 4,474 more rows</span><span>
+#&gt; 
+#&gt; $proximity$proximity_p
+#&gt; </span><span style='color: #555555;'># A tibble: 408,869 x 3</span><span>
+#&gt;    from  to    value
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> 0102  0101  0.316
+#&gt; </span><span style='color: #555555;'> 2</span><span> 0103  0101  0.308
+#&gt; </span><span style='color: #555555;'> 3</span><span> 0104  0101  0.385
+#&gt; </span><span style='color: #555555;'> 4</span><span> 0106  0101  0.148
+#&gt; </span><span style='color: #555555;'> 5</span><span> 0201  0101  0.353
+#&gt; </span><span style='color: #555555;'> 6</span><span> 0203  0101  0.462
+#&gt; </span><span style='color: #555555;'> 7</span><span> 0204  0101  0.154
+#&gt; </span><span style='color: #555555;'> 8</span><span> 0205  0101  0.385
+#&gt; </span><span style='color: #555555;'> 9</span><span> 0206  0101  0.385
+#&gt; </span><span style='color: #555555;'>10</span><span> 0207  0101  0.429
+#&gt; </span><span style='color: #555555;'># … with 408,859 more rows</span><span>
+#&gt; 
+#&gt; </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -18,7 +18,7 @@ grouped to four digits HS 2007 codes.
   }
 }
 \source{
-Open Trade Statistics
+Open Trade Statistics (tradestatistics.io)
 }
 \examples{
 ec_trade_1962

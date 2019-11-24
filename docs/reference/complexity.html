@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Complexity Measures — complexity • economiccomplexity</title>
+<title>Complexity measures — complexity • economiccomplexity</title>
 
 
 <!-- jquery -->
@@ -35,9 +35,9 @@
 
 
 
-<meta property="og:title" content="Complexity Measures — complexity" />
-<meta property="og:description" content="complexity computes Diversity/Ubiquity and
-Country/Product Complexity Indices" />
+<meta property="og:title" content="Complexity measures — complexity" />
+<meta property="og:description" content="rca computes complexity indices following the definitions
+from Mariani et al. (2015)" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -70,7 +70,7 @@ Country/Product Complexity Indices" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">economiccomplexity</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3</span>
       </span>
     </div>
 
@@ -113,41 +113,26 @@ Country/Product Complexity Indices" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Complexity Measures</h1>
+    <h1>Complexity measures</h1>
     
     <div class="hidden name"><code>complexity.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>complexity</code> computes Diversity/Ubiquity and
-Country/Product Complexity Indices</p>
+    <p><code>rca</code> computes complexity indices following the definitions
+from Mariani et al. (2015)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>complexity</span>(<span class='no'>rca</span>, <span class='kw'>country</span> <span class='kw'>=</span> <span class='st'>"country"</span>, <span class='kw'>product</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
-  <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"fitness"</span>, <span class='kw'>iterations</span> <span class='kw'>=</span> <span class='fl'>20</span>,
-  <span class='kw'>extremality</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>tbl</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>atlas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>complexity</span>(<span class='no'>rca</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"fitness"</span>, <span class='kw'>iterations</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>extremality</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>atlas</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>tbl</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>country</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
+  <span class='kw'>product</span> <span class='kw'>=</span> <span class='st'>"product"</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"value"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>rca</th>
-      <td><p>matrix or data.frame with RCA values</p></td>
-    </tr>
-    <tr>
-      <th>country</th>
-      <td><p>column containing countries (applies only if d is a
-data.frame)</p></td>
-    </tr>
-    <tr>
-      <th>product</th>
-      <td><p>column containing products (applies only if d is a
-data.frame)</p></td>
-    </tr>
-    <tr>
-      <th>value</th>
-      <td><p>column containing traded values (applies only if d is a
-data.frame)</p></td>
+      <td><p>matrix or data frame with RCA values</p></td>
     </tr>
     <tr>
       <th>method</th>
@@ -165,13 +150,28 @@ and indirectly in eigenvalues method (by default is 20)</p></td>
 (by default is 1)</p></td>
     </tr>
     <tr>
+      <th>atlas</th>
+      <td><p>remove the countries not ranked in The Atlas of Economic
+Complexity (by default is FALSE)</p></td>
+    </tr>
+    <tr>
       <th>tbl</th>
       <td><p>TRUE (default) returns a data.frame and FALSE returns a matrix</p></td>
     </tr>
     <tr>
-      <th>atlas</th>
-      <td><p>remove the countries not ranked in The Atlas of Economic
-Complexity (by default is FALSE)</p></td>
+      <th>country</th>
+      <td><p>column containing countries (applies only if d is a
+data.frame)</p></td>
+    </tr>
+    <tr>
+      <th>product</th>
+      <td><p>column containing products (applies only if d is a
+data.frame)</p></td>
+    </tr>
+    <tr>
+      <th>value</th>
+      <td><p>column containing traded values (applies only if d is a
+data.frame)</p></td>
     </tr>
     </table>
 
@@ -193,16 +193,11 @@ and eigenvalues computation as alternatives to the Fitness-Complexity
 formulation.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>For more information on complexity measures see:</p>
+    <p>For more information about complexity measures see:</p>
 <p>Mariani M, Vidmer A, Medo M, Zhang Y (2015).
 &#8220;Measuring economic complexity of countries and products: which metric to use?&#8221;
 <em>The European Physical Journal B</em>, <b>88</b>(11), 293.
 doi: <a href='https://doi.org/10.1140/epjb/e2015-60298-7'>10.1140/epjb/e2015-60298-7</a>
-.</p>
-<p>Hausmann R, Hidalgo C, Bustos S, Coscia M, Simoes A, Yildirim M (2014).
-<em>The atlas of economic complexity: Mapping paths to prosperity</em>.
-MIT Press.
-doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9647.001.0001</a>
 .</p>
 <p>and the references therein.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -210,7 +205,7 @@ doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9
     <div class='dont-index'><p><code><a href='rca.html'>rca</a></code>,</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>complexity</span>(<span class='no'>ec_output_demo</span>$<span class='no'>rca_tbl</span>)</div><div class='output co'>#&gt; $country_complexity
+    <pre class="examples"><div class='input'><span class='fu'>complexity</span>(<span class='no'>ec_output_demo</span>$<span class='no'>rca</span>)</div><div class='output co'>#&gt; $complexity_c
 #&gt; <span style='color: #555555;'># A tibble: 158 x 2</span><span>
 #&gt;    country value
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -224,9 +219,9 @@ doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9
 #&gt; </span><span style='color: #555555;'> 8</span><span> swe      7.35
 #&gt; </span><span style='color: #555555;'> 9</span><span> aut      7.34
 #&gt; </span><span style='color: #555555;'>10</span><span> jpn      7.27
-#&gt; </span><span style='color: #555555;'># ... with 148 more rows</span><span>
+#&gt; </span><span style='color: #555555;'># … with 148 more rows</span><span>
 #&gt; 
-#&gt; $product_complexity
+#&gt; $complexity_p
 #&gt; </span><span style='color: #555555;'># A tibble: 991 x 2</span><span>
 #&gt;    product value
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -240,7 +235,7 @@ doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9
 #&gt; </span><span style='color: #555555;'> 8</span><span> 7507     12.6
 #&gt; </span><span style='color: #555555;'> 9</span><span> 2927     12.1
 #&gt; </span><span style='color: #555555;'>10</span><span> 2810     11.8
-#&gt; </span><span style='color: #555555;'># ... with 981 more rows</span><span>
+#&gt; </span><span style='color: #555555;'># … with 981 more rows</span><span>
 #&gt; 
 #&gt; $diversity
 #&gt; </span><span style='color: #555555;'># A tibble: 158 x 2</span><span>
@@ -256,7 +251,7 @@ doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9
 #&gt; </span><span style='color: #555555;'> 8</span><span> aus        81
 #&gt; </span><span style='color: #555555;'> 9</span><span> aut       290
 #&gt; </span><span style='color: #555555;'>10</span><span> bdi        16
-#&gt; </span><span style='color: #555555;'># ... with 148 more rows</span><span>
+#&gt; </span><span style='color: #555555;'># … with 148 more rows</span><span>
 #&gt; 
 #&gt; $ubiquity
 #&gt; </span><span style='color: #555555;'># A tibble: 991 x 2</span><span>
@@ -272,7 +267,7 @@ doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9
 #&gt; </span><span style='color: #555555;'> 8</span><span> 0203       15
 #&gt; </span><span style='color: #555555;'> 9</span><span> 0204        6
 #&gt; </span><span style='color: #555555;'>10</span><span> 0205       12
-#&gt; </span><span style='color: #555555;'># ... with 981 more rows</span><span>
+#&gt; </span><span style='color: #555555;'># … with 981 more rows</span><span>
 #&gt; </div><div class='input'>
 </div></span></pre>
   </div>

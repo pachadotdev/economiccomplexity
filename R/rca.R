@@ -1,6 +1,7 @@
-#' @title Revealed Comparative Advantage (RCA)
+#' @title Revealed comparative advantage (RCA)
 #'
-#' @description \code{rca} computes Revealed Comparative Advantage
+#' @description \code{rca} computes RCA following the definition from
+#' \insertCite{measuringcomplexity2015;textual}{economiccomplexity}
 #'
 #' @details Given a \eqn{C\times P} matrix (C for "countries"
 #' and P for "products") or an equivalent 3-columns data frame with exported
@@ -9,17 +10,17 @@
 #' \frac{\sum_p X_{cp}}{\sum_{c}\sum_{p} X_{cp}}}
 #'
 #' @param data matrix or data.frame with traded values
+#' @param discrete convert to one all the values above a cutoff and zero
+#' otherwise (by default is TRUE)
+#' @param cutoff all the values below the specified will be converted to zero
+#' (by default is 1)
+#' @param tbl TRUE (default) returns a data.frame and FALSE returns a matrix
 #' @param country column containing countries (applies only if d is a
 #' data.frame)
 #' @param product column containing products (applies only if d is a
 #' data.frame)
 #' @param value column containing traded values (applies only if d is a
 #' data.frame)
-#' @param discrete convert to one all the values above a cutoff and zero
-#' otherwise (by default is TRUE)
-#' @param cutoff all the values below the specified will be converted to zero
-#' (by default is 1)
-#' @param tbl TRUE (default) returns a data.frame and FALSE returns a matrix
 #'
 #' @importFrom magrittr %>%
 #' @importFrom dplyr select group_by ungroup mutate summarise matches rename
@@ -28,7 +29,7 @@
 #' @importFrom Matrix Matrix rowSums colSums t
 #' @importFrom rlang sym syms :=
 #'
-#' @return A list with two data frames or two matrices.
+#' @return A data frame.
 #'
 #' @examples
 #' rca(ec_trade_1962)
@@ -38,17 +39,19 @@
 #'
 #' \insertRef{measuringcomplexity2015}{economiccomplexity}
 #'
+#' and the references therein.
+#'
 #' @keywords functions
 #'
 #' @export
 
 rca <- function(data,
-                country = "country",
-                product = "product",
-                value = "value",
                 discrete = TRUE,
                 cutoff = 1,
-                tbl = TRUE) {
+                tbl = TRUE,
+                country = "country",
+                product = "product",
+                value = "value") {
   # sanity checks ----
   if (all(class(data) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix",
     "dgCMatrix") == FALSE)) {

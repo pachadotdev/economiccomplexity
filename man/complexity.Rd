@@ -2,23 +2,14 @@
 % Please edit documentation in R/complexity.R
 \name{complexity}
 \alias{complexity}
-\title{Complexity Measures}
+\title{Complexity measures}
 \usage{
-complexity(rca, country = "country", product = "product",
-  value = "value", method = "fitness", iterations = 20,
-  extremality = 1, tbl = TRUE, atlas = FALSE)
+complexity(rca, method = "fitness", iterations = 20, extremality = 1,
+  atlas = FALSE, tbl = TRUE, country = "country",
+  product = "product", value = "value")
 }
 \arguments{
-\item{rca}{matrix or data.frame with RCA values}
-
-\item{country}{column containing countries (applies only if d is a
-data.frame)}
-
-\item{product}{column containing products (applies only if d is a
-data.frame)}
-
-\item{value}{column containing traded values (applies only if d is a
-data.frame)}
+\item{rca}{matrix or data frame with RCA values}
 
 \item{method}{which method to use (by default is "fitness", it can also
 be "reflections" or "eigenvalues")}
@@ -29,17 +20,26 @@ and indirectly in eigenvalues method (by default is 20)}
 \item{extremality}{numeric coefficient to use in the fitness method
 (by default is 1)}
 
-\item{tbl}{TRUE (default) returns a data.frame and FALSE returns a matrix}
-
 \item{atlas}{remove the countries not ranked in The Atlas of Economic
 Complexity (by default is FALSE)}
+
+\item{tbl}{TRUE (default) returns a data.frame and FALSE returns a matrix}
+
+\item{country}{column containing countries (applies only if d is a
+data.frame)}
+
+\item{product}{column containing products (applies only if d is a
+data.frame)}
+
+\item{value}{column containing traded values (applies only if d is a
+data.frame)}
 }
 \value{
 A list with four data frames or matrices.
 }
 \description{
-\code{complexity} computes Diversity/Ubiquity and
-Country/Product Complexity Indices
+\code{rca} computes complexity indices following the definitions
+from \insertCite{measuringcomplexity2015;textual}{economiccomplexity}
 }
 \details{
 Given a \eqn{C\times P} matrix (C for "countries"
@@ -56,7 +56,7 @@ and eigenvalues computation as alternatives to the Fitness-Complexity
 formulation.
 }
 \examples{
-complexity(ec_output_demo$rca_tbl)
+complexity(ec_output_demo$rca)
 
 }
 \references{

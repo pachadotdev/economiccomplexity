@@ -15,14 +15,10 @@ status](https://codecov.io/gh/pachamaltese/economiccomplexity/branch/master/grap
 [![CRAN
 status](https://www.r-pkg.org/badges/version/economiccomplexity)](https://cran.r-project.org/package=economiccomplexity)
 
-A wrapper of different indices and networks commonly used in Economic
-Complexity to explore bipartite relations such as countries and their
-exported products. These methods are also useful for different kind of
-relations such as countries and their spoken languages.
+## Description
 
-The functions within this package provide an implementation of the
-equations that are a part of The Atlas of Economic Complexity and
-related literature.
+`economiccomplexity` is a package to build bipartite networks such as
+countries and their exported products.
 
 ## Installation
 
@@ -38,7 +34,4 @@ devtools::install_github("pachamaltese/economiccomplexity")
 
 Please note that this project is released with a [Contributor Code of
 Conduct](https://pachamaltese.github.io/economiccomplexity/CODE_OF_CONDUCT.html).
-By participating in this project you agree to abide by its
-terms.
-
-<!--[![ropensci_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)-->
+By participating in this project you agree to abide by its terms.

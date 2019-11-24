@@ -1,7 +1,7 @@
 Package: economiccomplexity
 Type: Package
-Title: Methods Used in the Economic Complexity Literature
-Version: 0.2.4
+Title: Build bipartite networks such as countries and their exported products
+Version: 0.3
 Authors@R: c(
     person(given = "Mauricio",
       family = "Vargas",
@@ -17,13 +17,7 @@ Authors@R: c(
     person(given = "Diego",
       family = "Kozlowski",
       role = "ctb",
-      comment = "provided initial RCA and proximity functions he used for his 
-      thesis"
-    ),
-    person(given = "Mark",
-      family = "Padgham",
-      role = "rev",
-      comment = "compared PRODY equations from different articles"
+      comment = "provided initial RCA function used up to v0.2.4"
     ),
     person(given = "Nico",
       family = "Pintar",
@@ -31,8 +25,6 @@ Authors@R: c(
       comment = "suggested improvements to special cases in eigenvalues 
       calculation"
     ),
-    person(family = "The World Bank",
-      role = "dtc"),
     person(family = "Open Trade Statistics",
       role = "dtc")
   )

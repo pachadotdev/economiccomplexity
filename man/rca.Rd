@@ -2,13 +2,21 @@
 % Please edit documentation in R/rca.R
 \name{rca}
 \alias{rca}
-\title{Revealed Comparative Advantage (RCA)}
+\title{Revealed comparative advantage (RCA)}
 \usage{
-rca(data, country = "country", product = "product", value = "value",
-  discrete = TRUE, cutoff = 1, tbl = TRUE)
+rca(data, discrete = TRUE, cutoff = 1, tbl = TRUE,
+  country = "country", product = "product", value = "value")
 }
 \arguments{
 \item{data}{matrix or data.frame with traded values}
+
+\item{discrete}{convert to one all the values above a cutoff and zero
+otherwise (by default is TRUE)}
+
+\item{cutoff}{all the values below the specified will be converted to zero
+(by default is 1)}
+
+\item{tbl}{TRUE (default) returns a data.frame and FALSE returns a matrix}
 
 \item{country}{column containing countries (applies only if d is a
 data.frame)}
@@ -18,20 +26,13 @@ data.frame)}
 
 \item{value}{column containing traded values (applies only if d is a
 data.frame)}
-
-\item{discrete}{convert to one all the values above a cutoff and zero
-otherwise (by default is TRUE)}
-
-\item{cutoff}{all the values below the specified will be converted to zero
-(by default is 1)}
-
-\item{tbl}{TRUE (default) returns a data.frame and FALSE returns a matrix}
 }
 \value{
-A list with two data frames or two matrices.
+A data frame.
 }
 \description{
-\code{rca} computes Revealed Comparative Advantage
+\code{rca} computes RCA following the definition from
+\insertCite{measuringcomplexity2015;textual}{economiccomplexity}
 }
 \details{
 Given a \eqn{C\times P} matrix (C for "countries"
@@ -48,5 +49,7 @@ rca(ec_trade_1962)
 For more information about RCA see:
 
 \insertRef{measuringcomplexity2015}{economiccomplexity}
+
+and the references therein.
 }
 \keyword{functions}

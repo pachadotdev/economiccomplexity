@@ -8,12 +8,14 @@
 #' this function implements the equations:
 #' \deqn{\text{(Product proximity)}\: \phi_{pp'} = \frac{\sum_c R_{cp}
 #' R_{cp'}}{\max(k_{p}^{(0)}, k_{p'}^{(0)})}}
-#' \deqn{\text{(Country proximity}\:\lambda_{cc'} = \frac{\sum_p R_{c,p}
+#' \deqn{\text{(Country proximity)}\:\lambda_{cc'} = \frac{\sum_p R_{c,p}
 #' R_{c,p'}}{\max(k_{c}^{(0)}, k_{c'}^{(0)})}}
 #'
 #' @param rca matrix or data.frame with RCA values
 #' @param diversity matrix or data.frame with diversity values
 #' @param ubiquity matrix or data.frame with ubiquity values
+#' @param compute "country", "product" or "both" (default) matrices
+#' @param tbl TRUE (default) returns a data.frame and FALSE returns a matrix
 #' @param country_r column containing countries (applies only if d is a
 #' data.frame)
 #' @param product_r column containing products (applies only if d is a
@@ -28,8 +30,6 @@
 #' data.frame)
 #' @param value_u column containing values (applies only if d is a
 #' data.frame)
-#' @param tbl TRUE (default) returns a data.frame and FALSE returns a matrix
-#' @param compute "country", "product" or "both" (default) matrices
 #'
 #' @references
 #' For more information on proximity and its applications see:
@@ -40,9 +40,9 @@
 #'
 #' @examples
 #' proximity(
-#'   rca = ec_output_demo$rca_tbl,
-#'   d = ec_output_demo$complexity_measures_tbl$diversity,
-#'   u = ec_output_demo$complexity_measures_tbl$ubiquity
+#'   ec_output_demo$rca,
+#'   ec_output_demo$complexity$diversity,
+#'   ec_output_demo$complexity$ubiquity
 #' )
 #'
 #' @return A list with two data frames or matrices.
@@ -64,15 +64,15 @@
 proximity <- function(rca,
                       diversity,
                       ubiquity,
+                      compute = "both",
+                      tbl = TRUE,
                       country_r = "country",
                       product_r = "product",
                       value_r = "value",
                       country_d = "country",
                       value_d = "value",
                       product_u = "product",
-                      value_u = "value",
-                      tbl = TRUE,
-                      compute = "both") {
+                      value_u = "value") {
   # sanity checks ----
   if (all(class(rca) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix",
     "dgCMatrix") == FALSE)) {

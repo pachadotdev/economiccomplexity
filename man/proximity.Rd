@@ -4,10 +4,10 @@
 \alias{proximity}
 \title{Proximity}
 \usage{
-proximity(rca, diversity, ubiquity, country_r = "country",
-  product_r = "product", value_r = "value", country_d = "country",
-  value_d = "value", product_u = "product", value_u = "value",
-  tbl = TRUE, compute = "both")
+proximity(rca, diversity, ubiquity, compute = "both", tbl = TRUE,
+  country_r = "country", product_r = "product", value_r = "value",
+  country_d = "country", value_d = "value", product_u = "product",
+  value_u = "value")
 }
 \arguments{
 \item{rca}{matrix or data.frame with RCA values}
@@ -15,6 +15,10 @@ proximity(rca, diversity, ubiquity, country_r = "country",
 \item{diversity}{matrix or data.frame with diversity values}
 
 \item{ubiquity}{matrix or data.frame with ubiquity values}
+
+\item{compute}{"country", "product" or "both" (default) matrices}
+
+\item{tbl}{TRUE (default) returns a data.frame and FALSE returns a matrix}
 
 \item{country_r}{column containing countries (applies only if d is a
 data.frame)}
@@ -36,10 +40,6 @@ data.frame)}
 
 \item{value_u}{column containing values (applies only if d is a
 data.frame)}
-
-\item{tbl}{TRUE (default) returns a data.frame and FALSE returns a matrix}
-
-\item{compute}{"country", "product" or "both" (default) matrices}
 }
 \value{
 A list with two data frames or matrices.
@@ -53,14 +53,14 @@ values and a P length vector with ubiquity values or equivalent data frames,
 this function implements the equations:
 \deqn{\text{(Product proximity)}\: \phi_{pp'} = \frac{\sum_c R_{cp}
 R_{cp'}}{\max(k_{p}^{(0)}, k_{p'}^{(0)})}}
-\deqn{\text{(Country proximity}\:\lambda_{cc'} = \frac{\sum_p R_{c,p}
+\deqn{\text{(Country proximity)}\:\lambda_{cc'} = \frac{\sum_p R_{c,p}
 R_{c,p'}}{\max(k_{c}^{(0)}, k_{c'}^{(0)})}}
 }
 \examples{
 proximity(
-  rca = ec_output_demo$rca_tbl,
-  d = ec_output_demo$complexity_measures_tbl$diversity,
-  u = ec_output_demo$complexity_measures_tbl$ubiquity
+  ec_output_demo$rca,
+  ec_output_demo$complexity$diversity,
+  ec_output_demo$complexity$ubiquity
 )
 
 }

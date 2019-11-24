@@ -1,7 +1,7 @@
-#' @title Complexity Measures
+#' @title Complexity measures
 #'
-#' @description \code{complexity} computes Diversity/Ubiquity and
-#' Country/Product Complexity Indices
+#' @description \code{rca} computes complexity indices following the definitions
+#' from \insertCite{measuringcomplexity2015;textual}{economiccomplexity}
 #'
 #' @details Given a \eqn{C\times P} matrix (C for "countries"
 #' and P for "products") or an equivalent 3-columns data frame with RCA
@@ -16,22 +16,22 @@
 #' and eigenvalues computation as alternatives to the Fitness-Complexity
 #' formulation.
 #'
-#' @param rca matrix or data.frame with RCA values
-#' @param country column containing countries (applies only if d is a
-#' data.frame)
-#' @param product column containing products (applies only if d is a
-#' data.frame)
-#' @param value column containing traded values (applies only if d is a
-#' data.frame)
+#' @param rca matrix or data frame with RCA values
 #' @param method which method to use (by default is "fitness", it can also
 #' be "reflections" or "eigenvalues")
 #' @param iterations number of iterations to use in the fitness, reflections
 #' and indirectly in eigenvalues method (by default is 20)
 #' @param extremality numeric coefficient to use in the fitness method
 #' (by default is 1)
-#' @param tbl TRUE (default) returns a data.frame and FALSE returns a matrix
 #' @param atlas remove the countries not ranked in The Atlas of Economic
 #' Complexity (by default is FALSE)
+#' @param tbl TRUE (default) returns a data.frame and FALSE returns a matrix
+#' @param country column containing countries (applies only if d is a
+#' data.frame)
+#' @param product column containing products (applies only if d is a
+#' data.frame)
+#' @param value column containing traded values (applies only if d is a
+#' data.frame)
 #'
 #' @references
 #' For more information about complexity measures see:
@@ -41,7 +41,7 @@
 #' and the references therein.
 #'
 #' @examples
-#' complexity(ec_output_demo$rca_tbl)
+#' complexity(ec_output_demo$rca)
 #'
 #' @return A list with four data frames or matrices.
 #'
@@ -59,14 +59,14 @@
 #' @export
 
 complexity <- function(rca,
-                       country = "country",
-                       product = "product",
-                       value = "value",
                        method = "fitness",
                        iterations = 20,
                        extremality = 1,
+                       atlas = FALSE,
                        tbl = TRUE,
-                       atlas = FALSE) {
+                       country = "country",
+                       product = "product",
+                       value = "value") {
   # sanity checks ----
   if (all(class(rca) %in% c("data.frame", "matrix", "dgeMatrix", "dsCMatrix",
     "dgCMatrix") == FALSE)) {
@@ -268,10 +268,10 @@ complexity <- function(rca,
 
   return(
     list(
-      country_complexity = eci,
-      country_diversity = kc0,
-      product_complexity = pci,
-      product_ubiquity = kp0
+      complexity_c = eci,
+      complexity_p = pci,
+      diversity = kc0,
+      ubiquity = kp0
     )
   )
 }
