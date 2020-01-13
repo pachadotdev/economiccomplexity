@@ -67,43 +67,24 @@
 #'
 #' @keywords functions
 
-ec_countries_position <- function(rca = NULL,
-                                  pp = NULL,
-                                  pci = NULL) {
-
+ec_countries_position <- function(rca, pp, pci = NULL) {
   dcp <- t(t((1 - rca) %*% pp) / rowSums(pp))
 
-  coc <- colSums(t((1 - dcp) * (1 - rca)) * pci)
+  coc <- ((1 - dcp) * (1 - rca)) %*% pci
 
-  cogc <- t((t((1 - rca) %*% (pp / colSums(pp))) * pci) - (t(1 - dcp) * pci))
+  cogc <- Matrix(0, nrow = nrow(rca), ncol = ncol(rca), sparse = T, dimnames = list(rownames(rca), colnames(rca)))
 
+  for (i in 1:nrow(rca)) {
+    p1 <- t((t(pp / colSums(pp)) * (1 - rca[i, ])) %*% pci)
+    p2 <- dcp[i, ] * pci
+    cogc[i, ] <- p1 - p2
+  }
 
-  # cogc <- Matrix::t((Matrix::t((1 - dcp) %*% (pp /
-  #                                               Matrix::colSums(pp))) * pci) -
-  #                     (Matrix::t(1 - dcp) * pci))
-  #
-  # if (tbl == TRUE) {
-  #   dcp <- as.matrix(dcp) %>%
-  #     tibble::as_tibble() %>%
-  #     dplyr::mutate(country = rownames(dcp)) %>%
-  #     tidyr::gather(!!sym("product"), !!sym("value"), -!!sym("country"))
-  #
-  #   coc <- tibble::tibble(value = coc) %>%
-  #     dplyr::mutate(product = names(coc)) %>%
-  #     dplyr::select(!!sym("product"), !!sym("value")) %>%
-  #     dplyr::arrange(-!!sym("value"))
-  #
-  #   cogc <- as.matrix(cogc) %>%
-  #     tibble::as_tibble() %>%
-  #     dplyr::mutate(country = rownames(cogc)) %>%
-  #     tidyr::gather(!!sym("product"), !!sym("value"), -!!sym("country"))
-  # }
-  #
-  #   return(
-  #     list(
-  #       proximity_distance = dcp,
-  #       complexity_outlook = coc,
-  #       complexity_outlook_gain = cogc
-  #     )
-  #   )
+  return(
+    list(
+      proximity_distance = dcp,
+      complexity_outlook = coc,
+      complexity_outlook_gain = cogc
+    )
+  )
 }
