@@ -37,8 +37,7 @@
 
 <meta property="og:title" content="Balassa Index — balassa_index" />
 <meta property="og:description" content="balassa_index() computes the Balassa Index for a
-bipartite relation between two disjoint sets X, the &quot;source&quot; or &quot;from&quot; side,
-and Y, the &quot;target&quot; or &quot;to&quot; side." />
+bipartite relation between countries and products." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -121,12 +120,17 @@ and Y, the &quot;target&quot; or &quot;to&quot; side." />
 
     <div class="ref-description">
     <p><code>balassa_index()</code> computes the Balassa Index for a
-bipartite relation between two disjoint sets X, the "source" or "from" side,
-and Y, the "target" or "to" side.</p>
+bipartite relation between countries and products.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>balassa_index</span>(<span class='no'>data</span>, <span class='kw'>source</span> <span class='kw'>=</span> <span class='st'>"source"</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"target"</span>,
-  <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>discrete</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cutoff</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
+    <pre class="usage"><span class='fu'>balassa_index</span>(
+  <span class='no'>data</span>,
+  <span class='kw'>discrete</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>cutoff</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>country</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
+  <span class='kw'>product</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
+  <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"value"</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -135,22 +139,6 @@ and Y, the "target" or "to" side.</p>
       <th>data</th>
       <td><p>(Type: data.frame, matrix or dgCMatrix) a dataset such as <code>galactic_federation</code>
 or any arrangement.</p></td>
-    </tr>
-    <tr>
-      <th>source</th>
-      <td><p>(Type: character) the column with the elements of set X.
-By default this is set to <code>"source"</code>.</p></td>
-    </tr>
-    <tr>
-      <th>target</th>
-      <td><p>(Type: character) the column with the elements of set Y.
-By default this is set to <code>"target"</code>.</p></td>
-    </tr>
-    <tr>
-      <th>value</th>
-      <td><p>(Type: character) the column with the binary expression for the
-Balassa Index.
-By default this is set to <code>"value"</code>.</p></td>
     </tr>
     <tr>
       <th>discrete</th>
@@ -163,11 +151,27 @@ and 1 otherwise. By default this is set to <code>TRUE</code>.</p></td>
       <td><p>(Type: numeric) the cutoff to use for discretization.
 By default this is set to <code>1</code>.</p></td>
     </tr>
+    <tr>
+      <th>country</th>
+      <td><p>(Type: character) the column with the countries.
+By default this is set to <code>"country"</code>. Applies only if the input is a data.frame.</p></td>
+    </tr>
+    <tr>
+      <th>product</th>
+      <td><p>(Type: character) the column with the products.
+By default this is set to <code>"product"</code>. Applies only if the input is a data.frame.</p></td>
+    </tr>
+    <tr>
+      <th>value</th>
+      <td><p>(Type: character) the column with the metric for
+country-product pairs.
+By default this is set to <code>"value"</code>. Applies only if the input is a data.frame.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data.frame with the Balassa Index.</p>
+    <p>A matrix with the Balassa Index.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The current implementation follows
@@ -176,6 +180,10 @@ By default this is set to <code>1</code>.</p></td>
 specialisation. In the context of international trade, if the Balassa Index
 for a country-product pair is more than 1, it means that country is
 specialized in that product.</p>
+<p>If the input for this function is a data.frame instead of a matrix, the
+function shall aggregate the data and convert the input to a matrix. You
+don't need to aggregate the data beforehand if, for example, you pass a
+data.frame containing origin, destination, product and exports value.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>For more information see:</p>
@@ -189,10 +197,10 @@ doi: <a href='https://doi.org/10.1140/epjb/e2015-60298-7'>10.1140/epjb/e2015-602
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>balassa_index</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>galactic_federation</span>,
-  <span class='kw'>source</span> <span class='kw'>=</span> <span class='st'>"planet"</span>,
-  <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
+  <span class='kw'>country</span> <span class='kw'>=</span> <span class='st'>"planet"</span>,
+  <span class='kw'>product</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
   <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"export_value"</span>
-)</div><div class='output co'>#&gt; 9 x 12 sparse Matrix of class "dgCMatrix"</div><div class='output co'>#&gt; <span class='message'>   [[ suppressing 12 column names ‘alpha’, ‘beta’, ‘delta’ ... ]]</span></div><div class='output co'>#&gt;                                                    
+)</div><div class='output co'>#&gt; 9 x 12 sparse Matrix of class "dgCMatrix"</div><div class='output co'>#&gt; <span class='message'>   [[ suppressing 12 column names 'alpha', 'beta', 'delta' ... ]]</span></div><div class='output co'>#&gt;                                                    
 #&gt; Bepis 9                     . . . 1 . . . . . . 1 .
 #&gt; Bird World                  . . . . . 1 . . . . . .
 #&gt; Crepktct 4                  . . . . . 1 . 1 1 . . .
@@ -201,7 +209,8 @@ doi: <a href='https://doi.org/10.1140/epjb/e2015-60298-7'>10.1140/epjb/e2015-602
 #&gt; Galactic Federation Prison  . 1 . . . 1 . . . . . 1
 #&gt; Gear World                  . . . 1 1 . . . . 1 1 .
 #&gt; Glaagablaaga                . . . . 1 1 1 1 . 1 . .
-#&gt; Gromflom Prime              . 1 . . . . . . . . . .</div></pre>
+#&gt; Gromflom Prime              . 1 . . . . . . . . . .</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
