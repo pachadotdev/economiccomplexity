@@ -1,8 +1,7 @@
 #' Balassa Index
 #'
 #' @description \code{balassa_index()} computes the Balassa Index for a
-#' bipartite relation between two disjoint sets X, the "country" or "from" side,
-#' and Y, the "product" or "to" side.
+#' bipartite relation between countries and products.
 #'
 #' @details The current implementation follows
 #' \insertCite{measuringcomplexity2015}{economiccomplexity} to obtain a metric for
@@ -10,22 +9,27 @@
 #' for a country-product pair is more than 1, it means that country is
 #' specialized in that product.
 #'
+#' If the input for this function is a data.frame instead of a matrix, the
+#' function shall aggregate the data and convert the input to a matrix. You
+#' don't need to aggregate the data beforehand if, for example, you pass a
+#' data.frame containing origin, destination, product and exports value.
+#'
 #' @return A matrix with the Balassa Index.
 #'
 #' @param data (Type: data.frame, matrix or dgCMatrix) a dataset such as \code{galactic_federation}
 #' or any arrangement.
-#' @param country (Type: character) the column with the elements of set X.
-#' By default this is set to \code{"country"}.
-#' @param product (Type: character) the column with the elements of set Y.
-#' By default this is set to \code{"product"}.
-#' @param value (Type: character) the column with the binary expression for the
-#' Balassa Index.
-#' By default this is set to \code{"value"}.
 #' @param discrete (Type: logical) whether converting the Balassa Index to
 #' discrete (0/1) values. Anything below the specified cutoff is converted to 0
 #' and 1 otherwise. By default this is set to \code{TRUE}.
 #' @param cutoff (Type: numeric) the cutoff to use for discretization.
 #' By default this is set to \code{1}.
+#' @param country (Type: character) the column with the countries.
+#' By default this is set to \code{"country"}. Applies only if the input is a data.frame.
+#' @param product (Type: character) the column with the products.
+#' By default this is set to \code{"product"}. Applies only if the input is a data.frame.
+#' @param value  (Type: character) the column with the metric for
+#' country-product pairs.
+#' By default this is set to \code{"value"}. Applies only if the input is a data.frame.
 #'
 #' @importFrom Matrix Matrix rowSums colSums t
 #'
@@ -48,8 +52,8 @@
 #'
 #' @export
 
-balassa_index <- function(data, country = "country", product = "product", value = "value",
-                          discrete = TRUE, cutoff = 1) {
+balassa_index <- function(data, discrete = TRUE, cutoff = 1,
+                          country = "country", product = "product", value = "value") {
   # sanity checks ----
   if (!any(class(data) %in% c("data.frame", "matrix", "dgCMatrix"))) {
     stop("'data' must be a data.frame, matrix or dgCMatrix")

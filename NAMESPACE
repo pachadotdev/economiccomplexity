@@ -2,6 +2,7 @@
 
 export(balassa_index)
 export(complexity_measures)
+export(productivity_levels)
 export(projections)
 export(proximity)
 importFrom(Matrix,Matrix)

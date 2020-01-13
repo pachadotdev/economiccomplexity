@@ -1,4 +1,4 @@
-test_that("balassa_index works with a data frame", {
+test_that("balassa_index works with a sparse matrix", {
   bi <- balassa_index(
     data = galactic_federation, country = "planet", product = "product", value = "export_value"
   )
@@ -10,10 +10,45 @@ test_that("balassa_index works with a data frame", {
   expect_equal(max(bi), 1)
 })
 
+test_that("balassa_index works with a dense matrix", {
+  gf <- Matrix::as.matrix(galactic_federation)
+
+  bi <- balassa_index(data = galactic_federation)
+
+  bi2 <- balassa_index(data = gf)
+
+  expect_is(bi2, "dgCMatrix")
+  expect_equal(bi, bi2)
+  expect_equal(nrow(bi2), 9)
+  expect_equal(ncol(bi2), 12)
+  expect_equal(min(bi2), 0)
+  expect_equal(max(bi2), 1)
+})
+
+test_that("balassa_index works with a data frame", {
+  gf <- Matrix::as.matrix(galactic_federation)
+  gf <- as.data.frame(as.table(gf), stringsAsFactors = FALSE)
+
+  bi <- balassa_index(
+    data = galactic_federation, country = "planet", product = "product", value = "export_value"
+  )
+
+  bi2 <- balassa_index(
+    data = gf, country = "Var1", product = "Var2", value = "Freq"
+  )
+
+  expect_is(bi2, "dgCMatrix")
+  expect_equal(bi, bi2)
+  expect_equal(nrow(bi2), 9)
+  expect_equal(ncol(bi2), 12)
+  expect_equal(min(bi2), 0)
+  expect_equal(max(bi2), 1)
+})
+
 test_that("balassa_index returns error with vector data", {
   expect_error(
     balassa_index(
-      data = as.numeric(galactic_federation$export_value),
+      data = 200:100,
       country = "country",
       product = "product",
       value = "export_value"

@@ -8,13 +8,17 @@
 #'
 #' @param d1 foo
 #' @param d2 bar
+#' @param country country
+#' @param product product
+#' @param value value
 #'
-#' @importFrom Matrix rowSums colSums t
+#' @importFrom Matrix Matrix rowSums colSums t
 #' @importFrom stats setNames
 #'
 #' @examples
+#' set.seed(1810)
 #' d1 <- galactic_federation
-#' d2 <- rnorm(1:nrow(galactic_federation), 1000)
+#' d2 <- setNames(rnorm(1:nrow(galactic_federation), 1000, 200), rownames(galactic_federation))
 #' pl <- productivity_levels(d1, d2)
 #'
 #' @references
@@ -26,7 +30,8 @@
 #'
 #' @export
 
-productivity_levels <- function(d1, d2) {
+productivity_levels <- function(d1, d2,
+                                country = "country", product = "product", value = "value") {
   # sanity checks ----
   if (all(class(d1) %in% c("data.frame", "matrix", "dgCMatrix") == FALSE)) {
     stop("'d1' must be a data.frame, matrix or dgCMatrix")
@@ -37,16 +42,20 @@ productivity_levels <- function(d1, d2) {
   }
 
   # tidy input data d1 ----
-  # if (any(class(d1) %in% "data.frame")) {
-  #   d1 <- country_product_aggregation(d1, country, product, value)
-  #   d1 <- dataframe_to_matrix(d1, country, product, value)
-  # }
+  if (any(class(d1) %in% "data.frame")) {
+    d1 <- country_product_aggregation(d1, country, product, value)
+    d1 <- dataframe_to_matrix(d1, country, product, value)
+  }
+
+  if (class(d1) == "matrix") {
+    d1 <- Matrix(d1, sparse = TRUE)
+  }
 
   # tidy input data d2 ----
-  # if (any(class(d1) %in% "data.frame")) {
-  #   d2 <- country_aggregation(d2, country, value)
-  #   d2 <- setNames(as.numeric(d2$value), d2$country)
-  # }
+  if (any(class(d2) %in% "data.frame")) {
+    d2 <- country_aggregation(d2, country, value)
+    d2 <- setNames(as.numeric(d2$value), d2$country)
+  }
 
   intersect_country_1 <- rownames(d1) %in% names(d2)
   intersect_country_1 <- intersect_country_1[intersect_country_1 == TRUE]
@@ -57,10 +66,6 @@ productivity_levels <- function(d1, d2) {
   if (length(intersect_country_1) != length(intersect_country_2)) {
     warning("'d1' and 'd2' don\'t have the same number of country-side elements, some elements will be dropped")
   }
-
-  set.seed(1810)
-  d1 <- galactic_federation
-  d2 <- setNames(rnorm(1:nrow(galactic_federation), 1000, 200), rownames(galactic_federation))
 
   d1 <- d1[rownames(d1) %in% names(d2), ]
   d2 <- d2[names(d2) %in% rownames(d1)]
