@@ -1,34 +1,34 @@
-#' Source-target aggregation
+#' country-product aggregation
 #' @importFrom stats aggregate
 #' @keywords internal
-source_target_aggregation <- function(dataframe, source = "source", target = "target", value = "value") {
-  dataframe <- subset(dataframe, select = c(source, target, value))
-  names(dataframe) <- c("source", "target", "value")
+country_product_aggregation <- function(dataframe, country = "country", product = "product", value = "value") {
+  dataframe <- subset(dataframe, select = c(country, product, value))
+  names(dataframe) <- c("country", "product", "value")
 
-  dataframe <- aggregate(dataframe$value, by = list(source = dataframe$source, target = dataframe$target), FUN = sum)
-  names(dataframe) <- c("source", "target", "value")
+  dataframe <- aggregate(dataframe$value, by = list(country = dataframe$country, product = dataframe$product), FUN = sum)
+  names(dataframe) <- c("country", "product", "value")
 
   dataframe <- dataframe[dataframe$value > 0, ]
 
-  dataframe$source <- as.factor(dataframe$source)
-  dataframe$target <- as.factor(dataframe$target)
+  dataframe$country <- as.factor(dataframe$country)
+  dataframe$product <- as.factor(dataframe$product)
 
   return(dataframe)
 }
 
-#' Source aggregation
+#' country aggregation
 #' @importFrom stats aggregate
 #' @keywords internal
-source_aggregation <- function(dataframe, source = "source", value = "value") {
-  dataframe <- subset(dataframe, select = c(source, value))
-  names(dataframe) <- c("source", "value")
+country_aggregation <- function(dataframe, country = "country", value = "value") {
+  dataframe <- subset(dataframe, select = c(country, value))
+  names(dataframe) <- c("country", "value")
 
-  dataframe <- aggregate(dataframe$value, by = list(source = dataframe$source), FUN = sum)
-  names(dataframe) <- c("source", "value")
+  dataframe <- aggregate(dataframe$value, by = list(country = dataframe$country), FUN = sum)
+  names(dataframe) <- c("country", "value")
 
   dataframe <- dataframe[dataframe$value > 0, ]
 
-  dataframe$source <- as.factor(dataframe$source)
+  dataframe$country <- as.factor(dataframe$country)
 
   return(dataframe)
 }
@@ -36,15 +36,15 @@ source_aggregation <- function(dataframe, source = "source", value = "value") {
 #' Dataframe to matrix
 #' @importFrom Matrix sparseMatrix
 #' @keywords internal
-dataframe_to_matrix <- function(dataframe, source = "source", target = "target", value = "value") {
+dataframe_to_matrix <- function(dataframe, country = "country", product = "product", value = "value") {
   return(
     with(
       dataframe,
       sparseMatrix(
-        i = as.numeric(source),
-        j = as.numeric(target),
+        i = as.numeric(country),
+        j = as.numeric(product),
         x = value,
-        dimnames = list(levels(source), levels(target))
+        dimnames = list(levels(country), levels(product))
       )
     )
   )

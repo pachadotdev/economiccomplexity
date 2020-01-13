@@ -2,8 +2,8 @@
 #'
 #' @description \code{complexity_measures()} computes different complexity
 #' measures obtained from the Balassa Index or a binary (0/1) metric for a
-#' bipartite relation between two disjoint sets X, the "source" or "from" side,
-#' and Y, the "target" or "to" side.
+#' bipartite relation between two disjoint sets X, the "country" or "from" side,
+#' and Y, the "product" or "to" side.
 #'
 #' @details The current implementation follows
 #' \insertCite{measuringcomplexity2015}{economiccomplexity} to obtain different metrics
@@ -24,7 +24,7 @@
 #' By default this is set to \code{1}.
 #'
 #' @importFrom Matrix Matrix rowSums colSums t
-#' @importFrom stats sd cor
+#' @importFrom stats sd cor setNames
 #'
 #' @examples
 #' complexity_measures(balassa_index = economiccomplexity_output$balassa_index)
@@ -88,15 +88,16 @@ complexity_measures <- function(balassa_index, method = "fitness", iterations = 
     }
 
     # xci is of odd order and normalized
-    xci <- (kx[, iterations - 1] - mean(kx[, iterations - 1])) /
-      sd(kx[, iterations - 1])
+    xci <- setNames(
+      (kx[, iterations - 1] - mean(kx[, iterations - 1])) / sd(kx[, iterations - 1]),
+      rownames(balassa_index)
+    )
 
     # yci is of even order and normalized
-    yci <- (ky[, iterations] - mean(ky[, iterations])) /
-      sd(ky[, iterations])
-
-    names(xci) <- rownames(balassa_index)
-    names(yci) <- colnames(balassa_index)
+    yci <- setNames(
+      (ky[, iterations] - mean(ky[, iterations])) / sd(ky[, iterations]),
+      colnames(balassa_index)
+    )
 
     return(list(xci = xci, yci = yci))
   }
@@ -118,8 +119,10 @@ complexity_measures <- function(balassa_index, method = "fitness", iterations = 
     xci <- Re(xci$vectors[, 2])
 
     # normalized xci
-    xci <- (xci - mean(xci)) / sd(xci)
-    names(xci) <- rownames(balassa_index)
+    xci <- setNames(
+      (xci - mean(xci)) / sd(xci),
+      rownames(balassa_index)
+    )
 
     # correct xci sign when required
     if (isTRUE(cor(xci, xci_r, use = "pairwise.complete.obs") < 0)) {
@@ -131,8 +134,10 @@ complexity_measures <- function(balassa_index, method = "fitness", iterations = 
     yci <- Re(yci$vectors[, 2])
 
     # normalized yci
-    yci <- (yci - mean(yci)) / sd(yci)
-    names(yci) <- colnames(balassa_index)
+    yci <- setNames(
+      (yci - mean(yci)) / sd(yci),
+      colnames(balassa_index)
+    )
 
     # correct yci sign when required
     if (isTRUE(cor(yci, yci_r, use = "pairwise.complete.obs") < 0)) {
@@ -168,21 +173,23 @@ complexity_measures <- function(balassa_index, method = "fitness", iterations = 
       ky[, j] <- ky[, j] / mean(ky[, j])
     }
 
-    xci <- kx[, iterations]
+    xci <- setNames(
+      kx[, iterations],
+      rownames(balassa_index)
+    )
 
-    yci <- ky[, iterations]
-
-    names(xci) <- rownames(balassa_index)
-
-    names(yci) <- colnames(balassa_index)
+    yci <- setNames(
+      ky[, iterations],
+      colnames(balassa_index)
+    )
   }
 
   return(
     list(
-      complexity_index_source = xci,
-      complexity_index_target = yci,
-      balassa_sum_source = kx0,
-      balassa_sum_target = ky0
+      complexity_index_country = xci,
+      complexity_index_product = yci,
+      balassa_sum_country = kx0,
+      balassa_sum_product = ky0
     )
   )
 }

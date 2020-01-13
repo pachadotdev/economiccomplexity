@@ -4,23 +4,23 @@
 #'
 #' @details TBD
 #'
-#' @param proximity_source a data frame containing proximity
-#' values for the elements of set X (e.g. proximity_source from \code{proximity()})
-#' @param proximity_target a data frame containing proximity
-#' values for the elements of set Y (e.g. proximity_target from \code{proximity()})
+#' @param proximity_country a data frame containing proximity
+#' values for the elements of set X (e.g. proximity_country from \code{proximity()})
+#' @param proximity_product a data frame containing proximity
+#' values for the elements of set Y (e.g. proximity_product from \code{proximity()})
 #' @param avg_links average number of connections for the projection of X
 #' (default set to 4)
 #' @param tolerance tolerance for proximity variation on each iteration until
 #' obtaining the desired average number of connections (default set to 0.05)
 #' @param compute which projection to compute. By default is "both" (both
-#' projections) but it can also be "source" or "target".
+#' projections) but it can also be "country" or "product".
 #'
 #' @importFrom igraph graph_from_adjacency_matrix graph_from_data_frame mst as_data_frame degree delete.edges graph.difference E E<-
 #'
 #' @examples
 #' projections(
-#'   proximity_source = economiccomplexity_output$proximity$proximity_source,
-#'   proximity_target = economiccomplexity_output$proximity$proximity_target
+#'   proximity_country = economiccomplexity_output$proximity$proximity_country,
+#'   proximity_product = economiccomplexity_output$proximity$proximity_product
 #' )
 #' @references
 #' For more information see:
@@ -33,24 +33,24 @@
 #'
 #' @export
 
-projections <- function(proximity_source, proximity_target,
+projections <- function(proximity_country, proximity_product,
                         avg_links = 4, tolerance = 0.05, compute = "both") {
   # sanity checks ----
-  if (class(proximity_source) != "dsCMatrix" |
-    class(proximity_target) != "dsCMatrix") {
-    stop("'proximity_source' and 'proximity_target' must be dtCMatrix")
+  if (class(proximity_country) != "dsCMatrix" |
+    class(proximity_product) != "dsCMatrix") {
+    stop("'proximity_country' and 'proximity_product' must be dtCMatrix")
   }
 
   if (!is.numeric(avg_links)) {
     stop("'avg_links' must be numeric")
   }
 
-  if (!any(compute %in% c("both", "source", "target"))) {
-    stop("'compute' must be 'both', 'source' or 'target'")
+  if (!any(compute %in% c("both", "country", "product"))) {
+    stop("'compute' must be 'both', 'country' or 'product'")
   }
 
   if (compute == "both") {
-    compute2 <- c("source", "target")
+    compute2 <- c("country", "product")
   } else {
     compute2 <- compute
   }
@@ -97,26 +97,26 @@ projections <- function(proximity_source, proximity_target,
     }
   }
 
-  if (any("source" %in% compute2) == TRUE) {
-    message("computing target projection...")
+  if (any("country" %in% compute2) == TRUE) {
+    message("computing product projection...")
     message(rep("-", 50))
-    xg <- trim_network(proximity_source, avg_links)
+    xg <- trim_network(proximity_country, avg_links)
   } else {
     xg <- NULL
   }
 
-  if (any("target" %in% compute2) == TRUE) {
-    message("computing target projection...")
+  if (any("product" %in% compute2) == TRUE) {
+    message("computing product projection...")
     message(rep("-", 50))
-    yg <- trim_network(proximity_target, avg_links)
+    yg <- trim_network(proximity_product, avg_links)
   } else {
     yg <- NULL
   }
 
   return(
     list(
-      network_source = xg,
-      network_target = yg
+      network_country = xg,
+      network_product = yg
     )
   )
 }

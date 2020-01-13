@@ -1,18 +1,18 @@
 ba_ind <- balassa_index(
-  data = galactic_federation, source = "planet", target = "product", value = "export_value"
+  data = galactic_federation, country = "planet", product = "product", value = "export_value"
 )
 
 com_fit <- complexity_measures(ba_ind)
 
 prox <- proximity(
   balassa_index = ba_ind,
-  balassa_sum_source = com_fit$balassa_sum_source,
-  balassa_sum_target = com_fit$balassa_sum_target
+  balassa_sum_country = com_fit$balassa_sum_country,
+  balassa_sum_product = com_fit$balassa_sum_product
 )
 
 # proj <- projections(
-#   proximity_source = prox$proximity_source,
-#   proximity_target = prox$proximity_target,
+#   proximity_country = prox$proximity_country,
+#   proximity_product = prox$proximity_product,
 #   tolerance = 0.01,
 #   avg_links = 4
 # )

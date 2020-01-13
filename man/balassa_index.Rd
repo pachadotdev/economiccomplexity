@@ -4,18 +4,24 @@
 \alias{balassa_index}
 \title{Balassa Index}
 \usage{
-balassa_index(data, source = "source", target = "target",
-  value = "value", discrete = TRUE, cutoff = 1)
+balassa_index(
+  data,
+  country = "country",
+  product = "product",
+  value = "value",
+  discrete = TRUE,
+  cutoff = 1
+)
 }
 \arguments{
 \item{data}{(Type: data.frame, matrix or dgCMatrix) a dataset such as \code{galactic_federation}
 or any arrangement.}
 
-\item{source}{(Type: character) the column with the elements of set X.
-By default this is set to \code{"source"}.}
+\item{country}{(Type: character) the column with the elements of set X.
+By default this is set to \code{"country"}.}
 
-\item{target}{(Type: character) the column with the elements of set Y.
-By default this is set to \code{"target"}.}
+\item{product}{(Type: character) the column with the elements of set Y.
+By default this is set to \code{"product"}.}
 
 \item{value}{(Type: character) the column with the binary expression for the
 Balassa Index.
@@ -29,12 +35,12 @@ and 1 otherwise. By default this is set to \code{TRUE}.}
 By default this is set to \code{1}.}
 }
 \value{
-A data.frame with the Balassa Index.
+A matrix with the Balassa Index.
 }
 \description{
 \code{balassa_index()} computes the Balassa Index for a
-bipartite relation between two disjoint sets X, the "source" or "from" side,
-and Y, the "target" or "to" side.
+bipartite relation between two disjoint sets X, the "country" or "from" side,
+and Y, the "product" or "to" side.
 }
 \details{
 The current implementation follows
@@ -46,10 +52,11 @@ specialized in that product.
 \examples{
 balassa_index(
   data = galactic_federation,
-  source = "planet",
-  target = "product",
+  country = "planet",
+  product = "product",
   value = "export_value"
 )
+
 }
 \references{
 For more information see:

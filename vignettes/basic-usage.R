@@ -2,15 +2,15 @@
 knitr::opts_chunk$set(eval = TRUE, message = FALSE, warning = FALSE)
 
 ## -----------------------------------------------------------------------------
-library(binet)
+library(economiccomplexity)
 
 galactic_federation
 
 ## -----------------------------------------------------------------------------
 bi <- balassa_index(
   data = galactic_federation,
-  source = "planet",
-  target = "product",
+  country = "planet",
+  product = "product",
   value = "export_value"
 )
 
@@ -19,8 +19,8 @@ bi
 ## -----------------------------------------------------------------------------
 bi_dec <- balassa_index(
   data =galactic_federation,
-  source = "planet",
-  target = "product",
+  country = "planet",
+  product = "product",
   value = "export_value",
   discrete = F
 )
@@ -30,8 +30,8 @@ bi_dec
 ## -----------------------------------------------------------------------------
 com_fit <- complexity_measures(balassa_index = bi)
 
-com_fit$complexity_index_source
-com_fit$complexity_index_target
+com_fit$complexity_index_country
+com_fit$complexity_index_product
 
 ## -----------------------------------------------------------------------------
 com_ref <- complexity_measures(
@@ -39,8 +39,8 @@ com_ref <- complexity_measures(
   method = "reflections"
 )
 
-com_ref$complexity_index_source
-com_ref$complexity_index_target
+com_ref$complexity_index_country
+com_ref$complexity_index_product
 
 ## -----------------------------------------------------------------------------
 com_eig <- complexity_measures(
@@ -48,29 +48,29 @@ com_eig <- complexity_measures(
   method = "eigenvalues"
 )
 
-com_eig$complexity_index_source
-com_eig$complexity_index_target
+com_eig$complexity_index_country
+com_eig$complexity_index_product
 
 ## -----------------------------------------------------------------------------
 pro <- proximity(
   balassa_index = bi,
-  balassa_sum_source = com_fit$balassa_sum_source,
-  balassa_sum_target = com_fit$balassa_sum_target
+  balassa_sum_country = com_fit$balassa_sum_country,
+  balassa_sum_product = com_fit$balassa_sum_product
 )
 
-pro$proximity_source
-pro$proximity_target
+pro$proximity_country
+pro$proximity_product
 
 ## -----------------------------------------------------------------------------
 net <- projections(
-  proximity_source = pro$proximity_source,
-  proximity_target = pro$proximity_target,
+  proximity_country = pro$proximity_country,
+  proximity_product = pro$proximity_product,
   avg_links = 4,
   tolerance = 0.05
 )
 
-net$network_source
-net$network_target
+net$network_country
+net$network_product
 
 ## ---- fig.width=7, fig.height=7-----------------------------------------------
 set.seed(200100)
@@ -79,9 +79,9 @@ library(igraph)
 library(ggraph)
 
 aggregated_planets <- rowSums(galactic_federation)
-V(net$network_source)$size <- aggregated_planets[match(V(net$network_source)$name, names(aggregated_planets))]
+V(net$network_country)$size <- aggregated_planets[match(V(net$network_country)$name, names(aggregated_planets))]
 
-net$network_source %>% 
+net$network_country %>%
   ggraph(layout = "kk") +
   geom_edge_link(aes(edge_width = weight), edge_colour = "#a8a8a8") +
   geom_node_point(aes(size = size), color = "darkslategray4") +
@@ -93,9 +93,9 @@ net$network_source %>%
 set.seed(200100)
 
 aggregated_products <- colSums(galactic_federation)
-V(net$network_target)$size <- aggregated_products[match(V(net$network_target)$name, names(aggregated_products))]
+V(net$network_product)$size <- aggregated_products[match(V(net$network_product)$name, names(aggregated_products))]
 
-net$network_target %>% 
+net$network_product %>%
   ggraph(layout = "kk") +
   geom_edge_link(aes(edge_width = weight), edge_colour = "#a8a8a8") +
   geom_node_point(aes(size = size), color = "darkslategray4") +

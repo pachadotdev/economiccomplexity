@@ -4,8 +4,12 @@
 \alias{complexity_measures}
 \title{Complexity Measures}
 \usage{
-complexity_measures(balassa_index, method = "fitness", iterations = 20,
-  extremality = 1)
+complexity_measures(
+  balassa_index,
+  method = "fitness",
+  iterations = 20,
+  extremality = 1
+)
 }
 \arguments{
 \item{balassa_index}{(Type: matrix or dgCMatrix) the output from
@@ -29,8 +33,8 @@ the Balassa Index.
 \description{
 \code{complexity_measures()} computes different complexity
 measures obtained from the Balassa Index or a binary (0/1) metric for a
-bipartite relation between two disjoint sets X, the "source" or "from" side,
-and Y, the "target" or "to" side.
+bipartite relation between two disjoint sets X, the "country" or "from" side,
+and Y, the "product" or "to" side.
 }
 \details{
 The current implementation follows

@@ -1,8 +1,8 @@
 #' Balassa Index
 #'
 #' @description \code{balassa_index()} computes the Balassa Index for a
-#' bipartite relation between two disjoint sets X, the "source" or "from" side,
-#' and Y, the "target" or "to" side.
+#' bipartite relation between two disjoint sets X, the "country" or "from" side,
+#' and Y, the "product" or "to" side.
 #'
 #' @details The current implementation follows
 #' \insertCite{measuringcomplexity2015}{economiccomplexity} to obtain a metric for
@@ -10,14 +10,14 @@
 #' for a country-product pair is more than 1, it means that country is
 #' specialized in that product.
 #'
-#' @return A data.frame with the Balassa Index.
+#' @return A matrix with the Balassa Index.
 #'
 #' @param data (Type: data.frame, matrix or dgCMatrix) a dataset such as \code{galactic_federation}
 #' or any arrangement.
-#' @param source (Type: character) the column with the elements of set X.
-#' By default this is set to \code{"source"}.
-#' @param target (Type: character) the column with the elements of set Y.
-#' By default this is set to \code{"target"}.
+#' @param country (Type: character) the column with the elements of set X.
+#' By default this is set to \code{"country"}.
+#' @param product (Type: character) the column with the elements of set Y.
+#' By default this is set to \code{"product"}.
 #' @param value (Type: character) the column with the binary expression for the
 #' Balassa Index.
 #' By default this is set to \code{"value"}.
@@ -32,10 +32,11 @@
 #' @examples
 #' balassa_index(
 #'   data = galactic_federation,
-#'   source = "planet",
-#'   target = "product",
+#'   country = "planet",
+#'   product = "product",
 #'   value = "export_value"
 #' )
+#'
 #' @references
 #' For more information see:
 #'
@@ -47,15 +48,15 @@
 #'
 #' @export
 
-balassa_index <- function(data, source = "source", target = "target", value = "value",
+balassa_index <- function(data, country = "country", product = "product", value = "value",
                           discrete = TRUE, cutoff = 1) {
   # sanity checks ----
   if (!any(class(data) %in% c("data.frame", "matrix", "dgCMatrix"))) {
     stop("'data' must be a data.frame, matrix or dgCMatrix")
   }
 
-  if (!is.character(source) | !is.character(target) | !is.character(value)) {
-    stop("'source', 'target' and 'value' must be of type character")
+  if (!is.character(country) | !is.character(product) | !is.character(value)) {
+    stop("'country', 'product' and 'value' must be of type character")
   }
 
   if (!is.logical(discrete)) {
@@ -67,8 +68,8 @@ balassa_index <- function(data, source = "source", target = "target", value = "v
   }
 
   if (any(class(data) %in% "data.frame")) {
-    data <- source_target_aggregation(data, source, target, value)
-    data <- dataframe_to_matrix(data, source, target, value)
+    data <- country_product_aggregation(data, country, product, value)
+    data <- dataframe_to_matrix(data, country, product, value)
   }
 
   if (class(data) == "matrix") {

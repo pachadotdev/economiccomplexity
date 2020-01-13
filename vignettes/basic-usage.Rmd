@@ -37,8 +37,8 @@ You can obtain Balassa Index with `balassa_index()`.
 ```{r}
 bi <- balassa_index(
   data = galactic_federation,
-  source = "planet",
-  target = "product",
+  country = "planet",
+  product = "product",
   value = "export_value"
 )
 
@@ -50,8 +50,8 @@ Another possibility is to obtain Balassa Index without discretization.
 ```{r}
 bi_dec <- balassa_index(
   data =galactic_federation,
-  source = "planet",
-  target = "product",
+  country = "planet",
+  product = "product",
   value = "export_value",
   discrete = F
 )
@@ -71,8 +71,8 @@ in some special cases when the correlation between the output from both methods 
 ```{r}
 com_fit <- complexity_measures(balassa_index = bi)
 
-com_fit$complexity_index_source
-com_fit$complexity_index_target
+com_fit$complexity_index_country
+com_fit$complexity_index_product
 ```
 
 ## Reflections
@@ -83,8 +83,8 @@ com_ref <- complexity_measures(
   method = "reflections"
 )
 
-com_ref$complexity_index_source
-com_ref$complexity_index_target
+com_ref$complexity_index_country
+com_ref$complexity_index_product
 ```
 
 ## Eigenvalues
@@ -95,8 +95,8 @@ com_eig <- complexity_measures(
   method = "eigenvalues"
 )
 
-com_eig$complexity_index_source
-com_eig$complexity_index_target
+com_eig$complexity_index_country
+com_eig$complexity_index_product
 ```
 
 ## Proximity
@@ -107,12 +107,12 @@ networks) for bipartite networks. Using `proximity()` is straightforward.
 ```{r}
 pro <- proximity(
   balassa_index = bi,
-  balassa_sum_source = com_fit$balassa_sum_source,
-  balassa_sum_target = com_fit$balassa_sum_target
+  balassa_sum_country = com_fit$balassa_sum_country,
+  balassa_sum_product = com_fit$balassa_sum_product
 )
 
-pro$proximity_source
-pro$proximity_target
+pro$proximity_country
+pro$proximity_product
 ```
 
 ## Networks
@@ -123,14 +123,14 @@ or export to Cytoscape by saving the output as csv/tsv.
 
 ```{r}
 net <- projections(
-  proximity_source = pro$proximity_source,
-  proximity_target = pro$proximity_target,
+  proximity_country = pro$proximity_country,
+  proximity_product = pro$proximity_product,
   avg_links = 4,
   tolerance = 0.05
 )
 
-net$network_source
-net$network_target
+net$network_country
+net$network_product
 ```
 
 Just two basic examples with `ggraph`.
@@ -141,9 +141,9 @@ library(igraph)
 library(ggraph)
 
 aggregated_planets <- rowSums(galactic_federation)
-V(net$network_source)$size <- aggregated_planets[match(V(net$network_source)$name, names(aggregated_planets))]
+V(net$network_country)$size <- aggregated_planets[match(V(net$network_country)$name, names(aggregated_planets))]
 
-net$network_source %>%
+net$network_country %>%
   ggraph(layout = "kk") +
   geom_edge_link(aes(edge_width = weight), edge_colour = "#a8a8a8") +
   geom_node_point(aes(size = size), color = "darkslategray4") +
@@ -158,9 +158,9 @@ The network associated to
 set.seed(200100)
 
 aggregated_products <- colSums(galactic_federation)
-V(net$network_target)$size <- aggregated_products[match(V(net$network_target)$name, names(aggregated_products))]
+V(net$network_product)$size <- aggregated_products[match(V(net$network_product)$name, names(aggregated_products))]
 
-net$network_target %>%
+net$network_product %>%
   ggraph(layout = "kk") +
   geom_edge_link(aes(edge_width = weight), edge_colour = "#a8a8a8") +
   geom_node_point(aes(size = size), color = "darkslategray4") +

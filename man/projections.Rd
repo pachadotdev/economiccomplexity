@@ -4,15 +4,20 @@
 \alias{projections}
 \title{Projections of a bipartite network}
 \usage{
-projections(proximity_source, proximity_target, avg_links = 4,
-  tolerance = 0.05, compute = "both")
+projections(
+  proximity_country,
+  proximity_product,
+  avg_links = 4,
+  tolerance = 0.05,
+  compute = "both"
+)
 }
 \arguments{
-\item{proximity_source}{a data frame containing proximity
-values for the elements of set X (e.g. proximity_source from \code{proximity()})}
+\item{proximity_country}{a data frame containing proximity
+values for the elements of set X (e.g. proximity_country from \code{proximity()})}
 
-\item{proximity_target}{a data frame containing proximity
-values for the elements of set Y (e.g. proximity_target from \code{proximity()})}
+\item{proximity_product}{a data frame containing proximity
+values for the elements of set Y (e.g. proximity_product from \code{proximity()})}
 
 \item{avg_links}{average number of connections for the projection of X
 (default set to 4)}
@@ -21,7 +26,7 @@ values for the elements of set Y (e.g. proximity_target from \code{proximity()})
 obtaining the desired average number of connections (default set to 0.05)}
 
 \item{compute}{which projection to compute. By default is "both" (both
-projections) but it can also be "source" or "target".}
+projections) but it can also be "country" or "product".}
 }
 \description{
 TBD
@@ -31,8 +36,8 @@ TBD
 }
 \examples{
 projections(
-  proximity_source = economiccomplexity_output$proximity$proximity_source,
-  proximity_target = economiccomplexity_output$proximity$proximity_target
+  proximity_country = economiccomplexity_output$proximity$proximity_country,
+  proximity_product = economiccomplexity_output$proximity$proximity_product
 )
 }
 \references{

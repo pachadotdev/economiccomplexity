@@ -1,6 +1,6 @@
 test_that("balassa_index works with a data frame", {
   bi <- balassa_index(
-    data = galactic_federation, source = "planet", target = "product", value = "export_value"
+    data = galactic_federation, country = "planet", product = "product", value = "export_value"
   )
 
   expect_is(bi, "dgCMatrix")
@@ -14,19 +14,19 @@ test_that("balassa_index returns error with vector data", {
   expect_error(
     balassa_index(
       data = as.numeric(galactic_federation$export_value),
-      source = "country",
-      target = "product",
+      country = "country",
+      product = "product",
       value = "export_value"
     )
   )
 })
 
-test_that("balassa_index returns error with numeric source/target", {
+test_that("balassa_index returns error with numeric country/product", {
   expect_error(
     balassa_index(
       data = galactic_federation,
-      source = 200,
-      target = 100,
+      country = 200,
+      product = 100,
       value = "export_value"
     )
   )
@@ -36,8 +36,8 @@ test_that("balassa_index returns error with character discrete", {
   expect_error(
     balassa_index(
       data = galactic_federation,
-      source = "country",
-      target = "product",
+      country = "country",
+      product = "product",
       value = "export_value",
       discrete = "yes"
     )
@@ -48,8 +48,8 @@ test_that("balassa_index returns error with character cutoff", {
   expect_error(
     balassa_index(
       data = galactic_federation,
-      source = "country",
-      target = "product",
+      country = "country",
+      product = "product",
       value = "export_value",
       cutoff = "one"
     )
