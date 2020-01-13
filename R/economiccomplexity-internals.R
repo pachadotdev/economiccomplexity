@@ -16,6 +16,23 @@ source_target_aggregation <- function(dataframe, source = "source", target = "ta
   return(dataframe)
 }
 
+#' Source aggregation
+#' @importFrom stats aggregate
+#' @keywords internal
+source_aggregation <- function(dataframe, source = "source", value = "value") {
+  dataframe <- subset(dataframe, select = c(source, value))
+  names(dataframe) <- c("source", "value")
+
+  dataframe <- aggregate(dataframe$value, by = list(source = dataframe$source), FUN = sum)
+  names(dataframe) <- c("source", "value")
+
+  dataframe <- dataframe[dataframe$value > 0, ]
+
+  dataframe$source <- as.factor(dataframe$source)
+
+  return(dataframe)
+}
+
 #' Dataframe to matrix
 #' @importFrom Matrix sparseMatrix
 #' @keywords internal
