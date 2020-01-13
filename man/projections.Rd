@@ -2,81 +2,44 @@
 % Please edit documentation in R/projections.R
 \name{projections}
 \alias{projections}
-\title{Country-product bipartite network projections}
+\title{Projections of a bipartite network}
 \usage{
-projections(proximity_c, proximity_p, cutoff_c = 0.2, cutoff_p = 0.4,
-  compute = "both", tbl = TRUE, from_c = "from", to_c = "to",
-  value_c = "value", from_p = "from", to_p = "to",
-  value_p = "value")
+projections(proximity_source, proximity_target, avg_links = 4,
+  tolerance = 0.05, compute = "both")
 }
 \arguments{
-\item{proximity_c}{matrix or data frame with product proximity values}
+\item{proximity_source}{a data frame containing proximity
+values for the elements of set X (e.g. proximity_source from \code{proximity()})}
 
-\item{proximity_p}{matrix or data frame with country proximity values}
+\item{proximity_target}{a data frame containing proximity
+values for the elements of set Y (e.g. proximity_target from \code{proximity()})}
 
-\item{cutoff_c}{all the links with a proximity below this value will be
-removed from the country projection (by default is 0.2)}
+\item{avg_links}{average number of connections for the projection of X
+(default set to 4)}
 
-\item{cutoff_p}{all the links with a proximity below this value will be
-removed from the product projection (by default is 0.4)}
+\item{tolerance}{tolerance for proximity variation on each iteration until
+obtaining the desired average number of connections (default set to 0.05)}
 
-\item{compute}{"country", "product" or "both" (default) projections}
-
-\item{tbl}{TRUE (default) returns a data.frame and FALSE returns a matrix}
-
-\item{from_c}{column containing origin (applies only if proximity_c is a
-data.frame)}
-
-\item{to_c}{column containing destination (applies only if proximity_c is a
-data.frame)}
-
-\item{value_c}{column containing proximity values (applies only if
-proximity_c is a data.frame)}
-
-\item{from_p}{column containing origin (applies only if proximity_p is a
-data.frame)}
-
-\item{to_p}{column containing destination (applies only if proximity_p is a
-data.frame)}
-
-\item{value_p}{column containing proximity values (applies only if
-proximity_p is a data.frame)}
-}
-\value{
-A list with two data frames or matrices.
+\item{compute}{which projection to compute. By default is "both" (both
+projections) but it can also be "source" or "target".}
 }
 \description{
-\code{rca} computes complexity indices following the definitions
-from \insertCite{measuringcomplexity2015;textual}{economiccomplexity}
+TBD
 }
 \details{
-Given a two data frames or matrices with proximity values, this
-function obtains a simplified network in two steps:
-
-1) Creates a network skeleton by appliying the minimum spanning tree
-algorithm from the igraph package, but multiplying proximities by minus one,
-so that the strongest links are considered for the network skeleton.
-
-2) Appends additional links to the skeleton by aading the links with
-proximity values above a user-defined cutoff.
+TBD
 }
 \examples{
 projections(
-  ec_output_demo$proximity$proximity_c,
-  ec_output_demo$proximity$proximity_p
+  proximity_source = economiccomplexity_output$proximity$proximity_source,
+  proximity_target = economiccomplexity_output$proximity$proximity_target
 )
-
 }
 \references{
-For more information about visualizing bipartite networks projections see:
-
-\insertRef{human2007}{economiccomplexity}
+For more information see:
 
 \insertRef{atlas2014}{economiccomplexity}
 
 and the references therein.
-}
-\seealso{
-\code{\link[economiccomplexity]{proximity}}
 }
 \keyword{functions}

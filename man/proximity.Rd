@@ -4,72 +4,42 @@
 \alias{proximity}
 \title{Proximity}
 \usage{
-proximity(rca, diversity, ubiquity, compute = "both", tbl = TRUE,
-  country_r = "country", product_r = "product", value_r = "value",
-  country_d = "country", value_d = "value", product_u = "product",
-  value_u = "value")
+proximity(balassa_index, balassa_sum_source, balassa_sum_target,
+  compute = "both")
 }
 \arguments{
-\item{rca}{matrix or data.frame with RCA values}
+\item{balassa_index}{a data frame (e.g. the output from
+\code{balassa_index()}).}
 
-\item{diversity}{matrix or data.frame with diversity values}
+\item{balassa_sum_source}{numeric vector or tibble/data.frame containing the
+Balassa sum for elements of set X (e.g. \code{balassa_sum_source} from
+\code{complexity_measures()}).}
 
-\item{ubiquity}{matrix or data.frame with ubiquity values}
+\item{balassa_sum_target}{numeric vector or tibble/data.frame containing the
+Balassa sum for elements of set Y (e.g. \code{balassa_sum_target} from
+\code{complexity_measures()}).}
 
-\item{compute}{"country", "product" or "both" (default) matrices}
-
-\item{tbl}{TRUE (default) returns a data.frame and FALSE returns a matrix}
-
-\item{country_r}{column containing countries (applies only if d is a
-data.frame)}
-
-\item{product_r}{column containing products (applies only if d is a
-data.frame)}
-
-\item{value_r}{column containing traded values (applies only if d is a
-data.frame)}
-
-\item{country_d}{column containing countries (applies only if d is a
-data.frame)}
-
-\item{value_d}{column containing values (applies only if d is a
-data.frame)}
-
-\item{product_u}{column containing products (applies only if d is a
-data.frame)}
-
-\item{value_u}{column containing values (applies only if d is a
-data.frame)}
-}
-\value{
-A list with two data frames or matrices.
+\item{compute}{which proximity to compute. By default is "both" (both
+proximities) but it can also be "source" or "target".}
 }
 \description{
-\code{proximity} computes proximity
+TBDs
 }
 \details{
-Given a data frame or matrix with RCA values and two data frames or
-vectors with diversity and ubiquity values or equivalent data frames, this
-function computes proximity by combining tidyverse tools and R base matrix
-functions.
+TBD
 }
 \examples{
 proximity(
-  ec_output_demo$rca,
-  ec_output_demo$complexity$diversity,
-  ec_output_demo$complexity$ubiquity
+  balassa_index = economiccomplexity_output$balassa_index,
+  balassa_sum_source = economiccomplexity_output$complexity_measures$balassa_sum_source,
+  balassa_sum_target = economiccomplexity_output$complexity_measures$balassa_sum_target
 )
-
 }
 \references{
-For more information on proximity and its applications see:
+For more information see:
 
 \insertRef{atlas2014}{economiccomplexity}
 
 and the references therein.
-}
-\seealso{
-\code{\link[economiccomplexity]{rca}},
-\code{\link[economiccomplexity]{complexity}}
 }
 \keyword{functions}

@@ -4,12 +4,12 @@
     "http://schema.org"
   ],
   "@type": "SoftwareSourceCode",
-  "identifier": "economiccomplexity",
-  "description": "A wrapper of different computation methods to create bipartite \n  networks such as countries and their exported products, and different kind of\n  relations such as countries and their spoken languages. This package \n  implements the equations described in \n  Mariani, et al. (2015) <doi:10.1140/epjb/e2015-60298-7> and \n  Hausmann, et al. (2014) <doi:10.7551/mitpress/9647.001.0001>.",
-  "name": "economiccomplexity: Create Bipartite Networks Such as Countries and their Exported Products",
-  "issueTracker": "http://github.com/pachamaltese/economiccomplexity/issues",
+  "identifier": "binet",
+  "description": "A consistent tool to explore bipartite relations. These methods \n are useful for different kind of relations such as \n The Product Space <doi:10.7551/mitpress/9647.001.0001> and The Human Disease\n Network <doi:10.1073/pnas.0701361104>.\n The functions within this package correspond to code implementations of the \n equations described in Mariani, et al. (2015) <doi:10.1140/epjb/e2015-60298-7>\n and Hausmann, et al. (2014) <doi:10.7551/mitpress/9647.001.0001>.",
+  "name": "binet: Functions to build bipartite networks under the Tidyverse philosophy",
+  "issueTracker": "http://github.com/pachamaltese/binet/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.3",
+  "version": "0.2",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -27,16 +27,6 @@
     }
   ],
   "contributor": [
-    {
-      "@type": "Person",
-      "givenName": "Carlo",
-      "familyName": "Bottai"
-    },
-    {
-      "@type": "Person",
-      "givenName": "Diego",
-      "familyName": "Kozlowski"
-    },
     {
       "@type": "Organization",
       "name": "Open Trade Statistics"
@@ -115,6 +105,12 @@
   "softwareRequirements": [
     {
       "@type": "SoftwareApplication",
+      "identifier": "R",
+      "name": "R",
+      "version": ">= 3.5"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "magrittr",
       "name": "magrittr",
       "provider": {
@@ -151,18 +147,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "tidyr",
-      "name": "tidyr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=tidyr"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "Matrix",
       "name": "Matrix",
       "provider": {
@@ -196,17 +180,11 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=rlang"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "R",
-      "name": "R",
-      "version": ">= 3.5"
     }
   ],
-  "codeRepository": "https://pachamaltese.github.io/economiccomplexity",
-  "readme": "https://github.com/pachamaltese/economiccomplexity/blob/master/README.md",
-  "fileSize": "1433.435KB",
+  "codeRepository": "https://pachamaltese.github.io/binet",
+  "readme": "https://github.com/pachamaltese/binet/blob/master/README.md",
+  "fileSize": "1162.848KB",
   "contIntegration": [
     "https://travis-ci.org/pachamaltese/economiccomplexity",
     "https://codecov.io/github/pachamaltese/economiccomplexity?branch=master"

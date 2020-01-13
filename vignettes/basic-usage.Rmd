@@ -14,98 +14,158 @@ vignette: >
 knitr::opts_chunk$set(eval = TRUE, message = FALSE, warning = FALSE)
 ```
 
-# Basic trade example
+# Galactic Federation
+
+This example is inspired after the visualizations from @atlas2014 but heavily
+inspired after Rick and Morty to keep it simple and lightweight.
 
 ## Package data
 
-I'll use this demo dataset to illustrate the essential usage of the functions
+I'll use the Galactic Federation dataset to illustrate the essential usage of the functions
 within this package.
 
 ```{r}
 library(economiccomplexity)
-ec_trade_1962
+
+galactic_federation
 ```
 
-## Revealed comparative Advantage (RCA)
+## Balassa Index
 
-You can obtain RCA with `ec_rca()`.
+You can obtain Balassa Index with `balassa_index()`.
 
 ```{r}
-r <- rca(ec_trade_1962)
-r
+bi <- balassa_index(
+  data = galactic_federation,
+  source = "planet",
+  target = "product",
+  value = "export_value"
+)
+
+bi
 ```
 
-Another possibility is to obtain RCA as a matrix or tibble without discretization.
+Another possibility is to obtain Balassa Index without discretization.
 
 ```{r}
-r2 <- rca(ec_trade_1962, discrete = F)
-r2
+bi_dec <- balassa_index(
+  data =galactic_federation,
+  source = "planet",
+  target = "product",
+  value = "export_value",
+  discrete = F
+)
+
+bi_dec
 ```
 
 ## Complexity Measures
 
-You can compute both Economic Complexity Index (ECI) and Product Complexity
-Index (PCI) by using `ec_complexity_measures()`. The calculations methods are
-*fitness* (default), *reflections* and *eigenvalues*. See [@atlas2014] and
-[@measuringcomplexity2015] for the methodological details.
+You can compute complexity indexes (e.g. such as the Economic Complexity Index and Product Complexity Index) by using `complexity_measures()`. The calculations methods are *fitness* (default), *reflections*, *eigenvalues*. See [@measuringcomplexity2015] for the methodological details.
+
+The eigenvalues also calls the reflections methods in order to correct the index sign
+in some special cases when the correlation between the output from both methods is negative.
+
+##  Complexity-Fitness
 
 ```{r}
-c <- complexity(r)
-c
+com_fit <- complexity_measures(balassa_index = bi)
+
+com_fit$complexity_index_source
+com_fit$complexity_index_target
+```
+
+## Reflections
+
+```{r}
+com_ref <- complexity_measures(
+  balassa_index = bi,
+  method = "reflections"
+)
+
+com_ref$complexity_index_source
+com_ref$complexity_index_target
+```
+
+## Eigenvalues
+
+```{r}
+com_eig <- complexity_measures(
+  balassa_index = bi,
+  method = "eigenvalues"
+)
+
+com_eig$complexity_index_source
+com_eig$complexity_index_target
 ```
 
 ## Proximity
 
-Proximity matrices are used to create both country-country and product-product
-networks. Using `proximity_matrices()` is straightforward.
+Proximity matrices are used to create projections e.g. (country-country and product-product
+networks) for bipartite networks. Using `proximity()` is straightforward.
 
 ```{r}
-p <- proximity(r, c$diversity, c$ubiquity)
-p
+pro <- proximity(
+  balassa_index = bi,
+  balassa_sum_source = com_fit$balassa_sum_source,
+  balassa_sum_target = com_fit$balassa_sum_target
+)
+
+pro$proximity_source
+pro$proximity_target
 ```
 
 ## Networks
 
-The `proximity_networks()` function is designed to use `igraph` for the internal
+The `projections()` function is designed to use `igraph` for the internal
 computations and also to pass proximity-based networks to `igraph`, `ggraph`
 or export to Cytoscape by saving the output as csv/tsv.
 
-To create some reduced networks I'll use a high proximity cutoff, so that the networks are limited to the spanning trees for clarity and fast rendering.
-
 ```{r}
-pr <- projections(p$proximity_c, p$proximity_p, 1, 1)
-pr
+net <- projections(
+  proximity_source = pro$proximity_source,
+  proximity_target = pro$proximity_target,
+  avg_links = 4,
+  tolerance = 0.05
+)
+
+net$network_source
+net$network_target
 ```
 
 Just two basic examples with `ggraph`.
-
-```{r, fig.width=20, fig.height=12}
+```{r, fig.width=7, fig.height=7}
+set.seed(200100)
+library(Matrix)
 library(igraph)
 library(ggraph)
-library(magrittr)
 
-set.seed(200100)
+aggregated_planets <- rowSums(galactic_federation)
+V(net$network_source)$size <- aggregated_planets[match(V(net$network_source)$name, names(aggregated_planets))]
 
-pr$projection_c %>%
-  graph_from_data_frame(directed = F) %>%
+net$network_source %>%
   ggraph(layout = "kk") +
-  geom_edge_link(aes(edge_alpha = value, edge_width = value),
-                 edge_colour = "#a8a8a8") +
-  geom_node_point(color = "darkslategray4", size = 8) +
+  geom_edge_link(aes(edge_width = weight), edge_colour = "#a8a8a8") +
+  geom_node_point(aes(size = size), color = "darkslategray4") +
   geom_node_text(aes(label = name), vjust = 2.2) +
-  ggtitle("Country projection") +
+  ggtitle("Proximity Based Network Projection for Planets") +
   theme_void()
 ```
 
-```{r, fig.width=20, fig.height=12}
-pr$projection_p %>%
-  graph_from_data_frame(directed = F) %>%
+The network associated to
+
+```{r, fig.width=7, fig.height=7}
+set.seed(200100)
+
+aggregated_products <- colSums(galactic_federation)
+V(net$network_target)$size <- aggregated_products[match(V(net$network_target)$name, names(aggregated_products))]
+
+net$network_target %>%
   ggraph(layout = "kk") +
-  geom_edge_link(aes(edge_alpha = value, edge_width = value),
-                 edge_colour = "#a8a8a8") +
-  geom_node_point(color = "darkslategray4", size = 4) +
+  geom_edge_link(aes(edge_width = weight), edge_colour = "#a8a8a8") +
+  geom_node_point(aes(size = size), color = "darkslategray4") +
   geom_node_text(aes(label = name), vjust = 2.2) +
-  ggtitle("Product projection") +
+  ggtitle("Proximity Based Network Projection for Products") +
   theme_void()
 ```
 

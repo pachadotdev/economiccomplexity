@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GDP per capita in 1962 — ec_gdp_pc_1962 • economiccomplexity</title>
+<title>Exported products in 1962 — trade_1962 • binet</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,9 @@
 
 
 
-<meta property="og:title" content="GDP per capita in 1962 — ec_gdp_pc_1962" />
-<meta property="og:description" content="Example dataset with countries and their gross domestic product divided by total population." />
+<meta property="og:title" content="Exported products in 1962 — trade_1962" />
+<meta property="og:description" content="Example dataset with countries and the products they export. The exports are
+grouped to four digits HS 2007 codes." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -68,8 +69,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">economiccomplexity</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
+        <a class="navbar-link" href="../index.html">binet</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1</span>
       </span>
     </div>
 
@@ -112,167 +113,48 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>GDP per capita in 1962</h1>
+    <h1>Exported products in 1962</h1>
     
-    <div class="hidden name"><code>ec_gdp_pc_1962.Rd</code></div>
+    <div class="hidden name"><code>trade_1962.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Example dataset with countries and their gross domestic product divided by total population.</p>
+    <p>Example dataset with countries and the products they export. The exports are
+grouped to four digits HS 2007 codes.</p>
     </div>
 
-    <pre class="usage"><span class='no'>ec_gdp_pc_1962</span></pre>
+    <pre class="usage"><span class='no'>trade_1962</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A data frame with 135 observations on the following 2 variables.</p><dl class='dl-horizontal'>
+    <p>A data frame with 44435 observations on the following 3 variables.</p><dl class='dl-horizontal'>
     <dt><code>country</code></dt><dd><p>a character vector</p></dd>
+    <dt><code>product</code></dt><dd><p>a character vector</p></dd>
     <dt><code>value</code></dt><dd><p>a numeric vector</p></dd>
   
 </dl>
 
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p>The World Bank</p>
+    <p>Open Trade Statistics</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>ec_gdp_pc_1962</span></div><div class='output co'>#&gt;     country      value
-#&gt; 1       css  493.46113
-#&gt; 2       ear  154.31993
-#&gt; 3       eas  148.50521
-#&gt; 4       eap   71.22208
-#&gt; 5       tea   72.01933
-#&gt; 6       emu 1110.04885
-#&gt; 7       ecs  740.96710
-#&gt; 8       euu 1025.34217
-#&gt; 9       hpc  114.58343
-#&gt; 10      hic 1546.16410
-#&gt; 11      ibd  153.00673
-#&gt; 12      ibt  145.31341
-#&gt; 13      idb  107.85118
-#&gt; 14      idx  112.04565
-#&gt; 15      ida  107.94065
-#&gt; 16      lte  159.19014
-#&gt; 17      lcn  425.30511
-#&gt; 18      lac  405.66196
-#&gt; 19      tla  418.56464
-#&gt; 20      lmy  141.47628
-#&gt; 21      mic  145.36356
-#&gt; 22      nac 3153.88605
-#&gt; 23      oed 1486.43503
-#&gt; 24      pst 1532.60681
-#&gt; 25      pre   63.86853
-#&gt; 26      sas   89.79203
-#&gt; 27      tsa   89.79203
-#&gt; 28      ssf  140.97678
-#&gt; 29      ssa  140.95402
-#&gt; 30      tss  140.97678
-#&gt; 31      umc  180.91052
-#&gt; 32      wld  488.55967
-#&gt; 33      afg   58.45801
-#&gt; 34      dza  172.24600
-#&gt; 35      arg 1155.89017
-#&gt; 36      aus 1851.84185
-#&gt; 37      aut 1087.83424
-#&gt; 38      bhs 1752.85448
-#&gt; 39      bgd  100.12212
-#&gt; 40      bel 1438.52323
-#&gt; 41      blz  327.12687
-#&gt; 42      ben   94.46453
-#&gt; 43      bmu 2020.38597
-#&gt; 44      bol  116.92515
-#&gt; 45      bwa   68.05022
-#&gt; 46      bra  260.42565
-#&gt; 47      bfa   76.52061
-#&gt; 48      bdi   73.43531
-#&gt; 49      khm  109.48122
-#&gt; 50      cmr  129.54414
-#&gt; 51      can 2255.23004
-#&gt; 52      caf   80.21261
-#&gt; 53      tcd  114.58144
-#&gt; 54      chl  638.94521
-#&gt; 55      chn   70.90941
-#&gt; 56      col  289.91796
-#&gt; 57      cod  235.63348
-#&gt; 58      cog  155.73824
-#&gt; 59      cri  334.31181
-#&gt; 60      civ  171.12819
-#&gt; 61      dnk 1681.02991
-#&gt; 62      dom  234.05163
-#&gt; 63      ecu  315.68824
-#&gt; 64      gnq   34.79058
-#&gt; 65      swz  131.16171
-#&gt; 66      fji  291.47886
-#&gt; 67      fin 1411.70240
-#&gt; 68      fra 1593.02741
-#&gt; 69      gab  357.52236
-#&gt; 70      gha  195.49226
-#&gt; 71      grc  630.61394
-#&gt; 72      gtm  256.16851
-#&gt; 73      guy  321.54577
-#&gt; 74      hti   70.13801
-#&gt; 75      hnd  179.87639
-#&gt; 76      hkg  487.82113
-#&gt; 77      isl 1562.23073
-#&gt; 78      ind   89.88176
-#&gt; 79      irn  203.43732
-#&gt; 80      irq  254.70143
-#&gt; 81      irl  797.00629
-#&gt; 82      isr 1094.63585
-#&gt; 83      ita  990.26015
-#&gt; 84      jam  463.89024
-#&gt; 85      jpn  633.64032
-#&gt; 86      ken  100.39439
-#&gt; 87      kor  106.13110
-#&gt; 88      lso   48.16181
-#&gt; 89      lux 2311.79885
-#&gt; 90      mdg  138.11985
-#&gt; 91      mwi   47.69843
-#&gt; 92      mys  230.26046
-#&gt; 93      mrt  123.26754
-#&gt; 94      mex  378.15349
-#&gt; 95      mar  181.72026
-#&gt; 96      npl   55.02570
-#&gt; 97      nld 1240.67789
-#&gt; 98      nzl 2448.62863
-#&gt; 99      nic  140.55742
-#&gt; 100     ner  148.18916
-#&gt; 101     nga  104.38702
-#&gt; 102     nor 1667.24743
-#&gt; 103     pak   89.68636
-#&gt; 104     pan  542.32728
-#&gt; 105     png  111.60032
-#&gt; 106     per  305.76153
-#&gt; 107     phl  156.70387
-#&gt; 108     prt  407.85284
-#&gt; 109     pri  854.74480
-#&gt; 110     rwa   40.94420
-#&gt; 111     sen  320.50126
-#&gt; 112     syc  287.04479
-#&gt; 113     sle  143.47205
-#&gt; 114     sgp  472.08582
-#&gt; 115     zaf  473.00234
-#&gt; 116     esp  520.20613
-#&gt; 117     lka  138.53667
-#&gt; 118     kna  246.09152
-#&gt; 119     vct  174.50027
-#&gt; 120     sdn  192.60912
-#&gt; 121     sur  382.20438
-#&gt; 122     swe 2315.84653
-#&gt; 123     che 2131.39165
-#&gt; 124     syr  227.78866
-#&gt; 125     tha  113.78288
-#&gt; 126     tgo   81.99475
-#&gt; 127     tto  704.21915
-#&gt; 128     tur  309.44667
-#&gt; 129     uga   62.22634
-#&gt; 130     gbr 1513.65145
-#&gt; 131     usa 3243.84308
-#&gt; 132     ury  656.71348
-#&gt; 133     ven 1023.35559
-#&gt; 134     zmb  212.57812
-#&gt; 135     zwe  276.68878</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>trade_1962</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 44,435 x 3</span><span>
+#&gt; </span><span style='color: #555555;'># Groups:   reporter_iso [158]</span><span>
+#&gt;    country product   value
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> afg     0106        621
+#&gt; </span><span style='color: #555555;'> 2</span><span> afg     0405       </span><span style='text-decoration: underline;'>3</span><span>380
+#&gt; </span><span style='color: #555555;'> 3</span><span> afg     0407      </span><span style='text-decoration: underline;'>60</span><span>807
+#&gt; </span><span style='color: #555555;'> 4</span><span> afg     0501    1</span><span style='text-decoration: underline;'>466</span><span>840
+#&gt; </span><span style='color: #555555;'> 5</span><span> afg     0504    1</span><span style='text-decoration: underline;'>466</span><span>840
+#&gt; </span><span style='color: #555555;'> 6</span><span> afg     0703      </span><span style='text-decoration: underline;'>85</span><span>258
+#&gt; </span><span style='color: #555555;'> 7</span><span> afg     0712       </span><span style='text-decoration: underline;'>9</span><span>057
+#&gt; </span><span style='color: #555555;'> 8</span><span> afg     0714     </span><span style='text-decoration: underline;'>164</span><span>694
+#&gt; </span><span style='color: #555555;'> 9</span><span> afg     0801    8</span><span style='text-decoration: underline;'>482</span><span>381
+#&gt; </span><span style='color: #555555;'>10</span><span> afg     0802    8</span><span style='text-decoration: underline;'>437</span><span>060
+#&gt; </span><span style='color: #555555;'># … with 44,425 more rows</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

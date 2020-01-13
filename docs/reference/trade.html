@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Exported products in 1962 — ec_trade_1962 • economiccomplexity</title>
+<title>World trade in 1962 — trade • binet</title>
 
 
 <!-- jquery -->
@@ -35,7 +35,7 @@
 
 
 
-<meta property="og:title" content="Exported products in 1962 — ec_trade_1962" />
+<meta property="og:title" content="World trade in 1962 — trade" />
 <meta property="og:description" content="Example dataset with countries and the products they export. The exports are
 grouped to four digits HS 2007 codes." />
 <meta name="twitter:card" content="summary" />
@@ -69,8 +69,8 @@ grouped to four digits HS 2007 codes." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">economiccomplexity</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3</span>
+        <a class="navbar-link" href="../index.html">binet</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2</span>
       </span>
     </div>
 
@@ -113,9 +113,9 @@ grouped to four digits HS 2007 codes." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Exported products in 1962</h1>
+    <h1>World trade in 1962</h1>
     
-    <div class="hidden name"><code>ec_trade_1962.Rd</code></div>
+    <div class="hidden name"><code>trade.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -123,7 +123,7 @@ grouped to four digits HS 2007 codes." />
 grouped to four digits HS 2007 codes.</p>
     </div>
 
-    <pre class="usage"><span class='no'>ec_trade_1962</span></pre>
+    <pre class="usage"><span class='no'>trade</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
@@ -131,29 +131,29 @@ grouped to four digits HS 2007 codes.</p>
     <p>A data frame with 44435 observations on the following 3 variables.</p><dl class='dl-horizontal'>
     <dt><code>country</code></dt><dd><p>a character vector</p></dd>
     <dt><code>product</code></dt><dd><p>a character vector</p></dd>
-    <dt><code>value</code></dt><dd><p>a numeric vector</p></dd>
+    <dt><code>export_value</code></dt><dd><p>a numeric vector</p></dd>
   
 </dl>
 
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p>Open Trade Statistics (tradestatistics.io)</p>
+    <p>Open Trade Statistics</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>ec_trade_1962</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 44,435 x 3</span><span>
+    <pre class="examples"><div class='input'><span class='no'>trade</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 44,435 x 3</span><span>
 #&gt; </span><span style='color: #555555;'># Groups:   reporter_iso [158]</span><span>
-#&gt;    country product   value
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> afg     0106        621
-#&gt; </span><span style='color: #555555;'> 2</span><span> afg     0405       </span><span style='text-decoration: underline;'>3</span><span>380
-#&gt; </span><span style='color: #555555;'> 3</span><span> afg     0407      </span><span style='text-decoration: underline;'>60</span><span>807
-#&gt; </span><span style='color: #555555;'> 4</span><span> afg     0501    1</span><span style='text-decoration: underline;'>466</span><span>840
-#&gt; </span><span style='color: #555555;'> 5</span><span> afg     0504    1</span><span style='text-decoration: underline;'>466</span><span>840
-#&gt; </span><span style='color: #555555;'> 6</span><span> afg     0703      </span><span style='text-decoration: underline;'>85</span><span>258
-#&gt; </span><span style='color: #555555;'> 7</span><span> afg     0712       </span><span style='text-decoration: underline;'>9</span><span>057
-#&gt; </span><span style='color: #555555;'> 8</span><span> afg     0714     </span><span style='text-decoration: underline;'>164</span><span>694
-#&gt; </span><span style='color: #555555;'> 9</span><span> afg     0801    8</span><span style='text-decoration: underline;'>482</span><span>381
-#&gt; </span><span style='color: #555555;'>10</span><span> afg     0802    8</span><span style='text-decoration: underline;'>437</span><span>060
+#&gt;    country product export_value
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> afg     0106             621
+#&gt; </span><span style='color: #555555;'> 2</span><span> afg     0405            </span><span style='text-decoration: underline;'>3</span><span>380
+#&gt; </span><span style='color: #555555;'> 3</span><span> afg     0407           </span><span style='text-decoration: underline;'>60</span><span>807
+#&gt; </span><span style='color: #555555;'> 4</span><span> afg     0501         1</span><span style='text-decoration: underline;'>466</span><span>840
+#&gt; </span><span style='color: #555555;'> 5</span><span> afg     0504         1</span><span style='text-decoration: underline;'>466</span><span>840
+#&gt; </span><span style='color: #555555;'> 6</span><span> afg     0703           </span><span style='text-decoration: underline;'>85</span><span>258
+#&gt; </span><span style='color: #555555;'> 7</span><span> afg     0712            </span><span style='text-decoration: underline;'>9</span><span>057
+#&gt; </span><span style='color: #555555;'> 8</span><span> afg     0714          </span><span style='text-decoration: underline;'>164</span><span>694
+#&gt; </span><span style='color: #555555;'> 9</span><span> afg     0801         8</span><span style='text-decoration: underline;'>482</span><span>381
+#&gt; </span><span style='color: #555555;'>10</span><span> afg     0802         8</span><span style='text-decoration: underline;'>437</span><span>060
 #&gt; </span><span style='color: #555555;'># … with 44,425 more rows</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

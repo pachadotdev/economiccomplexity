@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Country-product bipartite network projections — projections • economiccomplexity</title>
+<title>Projections of a bipartite network — projections • binet</title>
 
 
 <!-- jquery -->
@@ -35,9 +35,8 @@
 
 
 
-<meta property="og:title" content="Country-product bipartite network projections — projections" />
-<meta property="og:description" content="rca computes complexity indices following the definitions
-from Mariani et al. (2015)" />
+<meta property="og:title" content="Projections of a bipartite network — projections" />
+<meta property="og:description" content="TBD" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -69,8 +68,8 @@ from Mariani et al. (2015)" />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">economiccomplexity</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3</span>
+        <a class="navbar-link" href="../index.html">binet</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2</span>
       </span>
     </div>
 
@@ -113,147 +112,119 @@ from Mariani et al. (2015)" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Country-product bipartite network projections</h1>
+    <h1>Projections of a bipartite network</h1>
     
     <div class="hidden name"><code>projections.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>rca</code> computes complexity indices following the definitions
-from Mariani et al. (2015)</p>
+    <p>TBD</p>
     </div>
 
-    <pre class="usage"><span class='fu'>projections</span>(<span class='no'>proximity_c</span>, <span class='no'>proximity_p</span>, <span class='kw'>cutoff_c</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>cutoff_p</span> <span class='kw'>=</span> <span class='fl'>0.4</span>,
-  <span class='kw'>compute</span> <span class='kw'>=</span> <span class='st'>"both"</span>, <span class='kw'>tbl</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>from_c</span> <span class='kw'>=</span> <span class='st'>"from"</span>, <span class='kw'>to_c</span> <span class='kw'>=</span> <span class='st'>"to"</span>,
-  <span class='kw'>value_c</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>from_p</span> <span class='kw'>=</span> <span class='st'>"from"</span>, <span class='kw'>to_p</span> <span class='kw'>=</span> <span class='st'>"to"</span>,
-  <span class='kw'>value_p</span> <span class='kw'>=</span> <span class='st'>"value"</span>)</pre>
+    <pre class="usage"><span class='fu'>projections</span>(
+  <span class='no'>proximity_source</span>,
+  <span class='no'>proximity_target</span>,
+  <span class='kw'>source</span> <span class='kw'>=</span> <span class='st'>"source"</span>,
+  <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"target"</span>,
+  <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
+  <span class='kw'>avg_links</span> <span class='kw'>=</span> <span class='fl'>4</span>,
+  <span class='kw'>tolerance</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
+  <span class='kw'>compute</span> <span class='kw'>=</span> <span class='st'>"both"</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>proximity_c</th>
-      <td><p>matrix or data frame with product proximity values</p></td>
+      <th>proximity_source</th>
+      <td><p>a data frame containing proximity
+values for the elements of set X (e.g. proximity_source from <code><a href='proximity.html'>proximity()</a></code>)</p></td>
     </tr>
     <tr>
-      <th>proximity_p</th>
-      <td><p>matrix or data frame with country proximity values</p></td>
+      <th>proximity_target</th>
+      <td><p>a data frame containing proximity
+values for the elements of set Y (e.g. proximity_target from <code><a href='proximity.html'>proximity()</a></code>)</p></td>
     </tr>
     <tr>
-      <th>cutoff_c</th>
-      <td><p>all the links with a proximity below this value will be
-removed from the country projection (by default is 0.2)</p></td>
+      <th>source</th>
+      <td><p>a column with the elements of set X (applies only if data is
+a data frame).</p></td>
     </tr>
     <tr>
-      <th>cutoff_p</th>
-      <td><p>all the links with a proximity below this value will be
-removed from the product projection (by default is 0.4)</p></td>
+      <th>target</th>
+      <td><p>a column with the elements of set Y (applies only if data is
+a data frame).</p></td>
+    </tr>
+    <tr>
+      <th>value</th>
+      <td><p>a column with the proximity values between the elements
+of X or Y (applies only if data is a data frame).</p></td>
+    </tr>
+    <tr>
+      <th>avg_links</th>
+      <td><p>average number of connections for the projection of X
+(default set to 4)</p></td>
+    </tr>
+    <tr>
+      <th>tolerance</th>
+      <td><p>tolerance for proximity variation on each iteration until
+obtaining the desired average number of connections (default set to 0.05)</p></td>
     </tr>
     <tr>
       <th>compute</th>
-      <td><p>"country", "product" or "both" (default) projections</p></td>
-    </tr>
-    <tr>
-      <th>tbl</th>
-      <td><p>TRUE (default) returns a data.frame and FALSE returns a matrix</p></td>
-    </tr>
-    <tr>
-      <th>from_c</th>
-      <td><p>column containing origin (applies only if proximity_c is a
-data.frame)</p></td>
-    </tr>
-    <tr>
-      <th>to_c</th>
-      <td><p>column containing destination (applies only if proximity_c is a
-data.frame)</p></td>
-    </tr>
-    <tr>
-      <th>value_c</th>
-      <td><p>column containing proximity values (applies only if
-proximity_c is a data.frame)</p></td>
-    </tr>
-    <tr>
-      <th>from_p</th>
-      <td><p>column containing origin (applies only if proximity_p is a
-data.frame)</p></td>
-    </tr>
-    <tr>
-      <th>to_p</th>
-      <td><p>column containing destination (applies only if proximity_p is a
-data.frame)</p></td>
-    </tr>
-    <tr>
-      <th>value_p</th>
-      <td><p>column containing proximity values (applies only if
-proximity_p is a data.frame)</p></td>
+      <td><p>which projection to compute. By default is "both" (both
+projections) but it can also be "source" or "target".</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A list with two data frames or matrices.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Given a two data frames or matrices with proximity values, this
-function obtains a simplified network in two steps:</p>
-<p>1) Creates a network skeleton by appliying the minimum spanning tree
-algorithm from the igraph package, but multiplying proximities by minus one,
-so that the strongest links are considered for the network skeleton.</p>
-<p>2) Appends additional links to the skeleton by aading the links with
-proximity values above a user-defined cutoff.</p>
+    <p>TBD</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>For more information about visualizing bipartite networks projections see:</p>
-<p>Goh K, Cusick ME, Valle D, Childs B, Vidal M, Barabási A (2007).
-&#8220;The human disease network.&#8221;
-<em>Proceedings of the National Academy of Sciences</em>, <b>104</b>(21), 8685--8690.
-ISSN 0027-8424, doi: <a href='https://doi.org/10.1073/pnas.0701361104'>10.1073/pnas.0701361104</a>
-, https://www.pnas.org/content/104/21/8685.full.pdf, <a href='https://www.pnas.org/content/104/21/8685'>https://www.pnas.org/content/104/21/8685</a>.</p>
+    <p>For more information see:</p>
 <p>Hausmann R, Hidalgo C, Bustos S, Coscia M, Simoes A, Yildirim M (2014).
 <em>The atlas of economic complexity: Mapping paths to prosperity</em>.
 MIT Press.
 doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9647.001.0001</a>
 .</p>
 <p>and the references therein.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='proximity.html'>proximity</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>projections</span>(
-  <span class='no'>ec_output_demo</span>$<span class='no'>proximity</span>$<span class='no'>proximity_c</span>,
-  <span class='no'>ec_output_demo</span>$<span class='no'>proximity</span>$<span class='no'>proximity_p</span>
-)</div><div class='output co'>#&gt; $projection_c
-#&gt; <span style='color: #555555;'># A tibble: 497 x 3</span><span>
-#&gt;    from  to    value
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> khm   cmr   0.2  
-#&gt; </span><span style='color: #555555;'> 2</span><span> khm   ecu   0.2  
-#&gt; </span><span style='color: #555555;'> 3</span><span> khm   gtm   0.225
-#&gt; </span><span style='color: #555555;'> 4</span><span> khm   idn   0.214
-#&gt; </span><span style='color: #555555;'> 5</span><span> khm   mdg   0.204
-#&gt; </span><span style='color: #555555;'> 6</span><span> khm   mli   0.325
-#&gt; </span><span style='color: #555555;'> 7</span><span> khm   nic   0.2  
-#&gt; </span><span style='color: #555555;'> 8</span><span> khm   pak   0.241
-#&gt; </span><span style='color: #555555;'> 9</span><span> khm   sdn   0.2  
-#&gt; </span><span style='color: #555555;'>10</span><span> khm   nga   0.267
-#&gt; </span><span style='color: #555555;'># … with 487 more rows</span><span>
+  <span class='kw'>proximity_source</span> <span class='kw'>=</span> <span class='no'>binet_output</span>$<span class='no'>proximity</span>$<span class='no'>proximity_source</span>,
+  <span class='kw'>proximity_target</span> <span class='kw'>=</span> <span class='no'>binet_output</span>$<span class='no'>proximity</span>$<span class='no'>proximity_target</span>
+)</div><div class='output co'>#&gt; <span class='message'>computing target projection...</span></div><div class='output co'>#&gt; <span class='message'>--------------------------------------------------</span></div><div class='output co'>#&gt; <span class='message'>0 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.05 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.1 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.15 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.2 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.25 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.3 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.35 threshold achieves the avg number of connections</span></div><div class='output co'>#&gt; <span class='message'>computing target projection...</span></div><div class='output co'>#&gt; <span class='message'>--------------------------------------------------</span></div><div class='output co'>#&gt; <span class='message'>0 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.05 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.1 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.15 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.2 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.25 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.3 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.35 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.4 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.45 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.5 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.55 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.6 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.65 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.7 threshold achieves the avg number of connections</span></div><div class='output co'>#&gt; $network_source
+#&gt; <span style='color: #555555;'># A tibble: 272 x 3</span><span>
+#&gt;    source target value
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> irn    syr    0.344
+#&gt; </span><span style='color: #555555;'> 2</span><span> irn    alb    0.375
+#&gt; </span><span style='color: #555555;'> 3</span><span> irn    tur    0.348
+#&gt; </span><span style='color: #555555;'> 4</span><span> irn    afg    0.5  
+#&gt; </span><span style='color: #555555;'> 5</span><span> npl    afg    0.214
+#&gt; </span><span style='color: #555555;'> 6</span><span> syr    afg    0.357
+#&gt; </span><span style='color: #555555;'> 7</span><span> ago    ben    0.339
+#&gt; </span><span style='color: #555555;'> 8</span><span> ago    khm    0.308
+#&gt; </span><span style='color: #555555;'> 9</span><span> ago    moz    0.304
+#&gt; </span><span style='color: #555555;'>10</span><span> ago    per    0.358
+#&gt; </span><span style='color: #555555;'># … with 262 more rows</span><span>
 #&gt; 
-#&gt; $projection_p
-#&gt; </span><span style='color: #555555;'># A tibble: 56,160 x 3</span><span>
-#&gt;    from  to    value
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> 0711  9614  0.467
-#&gt; </span><span style='color: #555555;'> 2</span><span> 0711  0103  0.4  
-#&gt; </span><span style='color: #555555;'> 3</span><span> 0711  0203  0.467
-#&gt; </span><span style='color: #555555;'> 4</span><span> 0711  0207  0.4  
-#&gt; </span><span style='color: #555555;'> 5</span><span> 0711  0210  0.4  
-#&gt; </span><span style='color: #555555;'> 6</span><span> 0711  0405  0.4  
-#&gt; </span><span style='color: #555555;'> 7</span><span> 0711  0407  0.5  
-#&gt; </span><span style='color: #555555;'> 8</span><span> 0711  0505  0.467
-#&gt; </span><span style='color: #555555;'> 9</span><span> 0711  0701  0.529
-#&gt; </span><span style='color: #555555;'>10</span><span> 0711  0702  0.467
-#&gt; </span><span style='color: #555555;'># … with 56,150 more rows</span><span>
+#&gt; $network_target
+#&gt; </span><span style='color: #555555;'># A tibble: 1,800 x 3</span><span>
+#&gt;    source target value
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> 9614   4202   0.529
+#&gt; </span><span style='color: #555555;'> 2</span><span> 9614   0101   0.579
+#&gt; </span><span style='color: #555555;'> 3</span><span> 0102   0201   0.5  
+#&gt; </span><span style='color: #555555;'> 4</span><span> 0102   0104   0.423
+#&gt; </span><span style='color: #555555;'> 5</span><span> 0103   0505   0.647
+#&gt; </span><span style='color: #555555;'> 6</span><span> 1102   1005   0.5  
+#&gt; </span><span style='color: #555555;'> 7</span><span> 1102   0105   0.417
+#&gt; </span><span style='color: #555555;'> 8</span><span> 4803   4707   0.615
+#&gt; </span><span style='color: #555555;'> 9</span><span> 4803   0105   0.417
+#&gt; </span><span style='color: #555555;'>10</span><span> 0106   1302   0.514
+#&gt; </span><span style='color: #555555;'># … with 1,790 more rows</span><span>
 #&gt; </div><div class='input'>
 </div></span></pre>
   </div>
@@ -261,10 +232,8 @@ doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
       <li><a href="#details">Details</a></li>
       <li><a href="#references">References</a></li>
-      <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

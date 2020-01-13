@@ -1,7 +1,7 @@
 Package: economiccomplexity
 Type: Package
-Title: Create Bipartite Networks Such as Countries and their Exported Products
-Version: 0.3
+Title: Functions to build bipartite networks under the Tidyverse philosophy
+Version: 0.99
 Authors@R: c(
     person(given = "Mauricio",
       family = "Vargas",
@@ -24,28 +24,26 @@ Authors@R: c(
       role = "rev",
       comment = "suggested improvements to special cases in eigenvalues 
       calculation"
-    ),
-    person(family = "Open Trade Statistics",
-      role = "dtc")
+    )
   )
-Description: A wrapper of different computation methods to create bipartite 
-  networks such as countries and their exported products, and different kind of
-  relations such as countries and their spoken languages. This package 
-  implements the equations described in 
-  Mariani, et al. (2015) <doi:10.1140/epjb/e2015-60298-7> and 
-  Hausmann, et al. (2014) <doi:10.7551/mitpress/9647.001.0001>.
+Description: A consistent tool to compute different indices used in
+ Economic Complexity that are described in
+ Mariani, et al. (2015) <doi:10.1140/epjb/e2015-60298-7>,
+ Hausmann, et al. (2014) <doi:10.7551/mitpress/9647.001.0001>.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-Imports: magrittr, tibble, dplyr, tidyr, Matrix, igraph, rlang
 Depends: R (>= 3.5)
-URL: https://pachamaltese.github.io/economiccomplexity
-BugReports: http://github.com/pachamaltese/economiccomplexity/issues
-RdMacros: Rdpack
-RoxygenNote: 6.1.1
+Imports:
+    Matrix, 
+    igraph,
 Suggests: 
     testthat (>= 2.1.0),
     knitr,
     Rdpack,
     ggraph
+URL: https://pachamaltese.github.io/economiccomplexity
+BugReports: http://github.com/pachamaltese/economiccomplexity/issues
+RdMacros: Rdpack
+RoxygenNote: 7.0.2
 VignetteBuilder: knitr
