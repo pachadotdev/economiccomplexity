@@ -42,7 +42,7 @@ The current implementation follows
 that account for diversification in bipartite relations.
 }
 \examples{
-complexity_measures(balassa_index = economiccomplexity_output$balassa_index)
+complexity_measures(economiccomplexity_output$balassa_index)
 
 }
 \references{

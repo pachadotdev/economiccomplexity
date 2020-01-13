@@ -6,14 +6,9 @@
 #'
 #' @return foobar
 #'
-#' @param balassa_index foo
-#' @param method (Type: character) one of these methods: fitness,
-#' reflections or eigenvalues. By default this is set to \code{"fitness"}.
-#' @param iterations (Type: numeric) the number of iterations to use.
-#' By default this is set to \code{20}.
-#' @param extremality (Type: numeric) the parameter to use in the fitness
-#' method. The other methods don't use this parameter.
-#' By default this is set to \code{1}.
+#' @param balassa_index (Type: matrix or dgCMatrix) foo
+#' @param proximity_product (Type: matrix or dgCMatrix) foo.
+#' @param complexity_index_product (Type: numeric) foobar.
 #'
 #' @importFrom Matrix Matrix rowSums colSums t
 #'
