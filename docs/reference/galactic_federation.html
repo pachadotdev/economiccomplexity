@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Contributor Code of Conduct • economiccomplexity</title>
+<title>Fictional data based on Rick and Morty — galactic_federation • economiccomplexity</title>
 
 
 <!-- jquery -->
@@ -29,13 +29,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
-<link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script>
+<link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script>
 
 
 
 
-<meta property="og:title" content="Contributor Code of Conduct" />
+<meta property="og:title" content="Fictional data based on Rick and Morty — galactic_federation" />
+<meta property="og:description" content="A matrix with fictional trade for the planets that were part of
+the Galatic Federation in 2017 according to Rick and Morty. The planets are
+taken from the TV show but the products and values are just an invention. Each
+row expresses how many Blemflarcks (Galatic Federation currency) each planet
+exported to the rest of the interplanetary trade system." />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -54,7 +60,7 @@
   </head>
 
   <body>
-    <div class="container template-title-body">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -66,7 +72,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">economiccomplexity</a>
+        <a class="navbar-link" href="../index.html">economiccomplexity</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99</span>
       </span>
     </div>
@@ -74,13 +80,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">
+  <a href="../index.html">
     <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -90,7 +96,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="articles/basic-usage.html">How to use this package</a>
+      <a href="../articles/basic-usage.html">How to use this package</a>
     </li>
   </ul>
 </li>
@@ -108,25 +114,49 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Contributor Code of Conduct</h1>
+    <h1>Fictional data based on Rick and Morty</h1>
+    
+    <div class="hidden name"><code>galactic_federation.Rd</code></div>
     </div>
 
-<div id="contributor-code-of-conduct" class="section level1">
+    <div class="ref-description">
+    <p>A matrix with fictional trade for the planets that were part of
+the Galatic Federation in 2017 according to Rick and Morty. The planets are
+taken from the TV show but the products and values are just an invention. Each
+row expresses how many Blemflarcks (Galatic Federation currency) each planet
+exported to the rest of the interplanetary trade system.</p>
+    </div>
 
-<p>As contributors and maintainers of this project, we pledge to respect all people who contribute through reporting issues, posting feature requests, updating documentation, submitting pull requests or patches, and other activities.</p>
-<p>We are committed to making participation in this project a harassment-free experience for everyone, regardless of level of experience, gender, gender identity and expression, sexual orientation, disability, personal appearance, body size, race, ethnicity, age, or religion.</p>
-<p>Examples of unacceptable behavior by participants include the use of sexual language or imagery, derogatory comments or personal attacks, trolling, public or private harassment, insults, or other unprofessional conduct.</p>
-<p>Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct. Project maintainers who do not follow the Code of Conduct may be removed from the project team.</p>
-<p>Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by opening an issue or contacting one or more of the project maintainers.</p>
-<p>This Code of Conduct is adapted from the Contributor Covenant (<a href="http://contributor-covenant.org" class="uri">http://contributor-covenant.org</a>), version 1.0.0, available at <a href="http://contributor-covenant.org/version/1/0/0/" class="uri">http://contributor-covenant.org/version/1/0/0/</a></p>
-</div>
+    <pre class="usage"><span class='no'>galactic_federation</span></pre>
+
+
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>A sparse matrix with 9 rows and 12 columns.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>galactic_federation</span></div><div class='output co'>#&gt; 9 x 12 sparse Matrix of class "dgCMatrix"</div><div class='output co'>#&gt; <span class='message'>   [[ suppressing 12 column names ‘alpha’, ‘beta’, ‘delta’ ... ]]</span></div><div class='output co'>#&gt;                                                                              
+#&gt; Bepis 9                       0   10  50 1350 0  1000    0    0  0  12 120  0
+#&gt; Bird World                    0    0   0    0 0  5000    0    0  0   0   0  0
+#&gt; Crepktct 4                    0    0   0    0 0  2000   50  150 12  10   0  0
+#&gt; Earth C-137                 345  123 654  356 0   700  120   89 12  50 500 12
+#&gt; Galactic Federation Outpost   0  200   0  100 0  1250   20   70  0   0   0  0
+#&gt; Galactic Federation Prison    0  234   1    5 0   900    9   12  0   5   8  7
+#&gt; Gear World                    0    0   0    2 1     0    0    0  0   5   4  0
+#&gt; Glaagablaaga                 23    3 300  500 1 10000 5000 1000  0 100  20  0
+#&gt; Gromflom Prime                0 5000   0    0 0   600    0    0  0   0   0  1</div></pre>
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#format">Format</a></li>
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
-
 </div>
-
 
 
       <footer>

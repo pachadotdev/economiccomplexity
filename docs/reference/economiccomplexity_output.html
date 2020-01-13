@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Balassa Index — balassa_index • economiccomplexity</title>
+<title>Example outputs of the functions within the package — economiccomplexity_output • economiccomplexity</title>
 
 
 <!-- jquery -->
@@ -35,10 +35,9 @@
 
 
 
-<meta property="og:title" content="Balassa Index — balassa_index" />
-<meta property="og:description" content="balassa_index() computes the Balassa Index for a
-bipartite relation between two disjoint sets X, the &quot;source&quot; or &quot;from&quot; side,
-and Y, the &quot;target&quot; or &quot;to&quot; side." />
+<meta property="og:title" content="Example outputs of the functions within the package — economiccomplexity_output" />
+<meta property="og:description" content="List of different economic complexity computations obtained by using the functions within the
+package. The output is provided as a list of tibbles." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -114,85 +113,52 @@ and Y, the &quot;target&quot; or &quot;to&quot; side." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Balassa Index</h1>
+    <h1>Example outputs of the functions within the package</h1>
     
-    <div class="hidden name"><code>balassa_index.Rd</code></div>
+    <div class="hidden name"><code>economiccomplexity_output.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>balassa_index()</code> computes the Balassa Index for a
-bipartite relation between two disjoint sets X, the "source" or "from" side,
-and Y, the "target" or "to" side.</p>
+    <p>List of different economic complexity computations obtained by using the functions within the
+package. The output is provided as a list of tibbles.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>balassa_index</span>(<span class='no'>data</span>, <span class='kw'>source</span> <span class='kw'>=</span> <span class='st'>"source"</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"target"</span>,
-  <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"value"</span>, <span class='kw'>discrete</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cutoff</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
+    <pre class="usage"><span class='no'>economiccomplexity_output</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>data</th>
-      <td><p>(Type: data.frame, matrix or dgCMatrix) a dataset such as <code>galactic_federation</code>
-or any arrangement.</p></td>
-    </tr>
-    <tr>
-      <th>source</th>
-      <td><p>(Type: character) the column with the elements of set X.
-By default this is set to <code>"source"</code>.</p></td>
-    </tr>
-    <tr>
-      <th>target</th>
-      <td><p>(Type: character) the column with the elements of set Y.
-By default this is set to <code>"target"</code>.</p></td>
-    </tr>
-    <tr>
-      <th>value</th>
-      <td><p>(Type: character) the column with the binary expression for the
-Balassa Index.
-By default this is set to <code>"value"</code>.</p></td>
-    </tr>
-    <tr>
-      <th>discrete</th>
-      <td><p>(Type: logical) whether converting the Balassa Index to
-discrete (0/1) values. Anything below the specified cutoff is converted to 0
-and 1 otherwise. By default this is set to <code>TRUE</code>.</p></td>
-    </tr>
-    <tr>
-      <th>cutoff</th>
-      <td><p>(Type: numeric) the cutoff to use for discretization.
-By default this is set to <code>1</code>.</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A data.frame with the Balassa Index.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The current implementation follows
-(Mariani et al. 2015)
- to obtain a metric for
-specialisation. In the context of international trade, if the Balassa Index
-for a country-product pair is more than 1, it means that country is
-specialized in that product.</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>For more information see:</p>
-<p>Mariani M, Vidmer A, Medo M, Zhang Y (2015).
-&#8220;Measuring economic complexity of countries and products: which metric to use?&#8221;
-<em>The European Physical Journal B</em>, <b>88</b>(11), 293.
-doi: <a href='https://doi.org/10.1140/epjb/e2015-60298-7'>10.1140/epjb/e2015-60298-7</a>
-.</p>
-<p>and the references therein.</p>
+    <p>The format is:
+List of 3
+ $ rca_tbl                :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	44435 obs. of  3 variables:
+  ..$ country: chr [1:44435] "afg" "afg" "afg" "afg" ...
+  ..$ product: chr [1:44435] "0106" "0405" "0407" "0501" ...
+  ..$ value  : num [1:44435] 0 0 0 1 1 0 0 1 1 1 ...
+ $ complexity_measures_tbl:List of 4
+  ..$ complexity_index_c:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	99 obs. of  2 variables:
+  .. ..$ country: chr [1:99] "deu" "fra" "usa" "gbr" ...
+  .. ..$ value  : num [1:99] 19.47 11.99 11.55 8.43 6.92 ...
+  ..$ complexity_index_p:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	991 obs. of  2 variables:
+  .. ..$ product: chr [1:991] "2702" "7111" "2850" "8804" ...
+  .. ..$ value  : num [1:991] 48.1 48.1 29.7 18.4 17.9 ...
+  ..$ diversity         :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	99 obs. of  2 variables:
+  .. ..$ country: chr [1:99] "ago" "alb" "are" "arg" ...
+  .. ..$ value  : num [1:99] 52 32 1 83 81 290 320 127 27 70 ...
+  ..$ ubiquity          :Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	991 obs. of  2 variables:
+  .. ..$ product: chr [1:991] "0101" "0102" "0103" "0104" ...
+  .. ..$ value  : num [1:991] 13 19 13 12 9 27 17 12 4 10 ...
+ $ proximity_tbl          :List of 2
+  ..$ proximity_c:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	4484 obs. of  3 variables:
+  .. ..$ from : chr [1:4484] "alb" "are" "arg" "aus" ...
+  .. ..$ to   : chr [1:4484] "ago" "ago" "ago" "ago" ...
+  .. ..$ value: num [1:4484] 0.0769 0.0192 0.1325 0.0741 0.0241 ...
+  ..$ proximity_p:Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	408869 obs. of  3 variables:
+  .. ..$ from : chr [1:408869] "0102" "0103" "0104" "0106" ...
+  .. ..$ to   : chr [1:408869] "0101" "0101" "0101" "0101" ...
+  .. ..$ value: num [1:408869] 0.316 0.308 0.385 0.148 0.353 ...</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>balassa_index</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>galactic_federation</span>,
-  <span class='kw'>source</span> <span class='kw'>=</span> <span class='st'>"planet"</span>,
-  <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
-  <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"export_value"</span>
-)</div><div class='output co'>#&gt; 9 x 12 sparse Matrix of class "dgCMatrix"</div><div class='output co'>#&gt; <span class='message'>   [[ suppressing 12 column names ‘alpha’, ‘beta’, ‘delta’ ... ]]</span></div><div class='output co'>#&gt;                                                    
+    <pre class="examples"><div class='input'><span class='no'>economiccomplexity_output</span>$<span class='no'>balassa_index</span></div><div class='output co'>#&gt; 9 x 12 sparse Matrix of class "dgCMatrix"</div><div class='output co'>#&gt; <span class='message'>   [[ suppressing 12 column names ‘alpha’, ‘beta’, ‘delta’ ... ]]</span></div><div class='output co'>#&gt;                                                    
 #&gt; Bepis 9                     . . . 1 . . . . . . 1 .
 #&gt; Bird World                  . . . . . 1 . . . . . .
 #&gt; Crepktct 4                  . . . . . 1 . 1 1 . . .
@@ -201,15 +167,12 @@ doi: <a href='https://doi.org/10.1140/epjb/e2015-60298-7'>10.1140/epjb/e2015-602
 #&gt; Galactic Federation Prison  . 1 . . . 1 . . . . . 1
 #&gt; Gear World                  . . . 1 1 . . . . 1 1 .
 #&gt; Glaagablaaga                . . . . 1 1 1 1 . 1 . .
-#&gt; Gromflom Prime              . 1 . . . . . . . . . .</div></pre>
+#&gt; Gromflom Prime              . 1 . . . . . . . . . .</div><div class='input'><span class='no'>economiccomplexity_output</span>$<span class='no'>complexity_measures</span>$<span class='no'>complexity_index_x</span></div><div class='output co'>#&gt; NULL</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#references">References</a></li>
+      <li><a href="#format">Format</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

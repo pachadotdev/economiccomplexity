@@ -12,10 +12,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Binet <img src="https://pachamaltese.github.io/binet/hexicon.svg" width=150 align="right" alt="sticker"/>
+# economiccomplexity <img src="https://pachamaltese.github.io/economiccomplexity/hexicon.svg" width=150 align="right" alt="sticker"/>
 
-[![R build status](https://github.com/pachamaltese/binet/workflows/R-CMD-check/badge.svg)](https://github.com/pachamaltese/binet/actions?workflow=R-CMD-check)
-[![Codecov test coverage](https://codecov.io/gh/pachamaltese/binet/branch/master/graph/badge.svg)](https://codecov.io/gh/pachamaltese/binet?branch=master)
+[![R build status](https://github.com/pachamaltese/economiccomplexity/workflows/R-CMD-check/badge.svg)](https://github.com/pachamaltese/economiccomplexity/actions?workflow=R-CMD-check)
+[![Codecov test coverage](https://codecov.io/gh/pachamaltese/economiccomplexity/branch/master/graph/badge.svg)](https://codecov.io/gh/pachamaltese/economiccomplexity?branch=master)
+[![CRAN status](https://www.r-pkg.org/badges/version/economiccomplexity)](https://cran.r-project.org/package=economiccomplexity)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 
@@ -27,13 +28,13 @@ The functions within this package correspond to code implementations of the equa
 
 ```{r, eval = FALSE}
 # Install stable version from CRAN
-install.packages("binet")
+install.packages("economiccomplexity")
 
 # Install stable version from GitHub
-devtools::install_github("pachamaltese/binet")
+devtools::install_github("pachamaltese/economiccomplexity")
 ```
 
 ## Code of conduct
 
-Please note that this project is released with a [Contributor Code of Conduct](https://pachamaltese.github.io/binet/CODE_OF_CONDUCT.html).
+Please note that this project is released with a [Contributor Code of Conduct](https://pachamaltese.github.io/economiccomplexity/CODE_OF_CONDUCT.html).
 By participating in this project you agree to abide by its terms.

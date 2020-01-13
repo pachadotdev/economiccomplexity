@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Projections of a bipartite network — projections • binet</title>
+<title>Projections of a bipartite network — projections • economiccomplexity</title>
 
 
 <!-- jquery -->
@@ -68,8 +68,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">binet</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2</span>
+        <a class="navbar-link" href="../index.html">economiccomplexity</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99</span>
       </span>
     </div>
 
@@ -121,16 +121,8 @@
     <p>TBD</p>
     </div>
 
-    <pre class="usage"><span class='fu'>projections</span>(
-  <span class='no'>proximity_source</span>,
-  <span class='no'>proximity_target</span>,
-  <span class='kw'>source</span> <span class='kw'>=</span> <span class='st'>"source"</span>,
-  <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"target"</span>,
-  <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
-  <span class='kw'>avg_links</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>tolerance</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>compute</span> <span class='kw'>=</span> <span class='st'>"both"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>projections</span>(<span class='no'>proximity_source</span>, <span class='no'>proximity_target</span>, <span class='kw'>avg_links</span> <span class='kw'>=</span> <span class='fl'>4</span>,
+  <span class='kw'>tolerance</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>compute</span> <span class='kw'>=</span> <span class='st'>"both"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -144,21 +136,6 @@ values for the elements of set X (e.g. proximity_source from <code><a href='prox
       <th>proximity_target</th>
       <td><p>a data frame containing proximity
 values for the elements of set Y (e.g. proximity_target from <code><a href='proximity.html'>proximity()</a></code>)</p></td>
-    </tr>
-    <tr>
-      <th>source</th>
-      <td><p>a column with the elements of set X (applies only if data is
-a data frame).</p></td>
-    </tr>
-    <tr>
-      <th>target</th>
-      <td><p>a column with the elements of set Y (applies only if data is
-a data frame).</p></td>
-    </tr>
-    <tr>
-      <th>value</th>
-      <td><p>a column with the proximity values between the elements
-of X or Y (applies only if data is a data frame).</p></td>
     </tr>
     <tr>
       <th>avg_links</th>
@@ -192,41 +169,31 @@ doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>projections</span>(
-  <span class='kw'>proximity_source</span> <span class='kw'>=</span> <span class='no'>binet_output</span>$<span class='no'>proximity</span>$<span class='no'>proximity_source</span>,
-  <span class='kw'>proximity_target</span> <span class='kw'>=</span> <span class='no'>binet_output</span>$<span class='no'>proximity</span>$<span class='no'>proximity_target</span>
-)</div><div class='output co'>#&gt; <span class='message'>computing target projection...</span></div><div class='output co'>#&gt; <span class='message'>--------------------------------------------------</span></div><div class='output co'>#&gt; <span class='message'>0 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.05 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.1 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.15 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.2 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.25 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.3 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.35 threshold achieves the avg number of connections</span></div><div class='output co'>#&gt; <span class='message'>computing target projection...</span></div><div class='output co'>#&gt; <span class='message'>--------------------------------------------------</span></div><div class='output co'>#&gt; <span class='message'>0 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.05 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.1 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.15 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.2 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.25 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.3 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.35 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.4 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.45 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.5 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.55 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.6 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.65 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.7 threshold achieves the avg number of connections</span></div><div class='output co'>#&gt; $network_source
-#&gt; <span style='color: #555555;'># A tibble: 272 x 3</span><span>
-#&gt;    source target value
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> irn    syr    0.344
-#&gt; </span><span style='color: #555555;'> 2</span><span> irn    alb    0.375
-#&gt; </span><span style='color: #555555;'> 3</span><span> irn    tur    0.348
-#&gt; </span><span style='color: #555555;'> 4</span><span> irn    afg    0.5  
-#&gt; </span><span style='color: #555555;'> 5</span><span> npl    afg    0.214
-#&gt; </span><span style='color: #555555;'> 6</span><span> syr    afg    0.357
-#&gt; </span><span style='color: #555555;'> 7</span><span> ago    ben    0.339
-#&gt; </span><span style='color: #555555;'> 8</span><span> ago    khm    0.308
-#&gt; </span><span style='color: #555555;'> 9</span><span> ago    moz    0.304
-#&gt; </span><span style='color: #555555;'>10</span><span> ago    per    0.358
-#&gt; </span><span style='color: #555555;'># … with 262 more rows</span><span>
+  <span class='kw'>proximity_source</span> <span class='kw'>=</span> <span class='no'>economiccomplexity_output</span>$<span class='no'>proximity</span>$<span class='no'>proximity_source</span>,
+  <span class='kw'>proximity_target</span> <span class='kw'>=</span> <span class='no'>economiccomplexity_output</span>$<span class='no'>proximity</span>$<span class='no'>proximity_target</span>
+)</div><div class='output co'>#&gt; <span class='message'>computing target projection...</span></div><div class='output co'>#&gt; <span class='message'>--------------------------------------------------</span></div><div class='output co'>#&gt; <span class='message'>0 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.05 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.1 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.15 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.2 threshold achieves the avg number of connections</span></div><div class='output co'>#&gt; <span class='message'>computing target projection...</span></div><div class='output co'>#&gt; <span class='message'>--------------------------------------------------</span></div><div class='output co'>#&gt; <span class='message'>0 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.05 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.1 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.15 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.2 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.25 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.3 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.35 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.4 threshold achieves the avg number of connections</span></div><div class='output co'>#&gt; $network_source
+#&gt; IGRAPH 5733dd1 UNW- 9 17 -- 
+#&gt; + attr: name (v/c), weight (e/n)
+#&gt; + edges from 5733dd1 (vertex names):
+#&gt;  [1] Bepis 9                    --Gear World                 
+#&gt;  [2] Bird World                 --Galactic Federation Outpost
+#&gt;  [3] Bird World                 --Galactic Federation Prison 
+#&gt;  [4] Crepktct 4                 --Galactic Federation Outpost
+#&gt;  [5] Earth C-137                --Gear World                 
+#&gt;  [6] Galactic Federation Outpost--Glaagablaaga               
+#&gt;  [7] Galactic Federation Prison --Gromflom Prime             
+#&gt;  [8] Gear World                 --Glaagablaaga               
+#&gt; + ... omitted several edges
 #&gt; 
 #&gt; $network_target
-#&gt; </span><span style='color: #555555;'># A tibble: 1,800 x 3</span><span>
-#&gt;    source target value
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> 9614   4202   0.529
-#&gt; </span><span style='color: #555555;'> 2</span><span> 9614   0101   0.579
-#&gt; </span><span style='color: #555555;'> 3</span><span> 0102   0201   0.5  
-#&gt; </span><span style='color: #555555;'> 4</span><span> 0102   0104   0.423
-#&gt; </span><span style='color: #555555;'> 5</span><span> 0103   0505   0.647
-#&gt; </span><span style='color: #555555;'> 6</span><span> 1102   1005   0.5  
-#&gt; </span><span style='color: #555555;'> 7</span><span> 1102   0105   0.417
-#&gt; </span><span style='color: #555555;'> 8</span><span> 4803   4707   0.615
-#&gt; </span><span style='color: #555555;'> 9</span><span> 4803   0105   0.417
-#&gt; </span><span style='color: #555555;'>10</span><span> 0106   1302   0.514
-#&gt; </span><span style='color: #555555;'># … with 1,790 more rows</span><span>
-#&gt; </div><div class='input'>
-</div></span></pre>
+#&gt; IGRAPH b28121b UNW- 12 15 -- 
+#&gt; + attr: name (v/c), weight (e/n)
+#&gt; + edges from b28121b (vertex names):
+#&gt;  [1] alpha  --delta  beta   --zeta   delta  --zeta   epsilon--theta 
+#&gt;  [5] eta    --iota   eta    --mu     gamma  --kappa  kappa  --mu    
+#&gt;  [9] lambda --theta  lambda --zeta   mu     --theta  alpha  --zeta  
+#&gt; [13] alpha  --lambda delta  --lambda epsilon--mu    
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
