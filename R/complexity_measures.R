@@ -68,13 +68,13 @@ complexity_measures <- function(balassa_index, method = "fitness", iterations = 
   reflections <- function() {
     # create empty matrices
     kx <- Matrix(0,
-                         nrow = length(kx0), ncol = iterations,
-                         sparse = TRUE
+                 nrow = length(kx0), ncol = iterations,
+                 sparse = TRUE
     )
 
     ky <- Matrix(0,
-                         nrow = length(ky0), ncol = iterations,
-                         sparse = TRUE
+                 nrow = length(ky0), ncol = iterations,
+                 sparse = TRUE
     )
 
     # fill the first columns with kx0 and ky0 to start iterating

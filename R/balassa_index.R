@@ -71,6 +71,7 @@ balassa_index <- function(data, discrete = TRUE, cutoff = 1,
     stop("'cutoff' must be numeric")
   }
 
+  # convert data.frame / matrix to dgCMatrix ----
   if (any(class(data) %in% "data.frame")) {
     data <- country_product_aggregation(data, country, product, value)
     data <- dataframe_to_matrix(data, country, product, value)
@@ -80,6 +81,7 @@ balassa_index <- function(data, discrete = TRUE, cutoff = 1,
     data <- Matrix(data, sparse = TRUE)
   }
 
+  # compute index ----
   data <- t(t(data / rowSums(data)) / (colSums(data) / sum(data)))
 
   if (discrete == TRUE) {
