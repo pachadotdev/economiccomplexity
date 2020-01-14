@@ -23,7 +23,7 @@
 #' method. The other methods don't use this parameter.
 #' By default this is set to \code{1}.
 #'
-#' @importFrom Matrix Matrix rowSums colSums t
+#' @importFrom Matrix Matrix rowSums colSums t crossprod
 #' @importFrom stats sd cor setNames
 #'
 #' @examples
@@ -83,8 +83,8 @@ complexity_measures <- function(balassa_index, method = "fitness", iterations = 
 
     # compute cols 2 to "no. of iterations" by iterating from col 1
     for (j in 2:ncol(kx)) {
-      kx[, j] <- (balassa_index %*% ky[, (j - 1)]) * (1 / kx0)
-      ky[, j] <- (t(balassa_index) %*% kx[, (j - 1)]) * (1 / ky0)
+      kx[, j] <- (balassa_index %*% ky[, (j - 1)]) / kx0
+      ky[, j] <- (crossprod(balassa_index, kx[, (j - 1)])) / ky0
     }
 
     # xci is of odd order and normalized
@@ -115,7 +115,7 @@ complexity_measures <- function(balassa_index, method = "fitness", iterations = 
     yci_r <- reflections_output$yci
 
     # compute eigenvalues for xci
-    xci <- eigen((balassa_index %*% (t(balassa_index) * (1 / ky0))) * (1 / kx0))
+    xci <- eigen((balassa_index / kx0) %*% (t(balassa_index) / ky0))
     xci <- Re(xci$vectors[, 2])
 
     # normalized xci
@@ -130,7 +130,7 @@ complexity_measures <- function(balassa_index, method = "fitness", iterations = 
     }
 
     # compute eigenvalues for yci
-    yci <- eigen((t(balassa_index) %*% (balassa_index * (1 / kx0))) * (1 / ky0))
+    yci <- eigen((t(balassa_index) / ky0) %*% (balassa_index / kx0))
     yci <- Re(yci$vectors[, 2])
 
     # normalized yci
@@ -148,13 +148,13 @@ complexity_measures <- function(balassa_index, method = "fitness", iterations = 
   if (method == "fitness") {
     # create empty matrices
     kx <- Matrix(0,
-                         nrow = length(kx0), ncol = iterations,
-                         sparse = TRUE
+                 nrow = length(kx0), ncol = iterations,
+                 sparse = TRUE
     )
 
     ky <- Matrix(0,
-                         nrow = length(ky0), ncol = iterations,
-                         sparse = TRUE
+                 nrow = length(ky0), ncol = iterations,
+                 sparse = TRUE
     )
 
     # fill the first columns with kx0 and ky0 to start iterating
@@ -164,12 +164,9 @@ complexity_measures <- function(balassa_index, method = "fitness", iterations = 
     # compute cols 2 to "no. of iterations" by iterating from col 1
     for (j in 2:ncol(kx)) {
       kx[, j] <- balassa_index %*% ky[, (j - 1)]
-
       kx[, j] <- kx[, j] / mean(kx[, j])
 
-      ky[, j] <- 1 / (t(balassa_index) %*%
-                        (1 / kx[, (j - 1)])^extremality)^(1 / extremality)
-
+      ky[, j] = 1 / (crossprod(balassa_index,  (1 / kx[, (j - 1)])^extremality))^(1 / extremality)
       ky[, j] <- ky[, j] / mean(ky[, j])
     }
 

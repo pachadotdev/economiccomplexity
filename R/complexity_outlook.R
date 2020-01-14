@@ -1,4 +1,4 @@
-#' Countries Position
+#' Complexity Outlook
 #'
 #' @description foo
 #'
@@ -13,7 +13,7 @@
 #' @importFrom Matrix Matrix tcrossprod rowSums colSums t
 #'
 #' @examples
-#' countries_position(
+#' complexity_outlook(
 #'  economiccomplexity_output$balassa_index,
 #'  economiccomplexity_output$proximity$proximity_product,
 #'  economiccomplexity_output$complexity_measures$complexity_index_product
@@ -30,18 +30,18 @@
 #'
 #' @export
 
-countries_position <- function(balassa_index, proximity_product, complexity_index_product) {
+complexity_outlook <- function(balassa_index, proximity_product, complexity_index_product) {
   # sanity checks ----
   if (class(balassa_index) != "dgCMatrix") {
     stop("'balassa_index' must be a dgCMatrix")
   }
 
-  if (class(proximity_product) != "dgCMatrix") {
+  if (class(proximity_product) != "dsCMatrix") {
     stop("'proximity_product' must be a dgCMatrix")
   }
 
-  if (class(complexity_index_product) != "dgCMatrix") {
-    stop("'complexity_index_product' must be a dgCMatrix")
+  if (class(complexity_index_product) != "numeric") {
+    stop("'complexity_index_product' must be numeric")
   }
 
   # compute matrices ----

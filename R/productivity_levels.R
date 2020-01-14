@@ -4,15 +4,15 @@
 #'
 #' @details bar
 #'
-#' @return
+#' @return foobar
 #'
 #' @param d1 foo
 #' @param d2 bar
 #' @param country country
 #' @param product product
-#' @param value value
+#' @param value value foobar
 #'
-#' @importFrom Matrix Matrix rowSums colSums t
+#' @importFrom Matrix Matrix rowSums colSums t crossprod
 #' @importFrom stats setNames
 #'
 #' @examples
@@ -73,7 +73,7 @@ productivity_levels <- function(d1, d2,
   p1 <- d1 / rowSums(d1)
   p2 <- colSums(p1)
 
-  prody <- (t(p1) %*% d2) / p2
+  prody <- crossprod(p1, d2) / p2
   expy <- p1 %*% prody
 
   prody <- setNames(as.numeric(prody), rownames(prody))

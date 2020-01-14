@@ -21,10 +21,10 @@ productivity_levels(
 
 \item{product}{product}
 
-\item{value}{value}
+\item{value}{value foobar}
 }
 \value{
-
+foobar
 }
 \description{
 foo

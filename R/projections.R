@@ -38,7 +38,7 @@ projections <- function(proximity_country, proximity_product,
   # sanity checks ----
   if (class(proximity_country) != "dsCMatrix" |
     class(proximity_product) != "dsCMatrix") {
-    stop("'proximity_country' and 'proximity_product' must be dtCMatrix")
+    stop("'proximity_country' and 'proximity_product' must be dsCMatrix")
   }
 
   if (!is.numeric(avg_links)) {

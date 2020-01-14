@@ -15,7 +15,7 @@
 #' @param compute which proximity to compute. By default is "both" (both
 #' proximities) but it can also be "country" or "product".
 #'
-#' @importFrom Matrix t tril rowSums colSums
+#' @importFrom Matrix t tril rowSums colSums crossprod tcrossprod
 #'
 #' @examples
 #' proximity(
@@ -71,15 +71,15 @@ proximity <- function(balassa_index, balassa_sum_country, balassa_sum_product, c
   balassa_index <- balassa_index[, colnames(balassa_index) %in% names(balassa_sum_product)]
 
   if (any("country" %in% compute2) == TRUE) {
-    prox_x <- (balassa_index %*% t(balassa_index)) / outer(balassa_sum_country, balassa_sum_country, pmax)
-    prox_x <- Matrix(prox_x, sparse = T)
+    prox_x <- tcrossprod(balassa_index, balassa_index) / outer(balassa_sum_country, balassa_sum_country, pmax)
+    prox_x <- Matrix(prox_x, sparse = TRUE)
   } else {
     prox_x <- NULL
   }
 
   if (any("product" %in% compute2) == TRUE) {
-    prox_y <- (t(balassa_index) %*% balassa_index) / outer(balassa_sum_product, balassa_sum_product, pmax)
-    prox_y <- Matrix(prox_y, sparse = T)
+    prox_y <- crossprod(balassa_index, balassa_index) / outer(balassa_sum_product, balassa_sum_product, pmax)
+    prox_y <- Matrix(prox_y, sparse = TRUE)
   } else {
     prox_y <- NULL
   }
