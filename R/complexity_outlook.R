@@ -45,9 +45,9 @@ complexity_outlook <- function(balassa_index, proximity_product, complexity_inde
   }
 
   # compute matrices ----
-  density <- tcrossprod(balassa_index, proximity_product / rowSums(proximity_product))
+  density <- tcrossprod(1 - balassa_index, proximity_product / rowSums(proximity_product))
 
-  coi <- rowSums(t(t(density * (1 - balassa_index)) * complexity_index_product))
+  coi <- colSums(t((1 - density) * (1 - balassa_index)) * complexity_index_product)
 
   cog <- (1 - balassa_index) * tcrossprod((1 - balassa_index),
     t(proximity_product * (complexity_index_product / rowSums(proximity_product))))
