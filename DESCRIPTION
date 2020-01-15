@@ -1,7 +1,7 @@
 Package: economiccomplexity
 Type: Package
-Title: Functions to build bipartite networks under the Tidyverse philosophy
-Version: 0.99
+Title: Computational Methods for Economic Complexity
+Version: 0.4
 Authors@R: c(
     person(given = "Mauricio",
       family = "Vargas",
@@ -26,10 +26,9 @@ Authors@R: c(
       calculation"
     )
   )
-Description: A consistent tool to compute different indices used in
- Economic Complexity that are described in
- Mariani, et al. (2015) <doi:10.1140/epjb/e2015-60298-7>,
- Hausmann, et al. (2014) <doi:10.7551/mitpress/9647.001.0001>.
+Description: A wrapper of different methods from Linear Algebra for the equations
+  introduced in The Atlas of Economic Complexity. This package provides standard
+  matrix output that can be used seamlessly with other packages.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -45,5 +44,5 @@ Suggests:
 URL: https://pachamaltese.github.io/economiccomplexity
 BugReports: http://github.com/pachamaltese/economiccomplexity/issues
 RdMacros: Rdpack
-RoxygenNote: 7.0.2
+RoxygenNote: 6.1.1
 VignetteBuilder: knitr

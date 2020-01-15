@@ -1,8 +1,15 @@
 #' Proximity
 #'
-#' @description TBDs
+#' @description \code{proximity()} computes two matrices obtained after the
+#' Balassa Index that account for the similarity between pairs of countries
+#' and pairs of products.
 #'
-#' @details TBD
+#' @details The current implementation follows
+#' \insertCite{atlas2014}{economiccomplexity} to obtain the likelihood that two
+#' products "p1" and "p2" are exported by the same country and, conversely,
+#' that two countries "c1" and "c2" export the same product.
+#'
+#' @return a list of two matrices
 #'
 #' @param balassa_index a data frame (e.g. the output from
 #' \code{balassa_index()}).
@@ -15,7 +22,7 @@
 #' @param compute which proximity to compute. By default is "both" (both
 #' proximities) but it can also be "country" or "product".
 #'
-#' @importFrom Matrix t tril rowSums colSums crossprod tcrossprod
+#' @importFrom Matrix t rowSums colSums crossprod tcrossprod
 #'
 #' @examples
 #' proximity(

@@ -1,17 +1,15 @@
 #' Complexity Measures
 #'
 #' @description \code{complexity_measures()} computes different complexity
-#' measures obtained from the Balassa Index or a binary (0/1) metric for a
-#' bipartite relation between two disjoint sets X, the "country" or "from" side,
-#' and Y, the "product" or "to" side.
+#' measures obtained after the Balassa Index. In particular, these measures
+#' are aggregations of the Balassa Index, the Country Complexity Index and the
+#' Product Complexity Index.
 #'
 #' @details The current implementation follows
-#' \insertCite{measuringcomplexity2015}{economiccomplexity} to obtain different metrics
-#' that account for diversification in bipartite relations.
+#' \insertCite{measuringcomplexity2015}{economiccomplexity} to obtain different
+#' metrics that account for diversification in bipartite relations.
 #'
-#' @return A list of four data frames. Two complexity indexes that are
-#' ordering rankings for specialization and two aggregations (sums) of
-#' the Balassa Index.
+#' @return A list of four named numeric vectors.
 #'
 #' @param balassa_index (Type: matrix or dgCMatrix) the output from
 #' \code{balassa_index()}) or an equivalent arrangement.
