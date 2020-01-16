@@ -1,8 +1,6 @@
 test_that("proximity results are aligned with the expected output", {
   pr <- proximity(
-    balassa_index = economiccomplexity_output$balassa_index,
-    balassa_sum_country = economiccomplexity_output$complexity_measures$balassa_sum_country,
-    balassa_sum_product = economiccomplexity_output$complexity_measures$balassa_sum_product
+    balassa_index = economiccomplexity_output$balassa_index
   )
 
   expect_is(pr, "list")
@@ -17,8 +15,6 @@ test_that("proximity results are aligned with the expected output", {
 test_that("proximity returns country proximity only", {
   pr <- proximity(
     balassa_index = economiccomplexity_output$balassa_index,
-    balassa_sum_country = economiccomplexity_output$complexity_measures$balassa_sum_country,
-    balassa_sum_product = economiccomplexity_output$complexity_measures$balassa_sum_product,
     compute = "country"
   )
 
@@ -32,8 +28,6 @@ test_that("proximity returns country proximity only", {
 test_that("proximity returns product proximity only", {
   pr <- proximity(
     balassa_index = economiccomplexity_output$balassa_index,
-    balassa_sum_country = economiccomplexity_output$complexity_measures$balassa_sum_country,
-    balassa_sum_product = economiccomplexity_output$complexity_measures$balassa_sum_product,
     compute = "product"
   )
 
@@ -47,45 +41,7 @@ test_that("proximity returns product proximity only", {
 test_that("proximity fails with NULL balassa_index", {
   expect_error(
     proximity(
-      balassa_index = NULL,
-      balassa_sum_country = economiccomplexity_output$complexity_measures$balassa_sum_country,
-      balassa_sum_product = economiccomplexity_output$complexity_measures$balassa_sum_product
-    )
-  )
-})
-
-test_that("proximity fails with NULL names in balassa_sum_country/balassa_sum_product", {
-  expect_error(
-    proximity(
-      balassa_index = economiccomplexity_output$balassa_index,
-      balassa_sum_country = as.numeric(economiccomplexity_output$complexity_measures$balassa_sum_country),
-      balassa_sum_product = economiccomplexity_output$complexity_measures$balassa_sum_product
-    )
-  )
-
-  expect_error(
-    proximity(
-      balassa_index = economiccomplexity_output$balassa_index,
-      balassa_sum_country = economiccomplexity_output$complexity_measures$balassa_sum_country,
-      balassa_sum_product = as.numeric(economiccomplexity_output$complexity_measures$balassa_sum_product)
-    )
-  )
-})
-
-test_that("proximity fails with NULL balassa_sum_country/balassa_sum_product", {
-  expect_error(
-    proximity(
-      balassa_index = economiccomplexity_output$balassa_index,
-      balassa_sum_country = NULL,
-      balassa_sum_product = economiccomplexity_output$complexity_measures$balassa_sum_product
-    )
-  )
-
-  expect_error(
-    proximity(
-      balassa_index = economiccomplexity_output$balassa_index,
-      balassa_sum_country = economiccomplexity_output$complexity_measures$balassa_sum_country,
-      balassa_sum_product = NULL
+      balassa_index = NULL
     )
   )
 })
@@ -94,8 +50,6 @@ test_that("proximity fails with NULL compute", {
   expect_error(
     proximity(
       balassa_index = economiccomplexity_output$balassa_index,
-      balassa_sum_country = economiccomplexity_output$complexity_measures$balassa_sum_country,
-      balassa_sum_product = economiccomplexity_output$complexity_measures$balassa_sum_product,
       compute = NULL
     )
   )

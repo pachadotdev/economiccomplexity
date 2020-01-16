@@ -4,15 +4,11 @@
 \alias{complexity_measures}
 \title{Complexity Measures}
 \usage{
-complexity_measures(
-  balassa_index,
-  method = "fitness",
-  iterations = 20,
-  extremality = 1
-)
+complexity_measures(balassa_index, method = "fitness", iterations = 20,
+  extremality = 1)
 }
 \arguments{
-\item{balassa_index}{(Type: matrix or dgCMatrix) the output from
+\item{balassa_index}{(Type: dgCMatrix) the output from
 \code{balassa_index()}) or an equivalent arrangement.}
 
 \item{method}{(Type: character) one of these methods: fitness,
@@ -26,20 +22,16 @@ method. The other methods don't use this parameter.
 By default this is set to \code{1}.}
 }
 \value{
-A list of four data frames. Two complexity indexes that are
-ordering rankings for specialization and two aggregations (sums) of
-the Balassa Index.
+A list of two named numeric vectors.
 }
 \description{
-\code{complexity_measures()} computes different complexity
-measures obtained from the Balassa Index or a binary (0/1) metric for a
-bipartite relation between two disjoint sets X, the "country" or "from" side,
-and Y, the "product" or "to" side.
+\code{complexity_measures()} computes the Economic Complexity
+Index and the Product Complexity Index.
 }
 \details{
 The current implementation follows
-\insertCite{measuringcomplexity2015}{economiccomplexity} to obtain different metrics
-that account for diversification in bipartite relations.
+\insertCite{measuringcomplexity2015}{economiccomplexity} to obtain different
+alternatives that account for diversification in bipartite relations.
 }
 \examples{
 complexity_measures(economiccomplexity_output$balassa_index)

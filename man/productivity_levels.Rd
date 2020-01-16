@@ -4,13 +4,8 @@
 \alias{productivity_levels}
 \title{Productivity Levels}
 \usage{
-productivity_levels(
-  d1,
-  d2,
-  country = "country",
-  product = "product",
-  value = "value"
-)
+productivity_levels(d1, d2, country = "country", product = "product",
+  value = "value")
 }
 \arguments{
 \item{d1}{foo}

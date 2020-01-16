@@ -1,21 +1,32 @@
-#' Projections of a bipartite network
+#' Projections of a Bipartite Network
 #'
-#' @description TBD
+#' @description \code{proximity()} computes two graphs obtained after the
+#' proximity matrices that are particularly useful to visualize product-product
+#' and country-country similarity.
 #'
-#' @details TBD
+#' @details The current implementation follows
+#' \insertCite{atlas2014}{economiccomplexity} to create simplifiedgraphs
+#' that correspond to a simplification of the proximity matrices. The result is
+#' obtained by iterating and reducing links until the desired average number of
+#' links per node is obtained, or a spaning tree after the strongest links is
+#' returned when is not possible to return the desired network.
 #'
-#' @param proximity_country a data frame containing proximity
-#' values for the elements of set X (e.g. proximity_country from \code{proximity()})
-#' @param proximity_product a data frame containing proximity
-#' values for the elements of set Y (e.g. proximity_product from \code{proximity()})
-#' @param avg_links average number of connections for the projection of X
-#' (default set to 4)
+#' @return A list of two graphs.
+#'
+#' @param proximity_country (Type: dgCMatrix) the output from
+#' \code{proximity()}) or an equivalent arrangement.
+#' @param proximity_product (Type: dgCMatrix) the output from
+#' \code{proximity()}) or an equivalent arrangement.
+#' @param avg_links average number of connections for the projections.
+#' By default this is set to \code{4}.
 #' @param tolerance tolerance for proximity variation on each iteration until
-#' obtaining the desired average number of connections (default set to 0.05)
-#' @param compute which projection to compute. By default is "both" (both
-#' projections) but it can also be "country" or "product".
+#' obtaining the desired average number of connections.
+#' By default this is set to \code{0.05}.
+#' @param compute (Type: character) the proximity to compute. By default this is
+#' \code{"both"} (both projections) but it can also be \code{"country"}
+#' or \code{"product"}.
 #'
-#' @importFrom igraph graph_from_adjacency_matrix graph_from_data_frame mst as_data_frame degree delete.edges graph.difference E E<-
+#' @importFrom igraph graph_from_adjacency_matrix mst degree delete.edges graph.difference E E<- graph.union
 #'
 #' @examples
 #' projections(
@@ -70,15 +81,11 @@ projections <- function(proximity_country, proximity_product,
       if (threshold < 1) {
         message(sprintf("%s threshold...", threshold))
 
-        proximity_g_nmst <- delete.edges(proximity_g, which(abs(E(proximity_g)$weight) <= threshold))
-        proximity_g_nmst <- graph.difference(proximity_g_nmst, proximity_mst)
+        proximity_nmst <- delete.edges(proximity_g, which(abs(E(proximity_g)$weight) <= threshold))
+        proximity_nmst <- graph.difference(proximity_nmst, proximity_mst)
 
-        proximity_g <- rbind(
-          as_data_frame(proximity_mst),
-          as_data_frame(proximity_g_nmst)
-        )
-
-        proximity_g <- graph_from_data_frame(proximity_g, directed = F)
+        proximity_g <- graph.union(proximity_mst, proximity_nmst)
+        E(proximity_g)$weight <- pmin(E(proximity_g)$weight_1, E(proximity_g)$weight_2, na.rm = T)
 
         avg_links_n <- ifelse(mean(degree(proximity_g)) <= avg_d, TRUE, FALSE)
         threshold <- threshold + tolerance

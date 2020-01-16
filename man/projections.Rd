@@ -2,37 +2,44 @@
 % Please edit documentation in R/projections.R
 \name{projections}
 \alias{projections}
-\title{Projections of a bipartite network}
+\title{Projections of a Bipartite Network}
 \usage{
-projections(
-  proximity_country,
-  proximity_product,
-  avg_links = 4,
-  tolerance = 0.05,
-  compute = "both"
-)
+projections(proximity_country, proximity_product, avg_links = 4,
+  tolerance = 0.05, compute = "both")
 }
 \arguments{
-\item{proximity_country}{a data frame containing proximity
-values for the elements of set X (e.g. proximity_country from \code{proximity()})}
+\item{proximity_country}{(Type: dgCMatrix) the output from
+\code{proximity()}) or an equivalent arrangement.}
 
-\item{proximity_product}{a data frame containing proximity
-values for the elements of set Y (e.g. proximity_product from \code{proximity()})}
+\item{proximity_product}{(Type: dgCMatrix) the output from
+\code{proximity()}) or an equivalent arrangement.}
 
-\item{avg_links}{average number of connections for the projection of X
-(default set to 4)}
+\item{avg_links}{average number of connections for the projections.
+By default this is set to \code{4}.}
 
 \item{tolerance}{tolerance for proximity variation on each iteration until
-obtaining the desired average number of connections (default set to 0.05)}
+obtaining the desired average number of connections.
+By default this is set to \code{0.05}.}
 
-\item{compute}{which projection to compute. By default is "both" (both
-projections) but it can also be "country" or "product".}
+\item{compute}{(Type: character) the proximity to compute. By default this is
+\code{"both"} (both projections) but it can also be \code{"country"}
+or \code{"product"}.}
+}
+\value{
+A list of two graphs.
 }
 \description{
-TBD
+\code{proximity()} computes two graphs obtained after the
+proximity matrices that are particularly useful to visualize product-product
+and country-country similarity.
 }
 \details{
-TBD
+The current implementation follows
+\insertCite{atlas2014}{economiccomplexity} to create simplifiedgraphs
+that correspond to a simplification of the proximity matrices. The result is
+obtained by iterating and reducing links until the desired average number of
+links per node is obtained, or a spaning tree after the strongest links is
+returned when is not possible to return the desired network.
 }
 \examples{
 projections(

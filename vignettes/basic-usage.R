@@ -7,68 +7,35 @@ library(economiccomplexity)
 galactic_federation
 
 ## -----------------------------------------------------------------------------
-bi <- balassa_index(
-  data = galactic_federation,
-  country = "planet",
-  product = "product",
-  value = "export_value"
-)
-
+bi <- balassa_index(galactic_federation)
 bi
 
 ## -----------------------------------------------------------------------------
-bi_dec <- balassa_index(
-  data =galactic_federation,
-  country = "planet",
-  product = "product",
-  value = "export_value",
-  discrete = F
-)
-
+bi_dec <- balassa_index(galactic_federation, discrete = F)
 bi_dec
 
 ## -----------------------------------------------------------------------------
-com_fit <- complexity_measures(balassa_index = bi)
-
+com_fit <- complexity_measures(bi)
 com_fit$complexity_index_country
 com_fit$complexity_index_product
 
 ## -----------------------------------------------------------------------------
-com_ref <- complexity_measures(
-  balassa_index = bi,
-  method = "reflections"
-)
-
+com_ref <- complexity_measures(bi, method = "reflections")
 com_ref$complexity_index_country
 com_ref$complexity_index_product
 
 ## -----------------------------------------------------------------------------
-com_eig <- complexity_measures(
-  balassa_index = bi,
-  method = "eigenvalues"
-)
-
+com_eig <- complexity_measures(bi, method = "eigenvalues")
 com_eig$complexity_index_country
 com_eig$complexity_index_product
 
 ## -----------------------------------------------------------------------------
-pro <- proximity(
-  balassa_index = bi,
-  balassa_sum_country = com_fit$balassa_sum_country,
-  balassa_sum_product = com_fit$balassa_sum_product
-)
-
+pro <- proximity(bi)
 pro$proximity_country
 pro$proximity_product
 
 ## -----------------------------------------------------------------------------
-net <- projections(
-  proximity_country = pro$proximity_country,
-  proximity_product = pro$proximity_product,
-  avg_links = 4,
-  tolerance = 0.05
-)
-
+net <- projections(pro$proximity_country, pro$proximity_product)
 net$network_country
 net$network_product
 

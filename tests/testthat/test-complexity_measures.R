@@ -9,12 +9,8 @@ test_that("fitness method works in complexity_measures", {
   expect_is(cm, "list")
   expect_is(cm$complexity_index_country, "numeric")
   expect_is(cm$complexity_index_product, "numeric")
-  expect_is(cm$balassa_sum_country, "numeric")
-  expect_is(cm$balassa_sum_product, "numeric")
   expect_equal(length(cm$complexity_index_country), 9)
   expect_equal(length(cm$complexity_index_product), 12)
-  expect_equal(length(cm$balassa_sum_country), 9)
-  expect_equal(length(cm$balassa_sum_product), 12)
 })
 
 test_that("reflections method works in complexity_measures", {
@@ -28,12 +24,8 @@ test_that("reflections method works in complexity_measures", {
   expect_is(cm, "list")
   expect_is(cm$complexity_index_country, "numeric")
   expect_is(cm$complexity_index_product, "numeric")
-  expect_is(cm$balassa_sum_country, "numeric")
-  expect_is(cm$balassa_sum_product, "numeric")
   expect_equal(length(cm$complexity_index_country), 9)
   expect_equal(length(cm$complexity_index_product), 12)
-  expect_equal(length(cm$balassa_sum_country), 9)
-  expect_equal(length(cm$balassa_sum_product), 12)
 })
 
 test_that("eigenvalues method works in complexity_measures", {
@@ -47,12 +39,8 @@ test_that("eigenvalues method works in complexity_measures", {
   expect_is(cm, "list")
   expect_is(cm$complexity_index_country, "numeric")
   expect_is(cm$complexity_index_product, "numeric")
-  expect_is(cm$balassa_sum_country, "numeric")
-  expect_is(cm$balassa_sum_product, "numeric")
   expect_equal(length(cm$complexity_index_country), 9)
   expect_equal(length(cm$complexity_index_product), 12)
-  expect_equal(length(cm$balassa_sum_country), 9)
-  expect_equal(length(cm$balassa_sum_product), 12)
 })
 
 test_that("complexity_measures fails with NULL balassa_index", {

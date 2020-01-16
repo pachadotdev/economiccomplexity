@@ -4,14 +4,8 @@
 \alias{balassa_index}
 \title{Balassa Index}
 \usage{
-balassa_index(
-  data,
-  discrete = TRUE,
-  cutoff = 1,
-  country = "country",
-  product = "product",
-  value = "value"
-)
+balassa_index(data, discrete = TRUE, cutoff = 1, country = "country",
+  product = "product", value = "value")
 }
 \arguments{
 \item{data}{(Type: data.frame, matrix or dgCMatrix) a dataset such as \code{galactic_federation}
@@ -25,14 +19,14 @@ and 1 otherwise. By default this is set to \code{TRUE}.}
 By default this is set to \code{1}.}
 
 \item{country}{(Type: character) the column with the countries.
-By default this is set to \code{"country"}. Applies only if the input is a data.frame.}
+By default this is set to \code{"country"}. Used only if the input is a data.frame.}
 
 \item{product}{(Type: character) the column with the products.
-By default this is set to \code{"product"}. Applies only if the input is a data.frame.}
+By default this is set to \code{"product"}. Used only if the input is a data.frame.}
 
 \item{value}{(Type: character) the column with the metric for
 country-product pairs.
-By default this is set to \code{"value"}. Applies only if the input is a data.frame.}
+By default this is set to \code{"value"}. Used only if the input is a data.frame.}
 }
 \value{
 A matrix with the Balassa Index.
@@ -46,12 +40,9 @@ The current implementation follows
 \insertCite{measuringcomplexity2015}{economiccomplexity} to obtain a metric for
 specialisation. In the context of international trade, if the Balassa Index
 for a country-product pair is more than 1, it means that country is
-specialized in that product.
-
-If the input for this function is a data.frame instead of a matrix, the
-function shall aggregate the data and convert the input to a matrix. You
-don't need to aggregate the data beforehand if, for example, you pass a
-data.frame containing origin, destination, product and exports value.
+specialized in that product. If the input for this function is a data.frame
+instead of a matrix, the function shall aggregate the data and convert the
+input to a matrix.
 }
 \examples{
 balassa_index(

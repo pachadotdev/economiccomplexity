@@ -35,27 +35,14 @@ galactic_federation
 You can obtain Balassa Index with `balassa_index()`.
 
 ```{r}
-bi <- balassa_index(
-  data = galactic_federation,
-  country = "planet",
-  product = "product",
-  value = "export_value"
-)
-
+bi <- balassa_index(galactic_federation)
 bi
 ```
 
 Another possibility is to obtain Balassa Index without discretization.
 
 ```{r}
-bi_dec <- balassa_index(
-  data =galactic_federation,
-  country = "planet",
-  product = "product",
-  value = "export_value",
-  discrete = F
-)
-
+bi_dec <- balassa_index(galactic_federation, discrete = F)
 bi_dec
 ```
 
@@ -69,8 +56,7 @@ in some special cases when the correlation between the output from both methods 
 ##  Complexity-Fitness
 
 ```{r}
-com_fit <- complexity_measures(balassa_index = bi)
-
+com_fit <- complexity_measures(bi)
 com_fit$complexity_index_country
 com_fit$complexity_index_product
 ```
@@ -78,11 +64,7 @@ com_fit$complexity_index_product
 ## Reflections
 
 ```{r}
-com_ref <- complexity_measures(
-  balassa_index = bi,
-  method = "reflections"
-)
-
+com_ref <- complexity_measures(bi, method = "reflections")
 com_ref$complexity_index_country
 com_ref$complexity_index_product
 ```
@@ -90,11 +72,7 @@ com_ref$complexity_index_product
 ## Eigenvalues
 
 ```{r}
-com_eig <- complexity_measures(
-  balassa_index = bi,
-  method = "eigenvalues"
-)
-
+com_eig <- complexity_measures(bi, method = "eigenvalues")
 com_eig$complexity_index_country
 com_eig$complexity_index_product
 ```
@@ -105,12 +83,7 @@ Proximity matrices are used to create projections e.g. (country-country and prod
 networks) for bipartite networks. Using `proximity()` is straightforward.
 
 ```{r}
-pro <- proximity(
-  balassa_index = bi,
-  balassa_sum_country = com_fit$balassa_sum_country,
-  balassa_sum_product = com_fit$balassa_sum_product
-)
-
+pro <- proximity(bi)
 pro$proximity_country
 pro$proximity_product
 ```
@@ -122,13 +95,7 @@ computations and also to pass proximity-based networks to `igraph`, `ggraph`
 or export to Cytoscape by saving the output as csv/tsv.
 
 ```{r}
-net <- projections(
-  proximity_country = pro$proximity_country,
-  proximity_product = pro$proximity_product,
-  avg_links = 4,
-  tolerance = 0.05
-)
-
+net <- projections(pro$proximity_country, pro$proximity_product)
 net$network_country
 net$network_product
 ```
@@ -151,8 +118,6 @@ net$network_country %>%
   ggtitle("Proximity Based Network Projection for Planets") +
   theme_void()
 ```
-
-The network associated to
 
 ```{r, fig.width=7, fig.height=7}
 set.seed(200100)

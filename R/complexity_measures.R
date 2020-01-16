@@ -1,17 +1,15 @@
 #' Complexity Measures
 #'
-#' @description \code{complexity_measures()} computes different complexity
-#' measures obtained after the Balassa Index. In particular, these measures
-#' are aggregations of the Balassa Index, the Country Complexity Index and the
-#' Product Complexity Index.
+#' @description \code{complexity_measures()} computes the Economic Complexity
+#' Index and the Product Complexity Index.
 #'
 #' @details The current implementation follows
 #' \insertCite{measuringcomplexity2015}{economiccomplexity} to obtain different
-#' metrics that account for diversification in bipartite relations.
+#' alternatives that account for diversification in bipartite relations.
 #'
-#' @return A list of four named numeric vectors.
+#' @return A list of two named numeric vectors.
 #'
-#' @param balassa_index (Type: matrix or dgCMatrix) the output from
+#' @param balassa_index (Type: dgCMatrix) the output from
 #' \code{balassa_index()}) or an equivalent arrangement.
 #' @param method (Type: character) one of these methods: fitness,
 #' reflections or eigenvalues. By default this is set to \code{"fitness"}.
@@ -182,9 +180,7 @@ complexity_measures <- function(balassa_index, method = "fitness", iterations = 
   return(
     list(
       complexity_index_country = xci,
-      complexity_index_product = yci,
-      balassa_sum_country = kx0,
-      balassa_sum_product = ky0
+      complexity_index_product = yci
     )
   )
 }

@@ -5,9 +5,7 @@ ba_ind <- balassa_index(
 com_fit <- complexity_measures(ba_ind)
 
 prox <- proximity(
-  balassa_index = ba_ind,
-  balassa_sum_country = com_fit$balassa_sum_country,
-  balassa_sum_product = com_fit$balassa_sum_product
+  balassa_index = ba_ind
 )
 
 # proj <- projections(
