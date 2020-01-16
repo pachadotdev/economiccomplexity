@@ -26,7 +26,7 @@
 #' \code{"both"} (both projections) but it can also be \code{"country"}
 #' or \code{"product"}.
 #'
-#' @importFrom igraph graph_from_adjacency_matrix mst degree delete.edges graph.difference E E<- graph.union
+#' @importFrom igraph graph_from_adjacency_matrix graph_from_data_frame mst as_data_frame degree delete.edges graph.difference E<-
 #'
 #' @examples
 #' projections(
@@ -85,7 +85,13 @@ projections <- function(proximity_country, proximity_product,
         proximity_nmst <- graph.difference(proximity_nmst, proximity_mst)
 
         proximity_g <- graph.union(proximity_mst, proximity_nmst)
-        E(proximity_g)$weight <- pmin(E(proximity_g)$weight_1, E(proximity_g)$weight_2, na.rm = T)
+
+        proximity_g <- rbind(
+          as_data_frame(proximity_mst),
+          as_data_frame(proximity_nmst)
+        )
+
+        proximity_g <- graph_from_data_frame(proximity_g, directed = F)
 
         avg_links_n <- ifelse(mean(degree(proximity_g)) <= avg_d, TRUE, FALSE)
         threshold <- threshold + tolerance
