@@ -4,8 +4,12 @@
 \alias{complexity_measures}
 \title{Complexity Measures}
 \usage{
-complexity_measures(balassa_index, method = "fitness", iterations = 20,
-  extremality = 1)
+complexity_measures(
+  balassa_index,
+  method = "fitness",
+  iterations = 20,
+  extremality = 1
+)
 }
 \arguments{
 \item{balassa_index}{(Type: dgCMatrix) the output from

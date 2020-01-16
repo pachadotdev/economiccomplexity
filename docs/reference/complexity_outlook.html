@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Proximity — proximity • economiccomplexity</title>
+<title>Complexity Outlook — complexity_outlook • economiccomplexity</title>
 
 
 <!-- jquery -->
@@ -35,9 +35,9 @@
 
 
 
-<meta property="og:title" content="Proximity — proximity" />
-<meta property="og:description" content="proximity() computes two matrices that account for the
-similarity between pairs of countries and pairs of products." />
+<meta property="og:title" content="Complexity Outlook — complexity_outlook" />
+<meta property="og:description" content="complexity_outlook() computes the Complexity Outlook
+Index and the Complexity Outlook Gain." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -113,17 +113,17 @@ similarity between pairs of countries and pairs of products." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Proximity</h1>
+    <h1>Complexity Outlook</h1>
     
-    <div class="hidden name"><code>proximity.Rd</code></div>
+    <div class="hidden name"><code>complexity_outlook.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>proximity()</code> computes two matrices that account for the
-similarity between pairs of countries and pairs of products.</p>
+    <p><code>complexity_outlook()</code> computes the Complexity Outlook
+Index and the Complexity Outlook Gain.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>proximity</span>(<span class='no'>balassa_index</span>, <span class='kw'>compute</span> <span class='kw'>=</span> <span class='st'>"both"</span>)</pre>
+    <pre class="usage"><span class='fu'>complexity_outlook</span>(<span class='no'>balassa_index</span>, <span class='no'>proximity_product</span>, <span class='no'>complexity_index_product</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -134,26 +134,29 @@ similarity between pairs of countries and pairs of products.</p>
 <code><a href='balassa_index.html'>balassa_index()</a></code>) or an equivalent arrangement.</p></td>
     </tr>
     <tr>
-      <th>compute</th>
-      <td><p>(Type: character) the proximity to compute. By default this is
-<code>"both"</code> (both proximity matrices) but it can also be <code>"country"</code>
-or <code>"product"</code>.</p></td>
+      <th>proximity_product</th>
+      <td><p>(Type: dgCMatrix) the output from
+<code><a href='proximity.html'>proximity()</a></code>) or an equivalent arrangement.</p></td>
+    </tr>
+    <tr>
+      <th>complexity_index_product</th>
+      <td><p>(Type: numeric) the output from
+<code><a href='complexity_measures.html'>complexity_measures()</a></code>) or an equivalent arrangement.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list of two matrices.</p>
+    <p>A list of two named numeric vectors.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The current implementation follows
 (Hausmann et al. 2014)
- to obtain the likelihood that two
-products "p1" and "p2" are exported by the same country and, conversely,
-that two countries "c1" and "c2" export the same product.</p>
+ to measure unexploited
+export oppportunities.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>For more information see:</p>
+    <p>For more information on this index see:</p>
 <p>Hausmann R, Hidalgo C, Bustos S, Coscia M, Simoes A, Yildirim M (2014).
 <em>The atlas of economic complexity: Mapping paths to prosperity</em>.
 MIT Press.
@@ -162,77 +165,56 @@ doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9
 <p>and the references therein.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>proximity</span>(<span class='no'>economiccomplexity_output</span>$<span class='no'>balassa_index</span>)</div><div class='output co'>#&gt; $proximity_country
-#&gt; 9 x 9 sparse Matrix of class "dsCMatrix"
-#&gt;                               Bepis 9 Bird World Crepktct 4 Earth C-137
-#&gt; Bepis 9                     1.0000000  .          .           0.2857143
-#&gt; Bird World                  .          1.0000000  0.3333333   .        
-#&gt; Crepktct 4                  .          0.3333333  1.0000000   0.1428571
-#&gt; Earth C-137                 0.2857143  .          0.1428571   1.0000000
-#&gt; Galactic Federation Outpost 0.3333333  0.3333333  0.6666667   0.1428571
-#&gt; Galactic Federation Prison  .          0.3333333  0.3333333   0.1428571
-#&gt; Gear World                  0.5000000  .          .           0.4285714
-#&gt; Glaagablaaga                .          0.2000000  0.4000000   0.1428571
-#&gt; Gromflom Prime              .          .          .           .        
-#&gt;                             Galactic Federation Outpost
-#&gt; Bepis 9                                       0.3333333
-#&gt; Bird World                                    0.3333333
-#&gt; Crepktct 4                                    0.6666667
-#&gt; Earth C-137                                   0.1428571
-#&gt; Galactic Federation Outpost                   1.0000000
-#&gt; Galactic Federation Prison                    0.3333333
-#&gt; Gear World                                    0.2500000
-#&gt; Glaagablaaga                                  0.4000000
-#&gt; Gromflom Prime                                .        
-#&gt;                             Galactic Federation Prison Gear World Glaagablaaga
-#&gt; Bepis 9                                      .          0.5000000    .        
-#&gt; Bird World                                   0.3333333  .            0.2000000
-#&gt; Crepktct 4                                   0.3333333  .            0.4000000
-#&gt; Earth C-137                                  0.1428571  0.4285714    0.1428571
-#&gt; Galactic Federation Outpost                  0.3333333  0.2500000    0.4000000
-#&gt; Galactic Federation Prison                   1.0000000  .            0.2000000
-#&gt; Gear World                                   .          1.0000000    0.4000000
-#&gt; Glaagablaaga                                 0.2000000  0.4000000    1.0000000
-#&gt; Gromflom Prime                               0.3333333  .            .        
-#&gt;                             Gromflom Prime
-#&gt; Bepis 9                          .        
-#&gt; Bird World                       .        
-#&gt; Crepktct 4                       .        
-#&gt; Earth C-137                      .        
-#&gt; Galactic Federation Outpost      .        
-#&gt; Galactic Federation Prison       0.3333333
-#&gt; Gear World                       .        
-#&gt; Glaagablaaga                     .        
-#&gt; Gromflom Prime                   1.0000000
+    <pre class="examples"><div class='input'><span class='fu'>complexity_outlook</span>(
+ <span class='no'>economiccomplexity_output</span>$<span class='no'>balassa_index</span>,
+ <span class='no'>economiccomplexity_output</span>$<span class='no'>proximity</span>$<span class='no'>proximity_product</span>,
+ <span class='no'>economiccomplexity_output</span>$<span class='no'>complexity_measures</span>$<span class='no'>complexity_index_product</span>
+)</div><div class='output co'>#&gt; $complexity_outlook_index
+#&gt;                     Bepis 9                  Bird World 
+#&gt;                1.7444398507                0.0405825586 
+#&gt;                  Crepktct 4                 Earth C-137 
+#&gt;                1.5696522272                0.0851599657 
+#&gt; Galactic Federation Outpost  Galactic Federation Prison 
+#&gt;                0.8536235071                1.5087409922 
+#&gt;                  Gear World                Glaagablaaga 
+#&gt;                2.8023317343                0.9811072446 
+#&gt;              Gromflom Prime 
+#&gt;                0.0008766251 
 #&gt; 
-#&gt; $proximity_product
-#&gt; 12 x 12 sparse Matrix of class "dsCMatrix"</div><div class='output co'>#&gt; <span class='message'>   [[ suppressing 12 column names 'alpha', 'beta', 'delta' ... ]]</span></div><div class='output co'>#&gt;                                                                       
-#&gt; alpha   1.0000000 .   1.0000000 0.25 .         .   .         .        
-#&gt; beta    .         1.0 .         .    .         0.2 .         .        
-#&gt; delta   1.0000000 .   1.0000000 0.25 .         .   .         .        
-#&gt; epsilon 0.2500000 .   0.2500000 1.00 0.2500000 0.2 .         0.2500000
-#&gt; eta     .         .   .         0.25 1.0000000 0.2 0.5000000 0.3333333
-#&gt; gamma   .         0.2 .         0.20 0.2000000 1.0 0.2000000 0.6000000
-#&gt; iota    .         .   .         .    0.5000000 0.2 1.0000000 0.3333333
-#&gt; kappa   .         .   .         0.25 0.3333333 0.6 0.3333333 1.0000000
-#&gt; lambda  0.5000000 .   0.5000000 0.25 .         0.2 .         0.3333333
-#&gt; mu      0.3333333 .   0.3333333 0.50 0.6666667 0.2 0.3333333 0.3333333
-#&gt; theta   0.3333333 .   0.3333333 0.75 0.3333333 .   .         .        
-#&gt; zeta    0.5000000 0.5 0.5000000 0.25 .         0.2 .         .        
-#&gt;                                                
-#&gt; alpha   0.5000000 0.3333333 0.3333333 0.5000000
-#&gt; beta    .         .         .         0.5000000
-#&gt; delta   0.5000000 0.3333333 0.3333333 0.5000000
-#&gt; epsilon 0.2500000 0.5000000 0.7500000 0.2500000
-#&gt; eta     .         0.6666667 0.3333333 .        
-#&gt; gamma   0.2000000 0.2000000 .         0.2000000
-#&gt; iota    .         0.3333333 .         .        
-#&gt; kappa   0.3333333 0.3333333 .         .        
-#&gt; lambda  1.0000000 0.3333333 0.3333333 0.5000000
-#&gt; mu      0.3333333 1.0000000 0.6666667 0.3333333
-#&gt; theta   0.3333333 0.6666667 1.0000000 0.3333333
-#&gt; zeta    0.5000000 0.3333333 0.3333333 1.0000000
-#&gt; </div></pre>
+#&gt; $complexity_outlook_gain
+#&gt; 9 x 12 Matrix of class "dgeMatrix"
+#&gt;                                alpha         beta    delta   epsilon       eta
+#&gt; Bepis 9                     2.927624 0.0010937760 2.927624 0.0000000 0.1131705
+#&gt; Bird World                  2.928597 0.0010864115 2.928597 0.7504575 0.1141356
+#&gt; Crepktct 4                  2.926295 0.0010864115 2.926295 0.7489167 0.1136155
+#&gt; Earth C-137                 0.000000 0.0002245155 0.000000 0.0000000 0.1009748
+#&gt; Galactic Federation Outpost 2.928350 0.0010864115 2.928350 0.0000000 0.1133684
+#&gt; Galactic Federation Prison  2.927727 0.0000000000 2.927727 0.7500228 0.1141356
+#&gt; Gear World                  2.921526 0.0010937760 2.921526 0.0000000 0.0000000
+#&gt; Glaagablaaga                2.922499 0.0010864115 2.922499 0.7337949 0.0000000
+#&gt; Gromflom Prime              2.928597 0.0000000000 2.928597 0.7504648 0.1141430
+#&gt;                                  gamma      iota      kappa   lambda       mu
+#&gt; Bepis 9                     0.04042168 0.1647654 0.06667830 1.471275 1.060685
+#&gt; Bird World                  0.00000000 0.1647581 0.06690333 1.472240 1.062623
+#&gt; Crepktct 4                  0.00000000 0.1642380 0.00000000 0.000000 1.060568
+#&gt; Earth C-137                 0.03549475 0.1586676 0.05904625 0.000000 0.000000
+#&gt; Galactic Federation Outpost 0.00000000 0.1642380 0.00000000 1.471473 1.061608
+#&gt; Galactic Federation Prison  0.00000000 0.1647581 0.06690333 1.471371 1.062043
+#&gt; Gear World                  0.03106237 0.1444161 0.05107945 1.465177 0.000000
+#&gt; Glaagablaaga                0.00000000 0.0000000 0.00000000 1.465622 0.000000
+#&gt; Gromflom Prime              0.04057595 0.1647654 0.06692542 1.472248 1.062630
+#&gt;                                 theta     zeta
+#&gt; Bepis 9                     0.0000000 1.469432
+#&gt; Bird World                  0.9995132 1.470397
+#&gt; Crepktct 4                  0.9979790 1.468095
+#&gt; Earth C-137                 0.0000000 0.000000
+#&gt; Galactic Federation Outpost 0.9987718 1.470150
+#&gt; Galactic Federation Prison  0.9989337 0.000000
+#&gt; Gear World                  0.0000000 1.463334
+#&gt; Glaagablaaga                0.9778165 1.464299
+#&gt; Gromflom Prime              0.9995132 1.470295
+#&gt; </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

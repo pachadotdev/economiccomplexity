@@ -4,8 +4,12 @@
 \alias{country_product_aggregation}
 \title{country-product aggregation}
 \usage{
-country_product_aggregation(dataframe, country = "country",
-  product = "product", value = "value")
+country_product_aggregation(
+  dataframe,
+  country = "country",
+  product = "product",
+  value = "value"
+)
 }
 \description{
 country-product aggregation

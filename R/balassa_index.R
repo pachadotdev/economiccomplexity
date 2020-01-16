@@ -13,8 +13,8 @@
 #'
 #' @return A matrix with the Balassa Index.
 #'
-#' @param data (Type: data.frame, matrix or dgCMatrix) a dataset such as \code{galactic_federation}
-#' or any arrangement.
+#' @param data (Type: data.frame, matrix or dgCMatrix) a dataset such as
+#' \code{galactic_federation} containing countries, products and exported values.
 #' @param discrete (Type: logical) whether converting the Balassa Index to
 #' discrete (0/1) values. Anything below the specified cutoff is converted to 0
 #' and 1 otherwise. By default this is set to \code{TRUE}.

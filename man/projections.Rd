@@ -2,10 +2,15 @@
 % Please edit documentation in R/projections.R
 \name{projections}
 \alias{projections}
-\title{Projections of a Bipartite Network}
+\title{Projections of a Country-Product Network}
 \usage{
-projections(proximity_country, proximity_product, avg_links = 4,
-  tolerance = 0.05, compute = "both")
+projections(
+  proximity_country,
+  proximity_product,
+  avg_links = 5,
+  tolerance = 0.05,
+  compute = "both"
+)
 }
 \arguments{
 \item{proximity_country}{(Type: dgCMatrix) the output from
@@ -15,7 +20,7 @@ projections(proximity_country, proximity_product, avg_links = 4,
 \code{proximity()}) or an equivalent arrangement.}
 
 \item{avg_links}{average number of connections for the projections.
-By default this is set to \code{4}.}
+By default this is set to \code{5}.}
 
 \item{tolerance}{tolerance for proximity variation on each iteration until
 obtaining the desired average number of connections.
@@ -29,13 +34,12 @@ or \code{"product"}.}
 A list of two graphs.
 }
 \description{
-\code{proximity()} computes two graphs obtained after the
-proximity matrices that are particularly useful to visualize product-product
-and country-country similarity.
+\code{proximity()} computes two graphs that are particularly
+useful to visualize product-product and country-country similarity.
 }
 \details{
 The current implementation follows
-\insertCite{atlas2014}{economiccomplexity} to create simplifiedgraphs
+\insertCite{atlas2014}{economiccomplexity} to create simplified graphs
 that correspond to a simplification of the proximity matrices. The result is
 obtained by iterating and reducing links until the desired average number of
 links per node is obtained, or a spaning tree after the strongest links is
@@ -46,6 +50,7 @@ projections(
   proximity_country = economiccomplexity_output$proximity$proximity_country,
   proximity_product = economiccomplexity_output$proximity$proximity_product
 )
+
 }
 \references{
 For more information see:

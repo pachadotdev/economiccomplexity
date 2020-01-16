@@ -18,9 +18,8 @@ or \code{"product"}.}
 A list of two matrices.
 }
 \description{
-\code{proximity()} computes two matrices obtained after the
-Balassa Index that account for the similarity between pairs of countries
-and pairs of products.
+\code{proximity()} computes two matrices that account for the
+similarity between pairs of countries and pairs of products.
 }
 \details{
 The current implementation follows

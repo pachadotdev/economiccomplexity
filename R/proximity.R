@@ -1,8 +1,7 @@
 #' Proximity
 #'
-#' @description \code{proximity()} computes two matrices obtained after the
-#' Balassa Index that account for the similarity between pairs of countries
-#' and pairs of products.
+#' @description \code{proximity()} computes two matrices that account for the
+#' similarity between pairs of countries and pairs of products.
 #'
 #' @details The current implementation follows
 #' \insertCite{atlas2014}{economiccomplexity} to obtain the likelihood that two

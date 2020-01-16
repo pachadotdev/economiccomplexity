@@ -5,7 +5,7 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "economiccomplexity",
-  "description": "A wrapper of different methods from Linear Algebra for the equations\n  introduced in The Atlas of Economic Complexity. This package provides standard\n  matrix output that can be used seamlessly with other packages.",
+  "description": "A wrapper of different methods from Linear Algebra for the equations\n  introduced in The Atlas of Economic Complexity and related literature. This\n  package provides standard matrix and graph output that can be used seamlessly\n  with other packages.",
   "name": "economiccomplexity: Computational Methods for Economic Complexity",
   "issueTracker": "http://github.com/pachamaltese/economiccomplexity/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
@@ -13,10 +13,10 @@
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.2",
+    "version": "3.6.1",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.2 (2019-12-12)",
+  "runtimePlatform": "R version 3.6.1 (2019-07-05)",
   "author": [
     {
       "@type": "Person",
@@ -142,7 +142,7 @@
   ],
   "codeRepository": "https://pachamaltese.github.io/economiccomplexity",
   "readme": "https://github.com/pachamaltese/economiccomplexity/blob/master/README.md",
-  "fileSize": "129.871KB",
+  "fileSize": "131.407KB",
   "contIntegration": [
     "https://travis-ci.org/pachamaltese/economiccomplexity",
     "https://codecov.io/github/pachamaltese/economiccomplexity?branch=master"

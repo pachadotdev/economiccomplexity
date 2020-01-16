@@ -36,7 +36,7 @@
 
 
 <meta property="og:title" content="Productivity Levels — productivity_levels" />
-<meta property="og:description" content="foo" />
+<meta property="og:description" content="productivity_levels() computes EXPY and PRODY measures." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">economiccomplexity</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4</span>
       </span>
     </div>
 
@@ -118,12 +118,12 @@
     </div>
 
     <div class="ref-description">
-    <p>foo</p>
+    <p><code>productivity_levels()</code> computes EXPY and PRODY measures.</p>
     </div>
 
     <pre class="usage"><span class='fu'>productivity_levels</span>(
-  <span class='no'>d1</span>,
-  <span class='no'>d2</span>,
+  <span class='no'>data_exp</span>,
+  <span class='no'>data_gdp</span>,
   <span class='kw'>country</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
   <span class='kw'>product</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
   <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"value"</span>
@@ -133,35 +133,42 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>d1</th>
-      <td><p>foo</p></td>
+      <th>data_exp</th>
+      <td><p>(Type: data.frame, matrix or dgCMatrix) a dataset containing
+countries, products and exported values.</p></td>
     </tr>
     <tr>
-      <th>d2</th>
-      <td><p>bar</p></td>
+      <th>data_gdp</th>
+      <td><p>(Type: data.frame, matrix or dgCMatrix) a dataset
+containing countries and per-capita GDP values.</p></td>
     </tr>
     <tr>
       <th>country</th>
-      <td><p>country</p></td>
+      <td><p>(Type: character) the column with the countries.
+By default this is set to <code>"country"</code>. Used only if the input is a data.frame.</p></td>
     </tr>
     <tr>
       <th>product</th>
-      <td><p>product</p></td>
+      <td><p>(Type: character) the column with the products.
+By default this is set to <code>"product"</code>. Used only if the input is a data.frame.</p></td>
     </tr>
     <tr>
       <th>value</th>
-      <td><p>value</p></td>
+      <td><p>(Type: character) the column with the metric for
+country-product pairs.
+By default this is set to <code>"value"</code>. Used only if the input is a data.frame.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
-
-
+    <p>A list of two named numeric vectors.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>bar</p>
+    <p>The current implementation follows
+(Hausmann et al. 2005)
+ to obtain the
+productivity and income levels associated to exports.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>For more information on prody and its applications see:</p>
@@ -172,10 +179,17 @@ doi: <a href='https://doi.org/10.3386/w11905'>10.3386/w11905</a>
 .</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1810</span>)
-<span class='no'>d1</span> <span class='kw'>&lt;-</span> <span class='no'>galactic_federation</span>
-<span class='no'>d2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/setNames.html'>setNames</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>1</span>:<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>galactic_federation</span>), <span class='fl'>1000</span>, <span class='fl'>200</span>), <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>galactic_federation</span>))
-<span class='no'>pl</span> <span class='kw'>&lt;-</span> <span class='fu'>productivity_levels</span>(<span class='no'>d1</span>, <span class='no'>d2</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>data_exp</span> <span class='kw'>&lt;-</span> <span class='no'>galactic_federation</span>
+
+<span class='co'># Since I don't have a gdp per capita dataset for the Galactic Federation,</span>
+<span class='co'># I'll create simulated data</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1810</span>)
+<span class='no'>data_gdp</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/setNames.html'>setNames</a></span>(
+ <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>1</span>:<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>galactic_federation</span>), <span class='fl'>1000</span>, <span class='fl'>200</span>),
+ <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>galactic_federation</span>)
+)
+
+<span class='no'>pl</span> <span class='kw'>&lt;-</span> <span class='fu'>productivity_levels</span>(<span class='no'>data_exp</span>, <span class='no'>data_gdp</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

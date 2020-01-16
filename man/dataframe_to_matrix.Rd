@@ -4,8 +4,12 @@
 \alias{dataframe_to_matrix}
 \title{Dataframe to matrix}
 \usage{
-dataframe_to_matrix(dataframe, country = "country",
-  product = "product", value = "value")
+dataframe_to_matrix(
+  dataframe,
+  country = "country",
+  product = "product",
+  value = "value"
+)
 }
 \description{
 Dataframe to matrix

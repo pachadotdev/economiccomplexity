@@ -70,7 +70,7 @@ bipartite relation between countries and products." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">economiccomplexity</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4</span>
       </span>
     </div>
 
@@ -137,8 +137,8 @@ bipartite relation between countries and products.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>(Type: data.frame, matrix or dgCMatrix) a dataset such as <code>galactic_federation</code>
-or any arrangement.</p></td>
+      <td><p>(Type: data.frame, matrix or dgCMatrix) a dataset such as
+<code>galactic_federation</code> containing countries, products and exported values.</p></td>
     </tr>
     <tr>
       <th>discrete</th>
@@ -154,18 +154,18 @@ By default this is set to <code>1</code>.</p></td>
     <tr>
       <th>country</th>
       <td><p>(Type: character) the column with the countries.
-By default this is set to <code>"country"</code>. Applies only if the input is a data.frame.</p></td>
+By default this is set to <code>"country"</code>. Used only if the input is a data.frame.</p></td>
     </tr>
     <tr>
       <th>product</th>
       <td><p>(Type: character) the column with the products.
-By default this is set to <code>"product"</code>. Applies only if the input is a data.frame.</p></td>
+By default this is set to <code>"product"</code>. Used only if the input is a data.frame.</p></td>
     </tr>
     <tr>
       <th>value</th>
       <td><p>(Type: character) the column with the metric for
 country-product pairs.
-By default this is set to <code>"value"</code>. Applies only if the input is a data.frame.</p></td>
+By default this is set to <code>"value"</code>. Used only if the input is a data.frame.</p></td>
     </tr>
     </table>
 
@@ -179,11 +179,9 @@ By default this is set to <code>"value"</code>. Applies only if the input is a d
  to obtain a metric for
 specialisation. In the context of international trade, if the Balassa Index
 for a country-product pair is more than 1, it means that country is
-specialized in that product.</p>
-<p>If the input for this function is a data.frame instead of a matrix, the
-function shall aggregate the data and convert the input to a matrix. You
-don't need to aggregate the data beforehand if, for example, you pass a
-data.frame containing origin, destination, product and exports value.</p>
+specialized in that product. If the input for this function is a data.frame
+instead of a matrix, the function shall aggregate the data and convert the
+input to a matrix.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>For more information see:</p>

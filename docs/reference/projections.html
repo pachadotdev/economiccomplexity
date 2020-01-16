@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Projections of a bipartite network — projections • economiccomplexity</title>
+<title>Projections of a Country-Product Network — projections • economiccomplexity</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,9 @@
 
 
 
-<meta property="og:title" content="Projections of a bipartite network — projections" />
-<meta property="og:description" content="TBD" />
+<meta property="og:title" content="Projections of a Country-Product Network — projections" />
+<meta property="og:description" content="proximity() computes two graphs that are particularly
+useful to visualize product-product and country-country similarity." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -69,7 +70,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">economiccomplexity</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4</span>
       </span>
     </div>
 
@@ -112,19 +113,20 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Projections of a bipartite network</h1>
+    <h1>Projections of a Country-Product Network</h1>
     
     <div class="hidden name"><code>projections.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>TBD</p>
+    <p><code><a href='proximity.html'>proximity()</a></code> computes two graphs that are particularly
+useful to visualize product-product and country-country similarity.</p>
     </div>
 
     <pre class="usage"><span class='fu'>projections</span>(
   <span class='no'>proximity_country</span>,
   <span class='no'>proximity_product</span>,
-  <span class='kw'>avg_links</span> <span class='kw'>=</span> <span class='fl'>4</span>,
+  <span class='kw'>avg_links</span> <span class='kw'>=</span> <span class='fl'>5</span>,
   <span class='kw'>tolerance</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
   <span class='kw'>compute</span> <span class='kw'>=</span> <span class='st'>"both"</span>
 )</pre>
@@ -134,34 +136,45 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>proximity_country</th>
-      <td><p>a data frame containing proximity
-values for the elements of set X (e.g. proximity_country from <code><a href='proximity.html'>proximity()</a></code>)</p></td>
+      <td><p>(Type: dgCMatrix) the output from
+<code><a href='proximity.html'>proximity()</a></code>) or an equivalent arrangement.</p></td>
     </tr>
     <tr>
       <th>proximity_product</th>
-      <td><p>a data frame containing proximity
-values for the elements of set Y (e.g. proximity_product from <code><a href='proximity.html'>proximity()</a></code>)</p></td>
+      <td><p>(Type: dgCMatrix) the output from
+<code><a href='proximity.html'>proximity()</a></code>) or an equivalent arrangement.</p></td>
     </tr>
     <tr>
       <th>avg_links</th>
-      <td><p>average number of connections for the projection of X
-(default set to 4)</p></td>
+      <td><p>average number of connections for the projections.
+By default this is set to <code>5</code>.</p></td>
     </tr>
     <tr>
       <th>tolerance</th>
       <td><p>tolerance for proximity variation on each iteration until
-obtaining the desired average number of connections (default set to 0.05)</p></td>
+obtaining the desired average number of connections.
+By default this is set to <code>0.05</code>.</p></td>
     </tr>
     <tr>
       <th>compute</th>
-      <td><p>which projection to compute. By default is "both" (both
-projections) but it can also be "country" or "product".</p></td>
+      <td><p>(Type: character) the proximity to compute. By default this is
+<code>"both"</code> (both projections) but it can also be <code>"country"</code>
+or <code>"product"</code>.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A list of two graphs.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>TBD</p>
+    <p>The current implementation follows
+(Hausmann et al. 2014)
+ to create simplified graphs
+that correspond to a simplification of the proximity matrices. The result is
+obtained by iterating and reducing links until the desired average number of
+links per node is obtained, or a spaning tree after the strongest links is
+returned when is not possible to return the desired network.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>For more information see:</p>
@@ -176,10 +189,10 @@ doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9
     <pre class="examples"><div class='input'><span class='fu'>projections</span>(
   <span class='kw'>proximity_country</span> <span class='kw'>=</span> <span class='no'>economiccomplexity_output</span>$<span class='no'>proximity</span>$<span class='no'>proximity_country</span>,
   <span class='kw'>proximity_product</span> <span class='kw'>=</span> <span class='no'>economiccomplexity_output</span>$<span class='no'>proximity</span>$<span class='no'>proximity_product</span>
-)</div><div class='output co'>#&gt; <span class='message'>computing product projection...</span></div><div class='output co'>#&gt; <span class='message'>--------------------------------------------------</span></div><div class='output co'>#&gt; <span class='message'>0 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.05 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.1 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.15 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.2 threshold achieves the avg number of connections</span></div><div class='output co'>#&gt; <span class='message'>computing product projection...</span></div><div class='output co'>#&gt; <span class='message'>--------------------------------------------------</span></div><div class='output co'>#&gt; <span class='message'>0 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.05 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.1 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.15 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.2 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.25 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.3 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.35 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.4 threshold achieves the avg number of connections</span></div><div class='output co'>#&gt; $network_country
-#&gt; IGRAPH 22f0699 UNW- 9 17 -- 
+)</div><div class='output co'>#&gt; <span class='message'>computing product projection...</span></div><div class='output co'>#&gt; <span class='message'>--------------------------------------------------</span></div><div class='output co'>#&gt; <span class='message'>0 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.05 threshold achieves the avg number of connections</span></div><div class='output co'>#&gt; <span class='message'>computing product projection...</span></div><div class='output co'>#&gt; <span class='message'>--------------------------------------------------</span></div><div class='output co'>#&gt; <span class='message'>0 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.05 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.1 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.15 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.2 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.25 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.3 threshold achieves the avg number of connections</span></div><div class='output co'>#&gt; $network_country
+#&gt; IGRAPH 8027915 UNW- 9 21 -- 
 #&gt; + attr: name (v/c), weight (e/n)
-#&gt; + edges from 22f0699 (vertex names):
+#&gt; + edges from 8027915 (vertex names):
 #&gt;  [1] Bepis 9                    --Gear World                 
 #&gt;  [2] Bird World                 --Galactic Federation Outpost
 #&gt;  [3] Bird World                 --Galactic Federation Prison 
@@ -191,19 +204,24 @@ doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9
 #&gt; + ... omitted several edges
 #&gt; 
 #&gt; $network_product
-#&gt; IGRAPH 22f60b0 UNW- 12 15 -- 
+#&gt; IGRAPH 8029b2c UNW- 12 27 -- 
 #&gt; + attr: name (v/c), weight (e/n)
-#&gt; + edges from 22f60b0 (vertex names):
+#&gt; + edges from 8029b2c (vertex names):
 #&gt;  [1] alpha  --delta  beta   --zeta   delta  --zeta   epsilon--theta 
 #&gt;  [5] eta    --iota   eta    --mu     gamma  --kappa  kappa  --mu    
 #&gt;  [9] lambda --theta  lambda --zeta   mu     --theta  alpha  --zeta  
-#&gt; [13] alpha  --lambda delta  --lambda epsilon--mu    
-#&gt; </div></pre>
+#&gt; [13] alpha  --theta  alpha  --mu     alpha  --lambda delta  --theta 
+#&gt; [17] delta  --mu     delta  --lambda epsilon--mu     eta    --theta 
+#&gt; [21] eta    --kappa  mu     --iota   kappa  --iota   kappa  --lambda
+#&gt; [25] lambda --mu     mu     --zeta   theta  --zeta  
+#&gt; </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
       <li><a href="#details">Details</a></li>
       <li><a href="#references">References</a></li>
       <li><a href="#examples">Examples</a></li>

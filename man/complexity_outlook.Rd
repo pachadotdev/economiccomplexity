@@ -4,24 +4,29 @@
 \alias{complexity_outlook}
 \title{Complexity Outlook}
 \usage{
-complexity_outlook(balassa_index, proximity_product,
-  complexity_index_product)
+complexity_outlook(balassa_index, proximity_product, complexity_index_product)
 }
 \arguments{
-\item{balassa_index}{(Type: matrix or dgCMatrix) foo}
+\item{balassa_index}{(Type: dgCMatrix) the output from
+\code{balassa_index()}) or an equivalent arrangement.}
 
-\item{proximity_product}{(Type: matrix or dgCMatrix) foo.}
+\item{proximity_product}{(Type: dgCMatrix) the output from
+\code{proximity()}) or an equivalent arrangement.}
 
-\item{complexity_index_product}{(Type: numeric) foobar.}
+\item{complexity_index_product}{(Type: numeric) the output from
+\code{complexity_measures()}) or an equivalent arrangement.}
 }
 \value{
-foobar
+A list of two named numeric vectors.
 }
 \description{
-foo
+\code{complexity_outlook()} computes the Complexity Outlook
+Index and the Complexity Outlook Gain.
 }
 \details{
-bar
+The current implementation follows
+\insertCite{atlas2014}{economiccomplexity} to measure unexploited
+export oppportunities.
 }
 \examples{
 complexity_outlook(

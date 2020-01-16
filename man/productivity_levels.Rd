@@ -4,34 +4,54 @@
 \alias{productivity_levels}
 \title{Productivity Levels}
 \usage{
-productivity_levels(d1, d2, country = "country", product = "product",
-  value = "value")
+productivity_levels(
+  data_exp,
+  data_gdp,
+  country = "country",
+  product = "product",
+  value = "value"
+)
 }
 \arguments{
-\item{d1}{foo}
+\item{data_exp}{(Type: data.frame, matrix or dgCMatrix) a dataset containing
+countries, products and exported values.}
 
-\item{d2}{bar}
+\item{data_gdp}{(Type: data.frame, matrix or dgCMatrix) a dataset
+containing countries and per-capita GDP values.}
 
-\item{country}{country}
+\item{country}{(Type: character) the column with the countries.
+By default this is set to \code{"country"}. Used only if the input is a data.frame.}
 
-\item{product}{product}
+\item{product}{(Type: character) the column with the products.
+By default this is set to \code{"product"}. Used only if the input is a data.frame.}
 
-\item{value}{value foobar}
+\item{value}{(Type: character) the column with the metric for
+country-product pairs.
+By default this is set to \code{"value"}. Used only if the input is a data.frame.}
 }
 \value{
-foobar
+A list of two named numeric vectors.
 }
 \description{
-foo
+\code{productivity_levels()} computes EXPY and PRODY measures.
 }
 \details{
-bar
+The current implementation follows
+\insertCite{exportmatters2005}{economiccomplexity} to obtain the
+productivity and income levels associated to exports.
 }
 \examples{
+data_exp <- galactic_federation
+
+# Since I don't have a gdp per capita dataset for the Galactic Federation,
+# I'll create simulated data
 set.seed(1810)
-d1 <- galactic_federation
-d2 <- setNames(rnorm(1:nrow(galactic_federation), 1000, 200), rownames(galactic_federation))
-pl <- productivity_levels(d1, d2)
+data_gdp <- setNames(
+ rnorm(1:nrow(galactic_federation), 1000, 200),
+ rownames(galactic_federation)
+)
+
+pl <- productivity_levels(data_exp, data_gdp)
 
 }
 \references{

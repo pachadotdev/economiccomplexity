@@ -1,14 +1,20 @@
 #' Complexity Outlook
 #'
-#' @description foo
+#' @description \code{complexity_outlook()} computes the Complexity Outlook
+#' Index and the Complexity Outlook Gain.
 #'
-#' @details bar
+#' @details The current implementation follows
+#' \insertCite{atlas2014}{economiccomplexity} to measure unexploited
+#' export oppportunities.
 #'
-#' @return foobar
+#' @return A list of two named numeric vectors.
 #'
-#' @param balassa_index (Type: matrix or dgCMatrix) foo
-#' @param proximity_product (Type: matrix or dgCMatrix) foo.
-#' @param complexity_index_product (Type: numeric) foobar.
+#' @param balassa_index (Type: dgCMatrix) the output from
+#' \code{balassa_index()}) or an equivalent arrangement.
+#' @param proximity_product (Type: dgCMatrix) the output from
+#' \code{proximity()}) or an equivalent arrangement.
+#' @param complexity_index_product (Type: numeric) the output from
+#' \code{complexity_measures()}) or an equivalent arrangement.
 #'
 #' @importFrom Matrix Matrix tcrossprod rowSums colSums t
 #'

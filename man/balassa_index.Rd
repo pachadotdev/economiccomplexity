@@ -4,12 +4,18 @@
 \alias{balassa_index}
 \title{Balassa Index}
 \usage{
-balassa_index(data, discrete = TRUE, cutoff = 1, country = "country",
-  product = "product", value = "value")
+balassa_index(
+  data,
+  discrete = TRUE,
+  cutoff = 1,
+  country = "country",
+  product = "product",
+  value = "value"
+)
 }
 \arguments{
-\item{data}{(Type: data.frame, matrix or dgCMatrix) a dataset such as \code{galactic_federation}
-or any arrangement.}
+\item{data}{(Type: data.frame, matrix or dgCMatrix) a dataset such as
+\code{galactic_federation} containing countries, products and exported values.}
 
 \item{discrete}{(Type: logical) whether converting the Balassa Index to
 discrete (0/1) values. Anything below the specified cutoff is converted to 0

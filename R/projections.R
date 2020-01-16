@@ -1,11 +1,10 @@
-#' Projections of a Bipartite Network
+#' Projections of a Country-Product Network
 #'
-#' @description \code{proximity()} computes two graphs obtained after the
-#' proximity matrices that are particularly useful to visualize product-product
-#' and country-country similarity.
+#' @description \code{proximity()} computes two graphs that are particularly
+#' useful to visualize product-product and country-country similarity.
 #'
 #' @details The current implementation follows
-#' \insertCite{atlas2014}{economiccomplexity} to create simplifiedgraphs
+#' \insertCite{atlas2014}{economiccomplexity} to create simplified graphs
 #' that correspond to a simplification of the proximity matrices. The result is
 #' obtained by iterating and reducing links until the desired average number of
 #' links per node is obtained, or a spaning tree after the strongest links is
@@ -18,7 +17,7 @@
 #' @param proximity_product (Type: dgCMatrix) the output from
 #' \code{proximity()}) or an equivalent arrangement.
 #' @param avg_links average number of connections for the projections.
-#' By default this is set to \code{4}.
+#' By default this is set to \code{5}.
 #' @param tolerance tolerance for proximity variation on each iteration until
 #' obtaining the desired average number of connections.
 #' By default this is set to \code{0.05}.
@@ -26,13 +25,15 @@
 #' \code{"both"} (both projections) but it can also be \code{"country"}
 #' or \code{"product"}.
 #'
-#' @importFrom igraph graph_from_adjacency_matrix graph_from_data_frame mst as_data_frame degree delete.edges graph.difference E<-
+#' @importFrom igraph graph_from_adjacency_matrix graph_from_data_frame mst
+#' as_data_frame degree delete.edges graph.difference E E<-
 #'
 #' @examples
 #' projections(
 #'   proximity_country = economiccomplexity_output$proximity$proximity_country,
 #'   proximity_product = economiccomplexity_output$proximity$proximity_product
 #' )
+#'
 #' @references
 #' For more information see:
 #'
@@ -45,7 +46,7 @@
 #' @export
 
 projections <- function(proximity_country, proximity_product,
-                        avg_links = 4, tolerance = 0.05, compute = "both") {
+                        avg_links = 5, tolerance = 0.05, compute = "both") {
   # sanity checks ----
   if (class(proximity_country) != "dsCMatrix" |
     class(proximity_product) != "dsCMatrix") {
@@ -83,8 +84,6 @@ projections <- function(proximity_country, proximity_product,
 
         proximity_nmst <- delete.edges(proximity_g, which(abs(E(proximity_g)$weight) <= threshold))
         proximity_nmst <- graph.difference(proximity_nmst, proximity_mst)
-
-        proximity_g <- graph.union(proximity_mst, proximity_nmst)
 
         proximity_g <- rbind(
           as_data_frame(proximity_mst),
