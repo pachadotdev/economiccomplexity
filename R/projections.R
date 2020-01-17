@@ -25,8 +25,8 @@
 #' \code{"both"} (both projections) but it can also be \code{"country"}
 #' or \code{"product"}.
 #'
-#' @importFrom igraph graph_from_adjacency_matrix graph_from_data_frame mst
-#' as_data_frame degree delete.edges graph.difference E E<-
+#' @importFrom igraph graph_from_adjacency_matrix mst
+#' degree delete.edges graph.difference graph.union remove.edge.attribute E E<-
 #'
 #' @examples
 #' projections(
@@ -67,13 +67,12 @@ projections <- function(proximity_country, proximity_product,
     compute2 <- compute
   }
 
-  trim_network <- function(proximity_d, avg_d) {
-    # compute network ----
-    proximity_d <- (-1) * proximity_d
+  trim_network <- function(proximity_mat, proximity_avg) {
+    proximity_mat <- (-1) * proximity_mat
 
-    proximity_g <- graph_from_adjacency_matrix(proximity_d, weighted = TRUE, mode = "undirected", diag = FALSE)
+    g <- graph_from_adjacency_matrix(proximity_mat, weighted = TRUE, mode = "undirected", diag = FALSE)
 
-    proximity_mst <- mst(proximity_g, algorithm = "prim")
+    g_mst <- mst(g, algorithm = "prim")
 
     threshold <- 0
     avg_links_n <- FALSE
@@ -82,29 +81,27 @@ projections <- function(proximity_country, proximity_product,
       if (threshold < 1) {
         message(sprintf("%s threshold...", threshold))
 
-        proximity_nmst <- delete.edges(proximity_g, which(abs(E(proximity_g)$weight) <= threshold))
-        proximity_nmst <- graph.difference(proximity_nmst, proximity_mst)
+        g_not_in_mst <- delete.edges(g, which(abs(E(g)$weight) <= threshold))
+        g_not_in_mst <- graph.difference(g_not_in_mst, g_mst)
 
-        proximity_g <- rbind(
-          as_data_frame(proximity_mst),
-          as_data_frame(proximity_nmst)
-        )
+        g <- graph.union(g_mst, g_not_in_mst)
+        E(g)$weight <- pmin(E(g)$weight_1, E(g)$weight_2, na.rm = T)
+        g <- remove.edge.attribute(g, "weight_1")
+        g <- remove.edge.attribute(g, "weight_2")
 
-        proximity_g <- graph_from_data_frame(proximity_g, directed = F)
-
-        avg_links_n <- ifelse(mean(degree(proximity_g)) <= avg_d, TRUE, FALSE)
+        avg_links_n <- ifelse(mean(degree(g)) <= avg_links, TRUE, FALSE)
         threshold <- threshold + tolerance
 
         if (avg_links_n == TRUE) {
           message(sprintf("%s threshold achieves the avg number of connections", threshold))
-          E(proximity_g)$weight <- (-1) * E(proximity_g)$weight
-          return(proximity_g)
+          E(g)$weight <- (-1) * E(g)$weight
+          return(g)
         }
       } else {
         warning("no threshold achieves the avg number of connections\nreturning maximum spanning tree")
         avg_links_n <- TRUE
-        E(proximity_mst)$weight <- (-1) * E(proximity_mst)$weight
-        return(proximity_mst)
+        E(g_mst)$weight <- (-1) * E(g_mst)$weight
+        return(g_mst)
       }
     }
   }
