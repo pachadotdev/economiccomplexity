@@ -77,3 +77,35 @@ test_that("productivity_levels works with a data frame + data frame", {
   expect_equal(length(pl$productivity_level_country), 9)
   expect_equal(length(pl$productivity_level_product), 12)
 })
+
+test_that("productivity_levels return warning with missing country", {
+  set.seed(1810)
+
+  incomplete_gdp <- setNames(rnorm(1:nrow(galactic_federation), 1000, 200), rownames(galactic_federation))
+  incomplete_gdp <- incomplete_gdp[1:(length(incomplete_gdp) - 1)]
+
+  expect_warning(
+    productivity_levels(
+      galactic_federation,
+      incomplete_gdp
+    )
+  )
+})
+
+test_that("productivity_levels fails with NULL data", {
+  set.seed(1810)
+
+  expect_error(
+    productivity_levels(
+      NULL,
+      setNames(rnorm(1:nrow(galactic_federation), 1000, 200), rownames(galactic_federation))
+    )
+  )
+  expect_error(
+    productivity_levels(
+      galactic_federation,
+      NULL
+    )
+  )
+})
+

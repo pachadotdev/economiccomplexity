@@ -75,7 +75,7 @@
       <h1>How to use this package</h1>
                         <h4 class="author">Mauricio Vargas</h4>
             
-            <h4 class="date">2020-01-16</h4>
+            <h4 class="date">2020-01-17</h4>
       
       
       <div class="hidden name"><code>basic-usage.Rmd</code></div>
@@ -310,29 +310,29 @@
 <p>The <code><a href="../reference/projections.html">projections()</a></code> function is designed to use <code>igraph</code> for the internal computations and also to pass proximity-based networks to <code>igraph</code>, <code>ggraph</code> or export to Cytoscape by saving the output as csv/tsv.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>net &lt;-<span class="st"> </span><span class="kw"><a href="../reference/projections.html">projections</a></span>(pro<span class="op">$</span>proximity_country, pro<span class="op">$</span>proximity_product)</span>
 <span id="cb23-2"><a href="#cb23-2"></a>net<span class="op">$</span>network_country</span></code></pre></div>
-<pre><code>## IGRAPH 81ee025 UNW- 9 21 -- 
+<pre><code>## IGRAPH 38f2e0a UNW- 9 21 -- 
 ## + attr: name (v/c), weight (e/n)
-## + edges from 81ee025 (vertex names):
-##  [1] Bepis 9                    --Gear World                 
-##  [2] Bird World                 --Galactic Federation Outpost
-##  [3] Bird World                 --Galactic Federation Prison 
-##  [4] Crepktct 4                 --Galactic Federation Outpost
-##  [5] Earth C-137                --Gear World                 
-##  [6] Galactic Federation Outpost--Glaagablaaga               
-##  [7] Galactic Federation Prison --Gromflom Prime             
-##  [8] Gear World                 --Glaagablaaga               
+## + edges from 38f2e0a (vertex names):
+##  [1] Gear World                 --Glaagablaaga               
+##  [2] Galactic Federation Prison --Gromflom Prime             
+##  [3] Galactic Federation Prison --Glaagablaaga               
+##  [4] Galactic Federation Outpost--Glaagablaaga               
+##  [5] Galactic Federation Outpost--Gear World                 
+##  [6] Galactic Federation Outpost--Galactic Federation Prison 
+##  [7] Earth C-137                --Glaagablaaga               
+##  [8] Earth C-137                --Gear World                 
 ## + ... omitted several edges</code></pre>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>net<span class="op">$</span>network_product</span></code></pre></div>
-<pre><code>## IGRAPH 81f0224 UNW- 12 27 -- 
+<pre><code>## IGRAPH 38f5c52 UNW- 12 27 -- 
 ## + attr: name (v/c), weight (e/n)
-## + edges from 81f0224 (vertex names):
-##  [1] alpha  --delta  beta   --zeta   delta  --zeta   epsilon--theta 
-##  [5] eta    --iota   eta    --mu     gamma  --kappa  kappa  --mu    
-##  [9] lambda --theta  lambda --zeta   mu     --theta  alpha  --zeta  
-## [13] alpha  --theta  alpha  --mu     alpha  --lambda delta  --theta 
-## [17] delta  --mu     delta  --lambda epsilon--mu     eta    --theta 
-## [21] eta    --kappa  mu     --iota   kappa  --iota   kappa  --lambda
-## [25] lambda --mu     mu     --zeta   theta  --zeta</code></pre>
+## + edges from 38f5c52 (vertex names):
+##  [1] theta  --zeta   mu     --zeta   mu     --theta  lambda --zeta  
+##  [5] lambda --theta  lambda --mu     kappa  --mu     kappa  --lambda
+##  [9] iota   --mu     iota   --kappa  gamma  --kappa  eta    --theta 
+## [13] eta    --mu     eta    --kappa  eta    --iota   epsilon--theta 
+## [17] epsilon--mu     delta  --zeta   delta  --theta  delta  --mu    
+## [21] delta  --lambda beta   --zeta   alpha  --zeta   alpha  --theta 
+## [25] alpha  --mu     alpha  --lambda alpha  --delta</code></pre>
 <p>Just two basic examples with <code>ggraph</code>.</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">200100</span>)</span>
 <span id="cb27-2"><a href="#cb27-2"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(Matrix)</span>

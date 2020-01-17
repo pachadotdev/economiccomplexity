@@ -72,17 +72,20 @@ productivity_levels <- function(data_exp, data_gdp,
     data_gdp <- setNames(as.numeric(data_gdp$value), data_gdp$country)
   }
 
-  if (class(data_gdp) == "matrix") {
-    data_gdp <- Matrix(data_gdp, sparse = TRUE)
-  }
-
   intersect_country_1 <- rownames(data_exp) %in% names(data_gdp)
   intersect_country_1 <- intersect_country_1[intersect_country_1 == TRUE]
 
   intersect_country_2 <- names(data_gdp) %in% rownames(data_exp)
   intersect_country_2 <- intersect_country_2[intersect_country_2 == TRUE]
 
-  if (length(intersect_country_1) != length(intersect_country_2)) {
+  country_mismatch <- any(
+    ncol(data_exp) != length(intersect_country_1),
+    ncol(data_exp) != length(intersect_country_2),
+    length(data_gdp) != length(intersect_country_1),
+    length(data_gdp) != length(intersect_country_2)
+  )
+
+  if (country_mismatch == TRUE) {
     warning("'data_exp' and 'data_gdp' don\'t have the same countries, some elements will be dropped")
   }
 
