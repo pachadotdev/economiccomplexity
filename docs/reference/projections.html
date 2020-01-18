@@ -70,7 +70,7 @@ useful to visualize product-product and country-country similarity." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">economiccomplexity</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0</span>
       </span>
     </div>
 
@@ -93,7 +93,7 @@ useful to visualize product-product and country-country similarity." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/basic-usage.html">How to use this package</a>
+      <a href="../articles/basic-usage.html">How To Use This Package</a>
     </li>
   </ul>
 </li>
@@ -123,13 +123,8 @@ useful to visualize product-product and country-country similarity." />
 useful to visualize product-product and country-country similarity.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>projections</span>(
-  <span class='no'>proximity_country</span>,
-  <span class='no'>proximity_product</span>,
-  <span class='kw'>avg_links</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>tolerance</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>compute</span> <span class='kw'>=</span> <span class='st'>"both"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>projections</span>(<span class='no'>proximity_country</span>, <span class='no'>proximity_product</span>, <span class='kw'>avg_links</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>tolerance</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>compute</span> <span class='kw'>=</span> <span class='st'>"both"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -190,9 +185,9 @@ doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9
   <span class='kw'>proximity_country</span> <span class='kw'>=</span> <span class='no'>economiccomplexity_output</span>$<span class='no'>proximity</span>$<span class='no'>proximity_country</span>,
   <span class='kw'>proximity_product</span> <span class='kw'>=</span> <span class='no'>economiccomplexity_output</span>$<span class='no'>proximity</span>$<span class='no'>proximity_product</span>
 )</div><div class='output co'>#&gt; <span class='message'>computing product projection...</span></div><div class='output co'>#&gt; <span class='message'>--------------------------------------------------</span></div><div class='output co'>#&gt; <span class='message'>0 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.05 threshold achieves the avg number of connections</span></div><div class='output co'>#&gt; <span class='message'>computing product projection...</span></div><div class='output co'>#&gt; <span class='message'>--------------------------------------------------</span></div><div class='output co'>#&gt; <span class='message'>0 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.05 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.1 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.15 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.2 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.25 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.3 threshold achieves the avg number of connections</span></div><div class='output co'>#&gt; $network_country
-#&gt; IGRAPH 372fbcc UNW- 9 21 -- 
+#&gt; IGRAPH bc9650b UNW- 9 21 -- 
 #&gt; + attr: name (v/c), weight (e/n)
-#&gt; + edges from 372fbcc (vertex names):
+#&gt; + edges from bc9650b (vertex names):
 #&gt;  [1] Gear World                 --Glaagablaaga               
 #&gt;  [2] Galactic Federation Prison --Gromflom Prime             
 #&gt;  [3] Galactic Federation Prison --Glaagablaaga               
@@ -204,9 +199,9 @@ doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9
 #&gt; + ... omitted several edges
 #&gt; 
 #&gt; $network_product
-#&gt; IGRAPH 3732c7e UNW- 12 27 -- 
+#&gt; IGRAPH fd02212 UNW- 12 27 -- 
 #&gt; + attr: name (v/c), weight (e/n)
-#&gt; + edges from 3732c7e (vertex names):
+#&gt; + edges from fd02212 (vertex names):
 #&gt;  [1] theta  --zeta   mu     --zeta   mu     --theta  lambda --zeta  
 #&gt;  [5] lambda --theta  lambda --mu     kappa  --mu     kappa  --lambda
 #&gt;  [9] iota   --mu     iota   --kappa  gamma  --kappa  eta    --theta 

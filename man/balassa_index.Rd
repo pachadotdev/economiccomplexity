@@ -4,14 +4,8 @@
 \alias{balassa_index}
 \title{Balassa Index}
 \usage{
-balassa_index(
-  data,
-  discrete = TRUE,
-  cutoff = 1,
-  country = "country",
-  product = "product",
-  value = "value"
-)
+balassa_index(data, discrete = TRUE, cutoff = 1, country = "country",
+  product = "product", value = "value")
 }
 \arguments{
 \item{data}{(Type: data.frame, matrix or dgCMatrix) a dataset such as

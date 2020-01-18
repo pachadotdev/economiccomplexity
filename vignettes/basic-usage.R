@@ -51,7 +51,7 @@ V(net$network_country)$size <- aggregated_planets[match(V(net$network_country)$n
 net$network_country %>%
   ggraph(layout = "kk") +
   geom_edge_link(aes(edge_width = weight), edge_colour = "#a8a8a8") +
-  geom_node_point(aes(size = size), color = "darkslategray4") +
+  geom_node_point(aes(size = size), color = "#86494d") +
   geom_node_text(aes(label = name), vjust = 2.2) +
   ggtitle("Proximity Based Network Projection for Planets") +
   theme_void()
@@ -65,8 +65,26 @@ V(net$network_product)$size <- aggregated_products[match(V(net$network_product)$
 net$network_product %>%
   ggraph(layout = "kk") +
   geom_edge_link(aes(edge_width = weight), edge_colour = "#a8a8a8") +
-  geom_node_point(aes(size = size), color = "darkslategray4") +
+  geom_node_point(aes(size = size), color = "#86494d") +
   geom_node_text(aes(label = name), vjust = 2.2) +
   ggtitle("Proximity Based Network Projection for Products") +
   theme_void()
+
+## -----------------------------------------------------------------------------
+complexity_outlook(
+  economiccomplexity_output$balassa_index,
+  economiccomplexity_output$proximity$proximity_product,
+  economiccomplexity_output$complexity_measures$complexity_index_product
+)
+
+## -----------------------------------------------------------------------------
+data_exp <- galactic_federation
+
+set.seed(1810)
+data_gdp <- setNames(
+  rnorm(1:nrow(galactic_federation), 1000, 200),
+  rownames(galactic_federation)
+)
+
+productivity_levels(data_exp, data_gdp)
 

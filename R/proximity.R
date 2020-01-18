@@ -20,6 +20,7 @@
 #'
 #' @examples
 #' proximity(economiccomplexity_output$balassa_index)
+#'
 #' @references
 #' For more information see:
 #'

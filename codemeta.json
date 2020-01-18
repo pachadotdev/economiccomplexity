@@ -9,14 +9,14 @@
   "name": "economiccomplexity: Computational Methods for Economic Complexity",
   "issueTracker": "http://github.com/pachamaltese/economiccomplexity/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.4",
+  "version": "1.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.1",
+    "version": "3.6.2",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.1 (2019-07-05)",
+  "runtimePlatform": "R version 3.6.2 (2019-12-12)",
   "author": [
     {
       "@type": "Person",
@@ -142,7 +142,7 @@
   ],
   "codeRepository": "https://pachamaltese.github.io/economiccomplexity",
   "readme": "https://github.com/pachamaltese/economiccomplexity/blob/master/README.md",
-  "fileSize": "131.667KB",
+  "fileSize": "152.167KB",
   "contIntegration": [
     "https://travis-ci.org/pachamaltese/economiccomplexity",
     "https://codecov.io/github/pachamaltese/economiccomplexity?branch=master"

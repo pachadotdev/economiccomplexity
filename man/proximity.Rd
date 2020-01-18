@@ -29,6 +29,7 @@ that two countries "c1" and "c2" export the same product.
 }
 \examples{
 proximity(economiccomplexity_output$balassa_index)
+
 }
 \references{
 For more information see:

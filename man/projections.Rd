@@ -4,13 +4,8 @@
 \alias{projections}
 \title{Projections of a Country-Product Network}
 \usage{
-projections(
-  proximity_country,
-  proximity_product,
-  avg_links = 5,
-  tolerance = 0.05,
-  compute = "both"
-)
+projections(proximity_country, proximity_product, avg_links = 5,
+  tolerance = 0.05, compute = "both")
 }
 \arguments{
 \item{proximity_country}{(Type: dgCMatrix) the output from

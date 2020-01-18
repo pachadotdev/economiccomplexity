@@ -4,7 +4,8 @@
 \alias{complexity_outlook}
 \title{Complexity Outlook}
 \usage{
-complexity_outlook(balassa_index, proximity_product, complexity_index_product)
+complexity_outlook(balassa_index, proximity_product,
+  complexity_index_product)
 }
 \arguments{
 \item{balassa_index}{(Type: dgCMatrix) the output from

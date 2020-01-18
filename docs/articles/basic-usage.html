@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How to use this package • economiccomplexity</title>
+<title>How To Use This Package • economiccomplexity</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="How to use this package">
+<script src="../pkgdown.js"></script><meta property="og:title" content="How To Use This Package">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">economiccomplexity</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0</span>
       </span>
     </div>
 
@@ -54,7 +54,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/basic-usage.html">How to use this package</a>
+      <a href="../articles/basic-usage.html">How To Use This Package</a>
     </li>
   </ul>
 </li>
@@ -72,10 +72,10 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>How to use this package</h1>
+      <h1>How To Use This Package</h1>
                         <h4 class="author">Mauricio Vargas</h4>
             
-            <h4 class="date">2020-01-17</h4>
+            <h4 class="date">2020-01-18</h4>
       
       
       <div class="hidden name"><code>basic-usage.Rmd</code></div>
@@ -90,11 +90,11 @@
 <p>This example is inspired after the visualizations from <span class="citation">Hausmann et al. (2014)</span> but heavily inspired after Rick and Morty to keep it simple and lightweight.</p>
 <div id="package-data" class="section level2">
 <h2 class="hasAnchor">
-<a href="#package-data" class="anchor"></a>Package data</h2>
+<a href="#package-data" class="anchor"></a>Package Data</h2>
 <p>I’ll use the Galactic Federation dataset to illustrate the essential usage of the functions within this package.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(economiccomplexity)</span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a>galactic_federation</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(economiccomplexity)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">galactic_federation</a></code></pre></div>
 <pre><code>## 9 x 12 sparse Matrix of class "dgCMatrix"
 ##                                                                              
 ## Bepis 9                       0   10  50 1350 0  1000    0    0  0  12 120  0
@@ -111,8 +111,8 @@
 <h2 class="hasAnchor">
 <a href="#balassa-index" class="anchor"></a>Balassa Index</h2>
 <p>You can obtain Balassa Index with <code><a href="../reference/balassa_index.html">balassa_index()</a></code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>bi &lt;-<span class="st"> </span><span class="kw"><a href="../reference/balassa_index.html">balassa_index</a></span>(galactic_federation)</span>
-<span id="cb3-2"><a href="#cb3-2"></a>bi</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">bi &lt;-<span class="st"> </span><span class="kw"><a href="../reference/balassa_index.html">balassa_index</a></span>(galactic_federation)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">bi</a></code></pre></div>
 <pre><code>## 9 x 12 sparse Matrix of class "dgCMatrix"
 ##                                                    
 ## Bepis 9                     . . . 1 . . . . . . 1 .
@@ -125,8 +125,8 @@
 ## Glaagablaaga                . . . . 1 1 1 1 . 1 . .
 ## Gromflom Prime              . 1 . . . . . . . . . .</code></pre>
 <p>Another possibility is to obtain Balassa Index without discretization.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>bi_dec &lt;-<span class="st"> </span><span class="kw"><a href="../reference/balassa_index.html">balassa_index</a></span>(galactic_federation, <span class="dt">discrete =</span> F)</span>
-<span id="cb5-2"><a href="#cb5-2"></a>bi_dec</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">bi_dec &lt;-<span class="st"> </span><span class="kw"><a href="../reference/balassa_index.html">balassa_index</a></span>(galactic_federation, <span class="dt">discrete =</span> F)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">bi_dec</a></code></pre></div>
 <pre><code>## 9 x 12 sparse Matrix of class "dgCMatrix"
 ##                                                                         
 ## Bepis 9                      0.0000000 0.026913032 0.74579894 8.74935328
@@ -164,12 +164,11 @@
 <a href="#complexity-measures" class="anchor"></a>Complexity Measures</h2>
 <p>You can compute complexity indexes (e.g. such as the Economic Complexity Index and Product Complexity Index) by using <code><a href="../reference/complexity_measures.html">complexity_measures()</a></code>. The calculations methods are <em>fitness</em> (default), <em>reflections</em>, <em>eigenvalues</em>. See <span class="citation">(Mariani et al. 2015)</span> for the methodological details.</p>
 <p>The eigenvalues also calls the reflections methods in order to correct the index sign in some special cases when the correlation between the output from both methods is negative.</p>
-</div>
-<div id="complexity-fitness" class="section level2">
-<h2 class="hasAnchor">
-<a href="#complexity-fitness" class="anchor"></a>Complexity-Fitness</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>com_fit &lt;-<span class="st"> </span><span class="kw"><a href="../reference/complexity_measures.html">complexity_measures</a></span>(bi)</span>
-<span id="cb7-2"><a href="#cb7-2"></a>com_fit<span class="op">$</span>complexity_index_country</span></code></pre></div>
+<div id="complexity-fitness" class="section level3">
+<h3 class="hasAnchor">
+<a href="#complexity-fitness" class="anchor"></a>Complexity-Fitness</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">com_fit &lt;-<span class="st"> </span><span class="kw"><a href="../reference/complexity_measures.html">complexity_measures</a></span>(bi)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">com_fit<span class="op">$</span>complexity_index_country</a></code></pre></div>
 <pre><code>##                     Bepis 9                  Bird World 
 ##                0.0115128434                0.0001097279 
 ##                  Crepktct 4                 Earth C-137 
@@ -180,17 +179,17 @@
 ##                0.1670017470                0.4440184218 
 ##              Gromflom Prime 
 ##                0.0002701715</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>com_fit<span class="op">$</span>complexity_index_product</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">com_fit<span class="op">$</span>complexity_index_product</a></code></pre></div>
 <pre><code>##        alpha         beta        delta      epsilon          eta        gamma 
 ## 5.7151134328 0.0003691566 5.7151134328 0.0039046311 0.0935850244 0.0001104686 
 ##         iota        kappa       lambda           mu        theta         zeta 
 ## 0.3405363984 0.0049668423 0.0181804513 0.0920772586 0.0088859916 0.0071569113</code></pre>
 </div>
-<div id="reflections" class="section level2">
-<h2 class="hasAnchor">
-<a href="#reflections" class="anchor"></a>Reflections</h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>com_ref &lt;-<span class="st"> </span><span class="kw"><a href="../reference/complexity_measures.html">complexity_measures</a></span>(bi, <span class="dt">method =</span> <span class="st">"reflections"</span>)</span>
-<span id="cb11-2"><a href="#cb11-2"></a>com_ref<span class="op">$</span>complexity_index_country</span></code></pre></div>
+<div id="reflections" class="section level3">
+<h3 class="hasAnchor">
+<a href="#reflections" class="anchor"></a>Reflections</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">com_ref &lt;-<span class="st"> </span><span class="kw"><a href="../reference/complexity_measures.html">complexity_measures</a></span>(bi, <span class="dt">method =</span> <span class="st">"reflections"</span>)</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">com_ref<span class="op">$</span>complexity_index_country</a></code></pre></div>
 <pre><code>##                     Bepis 9                  Bird World 
 ##                   0.9026556                  -0.1485957 
 ##                  Crepktct 4                 Earth C-137 
@@ -201,17 +200,17 @@
 ##                   0.8226508                   0.4172960 
 ##              Gromflom Prime 
 ##                  -2.2377975</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>com_ref<span class="op">$</span>complexity_index_product</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">com_ref<span class="op">$</span>complexity_index_product</a></code></pre></div>
 <pre><code>##       alpha        beta       delta     epsilon         eta       gamma 
 ##  0.51300951 -2.86348750  0.51300951  0.60639354  0.53809077 -0.45605530 
 ##        iota       kappa      lambda          mu       theta        zeta 
 ##  0.22239761  0.06417622  0.20138018  0.52973035  0.78173132 -0.65037622</code></pre>
 </div>
-<div id="eigenvalues" class="section level2">
-<h2 class="hasAnchor">
-<a href="#eigenvalues" class="anchor"></a>Eigenvalues</h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>com_eig &lt;-<span class="st"> </span><span class="kw"><a href="../reference/complexity_measures.html">complexity_measures</a></span>(bi, <span class="dt">method =</span> <span class="st">"eigenvalues"</span>)</span>
-<span id="cb15-2"><a href="#cb15-2"></a>com_eig<span class="op">$</span>complexity_index_country</span></code></pre></div>
+<div id="eigenvalues" class="section level3">
+<h3 class="hasAnchor">
+<a href="#eigenvalues" class="anchor"></a>Eigenvalues</h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">com_eig &lt;-<span class="st"> </span><span class="kw"><a href="../reference/complexity_measures.html">complexity_measures</a></span>(bi, <span class="dt">method =</span> <span class="st">"eigenvalues"</span>)</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">com_eig<span class="op">$</span>complexity_index_country</a></code></pre></div>
 <pre><code>##                     Bepis 9                  Bird World 
 ##                  0.80930502                 -0.05046209 
 ##                  Crepktct 4                 Earth C-137 
@@ -222,18 +221,19 @@
 ##                  0.77446154                  0.48135621 
 ##              Gromflom Prime 
 ##                 -2.28475643</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>com_eig<span class="op">$</span>complexity_index_product</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">com_eig<span class="op">$</span>complexity_index_product</a></code></pre></div>
 <pre><code>##      alpha       beta      delta    epsilon        eta      gamma       iota 
 ##  0.4160916 -2.9019977  0.4160916  0.5672637  0.5796113 -0.3500494  0.3496442 
 ##      kappa     lambda         mu      theta       zeta 
 ##  0.1825819  0.2175311  0.5251047  0.6966412 -0.6985142</code></pre>
 </div>
+</div>
 <div id="proximity" class="section level2">
 <h2 class="hasAnchor">
 <a href="#proximity" class="anchor"></a>Proximity</h2>
-<p>Proximity matrices are used to create projections e.g. (country-country and product-product networks) for bipartite networks. Using <code><a href="../reference/proximity.html">proximity()</a></code> is straightforward.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>pro &lt;-<span class="st"> </span><span class="kw"><a href="../reference/proximity.html">proximity</a></span>(bi)</span>
-<span id="cb19-2"><a href="#cb19-2"></a>pro<span class="op">$</span>proximity_country</span></code></pre></div>
+<p>Proximity matrices are used to create projections e.g. (country-country and product-product networks) for bipartite networks. Using <code><a href="../reference/proximity.html">proximity()</a></code> is straightforward.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">pro &lt;-<span class="st"> </span><span class="kw"><a href="../reference/proximity.html">proximity</a></span>(bi)</a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">pro<span class="op">$</span>proximity_country</a></code></pre></div>
 <pre><code>## 9 x 9 sparse Matrix of class "dsCMatrix"
 ##                               Bepis 9 Bird World Crepktct 4 Earth C-137
 ## Bepis 9                     1.0000000  .          .           0.2857143
@@ -275,7 +275,7 @@
 ## Gear World                       .        
 ## Glaagablaaga                     .        
 ## Gromflom Prime                   1.0000000</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>pro<span class="op">$</span>proximity_product</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">pro<span class="op">$</span>proximity_product</a></code></pre></div>
 <pre><code>## 12 x 12 sparse Matrix of class "dsCMatrix"
 ##                                                                       
 ## alpha   1.0000000 .   1.0000000 0.25 .         .   .         .        
@@ -304,15 +304,15 @@
 ## theta   0.3333333 0.6666667 1.0000000 0.3333333
 ## zeta    0.5000000 0.3333333 0.3333333 1.0000000</code></pre>
 </div>
-<div id="networks" class="section level2">
+<div id="projections" class="section level2">
 <h2 class="hasAnchor">
-<a href="#networks" class="anchor"></a>Networks</h2>
+<a href="#projections" class="anchor"></a>Projections</h2>
 <p>The <code><a href="../reference/projections.html">projections()</a></code> function is designed to use <code>igraph</code> for the internal computations and also to pass proximity-based networks to <code>igraph</code>, <code>ggraph</code> or export to Cytoscape by saving the output as csv/tsv.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>net &lt;-<span class="st"> </span><span class="kw"><a href="../reference/projections.html">projections</a></span>(pro<span class="op">$</span>proximity_country, pro<span class="op">$</span>proximity_product)</span>
-<span id="cb23-2"><a href="#cb23-2"></a>net<span class="op">$</span>network_country</span></code></pre></div>
-<pre><code>## IGRAPH 38f2e0a UNW- 9 21 -- 
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">net &lt;-<span class="st"> </span><span class="kw"><a href="../reference/projections.html">projections</a></span>(pro<span class="op">$</span>proximity_country, pro<span class="op">$</span>proximity_product)</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2">net<span class="op">$</span>network_country</a></code></pre></div>
+<pre><code>## IGRAPH d4a9230 UNW- 9 21 -- 
 ## + attr: name (v/c), weight (e/n)
-## + edges from 38f2e0a (vertex names):
+## + edges from d4a9230 (vertex names):
 ##  [1] Gear World                 --Glaagablaaga               
 ##  [2] Galactic Federation Prison --Gromflom Prime             
 ##  [3] Galactic Federation Prison --Glaagablaaga               
@@ -322,10 +322,10 @@
 ##  [7] Earth C-137                --Glaagablaaga               
 ##  [8] Earth C-137                --Gear World                 
 ## + ... omitted several edges</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>net<span class="op">$</span>network_product</span></code></pre></div>
-<pre><code>## IGRAPH 38f5c52 UNW- 12 27 -- 
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">net<span class="op">$</span>network_product</a></code></pre></div>
+<pre><code>## IGRAPH ba2035a UNW- 12 27 -- 
 ## + attr: name (v/c), weight (e/n)
-## + edges from 38f5c52 (vertex names):
+## + edges from ba2035a (vertex names):
 ##  [1] theta  --zeta   mu     --zeta   mu     --theta  lambda --zeta  
 ##  [5] lambda --theta  lambda --mu     kappa  --mu     kappa  --lambda
 ##  [9] iota   --mu     iota   --kappa  gamma  --kappa  eta    --theta 
@@ -334,36 +334,122 @@
 ## [21] delta  --lambda beta   --zeta   alpha  --zeta   alpha  --theta 
 ## [25] alpha  --mu     alpha  --lambda alpha  --delta</code></pre>
 <p>Just two basic examples with <code>ggraph</code>.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">200100</span>)</span>
-<span id="cb27-2"><a href="#cb27-2"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(Matrix)</span>
-<span id="cb27-3"><a href="#cb27-3"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(igraph)</span>
-<span id="cb27-4"><a href="#cb27-4"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggraph)</span>
-<span id="cb27-5"><a href="#cb27-5"></a></span>
-<span id="cb27-6"><a href="#cb27-6"></a>aggregated_planets &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/colSums.html">rowSums</a></span>(galactic_federation)</span>
-<span id="cb27-7"><a href="#cb27-7"></a><span class="kw">V</span>(net<span class="op">$</span>network_country)<span class="op">$</span>size &lt;-<span class="st"> </span>aggregated_planets[<span class="kw"><a href="https://rdrr.io/r/base/match.html">match</a></span>(<span class="kw">V</span>(net<span class="op">$</span>network_country)<span class="op">$</span>name, <span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(aggregated_planets))]</span>
-<span id="cb27-8"><a href="#cb27-8"></a></span>
-<span id="cb27-9"><a href="#cb27-9"></a>net<span class="op">$</span>network_country <span class="op">%&gt;%</span></span>
-<span id="cb27-10"><a href="#cb27-10"></a><span class="st">  </span><span class="kw">ggraph</span>(<span class="dt">layout =</span> <span class="st">"kk"</span>) <span class="op">+</span></span>
-<span id="cb27-11"><a href="#cb27-11"></a><span class="st">  </span><span class="kw">geom_edge_link</span>(<span class="kw">aes</span>(<span class="dt">edge_width =</span> weight), <span class="dt">edge_colour =</span> <span class="st">"#a8a8a8"</span>) <span class="op">+</span></span>
-<span id="cb27-12"><a href="#cb27-12"></a><span class="st">  </span><span class="kw">geom_node_point</span>(<span class="kw">aes</span>(<span class="dt">size =</span> size), <span class="dt">color =</span> <span class="st">"darkslategray4"</span>) <span class="op">+</span></span>
-<span id="cb27-13"><a href="#cb27-13"></a><span class="st">  </span><span class="kw">geom_node_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">vjust =</span> <span class="fl">2.2</span>) <span class="op">+</span></span>
-<span id="cb27-14"><a href="#cb27-14"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">"Proximity Based Network Projection for Planets"</span>) <span class="op">+</span></span>
-<span id="cb27-15"><a href="#cb27-15"></a><span class="st">  </span><span class="kw">theme_void</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">200100</span>)</a>
+<a class="sourceLine" id="cb27-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(Matrix)</a>
+<a class="sourceLine" id="cb27-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(igraph)</a>
+<a class="sourceLine" id="cb27-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggraph)</a>
+<a class="sourceLine" id="cb27-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb27-6" data-line-number="6">aggregated_planets &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/Matrix/man/colSums.html">rowSums</a></span>(galactic_federation)</a>
+<a class="sourceLine" id="cb27-7" data-line-number="7"><span class="kw"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span>(net<span class="op">$</span>network_country)<span class="op">$</span>size &lt;-<span class="st"> </span>aggregated_planets[<span class="kw"><a href="https://rdrr.io/r/base/match.html">match</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span>(net<span class="op">$</span>network_country)<span class="op">$</span>name, <span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(aggregated_planets))]</a>
+<a class="sourceLine" id="cb27-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb27-9" data-line-number="9">net<span class="op">$</span>network_country <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb27-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/ggraph/man/ggraph.html">ggraph</a></span>(<span class="dt">layout =</span> <span class="st">"kk"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb27-11" data-line-number="11"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/ggraph/man/geom_edge_link.html">geom_edge_link</a></span>(<span class="kw">aes</span>(<span class="dt">edge_width =</span> weight), <span class="dt">edge_colour =</span> <span class="st">"#a8a8a8"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb27-12" data-line-number="12"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/ggraph/man/geom_node_point.html">geom_node_point</a></span>(<span class="kw">aes</span>(<span class="dt">size =</span> size), <span class="dt">color =</span> <span class="st">"#86494d"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb27-13" data-line-number="13"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/ggraph/man/geom_node_text.html">geom_node_text</a></span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">vjust =</span> <span class="fl">2.2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb27-14" data-line-number="14"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">"Proximity Based Network Projection for Planets"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb27-15" data-line-number="15"><span class="st">  </span><span class="kw">theme_void</span>()</a></code></pre></div>
 <p><img src="basic-usage_files/figure-html/unnamed-chunk-9-1.png" width="672"></p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">200100</span>)</span>
-<span id="cb28-2"><a href="#cb28-2"></a></span>
-<span id="cb28-3"><a href="#cb28-3"></a>aggregated_products &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span>(galactic_federation)</span>
-<span id="cb28-4"><a href="#cb28-4"></a><span class="kw">V</span>(net<span class="op">$</span>network_product)<span class="op">$</span>size &lt;-<span class="st"> </span>aggregated_products[<span class="kw"><a href="https://rdrr.io/r/base/match.html">match</a></span>(<span class="kw">V</span>(net<span class="op">$</span>network_product)<span class="op">$</span>name, <span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(aggregated_products))]</span>
-<span id="cb28-5"><a href="#cb28-5"></a></span>
-<span id="cb28-6"><a href="#cb28-6"></a>net<span class="op">$</span>network_product <span class="op">%&gt;%</span></span>
-<span id="cb28-7"><a href="#cb28-7"></a><span class="st">  </span><span class="kw">ggraph</span>(<span class="dt">layout =</span> <span class="st">"kk"</span>) <span class="op">+</span></span>
-<span id="cb28-8"><a href="#cb28-8"></a><span class="st">  </span><span class="kw">geom_edge_link</span>(<span class="kw">aes</span>(<span class="dt">edge_width =</span> weight), <span class="dt">edge_colour =</span> <span class="st">"#a8a8a8"</span>) <span class="op">+</span></span>
-<span id="cb28-9"><a href="#cb28-9"></a><span class="st">  </span><span class="kw">geom_node_point</span>(<span class="kw">aes</span>(<span class="dt">size =</span> size), <span class="dt">color =</span> <span class="st">"darkslategray4"</span>) <span class="op">+</span></span>
-<span id="cb28-10"><a href="#cb28-10"></a><span class="st">  </span><span class="kw">geom_node_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">vjust =</span> <span class="fl">2.2</span>) <span class="op">+</span></span>
-<span id="cb28-11"><a href="#cb28-11"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">"Proximity Based Network Projection for Products"</span>) <span class="op">+</span></span>
-<span id="cb28-12"><a href="#cb28-12"></a><span class="st">  </span><span class="kw">theme_void</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">200100</span>)</a>
+<a class="sourceLine" id="cb28-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb28-3" data-line-number="3">aggregated_products &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/Matrix/man/colSums.html">colSums</a></span>(galactic_federation)</a>
+<a class="sourceLine" id="cb28-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span>(net<span class="op">$</span>network_product)<span class="op">$</span>size &lt;-<span class="st"> </span>aggregated_products[<span class="kw"><a href="https://rdrr.io/r/base/match.html">match</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span>(net<span class="op">$</span>network_product)<span class="op">$</span>name, <span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(aggregated_products))]</a>
+<a class="sourceLine" id="cb28-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb28-6" data-line-number="6">net<span class="op">$</span>network_product <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb28-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/ggraph/man/ggraph.html">ggraph</a></span>(<span class="dt">layout =</span> <span class="st">"kk"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb28-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/ggraph/man/geom_edge_link.html">geom_edge_link</a></span>(<span class="kw">aes</span>(<span class="dt">edge_width =</span> weight), <span class="dt">edge_colour =</span> <span class="st">"#a8a8a8"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb28-9" data-line-number="9"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/ggraph/man/geom_node_point.html">geom_node_point</a></span>(<span class="kw">aes</span>(<span class="dt">size =</span> size), <span class="dt">color =</span> <span class="st">"#86494d"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb28-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/ggraph/man/geom_node_text.html">geom_node_text</a></span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">vjust =</span> <span class="fl">2.2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb28-11" data-line-number="11"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">"Proximity Based Network Projection for Products"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb28-12" data-line-number="12"><span class="st">  </span><span class="kw">theme_void</span>()</a></code></pre></div>
 <p><img src="basic-usage_files/figure-html/unnamed-chunk-10-1.png" width="672"></p>
 </div>
+</div>
+<div id="complexity-outlook" class="section level1">
+<h1 class="hasAnchor">
+<a href="#complexity-outlook" class="anchor"></a>Complexity Outlook</h1>
+<p>Both the Complexity Outlook Index and Complexity Outlook Gain are obtained after the <code><a href="../reference/complexity_outlook.html">complexity_outlook()</a></code> function.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw"><a href="../reference/complexity_outlook.html">complexity_outlook</a></span>(</a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">  economiccomplexity_output<span class="op">$</span>balassa_index,</a>
+<a class="sourceLine" id="cb29-3" data-line-number="3">  economiccomplexity_output<span class="op">$</span>proximity<span class="op">$</span>proximity_product,</a>
+<a class="sourceLine" id="cb29-4" data-line-number="4">  economiccomplexity_output<span class="op">$</span>complexity_measures<span class="op">$</span>complexity_index_product</a>
+<a class="sourceLine" id="cb29-5" data-line-number="5">)</a></code></pre></div>
+<pre><code>## $complexity_outlook_index
+##                     Bepis 9                  Bird World 
+##                1.7444398507                0.0405825586 
+##                  Crepktct 4                 Earth C-137 
+##                1.5696522272                0.0851599657 
+## Galactic Federation Outpost  Galactic Federation Prison 
+##                0.8536235071                1.5087409922 
+##                  Gear World                Glaagablaaga 
+##                2.8023317343                0.9811072446 
+##              Gromflom Prime 
+##                0.0008766251 
+## 
+## $complexity_outlook_gain
+## 9 x 12 Matrix of class "dgeMatrix"
+##                                alpha         beta    delta   epsilon       eta
+## Bepis 9                     2.927624 0.0010937760 2.927624 0.0000000 0.1131705
+## Bird World                  2.928597 0.0010864115 2.928597 0.7504575 0.1141356
+## Crepktct 4                  2.926295 0.0010864115 2.926295 0.7489167 0.1136155
+## Earth C-137                 0.000000 0.0002245155 0.000000 0.0000000 0.1009748
+## Galactic Federation Outpost 2.928350 0.0010864115 2.928350 0.0000000 0.1133684
+## Galactic Federation Prison  2.927727 0.0000000000 2.927727 0.7500228 0.1141356
+## Gear World                  2.921526 0.0010937760 2.921526 0.0000000 0.0000000
+## Glaagablaaga                2.922499 0.0010864115 2.922499 0.7337949 0.0000000
+## Gromflom Prime              2.928597 0.0000000000 2.928597 0.7504648 0.1141430
+##                                  gamma      iota      kappa   lambda       mu
+## Bepis 9                     0.04042168 0.1647654 0.06667830 1.471275 1.060685
+## Bird World                  0.00000000 0.1647581 0.06690333 1.472240 1.062623
+## Crepktct 4                  0.00000000 0.1642380 0.00000000 0.000000 1.060568
+## Earth C-137                 0.03549475 0.1586676 0.05904625 0.000000 0.000000
+## Galactic Federation Outpost 0.00000000 0.1642380 0.00000000 1.471473 1.061608
+## Galactic Federation Prison  0.00000000 0.1647581 0.06690333 1.471371 1.062043
+## Gear World                  0.03106237 0.1444161 0.05107945 1.465177 0.000000
+## Glaagablaaga                0.00000000 0.0000000 0.00000000 1.465622 0.000000
+## Gromflom Prime              0.04057595 0.1647654 0.06692542 1.472248 1.062630
+##                                 theta     zeta
+## Bepis 9                     0.0000000 1.469432
+## Bird World                  0.9995132 1.470397
+## Crepktct 4                  0.9979790 1.468095
+## Earth C-137                 0.0000000 0.000000
+## Galactic Federation Outpost 0.9987718 1.470150
+## Galactic Federation Prison  0.9989337 0.000000
+## Gear World                  0.0000000 1.463334
+## Glaagablaaga                0.9778165 1.464299
+## Gromflom Prime              0.9995132 1.470295</code></pre>
+</div>
+<div id="productivy-levels" class="section level1">
+<h1 class="hasAnchor">
+<a href="#productivy-levels" class="anchor"></a>Productivy Levels</h1>
+<p>The <code><a href="../reference/productivity_levels.html">productivity_levels()</a></code> dataset follows the definitions from <span class="citation">Hausmann et al. (2014)</span> and <span class="citation">Hausmann, Hwang, and Rodrik (2005)</span>.</p>
+<p>I don’t have a per-capita GDP dataset for the Galactic Federation, so I’ll create simulated data for the example.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">data_exp &lt;-<span class="st"> </span>galactic_federation</a>
+<a class="sourceLine" id="cb31-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb31-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">1810</span>)</a>
+<a class="sourceLine" id="cb31-4" data-line-number="4">data_gdp &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/setNames.html">setNames</a></span>(</a>
+<a class="sourceLine" id="cb31-5" data-line-number="5">  <span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">1</span><span class="op">:</span><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(galactic_federation), <span class="dv">1000</span>, <span class="dv">200</span>),</a>
+<a class="sourceLine" id="cb31-6" data-line-number="6">  <span class="kw"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(galactic_federation)</a>
+<a class="sourceLine" id="cb31-7" data-line-number="7">)</a>
+<a class="sourceLine" id="cb31-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb31-9" data-line-number="9"><span class="kw"><a href="../reference/productivity_levels.html">productivity_levels</a></span>(data_exp, data_gdp)</a></code></pre></div>
+<pre><code>## $productivity_level_country
+##                     Bepis 9                  Bird World 
+##                   1074.1218                   1081.7712 
+##                  Crepktct 4                 Earth C-137 
+##                   1090.0985                   1147.3059 
+## Galactic Federation Outpost  Galactic Federation Prison 
+##                   1072.8671                   1062.9803 
+##                  Gear World                Glaagablaaga 
+##                    974.1316                   1144.2559 
+##              Gromflom Prime 
+##                    990.1308 
+## 
+## $productivity_level_product
+##     alpha      beta     delta   epsilon       eta     gamma      iota     kappa 
+## 1305.3414  979.0985 1290.8110 1066.3034  879.5715 1081.7712 1274.9481 1133.4150 
+##    lambda        mu     theta      zeta 
+## 1316.7840  909.5411 1032.4238 1167.3903</code></pre>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="hasAnchor">
@@ -372,8 +458,11 @@
 <div id="ref-atlas2014">
 <p>Hausmann, Ricardo, César Hidalgo, Sebastián Bustos, Michele Coscia, Alexander Simoes, and Muhammed Yildirim. 2014. <em>The Atlas of Economic Complexity: Mapping Paths to Prosperity</em>. MIT Press. <a href="https://doi.org/10.7551/mitpress/9647.001.0001">https://doi.org/10.7551/mitpress/9647.001.0001</a>.</p>
 </div>
+<div id="ref-exportmatters2005">
+<p>Hausmann, Ricardo, Jason Hwang, and Dani Rodrik. 2005. “What You Export Matters.” Working Paper 11905. Working Paper Series. National Bureau of Economic Research. <a href="https://doi.org/10.3386/w11905">https://doi.org/10.3386/w11905</a>.</p>
+</div>
 <div id="ref-measuringcomplexity2015">
-<p>Mariani, Manuel, Alexandre Vidmer, Matsúš Medo, and Yi-Cheng Zhang. 2015. “Measuring Economic Complexity of Countries and Products: Which Metric to Use?” <em>The European Physical Journal B</em> 88 (11): 293. <a href="https://doi.org/10.1140/epjb/e2015-60298-7">https://doi.org/10.1140/epjb/e2015-60298-7</a>.</p>
+<p>Mariani, Manuel, Alexandre Vidmer, Matsúš Medo, and Yi-Cheng Zhang. 2015. “Measuring Economic Complexity of Countries and Products: Which Metric to Use?” <em>The European Physical Journal B</em> 88 (11). Springer: 293. <a href="https://doi.org/10.1140/epjb/e2015-60298-7">https://doi.org/10.1140/epjb/e2015-60298-7</a>.</p>
 </div>
 </div>
 </div>
@@ -387,16 +476,15 @@
       <ul class="nav nav-pills nav-stacked">
 <li>
 <a href="#galactic-federation">Galactic Federation</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#package-data">Package data</a></li>
+<li><a href="#package-data">Package Data</a></li>
       <li><a href="#balassa-index">Balassa Index</a></li>
       <li><a href="#complexity-measures">Complexity Measures</a></li>
-      <li><a href="#complexity-fitness">Complexity-Fitness</a></li>
-      <li><a href="#reflections">Reflections</a></li>
-      <li><a href="#eigenvalues">Eigenvalues</a></li>
       <li><a href="#proximity">Proximity</a></li>
-      <li><a href="#networks">Networks</a></li>
+      <li><a href="#projections">Projections</a></li>
       </ul>
 </li>
+      <li><a href="#complexity-outlook">Complexity Outlook</a></li>
+      <li><a href="#productivy-levels">Productivy Levels</a></li>
       <li><a href="#references">References</a></li>
       </ul>
 </div>

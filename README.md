@@ -32,11 +32,23 @@ the equations described in Mariani, et al. (2015)
 # Install stable version from CRAN
 install.packages("economiccomplexity")
 
-# Install stable version from GitHub
+# Install development version from GitHub
 devtools::install_github("pachamaltese/economiccomplexity")
 ```
 
-## Code of conduct
+## Community Guidelines
+
+If you want to contribute to the software, report issues or problems
+with the software, please fork the repo and send me a Pull Request or
+open an issue. I’m happy to receive ideas and I would do my best to
+coordinate efforts and improve this package without reinventing the
+wheel.
+
+If you seek support or have questions you can start a thread on the
+issues section, or you can email me but I prefer open issues as probably
+more users have the same questions as you.
+
+## Code of Conduct
 
 Please note that this project is released with a [Contributor Code of
 Conduct](https://pachamaltese.github.io/economiccomplexity/CODE_OF_CONDUCT.html).

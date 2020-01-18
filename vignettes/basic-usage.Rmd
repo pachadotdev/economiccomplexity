@@ -1,11 +1,11 @@
 ---
-title: "How to use this package"
+title: "How To Use This Package"
 author: "Mauricio Vargas"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 bibliography: ../inst/REFERENCES.bib
 vignette: >
-  %\VignetteIndexEntry{How to use this package}
+  %\VignetteIndexEntry{How To Use This Package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -19,7 +19,7 @@ knitr::opts_chunk$set(eval = TRUE, message = FALSE, warning = FALSE)
 This example is inspired after the visualizations from @atlas2014 but heavily
 inspired after Rick and Morty to keep it simple and lightweight.
 
-## Package data
+## Package Data
 
 I'll use the Galactic Federation dataset to illustrate the essential usage of the functions
 within this package.
@@ -53,7 +53,7 @@ You can compute complexity indexes (e.g. such as the Economic Complexity Index a
 The eigenvalues also calls the reflections methods in order to correct the index sign
 in some special cases when the correlation between the output from both methods is negative.
 
-##  Complexity-Fitness
+###  Complexity-Fitness
 
 ```{r}
 com_fit <- complexity_measures(bi)
@@ -61,7 +61,7 @@ com_fit$complexity_index_country
 com_fit$complexity_index_product
 ```
 
-## Reflections
+### Reflections
 
 ```{r}
 com_ref <- complexity_measures(bi, method = "reflections")
@@ -69,7 +69,7 @@ com_ref$complexity_index_country
 com_ref$complexity_index_product
 ```
 
-## Eigenvalues
+### Eigenvalues
 
 ```{r}
 com_eig <- complexity_measures(bi, method = "eigenvalues")
@@ -88,7 +88,7 @@ pro$proximity_country
 pro$proximity_product
 ```
 
-## Networks
+## Projections
 
 The `projections()` function is designed to use `igraph` for the internal
 computations and also to pass proximity-based networks to `igraph`, `ggraph`
@@ -113,7 +113,7 @@ V(net$network_country)$size <- aggregated_planets[match(V(net$network_country)$n
 net$network_country %>%
   ggraph(layout = "kk") +
   geom_edge_link(aes(edge_width = weight), edge_colour = "#a8a8a8") +
-  geom_node_point(aes(size = size), color = "darkslategray4") +
+  geom_node_point(aes(size = size), color = "#86494d") +
   geom_node_text(aes(label = name), vjust = 2.2) +
   ggtitle("Proximity Based Network Projection for Planets") +
   theme_void()
@@ -128,10 +128,43 @@ V(net$network_product)$size <- aggregated_products[match(V(net$network_product)$
 net$network_product %>%
   ggraph(layout = "kk") +
   geom_edge_link(aes(edge_width = weight), edge_colour = "#a8a8a8") +
-  geom_node_point(aes(size = size), color = "darkslategray4") +
+  geom_node_point(aes(size = size), color = "#86494d") +
   geom_node_text(aes(label = name), vjust = 2.2) +
   ggtitle("Proximity Based Network Projection for Products") +
   theme_void()
+```
+
+# Complexity Outlook
+
+Both the Complexity Outlook Index and Complexity Outlook Gain are obtained
+after the `complexity_outlook()` function.
+
+```{r}
+complexity_outlook(
+  economiccomplexity_output$balassa_index,
+  economiccomplexity_output$proximity$proximity_product,
+  economiccomplexity_output$complexity_measures$complexity_index_product
+)
+```
+
+# Productivy Levels
+
+The `productivity_levels()` dataset follows the definitions from @atlas2014
+and @exportmatters2005.
+
+I don't have a per-capita GDP dataset for the Galactic Federation, so
+I'll create simulated data for the example.
+
+```{r}
+data_exp <- galactic_federation
+
+set.seed(1810)
+data_gdp <- setNames(
+  rnorm(1:nrow(galactic_federation), 1000, 200),
+  rownames(galactic_federation)
+)
+
+productivity_levels(data_exp, data_gdp)
 ```
 
 # References
