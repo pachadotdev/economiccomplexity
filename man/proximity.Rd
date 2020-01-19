@@ -28,7 +28,11 @@ products "p1" and "p2" are exported by the same country and, conversely,
 that two countries "c1" and "c2" export the same product.
 }
 \examples{
-proximity(economiccomplexity_output$balassa_index)
+pro <- proximity(economiccomplexity_output$balassa_index)
+
+# partial view of proximity matrices
+pro$proximity_country[1:5,1:5]
+pro$proximity_product[1:5,1:5]
 
 }
 \references{

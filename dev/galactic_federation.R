@@ -1,4 +1,5 @@
 library(readxl)
+library(Matrix)
 library(dplyr)
 library(tidyr)
 
@@ -17,5 +18,3 @@ galactic_federation <- with(
     dimnames = list(levels(planet), levels(product))
   )
 )
-
-save(galactic_federation, file = "data/galactic_federation.rda")

@@ -6,9 +6,9 @@ test_that("complexity_outlook works with a sparse matrix + named vector", {
   )
 
   expect_is(co, "list")
-  expect_equal(length(co$complexity_outlook_index), 9)
-  expect_equal(nrow(co$complexity_outlook_gain), 9)
-  expect_equal(ncol(co$complexity_outlook_gain), 12)
+  expect_equal(length(co$complexity_outlook_index), 226)
+  expect_equal(nrow(co$complexity_outlook_gain), 226)
+  expect_equal(ncol(co$complexity_outlook_gain), 785)
 })
 
 test_that("complexity_outlook fails with NULL data", {

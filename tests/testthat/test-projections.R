@@ -1,17 +1,20 @@
 test_that("projection returns a simplified network with adecuate parameters", {
+  # this intentionally simplifies very little and removes few links
   net <- projections(
     proximity_country = economiccomplexity_output$proximity$proximity_country,
     proximity_product = economiccomplexity_output$proximity$proximity_product,
-    tolerance = 0.1,
-    avg_links = 10
+    tolerance = 0.25,
+    avg_links = 100
   )
 
   expect_is(net, "list")
-  expect_equal(length(E(net$network_country)), 21)
-  expect_equal(length(E(net$network_product)), 40)
+  expect_equal(length(E(net$network_country)), 2780)
+  expect_equal(length(E(net$network_product)), 1339)
 })
 
 test_that("projection returns the spanning tree with extreme parameters", {
+  # dim(world_trade_avg_1998_to_2000) is 226 x 785
+  # the spanning trees, by definition, shall contain 225 and 784 links each
   net <- expect_warning(
     projections(
       proximity_country = economiccomplexity_output$proximity$proximity_country,
@@ -22,8 +25,8 @@ test_that("projection returns the spanning tree with extreme parameters", {
   )
 
   expect_is(net, "list")
-  expect_equal(length(E(net$network_country)), 8)
-  expect_equal(length(E(net$network_product)), 11)
+  expect_equal(length(E(net$network_country)), 225)
+  expect_equal(length(E(net$network_product)), 784)
 })
 
 test_that("projection returns country projection only", {
@@ -39,7 +42,7 @@ test_that("projection returns country projection only", {
   )
 
   expect_is(net, "list")
-  expect_equal(length(E(net$network_country)), 8)
+  expect_equal(length(E(net$network_country)), 225)
   expect_equal(net$network_product, NULL)
 })
 
@@ -57,7 +60,7 @@ test_that("projection returns product projection only", {
 
   expect_is(net, "list")
   expect_equal(net$network_country, NULL)
-  expect_equal(length(E(net$network_product)), 11)
+  expect_equal(length(E(net$network_product)), 784)
 })
 
 test_that("projection fails with proximity_country/proximity_product", {

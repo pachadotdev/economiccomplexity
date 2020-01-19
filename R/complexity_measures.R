@@ -23,7 +23,11 @@
 #' @importFrom stats sd cor setNames
 #'
 #' @examples
-#' complexity_measures(economiccomplexity_output$balassa_index)
+#' co <- complexity_measures(economiccomplexity_output$balassa_index)
+#'
+#' # partial view of indexes
+#' co$complexity_index_country[1:5]
+#' co$complexity_index_product[1:5]
 #'
 #' @references
 #' For more information on this index see:

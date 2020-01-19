@@ -19,7 +19,11 @@
 #' @importFrom Matrix t rowSums colSums crossprod tcrossprod
 #'
 #' @examples
-#' proximity(economiccomplexity_output$balassa_index)
+#' pro <- proximity(economiccomplexity_output$balassa_index)
+#'
+#' # partial view of proximity matrices
+#' pro$proximity_country[1:5,1:5]
+#' pro$proximity_product[1:5,1:5]
 #'
 #' @references
 #' For more information see:

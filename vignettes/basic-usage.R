@@ -4,87 +4,107 @@ knitr::opts_chunk$set(eval = TRUE, message = FALSE, warning = FALSE)
 ## -----------------------------------------------------------------------------
 library(economiccomplexity)
 
-galactic_federation
+# partial view of trade matrix
+world_trade_avg_1998_to_2000[1:5,1:5]
+
+# partial view of gdp vector
+world_gdp_avg_1998_to_2000[1:5]
 
 ## -----------------------------------------------------------------------------
-bi <- balassa_index(galactic_federation)
-bi
+bi <- balassa_index(world_trade_avg_1998_to_2000)
+
+# partial view of index
+bi[1:5,1:5]
 
 ## -----------------------------------------------------------------------------
-bi_dec <- balassa_index(galactic_federation, discrete = F)
-bi_dec
+bi_dec <- balassa_index(world_trade_avg_1998_to_2000, discrete = F)
+
+# partial view of index
+bi_dec[1:5,1:5]
 
 ## -----------------------------------------------------------------------------
 com_fit <- complexity_measures(bi)
-com_fit$complexity_index_country
-com_fit$complexity_index_product
+
+# partial view of indexes
+com_fit$complexity_index_country[1:5]
+com_fit$complexity_index_product[1:5]
 
 ## -----------------------------------------------------------------------------
 com_ref <- complexity_measures(bi, method = "reflections")
-com_ref$complexity_index_country
-com_ref$complexity_index_product
+
+# partial view of indexes
+com_ref$complexity_index_country[1:5]
+com_ref$complexity_index_product[1:5]
 
 ## -----------------------------------------------------------------------------
 com_eig <- complexity_measures(bi, method = "eigenvalues")
-com_eig$complexity_index_country
-com_eig$complexity_index_product
+
+# partial view of indexes
+com_eig$complexity_index_country[1:5]
+com_eig$complexity_index_product[1:5]
 
 ## -----------------------------------------------------------------------------
 pro <- proximity(bi)
-pro$proximity_country
-pro$proximity_product
+
+# partial view of proximity matrices
+pro$proximity_country[1:5,1:5]
+pro$proximity_product[1:5,1:5]
 
 ## -----------------------------------------------------------------------------
+library(igraph)
+
 net <- projections(pro$proximity_country, pro$proximity_product)
-net$network_country
-net$network_product
+
+# partial view of projections
+E(net$network_country)[1:5]
+E(net$network_product)[1:5]
 
 ## ---- fig.width=7, fig.height=7-----------------------------------------------
 set.seed(200100)
+
 library(Matrix)
-library(igraph)
 library(ggraph)
 
-aggregated_planets <- rowSums(galactic_federation)
-V(net$network_country)$size <- aggregated_planets[match(V(net$network_country)$name, names(aggregated_planets))]
+aggregated_trade <- rowSums(world_trade_avg_1998_to_2000)
+V(net$network_country)$size <- aggregated_trade[match(V(net$network_country)$name, names(aggregated_trade))]
 
-net$network_country %>%
-  ggraph(layout = "kk") +
-  geom_edge_link(aes(edge_width = weight), edge_colour = "#a8a8a8") +
+ggraph(net$network_country, layout = "kk") +
+  # geom_edge_link(aes(edge_width = weight), edge_colour = "#a8a8a8") +
+  geom_edge_link(edge_colour = "#a8a8a8") +
   geom_node_point(aes(size = size), color = "#86494d") +
-  geom_node_text(aes(label = name), vjust = 2.2) +
-  ggtitle("Proximity Based Network Projection for Planets") +
+  geom_node_text(aes(label = name), size = 2, vjust = 2.2) +
+  ggtitle("Proximity Based Network Projection for Countries") +
   theme_void()
 
-## ---- fig.width=7, fig.height=7-----------------------------------------------
+## ---- fig.width=10, fig.height=10---------------------------------------------
 set.seed(200100)
 
-aggregated_products <- colSums(galactic_federation)
+aggregated_products <- colSums(world_trade_avg_1998_to_2000)
 V(net$network_product)$size <- aggregated_products[match(V(net$network_product)$name, names(aggregated_products))]
 
-net$network_product %>%
-  ggraph(layout = "kk") +
-  geom_edge_link(aes(edge_width = weight), edge_colour = "#a8a8a8") +
+ggraph(net$network_product, layout = "kk") +
+  # geom_edge_link(aes(edge_width = weight), edge_colour = "#a8a8a8") +
+  geom_edge_link(edge_colour = "#a8a8a8") +
   geom_node_point(aes(size = size), color = "#86494d") +
-  geom_node_text(aes(label = name), vjust = 2.2) +
+  geom_node_text(aes(label = name), size = 2, vjust = 2.2) +
   ggtitle("Proximity Based Network Projection for Products") +
   theme_void()
 
 ## -----------------------------------------------------------------------------
-complexity_outlook(
+co <- complexity_outlook(
   economiccomplexity_output$balassa_index,
   economiccomplexity_output$proximity$proximity_product,
   economiccomplexity_output$complexity_measures$complexity_index_product
 )
 
+# partial view of complexity outlook
+co$complexity_outlook_index[1:5]
+co$complexity_outlook_gain[1:5,1:5]
+
 ## -----------------------------------------------------------------------------
-data_exp <- galactic_federation
+pl <- productivity_levels(world_trade_avg_1998_to_2000, world_gdp_avg_1998_to_2000)
 
-set.seed(1810)
-data_gdp <- setNames(
-  rnorm(1:nrow(galactic_federation), 1000, 200),
-  rownames(galactic_federation)
-)
-
-productivity_levels(data_exp, data_gdp)
+# partial view of productivity levels
+pl$productivity_level_country[1:5]
+pl$productivity_level_product[1:5]
 

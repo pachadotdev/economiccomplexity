@@ -1,4 +1,7 @@
+library(Matrix)
+library(rlang)
 library(dplyr)
+library(tidyr)
 library(purrr)
 
 finp <- list.files(path = "dev/sitc-data", full.names = T)
@@ -37,7 +40,21 @@ trade <- trade %>%
 
 trade <- trade %>%
   group_by(reporter_iso, product_code) %>%
-  summarise(trade_value_usd = sum(trade_value_usd, na.rm = T)) %>%
+  summarise(trade_value_usd = mean(trade_value_usd, na.rm = T)) %>%
   mutate(trade_value_usd = round(trade_value_usd, 0))
 
-saveRDS(trade, file = 'dev/world_trade_avg_1998_to_2000.rds', compress = "xz")
+world_trade_avg_1998_to_2000 <- trade %>%
+  ungroup() %>%
+  mutate_if(is.character, as.factor)
+
+world_trade_avg_1998_to_2000 <- with(
+  world_trade_avg_1998_to_2000,
+  sparseMatrix(
+    i = as.numeric(reporter_iso),
+    j = as.numeric(product_code),
+    x = trade_value_usd,
+    dimnames = list(levels(reporter_iso), levels(product_code))
+  )
+)
+
+save(world_trade_avg_1998_to_2000, file = 'data/world_trade_avg_1998_to_2000.rda', compress = "xz")

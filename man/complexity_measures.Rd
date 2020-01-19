@@ -4,8 +4,12 @@
 \alias{complexity_measures}
 \title{Complexity Measures}
 \usage{
-complexity_measures(balassa_index, method = "fitness", iterations = 20,
-  extremality = 1)
+complexity_measures(
+  balassa_index,
+  method = "fitness",
+  iterations = 20,
+  extremality = 1
+)
 }
 \arguments{
 \item{balassa_index}{(Type: dgCMatrix) the output from
@@ -34,7 +38,11 @@ The current implementation follows
 alternatives that account for diversification in bipartite relations.
 }
 \examples{
-complexity_measures(economiccomplexity_output$balassa_index)
+co <- complexity_measures(economiccomplexity_output$balassa_index)
+
+# partial view of indexes
+co$complexity_index_country[1:5]
+co$complexity_index_product[1:5]
 
 }
 \references{

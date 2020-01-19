@@ -121,8 +121,13 @@
     <p><code>productivity_levels()</code> computes EXPY and PRODY measures.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>productivity_levels</span>(<span class='no'>data_exp</span>, <span class='no'>data_gdp</span>, <span class='kw'>country</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
-  <span class='kw'>product</span> <span class='kw'>=</span> <span class='st'>"product"</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"value"</span>)</pre>
+    <pre class="usage"><span class='fu'>productivity_levels</span>(
+  <span class='no'>data_exp</span>,
+  <span class='no'>data_gdp</span>,
+  <span class='kw'>country</span> <span class='kw'>=</span> <span class='st'>"country"</span>,
+  <span class='kw'>product</span> <span class='kw'>=</span> <span class='st'>"product"</span>,
+  <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"value"</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -174,34 +179,14 @@ doi: <a href='https://doi.org/10.3386/w11905'>10.3386/w11905</a>
 .</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>data_exp</span> <span class='kw'>&lt;-</span> <span class='no'>galactic_federation</span>
-
-<span class='co'># Since I don't have a per-capita GDP dataset for the Galactic Federation,</span>
-<span class='co'># I'll create simulated data</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1810</span>)
-<span class='no'>data_gdp</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/setNames.html'>setNames</a></span>(
- <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>1</span>:<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>galactic_federation</span>), <span class='fl'>1000</span>, <span class='fl'>200</span>),
- <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>galactic_federation</span>)
-)
-
-<span class='fu'>productivity_levels</span>(<span class='no'>data_exp</span>, <span class='no'>data_gdp</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: 'data_exp' and 'data_gdp' don't have the same countries, some elements will be dropped</span></div><div class='output co'>#&gt; $productivity_level_country
-#&gt;                     Bepis 9                  Bird World 
-#&gt;                   1074.1218                   1081.7712 
-#&gt;                  Crepktct 4                 Earth C-137 
-#&gt;                   1090.0985                   1147.3059 
-#&gt; Galactic Federation Outpost  Galactic Federation Prison 
-#&gt;                   1072.8671                   1062.9803 
-#&gt;                  Gear World                Glaagablaaga 
-#&gt;                    974.1316                   1144.2559 
-#&gt;              Gromflom Prime 
-#&gt;                    990.1308 
-#&gt; 
-#&gt; $productivity_level_product
-#&gt;     alpha      beta     delta   epsilon       eta     gamma      iota     kappa 
-#&gt; 1305.3414  979.0985 1290.8110 1066.3034  879.5715 1081.7712 1274.9481 1133.4150 
-#&gt;    lambda        mu     theta      zeta 
-#&gt; 1316.7840  909.5411 1032.4238 1167.3903 
-#&gt; </div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>pl</span> <span class='kw'>&lt;-</span> <span class='fu'>productivity_levels</span>(
+ <span class='no'>world_trade_avg_1998_to_2000</span>,
+ <span class='no'>world_gdp_avg_1998_to_2000</span>
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: 'data_exp' and 'data_gdp' don't have the same countries, some elements will be dropped</span></div><div class='input'>
+<span class='co'># partial view of productivity levels</span>
+<span class='no'>pl</span>$<span class='no'>productivity_level_country</span>[<span class='fl'>1</span>:<span class='fl'>5</span>]</div><div class='output co'>#&gt;       ago       alb       and       are       arg 
+#&gt;  8223.607  6343.341 13783.485 10207.679  9269.670 </div><div class='input'><span class='no'>pl</span>$<span class='no'>productivity_level_product</span>[<span class='fl'>1</span>:<span class='fl'>5</span>]</div><div class='output co'>#&gt;      0011      0012      0013      0014      0015 
+#&gt;  7915.893  3986.371 11375.710  6273.428 17628.950 </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

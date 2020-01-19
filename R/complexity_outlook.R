@@ -19,11 +19,15 @@
 #' @importFrom Matrix Matrix tcrossprod rowSums colSums t
 #'
 #' @examples
-#' complexity_outlook(
+#' co <- complexity_outlook(
 #'  economiccomplexity_output$balassa_index,
 #'  economiccomplexity_output$proximity$proximity_product,
 #'  economiccomplexity_output$complexity_measures$complexity_index_product
 #' )
+#'
+#' # partial view of complexity outlook
+#' co$complexity_outlook_index[1:5]
+#' co$complexity_outlook_gain[1:5,1:5]
 #'
 #' @references
 #' For more information on this index see:

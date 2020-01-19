@@ -50,7 +50,7 @@ jobs:
           key: ${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('DESCRIPTION') }}
 
       - name: Install R dependencies
-        run: Rscript -e "install.packages(c('remotes', 'rcmdcheck', 'knitr'), type = 'source')" -e "remotes::install_deps(dependencies = TRUE);"
+        run: Rscript -e "install.packages(c('remotes', 'rcmdcheck'), type = 'source')" -e "remotes::install_deps(dependencies = TRUE);"
 
       - name: Check
         run: Rscript -e "rcmdcheck::rcmdcheck(args = '${{ matrix.config.args }}', error_on = 'warning', check_dir = 'check')"

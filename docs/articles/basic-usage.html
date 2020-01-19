@@ -75,7 +75,7 @@
       <h1>How To Use This Package</h1>
                         <h4 class="author">Mauricio Vargas</h4>
             
-            <h4 class="date">2020-01-18</h4>
+            <h4 class="date">2020-01-19</h4>
       
       
       <div class="hidden name"><code>basic-usage.Rmd</code></div>
@@ -84,80 +84,56 @@
 
     
     
-<div id="galactic-federation" class="section level1">
+<div id="world-trade-and-per-capita-gdp" class="section level1">
 <h1 class="hasAnchor">
-<a href="#galactic-federation" class="anchor"></a>Galactic Federation</h1>
-<p>This example is inspired after the visualizations from <span class="citation">Hausmann et al. (2014)</span> but heavily inspired after Rick and Morty to keep it simple and lightweight.</p>
+<a href="#world-trade-and-per-capita-gdp" class="anchor"></a>World Trade and Per-Capita GDP</h1>
+<p>This example is inspired after the visualizations from <span class="citation">Hausmann et al. (2014)</span> with some ggplot additions.</p>
 <div id="package-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#package-data" class="anchor"></a>Package Data</h2>
-<p>I’ll use the Galactic Federation dataset to illustrate the essential usage of the functions within this package.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(economiccomplexity)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">galactic_federation</a></code></pre></div>
-<pre><code>## 9 x 12 sparse Matrix of class "dgCMatrix"
-##                                                                              
-## Bepis 9                       0   10  50 1350 0  1000    0    0  0  12 120  0
-## Bird World                    0    0   0    0 0  5000    0    0  0   0   0  0
-## Crepktct 4                    0    0   0    0 0  2000   50  150 12  10   0  0
-## Earth C-137                 345  123 654  356 0   700  120   89 12  50 500 12
-## Galactic Federation Outpost   0  200   0  100 0  1250   20   70  0   0   0  0
-## Galactic Federation Prison    0  234   1    5 0   900    9   12  0   5   8  7
-## Gear World                    0    0   0    2 1     0    0    0  0   5   4  0
-## Glaagablaaga                 23    3 300  500 1 10000 5000 1000  0 100  20  0
-## Gromflom Prime                0 5000   0    0 0   600    0    0  0   0   0  1</code></pre>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co"># partial view of trade matrix</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">world_trade_avg_<span class="dv">1998</span>_to_<span class="dv">2000</span>[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<pre><code>## 5 x 5 sparse Matrix of class "dgCMatrix"
+##       0011  0012 0013 0014  0015
+## afg  30068 16366    .    .     .
+## ago 242064 52489 1551  264   272
+## aia      .    20    .    .     .
+## alb      .     .    .  486  2904
+## and 172393 16869    . 4668 47851</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># partial view of gdp vector</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">world_gdp_avg_<span class="dv">1998</span>_to_<span class="dv">2000</span>[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<pre><code>##   abw   ago   alb   and   arb 
+## 19185  1540  1433 27765  3312</code></pre>
 </div>
 <div id="balassa-index" class="section level2">
 <h2 class="hasAnchor">
 <a href="#balassa-index" class="anchor"></a>Balassa Index</h2>
 <p>You can obtain Balassa Index with <code><a href="../reference/balassa_index.html">balassa_index()</a></code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">bi &lt;-<span class="st"> </span><span class="kw"><a href="../reference/balassa_index.html">balassa_index</a></span>(galactic_federation)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">bi</a></code></pre></div>
-<pre><code>## 9 x 12 sparse Matrix of class "dgCMatrix"
-##                                                    
-## Bepis 9                     . . . 1 . . . . . . 1 .
-## Bird World                  . . . . . 1 . . . . . .
-## Crepktct 4                  . . . . . 1 . 1 1 . . .
-## Earth C-137                 1 . 1 1 . . . . 1 1 1 1
-## Galactic Federation Outpost . . . 1 . 1 . 1 . . . .
-## Galactic Federation Prison  . 1 . . . 1 . . . . . 1
-## Gear World                  . . . 1 1 . . . . 1 1 .
-## Glaagablaaga                . . . . 1 1 1 1 . 1 . .
-## Gromflom Prime              . 1 . . . . . . . . . .</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">bi &lt;-<span class="st"> </span><span class="kw"><a href="../reference/balassa_index.html">balassa_index</a></span>(world_trade_avg_<span class="dv">1998</span>_to_<span class="dv">2000</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co"># partial view of index</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">bi[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<pre><code>## 5 x 5 sparse Matrix of class "dgCMatrix"
+##     0011 0012 0013 0014 0015
+## afg    .    .    .    .    .
+## ago    .    .    .    .    .
+## aia    .    .    .    .    .
+## alb    .    .    .    .    .
+## and    1    .    .    .    1</code></pre>
 <p>Another possibility is to obtain Balassa Index without discretization.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">bi_dec &lt;-<span class="st"> </span><span class="kw"><a href="../reference/balassa_index.html">balassa_index</a></span>(galactic_federation, <span class="dt">discrete =</span> F)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">bi_dec</a></code></pre></div>
-<pre><code>## 9 x 12 sparse Matrix of class "dgCMatrix"
-##                                                                         
-## Bepis 9                      0.0000000 0.026913032 0.74579894 8.74935328
-## Bird World                   0.0000000 0.000000000 0.00000000 0.00000000
-## Crepktct 4                   0.0000000 0.000000000 0.00000000 0.00000000
-## Earth C-137                 12.0649696 0.284187435 8.37464955 1.98074843
-## Galactic Federation Outpost  0.0000000 0.834303980 0.00000000 1.00455538
-## Galactic Federation Prison   0.0000000 1.355514376 0.03210535 0.06974898
-## Gear World                   0.0000000 0.000000000 0.00000000 2.74578470
-## Glaagablaaga                 0.1405337 0.001211063 0.67120584 0.48606562
-## Gromflom Prime               0.0000000 6.107206427 0.00000000 0.00000000
-##                                                                               
-## Bepis 9                        0.00000 0.6988605 0.00000000 0.0000000 0.000000
-## Bird World                     0.00000 1.7765035 0.00000000 0.0000000 0.000000
-## Crepktct 4                     0.00000 1.5990130 0.16492994 1.9473219 8.574707
-## Earth C-137                    0.00000 0.4199772 0.29704099 0.8670460 6.434650
-## Galactic Federation Outpost    0.00000 1.3540423 0.08938398 1.2312457 0.000000
-## Galactic Federation Prison     0.00000 1.3538130 0.05585553 0.2931041 0.000000
-## Gear World                  1587.75000 0.0000000 0.00000000 0.0000000 0.000000
-## Glaagablaaga                   1.12427 1.0482702 2.16247313 1.7021496 0.000000
-## Gromflom Prime                 0.00000 0.1903057 0.00000000 0.0000000 0.000000
-##                                                              
-## Bepis 9                      0.9883885  2.75899852  0.0000000
-## Bird World                   0.0000000  0.00000000  0.0000000
-## Crepktct 4                   0.9422755  0.00000000  0.0000000
-## Earth C-137                  3.5355222  9.86909579  7.7215805
-## Galactic Federation Outpost  0.0000000  0.00000000  0.0000000
-## Galactic Federation Prison   0.8864252  0.39590032 11.2930567
-## Gear World                  87.2390110 19.48159509  0.0000000
-## Glaagablaaga                 1.2354613  0.06897361  0.0000000
-## Gromflom Prime               0.0000000  0.00000000  0.3401714</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">bi_dec &lt;-<span class="st"> </span><span class="kw"><a href="../reference/balassa_index.html">balassa_index</a></span>(world_trade_avg_<span class="dv">1998</span>_to_<span class="dv">2000</span>, <span class="dt">discrete =</span> F)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co"># partial view of index</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">bi_dec[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<pre><code>## 5 x 5 sparse Matrix of class "dgCMatrix"
+##          0011        0012        0013       0014        0015
+## afg 0.2312238 0.285438688 .           .          .          
+## ago 0.1777917 0.087436319 0.002076625 0.00139056 0.001106041
+## aia .         0.002581853 .           .          .          
+## alb .         .           .           0.01582754 0.073011368
+## and 2.4825815 0.550954168 .           0.48208017 3.815013019</code></pre>
 </div>
 <div id="complexity-measures" class="section level2">
 <h2 class="hasAnchor">
@@ -167,289 +143,151 @@
 <div id="complexity-fitness" class="section level3">
 <h3 class="hasAnchor">
 <a href="#complexity-fitness" class="anchor"></a>Complexity-Fitness</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">com_fit &lt;-<span class="st"> </span><span class="kw"><a href="../reference/complexity_measures.html">complexity_measures</a></span>(bi)</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">com_fit<span class="op">$</span>complexity_index_country</a></code></pre></div>
-<pre><code>##                     Bepis 9                  Bird World 
-##                0.0115128434                0.0001097279 
-##                  Crepktct 4                 Earth C-137 
-##                0.0212756540                8.3417128754 
-## Galactic Federation Outpost  Galactic Federation Prison 
-##                0.0081891360                0.0059094230 
-##                  Gear World                Glaagablaaga 
-##                0.1670017470                0.4440184218 
-##              Gromflom Prime 
-##                0.0002701715</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">com_fit<span class="op">$</span>complexity_index_product</a></code></pre></div>
-<pre><code>##        alpha         beta        delta      epsilon          eta        gamma 
-## 5.7151134328 0.0003691566 5.7151134328 0.0039046311 0.0935850244 0.0001104686 
-##         iota        kappa       lambda           mu        theta         zeta 
-## 0.3405363984 0.0049668423 0.0181804513 0.0920772586 0.0088859916 0.0071569113</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">com_fit &lt;-<span class="st"> </span><span class="kw"><a href="../reference/complexity_measures.html">complexity_measures</a></span>(bi)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co"># partial view of indexes</span></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">com_fit<span class="op">$</span>complexity_index_country[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<pre><code>##        afg        ago        aia        alb        and 
+## 0.78605655 0.03999516 1.05645538 1.24261128 1.37321261</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">com_fit<span class="op">$</span>complexity_index_product[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<pre><code>##      0011      0012      0013      0014      0015 
+## 0.7538883 0.7491391 2.3018690 0.9903918 1.3120378</code></pre>
 </div>
 <div id="reflections" class="section level3">
 <h3 class="hasAnchor">
 <a href="#reflections" class="anchor"></a>Reflections</h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">com_ref &lt;-<span class="st"> </span><span class="kw"><a href="../reference/complexity_measures.html">complexity_measures</a></span>(bi, <span class="dt">method =</span> <span class="st">"reflections"</span>)</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2">com_ref<span class="op">$</span>complexity_index_country</a></code></pre></div>
-<pre><code>##                     Bepis 9                  Bird World 
-##                   0.9026556                  -0.1485957 
-##                  Crepktct 4                 Earth C-137 
-##                   0.2037342                   0.6038710 
-## Galactic Federation Outpost  Galactic Federation Prison 
-##                   0.3261197                  -0.8899340 
-##                  Gear World                Glaagablaaga 
-##                   0.8226508                   0.4172960 
-##              Gromflom Prime 
-##                  -2.2377975</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">com_ref<span class="op">$</span>complexity_index_product</a></code></pre></div>
-<pre><code>##       alpha        beta       delta     epsilon         eta       gamma 
-##  0.51300951 -2.86348750  0.51300951  0.60639354  0.53809077 -0.45605530 
-##        iota       kappa      lambda          mu       theta        zeta 
-##  0.22239761  0.06417622  0.20138018  0.52973035  0.78173132 -0.65037622</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">com_ref &lt;-<span class="st"> </span><span class="kw"><a href="../reference/complexity_measures.html">complexity_measures</a></span>(bi, <span class="dt">method =</span> <span class="st">"reflections"</span>)</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="co"># partial view of indexes</span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4">com_ref<span class="op">$</span>complexity_index_country[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<pre><code>##        afg        ago        aia        alb        and 
+## -0.5788151 -1.7710696  1.4074821 -0.1754989  1.0738736</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">com_ref<span class="op">$</span>complexity_index_product[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<pre><code>##        0011        0012        0013        0014        0015 
+## -0.66255107 -1.62169899 -0.07449487  0.20554720  0.15848845</code></pre>
 </div>
 <div id="eigenvalues" class="section level3">
 <h3 class="hasAnchor">
 <a href="#eigenvalues" class="anchor"></a>Eigenvalues</h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">com_eig &lt;-<span class="st"> </span><span class="kw"><a href="../reference/complexity_measures.html">complexity_measures</a></span>(bi, <span class="dt">method =</span> <span class="st">"eigenvalues"</span>)</a>
-<a class="sourceLine" id="cb15-2" data-line-number="2">com_eig<span class="op">$</span>complexity_index_country</a></code></pre></div>
-<pre><code>##                     Bepis 9                  Bird World 
-##                  0.80930502                 -0.05046209 
-##                  Crepktct 4                 Earth C-137 
-##                  0.27062552                  0.52370159 
-## Galactic Federation Outpost  Galactic Federation Prison 
-##                  0.37269206                 -0.89692342 
-##                  Gear World                Glaagablaaga 
-##                  0.77446154                  0.48135621 
-##              Gromflom Prime 
-##                 -2.28475643</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">com_eig<span class="op">$</span>complexity_index_product</a></code></pre></div>
-<pre><code>##      alpha       beta      delta    epsilon        eta      gamma       iota 
-##  0.4160916 -2.9019977  0.4160916  0.5672637  0.5796113 -0.3500494  0.3496442 
-##      kappa     lambda         mu      theta       zeta 
-##  0.1825819  0.2175311  0.5251047  0.6966412 -0.6985142</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">com_eig &lt;-<span class="st"> </span><span class="kw"><a href="../reference/complexity_measures.html">complexity_measures</a></span>(bi, <span class="dt">method =</span> <span class="st">"eigenvalues"</span>)</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="co"># partial view of indexes</span></a>
+<a class="sourceLine" id="cb17-4" data-line-number="4">com_eig<span class="op">$</span>complexity_index_country[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<pre><code>##        afg        ago        aia        alb        and 
+## -0.5764283 -1.7770752  1.4090414 -0.1732606  1.0772452</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">com_eig<span class="op">$</span>complexity_index_product[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<pre><code>##        0011        0012        0013        0014        0015 
+## -0.66657613 -1.62657599 -0.08149436  0.19917280  0.14935653</code></pre>
 </div>
 </div>
 <div id="proximity" class="section level2">
 <h2 class="hasAnchor">
 <a href="#proximity" class="anchor"></a>Proximity</h2>
 <p>Proximity matrices are used to create projections e.g. (country-country and product-product networks) for bipartite networks. Using <code><a href="../reference/proximity.html">proximity()</a></code> is straightforward.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">pro &lt;-<span class="st"> </span><span class="kw"><a href="../reference/proximity.html">proximity</a></span>(bi)</a>
-<a class="sourceLine" id="cb19-2" data-line-number="2">pro<span class="op">$</span>proximity_country</a></code></pre></div>
-<pre><code>## 9 x 9 sparse Matrix of class "dsCMatrix"
-##                               Bepis 9 Bird World Crepktct 4 Earth C-137
-## Bepis 9                     1.0000000  .          .           0.2857143
-## Bird World                  .          1.0000000  0.3333333   .        
-## Crepktct 4                  .          0.3333333  1.0000000   0.1428571
-## Earth C-137                 0.2857143  .          0.1428571   1.0000000
-## Galactic Federation Outpost 0.3333333  0.3333333  0.6666667   0.1428571
-## Galactic Federation Prison  .          0.3333333  0.3333333   0.1428571
-## Gear World                  0.5000000  .          .           0.4285714
-## Glaagablaaga                .          0.2000000  0.4000000   0.1428571
-## Gromflom Prime              .          .          .           .        
-##                             Galactic Federation Outpost
-## Bepis 9                                       0.3333333
-## Bird World                                    0.3333333
-## Crepktct 4                                    0.6666667
-## Earth C-137                                   0.1428571
-## Galactic Federation Outpost                   1.0000000
-## Galactic Federation Prison                    0.3333333
-## Gear World                                    0.2500000
-## Glaagablaaga                                  0.4000000
-## Gromflom Prime                                .        
-##                             Galactic Federation Prison Gear World Glaagablaaga
-## Bepis 9                                      .          0.5000000    .        
-## Bird World                                   0.3333333  .            0.2000000
-## Crepktct 4                                   0.3333333  .            0.4000000
-## Earth C-137                                  0.1428571  0.4285714    0.1428571
-## Galactic Federation Outpost                  0.3333333  0.2500000    0.4000000
-## Galactic Federation Prison                   1.0000000  .            0.2000000
-## Gear World                                   .          1.0000000    0.4000000
-## Glaagablaaga                                 0.2000000  0.4000000    1.0000000
-## Gromflom Prime                               0.3333333  .            .        
-##                             Gromflom Prime
-## Bepis 9                          .        
-## Bird World                       .        
-## Crepktct 4                       .        
-## Earth C-137                      .        
-## Galactic Federation Outpost      .        
-## Galactic Federation Prison       0.3333333
-## Gear World                       .        
-## Glaagablaaga                     .        
-## Gromflom Prime                   1.0000000</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">pro<span class="op">$</span>proximity_product</a></code></pre></div>
-<pre><code>## 12 x 12 sparse Matrix of class "dsCMatrix"
-##                                                                       
-## alpha   1.0000000 .   1.0000000 0.25 .         .   .         .        
-## beta    .         1.0 .         .    .         0.2 .         .        
-## delta   1.0000000 .   1.0000000 0.25 .         .   .         .        
-## epsilon 0.2500000 .   0.2500000 1.00 0.2500000 0.2 .         0.2500000
-## eta     .         .   .         0.25 1.0000000 0.2 0.5000000 0.3333333
-## gamma   .         0.2 .         0.20 0.2000000 1.0 0.2000000 0.6000000
-## iota    .         .   .         .    0.5000000 0.2 1.0000000 0.3333333
-## kappa   .         .   .         0.25 0.3333333 0.6 0.3333333 1.0000000
-## lambda  0.5000000 .   0.5000000 0.25 .         0.2 .         0.3333333
-## mu      0.3333333 .   0.3333333 0.50 0.6666667 0.2 0.3333333 0.3333333
-## theta   0.3333333 .   0.3333333 0.75 0.3333333 .   .         .        
-## zeta    0.5000000 0.5 0.5000000 0.25 .         0.2 .         .        
-##                                                
-## alpha   0.5000000 0.3333333 0.3333333 0.5000000
-## beta    .         .         .         0.5000000
-## delta   0.5000000 0.3333333 0.3333333 0.5000000
-## epsilon 0.2500000 0.5000000 0.7500000 0.2500000
-## eta     .         0.6666667 0.3333333 .        
-## gamma   0.2000000 0.2000000 .         0.2000000
-## iota    .         0.3333333 .         .        
-## kappa   0.3333333 0.3333333 .         .        
-## lambda  1.0000000 0.3333333 0.3333333 0.5000000
-## mu      0.3333333 1.0000000 0.6666667 0.3333333
-## theta   0.3333333 0.6666667 1.0000000 0.3333333
-## zeta    0.5000000 0.3333333 0.3333333 1.0000000</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">pro &lt;-<span class="st"> </span><span class="kw"><a href="../reference/proximity.html">proximity</a></span>(bi)</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="co"># partial view of proximity matrices</span></a>
+<a class="sourceLine" id="cb21-4" data-line-number="4">pro<span class="op">$</span>proximity_country[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<pre><code>## 5 x 5 sparse Matrix of class "dsCMatrix"
+##            afg         ago         aia        alb         and
+## afg 1.00000000 0.015873016 0.181818182 0.19689119 0.192513369
+## ago 0.01587302 1.000000000 0.006993007 0.01554404 0.005347594
+## aia 0.18181818 0.006993007 1.000000000 0.16580311 0.251336898
+## alb 0.19689119 0.015544041 0.165803109 1.00000000 0.310880829
+## and 0.19251337 0.005347594 0.251336898 0.31088083 1.000000000</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">pro<span class="op">$</span>proximity_product[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<pre><code>## 5 x 5 sparse Matrix of class "dsCMatrix"
+##           0011      0012      0013      0014      0015
+## 0011 1.0000000 0.3658537 0.1707317 0.2439024 0.2682927
+## 0012 0.3658537 1.0000000 0.2500000 0.2250000 0.2500000
+## 0013 0.1707317 0.2500000 1.0000000 0.2500000 0.1200000
+## 0014 0.2439024 0.2250000 0.2500000 1.0000000 0.2250000
+## 0015 0.2682927 0.2500000 0.1200000 0.2250000 1.0000000</code></pre>
 </div>
 <div id="projections" class="section level2">
 <h2 class="hasAnchor">
 <a href="#projections" class="anchor"></a>Projections</h2>
 <p>The <code><a href="../reference/projections.html">projections()</a></code> function is designed to use <code>igraph</code> for the internal computations and also to pass proximity-based networks to <code>igraph</code>, <code>ggraph</code> or export to Cytoscape by saving the output as csv/tsv.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">net &lt;-<span class="st"> </span><span class="kw"><a href="../reference/projections.html">projections</a></span>(pro<span class="op">$</span>proximity_country, pro<span class="op">$</span>proximity_product)</a>
-<a class="sourceLine" id="cb23-2" data-line-number="2">net<span class="op">$</span>network_country</a></code></pre></div>
-<pre><code>## IGRAPH d4a9230 UNW- 9 21 -- 
-## + attr: name (v/c), weight (e/n)
-## + edges from d4a9230 (vertex names):
-##  [1] Gear World                 --Glaagablaaga               
-##  [2] Galactic Federation Prison --Gromflom Prime             
-##  [3] Galactic Federation Prison --Glaagablaaga               
-##  [4] Galactic Federation Outpost--Glaagablaaga               
-##  [5] Galactic Federation Outpost--Gear World                 
-##  [6] Galactic Federation Outpost--Galactic Federation Prison 
-##  [7] Earth C-137                --Glaagablaaga               
-##  [8] Earth C-137                --Gear World                 
-## + ... omitted several edges</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">net<span class="op">$</span>network_product</a></code></pre></div>
-<pre><code>## IGRAPH ba2035a UNW- 12 27 -- 
-## + attr: name (v/c), weight (e/n)
-## + edges from ba2035a (vertex names):
-##  [1] theta  --zeta   mu     --zeta   mu     --theta  lambda --zeta  
-##  [5] lambda --theta  lambda --mu     kappa  --mu     kappa  --lambda
-##  [9] iota   --mu     iota   --kappa  gamma  --kappa  eta    --theta 
-## [13] eta    --mu     eta    --kappa  eta    --iota   epsilon--theta 
-## [17] epsilon--mu     delta  --zeta   delta  --theta  delta  --mu    
-## [21] delta  --lambda beta   --zeta   alpha  --zeta   alpha  --theta 
-## [25] alpha  --mu     alpha  --lambda alpha  --delta</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(igraph)</a>
+<a class="sourceLine" id="cb25-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb25-3" data-line-number="3">net &lt;-<span class="st"> </span><span class="kw"><a href="../reference/projections.html">projections</a></span>(pro<span class="op">$</span>proximity_country, pro<span class="op">$</span>proximity_product)</a>
+<a class="sourceLine" id="cb25-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb25-5" data-line-number="5"><span class="co"># partial view of projections</span></a>
+<a class="sourceLine" id="cb25-6" data-line-number="6"><span class="kw"><a href="https://rdrr.io/pkg/igraph/man/E.html">E</a></span>(net<span class="op">$</span>network_country)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<pre><code>## + 5/484 edges from fb02176 (vertex names):
+## [1] zaf--zwe tza--zmb tza--uga tuv--wlf tuv--umi</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/pkg/igraph/man/E.html">E</a></span>(net<span class="op">$</span>network_product)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<pre><code>## + 5/1505 edges from 42cc561 (vertex names):
+## [1] 8981--8982 8946--9510 8922--8932 8921--8922 8852--8959</code></pre>
 <p>Just two basic examples with <code>ggraph</code>.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">200100</span>)</a>
-<a class="sourceLine" id="cb27-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(Matrix)</a>
-<a class="sourceLine" id="cb27-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(igraph)</a>
-<a class="sourceLine" id="cb27-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggraph)</a>
-<a class="sourceLine" id="cb27-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb27-6" data-line-number="6">aggregated_planets &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/Matrix/man/colSums.html">rowSums</a></span>(galactic_federation)</a>
-<a class="sourceLine" id="cb27-7" data-line-number="7"><span class="kw"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span>(net<span class="op">$</span>network_country)<span class="op">$</span>size &lt;-<span class="st"> </span>aggregated_planets[<span class="kw"><a href="https://rdrr.io/r/base/match.html">match</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span>(net<span class="op">$</span>network_country)<span class="op">$</span>name, <span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(aggregated_planets))]</a>
-<a class="sourceLine" id="cb27-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb27-9" data-line-number="9">net<span class="op">$</span>network_country <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb27-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/ggraph/man/ggraph.html">ggraph</a></span>(<span class="dt">layout =</span> <span class="st">"kk"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb27-11" data-line-number="11"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/ggraph/man/geom_edge_link.html">geom_edge_link</a></span>(<span class="kw">aes</span>(<span class="dt">edge_width =</span> weight), <span class="dt">edge_colour =</span> <span class="st">"#a8a8a8"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb27-12" data-line-number="12"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/ggraph/man/geom_node_point.html">geom_node_point</a></span>(<span class="kw">aes</span>(<span class="dt">size =</span> size), <span class="dt">color =</span> <span class="st">"#86494d"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb27-13" data-line-number="13"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/ggraph/man/geom_node_text.html">geom_node_text</a></span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">vjust =</span> <span class="fl">2.2</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb27-14" data-line-number="14"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">"Proximity Based Network Projection for Planets"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb27-15" data-line-number="15"><span class="st">  </span><span class="kw">theme_void</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">200100</span>)</a>
+<a class="sourceLine" id="cb29-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb29-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(Matrix)</a>
+<a class="sourceLine" id="cb29-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggraph)</a>
+<a class="sourceLine" id="cb29-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb29-6" data-line-number="6">aggregated_trade &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/Matrix/man/colSums.html">rowSums</a></span>(world_trade_avg_<span class="dv">1998</span>_to_<span class="dv">2000</span>)</a>
+<a class="sourceLine" id="cb29-7" data-line-number="7"><span class="kw"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span>(net<span class="op">$</span>network_country)<span class="op">$</span>size &lt;-<span class="st"> </span>aggregated_trade[<span class="kw"><a href="https://rdrr.io/r/base/match.html">match</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span>(net<span class="op">$</span>network_country)<span class="op">$</span>name, <span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(aggregated_trade))]</a>
+<a class="sourceLine" id="cb29-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb29-9" data-line-number="9"><span class="kw"><a href="https://rdrr.io/pkg/ggraph/man/ggraph.html">ggraph</a></span>(net<span class="op">$</span>network_country, <span class="dt">layout =</span> <span class="st">"kk"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb29-10" data-line-number="10"><span class="st">  </span><span class="co"># geom_edge_link(aes(edge_width = weight), edge_colour = "#a8a8a8") +</span></a>
+<a class="sourceLine" id="cb29-11" data-line-number="11"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/ggraph/man/geom_edge_link.html">geom_edge_link</a></span>(<span class="dt">edge_colour =</span> <span class="st">"#a8a8a8"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb29-12" data-line-number="12"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/ggraph/man/geom_node_point.html">geom_node_point</a></span>(<span class="kw">aes</span>(<span class="dt">size =</span> size), <span class="dt">color =</span> <span class="st">"#86494d"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb29-13" data-line-number="13"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/ggraph/man/geom_node_text.html">geom_node_text</a></span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">vjust =</span> <span class="fl">2.2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb29-14" data-line-number="14"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">"Proximity Based Network Projection for Countries"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb29-15" data-line-number="15"><span class="st">  </span><span class="kw">theme_void</span>()</a></code></pre></div>
 <p><img src="basic-usage_files/figure-html/unnamed-chunk-9-1.png" width="672"></p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">200100</span>)</a>
-<a class="sourceLine" id="cb28-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb28-3" data-line-number="3">aggregated_products &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/Matrix/man/colSums.html">colSums</a></span>(galactic_federation)</a>
-<a class="sourceLine" id="cb28-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span>(net<span class="op">$</span>network_product)<span class="op">$</span>size &lt;-<span class="st"> </span>aggregated_products[<span class="kw"><a href="https://rdrr.io/r/base/match.html">match</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span>(net<span class="op">$</span>network_product)<span class="op">$</span>name, <span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(aggregated_products))]</a>
-<a class="sourceLine" id="cb28-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb28-6" data-line-number="6">net<span class="op">$</span>network_product <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb28-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/ggraph/man/ggraph.html">ggraph</a></span>(<span class="dt">layout =</span> <span class="st">"kk"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb28-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/ggraph/man/geom_edge_link.html">geom_edge_link</a></span>(<span class="kw">aes</span>(<span class="dt">edge_width =</span> weight), <span class="dt">edge_colour =</span> <span class="st">"#a8a8a8"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb28-9" data-line-number="9"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/ggraph/man/geom_node_point.html">geom_node_point</a></span>(<span class="kw">aes</span>(<span class="dt">size =</span> size), <span class="dt">color =</span> <span class="st">"#86494d"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb28-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/ggraph/man/geom_node_text.html">geom_node_text</a></span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">vjust =</span> <span class="fl">2.2</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb28-11" data-line-number="11"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">"Proximity Based Network Projection for Products"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb28-12" data-line-number="12"><span class="st">  </span><span class="kw">theme_void</span>()</a></code></pre></div>
-<p><img src="basic-usage_files/figure-html/unnamed-chunk-10-1.png" width="672"></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">200100</span>)</a>
+<a class="sourceLine" id="cb30-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb30-3" data-line-number="3">aggregated_products &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/Matrix/man/colSums.html">colSums</a></span>(world_trade_avg_<span class="dv">1998</span>_to_<span class="dv">2000</span>)</a>
+<a class="sourceLine" id="cb30-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span>(net<span class="op">$</span>network_product)<span class="op">$</span>size &lt;-<span class="st"> </span>aggregated_products[<span class="kw"><a href="https://rdrr.io/r/base/match.html">match</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span>(net<span class="op">$</span>network_product)<span class="op">$</span>name, <span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(aggregated_products))]</a>
+<a class="sourceLine" id="cb30-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb30-6" data-line-number="6"><span class="kw"><a href="https://rdrr.io/pkg/ggraph/man/ggraph.html">ggraph</a></span>(net<span class="op">$</span>network_product, <span class="dt">layout =</span> <span class="st">"kk"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb30-7" data-line-number="7"><span class="st">  </span><span class="co"># geom_edge_link(aes(edge_width = weight), edge_colour = "#a8a8a8") +</span></a>
+<a class="sourceLine" id="cb30-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/ggraph/man/geom_edge_link.html">geom_edge_link</a></span>(<span class="dt">edge_colour =</span> <span class="st">"#a8a8a8"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb30-9" data-line-number="9"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/ggraph/man/geom_node_point.html">geom_node_point</a></span>(<span class="kw">aes</span>(<span class="dt">size =</span> size), <span class="dt">color =</span> <span class="st">"#86494d"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb30-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/ggraph/man/geom_node_text.html">geom_node_text</a></span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">vjust =</span> <span class="fl">2.2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb30-11" data-line-number="11"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">"Proximity Based Network Projection for Products"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb30-12" data-line-number="12"><span class="st">  </span><span class="kw">theme_void</span>()</a></code></pre></div>
+<p><img src="basic-usage_files/figure-html/unnamed-chunk-10-1.png" width="960"></p>
 </div>
 </div>
 <div id="complexity-outlook" class="section level1">
 <h1 class="hasAnchor">
 <a href="#complexity-outlook" class="anchor"></a>Complexity Outlook</h1>
 <p>Both the Complexity Outlook Index and Complexity Outlook Gain are obtained after the <code><a href="../reference/complexity_outlook.html">complexity_outlook()</a></code> function.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw"><a href="../reference/complexity_outlook.html">complexity_outlook</a></span>(</a>
-<a class="sourceLine" id="cb29-2" data-line-number="2">  economiccomplexity_output<span class="op">$</span>balassa_index,</a>
-<a class="sourceLine" id="cb29-3" data-line-number="3">  economiccomplexity_output<span class="op">$</span>proximity<span class="op">$</span>proximity_product,</a>
-<a class="sourceLine" id="cb29-4" data-line-number="4">  economiccomplexity_output<span class="op">$</span>complexity_measures<span class="op">$</span>complexity_index_product</a>
-<a class="sourceLine" id="cb29-5" data-line-number="5">)</a></code></pre></div>
-<pre><code>## $complexity_outlook_index
-##                     Bepis 9                  Bird World 
-##                1.7444398507                0.0405825586 
-##                  Crepktct 4                 Earth C-137 
-##                1.5696522272                0.0851599657 
-## Galactic Federation Outpost  Galactic Federation Prison 
-##                0.8536235071                1.5087409922 
-##                  Gear World                Glaagablaaga 
-##                2.8023317343                0.9811072446 
-##              Gromflom Prime 
-##                0.0008766251 
-## 
-## $complexity_outlook_gain
-## 9 x 12 Matrix of class "dgeMatrix"
-##                                alpha         beta    delta   epsilon       eta
-## Bepis 9                     2.927624 0.0010937760 2.927624 0.0000000 0.1131705
-## Bird World                  2.928597 0.0010864115 2.928597 0.7504575 0.1141356
-## Crepktct 4                  2.926295 0.0010864115 2.926295 0.7489167 0.1136155
-## Earth C-137                 0.000000 0.0002245155 0.000000 0.0000000 0.1009748
-## Galactic Federation Outpost 2.928350 0.0010864115 2.928350 0.0000000 0.1133684
-## Galactic Federation Prison  2.927727 0.0000000000 2.927727 0.7500228 0.1141356
-## Gear World                  2.921526 0.0010937760 2.921526 0.0000000 0.0000000
-## Glaagablaaga                2.922499 0.0010864115 2.922499 0.7337949 0.0000000
-## Gromflom Prime              2.928597 0.0000000000 2.928597 0.7504648 0.1141430
-##                                  gamma      iota      kappa   lambda       mu
-## Bepis 9                     0.04042168 0.1647654 0.06667830 1.471275 1.060685
-## Bird World                  0.00000000 0.1647581 0.06690333 1.472240 1.062623
-## Crepktct 4                  0.00000000 0.1642380 0.00000000 0.000000 1.060568
-## Earth C-137                 0.03549475 0.1586676 0.05904625 0.000000 0.000000
-## Galactic Federation Outpost 0.00000000 0.1642380 0.00000000 1.471473 1.061608
-## Galactic Federation Prison  0.00000000 0.1647581 0.06690333 1.471371 1.062043
-## Gear World                  0.03106237 0.1444161 0.05107945 1.465177 0.000000
-## Glaagablaaga                0.00000000 0.0000000 0.00000000 1.465622 0.000000
-## Gromflom Prime              0.04057595 0.1647654 0.06692542 1.472248 1.062630
-##                                 theta     zeta
-## Bepis 9                     0.0000000 1.469432
-## Bird World                  0.9995132 1.470397
-## Crepktct 4                  0.9979790 1.468095
-## Earth C-137                 0.0000000 0.000000
-## Galactic Federation Outpost 0.9987718 1.470150
-## Galactic Federation Prison  0.9989337 0.000000
-## Gear World                  0.0000000 1.463334
-## Glaagablaaga                0.9778165 1.464299
-## Gromflom Prime              0.9995132 1.470295</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">co &lt;-<span class="st"> </span><span class="kw"><a href="../reference/complexity_outlook.html">complexity_outlook</a></span>(</a>
+<a class="sourceLine" id="cb31-2" data-line-number="2">  economiccomplexity_output<span class="op">$</span>balassa_index,</a>
+<a class="sourceLine" id="cb31-3" data-line-number="3">  economiccomplexity_output<span class="op">$</span>proximity<span class="op">$</span>proximity_product,</a>
+<a class="sourceLine" id="cb31-4" data-line-number="4">  economiccomplexity_output<span class="op">$</span>complexity_measures<span class="op">$</span>complexity_index_product</a>
+<a class="sourceLine" id="cb31-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb31-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb31-7" data-line-number="7"><span class="co"># partial view of complexity outlook</span></a>
+<a class="sourceLine" id="cb31-8" data-line-number="8">co<span class="op">$</span>complexity_outlook_index[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<pre><code>##        afg        ago        aia        alb        and 
+## 103.948610   9.962401 122.311158 152.107317 151.295380</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">co<span class="op">$</span>complexity_outlook_gain[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<pre><code>## 5 x 5 Matrix of class "dgeMatrix"
+##          0011      0012      0013      0014      0015
+## afg 0.8615531 0.7613878 0.7537907 1.0961458 0.8143851
+## ago 0.9681802 0.8436855 0.8219918 1.2151040 0.8883146
+## aia 0.8339114 0.7475080 0.7247198 1.0425043 0.7671877
+## alb 0.7979779 0.7199705 0.7132042 1.0170093 0.7636545
+## and 0.0000000 0.7118512 0.6829531 0.9987236 0.0000000</code></pre>
 </div>
 <div id="productivy-levels" class="section level1">
 <h1 class="hasAnchor">
 <a href="#productivy-levels" class="anchor"></a>Productivy Levels</h1>
 <p>The <code><a href="../reference/productivity_levels.html">productivity_levels()</a></code> dataset follows the definitions from <span class="citation">Hausmann et al. (2014)</span> and <span class="citation">Hausmann, Hwang, and Rodrik (2005)</span>.</p>
 <p>I don’t have a per-capita GDP dataset for the Galactic Federation, so I’ll create simulated data for the example.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">data_exp &lt;-<span class="st"> </span>galactic_federation</a>
-<a class="sourceLine" id="cb31-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb31-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">1810</span>)</a>
-<a class="sourceLine" id="cb31-4" data-line-number="4">data_gdp &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/setNames.html">setNames</a></span>(</a>
-<a class="sourceLine" id="cb31-5" data-line-number="5">  <span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">1</span><span class="op">:</span><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(galactic_federation), <span class="dv">1000</span>, <span class="dv">200</span>),</a>
-<a class="sourceLine" id="cb31-6" data-line-number="6">  <span class="kw"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(galactic_federation)</a>
-<a class="sourceLine" id="cb31-7" data-line-number="7">)</a>
-<a class="sourceLine" id="cb31-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb31-9" data-line-number="9"><span class="kw"><a href="../reference/productivity_levels.html">productivity_levels</a></span>(data_exp, data_gdp)</a></code></pre></div>
-<pre><code>## $productivity_level_country
-##                     Bepis 9                  Bird World 
-##                   1074.1218                   1081.7712 
-##                  Crepktct 4                 Earth C-137 
-##                   1090.0985                   1147.3059 
-## Galactic Federation Outpost  Galactic Federation Prison 
-##                   1072.8671                   1062.9803 
-##                  Gear World                Glaagablaaga 
-##                    974.1316                   1144.2559 
-##              Gromflom Prime 
-##                    990.1308 
-## 
-## $productivity_level_product
-##     alpha      beta     delta   epsilon       eta     gamma      iota     kappa 
-## 1305.3414  979.0985 1290.8110 1066.3034  879.5715 1081.7712 1274.9481 1133.4150 
-##    lambda        mu     theta      zeta 
-## 1316.7840  909.5411 1032.4238 1167.3903</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">pl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/productivity_levels.html">productivity_levels</a></span>(world_trade_avg_<span class="dv">1998</span>_to_<span class="dv">2000</span>, world_gdp_avg_<span class="dv">1998</span>_to_<span class="dv">2000</span>)</a>
+<a class="sourceLine" id="cb35-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb35-3" data-line-number="3"><span class="co"># partial view of productivity levels</span></a>
+<a class="sourceLine" id="cb35-4" data-line-number="4">pl<span class="op">$</span>productivity_level_country[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<pre><code>##       ago       alb       and       are       arg 
+##  8223.607  6343.341 13783.485 10207.679  9269.670</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">pl<span class="op">$</span>productivity_level_product[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<pre><code>##      0011      0012      0013      0014      0015 
+##  7915.893  3986.371 11375.710  6273.428 17628.950</code></pre>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="hasAnchor">
@@ -475,7 +313,7 @@
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li>
-<a href="#galactic-federation">Galactic Federation</a><ul class="nav nav-pills nav-stacked">
+<a href="#world-trade-and-per-capita-gdp">World Trade and Per-Capita GDP</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#package-data">Package Data</a></li>
       <li><a href="#balassa-index">Balassa Index</a></li>
       <li><a href="#complexity-measures">Complexity Measures</a></li>

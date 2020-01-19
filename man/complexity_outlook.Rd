@@ -4,8 +4,7 @@
 \alias{complexity_outlook}
 \title{Complexity Outlook}
 \usage{
-complexity_outlook(balassa_index, proximity_product,
-  complexity_index_product)
+complexity_outlook(balassa_index, proximity_product, complexity_index_product)
 }
 \arguments{
 \item{balassa_index}{(Type: dgCMatrix) the output from
@@ -30,11 +29,15 @@ The current implementation follows
 export oppportunities.
 }
 \examples{
-complexity_outlook(
+co <- complexity_outlook(
  economiccomplexity_output$balassa_index,
  economiccomplexity_output$proximity$proximity_product,
  economiccomplexity_output$complexity_measures$complexity_index_product
 )
+
+# partial view of complexity outlook
+co$complexity_outlook_index[1:5]
+co$complexity_outlook_gain[1:5,1:5]
 
 }
 \references{

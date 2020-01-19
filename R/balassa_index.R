@@ -31,12 +31,10 @@
 #' @importFrom Matrix Matrix rowSums colSums t
 #'
 #' @examples
-#' balassa_index(
-#'   data = galactic_federation,
-#'   country = "planet",
-#'   product = "product",
-#'   value = "export_value"
-#' )
+#' bi <- balassa_index(world_trade_avg_1998_to_2000)
+#'
+#' # partial view of index
+#' bi[1:5,1:5]
 #'
 #' @references
 #' For more information see:

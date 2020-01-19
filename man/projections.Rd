@@ -4,8 +4,13 @@
 \alias{projections}
 \title{Projections of a Country-Product Network}
 \usage{
-projections(proximity_country, proximity_product, avg_links = 5,
-  tolerance = 0.05, compute = "both")
+projections(
+  proximity_country,
+  proximity_product,
+  avg_links = 5,
+  tolerance = 0.05,
+  compute = "both"
+)
 }
 \arguments{
 \item{proximity_country}{(Type: dgCMatrix) the output from
@@ -41,10 +46,14 @@ links per node is obtained, or a spaning tree after the strongest links is
 returned when is not possible to return the desired network.
 }
 \examples{
-projections(
-  proximity_country = economiccomplexity_output$proximity$proximity_country,
-  proximity_product = economiccomplexity_output$proximity$proximity_product
+net <- projections(
+ economiccomplexity_output$proximity$proximity_country,
+ economiccomplexity_output$proximity$proximity_product
 )
+
+# partial view of projections
+igraph::E(net$network_country)[1:5]
+igraph::E(net$network_product)[1:5]
 
 }
 \references{

@@ -162,77 +162,22 @@ doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9
 <p>and the references therein.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>proximity</span>(<span class='no'>economiccomplexity_output</span>$<span class='no'>balassa_index</span>)</div><div class='output co'>#&gt; $proximity_country
-#&gt; 9 x 9 sparse Matrix of class "dsCMatrix"
-#&gt;                               Bepis 9 Bird World Crepktct 4 Earth C-137
-#&gt; Bepis 9                     1.0000000  .          .           0.2857143
-#&gt; Bird World                  .          1.0000000  0.3333333   .        
-#&gt; Crepktct 4                  .          0.3333333  1.0000000   0.1428571
-#&gt; Earth C-137                 0.2857143  .          0.1428571   1.0000000
-#&gt; Galactic Federation Outpost 0.3333333  0.3333333  0.6666667   0.1428571
-#&gt; Galactic Federation Prison  .          0.3333333  0.3333333   0.1428571
-#&gt; Gear World                  0.5000000  .          .           0.4285714
-#&gt; Glaagablaaga                .          0.2000000  0.4000000   0.1428571
-#&gt; Gromflom Prime              .          .          .           .        
-#&gt;                             Galactic Federation Outpost
-#&gt; Bepis 9                                       0.3333333
-#&gt; Bird World                                    0.3333333
-#&gt; Crepktct 4                                    0.6666667
-#&gt; Earth C-137                                   0.1428571
-#&gt; Galactic Federation Outpost                   1.0000000
-#&gt; Galactic Federation Prison                    0.3333333
-#&gt; Gear World                                    0.2500000
-#&gt; Glaagablaaga                                  0.4000000
-#&gt; Gromflom Prime                                .        
-#&gt;                             Galactic Federation Prison Gear World Glaagablaaga
-#&gt; Bepis 9                                      .          0.5000000    .        
-#&gt; Bird World                                   0.3333333  .            0.2000000
-#&gt; Crepktct 4                                   0.3333333  .            0.4000000
-#&gt; Earth C-137                                  0.1428571  0.4285714    0.1428571
-#&gt; Galactic Federation Outpost                  0.3333333  0.2500000    0.4000000
-#&gt; Galactic Federation Prison                   1.0000000  .            0.2000000
-#&gt; Gear World                                   .          1.0000000    0.4000000
-#&gt; Glaagablaaga                                 0.2000000  0.4000000    1.0000000
-#&gt; Gromflom Prime                               0.3333333  .            .        
-#&gt;                             Gromflom Prime
-#&gt; Bepis 9                          .        
-#&gt; Bird World                       .        
-#&gt; Crepktct 4                       .        
-#&gt; Earth C-137                      .        
-#&gt; Galactic Federation Outpost      .        
-#&gt; Galactic Federation Prison       0.3333333
-#&gt; Gear World                       .        
-#&gt; Glaagablaaga                     .        
-#&gt; Gromflom Prime                   1.0000000
-#&gt; 
-#&gt; $proximity_product
-#&gt; 12 x 12 sparse Matrix of class "dsCMatrix"</div><div class='output co'>#&gt; <span class='message'>   [[ suppressing 12 column names ‘alpha’, ‘beta’, ‘delta’ ... ]]</span></div><div class='output co'>#&gt;                                                                       
-#&gt; alpha   1.0000000 .   1.0000000 0.25 .         .   .         .        
-#&gt; beta    .         1.0 .         .    .         0.2 .         .        
-#&gt; delta   1.0000000 .   1.0000000 0.25 .         .   .         .        
-#&gt; epsilon 0.2500000 .   0.2500000 1.00 0.2500000 0.2 .         0.2500000
-#&gt; eta     .         .   .         0.25 1.0000000 0.2 0.5000000 0.3333333
-#&gt; gamma   .         0.2 .         0.20 0.2000000 1.0 0.2000000 0.6000000
-#&gt; iota    .         .   .         .    0.5000000 0.2 1.0000000 0.3333333
-#&gt; kappa   .         .   .         0.25 0.3333333 0.6 0.3333333 1.0000000
-#&gt; lambda  0.5000000 .   0.5000000 0.25 .         0.2 .         0.3333333
-#&gt; mu      0.3333333 .   0.3333333 0.50 0.6666667 0.2 0.3333333 0.3333333
-#&gt; theta   0.3333333 .   0.3333333 0.75 0.3333333 .   .         .        
-#&gt; zeta    0.5000000 0.5 0.5000000 0.25 .         0.2 .         .        
-#&gt;                                                
-#&gt; alpha   0.5000000 0.3333333 0.3333333 0.5000000
-#&gt; beta    .         .         .         0.5000000
-#&gt; delta   0.5000000 0.3333333 0.3333333 0.5000000
-#&gt; epsilon 0.2500000 0.5000000 0.7500000 0.2500000
-#&gt; eta     .         0.6666667 0.3333333 .        
-#&gt; gamma   0.2000000 0.2000000 .         0.2000000
-#&gt; iota    .         0.3333333 .         .        
-#&gt; kappa   0.3333333 0.3333333 .         .        
-#&gt; lambda  1.0000000 0.3333333 0.3333333 0.5000000
-#&gt; mu      0.3333333 1.0000000 0.6666667 0.3333333
-#&gt; theta   0.3333333 0.6666667 1.0000000 0.3333333
-#&gt; zeta    0.5000000 0.3333333 0.3333333 1.0000000
-#&gt; </div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>pro</span> <span class='kw'>&lt;-</span> <span class='fu'>proximity</span>(<span class='no'>economiccomplexity_output</span>$<span class='no'>balassa_index</span>)
+
+<span class='co'># partial view of proximity matrices</span>
+<span class='no'>pro</span>$<span class='no'>proximity_country</span>[<span class='fl'>1</span>:<span class='fl'>5</span>,<span class='fl'>1</span>:<span class='fl'>5</span>]</div><div class='output co'>#&gt; 5 x 5 sparse Matrix of class "dsCMatrix"
+#&gt;            afg         ago         aia        alb         and
+#&gt; afg 1.00000000 0.015873016 0.181818182 0.19689119 0.192513369
+#&gt; ago 0.01587302 1.000000000 0.006993007 0.01554404 0.005347594
+#&gt; aia 0.18181818 0.006993007 1.000000000 0.16580311 0.251336898
+#&gt; alb 0.19689119 0.015544041 0.165803109 1.00000000 0.310880829
+#&gt; and 0.19251337 0.005347594 0.251336898 0.31088083 1.000000000</div><div class='input'><span class='no'>pro</span>$<span class='no'>proximity_product</span>[<span class='fl'>1</span>:<span class='fl'>5</span>,<span class='fl'>1</span>:<span class='fl'>5</span>]</div><div class='output co'>#&gt; 5 x 5 sparse Matrix of class "dsCMatrix"
+#&gt;           0011      0012      0013      0014      0015
+#&gt; 0011 1.0000000 0.3658537 0.1707317 0.2439024 0.2682927
+#&gt; 0012 0.3658537 1.0000000 0.2500000 0.2250000 0.2500000
+#&gt; 0013 0.1707317 0.2500000 1.0000000 0.2500000 0.1200000
+#&gt; 0014 0.2439024 0.2250000 0.2500000 1.0000000 0.2250000
+#&gt; 0015 0.2682927 0.2500000 0.1200000 0.2250000 1.0000000</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -4,8 +4,13 @@
 \alias{productivity_levels}
 \title{Productivity Levels}
 \usage{
-productivity_levels(data_exp, data_gdp, country = "country",
-  product = "product", value = "value")
+productivity_levels(
+  data_exp,
+  data_gdp,
+  country = "country",
+  product = "product",
+  value = "value"
+)
 }
 \arguments{
 \item{data_exp}{(Type: data.frame, matrix or dgCMatrix) a dataset containing
@@ -36,17 +41,14 @@ The current implementation follows
 productivity and income levels associated to exports.
 }
 \examples{
-data_exp <- galactic_federation
-
-# Since I don't have a per-capita GDP dataset for the Galactic Federation,
-# I'll create simulated data
-set.seed(1810)
-data_gdp <- setNames(
- rnorm(1:nrow(galactic_federation), 1000, 200),
- rownames(galactic_federation)
+pl <- productivity_levels(
+ world_trade_avg_1998_to_2000,
+ world_gdp_avg_1998_to_2000
 )
 
-productivity_levels(data_exp, data_gdp)
+# partial view of productivity levels
+pl$productivity_level_country[1:5]
+pl$productivity_level_product[1:5]
 
 }
 \references{

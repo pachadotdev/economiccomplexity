@@ -36,6 +36,14 @@
       "@type": "Person",
       "givenName": "Diego",
       "familyName": "Kozlowski"
+    },
+    {
+      "@type": "Organization",
+      "name": "The World Bank"
+    },
+    {
+      "@type": "Organization",
+      "name": "Open Trade Statistics"
     }
   ],
   "copyrightHolder": [
@@ -142,7 +150,7 @@
   ],
   "codeRepository": "https://pachamaltese.github.io/economiccomplexity",
   "readme": "https://github.com/pachamaltese/economiccomplexity/blob/master/README.md",
-  "fileSize": "152.167KB",
+  "fileSize": "1301.534KB",
   "contIntegration": [
     "https://travis-ci.org/pachamaltese/economiccomplexity",
     "https://codecov.io/github/pachamaltese/economiccomplexity?branch=master"

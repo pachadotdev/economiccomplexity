@@ -4,8 +4,8 @@ test_that("proximity results are aligned with the expected output", {
   )
 
   expect_is(pr, "list")
-  expect_equal(nrow(pr$proximity_country), 9)
-  expect_equal(nrow(pr$proximity_product), 12)
+  expect_equal(nrow(pr$proximity_country), 226)
+  expect_equal(nrow(pr$proximity_product), 785)
   expect_gte(min(pr$proximity_country), 0)
   expect_lte(max(pr$proximity_country), 1)
   expect_gte(min(pr$proximity_product), 0)
@@ -19,7 +19,7 @@ test_that("proximity returns country proximity only", {
   )
 
   expect_is(pr, "list")
-  expect_equal(nrow(pr$proximity_country), 9)
+  expect_equal(nrow(pr$proximity_country), 226)
   expect_equal(nrow(pr$proximity_product), NULL)
   expect_gte(min(pr$proximity_country), 0)
   expect_lte(max(pr$proximity_country), 1)
@@ -33,7 +33,7 @@ test_that("proximity returns product proximity only", {
 
   expect_is(pr, "list")
   expect_equal(nrow(pr$proximity_country), NULL)
-  expect_equal(nrow(pr$proximity_product), 12)
+  expect_equal(nrow(pr$proximity_product), 785)
   expect_gte(min(pr$proximity_product), 0)
   expect_lte(max(pr$proximity_product), 1)
 })

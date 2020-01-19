@@ -24,17 +24,14 @@
 #' @importFrom stats setNames
 #'
 #' @examples
-#' data_exp <- galactic_federation
-#'
-#' # Since I don't have a per-capita GDP dataset for the Galactic Federation,
-#' # I'll create simulated data
-#' set.seed(1810)
-#' data_gdp <- setNames(
-#'  rnorm(1:nrow(galactic_federation), 1000, 200),
-#'  rownames(galactic_federation)
+#' pl <- productivity_levels(
+#'  world_trade_avg_1998_to_2000,
+#'  world_gdp_avg_1998_to_2000
 #' )
 #'
-#' productivity_levels(data_exp, data_gdp)
+#' # partial view of productivity levels
+#' pl$productivity_level_country[1:5]
+#' pl$productivity_level_product[1:5]
 #'
 #' @references
 #' For more information on prody and its applications see:
@@ -72,20 +69,12 @@ productivity_levels <- function(data_exp, data_gdp,
     data_gdp <- setNames(as.numeric(data_gdp$value), data_gdp$country)
   }
 
-  intersect_country_1 <- rownames(data_exp) %in% names(data_gdp)
-  intersect_country_1 <- intersect_country_1[intersect_country_1 == TRUE]
+  intersect_country_1 <- sort(rownames(data_exp)[rownames(data_exp) %in% names(data_gdp)])
+  intersect_country_2 <- sort(names(data_gdp)[names(data_gdp) %in% rownames(data_exp)])
 
-  intersect_country_2 <- names(data_gdp) %in% rownames(data_exp)
-  intersect_country_2 <- intersect_country_2[intersect_country_2 == TRUE]
-
-  country_mismatch <- any(
-    ncol(data_exp) != length(intersect_country_1),
-    ncol(data_exp) != length(intersect_country_2),
-    length(data_gdp) != length(intersect_country_1),
-    length(data_gdp) != length(intersect_country_2)
-  )
-
-  if (country_mismatch == TRUE) {
+  if (any(intersect_country_1 != intersect_country_2) == TRUE |
+      nrow(data_exp) != length(intersect_country_2) |
+      length(data_gdp) != length(intersect_country_1)) {
     warning("'data_exp' and 'data_gdp' don\'t have the same countries, some elements will be dropped")
   }
 

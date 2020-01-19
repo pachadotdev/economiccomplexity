@@ -4,8 +4,14 @@
 \alias{balassa_index}
 \title{Balassa Index}
 \usage{
-balassa_index(data, discrete = TRUE, cutoff = 1, country = "country",
-  product = "product", value = "value")
+balassa_index(
+  data,
+  discrete = TRUE,
+  cutoff = 1,
+  country = "country",
+  product = "product",
+  value = "value"
+)
 }
 \arguments{
 \item{data}{(Type: data.frame, matrix or dgCMatrix) a dataset such as
@@ -45,12 +51,10 @@ instead of a matrix, the function shall aggregate the data and convert the
 input to a matrix.
 }
 \examples{
-balassa_index(
-  data = galactic_federation,
-  country = "planet",
-  product = "product",
-  value = "export_value"
-)
+bi <- balassa_index(world_trade_avg_1998_to_2000)
+
+# partial view of index
+bi[1:5,1:5]
 
 }
 \references{

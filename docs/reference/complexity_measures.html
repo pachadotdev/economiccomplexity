@@ -123,8 +123,12 @@ Index and the Product Complexity Index." />
 Index and the Product Complexity Index.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>complexity_measures</span>(<span class='no'>balassa_index</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"fitness"</span>, <span class='kw'>iterations</span> <span class='kw'>=</span> <span class='fl'>20</span>,
-  <span class='kw'>extremality</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
+    <pre class="usage"><span class='fu'>complexity_measures</span>(
+  <span class='no'>balassa_index</span>,
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"fitness"</span>,
+  <span class='kw'>iterations</span> <span class='kw'>=</span> <span class='fl'>20</span>,
+  <span class='kw'>extremality</span> <span class='kw'>=</span> <span class='fl'>1</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -172,24 +176,12 @@ doi: <a href='https://doi.org/10.1140/epjb/e2015-60298-7'>10.1140/epjb/e2015-602
 <p>and the references therein.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>complexity_measures</span>(<span class='no'>economiccomplexity_output</span>$<span class='no'>balassa_index</span>)</div><div class='output co'>#&gt; $complexity_index_country
-#&gt;                     Bepis 9                  Bird World 
-#&gt;                0.0115128434                0.0001097279 
-#&gt;                  Crepktct 4                 Earth C-137 
-#&gt;                0.0212756540                8.3417128754 
-#&gt; Galactic Federation Outpost  Galactic Federation Prison 
-#&gt;                0.0081891360                0.0059094230 
-#&gt;                  Gear World                Glaagablaaga 
-#&gt;                0.1670017470                0.4440184218 
-#&gt;              Gromflom Prime 
-#&gt;                0.0002701715 
-#&gt; 
-#&gt; $complexity_index_product
-#&gt;        alpha         beta        delta      epsilon          eta        gamma 
-#&gt; 5.7151134328 0.0003691566 5.7151134328 0.0039046311 0.0935850244 0.0001104686 
-#&gt;         iota        kappa       lambda           mu        theta         zeta 
-#&gt; 0.3405363984 0.0049668423 0.0181804513 0.0920772586 0.0088859916 0.0071569113 
-#&gt; </div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>co</span> <span class='kw'>&lt;-</span> <span class='fu'>complexity_measures</span>(<span class='no'>economiccomplexity_output</span>$<span class='no'>balassa_index</span>)
+
+<span class='co'># partial view of indexes</span>
+<span class='no'>co</span>$<span class='no'>complexity_index_country</span>[<span class='fl'>1</span>:<span class='fl'>5</span>]</div><div class='output co'>#&gt;        afg        ago        aia        alb        and 
+#&gt; 0.78605655 0.03999516 1.05645538 1.24261128 1.37321261 </div><div class='input'><span class='no'>co</span>$<span class='no'>complexity_index_product</span>[<span class='fl'>1</span>:<span class='fl'>5</span>]</div><div class='output co'>#&gt;      0011      0012      0013      0014      0015 
+#&gt; 0.7538883 0.7491391 2.3018690 0.9903918 1.3120378 </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

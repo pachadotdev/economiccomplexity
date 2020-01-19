@@ -1,5 +1,5 @@
 ba_ind <- balassa_index(
-  data = galactic_federation, country = "planet", product = "product", value = "export_value"
+  data = world_trade_avg_1998_to_2000
 )
 
 com_fit <- complexity_measures(ba_ind)
@@ -21,4 +21,4 @@ economiccomplexity_output <- list(
   proximity = prox
 )
 
-save(economiccomplexity_output, file = "data/economiccomplexity_output.rda")
+save(economiccomplexity_output, file = "data/economiccomplexity_output.rda", compress = "xz")

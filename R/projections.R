@@ -29,10 +29,14 @@
 #' degree delete.edges graph.difference graph.union remove.edge.attribute E E<-
 #'
 #' @examples
-#' projections(
-#'   proximity_country = economiccomplexity_output$proximity$proximity_country,
-#'   proximity_product = economiccomplexity_output$proximity$proximity_product
+#' net <- projections(
+#'  economiccomplexity_output$proximity$proximity_country,
+#'  economiccomplexity_output$proximity$proximity_product
 #' )
+#'
+#' # partial view of projections
+#' igraph::E(net$network_country)[1:5]
+#' igraph::E(net$network_product)[1:5]
 #'
 #' @references
 #' For more information see:

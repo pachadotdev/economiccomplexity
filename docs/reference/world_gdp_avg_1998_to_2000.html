@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Complexity Outlook — complexity_outlook • economiccomplexity</title>
+<title>World Trade Per-Capita GDP for the Period 1998-2000 — world_gdp_avg_1998_to_2000 • economiccomplexity</title>
 
 
 <!-- jquery -->
@@ -35,9 +35,9 @@
 
 
 
-<meta property="og:title" content="Complexity Outlook — complexity_outlook" />
-<meta property="og:description" content="complexity_outlook() computes the Complexity Outlook
-Index and the Complexity Outlook Gain." />
+<meta property="og:title" content="World Trade Per-Capita GDP for the Period 1998-2000 — world_gdp_avg_1998_to_2000" />
+<meta property="og:description" content="A named vector that summarises the per-capita GDP of different countries.
+The unit is year 2000 USD." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -113,82 +113,67 @@ Index and the Complexity Outlook Gain." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Complexity Outlook</h1>
+    <h1>World Trade Per-Capita GDP for the Period 1998-2000</h1>
     
-    <div class="hidden name"><code>complexity_outlook.Rd</code></div>
+    <div class="hidden name"><code>world_gdp_avg_1998_to_2000.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>complexity_outlook()</code> computes the Complexity Outlook
-Index and the Complexity Outlook Gain.</p>
+    <p>A named vector that summarises the per-capita GDP of different countries.
+The unit is year 2000 USD.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>complexity_outlook</span>(<span class='no'>balassa_index</span>, <span class='no'>proximity_product</span>, <span class='no'>complexity_index_product</span>)</pre>
+    <pre class="usage"><span class='no'>world_gdp_avg_1998_to_2000</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>balassa_index</th>
-      <td><p>(Type: dgCMatrix) the output from
-<code><a href='balassa_index.html'>balassa_index()</a></code>) or an equivalent arrangement.</p></td>
-    </tr>
-    <tr>
-      <th>proximity_product</th>
-      <td><p>(Type: dgCMatrix) the output from
-<code><a href='proximity.html'>proximity()</a></code>) or an equivalent arrangement.</p></td>
-    </tr>
-    <tr>
-      <th>complexity_index_product</th>
-      <td><p>(Type: numeric) the output from
-<code><a href='complexity_measures.html'>complexity_measures()</a></code>) or an equivalent arrangement.</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A list of two named numeric vectors.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The current implementation follows
-(Hausmann et al. 2014)
- to measure unexploited
-export oppportunities.</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>For more information on this index see:</p>
-<p>Hausmann R, Hidalgo C, Bustos S, Coscia M, Simoes A, Yildirim M (2014).
-<em>The atlas of economic complexity: Mapping paths to prosperity</em>.
-MIT Press.
-doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9647.001.0001</a>
-.</p>
-<p>and the references therein.</p>
+    <p>A named vector with 240 entries.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>co</span> <span class='kw'>&lt;-</span> <span class='fu'>complexity_outlook</span>(
- <span class='no'>economiccomplexity_output</span>$<span class='no'>balassa_index</span>,
- <span class='no'>economiccomplexity_output</span>$<span class='no'>proximity</span>$<span class='no'>proximity_product</span>,
- <span class='no'>economiccomplexity_output</span>$<span class='no'>complexity_measures</span>$<span class='no'>complexity_index_product</span>
-)
-
-<span class='co'># partial view of complexity outlook</span>
-<span class='no'>co</span>$<span class='no'>complexity_outlook_index</span>[<span class='fl'>1</span>:<span class='fl'>5</span>]</div><div class='output co'>#&gt;        afg        ago        aia        alb        and 
-#&gt; 103.948610   9.962401 122.311158 152.107317 151.295380 </div><div class='input'><span class='no'>co</span>$<span class='no'>complexity_outlook_gain</span>[<span class='fl'>1</span>:<span class='fl'>5</span>,<span class='fl'>1</span>:<span class='fl'>5</span>]</div><div class='output co'>#&gt; 5 x 5 Matrix of class "dgeMatrix"
-#&gt;          0011      0012      0013      0014      0015
-#&gt; afg 0.8615531 0.7613878 0.7537907 1.0961458 0.8143851
-#&gt; ago 0.9681802 0.8436855 0.8219918 1.2151040 0.8883146
-#&gt; aia 0.8339114 0.7475080 0.7247198 1.0425043 0.7671877
-#&gt; alb 0.7979779 0.7199705 0.7132042 1.0170093 0.7636545
-#&gt; and 0.0000000 0.7118512 0.6829531 0.9987236 0.0000000</div><div class='input'>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>world_gdp_avg_1998_to_2000</span></div><div class='output co'>#&gt;   abw   ago   alb   and   arb   are   arg   arm   atg   aus   aut   aze   bdi 
+#&gt; 19185  1540  1433 27765  3312 43082  5900   928  8866 30003 28393  1064   164 
+#&gt;   bel   ben   bfa   bgd   bgr   bhr   bhs   bih   blr   blz   bmu   bol   bra 
+#&gt; 26709   473   301   355  2741 15890 21228  1978  1906  2453 52453  1119  6044 
+#&gt;   brb   brn   btn   bwa   caf   can   ceb   che   chl   chn   civ   cmr   cod 
+#&gt; 10581 24876   776  3553   303 26476  5710 46086  6432  1150   979   790   221 
+#&gt;   cog   col   com   cpv   cri   css   cub   cym   cyp   cze   deu   dma   dnk 
+#&gt;  1683  3427   860  1394  4229  4998  2301 64912 17822  9977 25827  3814 37779 
+#&gt;   dom   dza   eap   ear   eas   eca   ecs   ecu   egy   emu   eri   esp   est 
+#&gt;  2732  2429  1198  1570  3613  3234 13626  2630  1326 23591   616 18965  6620 
+#&gt;   eth   euu   fcs   fin   fji   fra   fsm   gab   gbr   geo   gha   gin   gmb 
+#&gt;   134 20436   850 26837  2290 25921  1816  7604 24145  1094   655   425   566 
+#&gt;   gnb   gnq   grc   grd   grl   gtm   guy   hic   hkg   hnd   hpc   hrv   hti 
+#&gt;   376  3375 15731  4173 21390  1758  1668 24016 15303  1103   421  7103   528 
+#&gt;   hun   ibd   ibt   ida   idb   idn   idx   imn   ind   irl   irn   irq   isl 
+#&gt;  7003  1917  1623   532   766  1464   409 29822   557 28434  3268  2922 25318 
+#&gt;   isr   ita   jam   jor   jpn   kaz   ken   kgz   khm   kir   kna   kor   kwt 
+#&gt; 18742 24599  3247  1939 28954  2907   581   441   277  1180  9203  9704 25886 
+#&gt;   lac   lao   lbn   lbr   lby   lca   lcn   ldc   lic   lka   lmc   lmy   lso 
+#&gt;  5030   449  4045   428  6187  5138  5188   375   340  1215   750  1562   554 
+#&gt;   lte   ltu   lux   lva   mac   mar   mco   mda   mdg   mdv   mea   mex   mhl 
+#&gt;  2303  4697 61084  4599 15603  1373 94174   807   338  3946  3949  6285  1881 
+#&gt;   mic   mkd   mli   mlt   mmr   mna   mne   mng   moz   mrt   mus   mwi   mys 
+#&gt;  1677  2316   391 12133   215  2198  3492  1106   198   719  3758   276  4639 
+#&gt;   nac   nam   ner   nga   nic   nld   nor   npl   nzl   oed   omn   oss   pak 
+#&gt; 29880  2753   236   956   873 31231 55768   306 19867 22260 12654  5668   568 
+#&gt;   pan   per   phl   plw   png   pol   pre   pri   prt   pry   pse   pss   pst 
+#&gt;  3790  2244  1102  6470  1186  5651   701 16272 14538  2595  1599  1905 24016 
+#&gt;   qat   rou   rus   rwa   sas   sau   sdn   sen   sgp   slb   sle   slv   smr 
+#&gt; 42430  3360  4155   230   540 12783   693   763 22214  1001   208  1846 47554 
+#&gt;   srb   ssa   ssf   sst   sur   svk   svn   swe   swz   syc   tcd   tea   tec 
+#&gt;  2355   843   844  5180  4005  7141 12430 29835  2155  6803   337  1211  3488 
+#&gt;   tgo   tha   tjk   tkm   tla   tls   tmn   ton   tsa   tss   tto   tun   tur 
+#&gt;   380  2334   276  1545  5140   925  2204  2221   540   844  6387  2012  5655 
+#&gt;   tuv   tza   uga   ukr   umc   ury   usa   uzb   vct   ven   vnm   vut   wld 
+#&gt;  2188   357   287  1210  2581  6429 30246   665  3251  8464   509  1943  5548 
+#&gt;   wsm   xkx   yem   zaf   zmb   zwe 
+#&gt;  1901  1336   796  4056   653  1040 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#references">References</a></li>
+      <li><a href="#format">Format</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
