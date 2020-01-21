@@ -86,3 +86,12 @@ balassa_index <- function(data, discrete = TRUE, cutoff = 1,
 
   return(data)
 }
+
+#' Revealed Comparative Advantage
+#' @description \code{balassa_index()} replaces this function
+#' @param ... old parameters
+#' @export
+
+rca <- function(...) {
+  .Deprecated("balassa_index")
+}
