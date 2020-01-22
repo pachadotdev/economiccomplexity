@@ -1,4 +1,4 @@
-library(Matrix)
+# library(Matrix)
 library(rlang)
 library(dplyr)
 library(tidyr)
@@ -43,18 +43,21 @@ trade <- trade %>%
   summarise(trade_value_usd = mean(trade_value_usd, na.rm = T)) %>%
   mutate(trade_value_usd = round(trade_value_usd, 0))
 
-world_trade_avg_1998_to_2000 <- trade %>%
-  ungroup() %>%
-  mutate_if(is.character, as.factor)
+# world_trade_avg_1998_to_2000 <- trade %>%
+#   ungroup() %>%
+#   mutate_if(is.character, as.factor)
+#
+# world_trade_avg_1998_to_2000 <- with(
+#   world_trade_avg_1998_to_2000,
+#   sparseMatrix(
+#     i = as.numeric(reporter_iso),
+#     j = as.numeric(product_code),
+#     x = trade_value_usd,
+#     dimnames = list(levels(reporter_iso), levels(product_code))
+#   )
+# )
 
-world_trade_avg_1998_to_2000 <- with(
-  world_trade_avg_1998_to_2000,
-  sparseMatrix(
-    i = as.numeric(reporter_iso),
-    j = as.numeric(product_code),
-    x = trade_value_usd,
-    dimnames = list(levels(reporter_iso), levels(product_code))
-  )
-)
+world_trade_avg_1998_to_2000 <- trade
+names(world_trade_avg_1998_to_2000) <- c("country", "product", "value")
 
 save(world_trade_avg_1998_to_2000, file = 'data/world_trade_avg_1998_to_2000.rda', compress = "xz")

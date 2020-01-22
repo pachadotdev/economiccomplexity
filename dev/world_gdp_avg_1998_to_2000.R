@@ -56,6 +56,7 @@ gdp2 <- gdp2 %>%
   summarise(gdppc = mean(gdppc, na.rm = T)) %>%
   mutate(gdppc = round(gdppc, 0))
 
-world_gdp_avg_1998_to_2000 <- setNames(gdp2$gdppc, gdp2$iso3c)
+world_gdp_avg_1998_to_2000 <- gdp2
+names(world_gdp_avg_1998_to_2000) <- c("country","value")
 
 save(world_gdp_avg_1998_to_2000, file = 'data/world_gdp_avg_1998_to_2000.rda', compress = "xz")

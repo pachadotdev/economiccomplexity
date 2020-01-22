@@ -5,12 +5,12 @@
 World Trade Per-Capita GDP for the Period 1998-2000
 }
 \description{
-A named vector that summarises the per-capita GDP of different countries.
+A data frame that summarises the per-capita GDP of different countries.
 The unit is year 2000 USD.
 }
 \usage{world_gdp_avg_1998_to_2000}
 \format{
-  A named vector with 240 entries.
+  A data frame with 240 rows and 2 columns.
 }
 \examples{
 world_gdp_avg_1998_to_2000

@@ -1,4 +1,5 @@
-test_that("balassa_index works with a sparse matrix", {
+test_that("balassa_index works with a data.frame", {
+  bi <- expect_warning(rca())
   bi <- balassa_index(world_trade_avg_1998_to_2000)
 
   expect_is(bi, "dgCMatrix")
@@ -8,30 +9,26 @@ test_that("balassa_index works with a sparse matrix", {
   expect_equal(max(bi), 1)
 })
 
-test_that("balassa_index works with a dense matrix", {
-  wt <- Matrix::as.matrix(world_trade_avg_1998_to_2000)
+test_that("balassa_index works with a matrix", {
+  wt <- world_trade_avg_1998_to_2000
+  wt$country <- as.factor(wt$country)
+  wt$product <- as.factor(wt$product)
 
-  bi <- balassa_index(world_trade_avg_1998_to_2000)
-
-  bi2 <- balassa_index(wt)
-
-  expect_is(bi2, "dgCMatrix")
-  expect_equal(bi, bi2)
-  expect_equal(nrow(bi2), 226)
-  expect_equal(ncol(bi2), 785)
-  expect_equal(min(bi2), 0)
-  expect_equal(max(bi2), 1)
-})
-
-test_that("balassa_index works with a data frame", {
-  wt <- Matrix::as.matrix(world_trade_avg_1998_to_2000)
-  wt <- as.data.frame(as.table(wt), stringsAsFactors = FALSE)
-
-  bi <- balassa_index(world_trade_avg_1998_to_2000)
-
-  bi2 <- balassa_index(
-    data = wt, country = "Var1", product = "Var2", value = "Freq"
+  wt <- with(
+    wt,
+    Matrix::sparseMatrix(
+      i = as.numeric(country),
+      j = as.numeric(product),
+      x = value,
+      dimnames = list(levels(country), levels(product))
+    )
   )
+
+  wt <- Matrix::as.matrix(wt)
+
+  bi <- balassa_index(world_trade_avg_1998_to_2000)
+
+  bi2 <- balassa_index(data = wt)
 
   expect_is(bi2, "dgCMatrix")
   expect_equal(bi, bi2)

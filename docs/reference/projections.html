@@ -36,7 +36,7 @@
 
 
 <meta property="og:title" content="Projections of a Country-Product Network — projections" />
-<meta property="og:description" content="proximity() computes two graphs that are particularly
+<meta property="og:description" content="projections() computes two graphs that are particularly
 useful to visualize product-product and country-country similarity." />
 <meta name="twitter:card" content="summary" />
 
@@ -119,7 +119,7 @@ useful to visualize product-product and country-country similarity." />
     </div>
 
     <div class="ref-description">
-    <p><code><a href='proximity.html'>proximity()</a></code> computes two graphs that are particularly
+    <p><code>projections()</code> computes two graphs that are particularly
 useful to visualize product-product and country-country similarity.</p>
     </div>
 
@@ -191,8 +191,8 @@ doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9
  <span class='no'>economiccomplexity_output</span>$<span class='no'>proximity</span>$<span class='no'>proximity_product</span>
 )</div><div class='output co'>#&gt; <span class='message'>computing product projection...</span></div><div class='output co'>#&gt; <span class='message'>--------------------------------------------------</span></div><div class='output co'>#&gt; <span class='message'>0 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.05 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.1 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.15 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.2 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.25 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.3 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.35 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.4 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.45 threshold achieves the avg number of connections</span></div><div class='output co'>#&gt; <span class='message'>computing product projection...</span></div><div class='output co'>#&gt; <span class='message'>--------------------------------------------------</span></div><div class='output co'>#&gt; <span class='message'>0 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.05 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.1 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.15 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.2 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.25 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.3 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.35 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.4 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.45 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.5 threshold...</span></div><div class='output co'>#&gt; <span class='message'>0.55 threshold achieves the avg number of connections</span></div><div class='input'>
 <span class='co'># partial view of projections</span>
-<span class='kw pkg'>igraph</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/igraph/man/E.html'>E</a></span>(<span class='no'>net</span>$<span class='no'>network_country</span>)[<span class='fl'>1</span>:<span class='fl'>5</span>]</div><div class='output co'>#&gt; + 5/484 edges from dfeb2d6 (vertex names):
-#&gt; [1] zaf--zwe tza--zmb tza--uga tuv--wlf tuv--umi</div><div class='input'><span class='kw pkg'>igraph</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/igraph/man/E.html'>E</a></span>(<span class='no'>net</span>$<span class='no'>network_product</span>)[<span class='fl'>1</span>:<span class='fl'>5</span>]</div><div class='output co'>#&gt; + 5/1505 edges from ea6e29b (vertex names):
+<span class='kw pkg'>igraph</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/igraph/man/E.html'>E</a></span>(<span class='no'>net</span>$<span class='no'>network_country</span>)[<span class='fl'>1</span>:<span class='fl'>5</span>]</div><div class='output co'>#&gt; + 5/484 edges from 2c9f027 (vertex names):
+#&gt; [1] zaf--zwe tza--zmb tza--uga tuv--wlf tuv--umi</div><div class='input'><span class='kw pkg'>igraph</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/igraph/man/E.html'>E</a></span>(<span class='no'>net</span>$<span class='no'>network_product</span>)[<span class='fl'>1</span>:<span class='fl'>5</span>]</div><div class='output co'>#&gt; + 5/1505 edges from 67a0634 (vertex names):
 #&gt; [1] 8981--8982 8946--9510 8922--8932 8921--8922 8852--8959</div><div class='input'>
 </div></pre>
   </div>

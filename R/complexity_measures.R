@@ -58,10 +58,51 @@ complexity_measures <- function(balassa_index, method = "fitness", iterations = 
     }
   }
 
+  if (iterations %% 2 != 0) {
+    iterations <- iterations + 1
+    warning("'iterations' was changed to 'iterations + 1' to work with an even number of iterations")
+  }
+
   # compute complexity measures ----
   # balassa_sum_x (kx0) and balassa_sum_y (ky0)
   kx0 <- rowSums(balassa_index)
   ky0 <- colSums(balassa_index)
+
+  if (method == "fitness") {
+    # create empty matrices
+    kx <- Matrix(0,
+                 nrow = length(kx0), ncol = iterations,
+                 sparse = TRUE
+    )
+
+    ky <- Matrix(0,
+                 nrow = length(ky0), ncol = iterations,
+                 sparse = TRUE
+    )
+
+    # fill the first columns with kx0 and ky0 to start iterating
+    kx[, 1] <- 1
+    ky[, 1] <- 1
+
+    # compute cols 2 to "no. of iterations" by iterating from col 1
+    for (j in 2:ncol(kx)) {
+      kx[, j] <- balassa_index %*% ky[, (j - 1)]
+      kx[, j] <- kx[, j] / mean(kx[, j])
+
+      ky[, j] = 1 / (crossprod(balassa_index,  (1 / kx[, (j - 1)])^extremality))^(1 / extremality)
+      ky[, j] <- ky[, j] / mean(ky[, j])
+    }
+
+    xci <- setNames(
+      kx[, iterations],
+      rownames(balassa_index)
+    )
+
+    yci <- setNames(
+      ky[, iterations],
+      colnames(balassa_index)
+    )
+  }
 
   # reflections is defined as a function as these steps are also used for
   # eigenvalues method
@@ -143,42 +184,6 @@ complexity_measures <- function(balassa_index, method = "fitness", iterations = 
     if (isTRUE(cor(yci, yci_r, use = "pairwise.complete.obs") < 0)) {
       yci <- (-1) * yci
     }
-  }
-
-  if (method == "fitness") {
-    # create empty matrices
-    kx <- Matrix(0,
-                 nrow = length(kx0), ncol = iterations,
-                 sparse = TRUE
-    )
-
-    ky <- Matrix(0,
-                 nrow = length(ky0), ncol = iterations,
-                 sparse = TRUE
-    )
-
-    # fill the first columns with kx0 and ky0 to start iterating
-    kx[, 1] <- 1
-    ky[, 1] <- 1
-
-    # compute cols 2 to "no. of iterations" by iterating from col 1
-    for (j in 2:ncol(kx)) {
-      kx[, j] <- balassa_index %*% ky[, (j - 1)]
-      kx[, j] <- kx[, j] / mean(kx[, j])
-
-      ky[, j] = 1 / (crossprod(balassa_index,  (1 / kx[, (j - 1)])^extremality))^(1 / extremality)
-      ky[, j] <- ky[, j] / mean(ky[, j])
-    }
-
-    xci <- setNames(
-      kx[, iterations],
-      rownames(balassa_index)
-    )
-
-    yci <- setNames(
-      ky[, iterations],
-      colnames(balassa_index)
-    )
   }
 
   return(

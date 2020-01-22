@@ -36,7 +36,7 @@
 
 
 <meta property="og:title" content="World Trade Per-Capita GDP for the Period 1998-2000 — world_gdp_avg_1998_to_2000" />
-<meta property="og:description" content="A named vector that summarises the per-capita GDP of different countries.
+<meta property="og:description" content="A data frame that summarises the per-capita GDP of different countries.
 The unit is year 2000 USD." />
 <meta name="twitter:card" content="summary" />
 
@@ -119,7 +119,7 @@ The unit is year 2000 USD." />
     </div>
 
     <div class="ref-description">
-    <p>A named vector that summarises the per-capita GDP of different countries.
+    <p>A data frame that summarises the per-capita GDP of different countries.
 The unit is year 2000 USD.</p>
     </div>
 
@@ -128,47 +128,23 @@ The unit is year 2000 USD.</p>
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A named vector with 240 entries.</p>
+    <p>A data frame with 240 rows and 2 columns.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>world_gdp_avg_1998_to_2000</span></div><div class='output co'>#&gt;   abw   ago   alb   and   arb   are   arg   arm   atg   aus   aut   aze   bdi 
-#&gt; 19185  1540  1433 27765  3312 43082  5900   928  8866 30003 28393  1064   164 
-#&gt;   bel   ben   bfa   bgd   bgr   bhr   bhs   bih   blr   blz   bmu   bol   bra 
-#&gt; 26709   473   301   355  2741 15890 21228  1978  1906  2453 52453  1119  6044 
-#&gt;   brb   brn   btn   bwa   caf   can   ceb   che   chl   chn   civ   cmr   cod 
-#&gt; 10581 24876   776  3553   303 26476  5710 46086  6432  1150   979   790   221 
-#&gt;   cog   col   com   cpv   cri   css   cub   cym   cyp   cze   deu   dma   dnk 
-#&gt;  1683  3427   860  1394  4229  4998  2301 64912 17822  9977 25827  3814 37779 
-#&gt;   dom   dza   eap   ear   eas   eca   ecs   ecu   egy   emu   eri   esp   est 
-#&gt;  2732  2429  1198  1570  3613  3234 13626  2630  1326 23591   616 18965  6620 
-#&gt;   eth   euu   fcs   fin   fji   fra   fsm   gab   gbr   geo   gha   gin   gmb 
-#&gt;   134 20436   850 26837  2290 25921  1816  7604 24145  1094   655   425   566 
-#&gt;   gnb   gnq   grc   grd   grl   gtm   guy   hic   hkg   hnd   hpc   hrv   hti 
-#&gt;   376  3375 15731  4173 21390  1758  1668 24016 15303  1103   421  7103   528 
-#&gt;   hun   ibd   ibt   ida   idb   idn   idx   imn   ind   irl   irn   irq   isl 
-#&gt;  7003  1917  1623   532   766  1464   409 29822   557 28434  3268  2922 25318 
-#&gt;   isr   ita   jam   jor   jpn   kaz   ken   kgz   khm   kir   kna   kor   kwt 
-#&gt; 18742 24599  3247  1939 28954  2907   581   441   277  1180  9203  9704 25886 
-#&gt;   lac   lao   lbn   lbr   lby   lca   lcn   ldc   lic   lka   lmc   lmy   lso 
-#&gt;  5030   449  4045   428  6187  5138  5188   375   340  1215   750  1562   554 
-#&gt;   lte   ltu   lux   lva   mac   mar   mco   mda   mdg   mdv   mea   mex   mhl 
-#&gt;  2303  4697 61084  4599 15603  1373 94174   807   338  3946  3949  6285  1881 
-#&gt;   mic   mkd   mli   mlt   mmr   mna   mne   mng   moz   mrt   mus   mwi   mys 
-#&gt;  1677  2316   391 12133   215  2198  3492  1106   198   719  3758   276  4639 
-#&gt;   nac   nam   ner   nga   nic   nld   nor   npl   nzl   oed   omn   oss   pak 
-#&gt; 29880  2753   236   956   873 31231 55768   306 19867 22260 12654  5668   568 
-#&gt;   pan   per   phl   plw   png   pol   pre   pri   prt   pry   pse   pss   pst 
-#&gt;  3790  2244  1102  6470  1186  5651   701 16272 14538  2595  1599  1905 24016 
-#&gt;   qat   rou   rus   rwa   sas   sau   sdn   sen   sgp   slb   sle   slv   smr 
-#&gt; 42430  3360  4155   230   540 12783   693   763 22214  1001   208  1846 47554 
-#&gt;   srb   ssa   ssf   sst   sur   svk   svn   swe   swz   syc   tcd   tea   tec 
-#&gt;  2355   843   844  5180  4005  7141 12430 29835  2155  6803   337  1211  3488 
-#&gt;   tgo   tha   tjk   tkm   tla   tls   tmn   ton   tsa   tss   tto   tun   tur 
-#&gt;   380  2334   276  1545  5140   925  2204  2221   540   844  6387  2012  5655 
-#&gt;   tuv   tza   uga   ukr   umc   ury   usa   uzb   vct   ven   vnm   vut   wld 
-#&gt;  2188   357   287  1210  2581  6429 30246   665  3251  8464   509  1943  5548 
-#&gt;   wsm   xkx   yem   zaf   zmb   zwe 
-#&gt;  1901  1336   796  4056   653  1040 </div></pre>
+    <pre class="examples"><div class='input'><span class='no'>world_gdp_avg_1998_to_2000</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 240 x 2</span><span>
+#&gt;    country value
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> abw     </span><span style='text-decoration: underline;'>19</span><span>185
+#&gt; </span><span style='color: #555555;'> 2</span><span> ago      </span><span style='text-decoration: underline;'>1</span><span>540
+#&gt; </span><span style='color: #555555;'> 3</span><span> alb      </span><span style='text-decoration: underline;'>1</span><span>433
+#&gt; </span><span style='color: #555555;'> 4</span><span> and     </span><span style='text-decoration: underline;'>27</span><span>765
+#&gt; </span><span style='color: #555555;'> 5</span><span> arb      </span><span style='text-decoration: underline;'>3</span><span>312
+#&gt; </span><span style='color: #555555;'> 6</span><span> are     </span><span style='text-decoration: underline;'>43</span><span>082
+#&gt; </span><span style='color: #555555;'> 7</span><span> arg      </span><span style='text-decoration: underline;'>5</span><span>900
+#&gt; </span><span style='color: #555555;'> 8</span><span> arm       928
+#&gt; </span><span style='color: #555555;'> 9</span><span> atg      </span><span style='text-decoration: underline;'>8</span><span>866
+#&gt; </span><span style='color: #555555;'>10</span><span> aus     </span><span style='text-decoration: underline;'>30</span><span>003
+#&gt; </span><span style='color: #555555;'># … with 230 more rows</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

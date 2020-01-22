@@ -5,22 +5,22 @@ knitr::opts_chunk$set(eval = TRUE, message = FALSE, warning = FALSE)
 library(economiccomplexity)
 
 # partial view of trade matrix
-world_trade_avg_1998_to_2000[1:5,1:5]
+head(world_trade_avg_1998_to_2000)
 
 # partial view of gdp vector
-world_gdp_avg_1998_to_2000[1:5]
+head(world_gdp_avg_1998_to_2000)
 
 ## -----------------------------------------------------------------------------
 bi <- balassa_index(world_trade_avg_1998_to_2000)
 
 # partial view of index
-bi[1:5,1:5]
+head(bi)
 
 ## -----------------------------------------------------------------------------
 bi_dec <- balassa_index(world_trade_avg_1998_to_2000, discrete = F)
 
 # partial view of index
-bi_dec[1:5,1:5]
+head(bi_dec)
 
 ## -----------------------------------------------------------------------------
 com_fit <- complexity_measures(bi)
@@ -65,8 +65,15 @@ set.seed(200100)
 library(Matrix)
 library(ggraph)
 
-aggregated_trade <- rowSums(world_trade_avg_1998_to_2000)
-V(net$network_country)$size <- aggregated_trade[match(V(net$network_country)$name, names(aggregated_trade))]
+aggregated_countries <- aggregate(
+  world_trade_avg_1998_to_2000$value,
+  by = list(country = world_trade_avg_1998_to_2000$country),
+  FUN = sum
+)
+
+aggregated_countries <- setNames(aggregated_countries$x, aggregated_countries$country)
+
+V(net$network_country)$size <- aggregated_countries[match(V(net$network_country)$name, names(aggregated_countries))]
 
 ggraph(net$network_country, layout = "kk") +
   # geom_edge_link(aes(edge_width = weight), edge_colour = "#a8a8a8") +
@@ -79,7 +86,14 @@ ggraph(net$network_country, layout = "kk") +
 ## ---- fig.width=10, fig.height=10---------------------------------------------
 set.seed(200100)
 
-aggregated_products <- colSums(world_trade_avg_1998_to_2000)
+aggregated_products <- aggregate(
+  world_trade_avg_1998_to_2000$value,
+  by = list(country = world_trade_avg_1998_to_2000$product),
+  FUN = sum
+)
+
+aggregated_products <- setNames(aggregated_products$x, aggregated_products$country)
+
 V(net$network_product)$size <- aggregated_products[match(V(net$network_product)$name, names(aggregated_products))]
 
 ggraph(net$network_product, layout = "kk") +

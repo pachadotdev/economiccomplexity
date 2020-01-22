@@ -1,6 +1,6 @@
 #' Projections of a Country-Product Network
 #'
-#' @description \code{proximity()} computes two graphs that are particularly
+#' @description \code{projections()} computes two graphs that are particularly
 #' useful to visualize product-product and country-country similarity.
 #'
 #' @details The current implementation follows

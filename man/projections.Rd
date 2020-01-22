@@ -34,7 +34,7 @@ or \code{"product"}.}
 A list of two graphs.
 }
 \description{
-\code{proximity()} computes two graphs that are particularly
+\code{projections()} computes two graphs that are particularly
 useful to visualize product-product and country-country similarity.
 }
 \details{

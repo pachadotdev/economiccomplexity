@@ -1,4 +1,11 @@
 test_that("fitness method works in complexity_measures", {
+  cm <- expect_warning(complexity_measures(
+    balassa_index = economiccomplexity_output$balassa_index,
+    method = "fitness",
+    iterations = 3,
+    extremality = 2
+  ))
+
   cm <- complexity_measures(
     balassa_index = economiccomplexity_output$balassa_index,
     method = "fitness",
