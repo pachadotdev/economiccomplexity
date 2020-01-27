@@ -31,7 +31,9 @@
 #' @examples
 #' net <- projections(
 #'  economiccomplexity_output$proximity$proximity_country,
-#'  economiccomplexity_output$proximity$proximity_product
+#'  economiccomplexity_output$proximity$proximity_product,
+#'  avg_links = 10,
+#'  tolerance = 0.1
 #' )
 #'
 #' # partial view of projections

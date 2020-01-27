@@ -7,7 +7,15 @@
 fitness_method(balassa_index, iterations, extremality)
 }
 \arguments{
-\item{...}{params inherited from \code{complexity_measures()}}
+\item{balassa_index}{(Type: dgCMatrix) the output from
+\code{balassa_index()}) or an equivalent arrangement.}
+
+\item{iterations}{(Type: numeric) the number of iterations to use.
+By default this is set to \code{20}.}
+
+\item{extremality}{(Type: numeric) the parameter to use in the fitness
+method. The other methods don't use this parameter.
+By default this is set to \code{1}.}
 }
 \description{
 Fitness Method

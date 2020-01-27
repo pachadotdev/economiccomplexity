@@ -105,7 +105,13 @@ complexity_measures <- function(balassa_index, method = "fitness", iterations = 
 }
 
 #' Fitness Method
-#' @param ... params inherited from \code{complexity_measures()}
+#' @param balassa_index (Type: dgCMatrix) the output from
+#' \code{balassa_index()}) or an equivalent arrangement.
+#' @param iterations (Type: numeric) the number of iterations to use.
+#' By default this is set to \code{20}.
+#' @param extremality (Type: numeric) the parameter to use in the fitness
+#' method. The other methods don't use this parameter.
+#' By default this is set to \code{1}.
 #' @importFrom Matrix Matrix crossprod
 #' @importFrom stats setNames
 #' @keywords internal
@@ -149,7 +155,10 @@ fitness_method <- function(balassa_index, iterations, extremality) {
 }
 
 #' Reflections Method
-#' @param ... params inherited from \code{complexity_measures()}
+#' @param balassa_index (Type: dgCMatrix) the output from
+#' \code{balassa_index()}) or an equivalent arrangement.
+#' @param iterations (Type: numeric) the number of iterations to use.
+#' By default this is set to \code{20}.
 #' @importFrom Matrix Matrix crossprod
 #' @importFrom stats sd setNames
 #' @keywords internal
@@ -192,7 +201,10 @@ reflections_method <- function(balassa_index, iterations) {
 }
 
 #' Eigenvalues Method
-#' @param ... params inherited from \code{complexity_measures()}
+#' @param balassa_index (Type: dgCMatrix) the output from
+#' \code{balassa_index()}) or an equivalent arrangement.
+#' @param iterations (Type: numeric) the number of iterations to use.
+#' By default this is set to \code{20}.
 #' @importFrom Matrix Matrix t
 #' @importFrom stats sd setNames
 #' @keywords internal

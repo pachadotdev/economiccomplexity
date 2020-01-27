@@ -7,7 +7,11 @@
 reflections_method(balassa_index, iterations)
 }
 \arguments{
-\item{...}{params inherited from \code{complexity_measures()}}
+\item{balassa_index}{(Type: dgCMatrix) the output from
+\code{balassa_index()}) or an equivalent arrangement.}
+
+\item{iterations}{(Type: numeric) the number of iterations to use.
+By default this is set to \code{20}.}
 }
 \description{
 Reflections Method
