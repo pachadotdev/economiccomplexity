@@ -19,8 +19,8 @@
 #' method. The other methods don't use this parameter.
 #' By default this is set to \code{1}.
 #'
-#' @importFrom Matrix Matrix rowSums colSums t crossprod
-#' @importFrom stats sd cor setNames
+#' @importFrom Matrix rowSums colSums
+#' @importFrom stats cor
 #'
 #' @examples
 #' co <- complexity_measures(economiccomplexity_output$balassa_index)
@@ -39,7 +39,6 @@
 #' @keywords functions
 #'
 #' @export
-
 complexity_measures <- function(balassa_index, method = "fitness", iterations = 20, extremality = 1) {
   # sanity checks ----
   if (class(balassa_index) != "dgCMatrix") {
@@ -64,121 +63,32 @@ complexity_measures <- function(balassa_index, method = "fitness", iterations = 
   }
 
   # compute complexity measures ----
-  # balassa_sum_x (kx0) and balassa_sum_y (ky0)
-  kx0 <- rowSums(balassa_index)
-  ky0 <- colSums(balassa_index)
-
   if (method == "fitness") {
-    # create empty matrices
-    kx <- Matrix(0,
-                 nrow = length(kx0), ncol = iterations,
-                 sparse = TRUE
-    )
-
-    ky <- Matrix(0,
-                 nrow = length(ky0), ncol = iterations,
-                 sparse = TRUE
-    )
-
-    # fill the first columns with kx0 and ky0 to start iterating
-    kx[, 1] <- 1
-    ky[, 1] <- 1
-
-    # compute cols 2 to "no. of iterations" by iterating from col 1
-    for (j in 2:ncol(kx)) {
-      kx[, j] <- balassa_index %*% ky[, (j - 1)]
-      kx[, j] <- kx[, j] / mean(kx[, j])
-
-      ky[, j] = 1 / (crossprod(balassa_index,  (1 / kx[, (j - 1)])^extremality))^(1 / extremality)
-      ky[, j] <- ky[, j] / mean(ky[, j])
-    }
-
-    xci <- setNames(
-      kx[, iterations],
-      rownames(balassa_index)
-    )
-
-    yci <- setNames(
-      ky[, iterations],
-      colnames(balassa_index)
-    )
-  }
-
-  # reflections is defined as a function as these steps are also used for
-  # eigenvalues method
-  reflections <- function() {
-    # create empty matrices
-    kx <- Matrix(0,
-                 nrow = length(kx0), ncol = iterations,
-                 sparse = TRUE
-    )
-
-    ky <- Matrix(0,
-                 nrow = length(ky0), ncol = iterations,
-                 sparse = TRUE
-    )
-
-    # fill the first columns with kx0 and ky0 to start iterating
-    kx[, 1] <- kx0
-    ky[, 1] <- ky0
-
-    # compute cols 2 to "no. of iterations" by iterating from col 1
-    for (j in 2:ncol(kx)) {
-      kx[, j] <- (balassa_index %*% ky[, (j - 1)]) / kx0
-      ky[, j] <- (crossprod(balassa_index, kx[, (j - 1)])) / ky0
-    }
-
-    # xci is of odd order and normalized
-    xci <- setNames(
-      (kx[, iterations - 1] - mean(kx[, iterations - 1])) / sd(kx[, iterations - 1]),
-      rownames(balassa_index)
-    )
-
-    # yci is of even order and normalized
-    yci <- setNames(
-      (ky[, iterations] - mean(ky[, iterations])) / sd(ky[, iterations]),
-      colnames(balassa_index)
-    )
-
-    return(list(xci = xci, yci = yci))
+    fitness_output <- fitness_method(balassa_index, iterations, extremality)
+    xci <- fitness_output$xci
+    yci <- fitness_output$yci
   }
 
   if (method == "reflections") {
-    reflections_output <- reflections()
+    reflections_output <- reflections_method(balassa_index, iterations)
     xci <- reflections_output$xci
     yci <- reflections_output$yci
   }
 
   if (method == "eigenvalues") {
     # to check if a sign correction is needed
-    reflections_output <- reflections()
+    reflections_output <- reflections_method(balassa_index, iterations)
     xci_r <- reflections_output$xci
     yci_r <- reflections_output$yci
 
-    # compute eigenvalues for xci
-    xci <- eigen((balassa_index / kx0) %*% (t(balassa_index) / ky0))
-    xci <- Re(xci$vectors[, 2])
-
-    # normalized xci
-    xci <- setNames(
-      (xci - mean(xci)) / sd(xci),
-      rownames(balassa_index)
-    )
+    eigenvalues_output <- eigenvalues_method(balassa_index, iterations)
+    xci <- eigenvalues_output$xci
+    yci <- eigenvalues_output$yci
 
     # correct xci sign when required
     if (isTRUE(cor(xci, xci_r, use = "pairwise.complete.obs") < 0)) {
       xci <- (-1) * xci
     }
-
-    # compute eigenvalues for yci
-    yci <- eigen((t(balassa_index) / ky0) %*% (balassa_index / kx0))
-    yci <- Re(yci$vectors[, 2])
-
-    # normalized yci
-    yci <- setNames(
-      (yci - mean(yci)) / sd(yci),
-      colnames(balassa_index)
-    )
 
     # correct yci sign when required
     if (isTRUE(cor(yci, yci_r, use = "pairwise.complete.obs") < 0)) {
@@ -190,6 +100,121 @@ complexity_measures <- function(balassa_index, method = "fitness", iterations = 
     list(
       complexity_index_country = xci,
       complexity_index_product = yci
+    )
+  )
+}
+
+#' Fitness Method
+#' @param ... params inherited from \code{complexity_measures()}
+#' @importFrom Matrix Matrix crossprod
+#' @importFrom stats setNames
+#' @keywords internal
+fitness_method <- function(balassa_index, iterations, extremality) {
+  # create empty matrices
+  kx <- Matrix(0,
+               nrow = nrow(balassa_index), ncol = iterations,
+               sparse = TRUE
+  )
+
+  ky <- Matrix(0,
+               nrow = ncol(balassa_index), ncol = iterations,
+               sparse = TRUE
+  )
+
+  # fill the first columns with rowSums(balassa_index) and colSums(balassa_index) to start iterating
+  kx[, 1] <- 1
+  ky[, 1] <- 1
+
+  # compute cols 2 to "no. of iterations" by iterating from col 1
+  for (j in 2:ncol(kx)) {
+    kx[, j] <- balassa_index %*% ky[, (j - 1)]
+    kx[, j] <- kx[, j] / mean(kx[, j])
+
+    ky[, j] = 1 / (crossprod(balassa_index,  (1 / kx[, (j - 1)])^extremality))^(1 / extremality)
+    ky[, j] <- ky[, j] / mean(ky[, j])
+  }
+
+  return(
+    list(
+      xci = setNames(
+        kx[, iterations],
+        rownames(balassa_index)
+      ),
+      yci = setNames(
+        ky[, iterations],
+        colnames(balassa_index)
+      )
+    )
+  )
+}
+
+#' Reflections Method
+#' @param ... params inherited from \code{complexity_measures()}
+#' @importFrom Matrix Matrix crossprod
+#' @importFrom stats sd setNames
+#' @keywords internal
+reflections_method <- function(balassa_index, iterations) {
+  # create empty matrices
+  kx <- Matrix(0,
+               nrow = nrow(balassa_index), ncol = iterations,
+               sparse = TRUE
+  )
+
+  ky <- Matrix(0,
+               nrow = ncol(balassa_index), ncol = iterations,
+               sparse = TRUE
+  )
+
+  # fill the first columns with rowSums(balassa_index) and colSums(balassa_index) to start iterating
+  kx[, 1] <- rowSums(balassa_index)
+  ky[, 1] <- colSums(balassa_index)
+
+  # compute cols 2 to "no. of iterations" by iterating from col 1
+  for (j in 2:ncol(kx)) {
+    kx[, j] <- (balassa_index %*% ky[, (j - 1)]) / rowSums(balassa_index)
+    ky[, j] <- (crossprod(balassa_index, kx[, (j - 1)])) / colSums(balassa_index)
+  }
+
+  # xci is of odd order and normalized
+  # yci is of even order and normalized
+  return(
+    list(
+      xci = setNames(
+        (kx[, iterations - 1] - mean(kx[, iterations - 1])) / sd(kx[, iterations - 1]),
+        rownames(balassa_index)
+      ),
+      yci = setNames(
+        (ky[, iterations] - mean(ky[, iterations])) / sd(ky[, iterations]),
+        colnames(balassa_index)
+      )
+    )
+  )
+}
+
+#' Eigenvalues Method
+#' @param ... params inherited from \code{complexity_measures()}
+#' @importFrom Matrix Matrix t
+#' @importFrom stats sd setNames
+#' @keywords internal
+eigenvalues_method <- function(balassa_index, iterations) {
+  # compute eigenvalues for xci
+  xci <- eigen((balassa_index / rowSums(balassa_index)) %*% (t(balassa_index) / colSums(balassa_index)))
+  xci <- Re(xci$vectors[, 2])
+
+  # compute eigenvalues for yci
+  yci <- eigen((t(balassa_index) / colSums(balassa_index)) %*% (balassa_index / rowSums(balassa_index)))
+  yci <- Re(yci$vectors[, 2])
+
+  return(
+    list(
+      xci = setNames(
+        (xci - mean(xci)) / sd(xci),
+        rownames(balassa_index)
+      ),
+      yci = setNames(
+        (yci - mean(yci)) / sd(yci),
+        colnames(balassa_index)
+      )
     )
   )
 }
