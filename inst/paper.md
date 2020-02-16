@@ -26,22 +26,22 @@ social sciences issues related to international trade and income inequality. Its
 approach starts from representing international trade data as a bipartite
 network that connects countries to the products that they export.
 
-Seminal papers in economic complexity are @productspace2007 that introduces
+Seminal papers in economic complexity are @productspace2007, that introduces
 graphs to explore trade diversification and export opportunities, and
-@buildingblocks2009 that develops dedicated metrics of complexity. These two
+@buildingblocks2009, that develops dedicated metrics of complexity. These two
 articles are expanded and interpreted in @atlas2014, whose typesetted equations
 were translated to code in the R package **economiccomplexity**.
 
-This R package provides different methods to compute complexity metrics to ease
+This R package provides different methods to compute complexity metrics that ease
 access to this line of research for social scientists. ``economiccomplexity``
-depends on the ``Matrix`` and ``igraph`` packages [@matrix, @igraph], and
+depends on the ``Matrix`` [@matrix] and ``igraph`` [@igraph] packages, and
 follows the same design philosophy, grammar, and data structures from it.
 
 Recent articles such as @linking2017 introduce the question whereas a country's
 mix of products could predict its pattern of diversification and income
 inequality, but do not include linked and executable code and data. This
-separation between the research, this is the complete process that produced the
-results, from its presentation, makes it difficult for others to verify the
+separation between the research, the complete process that produced the
+results, and its presentation, makes it difficult for others to verify the
 findings in the study.
 
 ``economiccomplexity`` might help to evaluate research findings in this
@@ -58,8 +58,8 @@ possible package on CRAN.
 @metrics2012 presents non-linear iterative methods that extend
 the linear approach from @buildingblocks2009 in order to capture the link
 between the export basket of different countries and their industrial
-competitiveness. This approach is also implemented in ``economiccomplexity`` but
-following the formulation in @measuringcomplexity2015 that introduces
+competitiveness. This approach is also implemented in ``economiccomplexity``, but
+following the formulation from @measuringcomplexity2015 that introduces
 extremality parameters that generalize the original formulation.
 
 @reproducible2011 states that reproducibility has the potential to serve as a
