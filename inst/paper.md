@@ -20,15 +20,16 @@ affiliations:
 
 # Summary
 
-Economic complexity is a state-of-the-art line of research that started back
-nearly ten years ago and introduces network theory concepts to study different
-social sciences issues related to international trade and income inequality. Its
-approach starts from representing international trade data as a bipartite
-network that connects countries to the products that they export.
+Economic complexity introduces network theory concepts to different social 
+science considerations related to international trade and income inequality. 
+With the bulk of literature established in the last decade, the field of 
+economic complexity is relatively new. Its approach starts from representing 
+international trade data as a bipartite network that connects countries to the 
+products that they export.
 
-Seminal papers in economic complexity are @productspace2007, that introduces
-graphs to explore trade diversification and export opportunities, and
-@buildingblocks2009, that develops dedicated metrics of complexity. These two
+Seminal papers in economic complexity are: @productspace2007, which introduces 
+graphs to explore trade diversification and export opportunities; and 
+@buildingblocks2009, which develops dedicated metrics of complexity. These two
 articles are expanded and interpreted in @atlas2014, whose typesetted equations
 were translated to code in the R package **economiccomplexity**.
 
