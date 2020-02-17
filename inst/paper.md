@@ -74,7 +74,7 @@ particular, the fitness method from @metrics2012 has been used in ecology to
 study species interaction (see @ranking2015) and, more directly related, to
 study the scientific competitiveness of nations (See @scientific2014).
 
-The application widespread of economic complexity shall be looked with a bit of
+The application widespread of economic complexity should be considered with 
 caution. Any theoretical or computational implementation shall be far
 from becoming a keystone if reproducibility is ignored. The extent to which code
 in computational research would build with reasonable effort is lower than 20%
