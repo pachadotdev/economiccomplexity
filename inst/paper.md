@@ -89,8 +89,8 @@ the eigenvalues methods that they present.My code on GitHub
 checks for the sign of the correlation for the vector output of the two methods and 
 corrects the eigenvalues output when necessary. What motivated those additional
 steps is that, what I initially tought it was an error, turned out to be a 
-particular case that emerges with some datasets, and I could verify it when
+particular case that emerges with some datasets. Shortly after implementing that,
 both Python and Stata users started sending me emails when they, independently,
-found the same problem and then search engines lead them to my package.
+found the same problem and  then search engines lead them to my package.
 
 # References
