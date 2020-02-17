@@ -33,8 +33,8 @@ articles are expanded and interpreted in @atlas2014, whose typesetted equations
 were translated to code in the R package **economiccomplexity**.
 
 This R package provides different methods to compute complexity metrics that ease
-access to this line of research for social scientists. ``economiccomplexity``
-depends on the ``Matrix`` [@matrix] and ``igraph`` [@igraph] packages, and
+access to this line of research for social scientists. `economiccomplexity::`
+depends on `Matrix::` [@matrix] and `igraph::` [@igraph], and
 follows the same design philosophy, grammar, and data structures from it.
 
 Recent articles such as @linking2017 introduce the question whereas a country's
@@ -44,21 +44,21 @@ separation between the research, the complete process that produced the
 results, and its presentation, makes it difficult for others to verify the
 findings in the study.
 
-``economiccomplexity`` might help to evaluate research findings in this
-particular area, helping to produce less studies that are not reproducible, or
-partially reproducible with some discrepancies, conditional on the availability
-of data, metadata, and computing power that may be unavailable to all
-researchers.
+`economiccomplexity::` might help to evaluate research findings in this 
+particular area, reducing the number of studies that are not reproducible, or 
+only partially reproducible with some discrepancies, conditional on the 
+availability of data, metadata, and computing power that may be unavailable to 
+all researchers.
 
-The central contribution of this package is to be the first that
-provides functions to use the recursive linear algebra methods from
-@buildingblocks2009 in R and adds tests and full documentation to offer the best
-possible package on CRAN.
+The central contribution of `economiccomplexity::` is to provide functions that 
+use recursive linear algebra methods from @buildingblocks2009 in R, with tests 
+and full documentation for release on CRAN, the dominant repository of R 
+software.
 
 @metrics2012 presents non-linear iterative methods that extend
 the linear approach from @buildingblocks2009 in order to capture the link
 between the export basket of different countries and their industrial
-competitiveness. This approach is also implemented in ``economiccomplexity``, but
+competitiveness. This approach is also implemented in `economiccomplexity::`, but
 following the formulation from @measuringcomplexity2015 that introduces
 extremality parameters that generalize the original formulation.
 
