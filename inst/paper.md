@@ -35,8 +35,9 @@ were translated to code in the R package **economiccomplexity**.
 
 This R package provides different methods to compute complexity metrics that ease
 access to this line of research for social scientists. `economiccomplexity::`
-depends on `Matrix::` [@matrix] and `igraph::` [@igraph], and
-follows the same design philosophy, grammar, and data structures from it.
+depends on `Matrix::` and `igraph::`, and
+follows the same design philosophy, grammar, and data structures from it (See
+@matrix and @igraph).
 
 Recent articles such as @linking2017 introduce the question whereas a country's
 mix of products could predict its pattern of diversification and income
@@ -79,8 +80,17 @@ The application widespread of economic complexity should be considered with
 caution. Any theoretical or computational implementation shall be far
 from becoming a keystone if reproducibility is ignored. The extent to which code
 in computational research would build with reasonable effort is lower than 20%
-[@measuring2014]. A desirable growth pattern should focus on reproducibility,
+(See @measuring2014). A desirable growth pattern should focus on reproducibility,
 and I hope this package means a contribution to transparent research
 practices.
+
+@atlas2014 proposes the equivalency between the reflections and 
+the eigenvalues methods that they present.My code on GitHub
+checks for the sign of the correlation for the vector output of the two methods and 
+corrects the eigenvalues output when necessary. What motivated those additional
+steps is that, what I initially tought it was an error, turned out to be a 
+particular case that emerges with some datasets, and I could verify it when
+both Python and Stata users started sending me emails when they, independently,
+found the same problem and then search engines lead them to my package.
 
 # References
