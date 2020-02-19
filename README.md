@@ -3,6 +3,8 @@
 
 # economiccomplexity <img src="https://pachamaltese.github.io/economiccomplexity/hexicon.svg" width=150 align="right" alt="sticker"/>
 
+<!-- badges: start -->
+
 [![R build
 status](https://github.com/pachamaltese/economiccomplexity/workflows/R-CMD-check/badge.svg)](https://github.com/pachamaltese/economiccomplexity/actions?workflow=R-CMD-check)
 [![Codecov test
@@ -13,16 +15,18 @@ status](https://www.r-pkg.org/badges/version/economiccomplexity)](https://cran.r
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Lifecycle:
-maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.01866/status.svg)](https://doi.org/10.21105/joss.01866)
+<!-- badges: end -->
 
 A wrapper of different methods from Linear Algebra for the equations
 introduced in The Atlas of Economic Complexity and related literature.
 This package provides standard matrix and graph output that can be used
 seamlessly with other packages.
 
-The references are Mariani, et al. (2015)
-<doi:10.1140/epjb/e2015-60298-7>, Hausmann, et al. (2014)
-<doi:10.7551/mitpress/9647.001.0001>, and Hausmann, et al. (2005)
+The references are Mariani, et al. (2015)
+<doi:10.1140/epjb/e2015-60298-7>, Hausmann, et al. (2014)
+<doi:10.7551/mitpress/9647.001.0001>, and Hausmann, et al. (2005)
 <doi:10.3386/w11905>.
 
 ## Installation

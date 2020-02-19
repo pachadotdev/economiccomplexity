@@ -14,11 +14,14 @@ knitr::opts_chunk$set(
 
 # economiccomplexity <img src="https://pachamaltese.github.io/economiccomplexity/hexicon.svg" width=150 align="right" alt="sticker"/>
 
+<!-- badges: start -->
 [![R build status](https://github.com/pachamaltese/economiccomplexity/workflows/R-CMD-check/badge.svg)](https://github.com/pachamaltese/economiccomplexity/actions?workflow=R-CMD-check)
 [![Codecov test coverage](https://codecov.io/gh/pachamaltese/economiccomplexity/branch/master/graph/badge.svg)](https://codecov.io/gh/pachamaltese/economiccomplexity?branch=master)
 [![CRAN status](https://www.r-pkg.org/badges/version/economiccomplexity)](https://cran.r-project.org/package=economiccomplexity)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.01866/status.svg)](https://doi.org/10.21105/joss.01866)
+<!-- badges: end -->
 
 A wrapper of different methods from Linear Algebra for the equations introduced in The Atlas of Economic Complexity and related literature. This package provides standard matrix and graph output that can be used seamlessly with other packages.
 
