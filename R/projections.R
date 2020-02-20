@@ -54,8 +54,8 @@
 projections <- function(proximity_country, proximity_product,
                         avg_links = 5, tolerance = 0.05, compute = "both") {
   # sanity checks ----
-  if (class(proximity_country) != "dsCMatrix" |
-    class(proximity_product) != "dsCMatrix") {
+  if (!(any(class(proximity_country) %in% "dsCMatrix") == TRUE) |
+      !(any(class(proximity_product) %in% "dsCMatrix") == TRUE)) {
     stop("'proximity_country' and 'proximity_product' must be dsCMatrix")
   }
 

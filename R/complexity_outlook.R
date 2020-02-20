@@ -42,15 +42,15 @@
 
 complexity_outlook <- function(balassa_index, proximity_product, complexity_index_product) {
   # sanity checks ----
-  if (class(balassa_index) != "dgCMatrix") {
+  if (!(any(class(balassa_index) %in% "dgCMatrix") == TRUE)) {
     stop("'balassa_index' must be a dgCMatrix")
   }
 
-  if (class(proximity_product) != "dsCMatrix") {
+  if (!(any(class(proximity_product) %in% "dsCMatrix") == TRUE)) {
     stop("'proximity_product' must be a dgCMatrix")
   }
 
-  if (class(complexity_index_product) != "numeric") {
+  if (!(any(class(complexity_index_product) %in% "numeric") == TRUE)) {
     stop("'complexity_index_product' must be numeric")
   }
 

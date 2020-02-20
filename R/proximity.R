@@ -38,7 +38,7 @@
 
 proximity <- function(balassa_index, compute = "both") {
   # sanity checks ----
-  if (class(balassa_index) != "dgCMatrix") {
+  if (!(any(class(balassa_index) %in% "dgCMatrix") == TRUE)) {
     stop("'balassa_index' must be a dgCMatrix")
   }
 

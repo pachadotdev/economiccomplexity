@@ -72,7 +72,7 @@ balassa_index <- function(data, discrete = TRUE, cutoff = 1,
     data <- dataframe_to_matrix(data, country, product, value)
   }
 
-  if (class(data) == "matrix") {
+  if (any(class(data) %in% "matrix") == TRUE) {
     data <- Matrix(data, sparse = TRUE)
   }
 

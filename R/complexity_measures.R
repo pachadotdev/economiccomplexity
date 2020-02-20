@@ -41,7 +41,7 @@
 #' @export
 complexity_measures <- function(balassa_index, method = "fitness", iterations = 20, extremality = 1) {
   # sanity checks ----
-  if (class(balassa_index) != "dgCMatrix") {
+  if (!(any(class(balassa_index) %in% "dgCMatrix") == TRUE)) {
     stop("'balassa_index' must be a dgCMatrix")
   }
 

@@ -59,7 +59,7 @@ productivity_levels <- function(data_exp, data_gdp,
     data_exp <- dataframe_to_matrix(data_exp, country, product, value)
   }
 
-  if (class(data_exp) == "matrix") {
+  if (!(any(class(data_exp) %in% "matrix") == TRUE)) {
     data_exp <- Matrix(data_exp, sparse = TRUE)
   }
 
