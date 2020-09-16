@@ -1,7 +1,7 @@
 Package: economiccomplexity
 Type: Package
 Title: Computational Methods for Economic Complexity
-Version: 1.0
+Version: 1.1
 Authors@R: c(
     person(given = "Mauricio",
       family = "Vargas",
@@ -43,15 +43,15 @@ Encoding: UTF-8
 LazyData: true
 Depends: R (>= 3.5)
 Imports:
-    Matrix, 
-    igraph
+    Matrix,
+    igraph,
+    Rdpack
 Suggests: 
     testthat (>= 2.1.0),
     knitr,
-    Rdpack,
     ggraph
 URL: https://pachamaltese.github.io/economiccomplexity
 BugReports: http://github.com/pachamaltese/economiccomplexity/issues
 RdMacros: Rdpack
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.1
 VignetteBuilder: knitr
