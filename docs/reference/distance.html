@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Articles • economiccomplexity</title>
+<title>Distance — distance • economiccomplexity</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,10 @@
 
 
 
-<meta property="og:title" content="Articles" />
+<meta property="og:title" content="Distance — distance" />
+<meta property="og:description" content="distance() computes the distance matrix that
+accounts for the weighted proportions of the products connected to
+each good that the countries are not exporting." />
 
 
 
@@ -58,7 +61,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-article-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -110,18 +113,74 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Articles</h1>
+    <h1>Distance</h1>
+    <small class="dont-index">Source: <a href='http://github.com/pachamaltese/economiccomplexity/blob/master/R/distance.R'><code>R/distance.R</code></a></small>
+    <div class="hidden name"><code>distance.Rd</code></div>
     </div>
 
-    <div class="section ">
-      <h3>All vignettes</h3>
-      <p class="section-desc"></p>
-
-      <dl>
-        <dt><a href="economiccomplexity.html">How To Use This Package</a></dt>
-        <dd></dt>
-      </dl>
+    <div class="ref-description">
+    <p><code>distance()</code> computes the distance matrix that
+accounts for the weighted proportions of the products connected to
+each good that the countries are not exporting.</p>
     </div>
+
+    <pre class="usage"><span class='fu'>distance</span><span class='op'>(</span><span class='va'>balassa_index</span>, <span class='va'>proximity_product</span><span class='op'>)</span></pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>balassa_index</th>
+      <td><p>(Type: dgCMatrix) the output from
+<code><a href='balassa_index.html'>balassa_index()</a></code>) or an equivalent arrangement.</p></td>
+    </tr>
+    <tr>
+      <th>proximity_product</th>
+      <td><p>(Type: dgCMatrix) the output from
+<code><a href='proximity.html'>proximity()</a></code>) or an equivalent arrangement.</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A matrix.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The current implementation follows
+(Hausmann et al. 2014)
+ to measure the oppotunities
+implied by a country's position.</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>For more information on this index see:</p>
+<p>Hausmann R, Hidalgo C, Bustos S, Coscia M, Simoes A, Yildirim M (2014).
+<em>The atlas of economic complexity: Mapping paths to prosperity</em>.
+MIT Press.
+doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9647.001.0001</a>
+, <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>https://doi.org/10.7551/mitpress/9647.001.0001</a>.</p>
+<p>and the references therein.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='va'>d</span> <span class='op'>&lt;-</span> <span class='fu'>distance</span><span class='op'>(</span>
+ <span class='va'>economiccomplexity_output</span><span class='op'>$</span><span class='va'>balassa_index</span>,
+ <span class='va'>economiccomplexity_output</span><span class='op'>$</span><span class='va'>proximity</span><span class='op'>$</span><span class='va'>proximity_product</span>
+<span class='op'>)</span>
+
+<span class='co'># partial view of the distance matrix</span>
+<span class='va'>d</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
+</div><div class='output co'>#&gt; 5 x 5 Matrix of class "dgeMatrix"
+#&gt;          0011      0012      0013      0014      0015
+#&gt; afg 0.8331042 0.8262115 0.8585811 0.8492409 0.8544359
+#&gt; ago 0.9852531 0.9845604 0.9888446 0.9878229 0.9875953
+#&gt; aia 0.8209798 0.8327345 0.8311476 0.8151172 0.8105377
+#&gt; alb 0.7342140 0.7454137 0.7721725 0.7479724 0.7678040
+#&gt; and 0.7386129 0.7706530 0.7687830 0.7602132 0.7281361</div><div class='input'>
+</div></pre>
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 

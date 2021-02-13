@@ -16,7 +16,7 @@
 #' @param complexity_index_product (Type: numeric) the output from
 #' \code{complexity_measures()}) or an equivalent arrangement.
 #'
-#' @importFrom Matrix Matrix tcrossprod rowSums colSums t
+#' @importFrom Matrix tcrossprod rowSums colSums t
 #'
 #' @examples
 #' co <- complexity_outlook(
@@ -55,9 +55,9 @@ complexity_outlook <- function(balassa_index, proximity_product, complexity_inde
   }
 
   # compute matrices ----
-  density <- tcrossprod(1 - balassa_index, proximity_product / rowSums(proximity_product))
+  dist <- distance(balassa_index, proximity_product)
 
-  coi <- colSums(t((1 - density) * (1 - balassa_index)) * complexity_index_product)
+  coi <- colSums(t((1 - dist) * (1 - balassa_index)) * complexity_index_product)
 
   cog <- (1 - balassa_index) * tcrossprod((1 - balassa_index),
     t(proximity_product * (complexity_index_product / rowSums(proximity_product))))

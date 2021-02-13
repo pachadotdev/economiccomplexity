@@ -81,7 +81,7 @@ similarity between pairs of countries and pairs of products." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -95,7 +95,7 @@ similarity between pairs of countries and pairs of products." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="http://github.com/pachamaltese/economiccomplexity/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -122,7 +122,7 @@ similarity between pairs of countries and pairs of products." />
 similarity between pairs of countries and pairs of products.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>proximity</span>(<span class='kw'>balassa_index</span>, compute = <span class='st'>"both"</span>)</pre>
+    <pre class="usage"><span class='fu'>proximity</span><span class='op'>(</span><span class='va'>balassa_index</span>, compute <span class='op'>=</span> <span class='st'>"both"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -157,21 +157,21 @@ that two countries "c1" and "c2" export the same product.</p>
 <em>The atlas of economic complexity: Mapping paths to prosperity</em>.
 MIT Press.
 doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9647.001.0001</a>
-.</p>
+, <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>https://doi.org/10.7551/mitpress/9647.001.0001</a>.</p>
 <p>and the references therein.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>pro</span> <span class='op'>&lt;-</span> <span class='fu'>proximity</span>(<span class='kw'>economiccomplexity_output</span><span class='op'>$</span><span class='kw'>balassa_index</span>)
+    <pre class="examples"><div class='input'><span class='va'>pro</span> <span class='op'>&lt;-</span> <span class='fu'>proximity</span><span class='op'>(</span><span class='va'>economiccomplexity_output</span><span class='op'>$</span><span class='va'>balassa_index</span><span class='op'>)</span>
 
 <span class='co'># partial view of proximity matrices</span>
-<span class='kw'>pro</span><span class='op'>$</span><span class='kw'>proximity_country</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>]
+<span class='va'>pro</span><span class='op'>$</span><span class='va'>proximity_country</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
 </div><div class='output co'>#&gt; 5 x 5 sparse Matrix of class "dsCMatrix"
 #&gt;            afg         ago         aia        alb         and
 #&gt; afg 1.00000000 0.015873016 0.181818182 0.19689119 0.192513369
 #&gt; ago 0.01587302 1.000000000 0.006993007 0.01554404 0.005347594
 #&gt; aia 0.18181818 0.006993007 1.000000000 0.16580311 0.251336898
 #&gt; alb 0.19689119 0.015544041 0.165803109 1.00000000 0.310880829
-#&gt; and 0.19251337 0.005347594 0.251336898 0.31088083 1.000000000</div><div class='input'><span class='kw'>pro</span><span class='op'>$</span><span class='kw'>proximity_product</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>]
+#&gt; and 0.19251337 0.005347594 0.251336898 0.31088083 1.000000000</div><div class='input'><span class='va'>pro</span><span class='op'>$</span><span class='va'>proximity_product</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
 </div><div class='output co'>#&gt; 5 x 5 sparse Matrix of class "dsCMatrix"
 #&gt;           0011      0012      0013      0014      0015
 #&gt; 0011 1.0000000 0.3658537 0.1707317 0.2439024 0.2682927

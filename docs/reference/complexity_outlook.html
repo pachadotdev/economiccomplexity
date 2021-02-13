@@ -81,7 +81,7 @@ Index and the Complexity Outlook Gain." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -95,7 +95,7 @@ Index and the Complexity Outlook Gain." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="http://github.com/pachamaltese/economiccomplexity/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -122,7 +122,7 @@ Index and the Complexity Outlook Gain." />
 Index and the Complexity Outlook Gain.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>complexity_outlook</span>(<span class='kw'>balassa_index</span>, <span class='kw'>proximity_product</span>, <span class='kw'>complexity_index_product</span>)</pre>
+    <pre class="usage"><span class='fu'>complexity_outlook</span><span class='op'>(</span><span class='va'>balassa_index</span>, <span class='va'>proximity_product</span>, <span class='va'>complexity_index_product</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -160,20 +160,20 @@ export oppportunities.</p>
 <em>The atlas of economic complexity: Mapping paths to prosperity</em>.
 MIT Press.
 doi: <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>10.7551/mitpress/9647.001.0001</a>
-.</p>
+, <a href='https://doi.org/10.7551/mitpress/9647.001.0001'>https://doi.org/10.7551/mitpress/9647.001.0001</a>.</p>
 <p>and the references therein.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>co</span> <span class='op'>&lt;-</span> <span class='fu'>complexity_outlook</span>(
- <span class='kw'>economiccomplexity_output</span><span class='op'>$</span><span class='kw'>balassa_index</span>,
- <span class='kw'>economiccomplexity_output</span><span class='op'>$</span><span class='kw'>proximity</span><span class='op'>$</span><span class='kw'>proximity_product</span>,
- <span class='kw'>economiccomplexity_output</span><span class='op'>$</span><span class='kw'>complexity_measures</span><span class='op'>$</span><span class='kw'>complexity_index_product</span>
-)
+    <pre class="examples"><div class='input'><span class='va'>co</span> <span class='op'>&lt;-</span> <span class='fu'>complexity_outlook</span><span class='op'>(</span>
+ <span class='va'>economiccomplexity_output</span><span class='op'>$</span><span class='va'>balassa_index</span>,
+ <span class='va'>economiccomplexity_output</span><span class='op'>$</span><span class='va'>proximity</span><span class='op'>$</span><span class='va'>proximity_product</span>,
+ <span class='va'>economiccomplexity_output</span><span class='op'>$</span><span class='va'>complexity_measures</span><span class='op'>$</span><span class='va'>complexity_index_product</span>
+<span class='op'>)</span>
 
 <span class='co'># partial view of complexity outlook</span>
-<span class='kw'>co</span><span class='op'>$</span><span class='kw'>complexity_outlook_index</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>]
+<span class='va'>co</span><span class='op'>$</span><span class='va'>complexity_outlook_index</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
 </div><div class='output co'>#&gt;        afg        ago        aia        alb        and 
-#&gt; 103.948610   9.962401 122.311158 152.107317 151.295380 </div><div class='input'><span class='kw'>co</span><span class='op'>$</span><span class='kw'>complexity_outlook_gain</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>]
+#&gt; 103.948610   9.962401 122.311158 152.107317 151.295380 </div><div class='input'><span class='va'>co</span><span class='op'>$</span><span class='va'>complexity_outlook_gain</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
 </div><div class='output co'>#&gt; 5 x 5 Matrix of class "dgeMatrix"
 #&gt;          0011      0012      0013      0014      0015
 #&gt; afg 0.8615531 0.7613878 0.7537907 1.0961458 0.8143851

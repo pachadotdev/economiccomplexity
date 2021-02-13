@@ -14,13 +14,13 @@ head(world_gdp_avg_1998_to_2000)
 bi <- balassa_index(world_trade_avg_1998_to_2000)
 
 # partial view of index
-head(bi)
+bi[1:5,1:5]
 
 ## -----------------------------------------------------------------------------
 bi_dec <- balassa_index(world_trade_avg_1998_to_2000, discrete = F)
 
 # partial view of index
-head(bi_dec)
+bi_dec[1:5,1:5]
 
 ## -----------------------------------------------------------------------------
 com_fit <- complexity_measures(bi)

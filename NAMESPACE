@@ -3,6 +3,7 @@
 export(balassa_index)
 export(complexity_measures)
 export(complexity_outlook)
+export(distance)
 export(productivity_levels)
 export(projections)
 export(proximity)
