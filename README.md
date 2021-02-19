@@ -22,9 +22,10 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 A wrapper of different methods from Linear Algebra for the equations
 introduced in The Atlas of Economic Complexity and related literature.
 This package provides standard matrix and graph output that can be used
-seamlessly with other packages.
+seamlessly with other packages. See <doi:10.21105/joss.01866> for a
+summary of these methods and its evolution in literature.
 
-The references are Mariani, et al. (2015)
+The references for this work are Mariani, et al. (2015)
 <doi:10.1140/epjb/e2015-60298-7>, Hausmann, et al. (2014)
 <doi:10.7551/mitpress/9647.001.0001>, and Hausmann, et al. (2005)
 <doi:10.3386/w11905>.

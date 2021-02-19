@@ -101,6 +101,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=ggraph"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "rmarkdown",
+      "name": "rmarkdown",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
     }
   ],
   "softwareRequirements": [
@@ -159,5 +171,15 @@
     "url": "https://cran.r-project.org"
   },
   "relatedLink": ["https://pacha.dev/economiccomplexity/", "https://CRAN.R-project.org/package=economiccomplexity"],
-  "keywords": ["r", "matrix", "eigenvalues", "eigenvectors", "recursive-algorithm", "networks", "graphs", "international-trade", "economic-complexity"]
+  "keywords": [
+    "r",
+    "matrix",
+    "eigenvalues",
+    "eigenvectors",
+    "recursive-algorithm",
+    "networks",
+    "graphs",
+    "international-trade",
+    "economic-complexity"
+  ]
 }

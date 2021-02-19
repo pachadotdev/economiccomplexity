@@ -37,7 +37,8 @@ Authors@R: c(
 Description: A wrapper of different methods from Linear Algebra for the equations
   introduced in The Atlas of Economic Complexity and related literature. This
   package provides standard matrix and graph output that can be used seamlessly
-  with other packages.
+  with other packages. See <doi:10.21105/joss.01866> for a summary
+  of these methods and its evolution in literature.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -49,7 +50,8 @@ Imports:
 Suggests: 
     testthat (>= 2.1.0),
     knitr,
-    ggraph
+    ggraph,
+    rmarkdown
 URL: https://pacha.dev/economiccomplexity/
 BugReports: http://github.com/pachamaltese/economiccomplexity/issues/
 RdMacros: Rdpack
