@@ -53,7 +53,7 @@ Suggests:
     ggraph,
     rmarkdown
 URL: https://pacha.dev/economiccomplexity/
-BugReports: http://github.com/pachamaltese/economiccomplexity/issues/
+BugReports: https://github.com/pachamaltese/economiccomplexity/issues/
 RdMacros: Rdpack
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
