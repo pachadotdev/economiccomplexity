@@ -63,6 +63,14 @@ complexity_measures <- function(balassa_index, method = "fitness", iterations = 
   }
 
   # compute complexity measures ----
+  rows_balassa_index <- rowSums(balassa_index)[rowSums(balassa_index) > 0]
+  cols_balassa_index <- colSums(balassa_index)[colSums(balassa_index) > 0]
+
+  balassa_index <- balassa_index[
+    rownames(balassa_index) %in% names(rows_balassa_index),
+    colnames(balassa_index) %in% names(cols_balassa_index)
+  ]
+
   if (method == "fitness") {
     fitness_output <- fitness_method(balassa_index, iterations, extremality)
     xci <- fitness_output$xci
@@ -134,10 +142,10 @@ fitness_method <- function(balassa_index, iterations, extremality) {
   # compute cols 2 to "no. of iterations" by iterating from col 1
   for (j in 2:ncol(kx)) {
     kx[, j] <- balassa_index %*% ky[, (j - 1)]
-    kx[, j] <- kx[, j] / mean(kx[, j])
+    kx[, j] <- kx[, j] / mean(kx[, j], na.rm = T)
 
     ky[, j] = 1 / (crossprod(balassa_index,  (1 / kx[, (j - 1)])^extremality))^(1 / extremality)
-    ky[, j] <- ky[, j] / mean(ky[, j])
+    ky[, j] <- ky[, j] / mean(ky[, j], na.rm = T)
   }
 
   return(
@@ -189,11 +197,13 @@ reflections_method <- function(balassa_index, iterations) {
   return(
     list(
       xci = setNames(
-        (kx[, iterations - 1] - mean(kx[, iterations - 1])) / sd(kx[, iterations - 1]),
+        (kx[, iterations - 1] - mean(kx[, iterations - 1], na.rm = T)) /
+          sd(kx[, iterations - 1], na.rm = T),
         rownames(balassa_index)
       ),
       yci = setNames(
-        (ky[, iterations] - mean(ky[, iterations])) / sd(ky[, iterations]),
+        (ky[, iterations] - mean(ky[, iterations], na.rm = T)) /
+          sd(ky[, iterations], na.rm = T),
         colnames(balassa_index)
       )
     )
@@ -220,11 +230,11 @@ eigenvalues_method <- function(balassa_index, iterations) {
   return(
     list(
       xci = setNames(
-        (xci - mean(xci)) / sd(xci),
+        (xci - mean(xci, na.rm = T)) / sd(xci, na.rm = T),
         rownames(balassa_index)
       ),
       yci = setNames(
-        (yci - mean(yci)) / sd(yci),
+        (yci - mean(yci, na.rm = T)) / sd(yci, na.rm = T),
         colnames(balassa_index)
       )
     )
