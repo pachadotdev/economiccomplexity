@@ -60,4 +60,7 @@ trade <- trade %>%
 world_trade_avg_1998_to_2000 <- trade
 names(world_trade_avg_1998_to_2000) <- c("country", "product", "value")
 
+world_trade_avg_1998_to_2000 <- world_trade_avg_1998_to_2000 %>%
+  ungroup()
+
 save(world_trade_avg_1998_to_2000, file = 'data/world_trade_avg_1998_to_2000.rda', compress = "xz")

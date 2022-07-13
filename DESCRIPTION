@@ -1,7 +1,7 @@
 Package: economiccomplexity
 Type: Package
 Title: Computational Methods for Economic Complexity
-Version: 1.3
+Version: 1.4.0
 Authors@R: c(
     person(given = "Mauricio",
       family = "Vargas",
@@ -53,7 +53,7 @@ Suggests:
     ggraph,
     rmarkdown
 URL: https://pacha.dev/economiccomplexity/
-BugReports: https://github.com/pachamaltese/economiccomplexity/issues/
+BugReports: https://github.com/pachadotdev/economiccomplexity/issues/
 RdMacros: Rdpack
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
