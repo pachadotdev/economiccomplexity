@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">economiccomplexity</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/economiccomplexity.html">Get started</a>
 </li>
@@ -52,7 +48,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/pachamaltese/economiccomplexity/">
+  <a href="https://github.com/pachadotdev/economiccomplexity/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -67,227 +63,243 @@
 
       
 
-      </header><script src="economiccomplexity_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>How To Use This Package</h1>
-                        <h4 class="author">Mauricio Vargas</h4>
+                        <h4 data-toc-skip class="author">Mauricio
+Vargas</h4>
             
-            <h4 class="date">2021-03-21</h4>
+            <h4 data-toc-skip class="date">2022-07-13</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/pachamaltese/economiccomplexity/blob/master/vignettes/economiccomplexity.Rmd"><code>vignettes/economiccomplexity.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/pachadotdev/economiccomplexity/blob/HEAD/vignettes/economiccomplexity.Rmd" class="external-link"><code>vignettes/economiccomplexity.Rmd</code></a></small>
       <div class="hidden name"><code>economiccomplexity.Rmd</code></div>
 
     </div>
 
     
     
-<div id="world-trade-and-per-capita-gdp" class="section level1">
-<h1 class="hasAnchor">
-<a href="#world-trade-and-per-capita-gdp" class="anchor"></a>World Trade and Per-Capita GDP</h1>
-<p>This example is inspired after the visualizations from <span class="citation">Hausmann et al. (2014)</span> with some ggplot additions.</p>
-<div id="package-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#package-data" class="anchor"></a>Package Data</h2>
+<div class="section level2">
+<h2 id="world-trade-and-per-capita-gdp">World Trade and Per-Capita GDP<a class="anchor" aria-label="anchor" href="#world-trade-and-per-capita-gdp"></a>
+</h2>
+<p>This example is inspired after the visualizations from <span class="citation">Hausmann et al. (2014)</span> with some ggplot
+additions.</p>
+<div class="section level3">
+<h3 id="package-data">Package Data<a class="anchor" aria-label="anchor" href="#package-data"></a>
+</h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://pacha.dev/economiccomplexity/">economiccomplexity</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pacha.dev/economiccomplexity/" class="external-link">economiccomplexity</a></span><span class="op">)</span>
 
 <span class="co"># partial view of trade matrix</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">world_trade_avg_1998_to_2000</span><span class="op">)</span></code></pre></div>
-<pre><code>##   country product value
-## 1     afg    0011 30068
-## 2     afg    0012 16366
-## 3     afg    0111 19273
-## 4     afg    0112   893
-## 5     afg    0113   350
-## 6     afg    0116  1561</code></pre>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">world_trade_avg_1998_to_2000</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">##   country product value</span>
+<span class="co">## 1     afg    0011 30068</span>
+<span class="co">## 2     afg    0012 16366</span>
+<span class="co">## 3     afg    0111 19273</span>
+<span class="co">## 4     afg    0112   893</span>
+<span class="co">## 5     afg    0113   350</span>
+<span class="co">## 6     afg    0116  1561</span></code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># partial view of gdp vector</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">world_gdp_avg_1998_to_2000</span><span class="op">)</span></code></pre></div>
-<pre><code>##   country value
-## 1     abw 19185
-## 2     ago  1540
-## 3     alb  1433
-## 4     and 27765
-## 5     arb  3312
-## 6     are 43082</code></pre>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">world_gdp_avg_1998_to_2000</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">##   country value</span>
+<span class="co">## 1     abw 19185</span>
+<span class="co">## 2     ago  1540</span>
+<span class="co">## 3     alb  1433</span>
+<span class="co">## 4     and 27765</span>
+<span class="co">## 5     arb  3312</span>
+<span class="co">## 6     are 43082</span></code></pre>
 </div>
-<div id="balassa-index" class="section level2">
-<h2 class="hasAnchor">
-<a href="#balassa-index" class="anchor"></a>Balassa Index</h2>
+<div class="section level3">
+<h3 id="balassa-index">Balassa Index<a class="anchor" aria-label="anchor" href="#balassa-index"></a>
+</h3>
 <p>You can obtain Balassa Index with <code><a href="../reference/balassa_index.html">balassa_index()</a></code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">bi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/balassa_index.html">balassa_index</a></span><span class="op">(</span><span class="va">world_trade_avg_1998_to_2000</span><span class="op">)</span>
 
 <span class="co"># partial view of index</span>
 <span class="va">bi</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
-<pre><code>## 5 x 5 sparse Matrix of class "dgCMatrix"
-##     0011 0012 0013 0014 0015
-## afg    .    .    .    .    .
-## ago    .    .    .    .    .
-## aia    .    .    .    .    .
-## alb    .    .    .    .    .
-## and    1    .    .    .    1</code></pre>
-<p>Another possibility is to obtain Balassa Index without discretization.</p>
+<pre><code><span class="co">## 5 x 5 sparse Matrix of class "dgCMatrix"</span>
+<span class="co">##     0011 0012 0013 0014 0015</span>
+<span class="co">## afg    .    .    .    .    .</span>
+<span class="co">## ago    .    .    .    .    .</span>
+<span class="co">## aia    .    .    .    .    .</span>
+<span class="co">## alb    .    .    .    .    .</span>
+<span class="co">## and    1    .    .    .    1</span></code></pre>
+<p>Another possibility is to obtain Balassa Index without
+discretization.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">bi_dec</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/balassa_index.html">balassa_index</a></span><span class="op">(</span><span class="va">world_trade_avg_1998_to_2000</span>, discrete <span class="op">=</span> <span class="cn">F</span><span class="op">)</span>
 
 <span class="co"># partial view of index</span>
 <span class="va">bi_dec</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
-<pre><code>## 5 x 5 sparse Matrix of class "dgCMatrix"
-##          0011        0012        0013       0014        0015
-## afg 0.2312238 0.285438688 .           .          .          
-## ago 0.1777917 0.087436319 0.002076625 0.00139056 0.001106041
-## aia .         0.002581853 .           .          .          
-## alb .         .           .           0.01582754 0.073011368
-## and 2.4825815 0.550954168 .           0.48208017 3.815013019</code></pre>
+<pre><code><span class="co">## 5 x 5 sparse Matrix of class "dgCMatrix"</span>
+<span class="co">##          0011        0012        0013       0014        0015</span>
+<span class="co">## afg 0.2312238 0.285438688 .           .          .          </span>
+<span class="co">## ago 0.1777917 0.087436319 0.002076625 0.00139056 0.001106041</span>
+<span class="co">## aia .         0.002581853 .           .          .          </span>
+<span class="co">## alb .         .           .           0.01582754 0.073011368</span>
+<span class="co">## and 2.4825815 0.550954168 .           0.48208017 3.815013019</span></code></pre>
 </div>
-<div id="complexity-measures" class="section level2">
-<h2 class="hasAnchor">
-<a href="#complexity-measures" class="anchor"></a>Complexity Measures</h2>
-<p>You can compute complexity indexes (e.g. such as the Economic Complexity Index and Product Complexity Index) by using <code><a href="../reference/complexity_measures.html">complexity_measures()</a></code>. The calculations methods are <em>fitness</em> (default), <em>reflections</em>, <em>eigenvalues</em>. See <span class="citation">(Mariani et al. 2015)</span> for the methodological details.</p>
-<p>The eigenvalues also calls the reflections methods in order to correct the index sign in some special cases when the correlation between the output from both methods is negative.</p>
-<div id="complexity-fitness" class="section level3">
-<h3 class="hasAnchor">
-<a href="#complexity-fitness" class="anchor"></a>Complexity-Fitness</h3>
+<div class="section level3">
+<h3 id="complexity-measures">Complexity Measures<a class="anchor" aria-label="anchor" href="#complexity-measures"></a>
+</h3>
+<p>You can compute complexity indexes (e.g. such as the Economic
+Complexity Index and Product Complexity Index) by using
+<code><a href="../reference/complexity_measures.html">complexity_measures()</a></code>. The calculations methods are
+<em>fitness</em> (default), <em>reflections</em>, <em>eigenvalues</em>.
+See <span class="citation">(Mariani et al. 2015)</span> for the
+methodological details.</p>
+<p>The eigenvalues also calls the reflections methods in order to
+correct the index sign in some special cases when the correlation
+between the output from both methods is negative.</p>
+<div class="section level4">
+<h4 id="complexity-fitness">Complexity-Fitness<a class="anchor" aria-label="anchor" href="#complexity-fitness"></a>
+</h4>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">com_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/complexity_measures.html">complexity_measures</a></span><span class="op">(</span><span class="va">bi</span><span class="op">)</span>
 
 <span class="co"># partial view of indexes</span>
 <span class="va">com_fit</span><span class="op">$</span><span class="va">complexity_index_country</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
-<pre><code>##        afg        ago        aia        alb        and 
-## 0.78605655 0.03999516 1.05645538 1.24261128 1.37321261</code></pre>
+<pre><code><span class="co">##        afg        ago        aia        alb        and </span>
+<span class="co">## 0.78605655 0.03999516 1.05645538 1.24261128 1.37321261</span></code></pre>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">com_fit</span><span class="op">$</span><span class="va">complexity_index_product</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
-<pre><code>##      0011      0012      0013      0014      0015 
-## 0.7538883 0.7491391 2.3018690 0.9903918 1.3120378</code></pre>
+<pre><code><span class="co">##      0011      0012      0013      0014      0015 </span>
+<span class="co">## 0.7538883 0.7491391 2.3018690 0.9903918 1.3120378</span></code></pre>
 </div>
-<div id="reflections" class="section level3">
-<h3 class="hasAnchor">
-<a href="#reflections" class="anchor"></a>Reflections</h3>
+<div class="section level4">
+<h4 id="reflections">Reflections<a class="anchor" aria-label="anchor" href="#reflections"></a>
+</h4>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">com_ref</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/complexity_measures.html">complexity_measures</a></span><span class="op">(</span><span class="va">bi</span>, method <span class="op">=</span> <span class="st">"reflections"</span><span class="op">)</span>
 
 <span class="co"># partial view of indexes</span>
 <span class="va">com_ref</span><span class="op">$</span><span class="va">complexity_index_country</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
-<pre><code>##        afg        ago        aia        alb        and 
-## -0.5788151 -1.7710696  1.4074821 -0.1754989  1.0738736</code></pre>
+<pre><code><span class="co">##        afg        ago        aia        alb        and </span>
+<span class="co">## -0.5788151 -1.7710696  1.4074821 -0.1754989  1.0738736</span></code></pre>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">com_ref</span><span class="op">$</span><span class="va">complexity_index_product</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
-<pre><code>##        0011        0012        0013        0014        0015 
-## -0.66255107 -1.62169899 -0.07449487  0.20554720  0.15848845</code></pre>
+<pre><code><span class="co">##        0011        0012        0013        0014        0015 </span>
+<span class="co">## -0.66255107 -1.62169899 -0.07449487  0.20554720  0.15848845</span></code></pre>
 </div>
-<div id="eigenvalues" class="section level3">
-<h3 class="hasAnchor">
-<a href="#eigenvalues" class="anchor"></a>Eigenvalues</h3>
+<div class="section level4">
+<h4 id="eigenvalues">Eigenvalues<a class="anchor" aria-label="anchor" href="#eigenvalues"></a>
+</h4>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">com_eig</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/complexity_measures.html">complexity_measures</a></span><span class="op">(</span><span class="va">bi</span>, method <span class="op">=</span> <span class="st">"eigenvalues"</span><span class="op">)</span>
 
 <span class="co"># partial view of indexes</span>
 <span class="va">com_eig</span><span class="op">$</span><span class="va">complexity_index_country</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
-<pre><code>##        afg        ago        aia        alb        and 
-## -0.5764283 -1.7770752  1.4090414 -0.1732606  1.0772452</code></pre>
+<pre><code><span class="co">##        afg        ago        aia        alb        and </span>
+<span class="co">## -0.5764283 -1.7770752  1.4090414 -0.1732606  1.0772452</span></code></pre>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">com_eig</span><span class="op">$</span><span class="va">complexity_index_product</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
-<pre><code>##        0011        0012        0013        0014        0015 
-## -0.66657613 -1.62657599 -0.08149436  0.19917280  0.14935653</code></pre>
+<pre><code><span class="co">##        0011        0012        0013        0014        0015 </span>
+<span class="co">## -0.66657613 -1.62657599 -0.08149436  0.19917280  0.14935653</span></code></pre>
 </div>
 </div>
-<div id="proximity" class="section level2">
-<h2 class="hasAnchor">
-<a href="#proximity" class="anchor"></a>Proximity</h2>
-<p>Proximity matrices are used to create projections e.g. (country-country and product-product networks) for bipartite networks. Using <code><a href="../reference/proximity.html">proximity()</a></code> is straightforward.</p>
+<div class="section level3">
+<h3 id="proximity">Proximity<a class="anchor" aria-label="anchor" href="#proximity"></a>
+</h3>
+<p>Proximity matrices are used to create projections
+e.g. (country-country and product-product networks) for bipartite
+networks. Using <code><a href="../reference/proximity.html">proximity()</a></code> is straightforward.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pro</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/proximity.html">proximity</a></span><span class="op">(</span><span class="va">bi</span><span class="op">)</span>
 
 <span class="co"># partial view of proximity matrices</span>
 <span class="va">pro</span><span class="op">$</span><span class="va">proximity_country</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
-<pre><code>## 5 x 5 sparse Matrix of class "dsCMatrix"
-##            afg         ago         aia        alb         and
-## afg 1.00000000 0.015873016 0.181818182 0.19689119 0.192513369
-## ago 0.01587302 1.000000000 0.006993007 0.01554404 0.005347594
-## aia 0.18181818 0.006993007 1.000000000 0.16580311 0.251336898
-## alb 0.19689119 0.015544041 0.165803109 1.00000000 0.310880829
-## and 0.19251337 0.005347594 0.251336898 0.31088083 1.000000000</code></pre>
+<pre><code><span class="co">## 5 x 5 sparse Matrix of class "dsCMatrix"</span>
+<span class="co">##            afg         ago         aia        alb         and</span>
+<span class="co">## afg 1.00000000 0.015873016 0.181818182 0.19689119 0.192513369</span>
+<span class="co">## ago 0.01587302 1.000000000 0.006993007 0.01554404 0.005347594</span>
+<span class="co">## aia 0.18181818 0.006993007 1.000000000 0.16580311 0.251336898</span>
+<span class="co">## alb 0.19689119 0.015544041 0.165803109 1.00000000 0.310880829</span>
+<span class="co">## and 0.19251337 0.005347594 0.251336898 0.31088083 1.000000000</span></code></pre>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pro</span><span class="op">$</span><span class="va">proximity_product</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
-<pre><code>## 5 x 5 sparse Matrix of class "dsCMatrix"
-##           0011      0012      0013      0014      0015
-## 0011 1.0000000 0.3658537 0.1707317 0.2439024 0.2682927
-## 0012 0.3658537 1.0000000 0.2500000 0.2250000 0.2500000
-## 0013 0.1707317 0.2500000 1.0000000 0.2500000 0.1200000
-## 0014 0.2439024 0.2250000 0.2500000 1.0000000 0.2250000
-## 0015 0.2682927 0.2500000 0.1200000 0.2250000 1.0000000</code></pre>
+<pre><code><span class="co">## 5 x 5 sparse Matrix of class "dsCMatrix"</span>
+<span class="co">##           0011      0012      0013      0014      0015</span>
+<span class="co">## 0011 1.0000000 0.3658537 0.1707317 0.2439024 0.2682927</span>
+<span class="co">## 0012 0.3658537 1.0000000 0.2500000 0.2250000 0.2500000</span>
+<span class="co">## 0013 0.1707317 0.2500000 1.0000000 0.2500000 0.1200000</span>
+<span class="co">## 0014 0.2439024 0.2250000 0.2500000 1.0000000 0.2250000</span>
+<span class="co">## 0015 0.2682927 0.2500000 0.1200000 0.2250000 1.0000000</span></code></pre>
 </div>
-<div id="projections" class="section level2">
-<h2 class="hasAnchor">
-<a href="#projections" class="anchor"></a>Projections</h2>
-<p>The <code><a href="../reference/projections.html">projections()</a></code> function is designed to use <code>igraph</code> for the internal computations and also to pass proximity-based networks to <code>igraph</code>, <code>ggraph</code> or export to Cytoscape by saving the output as csv/tsv.</p>
+<div class="section level3">
+<h3 id="projections">Projections<a class="anchor" aria-label="anchor" href="#projections"></a>
+</h3>
+<p>The <code><a href="../reference/projections.html">projections()</a></code> function is designed to use
+<code>igraph</code> for the internal computations and also to pass
+proximity-based networks to <code>igraph</code>, <code>ggraph</code> or
+export to Cytoscape by saving the output as csv/tsv.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://igraph.org">igraph</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://igraph.org" class="external-link">igraph</a></span><span class="op">)</span>
 
 <span class="va">net</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/projections.html">projections</a></span><span class="op">(</span><span class="va">pro</span><span class="op">$</span><span class="va">proximity_country</span>, <span class="va">pro</span><span class="op">$</span><span class="va">proximity_product</span><span class="op">)</span>
 
 <span class="co"># partial view of projections</span>
-<span class="fu"><a href="https://rdrr.io/pkg/igraph/man/E.html">E</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
-<pre><code>## + 5/484 edges from 72ffe65 (vertex names):
-## [1] zaf--zwe tza--zmb tza--uga tuv--wlf tuv--umi</code></pre>
+<span class="fu"><a href="https://rdrr.io/pkg/igraph/man/E.html" class="external-link">E</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
+<pre><code><span class="co">## + 5/484 edges from 3b819fb (vertex names):</span>
+<span class="co">## [1] zaf--zwe tza--zmb tza--uga tuv--wlf tuv--umi</span></code></pre>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/E.html">E</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
-<pre><code>## + 5/1505 edges from 01833db (vertex names):
-## [1] 8981--8982 8946--9510 8922--8932 8921--8922 8852--8959</code></pre>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/E.html" class="external-link">E</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
+<pre><code><span class="co">## + 5/1505 edges from 1c9c99d (vertex names):</span>
+<span class="co">## [1] 8981--8982 8946--9510 8922--8932 8921--8922 8852--8959</span></code></pre>
 <p>Just two basic examples with <code>ggraph</code>.</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">200100</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">200100</span><span class="op">)</span>
 
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://Matrix.R-forge.R-project.org/">Matrix</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggraph.data-imaginist.com">ggraph</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://Matrix.R-forge.R-project.org/" class="external-link">Matrix</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggraph.data-imaginist.com" class="external-link">ggraph</a></span><span class="op">)</span>
 
-<span class="va">aggregated_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span>
+<span class="va">aggregated_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span>
   <span class="va">world_trade_avg_1998_to_2000</span><span class="op">$</span><span class="va">value</span>,
-  by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>country <span class="op">=</span> <span class="va">world_trade_avg_1998_to_2000</span><span class="op">$</span><span class="va">country</span><span class="op">)</span>,
+  by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>country <span class="op">=</span> <span class="va">world_trade_avg_1998_to_2000</span><span class="op">$</span><span class="va">country</span><span class="op">)</span>,
   FUN <span class="op">=</span> <span class="va">sum</span>
 <span class="op">)</span>
 
-<span class="va">aggregated_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html">setNames</a></span><span class="op">(</span><span class="va">aggregated_countries</span><span class="op">$</span><span class="va">x</span>, <span class="va">aggregated_countries</span><span class="op">$</span><span class="va">country</span><span class="op">)</span>
+<span class="va">aggregated_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html" class="external-link">setNames</a></span><span class="op">(</span><span class="va">aggregated_countries</span><span class="op">$</span><span class="va">x</span>, <span class="va">aggregated_countries</span><span class="op">$</span><span class="va">country</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">$</span><span class="va">size</span> <span class="op">&lt;-</span> <span class="va">aggregated_countries</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/match.html">match</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">$</span><span class="va">name</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">aggregated_countries</span><span class="op">)</span><span class="op">)</span><span class="op">]</span>
+<span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">$</span><span class="va">size</span> <span class="op">&lt;-</span> <span class="va">aggregated_countries</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/match.html" class="external-link">match</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">$</span><span class="va">name</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">aggregated_countries</span><span class="op">)</span><span class="op">)</span><span class="op">]</span>
 
-<span class="fu"><a href="https://ggraph.data-imaginist.com/reference/ggraph.html">ggraph</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span>, layout <span class="op">=</span> <span class="st">"kk"</span><span class="op">)</span> <span class="op">+</span>
+<span class="fu"><a href="https://ggraph.data-imaginist.com/reference/ggraph.html" class="external-link">ggraph</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span>, layout <span class="op">=</span> <span class="st">"kk"</span><span class="op">)</span> <span class="op">+</span>
   <span class="co"># geom_edge_link(aes(edge_width = weight), edge_colour = "#a8a8a8") +</span>
-  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_edge_link.html">geom_edge_link</a></span><span class="op">(</span>edge_colour <span class="op">=</span> <span class="st">"#a8a8a8"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_point.html">geom_node_point</a></span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>size <span class="op">=</span> <span class="va">size</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"#86494d"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_text.html">geom_node_text</a></span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>label <span class="op">=</span> <span class="va">name</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2</span>, vjust <span class="op">=</span> <span class="fl">2.2</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Proximity Based Network Projection for Countries"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">theme_void</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_edge_link.html" class="external-link">geom_edge_link</a></span><span class="op">(</span>edge_colour <span class="op">=</span> <span class="st">"#a8a8a8"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_point.html" class="external-link">geom_node_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>size <span class="op">=</span> <span class="va">size</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"#86494d"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_text.html" class="external-link">geom_node_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">name</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2</span>, vjust <span class="op">=</span> <span class="fl">2.2</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Proximity Based Network Projection for Countries"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="economiccomplexity_files/figure-html/unnamed-chunk-9-1.png" width="672"></p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">200100</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">200100</span><span class="op">)</span>
 
-<span class="va">aggregated_products</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span>
+<span class="va">aggregated_products</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span>
   <span class="va">world_trade_avg_1998_to_2000</span><span class="op">$</span><span class="va">value</span>,
-  by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>country <span class="op">=</span> <span class="va">world_trade_avg_1998_to_2000</span><span class="op">$</span><span class="va">product</span><span class="op">)</span>,
+  by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>country <span class="op">=</span> <span class="va">world_trade_avg_1998_to_2000</span><span class="op">$</span><span class="va">product</span><span class="op">)</span>,
   FUN <span class="op">=</span> <span class="va">sum</span>
 <span class="op">)</span>
 
-<span class="va">aggregated_products</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html">setNames</a></span><span class="op">(</span><span class="va">aggregated_products</span><span class="op">$</span><span class="va">x</span>, <span class="va">aggregated_products</span><span class="op">$</span><span class="va">country</span><span class="op">)</span>
+<span class="va">aggregated_products</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html" class="external-link">setNames</a></span><span class="op">(</span><span class="va">aggregated_products</span><span class="op">$</span><span class="va">x</span>, <span class="va">aggregated_products</span><span class="op">$</span><span class="va">country</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">$</span><span class="va">size</span> <span class="op">&lt;-</span> <span class="va">aggregated_products</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/match.html">match</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">$</span><span class="va">name</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">aggregated_products</span><span class="op">)</span><span class="op">)</span><span class="op">]</span>
+<span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">$</span><span class="va">size</span> <span class="op">&lt;-</span> <span class="va">aggregated_products</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/match.html" class="external-link">match</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">$</span><span class="va">name</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">aggregated_products</span><span class="op">)</span><span class="op">)</span><span class="op">]</span>
 
-<span class="fu"><a href="https://ggraph.data-imaginist.com/reference/ggraph.html">ggraph</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span>, layout <span class="op">=</span> <span class="st">"kk"</span><span class="op">)</span> <span class="op">+</span>
+<span class="fu"><a href="https://ggraph.data-imaginist.com/reference/ggraph.html" class="external-link">ggraph</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span>, layout <span class="op">=</span> <span class="st">"kk"</span><span class="op">)</span> <span class="op">+</span>
   <span class="co"># geom_edge_link(aes(edge_width = weight), edge_colour = "#a8a8a8") +</span>
-  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_edge_link.html">geom_edge_link</a></span><span class="op">(</span>edge_colour <span class="op">=</span> <span class="st">"#a8a8a8"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_point.html">geom_node_point</a></span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>size <span class="op">=</span> <span class="va">size</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"#86494d"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_text.html">geom_node_text</a></span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>label <span class="op">=</span> <span class="va">name</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2</span>, vjust <span class="op">=</span> <span class="fl">2.2</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Proximity Based Network Projection for Products"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">theme_void</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_edge_link.html" class="external-link">geom_edge_link</a></span><span class="op">(</span>edge_colour <span class="op">=</span> <span class="st">"#a8a8a8"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_point.html" class="external-link">geom_node_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>size <span class="op">=</span> <span class="va">size</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"#86494d"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_text.html" class="external-link">geom_node_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">name</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2</span>, vjust <span class="op">=</span> <span class="fl">2.2</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Proximity Based Network Projection for Products"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="economiccomplexity_files/figure-html/unnamed-chunk-10-1.png" width="960"></p>
 </div>
 </div>
-<div id="complexity-outlook" class="section level1">
-<h1 class="hasAnchor">
-<a href="#complexity-outlook" class="anchor"></a>Complexity Outlook</h1>
-<p>Both the Complexity Outlook Index and Complexity Outlook Gain are obtained after the <code><a href="../reference/complexity_outlook.html">complexity_outlook()</a></code> function.</p>
+<div class="section level2">
+<h2 id="complexity-outlook">Complexity Outlook<a class="anchor" aria-label="anchor" href="#complexity-outlook"></a>
+</h2>
+<p>Both the Complexity Outlook Index and Complexity Outlook Gain are
+obtained after the <code><a href="../reference/complexity_outlook.html">complexity_outlook()</a></code> function.</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">co</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/complexity_outlook.html">complexity_outlook</a></span><span class="op">(</span>
   <span class="va">economiccomplexity_output</span><span class="op">$</span><span class="va">balassa_index</span>,
@@ -297,47 +309,58 @@
 
 <span class="co"># partial view of complexity outlook</span>
 <span class="va">co</span><span class="op">$</span><span class="va">complexity_outlook_index</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
-<pre><code>##        afg        ago        aia        alb        and 
-## 103.948610   9.962401 122.311158 152.107317 151.295380</code></pre>
+<pre><code><span class="co">##        afg        ago        aia        alb        and </span>
+<span class="co">## 103.948610   9.962401 122.311158 152.107317 151.295380</span></code></pre>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">co</span><span class="op">$</span><span class="va">complexity_outlook_gain</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
-<pre><code>## 5 x 5 Matrix of class "dgeMatrix"
-##          0011      0012      0013      0014      0015
-## afg 0.8615531 0.7613878 0.7537907 1.0961458 0.8143851
-## ago 0.9681802 0.8436855 0.8219918 1.2151040 0.8883146
-## aia 0.8339114 0.7475080 0.7247198 1.0425043 0.7671877
-## alb 0.7979779 0.7199705 0.7132042 1.0170093 0.7636545
-## and 0.0000000 0.7118512 0.6829531 0.9987236 0.0000000</code></pre>
+<pre><code><span class="co">## 5 x 5 Matrix of class "dgeMatrix"</span>
+<span class="co">##          0011      0012      0013      0014      0015</span>
+<span class="co">## afg 0.8615531 0.7613878 0.7537907 1.0961458 0.8143851</span>
+<span class="co">## ago 0.9681802 0.8436855 0.8219918 1.2151040 0.8883146</span>
+<span class="co">## aia 0.8339114 0.7475080 0.7247198 1.0425043 0.7671877</span>
+<span class="co">## alb 0.7979779 0.7199705 0.7132042 1.0170093 0.7636545</span>
+<span class="co">## and 0.0000000 0.7118512 0.6829531 0.9987236 0.0000000</span></code></pre>
 </div>
-<div id="productivy-levels" class="section level1">
-<h1 class="hasAnchor">
-<a href="#productivy-levels" class="anchor"></a>Productivy Levels</h1>
-<p>The <code><a href="../reference/productivity_levels.html">productivity_levels()</a></code> dataset follows the definitions from <span class="citation">Hausmann et al. (2014)</span> and <span class="citation">Hausmann, Hwang, and Rodrik (2005)</span>.</p>
-<p>I don’t have a per-capita GDP dataset for the Galactic Federation, so I’ll create simulated data for the example.</p>
+<div class="section level2">
+<h2 id="productivy-levels">Productivy Levels<a class="anchor" aria-label="anchor" href="#productivy-levels"></a>
+</h2>
+<p>The <code><a href="../reference/productivity_levels.html">productivity_levels()</a></code> dataset follows the
+definitions from <span class="citation">Hausmann et al. (2014)</span>
+and <span class="citation">Hausmann, Hwang, and Rodrik
+(2005)</span>.</p>
+<p>I don’t have a per-capita GDP dataset for the Galactic Federation, so
+I’ll create simulated data for the example.</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/productivity_levels.html">productivity_levels</a></span><span class="op">(</span><span class="va">world_trade_avg_1998_to_2000</span>, <span class="va">world_gdp_avg_1998_to_2000</span><span class="op">)</span>
 
 <span class="co"># partial view of productivity levels</span>
 <span class="va">pl</span><span class="op">$</span><span class="va">productivity_level_country</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
-<pre><code>##       ago       alb       and       are       arg 
-##  8223.607  6343.341 13783.485 10207.679  9269.670</code></pre>
+<pre><code><span class="co">##       ago       alb       and       are       arg </span>
+<span class="co">##  8223.607  6343.341 13783.485 10207.679  9269.670</span></code></pre>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pl</span><span class="op">$</span><span class="va">productivity_level_product</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
-<pre><code>##      0011      0012      0013      0014      0015 
-##  7915.893  3986.371 11375.710  6273.428 17628.950</code></pre>
+<pre><code><span class="co">##      0011      0012      0013      0014      0015 </span>
+<span class="co">##  7915.893  3986.371 11375.710  6273.428 17628.950</span></code></pre>
 </div>
-<div id="references" class="section level1 unnumbered">
-<h1 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h1>
-<div id="refs" class="references">
-<div id="ref-atlas2014">
-<p>Hausmann, Ricardo, César Hidalgo, Sebastián Bustos, Michele Coscia, Alexander Simoes, and Muhammed Yildirim. 2014. <em>The Atlas of Economic Complexity: Mapping Paths to Prosperity</em>. MIT Press. <a href="https://doi.org/10.7551/mitpress/9647.001.0001">https://doi.org/10.7551/mitpress/9647.001.0001</a>.</p>
+<div class="section level2">
+<h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-atlas2014" class="csl-entry">
+Hausmann, Ricardo, César Hidalgo, Sebastián Bustos, Michele Coscia,
+Alexander Simoes, and Muhammed Yildirim. 2014. <em>The Atlas of Economic
+Complexity: Mapping Paths to Prosperity</em>. MIT Press. <a href="https://doi.org/10.7551/mitpress/9647.001.0001" class="external-link">https://doi.org/10.7551/mitpress/9647.001.0001</a>.
 </div>
-<div id="ref-exportmatters2005">
-<p>Hausmann, Ricardo, Jason Hwang, and Dani Rodrik. 2005. “What You Export Matters.” Working Paper 11905. Working Paper Series. National Bureau of Economic Research. <a href="https://doi.org/10.3386/w11905">https://doi.org/10.3386/w11905</a>.</p>
+<div id="ref-exportmatters2005" class="csl-entry">
+Hausmann, Ricardo, Jason Hwang, and Dani Rodrik. 2005. <span>“What You
+Export Matters.”</span> Working Paper 11905. Working Paper Series.
+National Bureau of Economic Research. <a href="https://doi.org/10.3386/w11905" class="external-link">https://doi.org/10.3386/w11905</a>.
 </div>
-<div id="ref-measuringcomplexity2015">
-<p>Mariani, Manuel, Alexandre Vidmer, Matsúš Medo, and Yi-Cheng Zhang. 2015. “Measuring Economic Complexity of Countries and Products: Which Metric to Use?” <em>The European Physical Journal B</em> 88 (11): 293. <a href="https://doi.org/10.1140/epjb/e2015-60298-7">https://doi.org/10.1140/epjb/e2015-60298-7</a>.</p>
+<div id="ref-measuringcomplexity2015" class="csl-entry">
+Mariani, Manuel, Alexandre Vidmer, Matsúš Medo, and Yi-Cheng Zhang.
+2015. <span>“Measuring Economic Complexity of Countries and Products:
+Which Metric to Use?”</span> <em>The European Physical Journal B</em> 88
+(11): 293. <a href="https://doi.org/10.1140/epjb/e2015-60298-7" class="external-link">https://doi.org/10.1140/epjb/e2015-60298-7</a>.
 </div>
 </div>
 </div>
@@ -354,11 +377,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Mauricio Vargas.</p>
+  <p></p>
+<p>Developed by Mauricio Vargas.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer>
@@ -366,6 +391,8 @@
 
   
 
+
+  
 
   </body>
 </html>

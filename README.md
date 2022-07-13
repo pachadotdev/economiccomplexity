@@ -1,14 +1,10 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# economiccomplexity <img src="https://pachamaltese.github.io/economiccomplexity/hexicon.svg" width=150 align="right" alt="sticker"/>
+# economiccomplexity <img src="https://pacha.dev/economiccomplexity/hexicon.svg" width=150 align="right" alt="sticker"/>
 
 <!-- badges: start -->
 
-[![R build
-status](https://github.com/pachamaltese/economiccomplexity/workflows/R-CMD-check/badge.svg)](https://github.com/pachamaltese/economiccomplexity/actions?workflow=R-CMD-check)
-[![Codecov test
-coverage](https://codecov.io/gh/pachamaltese/economiccomplexity/branch/master/graph/badge.svg)](https://codecov.io/gh/pachamaltese/economiccomplexity?branch=master)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/economiccomplexity)](https://cran.r-project.org/package=economiccomplexity)
 [![Project Status: Active – The project has reached a stable, usable
@@ -17,6 +13,9 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![DOI](https://joss.theoj.org/papers/10.21105/joss.01866/status.svg)](https://doi.org/10.21105/joss.01866)
+[![R-CMD-check](https://github.com/pachadotdev/economiccomplexity/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pachadotdev/economiccomplexity/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/pachadotdev/economiccomplexity/branch/master/graph/badge.svg)](https://app.codecov.io/gh/pachadotdev/economiccomplexity?branch=master)
 <!-- badges: end -->
 
 A wrapper of different methods from Linear Algebra for the equations
@@ -37,7 +36,7 @@ The references for this work are Mariani, et al. (2015)
 install.packages("economiccomplexity")
 
 # Install development version from GitHub
-devtools::install_github("pachamaltese/economiccomplexity")
+devtools::install_github("pachadotdev/economiccomplexity")
 ```
 
 ## Community Guidelines
@@ -55,5 +54,5 @@ more users have the same questions as you.
 ## Code of Conduct
 
 Please note that this project is released with a [Contributor Code of
-Conduct](https://pachamaltese.github.io/economiccomplexity/CODE_OF_CONDUCT.html).
-By participating in this project you agree to abide by its terms.
+Conduct](https://pacha.dev/economiccomplexity/CODE_OF_CONDUCT.html). By
+participating in this project you agree to abide by its terms.

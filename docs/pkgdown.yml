@@ -1,7 +1,7 @@
-pandoc: 2.7.3
-pkgdown: 1.6.1
+pandoc: 2.17.1.1
+pkgdown: 2.0.3
 pkgdown_sha: ~
 articles:
   economiccomplexity: economiccomplexity.html
-last_built: 2021-03-22T01:32Z
+last_built: 2022-07-13T05:32Z
 

@@ -51,9 +51,10 @@ Suggests:
     testthat (>= 2.1.0),
     knitr,
     ggraph,
-    rmarkdown
+    rmarkdown,
+    covr
 URL: https://pacha.dev/economiccomplexity/
 BugReports: https://github.com/pachadotdev/economiccomplexity/issues/
 RdMacros: Rdpack
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.0
 VignetteBuilder: knitr

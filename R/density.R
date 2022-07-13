@@ -48,6 +48,6 @@ density <- function(balassa_index, proximity_product) {
   }
 
   return(
-    tcrossprod(1 - balassa_index, proximity_product / rowSums(proximity_product))
+    tcrossprod(balassa_index, proximity_product / rowSums(proximity_product))
   )
 }
