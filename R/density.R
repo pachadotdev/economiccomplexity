@@ -15,8 +15,6 @@
 #' @param proximity_product (Type: dgCMatrix) the output from
 #' \code{proximity()}) or an equivalent arrangement.
 #'
-#' @importFrom Matrix tcrossprod rowSums
-#'
 #' @examples
 #' d <- density(
 #'  economiccomplexity_output$balassa_index,
@@ -38,16 +36,7 @@
 #' @export
 
 density <- function(balassa_index, proximity_product) {
-  # sanity checks ----
-  if (!(any(class(balassa_index) %in% "dgCMatrix") == TRUE)) {
-    stop("'balassa_index' must be a dgCMatrix")
-  }
-
-  if (!(any(class(proximity_product) %in% "dsCMatrix") == TRUE)) {
-    stop("'proximity_product' must be a dgCMatrix")
-  }
-
   return(
-    tcrossprod(balassa_index, proximity_product / rowSums(proximity_product))
+    1 - economiccomplexity::distance(balassa_index, proximity_product)
   )
 }
