@@ -55,13 +55,13 @@ useful to visualize product-product and country-country similarity.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">projections</span><span class="op">(</span>
-  <span class="va">proximity_country</span>,
-  <span class="va">proximity_product</span>,
-  avg_links <span class="op">=</span> <span class="fl">5</span>,
-  tolerance <span class="op">=</span> <span class="fl">0.05</span>,
-  compute <span class="op">=</span> <span class="st">"both"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">projections</span><span class="op">(</span></span>
+<span>  <span class="va">proximity_country</span>,</span>
+<span>  <span class="va">proximity_product</span>,</span>
+<span>  avg_links <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  tolerance <span class="op">=</span> <span class="fl">0.05</span>,</span>
+<span>  compute <span class="op">=</span> <span class="st">"both"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -69,24 +69,35 @@ useful to visualize product-product and country-country similarity.</p>
     <dl><dt>proximity_country</dt>
 <dd><p>(Type: dgCMatrix) the output from
 <code><a href="proximity.html">proximity()</a></code>) or an equivalent arrangement.</p></dd>
+
+
 <dt>proximity_product</dt>
 <dd><p>(Type: dgCMatrix) the output from
 <code><a href="proximity.html">proximity()</a></code>) or an equivalent arrangement.</p></dd>
+
+
 <dt>avg_links</dt>
 <dd><p>average number of connections for the projections.
 By default this is set to <code>5</code>.</p></dd>
+
+
 <dt>tolerance</dt>
 <dd><p>tolerance for proximity variation on each iteration until
 obtaining the desired average number of connections.
 By default this is set to <code>0.05</code>.</p></dd>
+
+
 <dt>compute</dt>
 <dd><p>(Type: character) the proximity to compute. By default this is
 <code>"both"</code> (both projections) but it can also be <code>"country"</code>
 or <code>"product"</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list of two graphs.</p>
+    
+
+<p>A list of two graphs.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -111,12 +122,12 @@ MIT Press.
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">net</span> <span class="op">&lt;-</span> <span class="fu">projections</span><span class="op">(</span></span>
-<span class="r-in"> <span class="va">economiccomplexity_output</span><span class="op">$</span><span class="va">proximity</span><span class="op">$</span><span class="va">proximity_country</span>,</span>
-<span class="r-in"> <span class="va">economiccomplexity_output</span><span class="op">$</span><span class="va">proximity</span><span class="op">$</span><span class="va">proximity_product</span>,</span>
-<span class="r-in"> avg_links <span class="op">=</span> <span class="fl">10</span>,</span>
-<span class="r-in"> tolerance <span class="op">=</span> <span class="fl">0.1</span></span>
-<span class="r-in"><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">net</span> <span class="op">&lt;-</span> <span class="fu">projections</span><span class="op">(</span></span></span>
+<span class="r-in"><span> <span class="va">economiccomplexity_output</span><span class="op">$</span><span class="va">proximity</span><span class="op">$</span><span class="va">proximity_country</span>,</span></span>
+<span class="r-in"><span> <span class="va">economiccomplexity_output</span><span class="op">$</span><span class="va">proximity</span><span class="op">$</span><span class="va">proximity_product</span>,</span></span>
+<span class="r-in"><span> avg_links <span class="op">=</span> <span class="fl">10</span>,</span></span>
+<span class="r-in"><span> tolerance <span class="op">=</span> <span class="fl">0.1</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> computing product projection...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> --------------------------------------------------</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 0 threshold...</span>
@@ -134,15 +145,15 @@ MIT Press.
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 0.4 threshold...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 0.5 threshold...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 0.6 threshold achieves the avg number of connections</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># partial view of projections</span></span>
-<span class="r-in"><span class="fu">igraph</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/E.html" class="external-link">E</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> + 5/478 edges from be0113a (vertex names):</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># partial view of projections</span></span></span>
+<span class="r-in"><span><span class="fu">igraph</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/E.html" class="external-link">E</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> + 5/478 edges from c58d7b1 (vertex names):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] zaf--zwe tza--zmb tza--uga tuv--wlf tuv--umi</span>
-<span class="r-in"><span class="fu">igraph</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/E.html" class="external-link">E</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> + 5/1339 edges from 31aa965 (vertex names):</span>
+<span class="r-in"><span><span class="fu">igraph</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/E.html" class="external-link">E</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> + 5/1339 edges from e0104d7 (vertex names):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 8981--8982 8946--9510 8922--8932 8921--8922 8852--8959</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -157,7 +168,7 @@ MIT Press.
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

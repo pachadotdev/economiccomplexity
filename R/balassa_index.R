@@ -73,7 +73,7 @@ balassa_index <- function(data, discrete = TRUE, cutoff = 1,
   }
 
   if (any(class(data) %in% "matrix") == TRUE) {
-    data <- Matrix(data, sparse = TRUE)
+    data <- Matrix(data, sparse = TRUE, forceCheck = TRUE)
   }
 
   # compute index ----

@@ -60,14 +60,14 @@ proximity <- function(balassa_index, compute = "both") {
 
   if (any("country" %in% compute2) == TRUE) {
     prox_x <- tcrossprod(balassa_index, balassa_index) / outer(balassa_sum_country, balassa_sum_country, pmax)
-    prox_x <- Matrix(prox_x, sparse = TRUE)
+    prox_x <- Matrix(prox_x, sparse = TRUE, forceCheck = TRUE)
   } else {
     prox_x <- NULL
   }
 
   if (any("product" %in% compute2) == TRUE) {
     prox_y <- crossprod(balassa_index, balassa_index) / outer(balassa_sum_product, balassa_sum_product, pmax)
-    prox_y <- Matrix(prox_y, sparse = TRUE)
+    prox_y <- Matrix(prox_y, sparse = TRUE, forceCheck = TRUE)
   } else {
     prox_y <- NULL
   }

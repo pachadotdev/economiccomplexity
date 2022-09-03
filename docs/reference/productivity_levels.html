@@ -53,13 +53,13 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">productivity_levels</span><span class="op">(</span>
-  <span class="va">data_exp</span>,
-  <span class="va">data_gdp</span>,
-  country <span class="op">=</span> <span class="st">"country"</span>,
-  product <span class="op">=</span> <span class="st">"product"</span>,
-  value <span class="op">=</span> <span class="st">"value"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">productivity_levels</span><span class="op">(</span></span>
+<span>  <span class="va">data_exp</span>,</span>
+<span>  <span class="va">data_gdp</span>,</span>
+<span>  country <span class="op">=</span> <span class="st">"country"</span>,</span>
+<span>  product <span class="op">=</span> <span class="st">"product"</span>,</span>
+<span>  value <span class="op">=</span> <span class="st">"value"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -67,23 +67,34 @@
     <dl><dt>data_exp</dt>
 <dd><p>(Type: data.frame, matrix or dgCMatrix) a dataset containing
 countries, products and exported values.</p></dd>
+
+
 <dt>data_gdp</dt>
 <dd><p>(Type: data.frame, matrix or dgCMatrix) a dataset
 containing countries and per-capita GDP values.</p></dd>
+
+
 <dt>country</dt>
 <dd><p>(Type: character) the column with the countries.
 By default this is set to <code>"country"</code>. Used only if the input is a data.frame.</p></dd>
+
+
 <dt>product</dt>
 <dd><p>(Type: character) the column with the products.
 By default this is set to <code>"product"</code>. Used only if the input is a data.frame.</p></dd>
+
+
 <dt>value</dt>
 <dd><p>(Type: character) the column with the metric for
 country-product pairs.
 By default this is set to <code>"value"</code>. Used only if the input is a data.frame.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list of two named numeric vectors.</p>
+    
+
+<p>A list of two named numeric vectors.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -104,20 +115,20 @@ Working Paper 11905, National Bureau of Economic Research.
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">pl</span> <span class="op">&lt;-</span> <span class="fu">productivity_levels</span><span class="op">(</span></span>
-<span class="r-in"> <span class="va">world_trade_avg_1998_to_2000</span>,</span>
-<span class="r-in"> <span class="va">world_gdp_avg_1998_to_2000</span></span>
-<span class="r-in"><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">pl</span> <span class="op">&lt;-</span> <span class="fu">productivity_levels</span><span class="op">(</span></span></span>
+<span class="r-in"><span> <span class="va">world_trade_avg_1998_to_2000</span>,</span></span>
+<span class="r-in"><span> <span class="va">world_gdp_avg_1998_to_2000</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>'data_exp' and 'data_gdp' don't have the same countries, some elements will be dropped</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># partial view of productivity levels</span></span>
-<span class="r-in"><span class="va">pl</span><span class="op">$</span><span class="va">productivity_level_country</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># partial view of productivity levels</span></span></span>
+<span class="r-in"><span><span class="va">pl</span><span class="op">$</span><span class="va">productivity_level_country</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       ago       alb       and       are       arg </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  8223.607  6343.341 13783.485 10207.679  9269.670 </span>
-<span class="r-in"><span class="va">pl</span><span class="op">$</span><span class="va">productivity_level_product</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
+<span class="r-in"><span><span class="va">pl</span><span class="op">$</span><span class="va">productivity_level_product</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      0011      0012      0013      0014      0015 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  7915.893  3986.371 11375.710  6273.428 17628.950 </span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -132,7 +143,7 @@ Working Paper 11905, National Bureau of Economic Research.
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

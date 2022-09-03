@@ -60,7 +60,7 @@ productivity_levels <- function(data_exp, data_gdp,
   }
 
   if (!(any(class(data_exp) %in% "matrix") == TRUE)) {
-    data_exp <- Matrix(data_exp, sparse = TRUE)
+    data_exp <- Matrix(data_exp, sparse = TRUE, forceCheck = TRUE)
   }
 
   # tidy input data data_gdp ----

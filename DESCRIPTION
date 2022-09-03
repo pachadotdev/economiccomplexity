@@ -56,5 +56,5 @@ Suggests:
 URL: https://pacha.dev/economiccomplexity/
 BugReports: https://github.com/pachadotdev/economiccomplexity/issues/
 RdMacros: Rdpack
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.1
 VignetteBuilder: knitr

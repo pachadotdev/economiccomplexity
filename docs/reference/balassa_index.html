@@ -55,14 +55,14 @@ bipartite relation between countries and products.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">balassa_index</span><span class="op">(</span>
-  <span class="va">data</span>,
-  discrete <span class="op">=</span> <span class="cn">TRUE</span>,
-  cutoff <span class="op">=</span> <span class="fl">1</span>,
-  country <span class="op">=</span> <span class="st">"country"</span>,
-  product <span class="op">=</span> <span class="st">"product"</span>,
-  value <span class="op">=</span> <span class="st">"value"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">balassa_index</span><span class="op">(</span></span>
+<span>  <span class="va">data</span>,</span>
+<span>  discrete <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  cutoff <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  country <span class="op">=</span> <span class="st">"country"</span>,</span>
+<span>  product <span class="op">=</span> <span class="st">"product"</span>,</span>
+<span>  value <span class="op">=</span> <span class="st">"value"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -70,27 +70,40 @@ bipartite relation between countries and products.</p>
     <dl><dt>data</dt>
 <dd><p>(Type: data.frame, matrix or dgCMatrix) a dataset such as
 <code>galactic_federation</code> containing countries, products and exported values.</p></dd>
+
+
 <dt>discrete</dt>
 <dd><p>(Type: logical) whether converting the Balassa Index to
 discrete (0/1) values. Anything below the specified cutoff is converted to 0
 and 1 otherwise. By default this is set to <code>TRUE</code>.</p></dd>
+
+
 <dt>cutoff</dt>
 <dd><p>(Type: numeric) the cutoff to use for discretization.
 By default this is set to <code>1</code>.</p></dd>
+
+
 <dt>country</dt>
 <dd><p>(Type: character) the column with the countries.
 By default this is set to <code>"country"</code>. Used only if the input is a data.frame.</p></dd>
+
+
 <dt>product</dt>
 <dd><p>(Type: character) the column with the products.
 By default this is set to <code>"product"</code>. Used only if the input is a data.frame.</p></dd>
+
+
 <dt>value</dt>
 <dd><p>(Type: character) the column with the metric for
 country-product pairs.
 By default this is set to <code>"value"</code>. Used only if the input is a data.frame.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A matrix with the Balassa Index.</p>
+    
+
+<p>A matrix with the Balassa Index.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -116,10 +129,10 @@ input to a matrix.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">bi</span> <span class="op">&lt;-</span> <span class="fu">balassa_index</span><span class="op">(</span><span class="va">world_trade_avg_1998_to_2000</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># partial view of index</span></span>
-<span class="r-in"><span class="va">bi</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">bi</span> <span class="op">&lt;-</span> <span class="fu">balassa_index</span><span class="op">(</span><span class="va">world_trade_avg_1998_to_2000</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># partial view of index</span></span></span>
+<span class="r-in"><span><span class="va">bi</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5 x 5 sparse Matrix of class "dgCMatrix"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     0011 0012 0013 0014 0015</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> afg    .    .    .    .    .</span>
@@ -127,7 +140,7 @@ input to a matrix.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> aia    .    .    .    .    .</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alb    .    .    .    .    .</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> and    1    .    .    .    1</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -142,7 +155,7 @@ input to a matrix.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

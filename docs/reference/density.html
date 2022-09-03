@@ -57,7 +57,7 @@ each good that the countries are exporting.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">density</span><span class="op">(</span><span class="va">balassa_index</span>, <span class="va">proximity_product</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">density</span><span class="op">(</span><span class="va">balassa_index</span>, <span class="va">proximity_product</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -65,13 +65,18 @@ each good that the countries are exporting.</p>
     <dl><dt>balassa_index</dt>
 <dd><p>(Type: dgCMatrix) the output from
 <code><a href="balassa_index.html">balassa_index()</a></code>) or an equivalent arrangement.</p></dd>
+
+
 <dt>proximity_product</dt>
 <dd><p>(Type: dgCMatrix) the output from
 <code><a href="proximity.html">proximity()</a></code>) or an equivalent arrangement.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A matrix.</p>
+    
+
+<p>A matrix.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -93,21 +98,21 @@ MIT Press.
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu">density</span><span class="op">(</span></span>
-<span class="r-in"> <span class="va">economiccomplexity_output</span><span class="op">$</span><span class="va">balassa_index</span>,</span>
-<span class="r-in"> <span class="va">economiccomplexity_output</span><span class="op">$</span><span class="va">proximity</span><span class="op">$</span><span class="va">proximity_product</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># partial view of the density matrix</span></span>
-<span class="r-in"><span class="va">d</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 x 5 sparse Matrix of class "dgCMatrix"</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu">density</span><span class="op">(</span></span></span>
+<span class="r-in"><span> <span class="va">economiccomplexity_output</span><span class="op">$</span><span class="va">balassa_index</span>,</span></span>
+<span class="r-in"><span> <span class="va">economiccomplexity_output</span><span class="op">$</span><span class="va">proximity</span><span class="op">$</span><span class="va">proximity_product</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># partial view of the density matrix</span></span></span>
+<span class="r-in"><span><span class="va">d</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 x 5 Matrix of class "dgeMatrix"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           0011       0012      0013       0014       0015</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> afg 0.16689576 0.17378847 0.1414189 0.15075914 0.14556406</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ago 0.01474693 0.01543965 0.0111554 0.01217709 0.01240472</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> aia 0.17902020 0.16726547 0.1688524 0.18488279 0.18946228</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alb 0.26578601 0.25458634 0.2278275 0.25202762 0.23219603</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> and 0.26138713 0.22934698 0.2312170 0.23978684 0.27186394</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -122,7 +127,7 @@ MIT Press.
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

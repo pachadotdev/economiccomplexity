@@ -55,12 +55,12 @@ Index and the Product Complexity Index.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">complexity_measures</span><span class="op">(</span>
-  <span class="va">balassa_index</span>,
-  method <span class="op">=</span> <span class="st">"fitness"</span>,
-  iterations <span class="op">=</span> <span class="fl">20</span>,
-  extremality <span class="op">=</span> <span class="fl">1</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">complexity_measures</span><span class="op">(</span></span>
+<span>  <span class="va">balassa_index</span>,</span>
+<span>  method <span class="op">=</span> <span class="st">"fitness"</span>,</span>
+<span>  iterations <span class="op">=</span> <span class="fl">20</span>,</span>
+<span>  extremality <span class="op">=</span> <span class="fl">1</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -68,20 +68,29 @@ Index and the Product Complexity Index.</p>
     <dl><dt>balassa_index</dt>
 <dd><p>(Type: dgCMatrix) the output from
 <code><a href="balassa_index.html">balassa_index()</a></code>) or an equivalent arrangement.</p></dd>
+
+
 <dt>method</dt>
 <dd><p>(Type: character) one of these methods: fitness,
 reflections or eigenvalues. By default this is set to <code>"fitness"</code>.</p></dd>
+
+
 <dt>iterations</dt>
 <dd><p>(Type: numeric) the number of iterations to use.
 By default this is set to <code>20</code>.</p></dd>
+
+
 <dt>extremality</dt>
 <dd><p>(Type: numeric) the parameter to use in the fitness
 method. The other methods don't use this parameter.
 By default this is set to <code>1</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list of two named numeric vectors.</p>
+    
+
+<p>A list of two named numeric vectors.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -103,16 +112,16 @@ alternatives that account for diversification in bipartite relations.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">co</span> <span class="op">&lt;-</span> <span class="fu">complexity_measures</span><span class="op">(</span><span class="va">economiccomplexity_output</span><span class="op">$</span><span class="va">balassa_index</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># partial view of indexes</span></span>
-<span class="r-in"><span class="va">co</span><span class="op">$</span><span class="va">complexity_index_country</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">co</span> <span class="op">&lt;-</span> <span class="fu">complexity_measures</span><span class="op">(</span><span class="va">economiccomplexity_output</span><span class="op">$</span><span class="va">balassa_index</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># partial view of indexes</span></span></span>
+<span class="r-in"><span><span class="va">co</span><span class="op">$</span><span class="va">complexity_index_country</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        afg        ago        aia        alb        and </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.78605655 0.03999516 1.05645538 1.24261128 1.37321261 </span>
-<span class="r-in"><span class="va">co</span><span class="op">$</span><span class="va">complexity_index_product</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
+<span class="r-in"><span><span class="va">co</span><span class="op">$</span><span class="va">complexity_index_product</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      0011      0012      0013      0014      0015 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.7538883 0.7491391 2.3018690 0.9903918 1.3120378 </span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -127,7 +136,7 @@ alternatives that account for diversification in bipartite relations.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

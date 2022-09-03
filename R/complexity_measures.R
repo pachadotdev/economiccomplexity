@@ -127,12 +127,14 @@ fitness_method <- function(balassa_index, iterations, extremality) {
   # create empty matrices
   kx <- Matrix(0,
                nrow = nrow(balassa_index), ncol = iterations,
-               sparse = TRUE
+               sparse = TRUE,
+               forceCheck = TRUE
   )
 
   ky <- Matrix(0,
                nrow = ncol(balassa_index), ncol = iterations,
-               sparse = TRUE
+               sparse = TRUE,
+               forceCheck = TRUE
   )
 
   # fill the first columns with rowSums(balassa_index) and colSums(balassa_index) to start iterating
@@ -174,12 +176,14 @@ reflections_method <- function(balassa_index, iterations) {
   # create empty matrices
   kx <- Matrix(0,
                nrow = nrow(balassa_index), ncol = iterations,
-               sparse = TRUE
+               sparse = TRUE,
+               forceCheck = TRUE
   )
 
   ky <- Matrix(0,
                nrow = ncol(balassa_index), ncol = iterations,
-               sparse = TRUE
+               sparse = TRUE,
+               forceCheck = TRUE
   )
 
   # fill the first columns with rowSums(balassa_index) and colSums(balassa_index) to start iterating
