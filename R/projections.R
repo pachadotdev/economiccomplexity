@@ -113,7 +113,7 @@ projections <- function(proximity_country, proximity_product,
   }
 
   if (any("country" %in% compute2) == TRUE) {
-    message("computing product projection...")
+    message("computing country projection...")
     message(rep("-", 50))
     xg <- trim_network(proximity_country, avg_links)
   } else {
