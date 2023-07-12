@@ -31,8 +31,8 @@ that two countries "c1" and "c2" export the same product.
 pro <- proximity(economiccomplexity_output$balassa_index)
 
 # partial view of proximity matrices
-pro$proximity_country[1:5,1:5]
-pro$proximity_product[1:5,1:5]
+pro$proximity_country[1:5, 1:5]
+pro$proximity_product[1:5, 1:5]
 
 }
 \references{

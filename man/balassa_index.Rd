@@ -54,7 +54,7 @@ input to a matrix.
 bi <- balassa_index(world_trade_avg_1998_to_2000)
 
 # partial view of index
-bi[1:5,1:5]
+bi[1:5, 1:5]
 
 }
 \references{

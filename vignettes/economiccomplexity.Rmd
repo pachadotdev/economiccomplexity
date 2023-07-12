@@ -14,12 +14,11 @@ vignette: >
 knitr::opts_chunk$set(eval = TRUE, message = FALSE, warning = FALSE)
 ```
 
-# World Trade and Per-Capita GDP
-
 This example is inspired after the visualizations from @atlas2014 with some
-ggplot additions.
+ggplot additions. The original vignette was largely improved from what I learned
+in Network Analysis taught at ICPSR 2023 by Dr. Sarah Shugars.
 
-## Package Data
+# World Trade and Per-Capita GDP
 
 ```{r}
 library(economiccomplexity)
@@ -31,7 +30,7 @@ head(world_trade_avg_1998_to_2000)
 head(world_gdp_avg_1998_to_2000)
 ```
 
-## Balassa Index
+# Balassa Index
 
 You can obtain Balassa Index with `balassa_index()`.
 
@@ -39,7 +38,7 @@ You can obtain Balassa Index with `balassa_index()`.
 bi <- balassa_index(world_trade_avg_1998_to_2000)
 
 # partial view of index
-bi[1:5,1:5]
+bi[1:5, 1:5]
 ```
 
 Another possibility is to obtain Balassa Index without discretization.
@@ -48,17 +47,17 @@ Another possibility is to obtain Balassa Index without discretization.
 bi_dec <- balassa_index(world_trade_avg_1998_to_2000, discrete = F)
 
 # partial view of index
-bi_dec[1:5,1:5]
+bi_dec[1:5, 1:5]
 ```
 
-## Complexity Measures
+# Complexity Measures
 
 You can compute complexity indexes (e.g. such as the Economic Complexity Index and Product Complexity Index) by using `complexity_measures()`. The calculations methods are *fitness* (default), *reflections*, *eigenvalues*. See [@measuringcomplexity2015] for the methodological details.
 
 The eigenvalues also calls the reflections methods in order to correct the index sign
 in some special cases when the correlation between the output from both methods is negative.
 
-###  Complexity-Fitness
+##  Complexity-Fitness
 
 ```{r}
 com_fit <- complexity_measures(bi)
@@ -68,7 +67,7 @@ com_fit$complexity_index_country[1:5]
 com_fit$complexity_index_product[1:5]
 ```
 
-### Reflections
+## Reflections
 
 ```{r}
 com_ref <- complexity_measures(bi, method = "reflections")
@@ -78,7 +77,7 @@ com_ref$complexity_index_country[1:5]
 com_ref$complexity_index_product[1:5]
 ```
 
-### Eigenvalues
+## Eigenvalues
 
 ```{r}
 com_eig <- complexity_measures(bi, method = "eigenvalues")
@@ -88,7 +87,7 @@ com_eig$complexity_index_country[1:5]
 com_eig$complexity_index_product[1:5]
 ```
 
-## Proximity
+# Proximity
 
 Proximity matrices are used to create projections e.g. (country-country and product-product
 networks) for bipartite networks. Using `proximity()` is straightforward.
@@ -97,11 +96,11 @@ networks) for bipartite networks. Using `proximity()` is straightforward.
 pro <- proximity(bi)
 
 # partial view of proximity matrices
-pro$proximity_country[1:5,1:5]
-pro$proximity_product[1:5,1:5]
+pro$proximity_country[1:5, 1:5]
+pro$proximity_product[1:5, 1:5]
 ```
 
-## Projections
+# Projections
 
 The `projections()` function is designed to use `igraph` for the internal
 computations and also to pass proximity-based networks to `igraph`, `ggraph`
@@ -117,52 +116,167 @@ E(net$network_country)[1:5]
 E(net$network_product)[1:5]
 ```
 
-Just two basic examples with `ggraph`.
-```{r, fig.width=7, fig.height=7}
-set.seed(200100)
+We can also use `igraph` to see how many edges are in the networks nd also the networks' density, diameter and transitivity.
 
-library(Matrix)
-library(ggraph)
+```{r}
+ecount(net$network_country)
+ecount(net$network_product)
 
-aggregated_countries <- aggregate(
-  world_trade_avg_1998_to_2000$value,
-  by = list(country = world_trade_avg_1998_to_2000$country),
-  FUN = sum
-)
+edge_density(net$network_country, loops = F)
+edge_density(net$network_product, loops = F)
 
-aggregated_countries <- setNames(aggregated_countries$x, aggregated_countries$country)
+diameter(net$network_country, directed = F, unconnected = F)
+diameter(net$network_product, directed = F, unconnected = F)
 
-V(net$network_country)$size <- aggregated_countries[match(V(net$network_country)$name, names(aggregated_countries))]
-
-ggraph(net$network_country, layout = "kk") +
-  # geom_edge_link(aes(edge_width = weight), edge_colour = "#a8a8a8") +
-  geom_edge_link(edge_colour = "#a8a8a8") +
-  geom_node_point(aes(size = size), color = "#86494d") +
-  geom_node_text(aes(label = name), size = 2, vjust = 2.2) +
-  ggtitle("Proximity Based Network Projection for Countries") +
-  theme_void()
+transitivity(net$network_country, type = "global")
+transitivity(net$network_product, type = "global")
 ```
 
-```{r, fig.width=10, fig.height=10}
-set.seed(200100)
+# Centrality measures
 
-aggregated_products <- aggregate(
-  world_trade_avg_1998_to_2000$value,
-  by = list(country = world_trade_avg_1998_to_2000$product),
-  FUN = sum
+We calculate the degree centrality of every node in the network and plot a histogram of these values. The drawback is that the network was trimmed until obtaining an average of 4 links per edge (or arcs per node), therefore the computation and histograms reflect a biased distribution.
+
+```{r}
+deg_country <- degree(net$network_country)
+deg_product <- degree(net$network_product)
+
+# country with the highest degree centrality
+deg_country[which.max(deg_country)]
+
+# product with the highest degree centrality
+deg_product[which.max(deg_product)]
+```
+
+In the same way, we can compute the betweenness, cloness and eigenvector centrality of the networks.
+
+```{r}
+bet_country <- betweenness(net$network_country)
+bet_product <- betweenness(net$network_product)
+
+clo_country <- closeness(net$network_country)
+clo_product <- closeness(net$network_product)
+
+eig_country <- eigen_centrality(net$network_country)$vector
+eig_product <- eigen_centrality(net$network_product)$vector
+
+# country with the highest betweenness centrality
+bet_country[which.max(bet_country)]
+
+# product with the highest betweenness centrality
+bet_product[which.max(bet_product)]
+
+# country with the highest closeness centrality
+clo_country[which.max(clo_country)]
+
+# product with the highest closeness centrality
+clo_product[which.max(clo_product)]
+
+# country with the highest eigenvector centrality
+eig_country[which.max(eig_country)]
+
+# product with the highest eigenvector centrality
+eig_product[which.max(eig_product)]
+```
+
+Following the analysis, we can verify that the largest connected component is the same as the original networks in this case.
+
+```{r}
+# sub-networks of the largest connected component
+
+lcc_countries <- induced_subgraph(
+  net$network_country,
+  which(components(net$network_country)$membership ==
+    which.max(components(net$network_country)$csize))
 )
 
-aggregated_products <- setNames(aggregated_products$x, aggregated_products$country)
+lcc_products <- induced_subgraph(
+  net$network_product,
+  which(components(net$network_product)$membership ==
+    which.max(components(net$network_product)$csize))
+)
 
-V(net$network_product)$size <- aggregated_products[match(V(net$network_product)$name, names(aggregated_products))]
+# is this the same as the original networks?
 
-ggraph(net$network_product, layout = "kk") +
-  # geom_edge_link(aes(edge_width = weight), edge_colour = "#a8a8a8") +
-  geom_edge_link(edge_colour = "#a8a8a8") +
-  geom_node_point(aes(size = size), color = "#86494d") +
-  geom_node_text(aes(label = name), size = 2, vjust = 2.2) +
-  ggtitle("Proximity Based Network Projection for Products") +
-  theme_void()
+ecount(lcc_countries) == ecount(net$network_country)
+vcount(lcc_countries) == vcount(net$network_product)
+
+deg2_countries <- degree(lcc_countries)
+deg2_products <- degree(lcc_products)
+
+bet2_countries <- betweenness(lcc_countries)
+bet2_products <- betweenness(lcc_products)
+
+clo2_countries <- closeness(lcc_countries)
+clo2_products <- closeness(lcc_products)
+
+eig2_countries <- eigen_centrality(lcc_countries)$vector
+eig2_products <- eigen_centrality(lcc_products)$vector
+
+all.equal(deg_country[which.max(deg_country)], deg2_countries[which.max(deg2_countries)])
+all.equal(deg_product[which.max(deg_product)], deg2_products[which.max(deg2_products)])
+
+all.equal(bet_country[which.max(bet_country)], bet2_countries[which.max(bet2_countries)])
+all.equal(bet_product[which.max(bet_product)], bet2_products[which.max(bet2_products)])
+
+all.equal(clo_country[which.max(clo_country)], clo2_countries[which.max(clo2_countries)])
+all.equal(clo_product[which.max(clo_product)], clo2_products[which.max(clo2_products)])
+
+all.equal(eig_country[which.max(eig_country)], eig2_countries[which.max(eig2_countries)])
+all.equal(eig_product[which.max(eig_product)], eig2_products[which.max(eig2_products)])
+```
+
+# K-core and backbone
+
+We can identify the k-core of the networks for an arbitray value "k".
+
+```{r}
+k <- 4
+
+# identify the core of the network
+core_country <- coreness(net$network_country, mode = "all")
+core_product <- coreness(net$network_product, mode = "all")
+
+# identify the nodes in the core
+kcore_country <- induced_subgraph(
+  net$network_country,
+  which(core_country >= k)
+)
+
+kcore_product <- induced_subgraph(
+  net$network_product,
+  which(core_product >= k)
+)
+
+V(kcore_country)$name
+
+V(kcore_product)$name
+```
+
+We can also identify the backbone of the networks.
+
+```{r}
+# identify the backbone of the network
+bbn_country <- delete_vertices(net$network_country, which(core_country < k))
+bbn_product <- delete_vertices(net$network_product, which(core_product < k))
+
+bbn_country
+bbn_product
+```
+
+# Community detection
+
+We can identify the communities of the networks with a fast greedy algorithm.
+
+```{r}
+com_country <- cluster_fast_greedy(net$network_country)
+com_product <- cluster_fast_greedy(net$network_product)
+
+all.equal(vcount(net$network_country), length(com_country$membership))
+all.equal(vcount(net$network_product), length(com_product$membership))
+
+# number of communities
+length(unique(com_country$membership))
+length(unique(com_product$membership))
 ```
 
 # Complexity Outlook
@@ -179,7 +293,7 @@ co <- complexity_outlook(
 
 # partial view of complexity outlook
 co$complexity_outlook_index[1:5]
-co$complexity_outlook_gain[1:5,1:5]
+co$complexity_outlook_gain[1:5, 1:5]
 ```
 
 # Productivy Levels
@@ -196,6 +310,324 @@ pl <- productivity_levels(world_trade_avg_1998_to_2000, world_gdp_avg_1998_to_20
 # partial view of productivity levels
 pl$productivity_level_country[1:5]
 pl$productivity_level_product[1:5]
+```
+
+# Integration with `ggplot2`
+
+We can plot the distributions for the centrality measures.
+
+```{r}
+library(ggplot2)
+
+deg_country <- data.frame(
+  country = names(deg_country),
+  deg = deg_country
+)
+
+deg_product <- data.frame(
+  product = names(deg_product),
+  deg = deg_product
+)
+
+ggplot(deg_country) +
+  geom_histogram(aes(x = deg), bins = 20, fill = "#002948") +
+  theme_minimal(base_size = 13) +
+  labs(title = "Degree Centrality Distribution for Countries")
+
+ggplot(deg_product) +
+  geom_histogram(aes(x = deg), bins = 20, fill = "#002948") +
+  theme_minimal(base_size = 13) +
+  labs(title = "Degree Centrality Distribution for Products")
+```
+
+```{r}
+bet_country <- data.frame(
+  country = names(bet_country),
+  bet = bet_country
+)
+
+bet_product <- data.frame(
+  product = names(bet_product),
+  bet = bet_product
+)
+
+clo_country <- data.frame(
+  country = names(clo_country),
+  clo = clo_country
+)
+
+clo_product <- data.frame(
+  product = names(clo_product),
+  clo = clo_product
+)
+
+eig_country <- data.frame(
+  country = names(eig_country),
+  eig = eig_country
+)
+
+eig_product <- data.frame(
+  product = names(eig_product),
+  eig = eig_product
+)
+
+ggplot(bet_country) +
+  geom_histogram(aes(x = bet), bins = 20, fill = "#002948") +
+  theme_minimal(base_size = 13) +
+  labs(title = "Betweenness Centrality Distribution for Countries")
+
+ggplot(bet_product) +
+  geom_histogram(aes(x = bet), bins = 20, fill = "#002948") +
+  theme_minimal(base_size = 13) +
+  labs(title = "Betweenness Centrality Distribution for Products")
+
+ggplot(clo_country) +
+  geom_histogram(aes(x = clo), bins = 20, fill = "#002948") +
+  theme_minimal(base_size = 13) +
+  labs(title = "Closeness Centrality Distribution for Countries")
+
+ggplot(clo_product) +
+  geom_histogram(aes(x = clo), bins = 20, fill = "#002948") +
+  theme_minimal(base_size = 13) +
+  labs(title = "Closeness Centrality Distribution for Products")
+
+ggplot(eig_country) +
+  geom_histogram(aes(x = eig), bins = 20, fill = "#002948") +
+  theme_minimal(base_size = 13) +
+  labs(title = "Eigenvector Centrality Distribution for Countries")
+
+ggplot(eig_product) +
+  geom_histogram(aes(x = eig), bins = 20, fill = "#002948") +
+  theme_minimal(base_size = 13) +
+  labs(title = "Eigenvector Centrality Distribution for Products")
+```
+
+# Integration with `ggraph`
+
+We start by plotting the network of countries. Each node will be sized by its
+total exports.
+
+```{r, fig.width=7, fig.height=7}
+set.seed(200100)
+
+library(ggraph)
+
+aggregated_countries <- aggregate(
+  world_trade_avg_1998_to_2000$value,
+  by = list(country = world_trade_avg_1998_to_2000$country),
+  FUN = sum
+)
+
+aggregated_countries <- setNames(aggregated_countries$x, aggregated_countries$country)
+
+V(net$network_country)$size <- aggregated_countries[match(V(net$network_country)$name, names(aggregated_countries))]
+
+ggraph(net$network_country, layout = "kk") +
+  # geom_edge_link(aes(edge_width = weight), edge_colour = "#a8a8a8") +
+  geom_edge_link(edge_colour = "#a8a8a8") +
+  geom_node_point(aes(size = size), color = "#002948") +
+  geom_node_text(aes(label = name), size = 2, vjust = 2.2) +
+  ggtitle("Proximity Based Network Projection for Countries") +
+  theme_void()
+```
+
+Now we can highlight the countries with the highest centralities from the previous part.
+
+```{r, fig.width=7, fig.height=7}
+# Paint svn, ken and cze in yellow and the rest of the world in blue
+
+V(net$network_country)$color <- rep(
+  "Rest of the World",
+  length(V(net$network_country)$size)
+)
+V(net$network_country)$color[match(
+  c("svn", "ken", "cze"),
+  V(net$network_country)$name
+)] <- "Slovakia, Kenia and Czech Republic"
+
+ggraph(net$network_country, layout = "kk") +
+  geom_edge_link(edge_colour = "#a8a8a8") +
+  geom_node_point(aes(size = size, color = color)) +
+  geom_node_text(aes(label = name), size = 2, vjust = 2.2) +
+  ggtitle("Proximity Based Network Projection for Countries") +
+  theme_void() +
+  scale_colour_manual(values = c(
+    "Slovakia, Kenia and Czech Republic" = "#fac704",
+    "Rest of the World" = "#002948"
+  ))
+```
+
+We can also plot the network of products. Each node will be sized by its
+total exports. Because the product names are large, we display the product
+codes instead. You can read about the codes [here](https://www.foreign-trade.com/reference/hscode.htm)
+and if you need the codes in R, you can use the `tradestatistics` package, which
+can be installed from [CRAN](https://cran.r-project.org/package=tradestatistics).
+
+```{r, fig.width=10, fig.height=10}
+set.seed(200100)
+
+aggregated_products <- aggregate(
+  world_trade_avg_1998_to_2000$value,
+  by = list(country = world_trade_avg_1998_to_2000$product),
+  FUN = sum
+)
+
+aggregated_products <- setNames(aggregated_products$x, aggregated_products$country)
+
+V(net$network_product)$size <- aggregated_products[
+  match(V(net$network_product)$name, names(aggregated_products))
+]
+
+ggraph(net$network_product, layout = "kk") +
+  geom_edge_link(edge_colour = "#a8a8a8") +
+  geom_node_point(aes(size = size), color = "#002948") +
+  geom_node_text(aes(label = name), size = 2, vjust = 2.2) +
+  ggtitle("Proximity Based Network Projection for Products") +
+  theme_void()
+```
+
+Now we can highlight the products with the highest centralities from the previous part.
+
+```{r, fig.width=10, fig.height=10}
+# Paint 8421, 7412 and 8434 in yellow and the rest of the products in blue
+
+V(net$network_product)$color <- rep(
+  "Rest of the Products",
+  length(V(net$network_product)$size)
+)
+V(net$network_product)$color[match(
+  c("8421", "7412", "8434"),
+  V(net$network_product)$name
+)] <- "8421, 7412 and 8434"
+
+ggraph(net$network_product, layout = "kk") +
+  geom_edge_link(edge_colour = "#a8a8a8") +
+  geom_node_point(aes(size = size, color = color)) +
+  geom_node_text(aes(label = name), size = 2, vjust = 2.2) +
+  ggtitle("Proximity Based Network Projection for Products") +
+  theme_void() +
+  scale_colour_manual(values = c(
+    "8421, 7412 and 8434" = "#fac704",
+    "Rest of the Products" = "#002948"
+  ))
+```
+
+The communities detected in the previous part can be used to improve the plots.
+
+```{r, fig.width=10, fig.height=10}
+# Paint by community
+# for each vertex, replace X with the community number
+
+set.seed(200100)
+
+V(net$network_country)$color2 <- rep(NA, length(V(net$network_country)$size))
+
+for (i in 1:length(V(net$network_country)$color2)) {
+  com_i <- as.character(com_country$membership[i])
+
+  # if len(com$membership[i]) = 1, append a 0
+  if (nchar(com_i) == 1) {
+    com_i <- paste0("0", com_i)
+  }
+
+  V(net$network_country)$color2[i] <- paste0("Community ", com_i)
+}
+
+my_colors <- c(
+  "#74c0e2", "#406662", "#549e95", "#8abdb6", "#bcd8af",
+  "#a8c380", "#ede788", "#d6c650", "#dc8e7a", "#d05555",
+  "#bf3251", "#872a41"
+)
+
+ggraph(net$network_country, layout = "kk") +
+  geom_edge_link(edge_colour = "#a8a8a8") +
+  geom_node_point(aes(size = size, color = color2)) +
+  geom_node_text(aes(label = name), size = 2, vjust = 2.2) +
+  ggtitle("Proximity Based Network Projection for Countries") +
+  theme_void() +
+  scale_colour_manual(values = my_colors)
+```
+
+For products, the challenge is to obtain 41 distinguisable colors.
+
+```{r, fig.width=10, fig.height=10}
+# Paint by community
+# for each vertex, replace X with the community number
+
+set.seed(200100)
+
+V(net$network_product)$color2 <- rep(NA, length(V(net$network_product)$size))
+
+for (i in 1:length(V(net$network_product)$color2)) {
+  com_i <- as.character(com_product$membership[i])
+
+  # if len(com$membership[i]) = 1, append a 0
+  if (nchar(com_i) == 1) {
+    com_i <- paste0("0", com_i)
+  }
+
+  V(net$network_product)$color2[i] <- paste0("Community ", com_i)
+}
+
+my_colors_2 <- c(
+  "#74c0e2", "#406662", "#549e95", "#8abdb6", "#bcd8af",
+  "#a8c380", "#ede788", "#d6c650", "#dc8e7a", "#d05555",
+  "#bf3251", "#872a41", "#74c0e2", "#406662", "#549e95",
+  "#8abdb6", "#bcd8af", "#a8c380", "#ede788", "#d6c650",
+  "#dc8e7a", "#d05555", "#bf3251", "#872a41", "#74c0e2",
+  "#406662", "#549e95", "#8abdb6", "#bcd8af", "#a8c380",
+  "#ede788", "#d6c650", "#dc8e7a", "#d05555", "#bf3251",
+  "#872a41", "#74c0e2", "#406662", "#549e95", "#8abdb6",
+  "#bcd8af"
+)
+
+ggraph(net$network_product, layout = "kk") +
+  geom_edge_link(edge_colour = "#a8a8a8") +
+  geom_node_point(aes(size = size, color = color2)) +
+  geom_node_text(aes(label = name), size = 2, vjust = 2.2) +
+  ggtitle("Proximity Based Network Projection for Products") +
+  theme_void() +
+  scale_colour_manual(values = my_colors_2)
+```
+
+We can try to obtain clusters in a different way, by pre-specifying the number
+of communities. Because this has some arbitrary element, we can specify a
+number equal to the sections in the Harmonised System, which is 21 plus the
+unspecified products.
+
+```{r, fig.width=10, fig.height=10}
+set.seed(200100)
+
+my_colors_3 <- c(
+  "#74c0e2", "#406662", "#549e95", "#8abdb6", "#bcd8af",
+  "#a8c380", "#ede788", "#d6c650", "#dc8e7a", "#d05555",
+  "#bf3251", "#872a41", "#993f7b", "#7454a6", "#a17cb0",
+  "#d1a1bc", "#a1aafb", "#5c57d9", "#1c26b3", "#4d6fd0",
+  "#7485aa", "#d3d3d3"
+)
+
+com_product <- cluster_fluid_communities(net$network_product, no.of.communities = 22)
+
+V(net$network_product)$color2 <- rep(NA, length(V(net$network_product)$size))
+
+for (i in 1:length(V(net$network_product)$color2)) {
+  com_i <- as.character(com_product$membership[i])
+
+  # if len(com$membership[i]) = 1, append a 0
+  if (nchar(com_i) == 1) {
+    com_i <- paste0("0", com_i)
+  }
+
+  V(net$network_product)$color2[i] <- paste0("Community ", com_i)
+}
+
+ggraph(net$network_product, layout = "kk") +
+  geom_edge_link(edge_colour = "#a8a8a8") +
+  geom_node_point(aes(size = size, color = color2)) +
+  geom_node_text(aes(label = name), size = 2, vjust = 2.2) +
+  ggtitle("Proximity Based Network Projection for Products") +
+  theme_void() +
+  scale_colour_manual(values = my_colors_3)
 ```
 
 # References

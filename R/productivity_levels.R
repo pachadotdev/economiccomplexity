@@ -25,8 +25,8 @@
 #'
 #' @examples
 #' pl <- productivity_levels(
-#'  world_trade_avg_1998_to_2000,
-#'  world_gdp_avg_1998_to_2000
+#'   world_trade_avg_1998_to_2000,
+#'   world_gdp_avg_1998_to_2000
 #' )
 #'
 #' # partial view of productivity levels
@@ -73,8 +73,8 @@ productivity_levels <- function(data_exp, data_gdp,
   intersect_country_2 <- sort(names(data_gdp)[names(data_gdp) %in% rownames(data_exp)])
 
   if (any(intersect_country_1 != intersect_country_2) == TRUE |
-      nrow(data_exp) != length(intersect_country_2) |
-      length(data_gdp) != length(intersect_country_1)) {
+    nrow(data_exp) != length(intersect_country_2) |
+    length(data_gdp) != length(intersect_country_1)) {
     warning("'data_exp' and 'data_gdp' don\'t have the same countries, some elements will be dropped")
   }
 

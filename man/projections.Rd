@@ -47,10 +47,10 @@ returned when is not possible to return the desired network.
 }
 \examples{
 net <- projections(
- economiccomplexity_output$proximity$proximity_country,
- economiccomplexity_output$proximity$proximity_product,
- avg_links = 10,
- tolerance = 0.1
+  economiccomplexity_output$proximity$proximity_country,
+  economiccomplexity_output$proximity$proximity_product,
+  avg_links = 10,
+  tolerance = 0.1
 )
 
 # partial view of projections

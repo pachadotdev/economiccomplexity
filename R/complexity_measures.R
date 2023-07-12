@@ -126,15 +126,15 @@ complexity_measures <- function(balassa_index, method = "fitness", iterations = 
 fitness_method <- function(balassa_index, iterations, extremality) {
   # create empty matrices
   kx <- Matrix(0,
-               nrow = nrow(balassa_index), ncol = iterations,
-               sparse = TRUE,
-               forceCheck = TRUE
+    nrow = nrow(balassa_index), ncol = iterations,
+    sparse = TRUE,
+    forceCheck = TRUE
   )
 
   ky <- Matrix(0,
-               nrow = ncol(balassa_index), ncol = iterations,
-               sparse = TRUE,
-               forceCheck = TRUE
+    nrow = ncol(balassa_index), ncol = iterations,
+    sparse = TRUE,
+    forceCheck = TRUE
   )
 
   # fill the first columns with rowSums(balassa_index) and colSums(balassa_index) to start iterating
@@ -146,7 +146,7 @@ fitness_method <- function(balassa_index, iterations, extremality) {
     kx[, j] <- balassa_index %*% ky[, (j - 1)]
     kx[, j] <- kx[, j] / mean(kx[, j], na.rm = T)
 
-    ky[, j] = 1 / (crossprod(balassa_index,  (1 / kx[, (j - 1)])^extremality))^(1 / extremality)
+    ky[, j] <- 1 / (crossprod(balassa_index, (1 / kx[, (j - 1)])^extremality))^(1 / extremality)
     ky[, j] <- ky[, j] / mean(ky[, j], na.rm = T)
   }
 
@@ -175,15 +175,15 @@ fitness_method <- function(balassa_index, iterations, extremality) {
 reflections_method <- function(balassa_index, iterations) {
   # create empty matrices
   kx <- Matrix(0,
-               nrow = nrow(balassa_index), ncol = iterations,
-               sparse = TRUE,
-               forceCheck = TRUE
+    nrow = nrow(balassa_index), ncol = iterations,
+    sparse = TRUE,
+    forceCheck = TRUE
   )
 
   ky <- Matrix(0,
-               nrow = ncol(balassa_index), ncol = iterations,
-               sparse = TRUE,
-               forceCheck = TRUE
+    nrow = ncol(balassa_index), ncol = iterations,
+    sparse = TRUE,
+    forceCheck = TRUE
   )
 
   # fill the first columns with rowSums(balassa_index) and colSums(balassa_index) to start iterating

@@ -42,8 +42,8 @@ productivity and income levels associated to exports.
 }
 \examples{
 pl <- productivity_levels(
- world_trade_avg_1998_to_2000,
- world_gdp_avg_1998_to_2000
+  world_trade_avg_1998_to_2000,
+  world_gdp_avg_1998_to_2000
 )
 
 # partial view of productivity levels

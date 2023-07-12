@@ -18,7 +18,7 @@ useful to visualize product-product and country-country similarity."><!-- mathja
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">economiccomplexity</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.0</span>
       </span>
     </div>
 
@@ -123,12 +123,12 @@ MIT Press.
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">net</span> <span class="op">&lt;-</span> <span class="fu">projections</span><span class="op">(</span></span></span>
-<span class="r-in"><span> <span class="va">economiccomplexity_output</span><span class="op">$</span><span class="va">proximity</span><span class="op">$</span><span class="va">proximity_country</span>,</span></span>
-<span class="r-in"><span> <span class="va">economiccomplexity_output</span><span class="op">$</span><span class="va">proximity</span><span class="op">$</span><span class="va">proximity_product</span>,</span></span>
-<span class="r-in"><span> avg_links <span class="op">=</span> <span class="fl">10</span>,</span></span>
-<span class="r-in"><span> tolerance <span class="op">=</span> <span class="fl">0.1</span></span></span>
+<span class="r-in"><span>  <span class="va">economiccomplexity_output</span><span class="op">$</span><span class="va">proximity</span><span class="op">$</span><span class="va">proximity_country</span>,</span></span>
+<span class="r-in"><span>  <span class="va">economiccomplexity_output</span><span class="op">$</span><span class="va">proximity</span><span class="op">$</span><span class="va">proximity_product</span>,</span></span>
+<span class="r-in"><span>  avg_links <span class="op">=</span> <span class="fl">10</span>,</span></span>
+<span class="r-in"><span>  tolerance <span class="op">=</span> <span class="fl">0.1</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> computing product projection...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> computing country projection...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> --------------------------------------------------</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 0 threshold...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 0.1 threshold...</span>
@@ -147,11 +147,11 @@ MIT Press.
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 0.6 threshold achieves the avg number of connections</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># partial view of projections</span></span></span>
-<span class="r-in"><span><span class="fu">igraph</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/E.html" class="external-link">E</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> + 5/478 edges from c58d7b1 (vertex names):</span>
+<span class="r-in"><span><span class="fu">igraph</span><span class="fu">::</span><span class="fu"><a href="https://r.igraph.org/reference/E.html" class="external-link">E</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> + 5/478 edges from dae09b9 (vertex names):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] zaf--zwe tza--zmb tza--uga tuv--wlf tuv--umi</span>
-<span class="r-in"><span><span class="fu">igraph</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/E.html" class="external-link">E</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> + 5/1339 edges from e0104d7 (vertex names):</span>
+<span class="r-in"><span><span class="fu">igraph</span><span class="fu">::</span><span class="fu"><a href="https://r.igraph.org/reference/E.html" class="external-link">E</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> + 5/1339 edges from eca1a81 (vertex names):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 8981--8982 8946--9510 8922--8932 8921--8922 8852--8959</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
@@ -168,7 +168,7 @@ MIT Press.
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

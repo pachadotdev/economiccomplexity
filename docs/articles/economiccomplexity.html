@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">economiccomplexity</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.0</span>
       </span>
     </div>
 
@@ -63,14 +63,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="economiccomplexity_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>How To Use This Package</h1>
-                        <h4 data-toc-skip class="author">Mauricio
-Vargas</h4>
+                        <h4 data-toc-skip class="author">Mauricio Vargas</h4>
             
-            <h4 data-toc-skip class="date">2022-09-03</h4>
+            <h4 data-toc-skip class="date">2023-07-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pachadotdev/economiccomplexity/blob/HEAD/vignettes/economiccomplexity.Rmd" class="external-link"><code>vignettes/economiccomplexity.Rmd</code></a></small>
       <div class="hidden name"><code>economiccomplexity.Rmd</code></div>
@@ -79,14 +78,10 @@ Vargas</h4>
 
     
     
+<p>This example is inspired after the visualizations from <span class="citation">Hausmann et al. (2014)</span> with some ggplot additions. The original vignette was largely improved from what I learned in Network Analysis taught at ICPSR 2023 by Dr. Sarah Shugars.</p>
 <div class="section level2">
 <h2 id="world-trade-and-per-capita-gdp">World Trade and Per-Capita GDP<a class="anchor" aria-label="anchor" href="#world-trade-and-per-capita-gdp"></a>
 </h2>
-<p>This example is inspired after the visualizations from <span class="citation">Hausmann et al. (2014)</span> with some ggplot
-additions.</p>
-<div class="section level3">
-<h3 id="package-data">Package Data<a class="anchor" aria-label="anchor" href="#package-data"></a>
-</h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pacha.dev/economiccomplexity/" class="external-link">economiccomplexity</a></span><span class="op">)</span></span>
 <span></span>
@@ -110,15 +105,15 @@ additions.</p>
 <span><span class="co">## 5     arb  3312</span></span>
 <span><span class="co">## 6     are 43082</span></span></code></pre>
 </div>
-<div class="section level3">
-<h3 id="balassa-index">Balassa Index<a class="anchor" aria-label="anchor" href="#balassa-index"></a>
-</h3>
+<div class="section level2">
+<h2 id="balassa-index">Balassa Index<a class="anchor" aria-label="anchor" href="#balassa-index"></a>
+</h2>
 <p>You can obtain Balassa Index with <code><a href="../reference/balassa_index.html">balassa_index()</a></code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/balassa_index.html">balassa_index</a></span><span class="op">(</span><span class="va">world_trade_avg_1998_to_2000</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># partial view of index</span></span>
-<span><span class="va">bi</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
+<span><span class="va">bi</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">## 5 x 5 sparse Matrix of class "dgCMatrix"</span></span>
 <span><span class="co">##     0011 0012 0013 0014 0015</span></span>
 <span><span class="co">## afg    .    .    .    .    .</span></span>
@@ -126,13 +121,12 @@ additions.</p>
 <span><span class="co">## aia    .    .    .    .    .</span></span>
 <span><span class="co">## alb    .    .    .    .    .</span></span>
 <span><span class="co">## and    1    .    .    .    1</span></span></code></pre>
-<p>Another possibility is to obtain Balassa Index without
-discretization.</p>
+<p>Another possibility is to obtain Balassa Index without discretization.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bi_dec</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/balassa_index.html">balassa_index</a></span><span class="op">(</span><span class="va">world_trade_avg_1998_to_2000</span>, discrete <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># partial view of index</span></span>
-<span><span class="va">bi_dec</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
+<span><span class="va">bi_dec</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">## 5 x 5 sparse Matrix of class "dgCMatrix"</span></span>
 <span><span class="co">##          0011        0012        0013       0014        0015</span></span>
 <span><span class="co">## afg 0.2312238 0.285438688 .           .          .          </span></span>
@@ -141,21 +135,14 @@ discretization.</p>
 <span><span class="co">## alb .         .           .           0.01582754 0.073011368</span></span>
 <span><span class="co">## and 2.4825815 0.550954168 .           0.48208017 3.815013019</span></span></code></pre>
 </div>
+<div class="section level2">
+<h2 id="complexity-measures">Complexity Measures<a class="anchor" aria-label="anchor" href="#complexity-measures"></a>
+</h2>
+<p>You can compute complexity indexes (e.g. such as the Economic Complexity Index and Product Complexity Index) by using <code><a href="../reference/complexity_measures.html">complexity_measures()</a></code>. The calculations methods are <em>fitness</em> (default), <em>reflections</em>, <em>eigenvalues</em>. See <span class="citation">(Mariani et al. 2015)</span> for the methodological details.</p>
+<p>The eigenvalues also calls the reflections methods in order to correct the index sign in some special cases when the correlation between the output from both methods is negative.</p>
 <div class="section level3">
-<h3 id="complexity-measures">Complexity Measures<a class="anchor" aria-label="anchor" href="#complexity-measures"></a>
+<h3 id="complexity-fitness">Complexity-Fitness<a class="anchor" aria-label="anchor" href="#complexity-fitness"></a>
 </h3>
-<p>You can compute complexity indexes (e.g. such as the Economic
-Complexity Index and Product Complexity Index) by using
-<code><a href="../reference/complexity_measures.html">complexity_measures()</a></code>. The calculations methods are
-<em>fitness</em> (default), <em>reflections</em>, <em>eigenvalues</em>.
-See <span class="citation">(Mariani et al. 2015)</span> for the
-methodological details.</p>
-<p>The eigenvalues also calls the reflections methods in order to
-correct the index sign in some special cases when the correlation
-between the output from both methods is negative.</p>
-<div class="section level4">
-<h4 id="complexity-fitness">Complexity-Fitness<a class="anchor" aria-label="anchor" href="#complexity-fitness"></a>
-</h4>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">com_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/complexity_measures.html">complexity_measures</a></span><span class="op">(</span><span class="va">bi</span><span class="op">)</span></span>
 <span></span>
@@ -168,9 +155,9 @@ between the output from both methods is negative.</p>
 <pre><code><span><span class="co">##      0011      0012      0013      0014      0015 </span></span>
 <span><span class="co">## 0.7538883 0.7491391 2.3018690 0.9903918 1.3120378</span></span></code></pre>
 </div>
-<div class="section level4">
-<h4 id="reflections">Reflections<a class="anchor" aria-label="anchor" href="#reflections"></a>
-</h4>
+<div class="section level3">
+<h3 id="reflections">Reflections<a class="anchor" aria-label="anchor" href="#reflections"></a>
+</h3>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">com_ref</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/complexity_measures.html">complexity_measures</a></span><span class="op">(</span><span class="va">bi</span>, method <span class="op">=</span> <span class="st">"reflections"</span><span class="op">)</span></span>
 <span></span>
@@ -183,9 +170,9 @@ between the output from both methods is negative.</p>
 <pre><code><span><span class="co">##        0011        0012        0013        0014        0015 </span></span>
 <span><span class="co">## -0.66255107 -1.62169899 -0.07449487  0.20554720  0.15848845</span></span></code></pre>
 </div>
-<div class="section level4">
-<h4 id="eigenvalues">Eigenvalues<a class="anchor" aria-label="anchor" href="#eigenvalues"></a>
-</h4>
+<div class="section level3">
+<h3 id="eigenvalues">Eigenvalues<a class="anchor" aria-label="anchor" href="#eigenvalues"></a>
+</h3>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">com_eig</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/complexity_measures.html">complexity_measures</a></span><span class="op">(</span><span class="va">bi</span>, method <span class="op">=</span> <span class="st">"eigenvalues"</span><span class="op">)</span></span>
 <span></span>
@@ -199,17 +186,15 @@ between the output from both methods is negative.</p>
 <span><span class="co">## -0.66657613 -1.62657599 -0.08149436  0.19917280  0.14935653</span></span></code></pre>
 </div>
 </div>
-<div class="section level3">
-<h3 id="proximity">Proximity<a class="anchor" aria-label="anchor" href="#proximity"></a>
-</h3>
-<p>Proximity matrices are used to create projections
-e.g. (country-country and product-product networks) for bipartite
-networks. Using <code><a href="../reference/proximity.html">proximity()</a></code> is straightforward.</p>
+<div class="section level2">
+<h2 id="proximity">Proximity<a class="anchor" aria-label="anchor" href="#proximity"></a>
+</h2>
+<p>Proximity matrices are used to create projections e.g. (country-country and product-product networks) for bipartite networks. Using <code><a href="../reference/proximity.html">proximity()</a></code> is straightforward.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pro</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/proximity.html">proximity</a></span><span class="op">(</span><span class="va">bi</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># partial view of proximity matrices</span></span>
-<span><span class="va">pro</span><span class="op">$</span><span class="va">proximity_country</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
+<span><span class="va">pro</span><span class="op">$</span><span class="va">proximity_country</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">## 5 x 5 sparse Matrix of class "dsCMatrix"</span></span>
 <span><span class="co">##            afg         ago         aia        alb         and</span></span>
 <span><span class="co">## afg 1.00000000 0.015873016 0.181818182 0.19689119 0.192513369</span></span>
@@ -218,7 +203,7 @@ networks. Using <code><a href="../reference/proximity.html">proximity()</a></cod
 <span><span class="co">## alb 0.19689119 0.015544041 0.165803109 1.00000000 0.310880829</span></span>
 <span><span class="co">## and 0.19251337 0.005347594 0.251336898 0.31088083 1.000000000</span></span></code></pre>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pro</span><span class="op">$</span><span class="va">proximity_product</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">pro</span><span class="op">$</span><span class="va">proximity_product</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">## 5 x 5 sparse Matrix of class "dsCMatrix"</span></span>
 <span><span class="co">##           0011      0012      0013      0014      0015</span></span>
 <span><span class="co">## 0011 1.0000000 0.3658537 0.1707317 0.2439024 0.2682927</span></span>
@@ -227,80 +212,269 @@ networks. Using <code><a href="../reference/proximity.html">proximity()</a></cod
 <span><span class="co">## 0014 0.2439024 0.2250000 0.2500000 1.0000000 0.2250000</span></span>
 <span><span class="co">## 0015 0.2682927 0.2500000 0.1200000 0.2250000 1.0000000</span></span></code></pre>
 </div>
-<div class="section level3">
-<h3 id="projections">Projections<a class="anchor" aria-label="anchor" href="#projections"></a>
-</h3>
-<p>The <code><a href="../reference/projections.html">projections()</a></code> function is designed to use
-<code>igraph</code> for the internal computations and also to pass
-proximity-based networks to <code>igraph</code>, <code>ggraph</code> or
-export to Cytoscape by saving the output as csv/tsv.</p>
+<div class="section level2">
+<h2 id="projections">Projections<a class="anchor" aria-label="anchor" href="#projections"></a>
+</h2>
+<p>The <code><a href="../reference/projections.html">projections()</a></code> function is designed to use <code>igraph</code> for the internal computations and also to pass proximity-based networks to <code>igraph</code>, <code>ggraph</code> or export to Cytoscape by saving the output as csv/tsv.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://igraph.org" class="external-link">igraph</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r.igraph.org/" class="external-link">igraph</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">net</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/projections.html">projections</a></span><span class="op">(</span><span class="va">pro</span><span class="op">$</span><span class="va">proximity_country</span>, <span class="va">pro</span><span class="op">$</span><span class="va">proximity_product</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># partial view of projections</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/E.html" class="external-link">E</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
-<pre><code><span><span class="co">## + 5/484 edges from f48f4d8 (vertex names):</span></span>
+<span><span class="fu"><a href="https://r.igraph.org/reference/E.html" class="external-link">E</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">## + 5/484 edges from fb1cbf0 (vertex names):</span></span>
 <span><span class="co">## [1] zaf--zwe tza--zmb tza--uga tuv--wlf tuv--umi</span></span></code></pre>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/E.html" class="external-link">E</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
-<pre><code><span><span class="co">## + 5/1505 edges from 8fd6360 (vertex names):</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://r.igraph.org/reference/E.html" class="external-link">E</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">## + 5/1505 edges from af49030 (vertex names):</span></span>
 <span><span class="co">## [1] 8981--8982 8946--9510 8922--8932 8921--8922 8852--8959</span></span></code></pre>
-<p>Just two basic examples with <code>ggraph</code>.</p>
+<p>We can also use <code>igraph</code> to see how many edges are in the networks nd also the networks’ density, diameter and transitivity.</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">200100</span><span class="op">)</span></span>
-<span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://Matrix.R-forge.R-project.org/" class="external-link">Matrix</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggraph.data-imaginist.com" class="external-link">ggraph</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">aggregated_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span></span>
-<span>  <span class="va">world_trade_avg_1998_to_2000</span><span class="op">$</span><span class="va">value</span>,</span>
-<span>  by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>country <span class="op">=</span> <span class="va">world_trade_avg_1998_to_2000</span><span class="op">$</span><span class="va">country</span><span class="op">)</span>,</span>
-<span>  FUN <span class="op">=</span> <span class="va">sum</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">aggregated_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html" class="external-link">setNames</a></span><span class="op">(</span><span class="va">aggregated_countries</span><span class="op">$</span><span class="va">x</span>, <span class="va">aggregated_countries</span><span class="op">$</span><span class="va">country</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">$</span><span class="va">size</span> <span class="op">&lt;-</span> <span class="va">aggregated_countries</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/match.html" class="external-link">match</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">$</span><span class="va">name</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">aggregated_countries</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
-<span></span>
-<span><span class="fu"><a href="https://ggraph.data-imaginist.com/reference/ggraph.html" class="external-link">ggraph</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span>, layout <span class="op">=</span> <span class="st">"kk"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="co"># geom_edge_link(aes(edge_width = weight), edge_colour = "#a8a8a8") +</span></span>
-<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_edge_link.html" class="external-link">geom_edge_link</a></span><span class="op">(</span>edge_colour <span class="op">=</span> <span class="st">"#a8a8a8"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_point.html" class="external-link">geom_node_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>size <span class="op">=</span> <span class="va">size</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"#86494d"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_text.html" class="external-link">geom_node_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">name</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2</span>, vjust <span class="op">=</span> <span class="fl">2.2</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Proximity Based Network Projection for Countries"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="economiccomplexity_files/figure-html/unnamed-chunk-9-1.png" width="672"></p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">200100</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">aggregated_products</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span></span>
-<span>  <span class="va">world_trade_avg_1998_to_2000</span><span class="op">$</span><span class="va">value</span>,</span>
-<span>  by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>country <span class="op">=</span> <span class="va">world_trade_avg_1998_to_2000</span><span class="op">$</span><span class="va">product</span><span class="op">)</span>,</span>
-<span>  FUN <span class="op">=</span> <span class="va">sum</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">aggregated_products</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html" class="external-link">setNames</a></span><span class="op">(</span><span class="va">aggregated_products</span><span class="op">$</span><span class="va">x</span>, <span class="va">aggregated_products</span><span class="op">$</span><span class="va">country</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">$</span><span class="va">size</span> <span class="op">&lt;-</span> <span class="va">aggregated_products</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/match.html" class="external-link">match</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">$</span><span class="va">name</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">aggregated_products</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
-<span></span>
-<span><span class="fu"><a href="https://ggraph.data-imaginist.com/reference/ggraph.html" class="external-link">ggraph</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span>, layout <span class="op">=</span> <span class="st">"kk"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="co"># geom_edge_link(aes(edge_width = weight), edge_colour = "#a8a8a8") +</span></span>
-<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_edge_link.html" class="external-link">geom_edge_link</a></span><span class="op">(</span>edge_colour <span class="op">=</span> <span class="st">"#a8a8a8"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_point.html" class="external-link">geom_node_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>size <span class="op">=</span> <span class="va">size</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"#86494d"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_text.html" class="external-link">geom_node_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">name</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2</span>, vjust <span class="op">=</span> <span class="fl">2.2</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Proximity Based Network Projection for Products"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="economiccomplexity_files/figure-html/unnamed-chunk-10-1.png" width="960"></p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://r.igraph.org/reference/gsize.html" class="external-link">ecount</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 484</span></span></code></pre>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://r.igraph.org/reference/gsize.html" class="external-link">ecount</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 1505</span></span></code></pre>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://r.igraph.org/reference/edge_density.html" class="external-link">edge_density</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span>, loops <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 0.01903638</span></span></code></pre>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://r.igraph.org/reference/edge_density.html" class="external-link">edge_density</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span>, loops <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 0.00489081</span></span></code></pre>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://r.igraph.org/reference/diameter.html" class="external-link">diameter</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span>, directed <span class="op">=</span> <span class="cn">F</span>, unconnected <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 7.845477</span></span></code></pre>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://r.igraph.org/reference/diameter.html" class="external-link">diameter</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span>, directed <span class="op">=</span> <span class="cn">F</span>, unconnected <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 12.78569</span></span></code></pre>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://r.igraph.org/reference/transitivity.html" class="external-link">transitivity</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span>, type <span class="op">=</span> <span class="st">"global"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 0.6151159</span></span></code></pre>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://r.igraph.org/reference/transitivity.html" class="external-link">transitivity</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span>, type <span class="op">=</span> <span class="st">"global"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 0.4457284</span></span></code></pre>
 </div>
+<div class="section level2">
+<h2 id="centrality-measures">Centrality measures<a class="anchor" aria-label="anchor" href="#centrality-measures"></a>
+</h2>
+<p>We calculate the degree centrality of every node in the network and plot a histogram of these values. The drawback is that the network was trimmed until obtaining an average of 4 links per edge (or arcs per node), therefore the computation and histograms reflect a biased distribution.</p>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">deg_country</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/degree.html" class="external-link">degree</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span></span>
+<span><span class="va">deg_product</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/degree.html" class="external-link">degree</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># country with the highest degree centrality</span></span>
+<span><span class="va">deg_country</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">deg_country</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">## svn </span></span>
+<span><span class="co">##  25</span></span></code></pre>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># product with the highest degree centrality</span></span>
+<span><span class="va">deg_product</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">deg_product</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">## 8421 </span></span>
+<span><span class="co">##   33</span></span></code></pre>
+<p>In the same way, we can compute the betweenness, cloness and eigenvector centrality of the networks.</p>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">bet_country</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/betweenness.html" class="external-link">betweenness</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span></span>
+<span><span class="va">bet_product</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/betweenness.html" class="external-link">betweenness</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">clo_country</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/closeness.html" class="external-link">closeness</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span></span>
+<span><span class="va">clo_product</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/closeness.html" class="external-link">closeness</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">eig_country</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/eigen_centrality.html" class="external-link">eigen_centrality</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">$</span><span class="va">vector</span></span>
+<span><span class="va">eig_product</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/eigen_centrality.html" class="external-link">eigen_centrality</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">$</span><span class="va">vector</span></span>
+<span></span>
+<span><span class="co"># country with the highest betweenness centrality</span></span>
+<span><span class="va">bet_country</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">bet_country</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##   ken </span></span>
+<span><span class="co">## 16718</span></span></code></pre>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># product with the highest betweenness centrality</span></span>
+<span><span class="va">bet_product</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">bet_product</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##    7412 </span></span>
+<span><span class="co">## 53858.5</span></span></code></pre>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># country with the highest closeness centrality</span></span>
+<span><span class="va">clo_country</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">clo_country</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##         ken </span></span>
+<span><span class="co">## 0.002555277</span></span></code></pre>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># product with the highest closeness centrality</span></span>
+<span><span class="va">clo_product</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">clo_product</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##         7412 </span></span>
+<span><span class="co">## 0.0005298341</span></span></code></pre>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># country with the highest eigenvector centrality</span></span>
+<span><span class="va">eig_country</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">eig_country</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">## cze </span></span>
+<span><span class="co">##   1</span></span></code></pre>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># product with the highest eigenvector centrality</span></span>
+<span><span class="va">eig_product</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">eig_product</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">## 8434 </span></span>
+<span><span class="co">##    1</span></span></code></pre>
+<p>Following the analysis, we can verify that the largest connected component is the same as the original networks in this case.</p>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># sub-networks of the largest connected component</span></span>
+<span></span>
+<span><span class="va">lcc_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/subgraph.html" class="external-link">induced_subgraph</a></span><span class="op">(</span></span>
+<span>  <span class="va">net</span><span class="op">$</span><span class="va">network_country</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="fu"><a href="https://r.igraph.org/reference/components.html" class="external-link">components</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">$</span><span class="va">membership</span> <span class="op">==</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="fu"><a href="https://r.igraph.org/reference/components.html" class="external-link">components</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">$</span><span class="va">csize</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">lcc_products</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/subgraph.html" class="external-link">induced_subgraph</a></span><span class="op">(</span></span>
+<span>  <span class="va">net</span><span class="op">$</span><span class="va">network_product</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="fu"><a href="https://r.igraph.org/reference/components.html" class="external-link">components</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">$</span><span class="va">membership</span> <span class="op">==</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="fu"><a href="https://r.igraph.org/reference/components.html" class="external-link">components</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">$</span><span class="va">csize</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># is this the same as the original networks?</span></span>
+<span></span>
+<span><span class="fu"><a href="https://r.igraph.org/reference/gsize.html" class="external-link">ecount</a></span><span class="op">(</span><span class="va">lcc_countries</span><span class="op">)</span> <span class="op">==</span> <span class="fu"><a href="https://r.igraph.org/reference/gsize.html" class="external-link">ecount</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] TRUE</span></span></code></pre>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://r.igraph.org/reference/gorder.html" class="external-link">vcount</a></span><span class="op">(</span><span class="va">lcc_countries</span><span class="op">)</span> <span class="op">==</span> <span class="fu"><a href="https://r.igraph.org/reference/gorder.html" class="external-link">vcount</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] FALSE</span></span></code></pre>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">deg2_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/degree.html" class="external-link">degree</a></span><span class="op">(</span><span class="va">lcc_countries</span><span class="op">)</span></span>
+<span><span class="va">deg2_products</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/degree.html" class="external-link">degree</a></span><span class="op">(</span><span class="va">lcc_products</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">bet2_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/betweenness.html" class="external-link">betweenness</a></span><span class="op">(</span><span class="va">lcc_countries</span><span class="op">)</span></span>
+<span><span class="va">bet2_products</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/betweenness.html" class="external-link">betweenness</a></span><span class="op">(</span><span class="va">lcc_products</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">clo2_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/closeness.html" class="external-link">closeness</a></span><span class="op">(</span><span class="va">lcc_countries</span><span class="op">)</span></span>
+<span><span class="va">clo2_products</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/closeness.html" class="external-link">closeness</a></span><span class="op">(</span><span class="va">lcc_products</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">eig2_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/eigen_centrality.html" class="external-link">eigen_centrality</a></span><span class="op">(</span><span class="va">lcc_countries</span><span class="op">)</span><span class="op">$</span><span class="va">vector</span></span>
+<span><span class="va">eig2_products</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/eigen_centrality.html" class="external-link">eigen_centrality</a></span><span class="op">(</span><span class="va">lcc_products</span><span class="op">)</span><span class="op">$</span><span class="va">vector</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">deg_country</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">deg_country</span><span class="op">)</span><span class="op">]</span>, <span class="va">deg2_countries</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">deg2_countries</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] TRUE</span></span></code></pre>
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">deg_product</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">deg_product</span><span class="op">)</span><span class="op">]</span>, <span class="va">deg2_products</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">deg2_products</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] TRUE</span></span></code></pre>
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">bet_country</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">bet_country</span><span class="op">)</span><span class="op">]</span>, <span class="va">bet2_countries</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">bet2_countries</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] TRUE</span></span></code></pre>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">bet_product</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">bet_product</span><span class="op">)</span><span class="op">]</span>, <span class="va">bet2_products</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">bet2_products</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] TRUE</span></span></code></pre>
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">clo_country</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">clo_country</span><span class="op">)</span><span class="op">]</span>, <span class="va">clo2_countries</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">clo2_countries</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] TRUE</span></span></code></pre>
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">clo_product</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">clo_product</span><span class="op">)</span><span class="op">]</span>, <span class="va">clo2_products</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">clo2_products</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] TRUE</span></span></code></pre>
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">eig_country</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">eig_country</span><span class="op">)</span><span class="op">]</span>, <span class="va">eig2_countries</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">eig2_countries</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] TRUE</span></span></code></pre>
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">eig_product</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">eig_product</span><span class="op">)</span><span class="op">]</span>, <span class="va">eig2_products</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">eig2_products</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] TRUE</span></span></code></pre>
+</div>
+<div class="section level2">
+<h2 id="k-core-and-backbone">K-core and backbone<a class="anchor" aria-label="anchor" href="#k-core-and-backbone"></a>
+</h2>
+<p>We can identify the k-core of the networks for an arbitray value “k”.</p>
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">k</span> <span class="op">&lt;-</span> <span class="fl">4</span></span>
+<span></span>
+<span><span class="co"># identify the core of the network</span></span>
+<span><span class="va">core_country</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/coreness.html" class="external-link">coreness</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span>, mode <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span>
+<span><span class="va">core_product</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/coreness.html" class="external-link">coreness</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span>, mode <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># identify the nodes in the core</span></span>
+<span><span class="va">kcore_country</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/subgraph.html" class="external-link">induced_subgraph</a></span><span class="op">(</span></span>
+<span>  <span class="va">net</span><span class="op">$</span><span class="va">network_country</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">core_country</span> <span class="op">&gt;=</span> <span class="va">k</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">kcore_product</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/subgraph.html" class="external-link">induced_subgraph</a></span><span class="op">(</span></span>
+<span>  <span class="va">net</span><span class="op">$</span><span class="va">network_product</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">core_product</span> <span class="op">&gt;=</span> <span class="va">k</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://r.igraph.org/reference/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">kcore_country</span><span class="op">)</span><span class="op">$</span><span class="va">name</span></span></code></pre></div>
+<pre><code><span><span class="co">##  [1] "aut" "bel" "bgr" "bih" "blr" "che" "chn" "cze" "deu" "dnk" "esp" "est"</span></span>
+<span><span class="co">## [13] "fin" "fra" "gbr" "grc" "hkg" "hrv" "hun" "ind" "ita" "jpn" "ken" "lbn"</span></span>
+<span><span class="co">## [25] "ltu" "mkd" "nld" "pak" "pol" "prt" "rom" "scg" "svk" "svn" "swe" "tur"</span></span>
+<span><span class="co">## [37] "ukr" "usa"</span></span></code></pre>
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://r.igraph.org/reference/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">kcore_product</span><span class="op">)</span><span class="op">$</span><span class="va">name</span></span></code></pre></div>
+<pre><code><span><span class="co">##   [1] "0142" "0223" "0240" "0252" "0484" "0565" "0583" "0586" "0620" "0730"</span></span>
+<span><span class="co">##  [11] "0980" "5332" "5334" "5335" "5417" "5419" "5542" "5543" "5821" "5825"</span></span>
+<span><span class="co">##  [21] "5989" "6123" "6210" "6289" "6343" "6354" "6359" "6416" "6417" "6418"</span></span>
+<span><span class="co">##  [31] "6421" "6422" "6424" "6428" "6518" "6546" "6575" "6581" "6583" "6584"</span></span>
+<span><span class="co">##  [41] "6589" "6618" "6631" "6632" "6633" "6635" "6648" "6794" "6911" "6912"</span></span>
+<span><span class="co">##  [51] "6921" "6924" "6940" "6954" "6973" "6975" "6991" "6996" "6997" "6998"</span></span>
+<span><span class="co">##  [61] "7139" "7211" "7212" "7213" "7219" "7259" "7269" "7281" "7368" "7369"</span></span>
+<span><span class="co">##  [71] "7371" "7372" "7412" "7413" "7416" "7423" "7429" "7432" "7436" "7439"</span></span>
+<span><span class="co">##  [81] "7449" "7452" "7492" "7493" "7499" "7711" "7732" "7742" "7757" "7758"</span></span>
+<span><span class="co">##  [91] "7783" "7810" "7821" "7849" "7868" "7919" "8121" "8122" "8211" "8212"</span></span>
+<span><span class="co">## [101] "8219" "8421" "8422" "8423" "8424" "8429" "8431" "8432" "8433" "8434"</span></span>
+<span><span class="co">## [111] "8435" "8439" "8441" "8442" "8443" "8451" "8452" "8459" "8461" "8462"</span></span>
+<span><span class="co">## [121] "8463" "8464" "8465" "8472" "8510" "8720" "8742" "8922" "8931" "8932"</span></span>
+<span><span class="co">## [131] "8939" "8997"</span></span></code></pre>
+<p>We can also identify the backbone of the networks.</p>
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># identify the backbone of the network</span></span>
+<span><span class="va">bbn_country</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/delete_vertices.html" class="external-link">delete_vertices</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span>, <span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">core_country</span> <span class="op">&lt;</span> <span class="va">k</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">bbn_product</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/delete_vertices.html" class="external-link">delete_vertices</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span>, <span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">core_product</span> <span class="op">&lt;</span> <span class="va">k</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">bbn_country</span></span></code></pre></div>
+<pre><code><span><span class="co">## IGRAPH b65335b UNW- 38 283 -- </span></span>
+<span><span class="co">## + attr: name (v/c), weight (e/n)</span></span>
+<span><span class="co">## + edges from b65335b (vertex names):</span></span>
+<span><span class="co">##  [1] swe--usa svn--usa svn--tur svn--swe svk--usa svk--swe svk--svn scg--ukr</span></span>
+<span><span class="co">##  [9] scg--tur scg--svn scg--svk rom--ukr rom--tur rom--svn rom--svk rom--scg</span></span>
+<span><span class="co">## [17] prt--tur prt--svn prt--svk prt--scg prt--rom pol--usa pol--tur pol--swe</span></span>
+<span><span class="co">## [25] pol--svn pol--svk pol--scg pol--rom pol--prt pak--tur nld--usa nld--swe</span></span>
+<span><span class="co">## [33] nld--svk mkd--tur mkd--scg mkd--rom mkd--prt mkd--pak ltu--ukr lbn--tur</span></span>
+<span><span class="co">## [41] lbn--mkd ken--tur ken--scg ken--lbn jpn--usa jpn--swe jpn--svn ita--usa</span></span>
+<span><span class="co">## [49] ita--tur ita--swe ita--svn ita--svk ita--prt ita--pol ita--nld ita--jpn</span></span>
+<span><span class="co">## [57] ind--tur ind--scg ind--rom ind--pak ind--ken ind--ita hun--usa hun--tur</span></span>
+<span><span class="co">## + ... omitted several edges</span></span></code></pre>
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">bbn_product</span></span></code></pre></div>
+<pre><code><span><span class="co">## IGRAPH e761ca8 UNW- 132 709 -- </span></span>
+<span><span class="co">## + attr: name (v/c), weight (e/n)</span></span>
+<span><span class="co">## + edges from e761ca8 (vertex names):</span></span>
+<span><span class="co">##  [1] 8922--8932 8720--8939 8720--8742 8472--8997 8465--8510 8465--8472</span></span>
+<span><span class="co">##  [7] 8464--8472 8464--8465 8463--8510 8463--8472 8463--8465 8463--8464</span></span>
+<span><span class="co">## [13] 8462--8472 8462--8465 8462--8464 8462--8463 8461--8472 8461--8465</span></span>
+<span><span class="co">## [19] 8461--8463 8459--8472 8459--8465 8459--8464 8459--8463 8459--8462</span></span>
+<span><span class="co">## [25] 8452--8472 8452--8465 8452--8464 8452--8463 8452--8462 8452--8461</span></span>
+<span><span class="co">## [31] 8452--8459 8451--8997 8451--8472 8451--8465 8451--8464 8451--8463</span></span>
+<span><span class="co">## [37] 8451--8462 8451--8459 8451--8452 8443--8997 8443--8472 8443--8465</span></span>
+<span><span class="co">## [43] 8443--8464 8443--8463 8443--8462 8443--8459 8443--8452 8443--8451</span></span>
+<span><span class="co">## + ... omitted several edges</span></span></code></pre>
+</div>
+<div class="section level2">
+<h2 id="community-detection">Community detection<a class="anchor" aria-label="anchor" href="#community-detection"></a>
+</h2>
+<p>We can identify the communities of the networks with a fast greedy algorithm.</p>
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">com_country</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/cluster_fast_greedy.html" class="external-link">cluster_fast_greedy</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span></span>
+<span><span class="va">com_product</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/cluster_fast_greedy.html" class="external-link">cluster_fast_greedy</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="fu"><a href="https://r.igraph.org/reference/gorder.html" class="external-link">vcount</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">com_country</span><span class="op">$</span><span class="va">membership</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] TRUE</span></span></code></pre>
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="fu"><a href="https://r.igraph.org/reference/gorder.html" class="external-link">vcount</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">com_product</span><span class="op">$</span><span class="va">membership</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] TRUE</span></span></code></pre>
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># number of communities</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">com_country</span><span class="op">$</span><span class="va">membership</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 12</span></span></code></pre>
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">com_product</span><span class="op">$</span><span class="va">membership</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 41</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="complexity-outlook">Complexity Outlook<a class="anchor" aria-label="anchor" href="#complexity-outlook"></a>
 </h2>
-<p>Both the Complexity Outlook Index and Complexity Outlook Gain are
-obtained after the <code><a href="../reference/complexity_outlook.html">complexity_outlook()</a></code> function.</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<p>Both the Complexity Outlook Index and Complexity Outlook Gain are obtained after the <code><a href="../reference/complexity_outlook.html">complexity_outlook()</a></code> function.</p>
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">co</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/complexity_outlook.html">complexity_outlook</a></span><span class="op">(</span></span>
 <span>  <span class="va">economiccomplexity_output</span><span class="op">$</span><span class="va">balassa_index</span>,</span>
 <span>  <span class="va">economiccomplexity_output</span><span class="op">$</span><span class="va">proximity</span><span class="op">$</span><span class="va">proximity_product</span>,</span>
@@ -311,8 +485,8 @@ obtained after the <code><a href="../reference/complexity_outlook.html">complexi
 <span><span class="va">co</span><span class="op">$</span><span class="va">complexity_outlook_index</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##        afg        ago        aia        alb        and </span></span>
 <span><span class="co">## 103.948610   9.962401 122.311158 152.107317 151.295380</span></span></code></pre>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">co</span><span class="op">$</span><span class="va">complexity_outlook_gain</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">co</span><span class="op">$</span><span class="va">complexity_outlook_gain</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">## 5 x 5 Matrix of class "dgeMatrix"</span></span>
 <span><span class="co">##          0011      0012      0013      0014      0015</span></span>
 <span><span class="co">## afg 0.8615531 0.7613878 0.7537907 1.0961458 0.8143851</span></span>
@@ -324,43 +498,335 @@ obtained after the <code><a href="../reference/complexity_outlook.html">complexi
 <div class="section level2">
 <h2 id="productivy-levels">Productivy Levels<a class="anchor" aria-label="anchor" href="#productivy-levels"></a>
 </h2>
-<p>The <code><a href="../reference/productivity_levels.html">productivity_levels()</a></code> dataset follows the
-definitions from <span class="citation">Hausmann et al. (2014)</span>
-and <span class="citation">Hausmann, Hwang, and Rodrik
-(2005)</span>.</p>
-<p>I don’t have a per-capita GDP dataset for the Galactic Federation, so
-I’ll create simulated data for the example.</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<p>The <code><a href="../reference/productivity_levels.html">productivity_levels()</a></code> dataset follows the definitions from <span class="citation">Hausmann et al. (2014)</span> and <span class="citation">Hausmann, Hwang, and Rodrik (2005)</span>.</p>
+<p>I don’t have a per-capita GDP dataset for the Galactic Federation, so I’ll create simulated data for the example.</p>
+<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/productivity_levels.html">productivity_levels</a></span><span class="op">(</span><span class="va">world_trade_avg_1998_to_2000</span>, <span class="va">world_gdp_avg_1998_to_2000</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># partial view of productivity levels</span></span>
 <span><span class="va">pl</span><span class="op">$</span><span class="va">productivity_level_country</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##       ago       alb       and       are       arg </span></span>
 <span><span class="co">##  8223.607  6343.341 13783.485 10207.679  9269.670</span></span></code></pre>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pl</span><span class="op">$</span><span class="va">productivity_level_product</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##      0011      0012      0013      0014      0015 </span></span>
 <span><span class="co">##  7915.893  3986.371 11375.710  6273.428 17628.950</span></span></code></pre>
 </div>
 <div class="section level2">
+<h2 id="integration-with-ggplot2">Integration with <code>ggplot2</code><a class="anchor" aria-label="anchor" href="#integration-with-ggplot2"></a>
+</h2>
+<p>We can plot the distributions for the centrality measures.</p>
+<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">deg_country</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>  country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">deg_country</span><span class="op">)</span>,</span>
+<span>  deg <span class="op">=</span> <span class="va">deg_country</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">deg_product</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>  product <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">deg_product</span><span class="op">)</span>,</span>
+<span>  deg <span class="op">=</span> <span class="va">deg_product</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">deg_country</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">deg</span><span class="op">)</span>, bins <span class="op">=</span> <span class="fl">20</span>, fill <span class="op">=</span> <span class="st">"#002948"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">13</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Degree Centrality Distribution for Countries"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="economiccomplexity_files/figure-html/unnamed-chunk-18-1.png" width="700"></p>
+<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">deg_product</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">deg</span><span class="op">)</span>, bins <span class="op">=</span> <span class="fl">20</span>, fill <span class="op">=</span> <span class="st">"#002948"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">13</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Degree Centrality Distribution for Products"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="economiccomplexity_files/figure-html/unnamed-chunk-18-2.png" width="700"></p>
+<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">bet_country</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>  country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">bet_country</span><span class="op">)</span>,</span>
+<span>  bet <span class="op">=</span> <span class="va">bet_country</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">bet_product</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>  product <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">bet_product</span><span class="op">)</span>,</span>
+<span>  bet <span class="op">=</span> <span class="va">bet_product</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">clo_country</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>  country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">clo_country</span><span class="op">)</span>,</span>
+<span>  clo <span class="op">=</span> <span class="va">clo_country</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">clo_product</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>  product <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">clo_product</span><span class="op">)</span>,</span>
+<span>  clo <span class="op">=</span> <span class="va">clo_product</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">eig_country</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>  country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">eig_country</span><span class="op">)</span>,</span>
+<span>  eig <span class="op">=</span> <span class="va">eig_country</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">eig_product</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>  product <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">eig_product</span><span class="op">)</span>,</span>
+<span>  eig <span class="op">=</span> <span class="va">eig_product</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">bet_country</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bet</span><span class="op">)</span>, bins <span class="op">=</span> <span class="fl">20</span>, fill <span class="op">=</span> <span class="st">"#002948"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">13</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Betweenness Centrality Distribution for Countries"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="economiccomplexity_files/figure-html/unnamed-chunk-19-1.png" width="700"></p>
+<div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">bet_product</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bet</span><span class="op">)</span>, bins <span class="op">=</span> <span class="fl">20</span>, fill <span class="op">=</span> <span class="st">"#002948"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">13</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Betweenness Centrality Distribution for Products"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="economiccomplexity_files/figure-html/unnamed-chunk-19-2.png" width="700"></p>
+<div class="sourceCode" id="cb109"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">clo_country</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">clo</span><span class="op">)</span>, bins <span class="op">=</span> <span class="fl">20</span>, fill <span class="op">=</span> <span class="st">"#002948"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">13</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Closeness Centrality Distribution for Countries"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="economiccomplexity_files/figure-html/unnamed-chunk-19-3.png" width="700"></p>
+<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">clo_product</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">clo</span><span class="op">)</span>, bins <span class="op">=</span> <span class="fl">20</span>, fill <span class="op">=</span> <span class="st">"#002948"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">13</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Closeness Centrality Distribution for Products"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="economiccomplexity_files/figure-html/unnamed-chunk-19-4.png" width="700"></p>
+<div class="sourceCode" id="cb111"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">eig_country</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">eig</span><span class="op">)</span>, bins <span class="op">=</span> <span class="fl">20</span>, fill <span class="op">=</span> <span class="st">"#002948"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">13</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Eigenvector Centrality Distribution for Countries"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="economiccomplexity_files/figure-html/unnamed-chunk-19-5.png" width="700"></p>
+<div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">eig_product</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">eig</span><span class="op">)</span>, bins <span class="op">=</span> <span class="fl">20</span>, fill <span class="op">=</span> <span class="st">"#002948"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">13</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Eigenvector Centrality Distribution for Products"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="economiccomplexity_files/figure-html/unnamed-chunk-19-6.png" width="700"></p>
+</div>
+<div class="section level2">
+<h2 id="integration-with-ggraph">Integration with <code>ggraph</code><a class="anchor" aria-label="anchor" href="#integration-with-ggraph"></a>
+</h2>
+<p>We start by plotting the network of countries. Each node will be sized by its total exports.</p>
+<div class="sourceCode" id="cb113"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">200100</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggraph.data-imaginist.com" class="external-link">ggraph</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">aggregated_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span></span>
+<span>  <span class="va">world_trade_avg_1998_to_2000</span><span class="op">$</span><span class="va">value</span>,</span>
+<span>  by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>country <span class="op">=</span> <span class="va">world_trade_avg_1998_to_2000</span><span class="op">$</span><span class="va">country</span><span class="op">)</span>,</span>
+<span>  FUN <span class="op">=</span> <span class="va">sum</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">aggregated_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html" class="external-link">setNames</a></span><span class="op">(</span><span class="va">aggregated_countries</span><span class="op">$</span><span class="va">x</span>, <span class="va">aggregated_countries</span><span class="op">$</span><span class="va">country</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://r.igraph.org/reference/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">$</span><span class="va">size</span> <span class="op">&lt;-</span> <span class="va">aggregated_countries</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/match.html" class="external-link">match</a></span><span class="op">(</span><span class="fu"><a href="https://r.igraph.org/reference/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">$</span><span class="va">name</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">aggregated_countries</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggraph.data-imaginist.com/reference/ggraph.html" class="external-link">ggraph</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span>, layout <span class="op">=</span> <span class="st">"kk"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="co"># geom_edge_link(aes(edge_width = weight), edge_colour = "#a8a8a8") +</span></span>
+<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_edge_link.html" class="external-link">geom_edge_link</a></span><span class="op">(</span>edge_colour <span class="op">=</span> <span class="st">"#a8a8a8"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_point.html" class="external-link">geom_node_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>size <span class="op">=</span> <span class="va">size</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"#002948"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_text.html" class="external-link">geom_node_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">name</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2</span>, vjust <span class="op">=</span> <span class="fl">2.2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Proximity Based Network Projection for Countries"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="economiccomplexity_files/figure-html/unnamed-chunk-20-1.png" width="672"></p>
+<p>Now we can highlight the countries with the highest centralities from the previous part.</p>
+<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Paint svn, ken and cze in yellow and the rest of the world in blue</span></span>
+<span></span>
+<span><span class="fu"><a href="https://r.igraph.org/reference/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">$</span><span class="va">color</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span></span>
+<span>  <span class="st">"Rest of the World"</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://r.igraph.org/reference/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">$</span><span class="va">size</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://r.igraph.org/reference/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">$</span><span class="va">color</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/match.html" class="external-link">match</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"svn"</span>, <span class="st">"ken"</span>, <span class="st">"cze"</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://r.igraph.org/reference/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">$</span><span class="va">name</span></span>
+<span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Slovakia, Kenia and Czech Republic"</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggraph.data-imaginist.com/reference/ggraph.html" class="external-link">ggraph</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span>, layout <span class="op">=</span> <span class="st">"kk"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_edge_link.html" class="external-link">geom_edge_link</a></span><span class="op">(</span>edge_colour <span class="op">=</span> <span class="st">"#a8a8a8"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_point.html" class="external-link">geom_node_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>size <span class="op">=</span> <span class="va">size</span>, color <span class="op">=</span> <span class="va">color</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_text.html" class="external-link">geom_node_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">name</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2</span>, vjust <span class="op">=</span> <span class="fl">2.2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Proximity Based Network Projection for Countries"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_colour_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"Slovakia, Kenia and Czech Republic"</span> <span class="op">=</span> <span class="st">"#fac704"</span>,</span>
+<span>    <span class="st">"Rest of the World"</span> <span class="op">=</span> <span class="st">"#002948"</span></span>
+<span>  <span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="economiccomplexity_files/figure-html/unnamed-chunk-21-1.png" width="672"></p>
+<p>We can also plot the network of products. Each node will be sized by its total exports. Because the product names are large, we display the product codes instead. You can read about the codes <a href="https://www.foreign-trade.com/reference/hscode.htm" class="external-link">here</a> and if you need the codes in R, you can use the <code>tradestatistics</code> package, which can be installed from <a href="https://cran.r-project.org/package=tradestatistics" class="external-link">CRAN</a>.</p>
+<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">200100</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">aggregated_products</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span></span>
+<span>  <span class="va">world_trade_avg_1998_to_2000</span><span class="op">$</span><span class="va">value</span>,</span>
+<span>  by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>country <span class="op">=</span> <span class="va">world_trade_avg_1998_to_2000</span><span class="op">$</span><span class="va">product</span><span class="op">)</span>,</span>
+<span>  FUN <span class="op">=</span> <span class="va">sum</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">aggregated_products</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html" class="external-link">setNames</a></span><span class="op">(</span><span class="va">aggregated_products</span><span class="op">$</span><span class="va">x</span>, <span class="va">aggregated_products</span><span class="op">$</span><span class="va">country</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://r.igraph.org/reference/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">$</span><span class="va">size</span> <span class="op">&lt;-</span> <span class="va">aggregated_products</span><span class="op">[</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/match.html" class="external-link">match</a></span><span class="op">(</span><span class="fu"><a href="https://r.igraph.org/reference/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">$</span><span class="va">name</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">aggregated_products</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">]</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggraph.data-imaginist.com/reference/ggraph.html" class="external-link">ggraph</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span>, layout <span class="op">=</span> <span class="st">"kk"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_edge_link.html" class="external-link">geom_edge_link</a></span><span class="op">(</span>edge_colour <span class="op">=</span> <span class="st">"#a8a8a8"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_point.html" class="external-link">geom_node_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>size <span class="op">=</span> <span class="va">size</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"#002948"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_text.html" class="external-link">geom_node_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">name</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2</span>, vjust <span class="op">=</span> <span class="fl">2.2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Proximity Based Network Projection for Products"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="economiccomplexity_files/figure-html/unnamed-chunk-22-1.png" width="960"></p>
+<p>Now we can highlight the products with the highest centralities from the previous part.</p>
+<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Paint 8421, 7412 and 8434 in yellow and the rest of the products in blue</span></span>
+<span></span>
+<span><span class="fu"><a href="https://r.igraph.org/reference/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">$</span><span class="va">color</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span></span>
+<span>  <span class="st">"Rest of the Products"</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://r.igraph.org/reference/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">$</span><span class="va">size</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://r.igraph.org/reference/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">$</span><span class="va">color</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/match.html" class="external-link">match</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"8421"</span>, <span class="st">"7412"</span>, <span class="st">"8434"</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://r.igraph.org/reference/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">$</span><span class="va">name</span></span>
+<span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"8421, 7412 and 8434"</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggraph.data-imaginist.com/reference/ggraph.html" class="external-link">ggraph</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span>, layout <span class="op">=</span> <span class="st">"kk"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_edge_link.html" class="external-link">geom_edge_link</a></span><span class="op">(</span>edge_colour <span class="op">=</span> <span class="st">"#a8a8a8"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_point.html" class="external-link">geom_node_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>size <span class="op">=</span> <span class="va">size</span>, color <span class="op">=</span> <span class="va">color</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_text.html" class="external-link">geom_node_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">name</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2</span>, vjust <span class="op">=</span> <span class="fl">2.2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Proximity Based Network Projection for Products"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_colour_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"8421, 7412 and 8434"</span> <span class="op">=</span> <span class="st">"#fac704"</span>,</span>
+<span>    <span class="st">"Rest of the Products"</span> <span class="op">=</span> <span class="st">"#002948"</span></span>
+<span>  <span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="economiccomplexity_files/figure-html/unnamed-chunk-23-1.png" width="960"></p>
+<p>The communities detected in the previous part can be used to improve the plots.</p>
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Paint by community</span></span>
+<span><span class="co"># for each vertex, replace X with the community number</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">200100</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://r.igraph.org/reference/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">$</span><span class="va">color2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://r.igraph.org/reference/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">$</span><span class="va">size</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://r.igraph.org/reference/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">$</span><span class="va">color2</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">com_i</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">com_country</span><span class="op">$</span><span class="va">membership</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="co"># if len(com$membership[i]) = 1, append a 0</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nchar.html" class="external-link">nchar</a></span><span class="op">(</span><span class="va">com_i</span><span class="op">)</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">com_i</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"0"</span>, <span class="va">com_i</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span></span>
+<span>  <span class="fu"><a href="https://r.igraph.org/reference/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">$</span><span class="va">color2</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Community "</span>, <span class="va">com_i</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">my_colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>  <span class="st">"#74c0e2"</span>, <span class="st">"#406662"</span>, <span class="st">"#549e95"</span>, <span class="st">"#8abdb6"</span>, <span class="st">"#bcd8af"</span>,</span>
+<span>  <span class="st">"#a8c380"</span>, <span class="st">"#ede788"</span>, <span class="st">"#d6c650"</span>, <span class="st">"#dc8e7a"</span>, <span class="st">"#d05555"</span>,</span>
+<span>  <span class="st">"#bf3251"</span>, <span class="st">"#872a41"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggraph.data-imaginist.com/reference/ggraph.html" class="external-link">ggraph</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span>, layout <span class="op">=</span> <span class="st">"kk"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_edge_link.html" class="external-link">geom_edge_link</a></span><span class="op">(</span>edge_colour <span class="op">=</span> <span class="st">"#a8a8a8"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_point.html" class="external-link">geom_node_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>size <span class="op">=</span> <span class="va">size</span>, color <span class="op">=</span> <span class="va">color2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_text.html" class="external-link">geom_node_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">name</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2</span>, vjust <span class="op">=</span> <span class="fl">2.2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Proximity Based Network Projection for Countries"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_colour_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">my_colors</span><span class="op">)</span></span></code></pre></div>
+<p><img src="economiccomplexity_files/figure-html/unnamed-chunk-24-1.png" width="960"></p>
+<p>For products, the challenge is to obtain 41 distinguisable colors.</p>
+<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Paint by community</span></span>
+<span><span class="co"># for each vertex, replace X with the community number</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">200100</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://r.igraph.org/reference/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">$</span><span class="va">color2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://r.igraph.org/reference/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">$</span><span class="va">size</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://r.igraph.org/reference/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">$</span><span class="va">color2</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">com_i</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">com_product</span><span class="op">$</span><span class="va">membership</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="co"># if len(com$membership[i]) = 1, append a 0</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nchar.html" class="external-link">nchar</a></span><span class="op">(</span><span class="va">com_i</span><span class="op">)</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">com_i</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"0"</span>, <span class="va">com_i</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span></span>
+<span>  <span class="fu"><a href="https://r.igraph.org/reference/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">$</span><span class="va">color2</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Community "</span>, <span class="va">com_i</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">my_colors_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>  <span class="st">"#74c0e2"</span>, <span class="st">"#406662"</span>, <span class="st">"#549e95"</span>, <span class="st">"#8abdb6"</span>, <span class="st">"#bcd8af"</span>,</span>
+<span>  <span class="st">"#a8c380"</span>, <span class="st">"#ede788"</span>, <span class="st">"#d6c650"</span>, <span class="st">"#dc8e7a"</span>, <span class="st">"#d05555"</span>,</span>
+<span>  <span class="st">"#bf3251"</span>, <span class="st">"#872a41"</span>, <span class="st">"#74c0e2"</span>, <span class="st">"#406662"</span>, <span class="st">"#549e95"</span>,</span>
+<span>  <span class="st">"#8abdb6"</span>, <span class="st">"#bcd8af"</span>, <span class="st">"#a8c380"</span>, <span class="st">"#ede788"</span>, <span class="st">"#d6c650"</span>,</span>
+<span>  <span class="st">"#dc8e7a"</span>, <span class="st">"#d05555"</span>, <span class="st">"#bf3251"</span>, <span class="st">"#872a41"</span>, <span class="st">"#74c0e2"</span>,</span>
+<span>  <span class="st">"#406662"</span>, <span class="st">"#549e95"</span>, <span class="st">"#8abdb6"</span>, <span class="st">"#bcd8af"</span>, <span class="st">"#a8c380"</span>,</span>
+<span>  <span class="st">"#ede788"</span>, <span class="st">"#d6c650"</span>, <span class="st">"#dc8e7a"</span>, <span class="st">"#d05555"</span>, <span class="st">"#bf3251"</span>,</span>
+<span>  <span class="st">"#872a41"</span>, <span class="st">"#74c0e2"</span>, <span class="st">"#406662"</span>, <span class="st">"#549e95"</span>, <span class="st">"#8abdb6"</span>,</span>
+<span>  <span class="st">"#bcd8af"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggraph.data-imaginist.com/reference/ggraph.html" class="external-link">ggraph</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span>, layout <span class="op">=</span> <span class="st">"kk"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_edge_link.html" class="external-link">geom_edge_link</a></span><span class="op">(</span>edge_colour <span class="op">=</span> <span class="st">"#a8a8a8"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_point.html" class="external-link">geom_node_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>size <span class="op">=</span> <span class="va">size</span>, color <span class="op">=</span> <span class="va">color2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_text.html" class="external-link">geom_node_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">name</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2</span>, vjust <span class="op">=</span> <span class="fl">2.2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Proximity Based Network Projection for Products"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_colour_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">my_colors_2</span><span class="op">)</span></span></code></pre></div>
+<p><img src="economiccomplexity_files/figure-html/unnamed-chunk-25-1.png" width="960"></p>
+<p>We can try to obtain clusters in a different way, by pre-specifying the number of communities. Because this has some arbitrary element, we can specify a number equal to the sections in the Harmonised System, which is 21 plus the unspecified products.</p>
+<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">200100</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">my_colors_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>  <span class="st">"#74c0e2"</span>, <span class="st">"#406662"</span>, <span class="st">"#549e95"</span>, <span class="st">"#8abdb6"</span>, <span class="st">"#bcd8af"</span>,</span>
+<span>  <span class="st">"#a8c380"</span>, <span class="st">"#ede788"</span>, <span class="st">"#d6c650"</span>, <span class="st">"#dc8e7a"</span>, <span class="st">"#d05555"</span>,</span>
+<span>  <span class="st">"#bf3251"</span>, <span class="st">"#872a41"</span>, <span class="st">"#993f7b"</span>, <span class="st">"#7454a6"</span>, <span class="st">"#a17cb0"</span>,</span>
+<span>  <span class="st">"#d1a1bc"</span>, <span class="st">"#a1aafb"</span>, <span class="st">"#5c57d9"</span>, <span class="st">"#1c26b3"</span>, <span class="st">"#4d6fd0"</span>,</span>
+<span>  <span class="st">"#7485aa"</span>, <span class="st">"#d3d3d3"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">com_product</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/cluster_fluid_communities.html" class="external-link">cluster_fluid_communities</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span>, no.of.communities <span class="op">=</span> <span class="fl">22</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://r.igraph.org/reference/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">$</span><span class="va">color2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://r.igraph.org/reference/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">$</span><span class="va">size</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://r.igraph.org/reference/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">$</span><span class="va">color2</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">com_i</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">com_product</span><span class="op">$</span><span class="va">membership</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="co"># if len(com$membership[i]) = 1, append a 0</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nchar.html" class="external-link">nchar</a></span><span class="op">(</span><span class="va">com_i</span><span class="op">)</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">com_i</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"0"</span>, <span class="va">com_i</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span></span>
+<span>  <span class="fu"><a href="https://r.igraph.org/reference/V.html" class="external-link">V</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">$</span><span class="va">color2</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Community "</span>, <span class="va">com_i</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggraph.data-imaginist.com/reference/ggraph.html" class="external-link">ggraph</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span>, layout <span class="op">=</span> <span class="st">"kk"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_edge_link.html" class="external-link">geom_edge_link</a></span><span class="op">(</span>edge_colour <span class="op">=</span> <span class="st">"#a8a8a8"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_point.html" class="external-link">geom_node_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>size <span class="op">=</span> <span class="va">size</span>, color <span class="op">=</span> <span class="va">color2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggraph.data-imaginist.com/reference/geom_node_text.html" class="external-link">geom_node_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">name</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2</span>, vjust <span class="op">=</span> <span class="fl">2.2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Proximity Based Network Projection for Products"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_colour_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">my_colors_3</span><span class="op">)</span></span></code></pre></div>
+<p><img src="economiccomplexity_files/figure-html/unnamed-chunk-26-1.png" width="960"></p>
+</div>
+<div class="section level2">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-atlas2014" class="csl-entry">
-Hausmann, Ricardo, César Hidalgo, Sebastián Bustos, Michele Coscia,
-Alexander Simoes, and Muhammed Yildirim. 2014. <em>The Atlas of Economic
-Complexity: Mapping Paths to Prosperity</em>. MIT Press. <a href="https://doi.org/10.7551/mitpress/9647.001.0001" class="external-link">https://doi.org/10.7551/mitpress/9647.001.0001</a>.
+<div id="refs" class="references hanging-indent">
+<div id="ref-atlas2014">
+<p>Hausmann, Ricardo, César Hidalgo, Sebastián Bustos, Michele Coscia, Alexander Simoes, and Muhammed Yildirim. 2014. <em>The Atlas of Economic Complexity: Mapping Paths to Prosperity</em>. MIT Press. <a href="https://doi.org/10.7551/mitpress/9647.001.0001" class="external-link">https://doi.org/10.7551/mitpress/9647.001.0001</a>.</p>
 </div>
-<div id="ref-exportmatters2005" class="csl-entry">
-Hausmann, Ricardo, Jason Hwang, and Dani Rodrik. 2005. <span>“What You
-Export Matters.”</span> Working Paper 11905. Working Paper Series.
-National Bureau of Economic Research. <a href="https://doi.org/10.3386/w11905" class="external-link">https://doi.org/10.3386/w11905</a>.
+<div id="ref-exportmatters2005">
+<p>Hausmann, Ricardo, Jason Hwang, and Dani Rodrik. 2005. “What You Export Matters.” Working Paper 11905. Working Paper Series. National Bureau of Economic Research. <a href="https://doi.org/10.3386/w11905" class="external-link">https://doi.org/10.3386/w11905</a>.</p>
 </div>
-<div id="ref-measuringcomplexity2015" class="csl-entry">
-Mariani, Manuel, Alexandre Vidmer, Matsúš Medo, and Yi-Cheng Zhang.
-2015. <span>“Measuring Economic Complexity of Countries and Products:
-Which Metric to Use?”</span> <em>The European Physical Journal B</em> 88
-(11): 293. <a href="https://doi.org/10.1140/epjb/e2015-60298-7" class="external-link">https://doi.org/10.1140/epjb/e2015-60298-7</a>.
+<div id="ref-measuringcomplexity2015">
+<p>Mariani, Manuel, Alexandre Vidmer, Matsúš Medo, and Yi-Cheng Zhang. 2015. “Measuring Economic Complexity of Countries and Products: Which Metric to Use?” <em>The European Physical Journal B</em> 88 (11): 293. <a href="https://doi.org/10.1140/epjb/e2015-60298-7" class="external-link">https://doi.org/10.1140/epjb/e2015-60298-7</a>.</p>
 </div>
 </div>
 </div>
@@ -383,7 +849,7 @@ Which Metric to Use?”</span> <em>The European Physical Journal B</em> 88
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

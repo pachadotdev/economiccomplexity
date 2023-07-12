@@ -30,10 +30,10 @@
 #'
 #' @examples
 #' net <- projections(
-#'  economiccomplexity_output$proximity$proximity_country,
-#'  economiccomplexity_output$proximity$proximity_product,
-#'  avg_links = 10,
-#'  tolerance = 0.1
+#'   economiccomplexity_output$proximity$proximity_country,
+#'   economiccomplexity_output$proximity$proximity_product,
+#'   avg_links = 10,
+#'   tolerance = 0.1
 #' )
 #'
 #' # partial view of projections
@@ -55,7 +55,7 @@ projections <- function(proximity_country, proximity_product,
                         avg_links = 5, tolerance = 0.05, compute = "both") {
   # sanity checks ----
   if (!(any(class(proximity_country) %in% "dsCMatrix") == TRUE) |
-      !(any(class(proximity_product) %in% "dsCMatrix") == TRUE)) {
+    !(any(class(proximity_product) %in% "dsCMatrix") == TRUE)) {
     stop("'proximity_country' and 'proximity_product' must be dsCMatrix")
   }
 

@@ -28,12 +28,12 @@ implied by a country's position.
 }
 \examples{
 d <- distance(
- economiccomplexity_output$balassa_index,
- economiccomplexity_output$proximity$proximity_product
+  economiccomplexity_output$balassa_index,
+  economiccomplexity_output$proximity$proximity_product
 )
 
 # partial view of the distance matrix
-d[1:5,1:5]
+d[1:5, 1:5]
 
 }
 \references{
