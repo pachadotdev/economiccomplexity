@@ -63,13 +63,14 @@
 
       
 
-      </header><script src="economiccomplexity_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>How To Use This Package</h1>
-                        <h4 data-toc-skip class="author">Mauricio Vargas</h4>
+                        <h4 data-toc-skip class="author">Mauricio
+Vargas</h4>
             
-            <h4 data-toc-skip class="date">2023-07-11</h4>
+            <h4 data-toc-skip class="date">2023-07-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/pachadotdev/economiccomplexity/blob/HEAD/vignettes/economiccomplexity.Rmd" class="external-link"><code>vignettes/economiccomplexity.Rmd</code></a></small>
       <div class="hidden name"><code>economiccomplexity.Rmd</code></div>
@@ -78,7 +79,10 @@
 
     
     
-<p>This example is inspired after the visualizations from <span class="citation">Hausmann et al. (2014)</span> with some ggplot additions. The original vignette was largely improved from what I learned in Network Analysis taught at ICPSR 2023 by Dr. Sarah Shugars.</p>
+<p>This example is inspired after the visualizations from <span class="citation">Hausmann et al. (2014)</span> with some ggplot
+additions. The original vignette was largely improved from what I
+learned in Network Analysis taught at ICPSR 2023 by Dr. Sarah
+Shugars.</p>
 <div class="section level2">
 <h2 id="world-trade-and-per-capita-gdp">World Trade and Per-Capita GDP<a class="anchor" aria-label="anchor" href="#world-trade-and-per-capita-gdp"></a>
 </h2>
@@ -121,7 +125,8 @@
 <span><span class="co">## aia    .    .    .    .    .</span></span>
 <span><span class="co">## alb    .    .    .    .    .</span></span>
 <span><span class="co">## and    1    .    .    .    1</span></span></code></pre>
-<p>Another possibility is to obtain Balassa Index without discretization.</p>
+<p>Another possibility is to obtain Balassa Index without
+discretization.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bi_dec</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/balassa_index.html">balassa_index</a></span><span class="op">(</span><span class="va">world_trade_avg_1998_to_2000</span>, discrete <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
 <span></span>
@@ -138,8 +143,15 @@
 <div class="section level2">
 <h2 id="complexity-measures">Complexity Measures<a class="anchor" aria-label="anchor" href="#complexity-measures"></a>
 </h2>
-<p>You can compute complexity indexes (e.g. such as the Economic Complexity Index and Product Complexity Index) by using <code><a href="../reference/complexity_measures.html">complexity_measures()</a></code>. The calculations methods are <em>fitness</em> (default), <em>reflections</em>, <em>eigenvalues</em>. See <span class="citation">(Mariani et al. 2015)</span> for the methodological details.</p>
-<p>The eigenvalues also calls the reflections methods in order to correct the index sign in some special cases when the correlation between the output from both methods is negative.</p>
+<p>You can compute complexity indexes (e.g. such as the Economic
+Complexity Index and Product Complexity Index) by using
+<code><a href="../reference/complexity_measures.html">complexity_measures()</a></code>. The calculations methods are
+<em>fitness</em> (default), <em>reflections</em>, <em>eigenvalues</em>.
+See <span class="citation">(Mariani et al. 2015)</span> for the
+methodological details.</p>
+<p>The eigenvalues also calls the reflections methods in order to
+correct the index sign in some special cases when the correlation
+between the output from both methods is negative.</p>
 <div class="section level3">
 <h3 id="complexity-fitness">Complexity-Fitness<a class="anchor" aria-label="anchor" href="#complexity-fitness"></a>
 </h3>
@@ -189,7 +201,9 @@
 <div class="section level2">
 <h2 id="proximity">Proximity<a class="anchor" aria-label="anchor" href="#proximity"></a>
 </h2>
-<p>Proximity matrices are used to create projections e.g. (country-country and product-product networks) for bipartite networks. Using <code><a href="../reference/proximity.html">proximity()</a></code> is straightforward.</p>
+<p>Proximity matrices are used to create projections
+e.g. (country-country and product-product networks) for bipartite
+networks. Using <code><a href="../reference/proximity.html">proximity()</a></code> is straightforward.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pro</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/proximity.html">proximity</a></span><span class="op">(</span><span class="va">bi</span><span class="op">)</span></span>
 <span></span>
@@ -215,7 +229,10 @@
 <div class="section level2">
 <h2 id="projections">Projections<a class="anchor" aria-label="anchor" href="#projections"></a>
 </h2>
-<p>The <code><a href="../reference/projections.html">projections()</a></code> function is designed to use <code>igraph</code> for the internal computations and also to pass proximity-based networks to <code>igraph</code>, <code>ggraph</code> or export to Cytoscape by saving the output as csv/tsv.</p>
+<p>The <code><a href="../reference/projections.html">projections()</a></code> function is designed to use
+<code>igraph</code> for the internal computations and also to pass
+proximity-based networks to <code>igraph</code>, <code>ggraph</code> or
+export to Cytoscape by saving the output as csv/tsv.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r.igraph.org/" class="external-link">igraph</a></span><span class="op">)</span></span>
 <span></span>
@@ -223,13 +240,14 @@
 <span></span>
 <span><span class="co"># partial view of projections</span></span>
 <span><span class="fu"><a href="https://r.igraph.org/reference/E.html" class="external-link">E</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
-<pre><code><span><span class="co">## + 5/484 edges from fb1cbf0 (vertex names):</span></span>
+<pre><code><span><span class="co">## + 5/484 edges from 9547c95 (vertex names):</span></span>
 <span><span class="co">## [1] zaf--zwe tza--zmb tza--uga tuv--wlf tuv--umi</span></span></code></pre>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://r.igraph.org/reference/E.html" class="external-link">E</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
-<pre><code><span><span class="co">## + 5/1505 edges from af49030 (vertex names):</span></span>
+<pre><code><span><span class="co">## + 5/1505 edges from e4fbf64 (vertex names):</span></span>
 <span><span class="co">## [1] 8981--8982 8946--9510 8922--8932 8921--8922 8852--8959</span></span></code></pre>
-<p>We can also use <code>igraph</code> to see how many edges are in the networks nd also the networks’ density, diameter and transitivity.</p>
+<p>We can also use <code>igraph</code> to see how many edges are in the
+networks nd also the networks’ density, diameter and transitivity.</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://r.igraph.org/reference/gsize.html" class="external-link">ecount</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 484</span></span></code></pre>
@@ -258,7 +276,11 @@
 <div class="section level2">
 <h2 id="centrality-measures">Centrality measures<a class="anchor" aria-label="anchor" href="#centrality-measures"></a>
 </h2>
-<p>We calculate the degree centrality of every node in the network and plot a histogram of these values. The drawback is that the network was trimmed until obtaining an average of 4 links per edge (or arcs per node), therefore the computation and histograms reflect a biased distribution.</p>
+<p>We calculate the degree centrality of every node in the network and
+plot a histogram of these values. The drawback is that the network was
+trimmed until obtaining an average of 4 links per edge (or arcs per
+node), therefore the computation and histograms reflect a biased
+distribution.</p>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">deg_country</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/degree.html" class="external-link">degree</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span></span>
 <span><span class="va">deg_product</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/degree.html" class="external-link">degree</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span></span>
@@ -272,7 +294,8 @@
 <span><span class="va">deg_product</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">deg_product</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">## 8421 </span></span>
 <span><span class="co">##   33</span></span></code></pre>
-<p>In the same way, we can compute the betweenness, cloness and eigenvector centrality of the networks.</p>
+<p>In the same way, we can compute the betweenness, cloness and
+eigenvector centrality of the networks.</p>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bet_country</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/betweenness.html" class="external-link">betweenness</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span></span>
 <span><span class="va">bet_product</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/betweenness.html" class="external-link">betweenness</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span></span>
@@ -312,7 +335,8 @@
 <span><span class="va">eig_product</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">eig_product</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">## 8434 </span></span>
 <span><span class="co">##    1</span></span></code></pre>
-<p>Following the analysis, we can verify that the largest connected component is the same as the original networks in this case.</p>
+<p>Following the analysis, we can verify that the largest connected
+component is the same as the original networks in this case.</p>
 <div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># sub-networks of the largest connected component</span></span>
 <span></span>
@@ -375,7 +399,8 @@
 <div class="section level2">
 <h2 id="k-core-and-backbone">K-core and backbone<a class="anchor" aria-label="anchor" href="#k-core-and-backbone"></a>
 </h2>
-<p>We can identify the k-core of the networks for an arbitray value “k”.</p>
+<p>We can identify the k-core of the networks for an arbitray value
+“k”.</p>
 <div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">k</span> <span class="op">&lt;-</span> <span class="fl">4</span></span>
 <span></span>
@@ -422,9 +447,9 @@
 <span><span class="va">bbn_product</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/delete_vertices.html" class="external-link">delete_vertices</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span>, <span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">core_product</span> <span class="op">&lt;</span> <span class="va">k</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">bbn_country</span></span></code></pre></div>
-<pre><code><span><span class="co">## IGRAPH b65335b UNW- 38 283 -- </span></span>
+<pre><code><span><span class="co">## IGRAPH c6320b2 UNW- 38 283 -- </span></span>
 <span><span class="co">## + attr: name (v/c), weight (e/n)</span></span>
-<span><span class="co">## + edges from b65335b (vertex names):</span></span>
+<span><span class="co">## + edges from c6320b2 (vertex names):</span></span>
 <span><span class="co">##  [1] swe--usa svn--usa svn--tur svn--swe svk--usa svk--swe svk--svn scg--ukr</span></span>
 <span><span class="co">##  [9] scg--tur scg--svn scg--svk rom--ukr rom--tur rom--svn rom--svk rom--scg</span></span>
 <span><span class="co">## [17] prt--tur prt--svn prt--svk prt--scg prt--rom pol--usa pol--tur pol--swe</span></span>
@@ -436,9 +461,9 @@
 <span><span class="co">## + ... omitted several edges</span></span></code></pre>
 <div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bbn_product</span></span></code></pre></div>
-<pre><code><span><span class="co">## IGRAPH e761ca8 UNW- 132 709 -- </span></span>
+<pre><code><span><span class="co">## IGRAPH ff7e671 UNW- 132 709 -- </span></span>
 <span><span class="co">## + attr: name (v/c), weight (e/n)</span></span>
-<span><span class="co">## + edges from e761ca8 (vertex names):</span></span>
+<span><span class="co">## + edges from ff7e671 (vertex names):</span></span>
 <span><span class="co">##  [1] 8922--8932 8720--8939 8720--8742 8472--8997 8465--8510 8465--8472</span></span>
 <span><span class="co">##  [7] 8464--8472 8464--8465 8463--8510 8463--8472 8463--8465 8463--8464</span></span>
 <span><span class="co">## [13] 8462--8472 8462--8465 8462--8464 8462--8463 8461--8472 8461--8465</span></span>
@@ -452,7 +477,8 @@
 <div class="section level2">
 <h2 id="community-detection">Community detection<a class="anchor" aria-label="anchor" href="#community-detection"></a>
 </h2>
-<p>We can identify the communities of the networks with a fast greedy algorithm.</p>
+<p>We can identify the communities of the networks with a fast greedy
+algorithm.</p>
 <div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">com_country</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/cluster_fast_greedy.html" class="external-link">cluster_fast_greedy</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span></span>
 <span><span class="va">com_product</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/cluster_fast_greedy.html" class="external-link">cluster_fast_greedy</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span></span>
@@ -473,7 +499,8 @@
 <div class="section level2">
 <h2 id="complexity-outlook">Complexity Outlook<a class="anchor" aria-label="anchor" href="#complexity-outlook"></a>
 </h2>
-<p>Both the Complexity Outlook Index and Complexity Outlook Gain are obtained after the <code><a href="../reference/complexity_outlook.html">complexity_outlook()</a></code> function.</p>
+<p>Both the Complexity Outlook Index and Complexity Outlook Gain are
+obtained after the <code><a href="../reference/complexity_outlook.html">complexity_outlook()</a></code> function.</p>
 <div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">co</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/complexity_outlook.html">complexity_outlook</a></span><span class="op">(</span></span>
 <span>  <span class="va">economiccomplexity_output</span><span class="op">$</span><span class="va">balassa_index</span>,</span>
@@ -498,8 +525,12 @@
 <div class="section level2">
 <h2 id="productivy-levels">Productivy Levels<a class="anchor" aria-label="anchor" href="#productivy-levels"></a>
 </h2>
-<p>The <code><a href="../reference/productivity_levels.html">productivity_levels()</a></code> dataset follows the definitions from <span class="citation">Hausmann et al. (2014)</span> and <span class="citation">Hausmann, Hwang, and Rodrik (2005)</span>.</p>
-<p>I don’t have a per-capita GDP dataset for the Galactic Federation, so I’ll create simulated data for the example.</p>
+<p>The <code><a href="../reference/productivity_levels.html">productivity_levels()</a></code> dataset follows the
+definitions from <span class="citation">Hausmann et al. (2014)</span>
+and <span class="citation">Hausmann, Hwang, and Rodrik
+(2005)</span>.</p>
+<p>I don’t have a per-capita GDP dataset for the Galactic Federation, so
+I’ll create simulated data for the example.</p>
 <div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/productivity_levels.html">productivity_levels</a></span><span class="op">(</span><span class="va">world_trade_avg_1998_to_2000</span>, <span class="va">world_gdp_avg_1998_to_2000</span><span class="op">)</span></span>
 <span></span>
@@ -610,7 +641,8 @@
 <div class="section level2">
 <h2 id="integration-with-ggraph">Integration with <code>ggraph</code><a class="anchor" aria-label="anchor" href="#integration-with-ggraph"></a>
 </h2>
-<p>We start by plotting the network of countries. Each node will be sized by its total exports.</p>
+<p>We start by plotting the network of countries. Each node will be
+sized by its total exports.</p>
 <div class="sourceCode" id="cb113"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">200100</span><span class="op">)</span></span>
 <span></span>
@@ -634,7 +666,8 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Proximity Based Network Projection for Countries"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="economiccomplexity_files/figure-html/unnamed-chunk-20-1.png" width="672"></p>
-<p>Now we can highlight the countries with the highest centralities from the previous part.</p>
+<p>Now we can highlight the countries with the highest centralities from
+the previous part.</p>
 <div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Paint svn, ken and cze in yellow and the rest of the world in blue</span></span>
 <span></span>
@@ -658,7 +691,11 @@
 <span>    <span class="st">"Rest of the World"</span> <span class="op">=</span> <span class="st">"#002948"</span></span>
 <span>  <span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="economiccomplexity_files/figure-html/unnamed-chunk-21-1.png" width="672"></p>
-<p>We can also plot the network of products. Each node will be sized by its total exports. Because the product names are large, we display the product codes instead. You can read about the codes <a href="https://www.foreign-trade.com/reference/hscode.htm" class="external-link">here</a> and if you need the codes in R, you can use the <code>tradestatistics</code> package, which can be installed from <a href="https://cran.r-project.org/package=tradestatistics" class="external-link">CRAN</a>.</p>
+<p>We can also plot the network of products. Each node will be sized by
+its total exports. Because the product names are large, we display the
+product codes instead. You can read about the codes <a href="https://www.foreign-trade.com/reference/hscode.htm" class="external-link">here</a> and
+if you need the codes in R, you can use the <code>tradestatistics</code>
+package, which can be installed from <a href="https://cran.r-project.org/package=tradestatistics" class="external-link">CRAN</a>.</p>
 <div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">200100</span><span class="op">)</span></span>
 <span></span>
@@ -681,7 +718,8 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Proximity Based Network Projection for Products"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="economiccomplexity_files/figure-html/unnamed-chunk-22-1.png" width="960"></p>
-<p>Now we can highlight the products with the highest centralities from the previous part.</p>
+<p>Now we can highlight the products with the highest centralities from
+the previous part.</p>
 <div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Paint 8421, 7412 and 8434 in yellow and the rest of the products in blue</span></span>
 <span></span>
@@ -705,7 +743,8 @@
 <span>    <span class="st">"Rest of the Products"</span> <span class="op">=</span> <span class="st">"#002948"</span></span>
 <span>  <span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="economiccomplexity_files/figure-html/unnamed-chunk-23-1.png" width="960"></p>
-<p>The communities detected in the previous part can be used to improve the plots.</p>
+<p>The communities detected in the previous part can be used to improve
+the plots.</p>
 <div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Paint by community</span></span>
 <span><span class="co"># for each vertex, replace X with the community number</span></span>
@@ -739,7 +778,8 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_colour_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">my_colors</span><span class="op">)</span></span></code></pre></div>
 <p><img src="economiccomplexity_files/figure-html/unnamed-chunk-24-1.png" width="960"></p>
-<p>For products, the challenge is to obtain 41 distinguisable colors.</p>
+<p>For products, the challenge is to obtain 41 distinguisable
+colors.</p>
 <div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Paint by community</span></span>
 <span><span class="co"># for each vertex, replace X with the community number</span></span>
@@ -779,7 +819,10 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_colour_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">my_colors_2</span><span class="op">)</span></span></code></pre></div>
 <p><img src="economiccomplexity_files/figure-html/unnamed-chunk-25-1.png" width="960"></p>
-<p>We can try to obtain clusters in a different way, by pre-specifying the number of communities. Because this has some arbitrary element, we can specify a number equal to the sections in the Harmonised System, which is 21 plus the unspecified products.</p>
+<p>We can try to obtain clusters in a different way, by pre-specifying
+the number of communities. Because this has some arbitrary element, we
+can specify a number equal to the sections in the Harmonised System,
+which is 21 plus the unspecified products.</p>
 <div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">200100</span><span class="op">)</span></span>
 <span></span>
@@ -818,15 +861,22 @@
 <div class="section level2">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<div id="refs" class="references hanging-indent">
-<div id="ref-atlas2014">
-<p>Hausmann, Ricardo, César Hidalgo, Sebastián Bustos, Michele Coscia, Alexander Simoes, and Muhammed Yildirim. 2014. <em>The Atlas of Economic Complexity: Mapping Paths to Prosperity</em>. MIT Press. <a href="https://doi.org/10.7551/mitpress/9647.001.0001" class="external-link">https://doi.org/10.7551/mitpress/9647.001.0001</a>.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-atlas2014" class="csl-entry">
+Hausmann, Ricardo, César Hidalgo, Sebastián Bustos, Michele Coscia,
+Alexander Simoes, and Muhammed Yildirim. 2014. <em>The Atlas of Economic
+Complexity: Mapping Paths to Prosperity</em>. MIT Press. <a href="https://doi.org/10.7551/mitpress/9647.001.0001" class="external-link">https://doi.org/10.7551/mitpress/9647.001.0001</a>.
 </div>
-<div id="ref-exportmatters2005">
-<p>Hausmann, Ricardo, Jason Hwang, and Dani Rodrik. 2005. “What You Export Matters.” Working Paper 11905. Working Paper Series. National Bureau of Economic Research. <a href="https://doi.org/10.3386/w11905" class="external-link">https://doi.org/10.3386/w11905</a>.</p>
+<div id="ref-exportmatters2005" class="csl-entry">
+Hausmann, Ricardo, Jason Hwang, and Dani Rodrik. 2005. <span>“What You
+Export Matters.”</span> Working Paper 11905. Working Paper Series.
+National Bureau of Economic Research. <a href="https://doi.org/10.3386/w11905" class="external-link">https://doi.org/10.3386/w11905</a>.
 </div>
-<div id="ref-measuringcomplexity2015">
-<p>Mariani, Manuel, Alexandre Vidmer, Matsúš Medo, and Yi-Cheng Zhang. 2015. “Measuring Economic Complexity of Countries and Products: Which Metric to Use?” <em>The European Physical Journal B</em> 88 (11): 293. <a href="https://doi.org/10.1140/epjb/e2015-60298-7" class="external-link">https://doi.org/10.1140/epjb/e2015-60298-7</a>.</p>
+<div id="ref-measuringcomplexity2015" class="csl-entry">
+Mariani, Manuel, Alexandre Vidmer, Matsúš Medo, and Yi-Cheng Zhang.
+2015. <span>“Measuring Economic Complexity of Countries and Products:
+Which Metric to Use?”</span> <em>The European Physical Journal B</em> 88
+(11): 293. <a href="https://doi.org/10.1140/epjb/e2015-60298-7" class="external-link">https://doi.org/10.1140/epjb/e2015-60298-7</a>.
 </div>
 </div>
 </div>
@@ -844,7 +894,7 @@
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Mauricio Vargas.</p>
+<p>Developed by Mauricio Vargas Sepulveda.</p>
 </div>
 
 <div class="pkgdown">

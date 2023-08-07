@@ -4,16 +4,16 @@
   "identifier": "economiccomplexity",
   "description": "A wrapper of different methods from Linear Algebra for the equations introduced in The Atlas of Economic Complexity and related literature. This package provides standard matrix and graph output that can be used seamlessly with other packages. See <doi:10.21105/joss.01866> for a summary of these methods and its evolution in literature.",
   "name": "economiccomplexity: Computational Methods for Economic Complexity",
-  "codeRepository": "https://github.com/pachadotdev/economiccomplexity",
+  "codeRepository": "https://pacha.dev/economiccomplexity/",
   "issueTracker": "https://github.com/pachadotdev/economiccomplexity/issues/",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.2.0 (2022-04-22)",
+  "runtimePlatform": "R version 4.3.1 (2023-06-16)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -24,8 +24,8 @@
     {
       "@type": "Person",
       "givenName": "Mauricio",
-      "familyName": "Vargas",
-      "email": "mvargas@dcc.uchile.cl",
+      "familyName": "Vargas Sepulveda",
+      "email": "m.sepulveda@mail.utoronto.ca",
       "@id": "https://orcid.org/0000-0003-1017-7574"
     }
   ],
@@ -53,8 +53,8 @@
     {
       "@type": "Person",
       "givenName": "Mauricio",
-      "familyName": "Vargas",
-      "email": "mvargas@dcc.uchile.cl",
+      "familyName": "Vargas Sepulveda",
+      "email": "m.sepulveda@mail.utoronto.ca",
       "@id": "https://orcid.org/0000-0003-1017-7574"
     }
   ],
@@ -62,8 +62,8 @@
     {
       "@type": "Person",
       "givenName": "Mauricio",
-      "familyName": "Vargas",
-      "email": "mvargas@dcc.uchile.cl",
+      "familyName": "Vargas Sepulveda",
+      "email": "m.sepulveda@mail.utoronto.ca",
       "@id": "https://orcid.org/0000-0003-1017-7574"
     }
   ],
@@ -92,6 +92,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=knitr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "ggplot2",
+      "name": "ggplot2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=ggplot2"
     },
     {
       "@type": "SoftwareApplication",
@@ -175,10 +187,5 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "1731.904KB",
-  "relatedLink": ["https://pacha.dev/economiccomplexity/", "https://CRAN.R-project.org/package=economiccomplexity"],
-  "readme": "https://github.com/pachadotdev/economiccomplexity/blob/master/README.md",
-  "contIntegration": ["https://github.com/pachadotdev/economiccomplexity/actions/workflows/R-CMD-check.yaml", "https://app.codecov.io/gh/pachadotdev/economiccomplexity?branch=master"],
-  "developmentStatus": ["https://www.repostatus.org/#active", "https://www.tidyverse.org/lifecycle/#stable"],
-  "keywords": ["r", "matrix", "eigenvalues", "eigenvectors", "recursive-algorithm", "networks", "graphs", "international-trade", "economic-complexity"]
+  "fileSize": "3745.362KB"
 }
