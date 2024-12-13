@@ -202,11 +202,11 @@
 <span></span>
 <span><span class="co"># partial view of projections</span></span>
 <span><span class="fu"><a href="https://r.igraph.org/reference/E.html" class="external-link">E</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_country</span><span class="op">)</span><span class="op">[</span><span class="va">n</span><span class="op">]</span></span></code></pre></div>
-<pre><code><span><span class="co">## + 5/484 edges from 9b37171 (vertex names):</span></span>
+<pre><code><span><span class="co">## + 5/484 edges from 9eb89f5 (vertex names):</span></span>
 <span><span class="co">## [1] zaf--zwe tza--zmb tza--uga tuv--wlf tuv--umi</span></span></code></pre>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://r.igraph.org/reference/E.html" class="external-link">E</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span><span class="op">)</span><span class="op">[</span><span class="va">n</span><span class="op">]</span></span></code></pre></div>
-<pre><code><span><span class="co">## + 5/1505 edges from 07a2194 (vertex names):</span></span>
+<pre><code><span><span class="co">## + 5/1505 edges from 108892d (vertex names):</span></span>
 <span><span class="co">## [1] 8981--8982 8946--9510 8922--8932 8921--8922 8852--8959</span></span></code></pre>
 <p>We can also use <code>igraph</code> to see how many edges are in the networks nd also the networks’ density, diameter and transitivity.</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
@@ -425,9 +425,9 @@
 <span><span class="va">bbn_product</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/delete_vertices.html" class="external-link">delete_vertices</a></span><span class="op">(</span><span class="va">net</span><span class="op">$</span><span class="va">network_product</span>, <span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">core_product</span> <span class="op">&lt;</span> <span class="va">k</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">bbn_country</span></span></code></pre></div>
-<pre><code><span><span class="co">## IGRAPH 785e267 UNW- 38 283 -- </span></span>
+<pre><code><span><span class="co">## IGRAPH d1d3ec9 UNW- 38 283 -- </span></span>
 <span><span class="co">## + attr: name (v/c), weight (e/n)</span></span>
-<span><span class="co">## + edges from 785e267 (vertex names):</span></span>
+<span><span class="co">## + edges from d1d3ec9 (vertex names):</span></span>
 <span><span class="co">##  [1] swe--usa svn--usa svn--tur svn--swe svk--usa svk--swe svk--svn scg--ukr</span></span>
 <span><span class="co">##  [9] scg--tur scg--svn scg--svk rom--ukr rom--tur rom--svn rom--svk rom--scg</span></span>
 <span><span class="co">## [17] prt--tur prt--svn prt--svk prt--scg prt--rom pol--usa pol--tur pol--swe</span></span>
@@ -439,9 +439,9 @@
 <span><span class="co">## + ... omitted several edges</span></span></code></pre>
 <div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bbn_product</span></span></code></pre></div>
-<pre><code><span><span class="co">## IGRAPH 429e21d UNW- 132 709 -- </span></span>
+<pre><code><span><span class="co">## IGRAPH bbc2463 UNW- 132 709 -- </span></span>
 <span><span class="co">## + attr: name (v/c), weight (e/n)</span></span>
-<span><span class="co">## + edges from 429e21d (vertex names):</span></span>
+<span><span class="co">## + edges from bbc2463 (vertex names):</span></span>
 <span><span class="co">##  [1] 8922--8932 8720--8939 8720--8742 8472--8997 8465--8510 8465--8472</span></span>
 <span><span class="co">##  [7] 8464--8472 8464--8465 8463--8510 8463--8472 8463--8465 8463--8464</span></span>
 <span><span class="co">## [13] 8462--8472 8462--8465 8462--8464 8462--8463 8461--8472 8461--8465</span></span>
