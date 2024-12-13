@@ -22,3 +22,4 @@ vignettes/basic-usage_cache/
 ^\.vscode$
 ^_pkgdown\.yml$
 ^LICENSE\.md$
+^src/Makevars$
