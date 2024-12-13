@@ -121,7 +121,7 @@ using namespace cpp11;
 
   Mat<double> res_row_normalized = res.each_col() / row_sums;
   Mat<double> res_col_normalized = res.each_row() / col_sums;
-  
+
   // Compute eigenvalues for xci
   Col<cx_double> eigval_xci;
   Mat<cx_double> eigvec_xci;
@@ -187,7 +187,7 @@ using namespace cpp11;
   writable::list dimnames = as_cpp<list>(balassa_index.attr("dimnames"));
   writable::list res2;
 
-  if ((compute == "country") | (compute == "both")) {
+  if ((compute == "country") || (compute == "both")) {
     prox_x = res * res.t();
     uword n = prox_x.n_rows;
     uword m = prox_x.n_cols;
@@ -201,7 +201,7 @@ using namespace cpp11;
     res2.push_back({"proximity_country"_nm = prox_x_r});
   }
 
-  if ((compute == "product") | (compute == "both")) {
+  if ((compute == "product") || (compute == "both")) {
     prox_y = res.t() * res;
     uword n = prox_y.n_rows;
     uword m = prox_y.n_cols;
