@@ -4,16 +4,16 @@
   "identifier": "economiccomplexity",
   "description": "A wrapper of different methods from Linear Algebra for the equations introduced in The Atlas of Economic Complexity and related literature. This package provides standard matrix and graph output that can be used seamlessly with other packages. See <doi:10.21105/joss.01866> for a summary of these methods and its evolution in literature.",
   "name": "economiccomplexity: Computational Methods for Economic Complexity",
-  "codeRepository": "https://pacha.dev/economiccomplexity/",
+  "codeRepository": "https://github.com/pachadotdev/economiccomplexity",
   "issueTracker": "https://github.com/pachadotdev/economiccomplexity/issues/",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "1.5.0",
+  "version": "2.0.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.3.1 (2023-06-16)",
+  "runtimePlatform": "R version 4.4.1 (2024-06-14)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -151,18 +151,6 @@
     },
     "2": {
       "@type": "SoftwareApplication",
-      "identifier": "Matrix",
-      "name": "Matrix",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=Matrix"
-    },
-    "3": {
-      "@type": "SoftwareApplication",
       "identifier": "igraph",
       "name": "igraph",
       "provider": {
@@ -173,7 +161,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=igraph"
     },
-    "4": {
+    "3": {
       "@type": "SoftwareApplication",
       "identifier": "Rdpack",
       "name": "Rdpack",
@@ -187,5 +175,10 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "3745.362KB"
+  "fileSize": "9405.69KB",
+  "relatedLink": ["https://pacha.dev/economiccomplexity/", "https://CRAN.R-project.org/package=economiccomplexity"],
+  "readme": "https://github.com/pachadotdev/economiccomplexity/blob/main/README.md",
+  "contIntegration": ["https://github.com/pachadotdev/economiccomplexity/actions/workflows/R-CMD-check.yaml", "https://app.codecov.io/gh/pachadotdev/economiccomplexity?branch=master"],
+  "developmentStatus": ["https://www.repostatus.org/#active", "https://www.tidyverse.org/lifecycle/#stable"],
+  "keywords": ["r", "matrix", "eigenvalues", "eigenvectors", "recursive-algorithm", "networks", "graphs", "international-trade", "economic-complexity"]
 }

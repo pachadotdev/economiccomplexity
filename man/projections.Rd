@@ -13,10 +13,10 @@ projections(
 )
 }
 \arguments{
-\item{proximity_country}{(Type: dgCMatrix) the output from
+\item{proximity_country}{(Type: matrix) the output from
 \code{proximity()}) or an equivalent arrangement.}
 
-\item{proximity_product}{(Type: dgCMatrix) the output from
+\item{proximity_product}{(Type: matrix) the output from
 \code{proximity()}) or an equivalent arrangement.}
 
 \item{avg_links}{average number of connections for the projections.
@@ -54,8 +54,9 @@ net <- projections(
 )
 
 # partial view of projections
-igraph::E(net$network_country)[1:5]
-igraph::E(net$network_product)[1:5]
+n <- seq_len(5)
+igraph::E(net$network_country)[n]
+igraph::E(net$network_product)[n]
 
 }
 \references{

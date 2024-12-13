@@ -10,9 +10,9 @@
 #'
 #' @return A matrix.
 #'
-#' @param balassa_index (Type: dgCMatrix) the output from
+#' @param balassa_index (Type: matrix) the output from
 #' \code{balassa_index()}) or an equivalent arrangement.
-#' @param proximity_product (Type: dgCMatrix) the output from
+#' @param proximity_product (Type: matrix) the output from
 #' \code{proximity()}) or an equivalent arrangement.
 #'
 #' @examples
@@ -22,7 +22,8 @@
 #' )
 #'
 #' # partial view of the density matrix
-#' d[1:5, 1:5]
+#' n <- seq_len(5)
+#' d[n, n]
 #'
 #' @references
 #' For more information on this index see:

@@ -2,7 +2,7 @@ test_that("balassa_index works with a data.frame", {
   bi <- expect_warning(rca())
   bi <- balassa_index(world_trade_avg_1998_to_2000)
 
-  expect_is(bi, "dgCMatrix")
+  expect_is(bi, "matrix")
   expect_equal(nrow(bi), 226)
   expect_equal(ncol(bi), 785)
   expect_equal(min(bi), 0)
@@ -14,23 +14,14 @@ test_that("balassa_index works with a matrix", {
   wt$country <- as.factor(wt$country)
   wt$product <- as.factor(wt$product)
 
-  wt <- with(
-    wt,
-    Matrix::sparseMatrix(
-      i = as.numeric(country),
-      j = as.numeric(product),
-      x = value,
-      dimnames = list(levels(country), levels(product))
-    )
-  )
-
-  wt <- Matrix::as.matrix(wt)
+  wt <- dataframe_to_matrix(wt, country = "country", product = "product",
+    value = "value")
 
   bi <- balassa_index(world_trade_avg_1998_to_2000)
 
-  bi2 <- balassa_index(data = wt)
+  bi2 <- balassa_index(wt)
 
-  expect_is(bi2, "dgCMatrix")
+  expect_is(bi2, "matrix")
   expect_equal(bi, bi2)
   expect_equal(nrow(bi2), 226)
   expect_equal(ncol(bi2), 785)
@@ -41,7 +32,7 @@ test_that("balassa_index works with a matrix", {
 test_that("balassa_index returns error with vector data", {
   expect_error(
     balassa_index(
-      data = 200:100,
+      data = seq(200, 100, 1),
       country = "country",
       product = "product",
       value = "export_value"

@@ -19,3 +19,6 @@ svg/
 vignettes/basic-usage_cache/
 ^\.github$
 ^cran-comments\.md$
+^\.vscode$
+^_pkgdown\.yml$
+^LICENSE\.md$

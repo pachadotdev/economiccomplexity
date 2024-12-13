@@ -7,7 +7,7 @@
 proximity(balassa_index, compute = "both")
 }
 \arguments{
-\item{balassa_index}{(Type: dgCMatrix) the output from
+\item{balassa_index}{(Type: matrix) the output from
 \code{balassa_index()}) or an equivalent arrangement.}
 
 \item{compute}{(Type: character) the proximity to compute. By default this is
@@ -31,8 +31,9 @@ that two countries "c1" and "c2" export the same product.
 pro <- proximity(economiccomplexity_output$balassa_index)
 
 # partial view of proximity matrices
-pro$proximity_country[1:5, 1:5]
-pro$proximity_product[1:5, 1:5]
+n <- seq_len(5)
+pro$proximity_country[n, n]
+pro$proximity_product[n, n]
 
 }
 \references{

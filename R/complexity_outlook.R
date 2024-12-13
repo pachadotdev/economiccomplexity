@@ -9,14 +9,12 @@
 #'
 #' @return A list of two named numeric vectors.
 #'
-#' @param balassa_index (Type: dgCMatrix) the output from
+#' @param balassa_index (Type: matrix) the output from
 #' \code{balassa_index()}) or an equivalent arrangement.
-#' @param proximity_product (Type: dgCMatrix) the output from
+#' @param proximity_product (Type: matrix) the output from
 #' \code{proximity()}) or an equivalent arrangement.
 #' @param complexity_index_product (Type: numeric) the output from
 #' \code{complexity_measures()}) or an equivalent arrangement.
-#'
-#' @importFrom Matrix tcrossprod rowSums colSums t
 #'
 #' @examples
 #' co <- complexity_outlook(
@@ -26,8 +24,9 @@
 #' )
 #'
 #' # partial view of complexity outlook
-#' co$complexity_outlook_index[1:5]
-#' co$complexity_outlook_gain[1:5, 1:5]
+#' n <- seq_len(5)
+#' co$complexity_outlook_index[n]
+#' co$complexity_outlook_gain[n, n]
 #'
 #' @references
 #' For more information on this index see:
@@ -40,14 +39,15 @@
 #'
 #' @export
 
-complexity_outlook <- function(balassa_index, proximity_product, complexity_index_product) {
+complexity_outlook <- function(balassa_index, proximity_product,
+                               complexity_index_product) {
   # sanity checks ----
-  if (!(any(class(balassa_index) %in% "dgCMatrix") == TRUE)) {
-    stop("'balassa_index' must be a dgCMatrix")
+  if (!(any(class(balassa_index) %in% "matrix") == TRUE)) {
+    stop("'balassa_index' must be a matrix")
   }
 
-  if (!(any(class(proximity_product) %in% "dsCMatrix") == TRUE)) {
-    stop("'proximity_product' must be a dgCMatrix")
+  if (!(any(class(proximity_product) %in% "matrix") == TRUE)) {
+    stop("'proximity_product' must be a matrix")
   }
 
   if (!(any(class(complexity_index_product) %in% "numeric") == TRUE)) {
@@ -61,7 +61,8 @@ complexity_outlook <- function(balassa_index, proximity_product, complexity_inde
 
   cog <- (1 - balassa_index) * tcrossprod(
     (1 - balassa_index),
-    t(proximity_product * (complexity_index_product / rowSums(proximity_product)))
+    t(proximity_product * (complexity_index_product /
+      rowSums(proximity_product)))
   )
 
   return(

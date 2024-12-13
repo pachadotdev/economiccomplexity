@@ -8,20 +8,20 @@
 #'
 #' @return A list of two named numeric vectors.
 #'
-#' @param data_exp (Type: data.frame, matrix or dgCMatrix) a dataset containing
+#' @param data_exp (Type: data.frame, matrix or matrix) a dataset containing
 #' countries, products and exported values.
-#' @param data_gdp (Type: data.frame, matrix or dgCMatrix) a dataset
+#' @param data_gdp (Type: data.frame, matrix or matrix) a dataset
 #' containing countries and per-capita GDP values.
 #' @param country (Type: character) the column with the countries.
-#' By default this is set to \code{"country"}. Used only if the input is a data.frame.
+#' By default this is set to \code{"country"}. Used only if the input is a
+#'  data.frame.
 #' @param product (Type: character) the column with the products.
-#' By default this is set to \code{"product"}. Used only if the input is a data.frame.
+#' By default this is set to \code{"product"}. Used only if the input is a
+#'  data.frame.
 #' @param value  (Type: character) the column with the metric for
-#' country-product pairs.
-#' By default this is set to \code{"value"}. Used only if the input is a data.frame.
-#'
-#' @importFrom Matrix Matrix rowSums colSums t crossprod
-#' @importFrom stats setNames
+#'  country-product pairs.
+#' By default this is set to \code{"value"}. Used only if the input is a
+#'  data.frame.
 #'
 #' @examples
 #' pl <- productivity_levels(
@@ -30,8 +30,9 @@
 #' )
 #'
 #' # partial view of productivity levels
-#' pl$productivity_level_country[1:5]
-#' pl$productivity_level_product[1:5]
+#' n <- seq_len(5)
+#' pl$productivity_level_country[n]
+#' pl$productivity_level_product[n]
 #'
 #' @references
 #' For more information on prody and its applications see:
@@ -43,10 +44,11 @@
 #' @export
 
 productivity_levels <- function(data_exp, data_gdp,
-                                country = "country", product = "product", value = "value") {
+                                country = "country", product = "product",
+                                value = "value") {
   # sanity checks ----
-  if (all(class(data_exp) %in% c("data.frame", "matrix", "dgCMatrix") == FALSE)) {
-    stop("'data_exp' must be a data.frame, matrix or dgCMatrix")
+  if (all(class(data_exp) %in% c("data.frame", "matrix") == FALSE)) {
+    stop("'data_exp' must be a data.frame or matrix")
   }
 
   if (all(class(data_gdp) %in% c("data.frame", "numeric") == FALSE)) {
@@ -60,7 +62,7 @@ productivity_levels <- function(data_exp, data_gdp,
   }
 
   if (!(any(class(data_exp) %in% "matrix") == TRUE)) {
-    data_exp <- Matrix(data_exp, sparse = TRUE, forceCheck = TRUE)
+    data_exp <- matrix(data_exp)
   }
 
   # tidy input data data_gdp ----
@@ -69,13 +71,16 @@ productivity_levels <- function(data_exp, data_gdp,
     data_gdp <- setNames(as.numeric(data_gdp$value), data_gdp$country)
   }
 
-  intersect_country_1 <- sort(rownames(data_exp)[rownames(data_exp) %in% names(data_gdp)])
-  intersect_country_2 <- sort(names(data_gdp)[names(data_gdp) %in% rownames(data_exp)])
+  intersect_country_1 <- sort(rownames(data_exp)[rownames(data_exp) %in%
+    names(data_gdp)])
+  intersect_country_2 <- sort(names(data_gdp)[names(data_gdp) %in%
+    rownames(data_exp)])
 
   if (any(intersect_country_1 != intersect_country_2) == TRUE |
     nrow(data_exp) != length(intersect_country_2) |
     length(data_gdp) != length(intersect_country_1)) {
-    warning("'data_exp' and 'data_gdp' don\'t have the same countries, some elements will be dropped")
+    warning(paste("'data_exp' and 'data_gdp' don\'t have the same countries,",
+                  "some elements will be dropped"))
   }
 
   data_exp <- data_exp[rownames(data_exp) %in% names(data_gdp), ]

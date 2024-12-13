@@ -10,12 +10,10 @@
 #'
 #' @return A matrix.
 #'
-#' @param balassa_index (Type: dgCMatrix) the output from
+#' @param balassa_index (Type: matrix) the output from
 #' \code{balassa_index()}) or an equivalent arrangement.
-#' @param proximity_product (Type: dgCMatrix) the output from
+#' @param proximity_product (Type: matrix) the output from
 #' \code{proximity()}) or an equivalent arrangement.
-#'
-#' @importFrom Matrix tcrossprod rowSums
 #'
 #' @examples
 #' d <- distance(
@@ -24,7 +22,8 @@
 #' )
 #'
 #' # partial view of the distance matrix
-#' d[1:5, 1:5]
+#' n <- seq_len(5)
+#' d[n, n]
 #'
 #' @references
 #' For more information on this index see:
@@ -39,15 +38,9 @@
 
 distance <- function(balassa_index, proximity_product) {
   # sanity checks ----
-  if (!(any(class(balassa_index) %in% "dgCMatrix") == TRUE)) {
-    stop("'balassa_index' must be a dgCMatrix")
+  if (!(any(class(balassa_index) %in% "matrix") == TRUE)) {
+    stop("'balassa_index' must be a matrix")
   }
 
-  if (!(any(class(proximity_product) %in% "dsCMatrix") == TRUE)) {
-    stop("'proximity_product' must be a dgCMatrix")
-  }
-
-  return(
-    tcrossprod(1 - balassa_index, proximity_product / rowSums(proximity_product))
-  )
+  distance_(balassa_index, proximity_product)
 }

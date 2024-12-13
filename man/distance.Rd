@@ -7,10 +7,10 @@
 distance(balassa_index, proximity_product)
 }
 \arguments{
-\item{balassa_index}{(Type: dgCMatrix) the output from
+\item{balassa_index}{(Type: matrix) the output from
 \code{balassa_index()}) or an equivalent arrangement.}
 
-\item{proximity_product}{(Type: dgCMatrix) the output from
+\item{proximity_product}{(Type: matrix) the output from
 \code{proximity()}) or an equivalent arrangement.}
 }
 \value{
@@ -33,7 +33,8 @@ d <- distance(
 )
 
 # partial view of the distance matrix
-d[1:5, 1:5]
+n <- seq_len(5)
+d[n, n]
 
 }
 \references{

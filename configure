@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Set the number of cores
+if [ -z "$PKG_NCORES" ]; then
+  PKG_NCORES=$(getconf _NPROCESSORS_ONLN)
+    if [ -z "$PKG_NCORES" ] || [ "$PKG_NCORES" -lt 1 ]; then
+      PKG_NCORES=1
+    elif [ "$PKG_NCORES" -gt 1 ]; then
+      PKG_NCORES=$((PKG_NCORES / 2))
+    fi
+fi
+
+# Write Makevars
+sed -e "s|@ncores@|$PKG_NCORES|" \
+  src/Makevars.in > src/Makevars

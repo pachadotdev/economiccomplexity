@@ -12,7 +12,7 @@ complexity_measures(
 )
 }
 \arguments{
-\item{balassa_index}{(Type: dgCMatrix) the output from
+\item{balassa_index}{(Type: matrix) the output from
 \code{balassa_index()}) or an equivalent arrangement.}
 
 \item{method}{(Type: character) one of these methods: fitness,
@@ -41,8 +41,9 @@ alternatives that account for diversification in bipartite relations.
 co <- complexity_measures(economiccomplexity_output$balassa_index)
 
 # partial view of indexes
-co$complexity_index_country[1:5]
-co$complexity_index_product[1:5]
+n <- seq_len(5)
+co$complexity_index_country[n]
+co$complexity_index_product[n]
 
 }
 \references{

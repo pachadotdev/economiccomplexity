@@ -16,17 +16,10 @@ test_that("productivity_levels works with a data frame + named vector", {
   wt$country <- as.factor(wt$country)
   wt$product <- as.factor(wt$product)
 
-  wt <- with(
-    wt,
-    Matrix::sparseMatrix(
-      i = as.numeric(country),
-      j = as.numeric(product),
-      x = value,
-      dimnames = list(levels(country), levels(product))
-    )
+  wt <- dataframe_to_matrix(wt,
+    country = "country", product = "product",
+    value = "value"
   )
-
-  wt <- Matrix::as.matrix(wt)
 
   pl <- expect_warning(
     productivity_levels(

@@ -1,12 +1,17 @@
-ba_ind <- balassa_index(
-  data = world_trade_avg_1998_to_2000
-)
+ba_ind <- balassa_index(world_trade_avg_1998_to_2000)
+
+x <- test_eig(ba_ind, 10L)
+y <- test_eig_(ba_ind, 10L)
+
+dim(x)
+dim(y)
+
+head(x[1, ])
+head(y[1, ])
 
 com_fit <- complexity_measures(ba_ind)
 
-prox <- proximity(
-  balassa_index = ba_ind
-)
+prox <- proximity(ba_ind, "both")
 
 # proj <- projections(
 #   proximity_country = prox$proximity_country,

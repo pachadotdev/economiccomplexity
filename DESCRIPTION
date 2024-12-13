@@ -1,7 +1,7 @@
 Package: economiccomplexity
 Type: Package
 Title: Computational Methods for Economic Complexity
-Version: 1.5.0
+Version: 2.0.0
 Authors@R: c(
     person(given = "Mauricio",
       family = "Vargas Sepulveda",
@@ -39,12 +39,11 @@ Description: A wrapper of different methods from Linear Algebra for the equation
   package provides standard matrix and graph output that can be used seamlessly
   with other packages. See <doi:10.21105/joss.01866> for a summary
   of these methods and its evolution in literature.
-License: GPL-3
+License: Apache License (>= 2)
 Encoding: UTF-8
 LazyData: true
 Depends: R (>= 3.5)
 Imports:
-    Matrix,
     igraph,
     Rdpack
 Suggests: 
@@ -56,6 +55,9 @@ Suggests:
     covr
 URL: https://pacha.dev/economiccomplexity/
 BugReports: https://github.com/pachadotdev/economiccomplexity/issues/
+RoxygenNote: 7.3.2
 RdMacros: Rdpack
-RoxygenNote: 7.2.3
 VignetteBuilder: knitr
+LinkingTo: 
+    cpp11,
+    cpp11armadillo

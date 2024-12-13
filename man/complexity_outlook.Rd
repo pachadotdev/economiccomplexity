@@ -7,10 +7,10 @@
 complexity_outlook(balassa_index, proximity_product, complexity_index_product)
 }
 \arguments{
-\item{balassa_index}{(Type: dgCMatrix) the output from
+\item{balassa_index}{(Type: matrix) the output from
 \code{balassa_index()}) or an equivalent arrangement.}
 
-\item{proximity_product}{(Type: dgCMatrix) the output from
+\item{proximity_product}{(Type: matrix) the output from
 \code{proximity()}) or an equivalent arrangement.}
 
 \item{complexity_index_product}{(Type: numeric) the output from
@@ -36,8 +36,9 @@ co <- complexity_outlook(
 )
 
 # partial view of complexity outlook
-co$complexity_outlook_index[1:5]
-co$complexity_outlook_gain[1:5, 1:5]
+n <- seq_len(5)
+co$complexity_outlook_index[n]
+co$complexity_outlook_gain[n, n]
 
 }
 \references{

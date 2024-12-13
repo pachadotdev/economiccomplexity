@@ -13,21 +13,24 @@ productivity_levels(
 )
 }
 \arguments{
-\item{data_exp}{(Type: data.frame, matrix or dgCMatrix) a dataset containing
+\item{data_exp}{(Type: data.frame, matrix or matrix) a dataset containing
 countries, products and exported values.}
 
-\item{data_gdp}{(Type: data.frame, matrix or dgCMatrix) a dataset
+\item{data_gdp}{(Type: data.frame, matrix or matrix) a dataset
 containing countries and per-capita GDP values.}
 
 \item{country}{(Type: character) the column with the countries.
-By default this is set to \code{"country"}. Used only if the input is a data.frame.}
+By default this is set to \code{"country"}. Used only if the input is a
+ data.frame.}
 
 \item{product}{(Type: character) the column with the products.
-By default this is set to \code{"product"}. Used only if the input is a data.frame.}
+By default this is set to \code{"product"}. Used only if the input is a
+ data.frame.}
 
 \item{value}{(Type: character) the column with the metric for
-country-product pairs.
-By default this is set to \code{"value"}. Used only if the input is a data.frame.}
+ country-product pairs.
+By default this is set to \code{"value"}. Used only if the input is a
+ data.frame.}
 }
 \value{
 A list of two named numeric vectors.
@@ -47,8 +50,9 @@ pl <- productivity_levels(
 )
 
 # partial view of productivity levels
-pl$productivity_level_country[1:5]
-pl$productivity_level_product[1:5]
+n <- seq_len(5)
+pl$productivity_level_country[n]
+pl$productivity_level_product[n]
 
 }
 \references{

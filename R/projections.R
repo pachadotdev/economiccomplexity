@@ -12,9 +12,9 @@
 #'
 #' @return A list of two graphs.
 #'
-#' @param proximity_country (Type: dgCMatrix) the output from
+#' @param proximity_country (Type: matrix) the output from
 #' \code{proximity()}) or an equivalent arrangement.
-#' @param proximity_product (Type: dgCMatrix) the output from
+#' @param proximity_product (Type: matrix) the output from
 #' \code{proximity()}) or an equivalent arrangement.
 #' @param avg_links average number of connections for the projections.
 #' By default this is set to \code{5}.
@@ -25,9 +25,6 @@
 #' \code{"both"} (both projections) but it can also be \code{"country"}
 #' or \code{"product"}.
 #'
-#' @importFrom igraph graph_from_adjacency_matrix mst
-#' degree delete.edges graph.difference graph.union remove.edge.attribute E E<-
-#'
 #' @examples
 #' net <- projections(
 #'   economiccomplexity_output$proximity$proximity_country,
@@ -37,8 +34,9 @@
 #' )
 #'
 #' # partial view of projections
-#' igraph::E(net$network_country)[1:5]
-#' igraph::E(net$network_product)[1:5]
+#' n <- seq_len(5)
+#' igraph::E(net$network_country)[n]
+#' igraph::E(net$network_product)[n]
 #'
 #' @references
 #' For more information see:
@@ -54,9 +52,9 @@
 projections <- function(proximity_country, proximity_product,
                         avg_links = 5, tolerance = 0.05, compute = "both") {
   # sanity checks ----
-  if (!(any(class(proximity_country) %in% "dsCMatrix") == TRUE) |
-    !(any(class(proximity_product) %in% "dsCMatrix") == TRUE)) {
-    stop("'proximity_country' and 'proximity_product' must be dsCMatrix")
+  if (!(any(class(proximity_country) %in% "matrix") == TRUE) |
+    !(any(class(proximity_product) %in% "matrix") == TRUE)) {
+    stop("'proximity_country' and 'proximity_product' must be matrix")
   }
 
   if (!is.numeric(avg_links)) {
@@ -67,16 +65,12 @@ projections <- function(proximity_country, proximity_product,
     stop("'compute' must be 'both', 'country' or 'product'")
   }
 
-  if (compute == "both") {
-    compute2 <- c("country", "product")
-  } else {
-    compute2 <- compute
-  }
-
   trim_network <- function(proximity_mat, proximity_avg) {
+    # this -1 is because the book by Hausmann mentions "maximum spanning tree"
     proximity_mat <- (-1) * proximity_mat
 
-    g <- graph_from_adjacency_matrix(proximity_mat, weighted = TRUE, mode = "undirected", diag = FALSE)
+    g <- graph_from_adjacency_matrix(proximity_mat, weighted = TRUE,
+      mode = "undirected", diag = FALSE)
 
     g_mst <- mst(g, algorithm = "prim")
 
@@ -91,7 +85,7 @@ projections <- function(proximity_country, proximity_product,
         g_not_in_mst <- graph.difference(g_not_in_mst, g_mst)
 
         g <- graph.union(g_mst, g_not_in_mst)
-        E(g)$weight <- pmin(E(g)$weight_1, E(g)$weight_2, na.rm = T)
+        E(g)$weight <- pmin(E(g)$weight_1, E(g)$weight_2, na.rm = TRUE)
         g <- remove.edge.attribute(g, "weight_1")
         g <- remove.edge.attribute(g, "weight_2")
 
@@ -99,12 +93,14 @@ projections <- function(proximity_country, proximity_product,
         threshold <- threshold + tolerance
 
         if (avg_links_n == TRUE) {
-          message(sprintf("%s threshold achieves the avg number of connections", threshold))
+          message(sprintf("%s threshold achieves the avg number of connections",
+            threshold))
           E(g)$weight <- (-1) * E(g)$weight
           return(g)
         }
       } else {
-        warning("no threshold achieves the avg number of connections\nreturning maximum spanning tree")
+        warning(paste("no threshold achieves the avg number of connections",
+                      "returning maximum spanning tree"))
         avg_links_n <- TRUE
         E(g_mst)$weight <- (-1) * E(g_mst)$weight
         return(g_mst)
@@ -112,7 +108,7 @@ projections <- function(proximity_country, proximity_product,
     }
   }
 
-  if (any("country" %in% compute2) == TRUE) {
+  if (any(compute == "country" || compute == "both") == TRUE) {
     message("computing country projection...")
     message(rep("-", 50))
     xg <- trim_network(proximity_country, avg_links)
@@ -120,7 +116,7 @@ projections <- function(proximity_country, proximity_product,
     xg <- NULL
   }
 
-  if (any("product" %in% compute2) == TRUE) {
+  if (any(compute == "product" || compute == "both") == TRUE) {
     message("computing product projection...")
     message(rep("-", 50))
     yg <- trim_network(proximity_product, avg_links)
