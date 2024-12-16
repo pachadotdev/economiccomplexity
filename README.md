@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# economiccomplexity <img src="https://pacha.dev/economiccomplexity/hexicon.svg" width=150 align="right" alt="sticker"/>
+# economiccomplexity <img src="man/figures/logo.svg" width=150 align="right" alt="sticker"/>
 
 <!-- badges: start -->
 

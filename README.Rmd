@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# economiccomplexity <img src="https://pacha.dev/economiccomplexity/hexicon.svg" width=150 align="right" alt="sticker"/>
+# economiccomplexity <img src="man/figures/logo.svg" width=150 align="right" alt="sticker"/>
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/economiccomplexity)](https://cran.r-project.org/package=economiccomplexity)

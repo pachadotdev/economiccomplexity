@@ -23,3 +23,4 @@ vignettes/basic-usage_cache/
 ^_pkgdown\.yml$
 ^LICENSE\.md$
 ^src/Makevars$
+^CRAN-SUBMISSION$
