@@ -81,13 +81,13 @@ projections <- function(proximity_country, proximity_product,
       if (threshold < 1) {
         message(sprintf("%s threshold...", threshold))
 
-        g_not_in_mst <- delete.edges(g, which(abs(E(g)$weight) <= threshold))
-        g_not_in_mst <- graph.difference(g_not_in_mst, g_mst)
+        g_not_in_mst <- delete_edges(g, which(abs(E(g)$weight) <= threshold))
+        g_not_in_mst <- difference(g_not_in_mst, g_mst)
 
-        g <- graph.union(g_mst, g_not_in_mst)
+        g <- union(g_mst, g_not_in_mst)
         E(g)$weight <- pmin(E(g)$weight_1, E(g)$weight_2, na.rm = TRUE)
-        g <- remove.edge.attribute(g, "weight_1")
-        g <- remove.edge.attribute(g, "weight_2")
+        g <- delete_edge_attr(g, "weight_1")
+        g <- delete_edge_attr(g, "weight_2")
 
         avg_links_n <- ifelse(mean(degree(g)) <= avg_links, TRUE, FALSE)
         threshold <- threshold + tolerance

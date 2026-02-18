@@ -1,14 +1,14 @@
-#include <cpp11.hpp>
-#include <cpp11armadillo.hpp>
+#include <cpp4r.hpp>
+#include <armadillo4r.hpp>
 
+using namespace cpp4r;
 using namespace arma;
-using namespace cpp11;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Balassa Index
 ///////////////////////////////////////////////////////////////////////////////
 
-[[cpp11::register]] sexp balassa_index_(const doubles_matrix<>& trade_matrix,
+[[cpp4r::register]] sexp balassa_index_(const doubles_matrix<>& trade_matrix,
                                         const bool& discrete,
                                         const double& cutoff) {
   Mat<double> res = as_Mat(trade_matrix);
@@ -24,8 +24,9 @@ using namespace cpp11;
         [cutoff](double val) { return (val < cutoff) ? 0.0 : 1.0; });
   }
 
-  sexp res2 = as_cpp<sexp>(as_doubles_matrix(res));
-  res2.attr("dimnames") = as_cpp<list>(trade_matrix.attr("dimnames"));
+  writable::doubles_matrix<> res2 = as_doubles_matrix(res);
+  SEXP dimnames = Rf_getAttrib(trade_matrix, R_DimNamesSymbol);
+  res2.attr("dimnames", dimnames);
 
   return res2;
 }
@@ -34,7 +35,7 @@ using namespace cpp11;
 // Complexity Measures
 ///////////////////////////////////////////////////////////////////////////////
 
-[[cpp11::register]] list fitness_method_(const doubles_matrix<>& balassa_index,
+[[cpp4r::register]] list fitness_method_(const doubles_matrix<>& balassa_index,
                                          const int& iterations,
                                          const double& extremality) {
   Mat<double> res = as_Mat(balassa_index);
@@ -62,15 +63,15 @@ using namespace cpp11;
   writable::doubles yci = as_doubles(ky.col(iterations - 1));
 
   // Set names for the results
-  writable::list dimnames = as_cpp<list>(balassa_index.attr("dimnames"));
-  xci.attr("names") = dimnames[0];
-  yci.attr("names") = dimnames[1];
+  SEXP dimnames = Rf_getAttrib(balassa_index, R_DimNamesSymbol);
+  xci.attr("names") = VECTOR_ELT(dimnames, 0);
+  yci.attr("names") = VECTOR_ELT(dimnames, 1);
 
   return writable::list({"complexity_index_country"_nm = xci,
                          "complexity_index_product"_nm = yci});
 }
 
-[[cpp11::register]] list reflections_method_(
+[[cpp4r::register]] list reflections_method_(
     const doubles_matrix<>& balassa_index, const int& iterations) {
   Mat<double> res = as_Mat(balassa_index);
 
@@ -104,15 +105,15 @@ using namespace cpp11;
   writable::doubles yci = as_doubles(yci_col);
 
   // Set names for the results
-  writable::list dimnames = as_cpp<list>(balassa_index.attr("dimnames"));
-  xci.attr("names") = dimnames[0];
-  yci.attr("names") = dimnames[1];
+  SEXP dimnames = Rf_getAttrib(balassa_index, R_DimNamesSymbol);
+  xci.attr("names") = VECTOR_ELT(dimnames, 0);
+  yci.attr("names") = VECTOR_ELT(dimnames, 1);
 
   return writable::list({"complexity_index_country"_nm = xci,
                          "complexity_index_product"_nm = yci});
 }
 
-[[cpp11::register]] list eigenvalues_method_(
+[[cpp4r::register]] list eigenvalues_method_(
     const doubles_matrix<>& balassa_index, const int& iterations) {
   Mat<double> res = as_Mat(balassa_index);
 
@@ -141,9 +142,9 @@ using namespace cpp11;
   writable::doubles yci_r = as_doubles(yci);
 
   // Set names for the results
-  writable::list dimnames = as_cpp<list>(balassa_index.attr("dimnames"));
-  xci_r.attr("names") = dimnames[0];
-  yci_r.attr("names") = dimnames[1];
+  SEXP dimnames = Rf_getAttrib(balassa_index, R_DimNamesSymbol);
+  xci_r.attr("names") = VECTOR_ELT(dimnames, 0);
+  yci_r.attr("names") = VECTOR_ELT(dimnames, 1);
 
   return writable::list({"complexity_index_country"_nm = xci_r,
                          "complexity_index_product"_nm = yci_r});
@@ -153,7 +154,7 @@ using namespace cpp11;
 // Distance
 ///////////////////////////////////////////////////////////////////////////////
 
-[[cpp11::register]] sexp distance_(const doubles_matrix<>& balassa_index,
+[[cpp4r::register]] sexp distance_(const doubles_matrix<>& balassa_index,
                                    const doubles_matrix<>& proximity_product) {
   Mat<double> res = as_Mat(balassa_index);
   Mat<double> res2 = as_Mat(proximity_product);
@@ -162,9 +163,9 @@ using namespace cpp11;
   Mat<double> res2_normalized = res2.each_col() / row_sums;
   Mat<double> distance_matrix = (1.0 - res) * res2_normalized.t();
 
-  sexp res3 = as_cpp<sexp>(as_doubles_matrix(distance_matrix));
-  writable::list dimnames = as_cpp<list>(balassa_index.attr("dimnames"));
-  res3.attr("dimnames") = dimnames;
+  writable::doubles_matrix<> res3 = as_doubles_matrix(distance_matrix);
+  SEXP dimnames = Rf_getAttrib(balassa_index, R_DimNamesSymbol);
+  res3.attr("dimnames", dimnames);
 
   return res3;
 }
@@ -173,7 +174,7 @@ using namespace cpp11;
 // Proximity
 ///////////////////////////////////////////////////////////////////////////////
 
-[[cpp11::register]] list proximity_(const doubles_matrix<>& balassa_index,
+[[cpp4r::register]] list proximity_(const doubles_matrix<>& balassa_index,
                                     const std::string& compute) {
   Mat<double> res = as_Mat(balassa_index);
 
@@ -184,7 +185,7 @@ using namespace cpp11;
   Mat<double> prox_y;
 
   // Set names for the results
-  writable::list dimnames = as_cpp<list>(balassa_index.attr("dimnames"));
+  SEXP dimnames = Rf_getAttrib(balassa_index, R_DimNamesSymbol);
   writable::list res2;
 
   if ((compute == "country") || (compute == "both")) {
@@ -196,8 +197,11 @@ using namespace cpp11;
         prox_x(i, j) /= std::max(row_sums(i), row_sums(j));
       }
     }
-    sexp prox_x_r = as_cpp<sexp>(as_doubles_matrix(prox_x));
-    prox_x_r.attr("dimnames") = writable::list({dimnames[0], dimnames[0]});
+    writable::doubles_matrix<> prox_x_r = as_doubles_matrix(prox_x);
+    writable::list dn_x(2);
+    dn_x[0] = VECTOR_ELT(dimnames, 0);
+    dn_x[1] = VECTOR_ELT(dimnames, 0);
+    prox_x_r.attr("dimnames", (SEXP)dn_x);
     res2.push_back({"proximity_country"_nm = prox_x_r});
   }
 
@@ -210,8 +214,11 @@ using namespace cpp11;
         prox_y(i, j) /= std::max(col_sums(i), col_sums(j));
       }
     }
-    sexp prox_y_r = as_cpp<sexp>(as_doubles_matrix(prox_y));
-    prox_y_r.attr("dimnames") = writable::list({dimnames[1], dimnames[1]});
+    writable::doubles_matrix<> prox_y_r = as_doubles_matrix(prox_y);
+    writable::list dn_y(2);
+    dn_y[0] = VECTOR_ELT(dimnames, 1);
+    dn_y[1] = VECTOR_ELT(dimnames, 1);
+    prox_y_r.attr("dimnames", (SEXP)dn_y);
     res2.push_back({"proximity_product"_nm = prox_y_r});
   }
 
