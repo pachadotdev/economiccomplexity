@@ -211,10 +211,10 @@ net &lt;- projections(pro$proximity_country, pro$proximity_product)
 
 # partial view of projections
 E(net$network_country)[n]</code></pre>
-<pre><code>## + 5/484 edges from 2b8efff (vertex names):
+<pre><code>## + 5/484 edges from b03e5ba (vertex names):
 ## [1] zaf--zwe tza--zmb tza--uga tuv--wlf tuv--umi</code></pre>
 <pre class="r"><code>E(net$network_product)[n]</code></pre>
-<pre><code>## + 5/1505 edges from 6c9bde9 (vertex names):
+<pre><code>## + 5/1505 edges from 2176710 (vertex names):
 ## [1] 8981--8982 8946--9510 8922--8932 8921--8922 8852--8959</code></pre>
 <p>We can also use <code>igraph</code> to see how many edges are in the
 networks nd also the networks’ density, diameter and transitivity.</p>
@@ -410,9 +410,9 @@ bbn_country &lt;- delete_vertices(net$network_country, which(core_country &lt; k
 bbn_product &lt;- delete_vertices(net$network_product, which(core_product &lt; k))
 
 bbn_country</code></pre>
-<pre><code>## IGRAPH bcb8e3b UNW- 38 283 --
+<pre><code>## IGRAPH f494d67 UNW- 38 283 --
 ## + attr: name (v/c), weight (e/n)
-## + edges from bcb8e3b (vertex names):
+## + edges from f494d67 (vertex names):
 ##  [1] swe--usa svn--usa svn--tur svn--swe svk--usa svk--swe svk--svn scg--ukr
 ##  [9] scg--tur scg--svn scg--svk rom--ukr rom--tur rom--svn rom--svk rom--scg
 ## [17] prt--tur prt--svn prt--svk prt--scg prt--rom pol--usa pol--tur pol--swe
@@ -423,9 +423,9 @@ bbn_country</code></pre>
 ## [57] ind--tur ind--scg ind--rom ind--pak ind--ken ind--ita hun--usa hun--tur
 ## + ... omitted several edges</code></pre>
 <pre class="r"><code>bbn_product</code></pre>
-<pre><code>## IGRAPH 4a4828d UNW- 132 709 --
+<pre><code>## IGRAPH 8c9d5c0 UNW- 132 709 --
 ## + attr: name (v/c), weight (e/n)
-## + edges from 4a4828d (vertex names):
+## + edges from 8c9d5c0 (vertex names):
 ##  [1] 8922--8932 8720--8939 8720--8742 8472--8997 8465--8510 8465--8472
 ##  [7] 8464--8472 8464--8465 8463--8510 8463--8472 8463--8465 8463--8464
 ## [13] 8462--8472 8462--8465 8462--8464 8462--8463 8461--8472 8461--8465

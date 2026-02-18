@@ -14,8 +14,8 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![DOI](https://joss.theoj.org/papers/10.21105/joss.01866/status.svg)](https://doi.org/10.21105/joss.01866)
 [![R-CMD-check](https://github.com/pachadotdev/economiccomplexity/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pachadotdev/economiccomplexity/actions/workflows/R-CMD-check.yaml)
-[![Codecov test
-coverage](https://codecov.io/gh/pachadotdev/economiccomplexity/branch/master/graph/badge.svg)](https://app.codecov.io/gh/pachadotdev/economiccomplexity?branch=master)
+[![Test
+coverage](https://raw.githubusercontent.com/pachadotdev/economiccomplexity/coverage/badges/coverage.svg)](https://github.com/pachadotdev/economiccomplexity/actions/workflows/test-coverage.yaml)
 <!-- badges: end -->
 
 A wrapper of different methods from Linear Algebra for the equations
